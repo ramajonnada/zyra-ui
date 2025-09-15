@@ -13,7 +13,12 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "paths": {
+      "zyra-ui": [
+        "./dist/zyra-ui"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -22,5 +27,13 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/zyra-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zyra-ui/tsconfig.spec.json"
+    }
+  ]
 }
