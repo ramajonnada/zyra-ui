@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZyraUi } from './zyra-ui';
+import { Button } from './button';
 
-describe('ZyraUi', () => {
-  let component: ZyraUi;
-  let fixture: ComponentFixture<ZyraUi>;
+describe('Button', () => {
+  let component: Button;
+  let fixture: ComponentFixture<Button>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ZyraUi]
+      imports: [Button]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ZyraUi);
+    fixture = TestBed.createComponent(Button);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

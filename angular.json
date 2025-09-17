@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/zyra-ui",
       "sourceRoot": "projects/zyra-ui/src",
-      "prefix": "lib",
+      "prefix": "zyra",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
