@@ -15,6 +15,9 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
+      "core-ui": [
+        "./dist/core-ui"
+      ],
       "zyra-ui": [
         "./dist/zyra-ui"
       ]
@@ -52,6 +55,12 @@
     },
     {
       "path": "./projects/zyraui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/core-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/core-ui/tsconfig.spec.json"
     }
   ]
 }
