@@ -200,6 +200,95 @@
           }
         }
       }
+    },
+    "zyraui": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/zyraui",
+      "sourceRoot": "projects/zyraui/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/zyraui/src/main.ts",
+            "tsConfig": "projects/zyraui/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/zyraui/public"
+              }
+            ],
+            "styles": [
+              "projects/zyraui/src/styles.scss"
+            ],
+            "server": "projects/zyraui/src/main.server.ts",
+            "outputMode": "server",
+            "ssr": {
+              "entry": "projects/zyraui/src/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "zyraui:build:production"
+            },
+            "development": {
+              "buildTarget": "zyraui:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/zyraui/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/zyraui/public"
+              }
+            ],
+            "styles": [
+              "projects/zyraui/src/styles.scss"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

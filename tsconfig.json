@@ -46,6 +46,12 @@
     },
     {
       "path": "./projects/zyraui-public-site/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zyraui/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/zyraui/tsconfig.spec.json"
     }
   ]
 }
