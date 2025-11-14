@@ -3,36 +3,66 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "zyraui": {
+    "core-ui": {
+      "projectType": "library",
+      "root": "projects/core-ui",
+      "sourceRoot": "projects/core-ui/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/core-ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/core-ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/core-ui/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "zyra-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/zyraui",
-      "sourceRoot": "projects/zyraui/src",
+      "root": "projects/zyra-ui",
+      "sourceRoot": "projects/zyra-ui/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "browser": "projects/zyraui/src/main.ts",
-            "tsConfig": "projects/zyraui/tsconfig.app.json",
+            "browser": "projects/zyra-ui/src/main.ts",
+            "tsConfig": "projects/zyra-ui/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/zyraui/public"
+                "input": "projects/zyra-ui/public"
               }
             ],
             "styles": [
-              "projects/zyraui/src/styles.scss"
+              "projects/zyra-ui/src/styles.scss"
             ],
-            "server": "projects/zyraui/src/main.server.ts",
+            "server": "projects/zyra-ui/src/main.server.ts",
             "outputMode": "server",
             "ssr": {
-              "entry": "projects/zyraui/src/server.ts"
+              "entry": "projects/zyra-ui/src/server.ts"
             }
           },
           "configurations": {
@@ -63,10 +93,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "zyraui:build:production"
+              "buildTarget": "zyra-ui:build:production"
             },
             "development": {
-              "buildTarget": "zyraui:build:development"
+              "buildTarget": "zyra-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,46 +107,16 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "tsConfig": "projects/zyraui/tsconfig.spec.json",
+            "tsConfig": "projects/zyra-ui/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/zyraui/public"
+                "input": "projects/zyra-ui/public"
               }
             ],
             "styles": [
-              "projects/zyraui/src/styles.scss"
-            ]
-          }
-        }
-      }
-    },
-    "core-ui": {
-      "projectType": "library",
-      "root": "projects/core-ui",
-      "sourceRoot": "projects/core-ui/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:ng-packagr",
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/core-ui/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/core-ui/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "projects/core-ui/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
+              "projects/zyra-ui/src/styles.scss"
             ]
           }
         }

@@ -61,6 +61,12 @@
     },
     {
       "path": "./projects/core-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zyra-ui/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/zyra-ui/tsconfig.spec.json"
     }
   ]
 }
