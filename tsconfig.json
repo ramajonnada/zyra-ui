@@ -13,15 +13,7 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve",
-    "paths": {
-      "core-ui": [
-        "./dist/core-ui"
-      ],
-      "zyra-ui": [
-        "./dist/zyra-ui"
-      ]
-    }
+    "module": "preserve"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -30,43 +22,5 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
-  "files": [],
-  "references": [
-    {
-      "path": "./projects/zyra-ui/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/zyra-ui/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/demo-app/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/demo-app/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/zyraui-public-site/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/zyraui-public-site/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/zyraui/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/zyraui/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/core-ui/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/core-ui/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/zyra-ui/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/zyra-ui/tsconfig.spec.json"
-    }
-  ]
+  "files": []
 }
