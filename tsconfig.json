@@ -3,6 +3,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "core-ui": [
+        "./dist/core-ui"
+      ]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -29,6 +34,12 @@
     },
     {
       "path": "./projects/zyra-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/core-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/core-ui/tsconfig.spec.json"
     }
   ]
 }
