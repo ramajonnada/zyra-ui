@@ -22,5 +22,13 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/zyra-ui/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/zyra-ui/tsconfig.spec.json"
+    }
+  ]
 }
