@@ -54,6 +54,7 @@ app.use((req, res, next) => {
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
   const port = process.env['PORT'] || 4000;
   app.listen(port, (error) => {
+	console.log('Starting server...');
     if (error) {
       throw error;
     }
