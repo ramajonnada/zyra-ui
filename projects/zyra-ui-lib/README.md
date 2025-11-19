@@ -1,4 +1,4 @@
-# CoreUi
+# ZyraUiLib
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
 
@@ -21,7 +21,7 @@ ng generate --help
 To build the library, run:
 
 ```bash
-ng build core-ui
+ng build zyra-ui-lib
 ```
 
 This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
@@ -32,7 +32,7 @@ Once the project is built, you can publish your library by following these steps
 
 1. Navigate to the `dist` directory:
    ```bash
-   cd dist/core-ui
+   cd dist/zyra-ui-lib
    ```
 
 2. Run the `npm publish` command to publish your library to the npm registry:

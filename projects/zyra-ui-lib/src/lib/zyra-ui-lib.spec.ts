@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoreUi } from './core-ui';
+import { ZyraUiLib } from './zyra-ui-lib';
 
-describe('CoreUi', () => {
-  let component: CoreUi;
-  let fixture: ComponentFixture<CoreUi>;
+describe('ZyraUiLib', () => {
+  let component: ZyraUiLib;
+  let fixture: ComponentFixture<ZyraUiLib>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CoreUi]
+      imports: [ZyraUiLib]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CoreUi);
+    fixture = TestBed.createComponent(ZyraUiLib);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

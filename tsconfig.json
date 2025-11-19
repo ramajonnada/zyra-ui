@@ -6,6 +6,9 @@
     "paths": {
       "core-ui": [
         "./dist/core-ui"
+      ],
+      "zyra-ui-lib": [
+        "./dist/zyra-ui-lib"
       ]
     },
     "strict": true,
@@ -40,6 +43,12 @@
     },
     {
       "path": "./projects/core-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zyra-ui-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zyra-ui-lib/tsconfig.spec.json"
     }
   ]
 }

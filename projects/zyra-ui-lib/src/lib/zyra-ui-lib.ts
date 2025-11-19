@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-core-ui',
+  selector: 'lib-zyra-ui-lib',
   imports: [],
   template: `
     <p>
-      core-ui works!
+      zyra-ui-lib works!
     </p>
   `,
   styles: ``,
 })
-export class CoreUi {
+export class ZyraUiLib {
 
 }
