@@ -1,0 +1,9 @@
+<h1>Blog</h1>
+<ul>
+	@for (post of posts; track $index) {
+	<li>
+		<a [routerLink]="['/blog', post.slug]">{{ post.title }}</a>
+	</li>
+	}
+
+</ul>

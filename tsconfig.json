@@ -4,9 +4,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "core-ui": [
-        "./dist/core-ui"
-      ],
       "zyra-ui-lib": [
         "./dist/zyra-ui-lib"
       ]
@@ -37,12 +34,6 @@
     },
     {
       "path": "./projects/zyra-ui/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/core-ui/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/core-ui/tsconfig.spec.json"
     },
     {
       "path": "./projects/zyra-ui-lib/tsconfig.lib.json"
