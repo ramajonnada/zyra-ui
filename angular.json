@@ -24,6 +24,16 @@
 							{
 								"glob": "**/*",
 								"input": "projects/zyra-ui/public"
+							},
+							{
+								"glob": "**/*.md",
+								"input": "projects/zyra-ui/src/content",
+								"output": "/content"
+							},
+							{
+								"glob": "index.json",
+								"input": "projects/zyra-ui/src/content",
+								"output": "/content"
 							}
 						],
 						"styles": [
@@ -77,7 +87,7 @@
 						"routes": [
 							"/",
 							"/blog",
-							"/blog/how-to-start"
+							"/blog/first-blog"
 						]
 					}
 				},

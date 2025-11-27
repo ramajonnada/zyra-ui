@@ -1,9 +1,12 @@
 <h1>Blog</h1>
+
+@if(!posts.length){
+<div>Loading posts...</div>
+}
 <ul>
 	@for (post of posts; track $index) {
 	<li>
-		<a [routerLink]="['/blog', post.slug]">{{ post.title }}</a>
+		<a [routerLink]="['/blog', post.slug]">{{ post.title }} {{post.date}}</a>
 	</li>
 	}
-
 </ul>

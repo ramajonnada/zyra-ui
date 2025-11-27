@@ -1,39 +1,39 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
-import { BlogPost, BlogService } from '../../services/blog-service';
+import { CommonModule } from '@angular/common';
+import { MarkdownModule } from 'ngx-markdown';
+import { Title, Meta } from '@angular/platform-browser';
+import { BlogService } from '../../services/blog-service';
 
 @Component({
-	selector: 'app-blog-page',
-	imports: [],
+	selector: 'blog-detail',
+	standalone: true,
+	imports: [CommonModule, MarkdownModule],
 	templateUrl: './blog-page.html',
-	styleUrl: './blog-page.scss',
+	styleUrls: ['./blog-page.scss']
 })
 export class BlogPage {
+	markdownContent = '';
 
-
-	post?: BlogPost;
-
-	constructor(private route: ActivatedRoute,
+	constructor(
+		private route: ActivatedRoute,
 		private blogService: BlogService,
 		private title: Title,
-		private meta: Meta
-	) {
-
-	}
+		private meta: Meta,
+		private cd: ChangeDetectorRef
+	) { }
 
 	ngOnInit() {
 		const slug = this.route.snapshot.paramMap.get('slug')!;
-		const post = this.blogService.getPostBySlug(slug);
-		if (!post) return;
+		this.blogService.getPostContent(slug).subscribe(md => {
+			this.markdownContent = md;
+			this.cd.detectChanges();
 
-		this.post = post;
-
-		const fullTitle = post.seoTitle || post.title;
-		this.title.setTitle(fullTitle);
-		this.meta.updateTag({ name: 'description', content: post.seoDescription });
-		this.meta.updateTag({ property: 'og:title', content: fullTitle });
-		this.meta.updateTag({ property: 'og:description', content: post.seoDescription });
-		this.meta.updateTag({ property: 'og:type', content: 'article' });
+			// Extract title from frontmatter or use slug as fallback
+			const match = md.match(/title:\s*(.*)/);
+			const pageTitle = match ? match[1].trim() : slug;
+			this.title.setTitle(pageTitle);
+			this.meta.updateTag({ name: 'description', content: `Read blog post: ${pageTitle}` });
+		});
 	}
 }
