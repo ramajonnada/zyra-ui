@@ -1,12 +1,12 @@
 [
-  {
-    "slug": "first-blog",
-    "title": "My First Post",
-    "date": "2025-11-25"
-  },
-  {
-    "slug": "angular-ssr-guide",
-    "title": "Guide to Angular SSR",
-    "date": "2025-11-20"
-  }
+    {
+        "slug": "first-blog",
+        "title": "My First Post",
+        "date": "2025-11-25"
+    },
+    {
+        "slug": "angular-ssr-guide",
+        "title": "Guide to Angular SSR",
+        "date": "2025-11-20"
+    }
 ]

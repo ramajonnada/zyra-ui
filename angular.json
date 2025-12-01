@@ -1,137 +1,147 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "zyra-ui": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/zyra-ui",
-      "sourceRoot": "projects/zyra-ui/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:application",
-          "options": {
-            "browser": "projects/zyra-ui/src/main.ts",
-            "tsConfig": "projects/zyra-ui/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/zyra-ui/public"
-              },
-              {
-                "glob": "**/*.md",
-                "input": "projects/zyra-ui/src/content",
-                "output": "/content"
-              },
-              {
-                "glob": "index.json",
-                "input": "projects/zyra-ui/src/content",
-                "output": "/content"
-              }
-            ],
-            "styles": ["projects/zyra-ui/src/styles.scss"],
-            "server": "projects/zyra-ui/src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "projects/zyra-ui/src/server.ts"
-            }
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "zyra-ui": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
                 }
-              ],
-              "outputHashing": "all"
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+            "root": "projects/zyra-ui",
+            "sourceRoot": "projects/zyra-ui/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular/build:application",
+                    "options": {
+                        "browser": "projects/zyra-ui/src/main.ts",
+                        "tsConfig": "projects/zyra-ui/tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "projects/zyra-ui/public"
+                            },
+                            {
+                                "glob": "**/*.md",
+                                "input": "projects/zyra-ui/src/content",
+                                "output": "/content"
+                            },
+                            {
+                                "glob": "index.json",
+                                "input": "projects/zyra-ui/src/content",
+                                "output": "/content"
+                            }
+                        ],
+                        "styles": ["projects/zyra-ui/src/styles.scss"],
+                        "server": "projects/zyra-ui/src/main.server.ts",
+                        "outputMode": "server",
+                        "ssr": {
+                            "entry": "projects/zyra-ui/src/server.ts"
+                        }
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kB",
+                                    "maximumError": "1MB"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "4kB",
+                                    "maximumError": "8kB"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "sourceMap": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular/build:dev-server",
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "zyra-ui:build:production"
+                        },
+                        "development": {
+                            "buildTarget": "zyra-ui:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "prerender": {
+                    "builder": "@angular/build:prerender",
+                    "options": {
+                        "routes": ["/", "/blog", "/blog/first-blog"]
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular/build:extract-i18n"
+                },
+                "test": {
+                    "builder": "@angular/build:karma",
+                    "options": {
+                        "tsConfig": "projects/zyra-ui/tsconfig.spec.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "projects/zyra-ui/public"
+                            }
+                        ],
+                        "styles": ["projects/zyra-ui/src/styles.scss"]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "projects/zyra-ui/**/*.ts",
+                            "projects/zyra-ui/**/*.html"
+                        ],
+                        "eslintConfig": "projects/zyra-ui/eslint.config.js"
+                    }
+                }
             }
-          },
-          "defaultConfiguration": "production"
         },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "zyra-ui:build:production"
-            },
-            "development": {
-              "buildTarget": "zyra-ui:build:development"
+        "zyra-ui-lib": {
+            "projectType": "library",
+            "root": "projects/zyra-ui-lib",
+            "sourceRoot": "projects/zyra-ui-lib/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular/build:ng-packagr",
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/zyra-ui-lib/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "projects/zyra-ui-lib/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@angular/build:karma",
+                    "options": {
+                        "tsConfig": "projects/zyra-ui-lib/tsconfig.spec.json"
+                    }
+                }
             }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@angular/build:prerender",
-          "options": {
-            "routes": ["/", "/blog", "/blog/first-blog"]
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "projects/zyra-ui/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/zyra-ui/public"
-              }
-            ],
-            "styles": ["projects/zyra-ui/src/styles.scss"]
-          }
         }
-      }
     },
-    "zyra-ui-lib": {
-      "projectType": "library",
-      "root": "projects/zyra-ui-lib",
-      "sourceRoot": "projects/zyra-ui-lib/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:ng-packagr",
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/zyra-ui-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/zyra-ui-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "projects/zyra-ui-lib/tsconfig.spec.json"
-          }
-        }
-      }
+    "cli": {
+        "analytics": false
     }
-  },
-  "cli": {
-    "analytics": false
-  }
 }

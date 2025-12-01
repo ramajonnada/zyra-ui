@@ -1,45 +1,45 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "paths": {
-      "zyra-ui-lib": ["./dist/zyra-ui-lib"]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "paths": {
+            "zyra-ui-lib": ["./dist/zyra-ui-lib"]
+        },
+        "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "moduleResolution": "bundler",
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "preserve"
     },
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "moduleResolution": "bundler",
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "preserve"
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "typeCheckHostBindings": true,
-    "strictTemplates": true
-  },
-  "files": [],
-  "references": [
-    {
-      "path": "./projects/zyra-ui/tsconfig.app.json"
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "typeCheckHostBindings": true,
+        "strictTemplates": true
     },
-    {
-      "path": "./projects/zyra-ui/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/zyra-ui-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/zyra-ui-lib/tsconfig.spec.json"
-    }
-  ]
+    "files": [],
+    "references": [
+        {
+            "path": "./projects/zyra-ui/tsconfig.app.json"
+        },
+        {
+            "path": "./projects/zyra-ui/tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/zyra-ui-lib/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/zyra-ui-lib/tsconfig.spec.json"
+        }
+    ]
 }
