@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "framework": "angular",
+    "buildCommand": "ng build zyra-ui --configuration production && ng run zyra-ui:server:production && ng run zyra-ui:prerender",
+    "outputDirectory": "projects/zyra-ui/dist/browser",
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/api/ssr"
+        }
+    ],
+    "functions": {
+        "api/ssr.js": {
+            "runtime": "nodejs18.x",
+            "memory": 512,
+            "maxDuration": 30
+        }
+    }
+}
