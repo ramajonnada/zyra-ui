@@ -8,9 +8,8 @@ describe('ZyraUiLib', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ZyraUiLib]
-    })
-    .compileComponents();
+      imports: [ZyraUiLib],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ZyraUiLib);
     component = fixture.componentInstance;
