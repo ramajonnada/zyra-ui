@@ -1,19 +1,16 @@
 {
-	"version": 2,
-	"builds": [
-		{
-			"src": "api/ssr.js",
-			"use": "@vercel/node"
-		},
-		{
-			"src": "projects/zyra-ui/dist/browser/**",
-			"use": "@vercel/static"
+	"version": 3,
+	"buildCommand": "npm run build:ssr",
+	"outputDirectory": "dist/zyra-ui/browser",
+	"functions": {
+		"dist/zyra-ui/server/server.mjs": {
+			"runtime": "nodejs18.x"
 		}
-	],
+	},
 	"routes": [
 		{
 			"src": "/(.*)",
-			"dest": "/api/ssr.js"
+			"dest": "dist/zyra-ui/server/server.mjs"
 		}
 	]
 }
