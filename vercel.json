@@ -1,11 +1,5 @@
 {
 	"version": 2,
 	"buildCommand": "npm run build:ssr",
-	"outputDirectory": "dist/zyra-ui/browser",
-	"routes": [
-		{
-			"src": "/(.*)",
-			"dest": "dist/zyra-ui/server/server.mjs"
-		}
-	]
+	"outputDirectory": "dist/zyra-ui/browser"
 }
