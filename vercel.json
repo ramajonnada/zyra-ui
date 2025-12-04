@@ -1,12 +1,7 @@
 {
-	"version": 3,
+	"version": 2,
 	"buildCommand": "npm run build:ssr",
 	"outputDirectory": "dist/zyra-ui/browser",
-	"functions": {
-		"dist/zyra-ui/server/server.mjs": {
-			"runtime": "nodejs18.x"
-		}
-	},
 	"routes": [
 		{
 			"src": "/(.*)",
