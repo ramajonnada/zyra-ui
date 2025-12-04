@@ -16,4 +16,4 @@ This blog is built using Angular with Markdown files for each post. I plan to wr
 
 ## Stay tuned!
 
-## Angular ssr
+## dev deverion Angular ssr
