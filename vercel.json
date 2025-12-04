@@ -1,16 +1,16 @@
 {
-	"version": 3,
-	"buildCommand": "npm run build:ssr",
-	"outputDirectory": "dist/zyra-ui/browser",
-	"functions": {
-		"dist/zyra-ui/server/server.mjs": {
-			"runtime": "nodejs18.x"
-		}
-	},
-	"routes": [
+	"version": 2,
+	"public": true,
+	"name": "zyra-ui",
+	"rewrites": [
 		{
-			"src": "/(.*)",
-			"dest": "dist/zyra-ui/server/server.mjs"
+			"source": "/(.*)",
+			"destination": "/api/index"
 		}
-	]
+	],
+	"functions": {
+		"api/index.js": {
+			"includeFiles": "dist/zyra-ui/**"
+		}
+	}
 }
