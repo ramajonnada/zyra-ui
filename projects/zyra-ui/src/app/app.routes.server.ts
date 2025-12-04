@@ -4,7 +4,7 @@ import { getAllSlugs } from './prerender/blog-prerender-utils';
 export const serverRoutes: ServerRoute[] = [
     { path: '', renderMode: RenderMode.Prerender },
     { path: 'docs', renderMode: RenderMode.Prerender },
-    { path: 'blog-header', renderMode: RenderMode.Prerender },
+    { path: 'blog-page', renderMode: RenderMode.Prerender },
     {
         path: 'blog/:slug',
         renderMode: RenderMode.Prerender,
