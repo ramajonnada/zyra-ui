@@ -3,11 +3,16 @@ import { Home } from './pages/home/home';
 import { Docs } from './pages/docs/docs';
 import { Login } from './pages/login/login';
 import { About } from './pages/about/about';
+import { UiComponents } from './pages/ui-components/ui-components';
 
 export const routes: Routes = [
 	{
 		path: '',
 		loadComponent: () => import('./pages/home/home').then(() => Home),
+	},
+	{
+		path: 'comp',
+		loadComponent: () => import('./pages/ui-components/ui-components').then(() => UiComponents),
 	},
 	{
 		path: 'blog-page',
