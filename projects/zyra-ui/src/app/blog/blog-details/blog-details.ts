@@ -15,23 +15,38 @@ import { BlogService } from '../../services/blog-service';
 export class BlogDetails implements OnInit {
 	markdownContent = '';
 
-	private route: ActivatedRoute = inject(ActivatedRoute);
-	private blogService: BlogService = inject(BlogService);
-	private title: Title = inject(Title);
-	private meta: Meta = inject(Meta);
-	private cd: ChangeDetectorRef = inject(ChangeDetectorRef);
+	private route = inject(ActivatedRoute);
+	private blogService = inject(BlogService);
+	private title = inject(Title);
+	private meta = inject(Meta);
+	private cd = inject(ChangeDetectorRef);
 
 	ngOnInit() {
 		const slug = this.route.snapshot.paramMap.get('slug')!;
-		this.blogService.getPostContent(slug).subscribe((md) => {
-			this.markdownContent = md;
-			this.cd.detectChanges();
 
-			// Extract title from frontmatter or use slug as fallback
-			const match = md.match(/title:\s*(.*)/);
-			const pageTitle = match ? match[1].trim() : slug;
+		this.blogService.getPostContent(slug).subscribe((md) => {
+			// ✅ 1. Strip front-matter BEFORE rendering
+			this.markdownContent = this.stripFrontMatter(md);
+
+			// ✅ 2. Extract metadata cleanly
+			const titleMatch = md.match(/^title:\s*(.*)$/m);
+			const descMatch = md.match(/^description:\s*(.*)$/m);
+
+			const pageTitle = titleMatch ? titleMatch[1].trim() : slug;
+			const description = descMatch
+				? descMatch[1].trim()
+				: `Read blog post: ${pageTitle}`;
+
+			// ✅ 3. SEO
 			this.title.setTitle(pageTitle);
-			this.meta.updateTag({ name: 'description', content: `Read blog post: ${pageTitle}` });
+			this.meta.updateTag({ name: 'description', content: description });
+
+			this.cd.detectChanges();
 		});
+	}
+
+	// ✅ Utility stays the same
+	stripFrontMatter(md: string): string {
+		return md.replace(/^---[\s\S]*?---/, '').trim();
 	}
 }

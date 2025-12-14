@@ -1,0 +1,144 @@
+/* footer.component.css */
+
+:host {
+	background: var(--zyra-color-bg);
+	color: var(--zyra-color-text-main);
+	// padding: 3rem 0 2rem;
+	// font-size: 0.95rem;
+}
+
+.zy-footer-main {
+	max-width: 72rem;
+	margin: 0 auto;
+	display: flex;
+	gap: 3rem;
+	justify-content: space-between;
+}
+
+.zy-footer-brand {
+	flex: 1.4;
+}
+
+.zy-footer-logo {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin-bottom: 0.9rem;
+}
+
+.logo-mark {
+	width: 40px;
+	height: 40px;
+	border-radius: 0.9rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--zyra-color-primary);
+	color: var(--zyra-color-on-primary);
+	font-weight: 600;
+}
+
+.logo-text {
+	font-weight: 600;
+	font-size: 1.25rem;
+}
+
+.brand-text {
+	max-width: 26rem;
+	color: var(--zyra-color-text-muted);
+}
+
+.brand-social {
+	margin-top: 1.25rem;
+	display: flex;
+	gap: 0.6rem;
+}
+
+.icon-btn {
+	width: 34px;
+	height: 34px;
+	border-radius: 999px;
+	border: 1px solid var(--zyra-color-border);
+	background: var(--zyra-color-bg);
+	color: var(--zyra-color-text-main);
+	font-size: 0.8rem;
+}
+
+/* Columns */
+.zy-footer-columns {
+	flex: 1.6;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 2.25rem;
+}
+
+.footer-column h4 {
+	font-weight: 600;
+	margin-bottom: 0.8rem;
+}
+
+.footer-column a {
+	display: block;
+	margin-bottom: 0.45rem;
+	color: var(--zyra-color-text-muted);
+}
+
+/* Bottom row */
+.zy-footer-bottom {
+	max-width: 72rem;
+	margin: 2rem auto 0;
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--zyra-color-border);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1.5rem;
+	font-size: 0.85rem;
+	color: var(--zyra-color-text-muted);
+}
+
+.made-for {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+.made-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.3rem 0.75rem;
+	border-radius: 999px;
+	background: var(--zyra-color-primary-soft);
+	color: var(--zyra-color-primary);
+	font-weight: 500;
+}
+
+.made-icon {
+	width: 14px;
+	height: 14px;
+	border-radius: 4px;
+	background: var(--zyra-color-primary);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+	.zy-footer-main {
+		flex-direction: column;
+	}
+
+	.zy-footer-columns {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 640px) {
+	.zy-footer-columns {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.zy-footer-bottom {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

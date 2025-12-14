@@ -1,5 +1,20 @@
-<app-header></app-header>
-<section>
-    <router-outlet></router-outlet>
-</section>
-<app-footer></app-footer>
+<header>
+	<div class="zy-container">
+		<app-header></app-header>
+	</div>
+</header>
+
+<main>
+	<section class="zy-section">
+		<div class="zy-container">
+			<!-- hero / main content -->
+			<router-outlet></router-outlet>
+		</div>
+	</section>
+</main>
+
+<footer class="zy-section">
+	<div class="zy-container">
+		<app-footer></app-footer>
+	</div>
+</footer>

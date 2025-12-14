@@ -13,7 +13,7 @@
 	--zyra-gradient-hero: linear-gradient(120deg, #e1194a, #5b5ce8);
 	--zyra-gradient-button: linear-gradient(90deg, #e1194a, #ff4b6a);
 	--zyra-gradient-card: linear-gradient(135deg, #ffe4ec, #ffffff);
-	
+
 	/* Neutrals */
 	--zyra-color-bg: #ffffff;
 	/* page background */
@@ -36,8 +36,63 @@
 	--zyra-color-success: #16a34a;
 	--zyra-color-warning: #f59e0b;
 	--zyra-color-danger: #dc2626;
+
+	/* Layout */
+	--zyra-page-max-width: 72rem;
+	--zyra-page-x-padding: 1.5rem;
+	--zyra-section-y: 3rem;
+	--zyra-section-y-sm: 2rem;
 }
 
+/* center content and add side padding */
+.zy-container {
+	max-width: var(--zyra-page-max-width);
+	margin: auto;
+	padding-inline: var(--zyra-page-x-padding); // horizontal padding
+}
+
+// /* vertical spacing for sections */
+.zy-section {
+	padding-block: var(--zyra-section-y); // vertical padding
+}
+
+// @media (max-width: 768px) {
+// 	.zy-section {
+// 		padding-block: var(--zyra-section-y-sm);
+// 	}
+// }
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html,
+body,
+app-root {
+	height: 100%;
+}
+
+app-root {
+	display: flex;
+	flex-direction: column;
+
+	header {
+		border-bottom: 1px solid #f0eaea;
+
+	}
+
+	header,
+	footer {
+		flex-shrink: 0;
+
+	}
+
+	main {
+		flex-grow: 1;
+	}
+}
 
 
 
