@@ -1,0 +1,99 @@
+:host {
+	/* Button tokens mapped from Zyra theme */
+	--btn-bg: var(--color-primary);
+	--btn-text: var(--text-hover);
+	--btn-border: transparent;
+	--btn-radius: var(--radius-sm);
+
+	--btn-hover: color-mix(in srgb,
+			var(--btn-bg),
+			#000 15%);
+
+	font-family: var(--font-sans);
+}
+
+/* Base */
+.zyra-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+
+	height: 40px;
+	padding: 0 16px;
+
+	font-size: 14px;
+	font-weight: 500;
+
+	border-radius: var(--btn-radius);
+	border: 1px solid var(--btn-border);
+
+	cursor: pointer;
+	user-select: none;
+
+	background: var(--btn-bg);
+	color: var(--btn-text);
+
+	transition: background 0.2s ease, border 0.2s ease;
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+}
+
+
+
+
+
+.zyra-btn--sm {
+	height: 32px;
+	padding: 0 12px;
+	font-size: 13px;
+}
+
+.zyra-btn--md {
+	height: 40px;
+	padding: 0 16px;
+	font-size: 14px;
+}
+
+.zyra-btn--lg {
+	height: 48px;
+	padding: 0 20px;
+	font-size: 15px;
+}
+
+
+/* Primary */
+.zyra-btn--primary {
+	--btn-bg: var(--color-primary);
+}
+
+/* Secondary */
+.zyra-btn--secondary {
+	--btn-bg: var(--bg-secondary);
+	--btn-text: var(--text-primary);
+}
+
+/* Outline */
+.zyra-btn--outline {
+	--btn-bg: transparent;
+	--btn-text: var(--color-primary);
+	--btn-border: var(--color-primary);
+}
+
+/* Ghost */
+.zyra-btn--ghost {
+	--btn-bg: transparent;
+	--btn-text: var(--color-primary);
+}
+
+/* Danger */
+.zyra-btn--danger {
+	--btn-bg: var(--color-danger);
+}
+
+.zyra-btn:not(:disabled):hover {
+	background: var(--btn-hover);
+}

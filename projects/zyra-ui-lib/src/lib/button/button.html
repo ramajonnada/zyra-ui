@@ -1,0 +1,6 @@
+<button [attr.type]="type" [disabled]="disabled" class="zyra-btn" [class.zyra-btn--primary]="variant === 'primary'"
+	[class.zyra-btn--secondary]="variant === 'secondary'" [class.zyra-btn--outline]="variant === 'outline'"
+	[class.zyra-btn--ghost]="variant === 'ghost'" [class.zyra-btn--danger]="variant === 'danger'"
+	[class.zyra-btn--sm]="size === 'sm'" [class.zyra-btn--md]="size === 'md'" [class.zyra-btn--lg]="size === 'lg'">
+	<ng-content></ng-content>
+</button>
