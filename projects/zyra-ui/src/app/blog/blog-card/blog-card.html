@@ -1,1 +1,38 @@
-<p>blog-card works!</p>
+<div class="blog-card">
+	<!-- <div class="blog-meta">
+		@if(blog.badge){
+		{{ blog.badge }}
+		}
+	</div> -->
+	<div class="blog-header">
+		@if(blog.tags?.length){
+		<div class="tags">
+			@for(tag of blog.tags; track $index) {
+			<span class="zy-chip">{{ tag }}</span>
+			}
+		</div>
+		}
+		<span class="date"> <span class="icon"></span> {{ blog.date | date:'MMM dd, yyyy' }}</span>
+	</div>
+	<h2 class="blog-title">
+		{{ blog.title }}
+	</h2>
+
+
+	<p class="blog-description">
+		{{ blog.description }}
+	</p>
+
+	<div class="divider"></div>
+
+	<div class="blog-footer">
+		<!-- <div class="title-container"> -->
+		<!-- </div> -->
+		<span class="read-time">⏱ {{ blog.readTime }}</span>
+
+		<a class="read-link" [routerLink]="['/blog', blog.slug]">
+			Read →
+		</a>
+	</div>
+
+</div>

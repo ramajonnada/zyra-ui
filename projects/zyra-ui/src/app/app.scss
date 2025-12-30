@@ -1,0 +1,30 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	color: var(--text-primary);
+	background-color: var(--bg-main);
+
+	header {
+		position: sticky;
+		top: 0;
+		z-index: 40;
+		backdrop-filter: blur(6.4px);
+		-webkit-backdrop-filter: blur(6.4px);
+		box-shadow: var(--header-box-shadow);
+	}
+
+	header,
+	footer {
+		color: var(--header-text-muted);
+		flex-shrink: 0;
+	}
+
+	footer {
+		background: var(--header-bg);
+	}
+
+	main {
+		background: var(--bg-main);
+		flex-grow: 1;
+	}
+}

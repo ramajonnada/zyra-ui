@@ -1,144 +1,317 @@
-/* footer.component.css */
+// /* footer.component.css */
+
+// :host {
+// 	background: var(--zyra-color-bg);
+// 	color: var(--zyra-color-text-main);
+// 	// padding: 3rem 0 2rem;
+// 	// font-size: 0.95rem;
+// }
+
+// .zy-footer-main {
+// 	max-width: 72rem;
+// 	margin: 0 auto;
+// 	display: flex;
+// 	gap: 3rem;
+// 	justify-content: space-between;
+// }
+
+// .zy-footer-brand {
+// 	flex: 1.4;
+// }
+
+// .zy-footer-logo {
+// 	display: flex;
+// 	align-items: center;
+// 	gap: 0.6rem;
+// 	margin-bottom: 0.9rem;
+// }
+
+// .logo-mark {
+// 	width: 40px;
+// 	height: 40px;
+// 	border-radius: 0.9rem;
+// 	display: inline-flex;
+// 	align-items: center;
+// 	justify-content: center;
+// 	background: var(--zyra-primary);
+// 	color: var(--zyra-color-on-primary);
+// 	font-weight: 600;
+// }
+
+// .logo-text {
+// 	font-weight: 600;
+// 	font-size: 1.25rem;
+// }
+
+// .brand-text {
+// 	max-width: 26rem;
+// 	color: var(--zyra-color-text-muted);
+// }
+
+// .brand-social {
+// 	margin-top: 1.25rem;
+// 	display: flex;
+// 	gap: 0.6rem;
+// }
+
+// .icon-btn {
+// 	width: 34px;
+// 	height: 34px;
+// 	border-radius: 999px;
+// 	border: 1px solid var(--zyra-color-border);
+// 	background: var(--zyra-color-bg);
+// 	color: var(--zyra-color-text-main);
+// 	font-size: 0.8rem;
+// }
+
+// /* Columns */
+// .zy-footer-columns {
+// 	flex: 1.6;
+// 	display: grid;
+// 	grid-template-columns: repeat(3, minmax(0, 1fr));
+// 	gap: 2.25rem;
+// }
+
+// .footer-column h4 {
+// 	font-weight: 600;
+// 	margin-bottom: 0.8rem;
+// }
+
+// .footer-column a {
+// 	display: block;
+// 	margin-bottom: 0.45rem;
+// 	color: var(--zyra-color-text-muted);
+// }
+
+// /* Bottom row */
+// .zy-footer-bottom {
+// 	max-width: 72rem;
+// 	margin: 2rem auto 0;
+// 	padding-top: 1.5rem;
+// 	border-top: 1px solid var(--zyra-color-border);
+// 	display: flex;
+// 	justify-content: space-between;
+// 	align-items: center;
+// 	gap: 1.5rem;
+// 	font-size: 0.85rem;
+// 	color: var(--zyra-color-text-muted);
+// }
+
+// .made-for {
+// 	display: flex;
+// 	align-items: center;
+// 	gap: 0.6rem;
+// }
+
+// .made-chip {
+// 	display: inline-flex;
+// 	align-items: center;
+// 	gap: 0.35rem;
+// 	padding: 0.3rem 0.75rem;
+// 	border-radius: 999px;
+// 	background: var(--zyra-primary-hover);
+// 	color: var(--zyra-primary);
+// 	font-weight: 500;
+// }
+
+// .made-icon {
+// 	width: 14px;
+// 	height: 14px;
+// 	border-radius: 4px;
+// 	background: var(--zyra-primary);
+// }
+
+// /* Responsive */
+// @media (max-width: 900px) {
+// 	.zy-footer-main {
+// 		flex-direction: column;
+// 	}
+
+// 	.zy-footer-columns {
+// 		grid-template-columns: repeat(2, minmax(0, 1fr));
+// 	}
+// }
+
+// @media (max-width: 640px) {
+// 	.zy-footer-columns {
+// 		grid-template-columns: minmax(0, 1fr);
+// 	}
+
+// 	.zy-footer-bottom {
+// 		flex-direction: column;
+// 		align-items: flex-start;
+// 	}
+// }
+
 
 :host {
-	background: var(--zyra-color-bg);
-	color: var(--zyra-color-text-main);
-	// padding: 3rem 0 2rem;
-	// font-size: 0.95rem;
+  display: block;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
 }
 
+/* ----------------------------------
+   Main layout
+----------------------------------- */
 .zy-footer-main {
-	max-width: 72rem;
-	margin: 0 auto;
-	display: flex;
-	gap: 3rem;
-	justify-content: space-between;
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
 }
 
+/* ----------------------------------
+   Brand section
+----------------------------------- */
 .zy-footer-brand {
-	flex: 1.4;
+  flex: 1.4;
 }
 
 .zy-footer-logo {
-	display: flex;
-	align-items: center;
-	gap: 0.6rem;
-	margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
 }
 
-.logo-mark {
-	width: 40px;
-	height: 40px;
-	border-radius: 0.9rem;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	background: var(--zyra-color-primary);
-	color: var(--zyra-color-on-primary);
-	font-weight: 600;
+.zy-logo__img {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
 }
 
 .logo-text {
-	font-weight: 600;
-	font-size: 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-main);
 }
 
 .brand-text {
-	max-width: 26rem;
-	color: var(--zyra-color-text-muted);
+  max-width: 26rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
 }
 
+/* Social icons */
 .brand-social {
-	margin-top: 1.25rem;
-	display: flex;
-	gap: 0.6rem;
+  margin-top: 1.4rem;
+  display: flex;
+  gap: 0.6rem;
 }
 
 .icon-btn {
-	width: 34px;
-	height: 34px;
-	border-radius: 999px;
-	border: 1px solid var(--zyra-color-border);
-	background: var(--zyra-color-bg);
-	color: var(--zyra-color-text-main);
-	font-size: 0.8rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--border-default);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-/* Columns */
+.icon-btn:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: transparent;
+}
+
+/* ----------------------------------
+   Footer columns
+----------------------------------- */
 .zy-footer-columns {
-	flex: 1.6;
-	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 2.25rem;
+  flex: 1.6;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
 }
 
 .footer-column h4 {
-	font-weight: 600;
-	margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+  color: var(--text-main);
 }
 
 .footer-column a {
-	display: block;
-	margin-bottom: 0.45rem;
-	color: var(--zyra-color-text-muted);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
 
-/* Bottom row */
+.footer-column a:hover {
+  color: var(--text-main);
+}
+
+/* ----------------------------------
+   Bottom bar
+----------------------------------- */
 .zy-footer-bottom {
-	max-width: 72rem;
-	margin: 2rem auto 0;
-	padding-top: 1.5rem;
-	border-top: 1px solid var(--zyra-color-border);
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 1.5rem;
-	font-size: 0.85rem;
-	color: var(--zyra-color-text-muted);
+  max-width: 72rem;
+  margin: 2.5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 .made-for {
-	display: flex;
-	align-items: center;
-	gap: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .made-chip {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.35rem;
-	padding: 0.3rem 0.75rem;
-	border-radius: 999px;
-	background: var(--zyra-color-primary-soft);
-	color: var(--zyra-color-primary);
-	font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 500;
 }
 
 .made-icon {
-	width: 14px;
-	height: 14px;
-	border-radius: 4px;
-	background: var(--zyra-color-primary);
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background: var(--primary);
 }
 
-/* Responsive */
+/* ----------------------------------
+   Responsive
+----------------------------------- */
 @media (max-width: 900px) {
-	.zy-footer-main {
-		flex-direction: column;
-	}
+  .zy-footer-main {
+    flex-direction: column;
+  }
 
-	.zy-footer-columns {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
+  .zy-footer-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
-	.zy-footer-columns {
-		grid-template-columns: minmax(0, 1fr);
-	}
+  .zy-footer-columns {
+    grid-template-columns: 1fr;
+  }
 
-	.zy-footer-bottom {
-		flex-direction: column;
-		align-items: flex-start;
-	}
+  .zy-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

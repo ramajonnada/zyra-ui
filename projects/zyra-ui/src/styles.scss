@@ -1,118 +1,17 @@
-:root {
-	/* Brand */
-	--zyra-color-primary: #e1194a;
-	/* main red: logo, primary button, badges */
-	--zyra-color-primary-soft: #ffe4ec;
-	/* soft red background: icon tiles, pills */
-	--zyra-color-accent: #5b5ce8;
-	/* accent purple/indigo: “Angular” text, accent button */
-
-
-
-	/* gradients */
-	--zyra-gradient-hero: linear-gradient(120deg, #e1194a, #5b5ce8);
-	--zyra-gradient-button: linear-gradient(90deg, #e1194a, #ff4b6a);
-	--zyra-gradient-card: linear-gradient(135deg, #ffe4ec, #ffffff);
-
-	/* Neutrals */
-	--zyra-color-bg: #ffffff;
-	/* page background */
-	--zyra-color-surface: #f9fafb;
-	/* cards, light surfaces */
-	--zyra-color-border: #e5e7eb;
-	/* subtle borders, dividers */
-
-	/* Text */
-	--zyra-color-text-main: #111827;
-	/* main body text, headings */
-	--zyra-color-text-muted: #6b7280;
-	/* secondary text, descriptions */
-	--zyra-color-on-primary: #ffffff;
-	/* text on primary button */
-	--zyra-color-on-soft: #111827;
-	/* text on soft cards/pills */
-
-	/* Status (optional) */
-	--zyra-color-success: #16a34a;
-	--zyra-color-warning: #f59e0b;
-	--zyra-color-danger: #dc2626;
-
-	/* Layout */
-	--zyra-page-max-width: 72rem;
-	--zyra-page-x-padding: 1.5rem;
-	--zyra-section-y: 3rem;
-	--zyra-section-y-sm: 2rem;
-}
-
-/* center content and add side padding */
-.zy-container {
-	max-width: var(--zyra-page-max-width);
-	margin: auto;
-	padding-inline: var(--zyra-page-x-padding); // horizontal padding
-}
-
-// /* vertical spacing for sections */
-.zy-section {
-	padding-block: var(--zyra-section-y); // vertical padding
-}
-
-// @media (max-width: 768px) {
-// 	.zy-section {
-// 		padding-block: var(--zyra-section-y-sm);
-// 	}
-// }
+@use './markdown-style';
 
 * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+	font-family: var(--font-sans);
+	color: var(--text-primary);
+	// background-color: var(--bg-main);
+
 }
 
 html,
 body,
 app-root {
 	height: 100%;
-}
-
-app-root {
-	display: flex;
-	flex-direction: column;
-
-	header {
-		border-bottom: 1px solid #f0eaea;
-
-	}
-
-	header,
-	footer {
-		flex-shrink: 0;
-
-	}
-
-	main {
-		flex-grow: 1;
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
 }

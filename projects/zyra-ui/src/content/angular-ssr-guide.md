@@ -1,19 +1,46 @@
+# Angular Signals Explained with Real Examples (Beginner to Advanced)
+
+Angular Signals are one of the biggest changes in modern Angular. They simplify state management, reduce boilerplate code, and improve performance by making change detection more predictable.
+
+In this blog, you’ll learn **what Angular Signals are**, **how they work**, and **when to use them instead of RxJS**, with real examples.
+
 ---
-title: Welcome to My Blog
-author: Your Name
-date: 2025-11-26
+
+## What Are Angular Signals?
+
+Angular Signals are a **reactive state primitive** introduced to make state management simpler and more efficient.
+
+A signal:
+- Holds a value
+- Notifies Angular when the value changes
+- Automatically updates the UI
+
+Unlike RxJS, signals are **synchronous**, **easy to read**, and **framework-native**.
+
 ---
 
-# Welcome to My Blog
+## Why Angular Introduced Signals
 
-This is the first post on my blog! Here, I will share insights, updates, and thoughts about my projects, technology, and much more.
+Before signals, Angular relied heavily on:
+- RxJS observables
+- Change detection cycles
+- Zone.js
 
-Feel free to leave comments and share your thoughts.
+This caused:
+- Complex code for simple state
+- Performance overhead
+- Hard-to-debug UI updates
 
-## About This Blog
+Angular Signals solve this by providing:
+- Fine-grained reactivity
+- Better performance
+- Cleaner syntax
 
-This blog is built using Angular with Markdown files for each post. I plan to write about various topics including web development, Angular tips, and JavaScript.
+---
 
-## Stay tuned!
+## Creating Your First Signal
 
-## dev deverion Angular ssr
+```ts
+import { signal } from '@angular/core';
+
+const counter = signal(0);

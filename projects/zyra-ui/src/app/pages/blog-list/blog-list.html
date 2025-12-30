@@ -1,12 +1,16 @@
-<h1>Blog</h1>
+<div class="section-header">
+	<h1>Blog & Insights</h1>
+	<p>Tutorials, updates, and insights about building modern Angular applications</p>
+</div>
 
 @if (!posts.length) {
-    <div>Loading posts...</div>
+<div>Loading posts...</div>
 }
-<ul>
-    @for (post of posts; track $index) {
-        <li>
-            <a [routerLink]="['/blog', post.slug]">{{ post.title }} {{ post.date }}</a>
-        </li>
-    }
-</ul>
+
+<h2>Featured Articles</h2>
+<div class="zyra-blog-list">
+	@for (post of posts; track $index) {
+	<app-blog-card [blog]="post"></app-blog-card>
+	<!-- <a [routerLink]="['/blog', post.slug]">{{ post.title }} {{ post.date }}</a> -->
+	}
+</div>

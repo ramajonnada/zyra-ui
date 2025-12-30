@@ -1,92 +1,76 @@
 :host {
-	display: block;
-	height: 80px;
+	height: 4rem;
 	display: flex;
 	align-items: center;
-	color: var(--zyra-color-text-main);
 	justify-content: space-between;
-	// background: #ffffff;
-	// color: #111111;
-	// border-bottom: 1px solid #f0eaea;
-	// font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	gap: 1.5rem;
 
-	/* Left side */
-	.zy-toolbar__left {
-		display: flex;
-		align-items: center;
-		gap: 32px;
-	}
-
-	/* Logo */
 	.zy-logo {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.2rem;
+		gap: 0.6rem;
 		cursor: pointer;
 		text-decoration: none;
 	}
 
 	.zy-logo__img {
-		width: 48px;
-		height: 48px;
+		width: 28px;
+		height: 28px;
+		border-radius: 0.5rem;
 	}
 
 	.zy-logo__text {
-		font-size: 1.25rem;
-		font-weight: 600;
+		font-size: 24px;
+		font-weight: 700;
+		letter-spacing: 0.03em;
+		color: var(--text-primary);
+		background: var(--gradient-cta);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 
-	/* Nav */
+	/* Navigation */
 	.zy-nav {
 		display: flex;
 		align-items: center;
-		gap: 24px;
+		gap: 1.75rem;
 	}
 
 	.zy-nav__item {
-		padding: 6px 0;
-		color: #222222;
+		position: relative;
+		font-size: 0.95rem;
+		color: var(--text-primary);
 		text-decoration: none;
-		font-size: 0.98rem;
-		font-weight: 500;
-		border-bottom: 2px solid transparent;
-		transition: color 0.15s ease, border-color 0.15s ease;
+		transition: color 150ms ease;
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -0.35rem;
+			width: 0;
+			height: 2px;
+			border-radius: 999px;
+			background: var(--gradient-cta);
+			transition: width 160ms ease;
+		}
+
+		&.is-active,
+		&:hover {
+			color: var(--text-hover);
+
+			&::after {
+				width: 100%;
+			}
+		}
 	}
 
-	.zy-nav__item:hover {
-		color: #e10f3d;
-	}
-
-	/* Active (routerLinkActive adds classes) */
-	.zy-nav__item.is-active,
-	.zy-nav__item.router-link-active {
-		color: #e10f3d;
-		border-color: #e10f3d;
-	}
-
-	/* Right icons */
+	/* Right side: icon button */
 	.zy-toolbar__right {
 		display: flex;
 		align-items: center;
-		gap: 16px;
+		gap: 0.75rem;
 	}
-
-	.zy-icon-btn {
-		width: 32px;
-		height: 32px;
-		border-radius: 999px;
-		border: none;
-		background: transparent;
-		color: #111111;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-		transition: background 0.15s ease;
-	}
-
-	.zy-icon-btn:hover {
-		background: #f4f4f4;
-	}
-
 }
+
