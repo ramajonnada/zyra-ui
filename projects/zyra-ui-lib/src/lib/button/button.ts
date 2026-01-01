@@ -12,4 +12,8 @@ export class Button {
 	@Input() size: 'sm' | 'md' | 'lg' = 'md';
 	@Input() disabled = false;
 	@Input() type: 'button' | 'submit' | 'reset' = 'button';
+
+	ngOnChanges() {
+		console.log(this.variant);
+	}
 }

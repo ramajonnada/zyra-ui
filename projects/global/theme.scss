@@ -5,6 +5,8 @@
 
 	--secondary-color: #06b6d4;
 
+
+
 	--background: #0f172a;
 	--foreground: #ffffff;
 	--card: rgba(255, 255, 255, 0.05);
@@ -28,9 +30,12 @@
 	--radius-pill: 999px;
 
 
-	--gradient-cta: linear-gradient(to right, oklch(0.707 0.165 254.624) 0%, oklch(0.789 0.154 211.53) 100%);
-	--gradient-btn: linear-gradient(to right, oklch(0.488 0.243 264.376) 0%, oklch(0.609 0.126 221.723) 100%);
-	// --gradient-cta2: linear-gradient(to right, var(--primary-color) 0%, var(--secondary-color) 100%);
+	--gradient-cta: linear-gradient(to right, #51a2ff 0%, #00d3f3 100%);
+	--primary-btn: linear-gradient(to right, #155dfc 0%, #00d3f3 100%);
+	--primary-btn-hover: linear-gradient(to right, #1447e6 0%, #0092b8 100%);
+	--secondary-btn-bg: oklab(0.999994 0.0000455678 0.0000200868 / 0.1);
+
+
 	--text-primary: #d1d5dc;
 	--text-secondary: #B5BEC9;
 	--text-muted: #697B8E;
@@ -51,6 +56,12 @@
 	--font-size-xsm: 14px;
 
 	--font-size-date-time: 12px;
+
+	// /* Radius */
+	--radius-sm: 0.5rem;
+	--radius-md: 0.75rem;
+	--radius-lg: 1rem;
+
 
 	// --font-weight-normal: 400;
 	// --font-weight-medium: 500;
@@ -97,10 +108,6 @@
 	// --color-chart-4: #10B981;
 	// --color-chart-5: #F59E0B;
 
-	// /* Radius */
-	// --radius-sm: 0.5rem;
-	// --radius-md: 0.75rem;
-	// --radius-lg: 1rem;
 
 	// /* Sidebar */
 	// --sidebar-bg: #162134;
@@ -124,6 +131,5 @@
 
 
 	--chip-bg-color: color-mix(in oklab, #2b7fff 20%, transparent);
-	;
 	--chip-text-color: oklch(0.707 0.165 254.624);
 }

@@ -1,7 +1,6 @@
-:host {
-	/* Button tokens mapped from Zyra theme */
-	--btn-bg: var(--color-primary);
-	--btn-text: var(--text-hover);
+/* :host {
+	--btn-bg: var(--primary-btn);
+	--btn-text: var(--text-primary);
 	--btn-border: transparent;
 	--btn-radius: var(--radius-sm);
 
@@ -10,7 +9,7 @@
 			#000 15%);
 
 	font-family: var(--font-sans);
-}
+} */
 
 /* Base */
 .zyra-btn {
@@ -18,6 +17,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
+	margin: 8px;
 
 	height: 40px;
 	padding: 0 16px;
@@ -25,8 +25,8 @@
 	font-size: 14px;
 	font-weight: 500;
 
-	border-radius: var(--btn-radius);
-	border: 1px solid var(--btn-border);
+	border-radius: var(--radius-sm);
+	/* border: 1px solid var(--btn-border); */
 
 	cursor: pointer;
 	user-select: none;
@@ -42,8 +42,42 @@
 	}
 }
 
+/* .zyra-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 3rem;
+	height: 36px;
+	font-size: 14px;
+	border-radius: 0.5rem;
 
+	outline: none;
+	border: none;
+	font-weight: 500;
+	cursor: pointer;
+	padding: 0 16px 0 16px;
+	transition:
+		border-color 120ms ease,
+		transform 120ms ease,
+		box-shadow 120ms ease,
+		background 120ms ease;
 
+	svg {
+		width: 1.15rem;
+		height: 1.15rem;
+		fill: currentColor;
+	}
+
+	&:hover {
+		box-shadow: 0 10px 25px rgba(0, 180, 255, 0.35);
+		transform: translateY(-1px);
+	}
+
+	&:active {
+		transform: translateY(0);
+		box-shadow: none;
+	}
+} */
 
 
 .zyra-btn--sm {
@@ -64,36 +98,47 @@
 	font-size: 15px;
 }
 
-
 /* Primary */
 .zyra-btn--primary {
-	--btn-bg: var(--color-primary);
+	--btn-bg: var(--primary-btn);
+	--btn-text: var(--text-primary);
+
+	&:hover {
+		--btn-bg: var(--primary-btn-hover);
+	}
 }
 
 /* Secondary */
 .zyra-btn--secondary {
-	--btn-bg: var(--bg-secondary);
+	--btn-bg: var(--secondary-btn-bg);
 	--btn-text: var(--text-primary);
+
+	&:hover {
+		--btn-bg: rgba(255, 255, 255, 0.15);
+		border: rgba(0, 0, 0, 0.1);
+	}
 }
 
 /* Outline */
 .zyra-btn--outline {
 	--btn-bg: transparent;
-	--btn-text: var(--color-primary);
-	--btn-border: var(--color-primary);
+	--btn-text: var(--text-primary);
+	--btn-border: var(--primary-btn);
 }
 
 /* Ghost */
 .zyra-btn--ghost {
 	--btn-bg: transparent;
-	--btn-text: var(--color-primary);
+	--btn-text: var(--text-primary);
+	border: 1px solid var(--text-primary);
 }
 
 /* Danger */
-.zyra-btn--danger {
+/* .zyra-btn--danger {
 	--btn-bg: var(--color-danger);
-}
+} */
 
 .zyra-btn:not(:disabled):hover {
-	background: var(--btn-hover);
+	background: var(--btn-bg);
+	opacity: 0.9;
 }
