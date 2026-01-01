@@ -1,4 +1,4 @@
-export enum PostFeature {
+export enum PostCategory {
 	angular = "angular",
 	webdev = "webdev",
 	typescript = "typescript",

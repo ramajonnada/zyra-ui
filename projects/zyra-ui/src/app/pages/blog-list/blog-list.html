@@ -3,14 +3,13 @@
 	<p>Tutorials, updates, and insights about building modern Angular applications</p>
 </div>
 
+<h2>Articles</h2>
 @if (!posts.length) {
 <div>Loading posts...</div>
 }
 
-<h2>Featured Articles</h2>
 <div class="zyra-blog-list">
 	@for (post of posts; track $index) {
 	<app-blog-card [blog]="post"></app-blog-card>
-	<!-- <a [routerLink]="['/blog', post.slug]">{{ post.title }} {{ post.date }}</a> -->
 	}
 </div>

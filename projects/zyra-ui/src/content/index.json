@@ -1,15 +1,12 @@
 [
 	{
+		"imageUrl": "",
 		"slug": "angular-signals",
 		"title": "Angular Signals: A Comprehensive Guide",
 		"date": "2025-11-25",
 		"badge": "",
 		"description": "Explore the powerful theming system in ZyraUI and how to implement dark mode seamlessly in your applications.",
 		"readTime": "6 min read",
-		"tags": [
-			"Theming",
-			"DarkMode",
-			"CSS"
-		]
+		"category": "Angular"
 	}
 ]

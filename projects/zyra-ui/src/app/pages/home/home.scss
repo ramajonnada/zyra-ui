@@ -3,4 +3,6 @@
 		radial-gradient(circle at 50% 70%, var(--brand-primary)-50%, transparent 60%),
 		var(--bg);
 	backdrop-filter: blur(100px);
+
+	display: block;
 }

@@ -8,12 +8,13 @@
 	height: 36px;
 	font-size: 14px;
 	border-radius: 0.5rem;
-	border: 0.4px solid var(--border-subtle);
-	background: var(--gradient-cta);
-	color: var(--text-primary);
+	background: var(--gradient-btn);
+	color: var(--foreground);
+	outline: none;
+	border: none;
+	font-weight: 500;
 	cursor: pointer;
 	padding: 0 16px 0 16px;
-	// outline: none;
 	transition:
 		border-color 120ms ease,
 		transform 120ms ease,
@@ -27,7 +28,7 @@
 	}
 
 	&:hover {
-		border-color: var(--text-primary);
+		// border-color: var(--text-primary);
 		box-shadow: 0 10px 25px rgba(0, 180, 255, 0.35);
 		transform: translateY(-1px);
 	}
@@ -52,20 +53,33 @@
 
 }
 
-/* Simple mobile tweak */
-// @media (max-width: 768px) {
-// 	.zy-toolbar {
-// 		padding-inline: 1rem;
-// 	}
 
-// 	.zy-nav {
-// 		gap: 1.1rem;
-// 	}
+.zy-logo__text {
+	font-size: 24px;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	color: var(--text-primary);
+	background: var(--gradient-cta);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
 
-// 	.zy-nav__item {
-// 		font-size: 0.9rem;
-// 	}
-// }
+
+.zyra-chip {
+	background: rgba(22, 148, 224, 0.2);
+	color: var(--color-primary);
+	padding: 0.25rem 0.75rem;
+	border-radius: 999px;
+	font-size: 0.75rem;
+}
+
+.divider {
+	height: 1px;
+	background: var(--divider-color);
+	margin: 16px 0;
+}
+
 
 h1,
 h2,
@@ -146,7 +160,7 @@ Large Desktop: 1536px+
 /* large phones */
 @media (min-width: 640px) {
 	:root {
-		--container-width: 600px;
+		--container-width: 640px;
 		--container-padding: 20px;
 	}
 }
@@ -154,7 +168,7 @@ Large Desktop: 1536px+
 /* tablets */
 @media (min-width: 768px) {
 	:root {
-		--container-width: 720px;
+		--container-width: 768px;
 		--container-padding: 24px;
 
 		--fs-p: 15px;
@@ -175,8 +189,8 @@ Large Desktop: 1536px+
 /* small laptops */
 @media (min-width: 1024px) {
 	:root {
-		--container-width: 920px;
-		--container-padding: 24px;
+		--container-width: 1024px;
+		--container-padding: 32px;
 
 		--fs-p: 16px;
 		--line-height-p: 26px;
@@ -192,14 +206,14 @@ Large Desktop: 1536px+
 /* desktops */
 @media (min-width: 1280px) {
 	:root {
-		--container-width: 1024px;
-		--container-padding: 24px;
+		--container-width: 1280px;
+		--container-padding: 32px;
 	}
 }
 
 /* large screens / 4K */
 @media (min-width: 1536px) {
 	:root {
-		--container-width: 980px;
+		--container-width: 1280px;
 	}
 }

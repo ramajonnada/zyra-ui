@@ -19,16 +19,7 @@
 		border-radius: 0.5rem;
 	}
 
-	.zy-logo__text {
-		font-size: 24px;
-		font-weight: 700;
-		letter-spacing: 0.03em;
-		color: var(--text-primary);
-		background: var(--gradient-cta);
-		-webkit-background-clip: text;
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
+	
 
 	/* Navigation */
 	.zy-nav {
@@ -58,7 +49,7 @@
 
 		&.is-active,
 		&:hover {
-			color: var(--text-hover);
+			color: var(--text-primary);
 
 			&::after {
 				width: 100%;

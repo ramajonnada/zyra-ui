@@ -7,9 +7,8 @@ author:
   name: "Rama Jonnada"
   role: "Software Developer"
 ---
-
 <div class="page">
-  <div class="post-header">
+  <div class="blog-header">
     <div class="post-meta-row">
       <span class="zy-chip">Tutorial</span>
       <span class="post-meta-text"><i class="icon fa-regular fa-calendar"></i> December 10, 2025</span>
@@ -43,14 +42,13 @@ author:
     </div>
   </div>
 
-  <div class="post-main">
-    <h2 class="post-section-heading">Introduction</h2>
+  <div class="blog-main">
+    <h2 class="blog-section-heading">Introduction</h2>
     <p>
       Your article content starts here. Replace this with markdown-rendered content or static HTML text.
     </p>
   </div>
 </div>
-
 
 ## The Power of Theming
 

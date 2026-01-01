@@ -11,6 +11,7 @@ export interface PostMeta {
 	badge?: string;
 	tags?: string[];
 	link?: string;
+	category: string;
 }
 
 @Injectable({ providedIn: 'root' })
