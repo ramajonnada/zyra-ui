@@ -14,21 +14,20 @@
 		-webkit-backdrop-filter: blur(16px);
 		border-bottom-width: 1px;
 		border-bottom-style: solid;
-		border-bottom-color: rgba(255, 255, 255, 0.1);
-		background-color: rgba(0, 0, 0, 0.2);
-		color: var(--text-muted);
+		border-bottom-color: var(--zyra-border-dark);
+		color: var(--zyra-muted-foreground-dark);
 	}
-
+	
 	header,
 	footer {
 		flex-shrink: 0;
+		background-color: var(--zyra-header-footer-background-dark);
 	}
 
 	footer {
 		border-top-color: rgba(255, 255, 255, 0.1);
 		border-top-width: 1px;
 		border-top-style: solid;
-		background-color: rgba(0, 0, 0, 0.2);
 	}
 
 	main {

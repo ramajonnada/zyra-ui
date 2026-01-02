@@ -8,6 +8,7 @@
 		gap: 3rem;
 		margin-bottom: 32px;
 		padding-bottom: 32px;
+
 		.zy-footer-brand {
 			flex: 1.4;
 			display: flex;
@@ -23,16 +24,16 @@
 				max-width: 26rem;
 				font-size: 0.95rem;
 				line-height: 1.6;
-				color: var(--text-primary);
+				color: var(--zyra-text-primary);
 			}
 
 			.icon-btn {
 				width: 40px;
 				height: 40px;
 				border-radius: 12px;
-				border: 1px solid var(--border-default);
+				border: 1px solid var(--zyra-border-dark);
 				background-color: rgba(255, 255, 255, 0.1);
-				color: var(--text-primary);
+				color: var(--zyra-text-secondary);
 				font-size: 1.2rem;
 				cursor: pointer;
 				transition: all 0.15s ease;
@@ -43,6 +44,7 @@
 			.icon-btn:hover {
 				background-color: rgba(255, 255, 255, 0.2);
 				border-color: transparent;
+				color: var(--zyra-text-heading);
 			}
 		}
 

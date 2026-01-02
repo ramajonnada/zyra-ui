@@ -1,43 +1,4 @@
-@use 'theme.scss';
-
-// .zy-icon-btn {
-// 	display: inline-flex;
-// 	align-items: center;
-// 	justify-content: center;
-// 	min-width: 3rem;
-// 	height: 36px;
-// 	font-size: 14px;
-// 	border-radius: 0.5rem;
-// 	background: var(--gradient-btn);
-// 	color: var(--foreground);
-// 	outline: none;
-// 	border: none;
-// 	font-weight: 500;
-// 	cursor: pointer;
-// 	padding: 0 16px 0 16px;
-// 	transition:
-// 		border-color 120ms ease,
-// 		transform 120ms ease,
-// 		box-shadow 120ms ease,
-// 		background 120ms ease;
-
-// 	svg {
-// 		width: 1.15rem;
-// 		height: 1.15rem;
-// 		fill: currentColor;
-// 	}
-
-// 	&:hover {
-// 		// border-color: var(--text-primary);
-// 		box-shadow: 0 10px 25px rgba(0, 180, 255, 0.35);
-// 		transform: translateY(-1px);
-// 	}
-
-// 	&:active {
-// 		transform: translateY(0);
-// 		box-shadow: none;
-// 	}
-// }
+@use '_variables.scss';
 
 .zy-chip {
 	display: inline-flex;
@@ -46,10 +7,11 @@
 	line-height: 32px;
 	padding: 0 1.2rem 0 1.2rem;
 	border-radius: var(--radius-pill);
-	background: var(--chip-bg-color);
-	color: var(--chip-text-color);
+	background: var(--zyra-chip-bg-color);
+	color: var(--zyra-chip-text-color);
 	font-variation-settings: normal;
-	font-size: 12px;
+	font-size: var(--font-size-xsm);
+	outline-color: var(--zyra-primary);
 
 }
 
@@ -58,8 +20,7 @@
 	font-size: 24px;
 	font-weight: 700;
 	letter-spacing: 0.03em;
-	color: var(--text-primary);
-	background: var(--gradient-cta);
+	background: var(--zyra-logo-gradient);
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -76,7 +37,7 @@
 
 .divider {
 	height: 1px;
-	background: var(--divider-color);
+	background: var(--zyra-divider-color);
 	margin: 16px 0;
 }
 

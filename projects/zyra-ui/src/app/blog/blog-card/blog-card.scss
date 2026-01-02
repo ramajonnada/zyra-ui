@@ -1,6 +1,5 @@
 :host {
-	color: var(--text-primary);
-	background: var(--card);
+	background-color: var(--zyra-card);
 	backdrop-filter: blur(10px);
 	border-radius: 1rem;
 	border: 1px solid var(--border-color);
@@ -10,7 +9,7 @@
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 
 	&:hover {
-		border-color: var(--primary-color-active);
+		border: 1px solid var(--zyra-text-heading-secondary);
 
 		.post-image img {
 			transform: scale(1.05);
@@ -38,19 +37,17 @@
 			justify-content: space-between;
 			align-items: center;
 			margin-bottom: 16px;
-
-
 		}
 
 		.post-title {
-			color: var(--foreground);
-			font-size: var(--font-size-base);
+			color: var(--zyra-text-heading);
+			font-size: var(--font-size-sm);
 			margin-bottom: 0.75rem;
 			transition: color 0.3s ease;
 		}
 
 		.post-excerpt {
-			color: var(--text-secondary);
+			color: var(--zyra-text-secondary);
 			margin-bottom: 1rem;
 			font-size: var(--font-size-xsm);
 			line-height: 20px !important;
@@ -62,8 +59,6 @@
 			align-items: center;
 
 			.read-more {
-				color: var(--primary-color-active);
-				font-size: var(--font-size-xsm);
 				background: none;
 				border: none;
 				cursor: pointer;
@@ -75,20 +70,22 @@
 		}
 	}
 
-
+	.read-more,
 	.icon,
 	.date,
 	.read-time {
 		font-size: var(--font-size-date-time);
-		color: var(--text-muted)
+		color: var(--zyra-text-secondary)
 	}
 
 	.post-title:hover {
-		color: var(--secondary-color);
+		color: var(--zyra-text-heading-secondary) !important;
 	}
 
 	a {
 		text-decoration: none;
+		color: var(--zyra-card-foreground-dark) !important;
+
 	}
 
 }

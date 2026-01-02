@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 	styleUrl: './button.css',
 })
 export class Button {
-	@Input() variant: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' = 'primary';
+	@Input() variant: 'gradient' | 'primary' | 'secondary' | 'accent' | 'success' | 'danger' = 'primary';
 	@Input() size: 'sm' | 'md' | 'lg' = 'md';
 	@Input() disabled = false;
 	@Input() type: 'button' | 'submit' | 'reset' = 'button';

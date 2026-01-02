@@ -19,7 +19,7 @@
 		border-radius: 0.5rem;
 	}
 
-	
+
 
 	/* Navigation */
 	.zy-nav {
@@ -31,7 +31,7 @@
 	.zy-nav__item {
 		position: relative;
 		font-size: 0.95rem;
-		color: var(--text-primary);
+		color: var(--zyra-text-secondary);
 		text-decoration: none;
 		transition: color 150ms ease;
 
@@ -43,13 +43,13 @@
 			width: 0;
 			height: 2px;
 			border-radius: 999px;
-			background: var(--gradient-cta);
+			background: var(--zyra-logo-gradient);
 			transition: width 160ms ease;
 		}
 
 		&.is-active,
 		&:hover {
-			color: var(--text-primary);
+			color: var(--zyra-text-primary);
 
 			&::after {
 				width: 100%;
@@ -64,4 +64,3 @@
 		gap: 0.75rem;
 	}
 }
-

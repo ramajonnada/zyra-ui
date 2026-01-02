@@ -1,0 +1,32 @@
+@use '_variables.scss';
+
+// Card Mixin
+@mixin zyra-card($dark: false) {
+	background-color: var(--zyra-card-dark);
+	border: 1px solid var(--zyra-border-dark);
+	@include zyra-shadow-sm(true);
+
+	border-radius: var(--zyra-radius-lg);
+	padding: var(--zyra-spacing-3);
+}
+
+/* Utility Classes */
+.zyra-transition {
+	transition: all var(--zyra-transition-base);
+}
+
+.zyra-shadow-sm {
+	box-shadow: var(--zyra-shadow-sm);
+}
+
+.zyra-shadow-md {
+	box-shadow: var(--zyra-shadow-md);
+}
+
+.zyra-shadow-lg {
+	box-shadow: var(--zyra-shadow-lg);
+}
+
+.zyra-shadow-xl {
+	box-shadow: var(--zyra-shadow-xl);
+}
