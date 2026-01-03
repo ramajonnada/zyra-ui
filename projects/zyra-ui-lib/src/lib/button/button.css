@@ -9,16 +9,16 @@
 	cursor: pointer;
 	margin: 8px;
 	background: var(--btn-bg);
-	color: var(--zyra-foreground-dark);
+	color: var(--zyra-foreground);
 
 
 	&:disabled {
 		opacity: 0.6;
 		cursor: not-allowed;
-		background-color: var(--zyra-muted-dark);
+		background-color: var(--zyra-muted);
 
 		:hover {
-			background-color: var(--zyra-muted-dark);
+			background-color: var(--zyra-muted);
 		}
 	}
 }

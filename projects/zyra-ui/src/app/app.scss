@@ -14,14 +14,14 @@
 		-webkit-backdrop-filter: blur(16px);
 		border-bottom-width: 1px;
 		border-bottom-style: solid;
-		border-bottom-color: var(--zyra-border-dark);
-		color: var(--zyra-muted-foreground-dark);
+		border-bottom-color: var(--zyra-border);
+		color: var(--zyra-muted-foreground);
 	}
 	
 	header,
 	footer {
 		flex-shrink: 0;
-		background-color: var(--zyra-header-footer-background-dark);
+		background-color: var(--zyra-header-footer-background);
 	}
 
 	footer {

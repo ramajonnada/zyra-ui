@@ -2,9 +2,9 @@
 	background-color: var(--zyra-card);
 	backdrop-filter: blur(10px);
 	border-radius: 1rem;
-	border: 1px solid var(--border-color);
+	border: 1px solid var(--zyra-border);
 	overflow: hidden;
-	transition: var(--border-color) 0.3s ease;
+	transition: var(--zyra-border) 0.3s ease;
 	cursor: pointer;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 
@@ -84,7 +84,7 @@
 
 	a {
 		text-decoration: none;
-		color: var(--zyra-card-foreground-dark) !important;
+		color: var(--zyra-card-foreground) !important;
 
 	}
 
