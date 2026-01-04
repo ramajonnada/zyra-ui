@@ -18,32 +18,30 @@
       "clearEmpty": true,
       "fields": [
         {
-          "title": "title",
+          "title": "Title",
           "name": "title",
-          "type": "string"
+          "type": "string",
+          "single": true
         },
         {
-          "title": "description",
+          "title": "Description",
           "name": "description",
           "type": "string"
         },
         {
-          "title": "category",
-          "name": "category",
-          "type": "categories"
+          "title": "Publishing date",
+          "name": "pubDate",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
         },
         {
-          "title": "tags",
-          "name": "tags",
-          "type": "tags"
-        },
-        {
-          "title": "date",
-          "name": "date",
-          "type": "datetime"
+          "title": "Content preview",
+          "name": "heroImage",
+          "type": "image",
+          "isPreviewImage": true
         }
       ]
     }
-  ],
-  "frontMatter.git.enabled": true
+  ]
 }

@@ -24,7 +24,7 @@
 
 
 	// Dark Mode Neutrals - Soft Contrast
-	--zyra-background: #0f172a;
+	--zyra-background: #16213e;
 	--zyra-foreground: #f1f5f9;
 	--zyra-popover: #1e293b;
 	--zyra-popover-foreground: #f1f5f9;
@@ -34,12 +34,15 @@
 	--zyra-input: #334155;
 	--zyra-input-background: #1e293b;
 
+	--zyra-code-background: #0f172a;
+	--zyra-code-foreground: #e2e8f0;
+
 	--zyra-header-footer-background: rgba(0, 0, 0, 0.2);
 	--zyra-card: rgba(255, 255, 255, 0.05);
 	--zyra-card-foreground: #f1f5f9;
 
 	--zyra-text-primary: var(--zyra-foreground);
-	--zyra-text-secondary: #B5BEC9;
+	--zyra-text-secondary: #e2e8f0;
 	--zyra-text-muted: #697B8E;
 	--zyra-text-heading: #ffffff;
 	--zyra-text-heading-secondary: #51a2ff;
