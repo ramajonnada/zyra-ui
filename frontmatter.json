@@ -5,8 +5,8 @@
   "frontMatter.content.publicFolder": "public",
   "frontMatter.content.pageFolders": [
     {
-      "title": "blog",
-      "path": "[[workspace]]/src/content/blog"
+      "title": "content",
+      "path": "[[workspace]]/projects/zyra-ui/src/content"
     }
   ],
   "frontMatter.taxonomy.contentTypes": [
@@ -43,5 +43,6 @@
         }
       ]
     }
-  ]
+  ],
+  "frontMatter.git.enabled": true
 }
