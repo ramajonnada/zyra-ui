@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Button } from 'zyra-ui-lib';
 @Component({
 	selector: 'app-home',
-	imports: [Button],
+	imports: [],
 	templateUrl: './home.html',
 	styleUrl: './home.scss',
 })
