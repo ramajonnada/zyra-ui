@@ -1,11 +1,11 @@
 :host {
 	display: block;
-	padding-bottom: 32px;
+	padding-top: 32px;
 
 	.zy-footer-main {
 		display: flex;
 		justify-content: space-between;
-		gap: 3rem;
+		gap: 4rem;
 		margin-bottom: 32px;
 		padding-bottom: 32px;
 
@@ -24,7 +24,7 @@
 				max-width: 26rem;
 				font-size: 0.95rem;
 				line-height: 1.6;
-				color: var(--zyra-text-primary);
+				color: var(--zyra-text-gray);
 			}
 
 			.icon-btn {
@@ -33,7 +33,7 @@
 				border-radius: 12px;
 				border: 1px solid var(--zyra-border);
 				background-color: rgba(255, 255, 255, 0.1);
-				color: var(--zyra-text-secondary);
+				color: var(--zyra-text-gray);
 				font-size: 1.2rem;
 				cursor: pointer;
 				transition: all 0.15s ease;
@@ -51,7 +51,7 @@
 		.zy-footer-columns {
 			flex: 1.6;
 			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: 2.5rem;
 
 
@@ -59,20 +59,20 @@
 				font-size: var(--font-size-base);
 				font-weight: 600;
 				margin-bottom: 0.9rem;
-				color: var(--text-primary);
+				color: var(--zyra-text-primary);
 			}
 
 			.footer-column a {
 				display: block;
 				margin-bottom: 0.5rem;
 				font-size: 0.9rem;
-				color: var(--text-secondary);
+				color: var(--zyra-text-gray);
 				text-decoration: none;
 				transition: color 0.15s ease;
 			}
 
 			.footer-column a:hover {
-				color: var(--text-primary);
+				color: var(--zyra-text-primary);
 			}
 		}
 	}
@@ -85,7 +85,7 @@
 
 		* {
 			font-size: var(--font-size-xsm) !important;
-			color: var(--text-secondary);
+			color: var(--zyra-text-gray);
 		}
 
 		.footer-bottom-links {
@@ -96,7 +96,7 @@
 
 			a {
 				text-decoration: none;
-				color: var(--text-secondary);
+				color: var(--zyra-text-gray);
 
 			}
 		}

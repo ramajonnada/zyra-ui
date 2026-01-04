@@ -31,7 +31,7 @@
 	.zy-nav__item {
 		position: relative;
 		font-size: 0.95rem;
-		color: var(--zyra-text-secondary);
+		color: var(--zyra-text-gray);
 		text-decoration: none;
 		transition: color 150ms ease;
 
@@ -65,7 +65,7 @@
 		height: 32px;
 		gap: 8px;
 		background-color: rgba(255, 255, 255, 0.2);
-		color: var(--zyra-text-secondary);
+		color: var(--zyra-text-gray);
 		text-decoration: none;
 	}
 
