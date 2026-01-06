@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BlogService, PostMeta } from '../../services/blog-service';
 import { CommonModule } from '@angular/common';
-import { BlogCard } from "../../blog/blog-card/blog-card";
+import { BlogCard } from "../blog-card/blog-card";
 
 
 @Component({

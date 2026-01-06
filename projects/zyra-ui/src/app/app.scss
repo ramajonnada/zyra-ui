@@ -1,43 +1,39 @@
 :host {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	overflow-y: scroll;
 
-	h1 {
-		color: var(--zyra-secondary);
-		font-size: 64px;
+	header {
+		position: sticky;
+		top: 0px;
+		left: 0;
+		right: 0;
+		z-index: 50;
+
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-color: var(--zyra-border);
+		color: var(--zyra-muted-foreground);
 	}
 
-	// header {
-	// 	position: sticky;
-	// 	top: 0;
-	// 	left: 0;
-	// 	right: 0;
-	// 	z-index: 50;
+	header,
+	footer {
+		flex-shrink: 0;
+		background-color: var(--zyra-header-footer-background);
+	}
 
-	// 	backdrop-filter: blur(16px);
-	// 	-webkit-backdrop-filter: blur(16px);
-	// 	border-bottom-width: 1px;
-	// 	border-bottom-style: solid;
-	// 	border-bottom-color: var(--zyra-border);
-	// 	color: var(--zyra-muted-foreground);
-	// }
+	footer {
+		border-top-color: #00000033;
+		border-top-width: 1px;
+		border-top-style: solid;
+	}
 
-	// header,
-	// footer {
-	// 	flex-shrink: 0;
-	// 	background-color: var(--zyra-header-footer-background);
-	// }
-
-	// footer {
-	// 	border-top-color: #00000033;
-	// 	border-top-width: 1px;
-	// 	border-top-style: solid;
-	// }
-
-	// main {
-	// 	flex-grow: 1;
-	// }
+	main {
+		flex-grow: 1;
+		// min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 }

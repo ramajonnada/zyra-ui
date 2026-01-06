@@ -18,28 +18,29 @@
       "clearEmpty": true,
       "fields": [
         {
-          "title": "Title",
+          "title": "title",
           "name": "title",
-          "type": "string",
-          "single": true
+          "type": "string"
         },
         {
-          "title": "Description",
+          "title": "description",
           "name": "description",
           "type": "string"
         },
         {
-          "title": "Publishing date",
-          "name": "pubDate",
-          "type": "datetime",
-          "default": "{{now}}",
-          "isPublishDate": true
+          "title": "category",
+          "name": "category",
+          "type": "categories"
         },
         {
-          "title": "Content preview",
-          "name": "heroImage",
-          "type": "image",
-          "isPreviewImage": true
+          "title": "tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "date",
+          "name": "date",
+          "type": "datetime"
         }
       ]
     }

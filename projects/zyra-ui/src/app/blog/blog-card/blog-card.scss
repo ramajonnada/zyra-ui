@@ -70,7 +70,11 @@
 		}
 	}
 
-	.read-more,
+	.read-more {
+		font-size: var(--font-size-date-time);
+		color: var(--zyra-secondary);
+	}
+
 	.icon,
 	.date,
 	.read-time {

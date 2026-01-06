@@ -6,7 +6,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { BlogService } from '../../services/blog-service';
 
 @Component({
-	selector: 'app-blog-page',
+	selector: 'app-blog-details',
 	standalone: true,
 	imports: [CommonModule, MarkdownModule],
 	templateUrl: './blog-details.html',

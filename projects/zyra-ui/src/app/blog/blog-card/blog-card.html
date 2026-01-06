@@ -4,6 +4,7 @@
 		</div> -->
 	<div class="post-content">
 		<div class="post-header">
+
 			<span class="zy-chip">{{ blog.category }}</span>
 			<span class="date"><i class="fa-regular fa-calendar icon"></i>&nbsp; {{ blog.date |
 				date:'MMM dd, yyyy' }}</span>
@@ -13,7 +14,7 @@
 		<div class="divider"></div>
 		<div class="post-footer">
 			<span class="read-time">⏱ {{blog.readTime}}</span>
-			<button class="read-more" [routerLink]="['/blog', blog.slug]">Read More</button>
+			<a class="read-more" [routerLink]="['/blog', blog.slug]">Read More</a>
 		</div>
 	</div>
 </a>

@@ -1,10 +1,11 @@
-@use './markdown-style';
+@use './markdown-style.scss';
 
 * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 	font-family: var(--font-sans);
+	letter-spacing: 0.01em;
 }
 
 html,

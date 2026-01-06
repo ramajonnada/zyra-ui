@@ -4,6 +4,8 @@ import { Docs } from './pages/docs/docs';
 import { Login } from './pages/login/login';
 import { About } from './pages/about/about';
 import { UiComponents } from './pages/ui-components/ui-components';
+import { PrivacyPolicy } from './components/privacy-policy/privacy-policy';
+import { TermsOfServices } from './components/terms-of-services/terms-of-services';
 
 export const routes: Routes = [
 	{
@@ -11,12 +13,12 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/home/home').then(() => Home),
 	},
 	{
-		path: 'comp',
+		path: 'components',
 		loadComponent: () => import('./pages/ui-components/ui-components').then(() => UiComponents),
 	},
 	{
-		path: 'blog-page',
-		loadComponent: () => import('./pages/blog-list/blog-list').then((m) => m.BlogList),
+		path: 'blog-list',
+		loadComponent: () => import('./blog/blog-list/blog-list').then((m) => m.BlogList),
 	},
 	{
 		path: 'blog/:slug',
@@ -38,4 +40,13 @@ export const routes: Routes = [
 		path: 'contact',
 		loadComponent: () => import('./pages/contact/contact').then((m) => m.Contact),
 	},
+	{
+		path: 'privacy-and-policy',
+		loadComponent: () => import('./components/privacy-policy/privacy-policy').then(() => PrivacyPolicy),
+	},
+	{
+		path: 'termsofservices',
+		loadComponent: () => import('./components/terms-of-services/terms-of-services').then(() => TermsOfServices),
+	},
+
 ];

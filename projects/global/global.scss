@@ -146,6 +146,12 @@ Large Desktop: 1536px+
 	}
 }
 
+
+a {
+	color: var(--zyra-secondary);
+	text-decoration: none;
+}
+
 /* small laptops */
 @media (min-width: 1024px) {
 	:root {
@@ -154,8 +160,8 @@ Large Desktop: 1536px+
 
 		--fs-p: 16px;
 		--line-height-p: 28px;
-		--fs-h1: 36px;
-		--fs-h2: 28px;
+		--fs-h1: 40px;
+		--fs-h2: 32px;
 		--fs-h3: 22px;
 		--fs-h4: 20px;
 		--fs-h5: 18px;

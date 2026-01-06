@@ -4,7 +4,7 @@ import { getAllSlugs } from './prerender/blog-prerender-utils';
 export const serverRoutes: ServerRoute[] = [
 	{ path: '', renderMode: RenderMode.Prerender },
 	{ path: 'docs', renderMode: RenderMode.Prerender },
-	{ path: 'blog-page', renderMode: RenderMode.Prerender },
+	{ path: 'blog-list', renderMode: RenderMode.Prerender },
 	{
 		path: 'blog/:slug',
 		renderMode: RenderMode.Prerender,
@@ -16,9 +16,12 @@ export const serverRoutes: ServerRoute[] = [
 			return slugs.map((slug) => ({ slug }));
 		},
 	},
-	{ path: 'comp', renderMode: RenderMode.Prerender },
+	{ path: 'components', renderMode: RenderMode.Prerender },
 	{ path: 'about', renderMode: RenderMode.Prerender },
 	{ path: 'contact', renderMode: RenderMode.Prerender },
 
 	{ path: 'login', renderMode: RenderMode.Server },
+	{ path: 'privacy-and-policy', renderMode: RenderMode.Server },
+	{ path: 'termsofservices', renderMode: RenderMode.Server },
+
 ];

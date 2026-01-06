@@ -4,9 +4,6 @@ import { PostMeta } from '../../services/blog-service';
 import { DatePipe } from '@angular/common';
 
 
-
-
-
 @Component({
 	selector: 'app-blog-card',
 	imports: [RouterLink, DatePipe],
