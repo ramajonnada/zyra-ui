@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zyraui.com/sitemap.xml
+Sitemap: https://www.zyraui.dev/sitemap.xml
