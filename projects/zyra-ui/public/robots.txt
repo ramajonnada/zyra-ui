@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+
+Disallow: /search/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*?
+
 Sitemap: https://www.zyraui.dev/sitemap.xml
