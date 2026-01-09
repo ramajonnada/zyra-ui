@@ -5,12 +5,11 @@
 	font-family: var(--font-sans);
 
 	min-height: 100vh;
+	padding-bottom: 32px;
+	padding-top: 32px;
+
 	max-width: 900px;
 	margin: auto;
-	background: linear-gradient(to bottom right,
-			var(--bg-main),
-			#16213e,
-			#0f172a);
 
 
 	.section-header {
@@ -18,7 +17,7 @@
 		margin-bottom: 32px;
 
 		p {
-			color: var(--text-secondary);
+			color: var(--zyra-text-secondary);
 			margin-top: 8px;
 		}
 
@@ -26,7 +25,7 @@
 
 	h1,
 	h2 {
-		color: var(--secondary-color);
+		color: var(--zyra-secondary);
 	}
 
 	h2 {

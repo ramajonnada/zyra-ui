@@ -1,9 +1,19 @@
 :host {
+	// background-image: url("/grid-bg.png");
 	background:
-		radial-gradient(circle at 50% 70%, var(--brand-primary)-50%, transparent 60%),
-		var(--bg);
+		radial-gradient(circle at 50% 70%, var(--zyra-primary)-50%, transparent 60%),
+		var(--zyra-background);
 	backdrop-filter: blur(100px);
-	height: 100%;
+	height: 100vh;
+
+	padding-bottom: 32px;
+	padding-top: 32px;
+	// background-color: #f8fafc;
+	/* light base */
+	// background-repeat: repeat;
+	// background-size: 600px 600px;
+	// background-position: center;
+
 
 
 	display: flex;
