@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 	templateUrl: './button.html',
 	styleUrl: './button.css',
 })
-export class Button {
+export class ZyraButton {
 	@Input() variant: 'gradient' | 'primary' | 'secondary' | 'accent' | 'success' | 'danger' = 'primary';
 	@Input() size: 'sm' | 'md' | 'lg' = 'md';
 	@Input() disabled = false;

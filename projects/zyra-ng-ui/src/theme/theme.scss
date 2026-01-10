@@ -1,4 +1,7 @@
-@use '_variables.scss';
+@use './_dark-theme.css';
+@use './_light-theme.css';
+
+@use './_variables.css';
 
 .zy-chip {
 	display: inline-flex;
@@ -11,7 +14,7 @@
 	color: var(--zyra-chip-text-color);
 	font-variation-settings: normal;
 	font-size: var(--font-size-xsm);
-	outline-color: var(--zyra-primary);
+	/* outline-color: var(--zyra-primary); */
 
 }
 
@@ -91,12 +94,12 @@ p {
 .zy-container {
 	max-width: var(--container-width);
 	margin: auto;
-	padding-inline: var(--container-padding); // horizontal padding
+	padding-inline: var(--container-padding);
 }
 
-// /* vertical spacing for sections */
+/* vertical spacing for sections */
 .zy-section {
-	padding-block: var(--zyra-section-y); // vertical padding
+	padding-block: var(--zyra-section-y);
 }
 
 /* 

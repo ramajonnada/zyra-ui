@@ -37,8 +37,7 @@
 							}
 						],
 						"styles": [
-							"projects/zyra-ui/src/styles.scss",
-							"projects/global/global.scss"
+							"projects/zyra-ui/src/styles.scss"
 						],
 						"server": "projects/zyra-ui/src/main.server.ts",
 						"outputMode": "server",
@@ -123,20 +122,20 @@
 				}
 			}
 		},
-		"zyra-ui-lib": {
+		"zyra-ng-ui": {
 			"projectType": "library",
-			"root": "projects/zyra-ui-lib",
-			"sourceRoot": "projects/zyra-ui-lib/src",
+			"root": "projects/zyra-ng-ui",
+			"sourceRoot": "projects/zyra-ng-ui/src",
 			"prefix": "zyra",
 			"architect": {
 				"build": {
 					"builder": "@angular/build:ng-packagr",
 					"configurations": {
 						"production": {
-							"tsConfig": "projects/zyra-ui-lib/tsconfig.lib.prod.json"
+							"tsConfig": "projects/zyra-ng-ui/tsconfig.lib.prod.json"
 						},
 						"development": {
-							"tsConfig": "projects/zyra-ui-lib/tsconfig.lib.json"
+							"tsConfig": "projects/zyra-ng-ui/tsconfig.lib.json"
 						}
 					},
 					"defaultConfiguration": "production"
@@ -144,7 +143,7 @@
 				"test": {
 					"builder": "@angular/build:karma",
 					"options": {
-						"tsConfig": "projects/zyra-ui-lib/tsconfig.spec.json"
+						"tsConfig": "projects/zyra-ng-ui/tsconfig.spec.json"
 					}
 				}
 			}

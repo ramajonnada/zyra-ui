@@ -12,12 +12,13 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
-    providers: [
-        provideBrowserGlobalErrorListeners(),
-        provideZonelessChangeDetection(),
-        provideRouter(routes),
-        provideClientHydration(withEventReplay()),
-        provideHttpClient(withFetch()),
-        importProvidersFrom(MarkdownModule.forRoot()),
-    ],
+	providers: [
+		provideBrowserGlobalErrorListeners(),
+		provideZonelessChangeDetection(),
+		provideRouter(routes),
+		provideClientHydration(withEventReplay()),
+		provideHttpClient(withFetch()),
+		importProvidersFrom(MarkdownModule.forRoot()),
+
+	],
 };

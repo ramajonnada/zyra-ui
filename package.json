@@ -5,15 +5,15 @@
 	"scripts": {
 		"ng": "ng",
 		"prerender": "ng run zyra-ui:prerender",
-		"start": "ng serve",
+		"start": "ng serve test",
 		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"build:ssr": "ng build zyra-ui --configuration=production",
 		"serve:ssr:zyra-ui": "node dist/zyra-ui/server/server.mjs",
-		"lint": "ng lint zyra-ui && ng lint zyra-ui-lib",
+		"lint": "ng lint zyra-ui && ng lint zyra-ng-ui",
 		"lint:app": "ng lint zyra-ui",
-		"lint:lib": "ng lint zyra-ui-lib",
+		"lint:lib": "ng lint zyra-ng-ui",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"commit": "cz",
@@ -49,7 +49,7 @@
 		"prettier": "^3.6.2",
 		"rxjs": "~7.8.0",
 		"tslib": "^2.3.0",
-		"zyra-ng-ui": "^1.0.2"
+		"zyra-ng-ui": "^1.0.8"
 	},
 	"devDependencies": {
 		"@angular/build": "^21.0.4",

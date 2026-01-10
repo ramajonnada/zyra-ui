@@ -1,7 +1,8 @@
+
 /* Base */
 .zyra-btn {
 	transition: background 0.2s ease, border 0.2s ease;
-	padding: var(--zyra-spacing-1) var(--zyra-spacing-3);
+	/* /* padding: var(--zyra-spacing-1) var(--zyra-spacing-3); */
 	border-radius: var(--zyra-radius-md);
 	font-weight: var(--zyra-font-weight-medium);
 	font-size: 0.875rem;

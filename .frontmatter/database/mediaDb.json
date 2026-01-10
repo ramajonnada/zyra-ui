@@ -1,1 +1,20 @@
-{"projects":{"zyra-ui":{"projects":{"zyra-ui":{"src":{"content":{}}},"zyra-ui-lib":{"src":{"lib":{}}}}}}}
+{
+	"projects": {
+		"zyra-ui": {
+			"projects": {
+				"zyra-ui": {
+					"src": {
+						"content": {}
+					}
+				},
+				"zyra-ng-ui": {
+					"src": {
+						"lib": {},
+						"theme": {}
+					},
+					"theme": {}
+				}
+			}
+		}
+	}
+}

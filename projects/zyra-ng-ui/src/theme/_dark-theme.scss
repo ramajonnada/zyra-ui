@@ -1,0 +1,49 @@
+:root[data-theme="dark"] {
+	/* ===== Backgrounds ===== */
+	--zyra-bg-primary: #020617;
+	/* page background */
+	--zyra-bg-secondary: #020617;
+	/* cards / sections */
+	--zyra-bg-muted: #020617;
+	/* muted areas */
+
+	/* ===== Text ===== */
+	--zyra-text-primary: #e5e7eb;
+	/* headings */
+	--zyra-text-secondary: #94a3b8;
+	/* body */
+	--zyra-text-muted: #64748b;
+	/* captions */
+
+	/* ===== Borders & dividers ===== */
+	--zyra-border-color: #1e293b;
+	--zyra-divider: #1e293b;
+
+	/* ===== Primary (Main blue buttons) ===== */
+	--zyra-primary: #2b7fff;
+	--zyra-primary-hover: #4c8dff;
+	--zyra-primary-soft: rgba(43, 127, 255, 0.15);
+
+	/* ===== Secondary (Cyan button) ===== */
+	--zyra-secondary: #22d3ee;
+	--zyra-secondary-hover: #06b6d4;
+	--zyra-secondary-soft: rgba(34, 211, 238, 0.15);
+
+	/* ===== Accent (Teal / info) ===== */
+	--zyra-accent: #38bdf8;
+	--zyra-accent-hover: #0ea5e9;
+	--zyra-accent-soft: rgba(56, 189, 248, 0.15);
+
+	/* ===== Button styles ===== */
+	--zyra-btn-text: #020617;
+	--zyra-btn-outline: #334155;
+	--zyra-btn-ghost-hover: #020617;
+
+	/* ===== States ===== */
+	--zyra-success: #22c55e;
+	--zyra-warning: #facc15;
+	--zyra-error: #ef4444;
+
+	/* ===== Focus ===== */
+	--zyra-focus-ring: rgba(43, 127, 255, 0.45);
+}
