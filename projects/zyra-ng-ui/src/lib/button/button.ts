@@ -12,8 +12,9 @@ export class ZyraButton {
 	@Input() size: 'sm' | 'md' | 'lg' = 'md';
 	@Input() disabled = false;
 	@Input() type: 'button' | 'submit' | 'reset' = 'button';
+	@Input() loading = false;
+	@Input() fullWidth = false;
 
 	ngOnChanges() {
-		console.log(this.variant);
 	}
 }

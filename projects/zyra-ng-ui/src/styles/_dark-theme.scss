@@ -1,53 +1,143 @@
-:root[data-theme="dark"] {
-	/* page background , Text */
-	// primary
-	--zyra-bg-primary: #16213e;
-	--zyra-text-primary: #e5e7eb;
+// :root[data-theme="dark"] {
+// 	/* page background , Text */
+// 	// primary
+// 	--zyra-bg-primary: #16213e;
+// 	--zyra-text-primary: #e5e7eb;
 
-	// secondary
-	--zyra-bg-secondary: #020617;
-	--zyra-text-secondary: #94a3b8;
+// 	// secondary
+// 	--zyra-bg-secondary: #020617;
+// 	--zyra-text-secondary: #94a3b8;
 
-	/* muted areas */
-	--zyra-bg-muted: #334155;
-	--zyra-text-muted: #64748b;
+// 	/* muted areas */
+// 	--zyra-bg-muted: #334155;
+// 	--zyra-text-muted: #64748b;
 
-	// /* cards / sections */
-	// --zyra-popover: #1e293b;
-	// --zyra-popover-foreground: #f1f5f9;
-	// --zyra-border: #334155;
-	// --zyra-input: #334155;
-	// --zyra-input-background: #1e293b;
+// 	// /* cards / sections */
+// 	// --zyra-popover: #1e293b;
+// 	// --zyra-popover-foreground: #f1f5f9;
+// 	// --zyra-border: #334155;
+// 	// --zyra-input: #334155;
+// 	// --zyra-input-background: #1e293b;
 
-	/* ===== Borders & dividers ===== */
-	--zyra-border-color: #1e293b;
-	--zyra-divider: #1e293b;
+// 	/* ===== Borders & dividers ===== */
+// 	--zyra-border-color: #1e293b;
+// 	--zyra-divider: #1e293b;
 
-	/* ===== Primary (Main blue buttons) ===== */
+// 	/* ===== Primary (Main blue buttons) ===== */
+// 	--zyra-primary: #2563eb;
+// 	--zyra-primary-hover: #1d4ed8;
+// 	--zyra-primary-active: #1e40af;
+// 	--zyra-primary-soft: rgba(43, 127, 255, 0.15);
+
+// 	/* ===== Secondary (Cyan button) ===== */
+// 	--zyra-secondary: #06b6d4;
+// 	--zyra-secondary-hover: #0891b2;
+// 	--zyra-secondary-active: #0e7490;
+// 	--zyra-secondary-soft: rgba(34, 211, 238, 0.15);
+
+// 	/* ===== Accent (Teal / info) ===== */
+// 	--zyra-accent: #0ea5e9;
+// 	--zyra-accent-hover: #0284c7;
+// 	--zyra-accent-active: #0369a1;
+// 	--zyra-accent-soft: rgba(56, 189, 248, 0.15);
+
+
+// 	/* ===== Button styles ===== */
+// 	--zyra-gradient-btn: linear-gradient(135deg, var(--zyra-primary) 0%, var(--zyra-secondary) 100%);
+// 	--zyra-gradient-btn-hover: linear-gradient(to right, #1447e6 0%, #0092b8 100%);
+// 	--zyra-btn-text: #020617;
+// 	--zyra-btn-outline: #334155;
+// 	--zyra-btn-ghost-hover: #020617;
+
+// 	/* ===== States ===== */
+// 	--zyra-success: #22c55e;
+// 	--zyra-warning: #facc15;
+// 	--zyra-error: #ef4444;
+
+
+
+
+// 	--zyra-success: #10b981;
+// 	--zyra-success-hover: #059669;
+// 	--zyra-success-active: #047857;
+// 	--zyra-warning: #f59e0b;
+// 	--zyra-warning-hover: #d97706;
+// 	--zyra-warning-active: #b45309;
+// 	--zyra-error: #ef4444;
+// 	--zyra-error-hover: #dc2626;
+// 	--zyra-error-active: #b91c1c;
+
+// 	/* ===== Focus ===== */
+// 	--zyra-focus-ring: rgba(43, 127, 255, 0.45);
+// }
+
+
+
+[data-theme="dark"] {
+	/* Brand (keep same names, dark-tuned values later if needed) */
 	--zyra-primary: #2b7fff;
-	--zyra-primary-hover: #4c8dff;
-	--zyra-primary-soft: rgba(43, 127, 255, 0.15);
-
-	/* ===== Secondary (Cyan button) ===== */
-	--zyra-secondary: #22d3ee;
-	--zyra-secondary-hover: #06b6d4;
-	--zyra-secondary-soft: rgba(34, 211, 238, 0.15);
-
-	/* ===== Accent (Teal / info) ===== */
-	--zyra-accent: #38bdf8;
-	--zyra-accent-hover: #0ea5e9;
-	--zyra-accent-soft: rgba(56, 189, 248, 0.15);
-
-	/* ===== Button styles ===== */
-	--zyra-btn-text: #020617;
-	--zyra-btn-outline: #334155;
-	--zyra-btn-ghost-hover: #020617;
-
-	/* ===== States ===== */
+	--zyra-secondary: #38bdf8;
+	--zyra-accent: #22d3ee;
 	--zyra-success: #22c55e;
-	--zyra-warning: #facc15;
-	--zyra-error: #ef4444;
+	--zyra-warning: #fbbf24;
+	--zyra-error: #f87171;
 
-	/* ===== Focus ===== */
-	--zyra-focus-ring: rgba(43, 127, 255, 0.45);
+	/* Base */
+	--background: #0f172a;
+	--foreground: #f1f5f9;
+
+	--card: #1e293b;
+	--card-foreground: #f1f5f9;
+
+	--popover: #1e293b;
+	--popover-foreground: #f1f5f9;
+
+	/* Semantic mapping */
+	--primary: var(--zyra-primary);
+	--primary-foreground: #ffffff;
+
+	--secondary: var(--zyra-secondary);
+	--secondary-foreground: #ffffff;
+
+	--accent: var(--zyra-accent);
+	--accent-foreground: #ffffff;
+
+	--success: var(--zyra-success);
+	--success-foreground: #ffffff;
+
+	--warning: var(--zyra-warning);
+	--warning-foreground: #0f172a;
+
+	--error: var(--zyra-error);
+	--error-foreground: #ffffff;
+
+	--destructive: var(--zyra-error);
+	--destructive-foreground: #ffffff;
+
+	/* UI */
+	--muted: #334155;
+	--muted-foreground: #94a3b8;
+
+	--border: #334155;
+	--input: #334155;
+	--input-background: #1e293b;
+
+	--switch-background: #475569;
+	--ring: var(--zyra-accent);
+
+	/* Shadows */
+	--shadow-sm: 0 1px 2px 0 #0000004d;
+	--shadow-md: 0 4px 6px -1px #0000004d, 0 2px 4px -2px #0000004d;
+	--shadow-lg: 0 10px 15px -3px #0000004d, 0 4px 6px -4px #0000004d;
+	--shadow-xl: 0 20px 25px -5px #0000004d, 0 8px 10px -6px #0000004d;
+
+	/* Sidebar */
+	--sidebar: #1e293b;
+	--sidebar-foreground: #f1f5f9;
+	--sidebar-primary: var(--zyra-primary);
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #334155;
+	--sidebar-accent-foreground: #f1f5f9;
+	--sidebar-border: #334155;
+	--sidebar-ring: var(--zyra-accent);
 }

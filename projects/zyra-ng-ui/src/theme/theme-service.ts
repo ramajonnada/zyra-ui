@@ -20,7 +20,7 @@ export class ThemeService {
 
 		// 1️⃣ Ensure theme attribute exists
 		const savedTheme = localStorage.getItem(this.storageKey) as ZyraTheme;
-		this.setTheme(savedTheme || 'light');
+		this.setTheme(savedTheme || 'dark');
 	}
 
 	/** Apply a theme */
