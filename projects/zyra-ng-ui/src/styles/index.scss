@@ -1,7 +1,9 @@
-@use './_dark-theme.css';
-@use './_light-theme.css';
+@use './variables';
+@use './mixins';
+@use './light-theme';
+@use './dark-theme';
 
-@use './_variables.css';
+
 
 .zy-chip {
 	display: inline-flex;

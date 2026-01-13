@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 	styleUrl: './button.css',
 })
 export class ZyraButton {
-	@Input() variant: 'gradient' | 'primary' | 'secondary' | 'accent' | 'success' | 'danger' = 'primary';
+	@Input() variant: 'gradient' | 'primary' | 'secondary' | 'accent' | 'outline' | 'ghost' = 'primary';
 	@Input() size: 'sm' | 'md' | 'lg' = 'md';
 	@Input() disabled = false;
 	@Input() type: 'button' | 'submit' | 'reset' = 'button';

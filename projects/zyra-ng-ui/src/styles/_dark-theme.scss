@@ -1,19 +1,23 @@
 :root[data-theme="dark"] {
-	/* ===== Backgrounds ===== */
-	--zyra-bg-primary: #020617;
-	/* page background */
-	--zyra-bg-secondary: #020617;
-	/* cards / sections */
-	--zyra-bg-muted: #020617;
-	/* muted areas */
-
-	/* ===== Text ===== */
+	/* page background , Text */
+	// primary
+	--zyra-bg-primary: #16213e;
 	--zyra-text-primary: #e5e7eb;
-	/* headings */
+
+	// secondary
+	--zyra-bg-secondary: #020617;
 	--zyra-text-secondary: #94a3b8;
-	/* body */
+
+	/* muted areas */
+	--zyra-bg-muted: #334155;
 	--zyra-text-muted: #64748b;
-	/* captions */
+
+	// /* cards / sections */
+	// --zyra-popover: #1e293b;
+	// --zyra-popover-foreground: #f1f5f9;
+	// --zyra-border: #334155;
+	// --zyra-input: #334155;
+	// --zyra-input-background: #1e293b;
 
 	/* ===== Borders & dividers ===== */
 	--zyra-border-color: #1e293b;

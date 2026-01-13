@@ -1,6 +1,6 @@
 {
 	"name": "zyra-ng-ui",
-	"version": "1.0.9",
+	"version": "1.0.13",
 	"description": "ZyraUI – Modern Angular UI Components",
 	"author": "Rama Jonnada",
 	"license": "MIT",
@@ -9,19 +9,24 @@
 		"@angular/common": "^21.0.0"
 	},
 	"exports": {
-		"./theme": {
-			"sass": "./theme.scss"
+		".": {
+			"sass": "./styles/index.scss"
 		},
-		"./_dark-theme": {
-			"sass": "./theme/_dark-theme.scss"
+		"./styles": {
+			"sass": "./styles/index.scss"
 		},
-		"./_light-theme": {
-			"sass": "./theme/_light-theme.scss"
+		"./dark-theme": {
+			"style": "./styles/_dark-theme.css"
+		},
+		"./light-theme": {
+			"style": "./styles/_light-theme.css"
 		}
 	},
+	"sideEffects": [
+		"*.css"
+	],
 	"dependencies": {
 		"tslib": "^2.3.0"
 	},
-	"sideEffects": false,
 	"private": false
 }

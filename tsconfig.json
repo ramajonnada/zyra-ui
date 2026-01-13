@@ -31,17 +31,23 @@
 	},
 	"files": [],
 	"references": [
-		{
-			"path": "./projects/zyra-ui/tsconfig.app.json"
-		},
-		{
-			"path": "./projects/zyra-ui/tsconfig.spec.json"
-		},
-		{
-			"path": "./projects/zyra-ng-ui/tsconfig.lib.json"
-		},
-		{
-			"path": "./projects/zyra-ng-ui/tsconfig.spec.json"
-		}
-	]
+    {
+      "path": "./projects/zyra-ui/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/zyra-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/zyra-ng-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/zyra-ng-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/library-test/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/library-test/tsconfig.spec.json"
+    }
+  ]
 }

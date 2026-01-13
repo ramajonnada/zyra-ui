@@ -1,4 +1,3 @@
-
 /* Base */
 .zyra-btn {
 	transition: background 0.2s ease, border 0.2s ease;
@@ -10,16 +9,16 @@
 	cursor: pointer;
 	margin: 8px;
 	background: var(--btn-bg);
-	color: var(--zyra-foreground);
+	color: var(--zyra-btn-text);
 
 
 	&:disabled {
 		opacity: 0.6;
 		cursor: not-allowed;
-		background-color: var(--zyra-muted);
+		background-color: var(--zyra-text-muted);
 
 		:hover {
-			background-color: var(--zyra-muted);
+			background-color: var(--zyra-text-muted);
 		}
 	}
 }
@@ -70,20 +69,20 @@
 }
 
 /* success */
-.zyra-btn--success {
-	--btn-bg: var(--zyra-success);
+.zyra-btn--outline {
+	--btn-bg: var(--zyra-btn-outline);
+	/* border: 1px solid var(--zyra-btn-outline); */
 
 	&:hover {
-		--btn-bg: var(--zyra-success-hover);
+		border: 1px solid var(--zyra-focus-ring);
 	}
 }
 
 /* Danger */
-.zyra-btn--danger {
-	--btn-bg: var(--zyra-error);
+.zyra-btn--ghost {
 
 	&:hover {
-		--btn-bg: var(--zyra-error-hover);
+		--btn-bg: var(--zyra-btn-ghost-hover);
 	}
 }
 

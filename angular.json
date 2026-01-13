@@ -37,7 +37,8 @@
 							}
 						],
 						"styles": [
-							"projects/zyra-ui/src/styles.scss"
+							"projects/zyra-ui/src/styles.scss",
+							"projects/zyra-ui/src/_variables.scss"
 						],
 						"server": "projects/zyra-ui/src/main.server.ts",
 						"outputMode": "server",
@@ -147,7 +148,75 @@
 					}
 				}
 			}
-		}
+    },
+    "library-test": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/library-test",
+      "sourceRoot": "projects/library-test/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/library-test/src/main.ts",
+            "tsConfig": "projects/library-test/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/library-test/public"
+              }
+            ],
+            "styles": [
+              "projects/library-test/src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "library-test:build:production"
+            },
+            "development": {
+              "buildTarget": "library-test:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
+    }
 	},
 	"cli": {
 		"analytics": false

@@ -1,8 +1,8 @@
 
 
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import type { ZyraTheme } from './theme-type';
 import { isPlatformBrowser } from '@angular/common';
+import { ZyraTheme } from './theme-type';
 
 
 @Injectable({ providedIn: 'root' })

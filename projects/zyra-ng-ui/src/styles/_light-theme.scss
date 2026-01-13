@@ -1,18 +1,29 @@
 :root[data-theme="light"] {
 	/* ===== Backgrounds ===== */
+	/* page background , text color*/
 	--zyra-bg-primary: #f9fbfd;
-	/* page background */
+	--zyra-text-primary: #0f172a;
+	// secondary
 	--zyra-bg-secondary: #ffffff;
+	--zyra-text-secondary: #475569;
 	/* cards / sections */
 	--zyra-bg-muted: #f1f5f9;
+	--zyra-text-muted: #94a3b8;
+	// --zyra-muted-foreground-light: #64748b;
 	/* subtle areas */
 
+
+	// --zyra-border-light: #e2e8f0;
+	// --zyra-popover-light: #ffffff;
+	// --zyra-popover-foreground-light: #0f172a;
+	// --zyra-input-light: #e2e8f0;
+	// --zyra-input-background-light: #ffffff;
+	// --zyra-header-footer-background-light: rgba(255, 255, 255, 0.2);
+	// --gradient-hero: radial-gradient(circle at 20% -10%, var(--color-primary) 0%, #020617 55%, #000814 100%);
+
 	/* ===== Text ===== */
-	--zyra-text-primary: #0f172a;
 	/* headings */
-	--zyra-text-secondary: #475569;
 	/* body */
-	--zyra-text-muted: #94a3b8;
 	/* captions */
 
 	/* ===== Borders & dividers ===== */
@@ -47,4 +58,6 @@
 
 	/* ===== Focus ===== */
 	--zyra-focus-ring: rgba(37, 99, 235, 0.35);
+
+
 }
