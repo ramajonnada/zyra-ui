@@ -18,7 +18,6 @@
 // 	// --zyra-popover-foreground-light: #0f172a;
 // 	// --zyra-input-light: #e2e8f0;
 // 	// --zyra-input-background-light: #ffffff;
-// 	// --zyra-header-footer-background-light: rgba(255, 255, 255, 0.2);
 // 	// --gradient-hero: radial-gradient(circle at 20% -10%, var(--color-primary) 0%, #020617 55%, #000814 100%);
 
 // 	/* ===== Text ===== */
@@ -27,7 +26,7 @@
 // 	/* captions */
 
 // 	/* ===== Borders & dividers ===== */
-// 	--zyra-border-color: #e2e8f0;
+// 
 // 	--zyra-divider: #e5e7eb;
 
 // 	/* ===== Primary (Main blue buttons) ===== */
@@ -67,35 +66,6 @@
 
 
 [data-theme="light"] {
-	/* Brand colors */
-
-	--zyra-primary: #2563eb;
-	--zyra-primary-hover: #1d4ed8;
-	--zyra-primary-active: #1e40af;
-
-	--zyra-secondary: #06b6d4;
-	--zyra-secondary-hover: #0891b2;
-	--zyra-secondary-active: #0e7490;
-
-
-	--zyra-gradient: linear-gradient(135deg, var(--zyra-primary) 0%, var(--zyra-secondary) 100%);
-	--zyra-gradient-hover: linear-gradient(to right, var(--zyra-primary-hover) 0%, var(--zyra-secondary-hover) 100%);
-
-	--zyra-accent: #0ea5e9;
-	--zyra-accent-hover: #0284c7;
-	--zyra-accent-active: #0369a1;
-
-	--zyra-success: #10b981;
-	--zyra-success-hover: #059669;
-	--zyra-success-active: #047857;
-
-	--zyra-warning: #f59e0b;
-	--zyra-warning-hover: #d97706;
-	--zyra-warning-active: #b45309;
-
-	--zyra-error: #ef4444;
-	--zyra-error-hover: #dc2626;
-	--zyra-error-active: #b91c1c;
 
 	/* Base */
 	--background: #ffffff;
@@ -104,30 +74,22 @@
 	--card: #f8fafc;
 	--card-foreground: #0f172a;
 
+	--popover: #fff;
+	--popover-foreground: #0f172a;
+
 	--popover: #ffffff;
 	--popover-foreground: #0f172a;
 
+	--zyra-header-footer-background-light: rgba(255, 255, 255, 0.2);
+
 	/* Semantic mapping */
 
-	--primary: var(--zyra-primary);
 	--primary-foreground: #ffffff;
-
-	--secondary: var(--zyra-secondary);
 	--secondary-foreground: #ffffff;
-
-	--accent: var(--zyra-accent);
 	--accent-foreground: #ffffff;
-
-	--success: var(--zyra-success);
 	--success-foreground: #ffffff;
-
-	--warning: var(--zyra-warning);
 	--warning-foreground: #ffffff;
-
-	--error: var(--zyra-error);
 	--error-foreground: #ffffff;
-
-	--destructive: var(--zyra-error);
 	--destructive-foreground: #ffffff;
 
 	/* UI */

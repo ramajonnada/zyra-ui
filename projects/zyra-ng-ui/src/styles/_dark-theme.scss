@@ -20,8 +20,6 @@
 // 	// --zyra-input-background: #1e293b;
 
 // 	/* ===== Borders & dividers ===== */
-// 	--zyra-border-color: #1e293b;
-// 	--zyra-divider: #1e293b;
 
 // 	/* ===== Primary (Main blue buttons) ===== */
 // 	--zyra-primary: #2563eb;
@@ -74,14 +72,6 @@
 
 
 [data-theme="dark"] {
-	/* Brand (keep same names, dark-tuned values later if needed) */
-	--zyra-primary: #2b7fff;
-	--zyra-secondary: #38bdf8;
-	--zyra-accent: #22d3ee;
-	--zyra-success: #22c55e;
-	--zyra-warning: #fbbf24;
-	--zyra-error: #f87171;
-
 	/* Base */
 	--background: #0f172a;
 	--foreground: #f1f5f9;
@@ -93,30 +83,19 @@
 	--popover-foreground: #f1f5f9;
 
 	/* Semantic mapping */
-	--primary: var(--zyra-primary);
 	--primary-foreground: #ffffff;
-
-	--secondary: var(--zyra-secondary);
 	--secondary-foreground: #ffffff;
-
-	--accent: var(--zyra-accent);
 	--accent-foreground: #ffffff;
-
-	--success: var(--zyra-success);
 	--success-foreground: #ffffff;
-
-	--warning: var(--zyra-warning);
 	--warning-foreground: #0f172a;
-
-	--error: var(--zyra-error);
 	--error-foreground: #ffffff;
-
-	--destructive: var(--zyra-error);
 	--destructive-foreground: #ffffff;
 
 	/* UI */
-	--muted: #334155;
-	--muted-foreground: #94a3b8;
+	---muted: #334155;
+	---muted-foreground: #94a3b8;
+
+	--divider: #1e293b;
 
 	--border: #334155;
 	--input: #334155;

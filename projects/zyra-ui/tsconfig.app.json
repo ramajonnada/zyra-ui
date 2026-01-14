@@ -9,7 +9,7 @@
 		],
 		"paths": {
 			"zyra-ng-ui": [
-				"../../../dist/zyra-ng-ui/"
+				"../../dist/zyra-ng-ui" 
 			]
 		}
 	},
@@ -18,5 +18,5 @@
 	],
 	"exclude": [
 		"src/**/*.spec.ts"
-	]
+	],
 }

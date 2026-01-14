@@ -1,14 +1,10 @@
-<!-- <button [attr.type]="type" [disabled]="disabled" class="zyra-btn" [class.zyra-btn--gradient]="variant === 'gradient'" [class.zyra-btn--primary]="variant === 'primary'"
-	[class.zyra-btn--secondary]="variant === 'secondary'" [class.zyra-btn--accent]="variant === 'accent'"
-	[class.zyra-btn--outline]="variant === 'outline'" [class.zyra-btn--ghost]="variant === 'ghost'"
-	[class.zyra-btn--sm]="size === 'sm'" [class.zyra-btn--md]="size === 'md'" [class.zyra-btn--lg]="size === 'lg'">
-	<ng-content></ng-content>
-</button> -->
-
-<button class="zyra-btn" [class]="variant + ' ' + size" [class.full-width]="fullWidth" [disabled]="disabled || loading">
-	@if(!loading){
-	<ng-content></ng-content>
-	} @else if (loading) {
-	<span class="loader"></span> Processing…
-	}
-</button>
+<div [class.full-width]="fullWidth">
+	<button class="zyra-btn" [class]="variant + ' ' + size" [class.full-width]="fullWidth"
+		[disabled]="disabled || loading">
+		@if(!loading){
+		<ng-content></ng-content>
+		} @else if (loading) {
+		<span class="loader"> Processing…</span>
+		}
+	</button>
+</div>

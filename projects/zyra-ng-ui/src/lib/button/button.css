@@ -92,19 +92,37 @@
 */
 
 /* base */
+/* :host {
+	
+} */
+
 .zyra-btn {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
+	box-sizing: border-box !important;
 
+	font-family: var(--font-sans);
 	font-size: var(--font-size);
 	font-weight: var(--font-weight-medium);
 	border-radius: var(--radius-md);
 	border: 1px solid transparent;
 
 	cursor: pointer;
-	transition: background-color 0.2s ease, box-shadow 0.2s ease;
+	transition: background 0.2s ease, border 0.2s ease;
+
+	/* font-size: 0.875rem; */
+
+	/* &:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+		background-color: var(--zyra-text-muted);
+
+		:hover {
+			background-color: var(--zyra-text-muted);
+		}
+	} */
 }
 
 /* sizes */
@@ -124,25 +142,57 @@
 
 /* variants */
 .primary {
-	background: var(--primary);
+	background: var(--zyra-primary);
 	color: var(--primary-foreground);
 }
+
+/* .primary:disabled,
+.primary:disabled,
+.secondary:disabled,
+.accent:disabled,
+.gradient:disabled,
+.outline:disabled,
+.text:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+	background-color: var(--muted);
+}
+
+.primary:hover:disabled,
+.secondary:hover:disabled,
+.accent:hover:disabled,
+.gradient:hover:disabled,
+.outline:hover:disabled,
+.text:hover:disabled {
+	background-color: var(--muted);
+} */
 
 .primary:hover:not(:disabled) {
 	background: var(--zyra-primary-hover);
 }
 
 .secondary {
-	background: var(--secondary);
+	background: var(--zyra-secondary);
 	color: var(--secondary-foreground);
+
 }
 
 .secondary:hover:not(:disabled) {
 	background: var(--zyra-secondary-hover);
 }
 
+
+.gradient {
+	background: var(--zyra-gradient);
+	color: var(--primary-foreground);
+}
+
+.gradient:hover:not(:disabled) {
+	background: var(--zyra-gradient-hover);
+}
+
 .accent {
-	background: var(--accent);
+	background: var(--zyra-accent);
 	color: var(--accent-foreground);
 }
 
@@ -151,13 +201,14 @@
 }
 
 .outline {
+	border: 2px solid var(--border);
 	background: transparent;
 	color: var(--foreground);
-	border-color: var(--border);
 }
 
 .outline:hover:not(:disabled) {
 	background: var(--muted);
+	border-color: var(--zyra-accent);
 }
 
 .ghost {
@@ -171,7 +222,7 @@
 
 .text {
 	background: transparent;
-	color: var(--primary);
+	color: var(--zyra-primary);
 	padding: 0;
 }
 
