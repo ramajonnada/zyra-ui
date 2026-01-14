@@ -10,12 +10,15 @@ import { ThemeService, ZyraButton, ZyraTheme } from 'zyra-ng-ui';
 })
 export class Header {
 
+	$$toogleThemeText() {
+		if (this._themeService.theme === 'light') return 'Dark';
+		else return 'Light';
+	}
 
 	constructor(private _themeService: ThemeService) {
 
 	}
-	$toggleTheme(themeType: ZyraTheme) {
+	$$toggleTheme() {
 		this._themeService.toggleTheme();
-
 	}
 }

@@ -9,6 +9,7 @@ import { ZyraTheme } from './theme-type';
 export class ThemeService {
 	private readonly storageKey = 'data-theme';
 	private isBrowser: boolean;
+	theme!: ZyraTheme;
 
 	constructor(@Inject(PLATFORM_ID) platformId: object) {
 		this.isBrowser = isPlatformBrowser(platformId);
@@ -17,16 +18,16 @@ export class ThemeService {
 	/** Initialize theme in app */
 	initTheme(): void {
 		if (!this.isBrowser) return;
-
 		// 1️⃣ Ensure theme attribute exists
 		const savedTheme = localStorage.getItem(this.storageKey) as ZyraTheme;
-		this.setTheme(savedTheme || 'dark');
+		this.theme = savedTheme;
+		this.setTheme(savedTheme || 'light');
 	}
 
 	/** Apply a theme */
 	setTheme(theme: ZyraTheme): void {
 		if (!this.isBrowser) return;
-
+		this.theme = theme;
 		// Apply theme using data attribute on <html>
 		document.documentElement.setAttribute('data-theme', theme);
 		localStorage.setItem(this.storageKey, theme);
@@ -42,8 +43,9 @@ export class ThemeService {
 
 	/** Get current theme */
 	getTheme(): ZyraTheme {
-		if (!this.isBrowser) return 'light';
-		return (document.documentElement.getAttribute('data-theme') as ZyraTheme) || 'light';
+		if (!this.isBrowser || !this.theme) return 'light';
+		if (this.theme) return this.theme;
+		return (document.documentElement.getAttribute('data-theme') as ZyraTheme);
 	}
 }
 
