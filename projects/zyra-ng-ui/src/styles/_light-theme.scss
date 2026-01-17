@@ -2,15 +2,13 @@
 // 	/* ===== Backgrounds ===== */
 // 	/* page background , text color*/
 // 	--zyra-bg-primary: #f9fbfd;
-// 	--zyra-text-primary: #0f172a;
-// 	// secondary
-// 	--zyra-bg-secondary: #ffffff;
-// 	--zyra-text-secondary: #475569;
-// 	/* cards / sections */
-// 	--zyra-bg-muted: #f1f5f9;
-// 	--zyra-text-muted: #94a3b8;
-// 	// --zyra-muted-foreground-light: #64748b;
-// 	/* subtle areas */
+// secondary
+// --zyra-bg-secondary: #ffffff;
+
+	/* cards / sections */
+	// --zyra-bg-muted: #f1f5f9;
+	// --zyra-muted-foreground-light: #64748b;
+	/* subtle areas */
 
 
 // 	// --zyra-border-light: #e2e8f0;
@@ -91,6 +89,14 @@
 	--warning-foreground: #ffffff;
 	--error-foreground: #ffffff;
 	--destructive-foreground: #ffffff;
+
+	--color-gray-100: #f6f3f4;
+	--color-black: #000;
+	--color-white: #fff;
+
+	--zyra-text-primary: #0f172a;
+	--zyra-text-secondary: #475569;
+	--zyra-text-muted: #94a3b8;
 
 	/* UI */
 	--muted: #f1f5f9;

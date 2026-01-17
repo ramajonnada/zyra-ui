@@ -50,23 +50,24 @@ body {
 	font-size: 24px;
 	font-weight: 700;
 	letter-spacing: 0.03em;
-	background: var(--zyra-logo-gradient);
+	// background: var(--zyra-logo-gradient);
+	background-color: var(--foreground);
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
 
-// .zyra-chip {
-// 	background: rgba(22, 148, 224, 0.2);
-// 	color: var(--color-primary);
-// 	padding: 0.25rem 0.75rem;
-// 	border-radius: 999px;
-// 	font-size: 0.75rem;
-// }
+.zyra-chip {
+	background: rgba(22, 148, 224, 0.2);
+	color: var(--zyra-primary);
+	padding: 0.25rem 0.75rem;
+	border-radius: 999px;
+	font-size: 0.75rem;
+}
 
 .divider {
 	height: 1px;
-	background: var(--zyra-divider-color);
+	background: var(--divider);
 	margin: 16px 0;
 }

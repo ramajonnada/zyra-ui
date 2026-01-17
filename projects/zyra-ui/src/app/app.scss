@@ -1,7 +1,6 @@
 :host {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 
 	header {
 		position: sticky;
@@ -16,12 +15,14 @@
 		border-bottom-style: solid;
 		border-bottom-color: var(--border);
 		color: var(--muted-foreground);
+		box-shadow: var(--box-shadow);
 	}
 
 	header,
 	footer {
 		flex-shrink: 0;
-		background-color: var(--zyra-header-footer-background);
+		background-color: var(--card);
+
 	}
 
 	footer {
@@ -33,11 +34,9 @@
 
 	main {
 		flex-grow: 1;
-		// background-color: #06b6d41a;
 		// min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-top: 60px;
+		// display: flex;
+		// flex-direction: column;
+		// align-items: center;
 	}
 }
