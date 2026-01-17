@@ -1,19 +1,21 @@
 <div class="zy-logo" routerLink="/">
-	<!-- <img class="zy-logo__img" src="without-bg-white-line-zyra-ui.png" alt="Zyra UI logo" /> -->
-	<span class="zy-logo__text">ZyraUI</span>
+    <!-- <img class="zy-logo__img" src="without-bg-white-line-zyra-ui.png" alt="Zyra UI logo" /> -->
+    <span class="zy-logo__text">ZyraUI</span>
 </div>
 
 <nav class="zy-nav">
-	<a routerLink="/blog-list" routerLinkActive="is-active" class="zy-nav__item">Blog</a>
-	<a routerLink="/components" routerLinkActive="is-active" class="zy-nav__item">Components</a>
-	<!-- <a routerLink="/docs" routerLinkActive="is-active" class="zy-nav__item">Docs</a> -->
-	<!-- <a routerLink="/" routerLinkActive="is-active" class="zy-nav__item">Home</a> -->
-	<!-- <a routerLink="/templates" routerLinkActive="is-active" class="zy-nav__item">Templates</a> -->
-	<!-- <a aria-label="GitHub" href="https://github.com/ramajonnada" class=" zy-nav__item">
+    <a routerLink="/blog-list" routerLinkActive="is-active" class="zy-nav__item">Blog</a>
+    <a routerLink="/components" routerLinkActive="is-active" class="zy-nav__item">Components</a>
+    <!-- <a routerLink="/docs" routerLinkActive="is-active" class="zy-nav__item">Docs</a> -->
+    <!-- <a routerLink="/" routerLinkActive="is-active" class="zy-nav__item">Home</a> -->
+    <!-- <a routerLink="/templates" routerLinkActive="is-active" class="zy-nav__item">Templates</a> -->
+    <!-- <a aria-label="GitHub" href="https://github.com/ramajonnada" class=" zy-nav__item">
 		<i class="fa-brands fa-github"></i>
 	</a> -->
 </nav>
 
 <div class="zy-toolbar__right">
-	<zyra-button [variant]="'gradient'" (click)="$$toggleTheme()" [size]="'sm'">{{$$toogleThemeText()}}</zyra-button>
+    <zyra-button [variant]="'gradient'" (click)="$$toggleTheme()" [size]="'sm'">{{
+        $$toogleThemeText()
+    }}</zyra-button>
 </div>
