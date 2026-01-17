@@ -1,64 +1,70 @@
 # ZyraUiLib
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
+Zyra NG UI is a modern Angular UI component library focused on clean APIs, design tokens, and scalable architecture.
 
-## Code scaffolding
+The library is currently in early development and is being built component by component, starting with a solid foundation.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+⚠️ Status: Active development
+Components are added incrementally. APIs may evolve.
 
+## Why Zyra NG UI?
+
+- Built for modern Angular (17+ / 21+)
+- Standalone component–first approach
+- Design-token–based theming
+- Lightweight & tree-shakable
+- Clean and predictable APIs
+- Focused on real-world Angular apps
+
+### Installation
 ```bash
-ng generate component component-name
+npm install zyra-ng-ui
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
+
+## Getting Started
+
+Import styles in your global styles file:
+
+```style.scss
+@import 'zyra-ng-ui/styles';
+
+```
+### Usage
+Import component in required Angular module or standalone component:
+
+```typescript		
+import { ZyraButton } from 'zyra-ng-ui/button';	
 ```
 
-## Building
+Use component in your templates:
 
-To build the library, run:
-
-```bash
-ng build zyra-ng-ui
+```html
+<zyra-button variant="primary">
+  Click me
+</zyra-button>
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
 
-### Publishing the Library
+## Roadmap (Planned)
 
-Once the project is built, you can publish your library by following these steps:
+- Dark / light theme switcher
+- components buildout
+- Accessibility enhancements
+- Documentation improvements
+- Roadmap may evolve as the library grows.
 
-1. Navigate to the `dist` directory:
 
-    ```bash
-    cd dist/zyra-ng-ui
-    ```
+## Documentation
 
-2. Run the `npm publish` command to publish your library to the npm registry:
-    ```bash
-    npm publish
-    ```
+Documentation is being built alongside the library.
 
-## Running unit tests
+👉 https://www.zyraui.dev
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-```bash
-ng test
-```
+## Note
 
-## Running end-to-end tests
+Zyra NG UI is built as a learning-driven and quality-focused project, aiming to grow into a full Angular design system over time.
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Progress over perfection 🚀
