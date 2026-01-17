@@ -5,9 +5,9 @@
     "compilerOptions": {
         "outDir": "../../out-tsc/app",
         "types": ["node"],
-        "paths": {
-            "zyra-ng-ui": ["../../dist/zyra-ng-ui"]
-        }
+        // "paths": {
+        //     "zyra-ng-ui": ["../../dist/zyra-ng-ui"]
+        // }
     },
     "include": ["src/**/*.ts"],
     "exclude": ["src/**/*.spec.ts"]
