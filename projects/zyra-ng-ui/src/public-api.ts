@@ -4,5 +4,6 @@
 
 export * from './theme/theme-service';
 export * from './theme/theme-type';
+export * from './theme/theme-type';
 
 export * from './lib/button/button';
