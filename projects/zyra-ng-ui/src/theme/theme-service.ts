@@ -1,15 +1,13 @@
-
-
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ZyraTheme } from './theme-type';
+import { Zyratheme, ZyraThemeType } from './theme-type';
 
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-	private readonly storageKey = 'data-theme';
+	private readonly STORAGE_KEY = 'data-theme';
 	private isBrowser: boolean;
-	theme!: ZyraTheme;
+	readonly theme = signal<ZyraThemeType>('light');
 
 	constructor(@Inject(PLATFORM_ID) platformId: object) {
 		this.isBrowser = isPlatformBrowser(platformId);
@@ -19,33 +17,34 @@ export class ThemeService {
 	initTheme(): void {
 		if (!this.isBrowser) return;
 		// 1️⃣ Ensure theme attribute exists
-		const savedTheme = localStorage.getItem(this.storageKey) as ZyraTheme;
-		this.theme = savedTheme;
+		const savedTheme = localStorage.getItem(this.STORAGE_KEY) as ZyraThemeType;
+
+		this.theme.set(savedTheme || Zyratheme.Light);
 		this.setTheme(savedTheme || 'light');
 	}
 
 	/** Apply a theme */
-	setTheme(theme: ZyraTheme): void {
+	setTheme(theme: ZyraThemeType): void {
 		if (!this.isBrowser) return;
-		this.theme = theme;
+		this.theme.set(theme);
 		// Apply theme using data attribute on <html>
-		document.documentElement.setAttribute('data-theme', theme);
-		localStorage.setItem(this.storageKey, theme);
+		document.documentElement.setAttribute(this.STORAGE_KEY, theme);
+		localStorage.setItem(this.STORAGE_KEY, theme);
 	}
 
 	/** Toggle between dark and light */
 	toggleTheme(): void {
 		if (!this.isBrowser) return;
 
-		const current = this.getTheme();
-		this.setTheme(current === 'dark' ? 'light' : 'dark');
+		const current = this.theme();
+		this.setTheme(current === Zyratheme.Dark ? Zyratheme.Light : Zyratheme.Dark);
 	}
 
 	/** Get current theme */
-	getTheme(): ZyraTheme {
-		if (!this.isBrowser || !this.theme) return 'light';
-		if (this.theme) return this.theme;
-		return (document.documentElement.getAttribute('data-theme') as ZyraTheme);
-	}
+	// getTheme(): ZyraTheme {
+	// 	if (!this.isBrowser || !this.theme) return 'light';
+	// 	// if (this.theme) return this.theme;
+	// 	return document.documentElement.getAttribute('data-theme') as ZyraTheme;
+	// }
 }
 

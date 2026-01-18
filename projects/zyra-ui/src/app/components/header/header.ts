@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, Signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ThemeService, ZyraButton, ZyraTheme } from 'zyra-ng-ui';
+import { ThemeService, ZyraButton, Zyratheme } from 'zyra-ng-ui';
 
 @Component({
 	selector: 'app-header',
@@ -9,15 +9,12 @@ import { ThemeService, ZyraButton, ZyraTheme } from 'zyra-ng-ui';
 	styleUrl: './header.scss',
 })
 export class Header {
+	private _themeService: ThemeService = inject(ThemeService);
+	readonly label: Signal<string> = computed(() =>
+		this._themeService.theme() === Zyratheme.Light ? 'Dark' : 'Light'
+	);
 
-	$$toogleThemeText() {
-		if (this._themeService.theme === 'light') return 'Dark';
-		else return 'Light';
-	}
 
-	constructor(private _themeService: ThemeService) {
-
-	}
 	$$toggleTheme() {
 		this._themeService.toggleTheme();
 	}
