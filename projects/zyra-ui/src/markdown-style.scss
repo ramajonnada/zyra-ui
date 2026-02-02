@@ -5,7 +5,7 @@
 }
 
 .zyra-markdown {
-	font-family: var(--font-sans);
+	font-family: var(--zyra-font);
 	max-width: 800px;
 	margin: auto;
 
@@ -20,7 +20,7 @@
 		color: var(--zyra-text-muted);
 
 		.post-meta-text {
-			font-family: var(--font-sans);
+			font-family: var(--zyra-font);
 			font-size: 14px;
 			color: var(--zyra-text-muted);
 		}
@@ -44,7 +44,7 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: 1.75rem;
-		border-bottom: 1px solid var(--border);
+		border-bottom: 1px solid var(--zyra-border);
 		margin: 0 auto 32px;
 		padding-bottom: 2.5rem;
 
@@ -158,7 +158,7 @@ hr {
 	color: var(--zyra-secondary);
 	padding: 10px;
 	border-radius: 6px;
-	border: 1px soild var(--border);
+	border: 1px soild var(--zyra-border);
 	font-size: var(--font-size-xsm);
 	line-height: var(--fony-size-xsm);
 	font-weight: 300;

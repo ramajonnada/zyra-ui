@@ -7,4 +7,5 @@ export * from './theme/theme-type';
 export * from './theme/theme-type';
 
 
-export * from './lib/button/button';
+export * from './lib/zyra-button/zyra-button';
+export * from './lib/zyra-input/zyra-input';

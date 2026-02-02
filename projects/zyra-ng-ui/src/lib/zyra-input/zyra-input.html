@@ -1,0 +1,41 @@
+<div class="zyra-input" [class.zyra-input--disabled]="disabled()" [class.zyra-input--focused]="focused()"
+	[class.zyra-input--error]="!!error()" [class.zyra-input--success]="!!success()">
+
+	@if (label()) {
+	<label class="zyra-input__label" [for]="inputId()">
+		{{ label() }}
+		@if (required()) {
+		<span class="zyra-input__required">*</span>
+		}
+	</label>
+	}
+	<!-- Input Wrapper -->
+	<div class="zyra-input__control">
+		<input [id]="inputId()" class="zyra-input__field" [type]="type()" [placeholder]="placeholder()"
+			[disabled]="disabled()" [required]="required()" [value]="value()" [attr.aria-invalid]="!!error()"
+			[attr.aria-disabled]="disabled()" [attr.aria-describedby]="describedby()" (input)="onInput($event)"
+			(blur)="onBlur()" (focus)="onFocus()" />
+	</div>
+
+	@if (hint() && !error() && !success()) {
+	<div class="zyra-input__hint" [id]="hintId()">
+		{{ hint() }}
+	</div>
+	}
+
+	@if (error()) {
+	<div class="zyra-input__error" [id]="errorId()" role="alert">
+		{{ error() }}
+	</div>
+	}
+
+	@if (success()) {
+	<div class="zyra-input__success" [id]="successId()" role="status">
+		{{ success() }}
+	</div>
+	}
+</div>
+
+@if (value()) {
+{{value()}}
+}

@@ -13,7 +13,7 @@
 		-webkit-backdrop-filter: blur(16px);
 		border-bottom-width: 1px;
 		border-bottom-style: solid;
-		border-bottom-color: var(--border);
+		border-bottom-color: var(--zyra-border);
 		color: var(--muted-foreground);
 		box-shadow: var(--box-shadow);
 	}
@@ -29,7 +29,7 @@
 		// border-top-color: #00000033;
 		border-top-width: 1px;
 		border-top-style: solid;
-		border-top-color: var(--border);
+		border-top-color: var(--zyra-border);
 	}
 
 	main {

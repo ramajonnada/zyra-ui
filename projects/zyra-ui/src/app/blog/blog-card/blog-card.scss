@@ -2,12 +2,12 @@
 	background-color: var(--zyra-card);
 	backdrop-filter: blur(10px);
 	border-radius: 1rem;
-	border: 1px solid var(--border);
+	border: 1px solid var(--zyra-border);
 	overflow: hidden;
-	transition: var(--border) 0.3s ease;
+	transition: var(--zyra-border) 0.3s ease;
 	cursor: pointer;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-	
+
 	&:hover {
 		border: 1px solid var(--zyra-text-heading-secondary);
 

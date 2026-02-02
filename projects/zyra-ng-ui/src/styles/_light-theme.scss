@@ -1,127 +1,120 @@
-// :root[data-theme="light"] {
-// 	/* ===== Backgrounds ===== */
-// 	/* page background , text color*/
-// 	--zyra-bg-primary: #f9fbfd;
-// secondary
-// --zyra-bg-secondary: #ffffff;
+// [data-theme='light'] {
+// 	/* Base */
+// 	--background: #ffffff;
+// 	--foreground: #0f172a;
 
-	/* cards / sections */
-	// --zyra-bg-muted: #f1f5f9;
-	// --zyra-muted-foreground-light: #64748b;
-	/* subtle areas */
+// 	--card: #f8fafc;
+// 	--card-foreground: #0f172a;
 
+// 	--popover: #fff;
+// 	--popover-foreground: #0f172a;
 
-// 	// --zyra-border-light: #e2e8f0;
-// 	// --zyra-popover-light: #ffffff;
-// 	// --zyra-popover-foreground-light: #0f172a;
-// 	// --zyra-input-light: #e2e8f0;
-// 	// --zyra-input-background-light: #ffffff;
-// 	// --gradient-hero: radial-gradient(circle at 20% -10%, var(--color-primary) 0%, #020617 55%, #000814 100%);
+// 	--popover: #ffffff;
+// 	--popover-foreground: #0f172a;
 
-// 	/* ===== Text ===== */
-// 	/* headings */
-// 	/* body */
-// 	/* captions */
+// 	--zyra-header-footer-background-light: rgba(255, 255, 255, 0.2);
 
-// 	/* ===== Borders & dividers ===== */
-// 
-// 	--zyra-divider: #e5e7eb;
+// 	/* Semantic mapping */
 
-// 	/* ===== Primary (Main blue buttons) ===== */
-// 	--zyra-primary: #2563eb;
-// 	/* Primary Button */
-// 	--zyra-primary-hover: #1d4ed8;
-// 	--zyra-primary-soft: #e8efff;
+// 	--primary-foreground: #ffffff;
+// 	--secondary-foreground: #ffffff;
+// 	--accent-foreground: #ffffff;
+// 	--success-foreground: #ffffff;
+// 	--warning-foreground: #ffffff;
+// 	--error-foreground: #ffffff;
+// 	--destructive-foreground: #ffffff;
 
-// 	/* ===== Secondary (Cyan button) ===== */
-// 	--zyra-secondary: #06b6d4;
-// 	--zyra-secondary-hover: #0891b2;
-// 	--zyra-secondary-soft: #e6f9fd;
+// 	--color-gray-100: #f6f3f4;
+// 	--color-black: #000;
+// 	--color-white: #fff;
 
-// 	/* ===== Accent (Teal / info) ===== */
-// 	--zyra-accent: #0ea5e9;
-// 	--zyra-accent-hover: #0284c7;
-// 	--zyra-accent-soft: #e0f2fe;
+// 	--zyra-text-primary: #0f172a;
+// 	--zyra-text-secondary: #475569;
+// 	--zyra-text-muted: #94a3b8;
 
-// 	/* ===== Button styles ===== */
-// 	--zyra-btn-text: #ffffff;
-// 	--zyra-btn-outline: #cbd5e1;
-// 	--zyra-btn-ghost-hover: #f1f5f9;
+// 	/* UI */
+// 	--muted: #f1f5f9;
+// 	--muted-foreground: #64748b;
 
-// 	/* ===== States ===== */
-// 	--zyra-success: #16a34a;
-// 	--zyra-warning: #f59e0b;
-// 	--zyra-error: #dc2626;
+// 	--zyra-border: #e2e8f0;
+// 	--input: #e2e8f0;
+// 	--input-background: #ffffff;
 
-// 	/* ===== Focus ===== */
-// 	--zyra-focus-ring: rgba(37, 99, 235, 0.35);
+// 	--switch-background: #cbd5e1;
+// 	--ring: var(--zyra-accent);
 
+// 	/* Shadows */
+// 	--shadow-sm: 0 1px 2px 0 #0000000d;
+// 	--shadow-md: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
+// 	--shadow-lg: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
+// 	--shadow-xl: 0 20px 25px -5px #0000001a, 0 8px 10px -6px #0000001a;
 
+// 	/* Sidebar */
+// 	--sidebar: #f8fafc;
+// 	--sidebar-foreground: #0f172a;
+// 	--sidebar-primary: var(--zyra-primary);
+// 	--sidebar-primary-foreground: #ffffff;
+// 	--sidebar-accent: #f1f5f9;
+// 	--sidebar-accent-foreground: #0f172a;
+// 	--sidebar-border: #e2e8f0;
+// 	--sidebar-ring: var(--zyra-accent);
 // }
 
+// // :root[data-theme="light"] {
+// // 	/* ===== Backgrounds ===== */
+// // 	/* page background , text color*/
+// // 	--zyra-bg-primary: #f9fbfd;
+// // secondary
+// // --zyra-bg-secondary: #ffffff;
 
+// /* cards / sections */
+// // --zyra-bg-muted: #f1f5f9;
+// // --zyra-muted-foreground-light: #64748b;
+// /* subtle areas */
 
+// // 	// --zyra-border-light: #e2e8f0;
+// // 	// --zyra-popover-light: #ffffff;
+// // 	// --zyra-popover-foreground-light: #0f172a;
+// // 	// --zyra-input-light: #e2e8f0;
+// // 	// --zyra-input-background-light: #ffffff;
+// // 	// --gradient-hero: radial-gradient(circle at 20% -10%, var(--color-primary) 0%, #020617 55%, #000814 100%);
 
+// // 	/* ===== Text ===== */
+// // 	/* headings */
+// // 	/* body */
+// // 	/* captions */
 
-[data-theme="light"] {
+// // 	/* ===== Borders & dividers ===== */
+// //
+// // 	--zyra-divider: #e5e7eb;
 
-	/* Base */
-	--background: #ffffff;
-	--foreground: #0f172a;
+// // 	/* ===== Primary (Main blue buttons) ===== */
+// // 	--zyra-primary: #2563eb;
+// // 	/* Primary Button */
+// // 	--zyra-primary-hover: #1d4ed8;
+// // 	--zyra-primary-soft: #e8efff;
 
-	--card: #f8fafc;
-	--card-foreground: #0f172a;
+// // 	/* ===== Secondary (Cyan button) ===== */
+// // 	--zyra-secondary: #06b6d4;
+// // 	--zyra-secondary-hover: #0891b2;
+// // 	--zyra-secondary-soft: #e6f9fd;
 
-	--popover: #fff;
-	--popover-foreground: #0f172a;
+// // 	/* ===== Accent (Teal / info) ===== */
+// // 	--zyra-accent: #0ea5e9;
+// // 	--zyra-accent-hover: #0284c7;
+// // 	--zyra-accent-soft: #e0f2fe;
 
-	--popover: #ffffff;
-	--popover-foreground: #0f172a;
+// // 	/* ===== Button styles ===== */
+// // 	--zyra-btn-text: #ffffff;
+// // 	--zyra-btn-outline: #cbd5e1;
+// // 	--zyra-btn-ghost-hover: #f1f5f9;
 
-	--zyra-header-footer-background-light: rgba(255, 255, 255, 0.2);
+// // 	/* ===== States ===== */
+// // 	--zyra-success: #16a34a;
+// // 	--zyra-warning: #f59e0b;
+// // 	--zyra-error: #dc2626;
 
-	/* Semantic mapping */
+// // 	/* ===== Focus ===== */
+// // 	--zyra-focus-ring: rgba(37, 99, 235, 0.35);
 
-	--primary-foreground: #ffffff;
-	--secondary-foreground: #ffffff;
-	--accent-foreground: #ffffff;
-	--success-foreground: #ffffff;
-	--warning-foreground: #ffffff;
-	--error-foreground: #ffffff;
-	--destructive-foreground: #ffffff;
-
-	--color-gray-100: #f6f3f4;
-	--color-black: #000;
-	--color-white: #fff;
-
-	--zyra-text-primary: #0f172a;
-	--zyra-text-secondary: #475569;
-	--zyra-text-muted: #94a3b8;
-
-	/* UI */
-	--muted: #f1f5f9;
-	--muted-foreground: #64748b;
-
-	--border: #e2e8f0;
-	--input: #e2e8f0;
-	--input-background: #ffffff;
-
-	--switch-background: #cbd5e1;
-	--ring: var(--zyra-accent);
-
-	/* Shadows */
-	--shadow-sm: 0 1px 2px 0 #0000000d;
-	--shadow-md: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
-	--shadow-lg: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
-	--shadow-xl: 0 20px 25px -5px #0000001a, 0 8px 10px -6px #0000001a;
-
-	/* Sidebar */
-	--sidebar: #f8fafc;
-	--sidebar-foreground: #0f172a;
-	--sidebar-primary: var(--zyra-primary);
-	--sidebar-primary-foreground: #ffffff;
-	--sidebar-accent: #f1f5f9;
-	--sidebar-accent-foreground: #0f172a;
-	--sidebar-border: #e2e8f0;
-	--sidebar-ring: var(--zyra-accent);
-}
+// // }
