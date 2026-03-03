@@ -15,16 +15,26 @@
 } @else{
 	} -->
 
-<zyra-button [fullWidth]="true">Full width</zyra-button>
 
-<form>
-	<zyra-input></zyra-input>
-	<zyra-input label="Name" type="text" value="rama"/>
-	<zyra-input label="Email" type="email" />
-	<!-- <zyra-input label="Password" type="password" /> -->
-	<zyra-input label="Age" type="number" />
-	<zyra-input label="Phone" type="tel" />
-	<zyra-input label="Linkedin profile" type="url" />
+<form [formGroup]="form">
 
-	<zyra-input label="fullname" placeholder="Enter full name" />
+  <zyra-form-field label="Email">
+
+    <zyra-input
+      formControlName="email"
+      placeholder="Enter email"
+     >
+    </zyra-input>
+
+  </zyra-form-field>
+
 </form>
+
+
+<br>
+
+Value: {{ form.value | json }}
+
+<br>
+
+Valid: {{ form.valid }}

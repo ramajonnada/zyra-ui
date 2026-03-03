@@ -1,0 +1,17 @@
+<div class="zyra-form-field">
+
+	@if(label()) {
+	<label class="zyra-label">
+		{{ label() }}
+	</label>
+	}
+
+	<ng-content></ng-content>
+
+	@if(error()) {
+	<div class="zyra-error">
+		{{ error() }}
+	</div>
+	}
+
+</div>

@@ -1,91 +1,151 @@
-import { Component, signal, computed, ChangeDetectionStrategy, OnInit, inject, DestroyRef, input, forwardRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { ZyraInputType } from './_/input-type';
+import {
+	Component,
+	computed,
+	input,
+	signal,
+	Optional,
+	Self
+} from '@angular/core';
 
+import { NgControl } from '@angular/forms';
+
+let nextId = 0;
 
 @Component({
 	selector: 'zyra-input',
-	standalone: true,
-	imports: [CommonModule, FormsModule],
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => ZyraInput),
-			multi: true
-		}
-	],
 	templateUrl: './zyra-input.html',
 	styleUrls: ['./zyra-input.css'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	host: {
+		'[class.zyra-input-disabled]': 'disabled()',
+		'[class.zyra-input-focused]': 'focused()',
+		'[class.zyra-input-invalid]': 'errorState()'
+	}
 })
-export class ZyraInput implements ControlValueAccessor, OnInit {
-	// Signal inputs (Angular 17.1+)
-	label = input<string | undefined>();
-	placeholder = input<string>("Enter");
-	type = input<ZyraInputType>('text');
-	disabled = input<boolean>(false);
-	required = input<boolean>(false);
-	error = input<string | undefined>();
-	hint = input<string | undefined>();
-	success = input<string | undefined>();
-	icon = input<string | undefined>();// icon class or svg id
+export class ZyraInput {
 
-	// Internal state signals
-	private valueSignal = signal<string>('');
-	value = this.valueSignal.asReadonly();
-	focused = signal<boolean>(false);
+	/* =====================
+	 * Public API (signals)
+	 * ===================== */
 
-	inputId = signal<string>(`zyra-input-${crypto.randomUUID().slice(0, 8)}`);
-	successId = computed(() => this.inputId() + '-success');
-	hintId = computed(() => this.inputId() + '-hint');
-	errorId = computed(() => this.inputId() + '-error');
-	describedby = computed(() => {
-		return this.error() ? this.errorId() :
-			this.success() ? this.successId() :
-				this.hint() ? this.hintId() : null
-	});
-	// CVA callbacks
-	private onChange = (value: string) => { };
+	type = input<'text' | 'email' | 'password' | 'number'>('text');
+
+	placeholder = input('');
+
+	id = input<string | null>(null);
+
+	required = input(false);
+
+
+	/* =====================
+	 * Internal state
+	 * ===================== */
+
+	value = signal('');
+
+	focused = signal(false);
+
+	disabled = signal(false);
+
+
+	/** auto generate id */
+	inputId = computed(() =>
+		this.id() ?? `zyra-input-${nextId++}`
+	);
+
+
+	/** empty state */
+	empty = computed(() =>
+		!this.value()
+	);
+
+
+	/** error state (Angular Forms) */
+	errorState = computed(() =>
+		!!this.ngControl?.invalid &&
+		!!this.ngControl?.touched
+	);
+
+
+	constructor(
+		@Optional()
+		@Self()
+		public ngControl: NgControl
+	) {
+
+		if (this.ngControl) {
+			this.ngControl.valueAccessor = this;
+		}
+
+	}
+
+
+	/* =====================
+	 * ControlValueAccessor
+	 * ===================== */
+
+	private onChange = (_: string) => { };
+
 	private onTouched = () => { };
 
-	private destroyRef = inject(DestroyRef);
 
-	ngOnInit() {
-		this.valueSignal.set("");
-		// debugger;
-		// No initial effect needed; signals handle reactivity
+	writeValue(value: string | null): void {
+
+		this.value.set(value ?? '');
+
 	}
 
-	writeValue(value: string): void {
-		this.valueSignal.set(value ?? '');
-	}
 
 	registerOnChange(fn: (value: string) => void): void {
+
 		this.onChange = fn;
+
 	}
+
 
 	registerOnTouched(fn: () => void): void {
+
 		this.onTouched = fn;
+
 	}
+
 
 	setDisabledState(isDisabled: boolean): void {
-		// this.disabled.set(isDisabled);
-		// Signal update triggers OnPush via signals
+
+		this.disabled.set(isDisabled);
+
 	}
 
-	onInput(event: Event): void {
-		const target = event.target as HTMLInputElement;
-		this.valueSignal.set(target.value);
-		this.onChange(target.value);
+
+
+	/* =====================
+	 * DOM events
+	 * ===================== */
+
+	handleInput(event: Event) {
+
+		const newValue =
+			(event.target as HTMLInputElement).value;
+
+		this.value.set(newValue);
+
+		this.onChange(newValue);
+
 	}
 
-	onBlur(): void {
-		this.focused.set(false);
-		this.onTouched();
-	}
 
-	onFocus(): void {
+	handleFocus() {
+
 		this.focused.set(true);
+
 	}
+
+
+	handleBlur() {
+
+		this.focused.set(false);
+
+		this.onTouched();
+
+	}
+
 }

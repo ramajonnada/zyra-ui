@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Button } from './button';
+import { ZyraFormField } from './zyra-form-field';
 
-describe('Button', () => {
-  let component: Button;
-  let fixture: ComponentFixture<Button>;
+describe('ZyraFormField', () => {
+  let component: ZyraFormField;
+  let fixture: ComponentFixture<ZyraFormField>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Button]
+      imports: [ZyraFormField]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Button);
+    fixture = TestBed.createComponent(ZyraFormField);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
