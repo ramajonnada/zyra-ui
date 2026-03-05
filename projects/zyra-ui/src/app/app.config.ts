@@ -13,13 +13,13 @@ import { MarkdownModule } from 'ngx-markdown';
 import { provideZyraUI } from 'zyra-ng-ui';
 
 export const appConfig: ApplicationConfig = {
-	providers: [
-		provideBrowserGlobalErrorListeners(),
-		provideZonelessChangeDetection(),
-		provideRouter(routes),
-		provideClientHydration(withEventReplay()),
-		provideHttpClient(withFetch()),
-		importProvidersFrom(MarkdownModule.forRoot()),
-		provideZyraUI() 
-	],
+    providers: [
+        provideBrowserGlobalErrorListeners(),
+        provideZonelessChangeDetection(),
+        provideRouter(routes),
+        provideClientHydration(withEventReplay()),
+        provideHttpClient(withFetch()),
+        importProvidersFrom(MarkdownModule.forRoot()),
+        provideZyraUI(),
+    ],
 };

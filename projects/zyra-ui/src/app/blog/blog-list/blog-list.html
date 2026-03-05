@@ -1,15 +1,15 @@
 <div class="section-header">
-	<h1>Blog & Insights</h1>
-	<p>Tutorials, updates, and insights about building modern Angular applications</p>
+    <h1>Blog & Insights</h1>
+    <p>Tutorials, updates, and insights about building modern Angular applications</p>
 </div>
 
 <h2>Articles</h2>
 @if (!posts.length) {
-<div>Loading posts...</div>
+    <div>Loading posts...</div>
 }
 
 <div class="zyra-blog-list">
-	@for (post of posts; track $index) {
-	<app-blog-card [blog]="post"></app-blog-card>
-	}
+    @for (post of posts; track $index) {
+        <app-blog-card [blog]="post"></app-blog-card>
+    }
 </div>

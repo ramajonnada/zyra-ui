@@ -1,20 +1,21 @@
 <a class="post-link" [routerLink]="['/blog', blog.slug]">
-	<!-- <div class="post-image">
+    <!-- <div class="post-image">
 			<img src="post-image.jpg" alt="Post Title" />
 		</div> -->
-	<div class="post-content">
-		<div class="post-header">
-
-			<span class="zy-chip">{{ blog.category }}</span>
-			<span class="date"><i class="fa-regular fa-calendar icon"></i>&nbsp; {{ blog.date |
-				date:'MMM dd, yyyy' }}</span>
-		</div>
-		<h3 class="post-title">{{ blog.title }}</h3>
-		<p class="post-excerpt">{{blog.description}}</p>
-		<div class="divider"></div>
-		<div class="post-footer">
-			<span class="read-time">⏱ {{blog.readTime}}</span>
-			<a class="read-more" [routerLink]="['/blog', blog.slug]">Read More</a>
-		</div>
-	</div>
+    <div class="post-content">
+        <div class="post-header">
+            <span class="zy-chip">{{ blog.category }}</span>
+            <span class="date"
+                ><i class="fa-regular fa-calendar icon"></i>&nbsp;
+                {{ blog.date | date: 'MMM dd, yyyy' }}</span
+            >
+        </div>
+        <h3 class="post-title">{{ blog.title }}</h3>
+        <p class="post-excerpt">{{ blog.description }}</p>
+        <div class="divider"></div>
+        <div class="post-footer">
+            <span class="read-time">⏱ {{ blog.readTime }}</span>
+            <a class="read-more" [routerLink]="['/blog', blog.slug]">Read More</a>
+        </div>
+    </div>
 </a>

@@ -3,28 +3,25 @@
 @use './responsive.scss';
 @use '../../zyra-ng-ui/src/lib/styles/' as *;
 
-
 * {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-	font-family: var(--zyra-font);
-	letter-spacing: 0.01em;
-	color: var(--foreground);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--zyra-font);
+    letter-spacing: 0.01em;
+    color: var(--foreground);
 }
 
 html,
 body,
 app-root {
-	height: 100%;
+    height: 100%;
 }
 
 body {
-	background-color: var(--background);
-	color: var(--foreground);
-
+    background-color: var(--background);
+    color: var(--foreground);
 }
-
 
 // .zy-chip {
 // 	display: inline-flex;
@@ -41,33 +38,31 @@ body {
 // }
 
 .padding-tb32 {
-	padding-bottom: 32px;
-	padding-top: 32px;
+    padding-bottom: 32px;
+    padding-top: 32px;
 }
-
 
 .zy-logo__text {
-	font-size: 24px;
-	font-weight: 700;
-	letter-spacing: 0.03em;
-	// background: var(--zyra-logo-gradient);
-	background-color: var(--foreground);
-	-webkit-background-clip: text;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    // background: var(--zyra-logo-gradient);
+    background-color: var(--foreground);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-
 .zyra-chip {
-	background: rgba(22, 148, 224, 0.2);
-	color: var(--zyra-primary);
-	padding: 0.25rem 0.75rem;
-	border-radius: 999px;
-	font-size: 0.75rem;
+    background: rgba(22, 148, 224, 0.2);
+    color: var(--zyra-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
 }
 
 .divider {
-	height: 1px;
-	background: var(--divider);
-	margin: 16px 0;
+    height: 1px;
+    background: var(--divider);
+    margin: 16px 0;
 }

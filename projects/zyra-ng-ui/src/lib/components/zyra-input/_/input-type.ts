@@ -21,4 +21,3 @@
 // }
 
 export type ZyraInputType = 'text' | 'email' | 'password' | 'number' | 'url' | 'tel';
-

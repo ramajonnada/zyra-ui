@@ -1,47 +1,35 @@
 :host {
-	display: block;
+    display: block;
 }
-
 
 .zyra-input-element {
+    width: 100%;
 
-	width: 100%;
+    padding: 10px 12px;
 
-	padding: 10px 12px;
+    border-radius: 6px;
 
-	border-radius: 6px;
+    border: 1px solid #cbd5e1;
 
-	border: 1px solid #cbd5e1;
+    font-size: 14px;
 
-	font-size: 14px;
+    background: transparent;
 
-	background: transparent;
+    outline: none;
 
-	outline: none;
-
-	transition: all 120ms;
-
+    transition: all 120ms;
 }
-
 
 .zyra-input-element:focus {
-
-	border-color: #6366f1;
-
+    border-color: #6366f1;
 }
-
 
 :host(.zyra-input-invalid) .zyra-input-element {
-
-	border-color: #ef4444;
-
+    border-color: #ef4444;
 }
 
-
 :host(.zyra-input-disabled) .zyra-input-element {
+    opacity: 0.6;
 
-	opacity: 0.6;
-
-	pointer-events: none;
-
+    pointer-events: none;
 }

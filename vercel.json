@@ -1,5 +1,5 @@
 {
-	"version": 2,
-	"buildCommand": "npm run build:ssr",
-	"outputDirectory": "dist/zyra-ui/browser"
+    "version": 2,
+    "buildCommand": "npm run build:ssr",
+    "outputDirectory": "dist/zyra-ui/browser"
 }

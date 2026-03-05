@@ -1,77 +1,75 @@
 :host {
-	height: 4rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1.5rem;
-	
-	.zy-logo {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.6rem;
-		cursor: pointer;
-		text-decoration: none;
-	}
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
 
-	.zy-logo__img {
-		width: 48px;
-		height: 48px;
-	}
+    .zy-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        cursor: pointer;
+        text-decoration: none;
+    }
 
+    .zy-logo__img {
+        width: 48px;
+        height: 48px;
+    }
 
+    /* Navigation */
+    .zy-nav {
+        display: flex;
+        align-items: center;
+        gap: 1.75rem;
+    }
 
-	/* Navigation */
-	.zy-nav {
-		display: flex;
-		align-items: center;
-		gap: 1.75rem;
-	}
+    .zy-nav__item {
+        position: relative;
+        font-size: 0.95rem;
+        color: var(--zyra-text-gray);
+        text-decoration: none;
+        transition: color 150ms ease;
 
-	.zy-nav__item {
-		position: relative;
-		font-size: 0.95rem;
-		color: var(--zyra-text-gray);
-		text-decoration: none;
-		transition: color 150ms ease;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.35rem;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--zyra-logo-gradient);
+            transition: width 160ms ease;
+        }
 
-		&::after {
-			content: '';
-			position: absolute;
-			left: 0;
-			bottom: -0.35rem;
-			width: 0;
-			height: 2px;
-			border-radius: 999px;
-			background: var(--zyra-logo-gradient);
-			transition: width 160ms ease;
-		}
+        &.is-active,
+        &:hover {
+            color: var(--zyra-text-primary);
 
-		&.is-active,
-		&:hover {
-			color: var(--zyra-text-primary);
+            &::after {
+                width: 100%;
+            }
+        }
+    }
 
-			&::after {
-				width: 100%;
-			}
-		}
-	}
+    .github {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 16px;
+        height: 32px;
+        gap: 8px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: var(--zyra-text-gray);
+        text-decoration: none;
+    }
 
-	.github {
-		display: flex;
-		align-items: center;
-		padding: 8px 16px;
-		border-radius: 16px;
-		height: 32px;
-		gap: 8px;
-		background-color: rgba(255, 255, 255, 0.2);
-		color: var(--zyra-text-gray);
-		text-decoration: none;
-	}
-
-	/* Right side: icon button */
-	.zy-toolbar__right {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-	}
+    /* Right side: icon button */
+    .zy-toolbar__right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
 }

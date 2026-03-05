@@ -1,32 +1,32 @@
 {
-	"name": "zyra-ng-ui",
-	"version": "1.0.23",
-	"description": "ZyraUI – Modern Angular UI Components",
-	"author": "Rama Jonnada",
-	"license": "MIT",
-	"peerDependencies": {
-		"@angular/core": "^21.0.0",
-		"@angular/common": "^21.0.0"
-	},
-	"exports": {
-		".": {
-			"sass": "./styles/index.scss"
-		},
-		"./styles": {
-			"sass": "./styles/index.scss"
-		},
-		"./dark-theme": {
-			"style": "./styles/_dark-theme.css"
-		},
-		"./light-theme": {
-			"style": "./styles/_light-theme.css"
-		}
-	},
-	"sideEffects": [
-		"*.css"
-	],
-	"dependencies": {
-		"tslib": "^2.3.0"
-	},
-	"private": false
+    "name": "zyra-ng-ui",
+    "version": "1.0.24",
+    "description": "ZyraUI – Modern Angular UI Components",
+    "author": "Rama Jonnada",
+    "license": "MIT",
+    "peerDependencies": {
+        "@angular/core": "^21.0.0",
+        "@angular/common": "^21.0.0"
+    },
+    "exports": {
+        ".": {
+            "sass": "./styles/index.scss"
+        },
+        "./styles": {
+            "sass": "./styles/index.scss"
+        },
+        "./dark-theme": {
+            "style": "./styles/_dark-theme.css"
+        },
+        "./light-theme": {
+            "style": "./styles/_light-theme.css"
+        }
+    },
+    "sideEffects": [
+        "*.css"
+    ],
+    "dependencies": {
+        "tslib": "^2.3.0"
+    },
+    "private": false
 }

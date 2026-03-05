@@ -5,18 +5,17 @@ import { Footer } from './components/footer/footer';
 import { ThemeService } from 'zyra-ng-ui';
 
 @Component({
-	selector: 'app-root',
-	imports: [RouterModule, Header, Footer],
-	templateUrl: './app.html',
-	styleUrl: './app.scss',
+    selector: 'app-root',
+    imports: [RouterModule, Header, Footer],
+    templateUrl: './app.html',
+    styleUrl: './app.scss',
 })
 export class App implements OnInit {
-	protected readonly title = signal('zyra-ui');
+    protected readonly title = signal('zyra-ui');
 
-	constructor(private theme: ThemeService
-	) { }
+    constructor(private theme: ThemeService) {}
 
-	ngOnInit() {
-		this.theme.initTheme();
-	}
+    ngOnInit() {
+        this.theme.initTheme();
+    }
 }
