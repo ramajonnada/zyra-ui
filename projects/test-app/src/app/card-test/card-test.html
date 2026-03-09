@@ -1,0 +1,277 @@
+<div class="pg">
+
+	<!-- HEADER -->
+	<div class="pg__header">
+		<div>
+			<h1>zyra-card <span>Playground</span></h1>
+			<p>Control every input live and see the result instantly</p>
+		</div>
+		
+	</div>
+
+	<div class="pg__body">
+
+		<!-- ── LEFT: CONTROLS ──────────────────────────────── -->
+		<div class="controls">
+			<div class="controls__title">Controls</div>
+
+			<!-- variant -->
+			<div class="control-group">
+				<label class="control-label">variant</label>
+				<div class="control-options">
+					@for (v of variants; track v) {
+					<button class="opt-btn" [class.active]="variant() === v" (click)="variant.set(v)">
+						{{ v }}
+					</button>
+					}
+				</div>
+			</div>
+
+			<!-- padding -->
+			<div class="control-group">
+				<label class="control-label">padding</label>
+				<div class="control-options">
+					@for (p of paddings; track p) {
+					<button class="opt-btn" [class.active]="padding() === p" (click)="padding.set(p)">
+						{{ p }}
+					</button>
+					}
+				</div>
+			</div>
+
+			<!-- content preset -->
+			<div class="control-group">
+				<label class="control-label">content preset</label>
+				<div class="control-options" style="flex-direction: column; align-items: flex-start">
+					@for (p of presets; track p.label) {
+					<button class="opt-btn" style="width: 100%; text-align: left" [class.active]="preset() === p.label"
+						(click)="preset.set(p.label)">{{ p.label }}</button>
+					}
+				</div>
+			</div>
+
+			<!-- toggles -->
+			<div class="control-group">
+				<label class="control-label">boolean inputs</label>
+				<div class="control-toggles">
+
+					<label class="toggle">
+						<input type="checkbox" [checked]="hasHeader()" (change)="hasHeader.set(!hasHeader())" />
+						<span class="toggle__track"></span>
+						<span class="toggle__label">hasHeader</span>
+					</label>
+
+					<label class="toggle">
+						<input type="checkbox" [checked]="hasFooter()" (change)="hasFooter.set(!hasFooter())" />
+						<span class="toggle__track"></span>
+						<span class="toggle__label">hasFooter</span>
+					</label>
+
+					<label class="toggle">
+						<input type="checkbox" [checked]="clickable()" (change)="clickable.set(!clickable())" />
+						<span class="toggle__track"></span>
+						<span class="toggle__label">clickable</span>
+					</label>
+
+				</div>
+			</div>
+
+			<!-- reset -->
+			<button class="reset-btn" (click)="reset()">↺ Reset all</button>
+		</div>
+
+		<!-- ── RIGHT: PREVIEW + CODE ──────────────────────── -->
+		<div class="preview-area">
+
+			<!-- Live preview -->
+			<div class="preview-box">
+				<div class="preview-box__label">Preview</div>
+				<div class="preview-box__stage">
+
+					<zyra-card [variant]="variant()" [padding]="padding()" [hasHeader]="hasHeader()"
+						[hasFooter]="hasFooter()" [clickable]="clickable()" class="preview-card"
+						(cardClick)="onCardClick()">
+						<!-- Header slot -->
+						@if (hasHeader()) {
+						<div slot="header" class="card-header-slot">
+							<div class="card-header-slot__left">
+								<zyra-avatar name="Arjun Kumar" size="sm" variant="teal" />
+								<div>
+									<div class="card-header-slot__name">Arjun Kumar</div>
+									<div class="card-header-slot__sub">Frontend Developer</div>
+								</div>
+							</div>
+							<zyra-badge variant="success" [dot]="true" size="sm">Active</zyra-badge>
+						</div>
+						}
+
+						<!-- Body content — driven by preset -->
+						<div [innerHTML]="currentPreset().html" class="preset-body"></div>
+
+						<!-- Footer slot -->
+						@if (hasFooter()) {
+						<div slot="footer" class="card-footer-slot">
+							<span class="card-footer-slot__meta">Updated 2 mins ago</span>
+							<div class="card-footer-slot__actions">
+								<zyra-button variant="ghost" size="sm"
+									(clicked)="log('Cancel clicked')">Cancel</zyra-button>
+								<zyra-button variant="primary" size="sm"
+									(clicked)="log('Save clicked')">Save</zyra-button>
+							</div>
+						</div>
+						}
+					</zyra-card>
+
+				</div>
+			</div>
+
+			<!-- Generated code -->
+			<div class="code-box">
+				<div class="code-box__header">
+					<span>Generated Code</span>
+					<button class="copy-btn" (click)="copy()">
+						{{ copied() ? '✓ Copied!' : 'Copy' }}
+					</button>
+				</div>
+				<pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
+			</div>
+
+			<!-- Event log -->
+			<div class="log-box">
+				<div class="log-box__header">
+					<span>Event Log <span class="log-count">{{ eventLog().length }}</span></span>
+					<button class="copy-btn" (click)="eventLog.set([])">Clear</button>
+				</div>
+				<div class="log-box__body">
+					@if (eventLog().length === 0) {
+					<span class="log-empty">
+						{{ clickable() ? 'Click the card to see events' : 'Enable clickable to fire events' }}
+					</span>
+					}
+					@for (e of eventLog(); track $index) {
+					<div class="log-entry">
+						<span class="log-time">{{ e.time }}</span>
+						<span class="log-msg">{{ e.msg }}</span>
+					</div>
+					}
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- ── ALL VARIANTS GRID ───────────────────────────── -->
+	<div class="grid-section">
+		<div class="grid-section__title">All Variants Side by Side</div>
+		<div class="variants-grid">
+
+			@for (v of variants; track v) {
+			<div class="variant-col">
+				<div class="variant-col__label">{{ v }}</div>
+				<zyra-card [variant]="v" [hasHeader]="true" [hasFooter]="true" [clickable]="true"
+					(cardClick)="log(v + ' card clicked')">
+					<div slot="header" style="font-weight: 600; font-size: 13px; color: var(--zyra-text)">
+						{{ v | titlecase }} Card
+					</div>
+					<p style="font-size: 13px; color: var(--zyra-text-muted); margin: 0; line-height: 1.6">
+						This is the {{ v }} variant with header, footer and clickable enabled.
+					</p>
+					<div slot="footer" style="display: flex; justify-content: flex-end">
+						<zyra-button variant="primary" size="sm" (clicked)="log(v + ' action')">Action</zyra-button>
+					</div>
+				</zyra-card>
+			</div>
+			}
+
+		</div>
+	</div>
+
+	<!-- ── PADDING GRID ───────────────────────────────── -->
+	<div class="grid-section">
+		<div class="grid-section__title">Padding Variants</div>
+		<div class="padding-grid">
+			@for (p of paddings; track p) {
+			<div class="variant-col">
+				<div class="variant-col__label">padding="{{ p }}"</div>
+				<zyra-card variant="default" [padding]="p">
+					<p style="font-size: 13px; color: var(--zyra-text-muted); margin: 0">
+						padding="{{ p }}" — {{ p === 'none' ? 'no padding at all' : p === 'sm' ? '12px' : p === 'md' ?
+						'20px' : '28px' }}
+					</p>
+				</zyra-card>
+			</div>
+			}
+		</div>
+	</div>
+
+	<!-- ── REAL WORLD CARDS ───────────────────────────── -->
+	<div class="grid-section">
+		<div class="grid-section__title">Real World Examples</div>
+		<div class="realworld-grid">
+
+			<!-- Profile card -->
+			<zyra-card variant="default" [hasHeader]="false" [hasFooter]="false">
+				<div class="rw-profile">
+					<zyra-avatar name="Priya Sharma" size="lg" variant="purple" [online]="true" />
+					<div class="rw-profile__info">
+						<div class="rw-profile__name">Priya Sharma</div>
+						<div class="rw-profile__role">UI/UX Designer</div>
+						<div class="rw-profile__tags">
+							<zyra-badge variant="purple" size="sm">Figma</zyra-badge>
+							<zyra-badge variant="info" size="sm">Angular</zyra-badge>
+						</div>
+					</div>
+					<zyra-button variant="outline" size="sm">Follow</zyra-button>
+				</div>
+			</zyra-card>
+
+			<!-- Stats card -->
+			<zyra-card variant="elevated" [hasHeader]="true" [hasFooter]="false">
+				<div slot="header" style="display:flex; align-items:center; justify-content:space-between">
+					<span style="font-weight:600; font-size:13px; color:var(--zyra-text)">Monthly Revenue</span>
+					<zyra-badge variant="success" size="sm" [dot]="true">Live</zyra-badge>
+				</div>
+				<div class="rw-stats">
+					<div class="rw-stats__value">₹84,200</div>
+					<div class="rw-stats__change">↑ 12.4% from last month</div>
+					<div class="rw-stats__bar">
+						<div class="rw-stats__bar-fill" style="width: 72%"></div>
+					</div>
+					<div class="rw-stats__meta">72% of monthly goal</div>
+				</div>
+			</zyra-card>
+
+			<!-- Notification card -->
+			<zyra-card variant="outlined" [clickable]="true" (cardClick)="log('notification opened')">
+				<div class="rw-notif">
+					<zyra-avatar name="Zyra UI" size="sm" variant="teal" />
+					<div class="rw-notif__content">
+						<div class="rw-notif__title">New component released!</div>
+						<div class="rw-notif__desc">ZyraTable is now available in v1.2.0</div>
+						<div class="rw-notif__time">3 minutes ago</div>
+					</div>
+					<zyra-badge variant="info" size="sm">New</zyra-badge>
+				</div>
+			</zyra-card>
+
+			<!-- Action card -->
+			<zyra-card variant="default" [hasHeader]="true" [hasFooter]="true">
+				<div slot="header" style="font-weight:600; font-size:13px; color:var(--zyra-text)">
+					Delete Project
+				</div>
+				<p style="font-size:13px; color:var(--zyra-text-muted); margin:0; line-height:1.6">
+					This action is permanent and cannot be undone. All data associated with this project will be
+					deleted.
+				</p>
+				<div slot="footer" style="display:flex; justify-content:flex-end; gap:8px">
+					<zyra-button variant="ghost" size="sm" (clicked)="log('kept project')">Keep it</zyra-button>
+					<zyra-button variant="danger" size="sm" (clicked)="log('project deleted')">Delete</zyra-button>
+				</div>
+			</zyra-card>
+
+		</div>
+	</div>
+
+</div>
+
+<zyra-toast-container />
