@@ -1,75 +1,198 @@
-:root {
-    /* Brand colors */
-    --zyra-primary: #2563eb;
-    --zyra-primary-hover: #1d4ed8;
-    --zyra-primary-active: #1e40af;
-    /* Brand colors */
-    --zyra-primary: #2563eb;
-    --zyra-primary-hover: #1d4ed8;
-    --zyra-primary-active: #1e40af;
+// :root {
+//     /* Brand colors */
+//     --zyra-primary: #2563eb;
+//     --zyra-primary-hover: #1d4ed8;
+//     --zyra-primary-active: #1e40af;
+//     /* Brand colors */
+//     --zyra-primary: #2563eb;
+//     --zyra-primary-hover: #1d4ed8;
+//     --zyra-primary-active: #1e40af;
 
-    --zyra-secondary: #06b6d4;
-    --zyra-secondary-hover: #0891b2;
-    --zyra-secondary-active: #0e7490;
-    --zyra-header-footer-background: rgba(0, 0, 0, 0.2);
+//     --zyra-secondary: #06b6d4;
+//     --zyra-secondary-hover: #0891b2;
+//     --zyra-secondary-active: #0e7490;
+//     --zyra-header-footer-background: rgba(0, 0, 0, 0.2);
 
-    --zyra-gradient: linear-gradient(135deg, var(--zyra-primary) 0%, var(--zyra-secondary) 100%);
-    --zyra-gradient-hover: linear-gradient(
-        to right,
-        var(--zyra-primary-hover) 0%,
-        var(--zyra-secondary-hover) 100%
-    );
+//     --zyra-gradient: linear-gradient(135deg, var(--zyra-primary) 0%, var(--zyra-secondary) 100%);
+//     --zyra-gradient-hover: linear-gradient(
+//         to right,
+//         var(--zyra-primary-hover) 0%,
+//         var(--zyra-secondary-hover) 100%
+//     );
 
-    --zyra-accent: #0ea5e9;
-    --zyra-accent-hover: #0284c7;
-    --zyra-accent-active: #0369a1;
+//     --zyra-accent: #0ea5e9;
+//     --zyra-accent-hover: #0284c7;
+//     --zyra-accent-active: #0369a1;
 
-    --zyra-success: #10b981;
-    --zyra-success-hover: #059669;
-    --zyra-success-active: #047857;
+//     --zyra-success: #10b981;
+//     --zyra-success-hover: #059669;
+//     --zyra-success-active: #047857;
 
-    --zyra-warning: #f59e0b;
-    --zyra-warning-hover: #d97706;
-    --zyra-warning-active: #b45309;
+//     --zyra-warning: #f59e0b;
+//     --zyra-warning-hover: #d97706;
+//     --zyra-warning-active: #b45309;
 
-    --zyra-error: #ef4444;
-    --zyra-error-hover: #dc2626;
-    --zyra-error-active: #b91c1c;
+//     --zyra-error: #ef4444;
+//     --zyra-error-hover: #dc2626;
+//     --zyra-error-active: #b91c1c;
 
-    /* Font */
-    --font-size-base: 16px;
-    --zyra-placeholder: var(--foreground);
-    /* Spacing */
-    --spacing-1: 0.5rem;
-    --spacing-2: 1rem;
-    --spacing-3: 1.5rem;
-    --spacing-4: 2rem;
-    --spacing-5: 2.5rem;
-    --spacing-6: 3rem;
-    --spacing-8: 4rem;
-    --spacing-10: 5rem;
-    --spacing-12: 6rem;
+//     /* Font */
+//     --font-size-base: 16px;
+//     --zyra-placeholder: var(--foreground);
+//     /* Spacing */
+//     --spacing-1: 0.5rem;
+//     --spacing-2: 1rem;
+//     --spacing-3: 1.5rem;
+//     --spacing-4: 2rem;
+//     --spacing-5: 2.5rem;
+//     --spacing-6: 3rem;
+//     --spacing-8: 4rem;
+//     --spacing-10: 5rem;
+//     --spacing-12: 6rem;
 
-    /* Radius */
-    --radius: 8px;
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-xl: 16px;
-    --radius-2xl: 24px;
-    --radius-full: 9999px;
+//     /* Radius */
+//     --radius: 8px;
+//     --radius-sm: 4px;
+//     --radius-md: 8px;
+//     --radius-lg: 12px;
+//     --radius-xl: 16px;
+//     --radius-2xl: 24px;
+//     --radius-full: 9999px;
 
-    /* Font weights */
-    --font-weight-normal: 400;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
+//     /* Font weights */
+//     --font-weight-normal: 400;
+//     --font-weight-medium: 500;
+//     --font-weight-semibold: 600;
+//     --font-weight-bold: 700;
 
-    /* Focus */
-    --focus-ring-width: 2px;
-    --focus-ring-offset: 2px;
-    --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+//     /* Focus */
+//     --focus-ring-width: 2px;
+//     --focus-ring-offset: 2px;
+//     --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 
-    --zyra-font:
-        ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
+//     --zyra-font:
+//         ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+// }
+
+
+
+// ============================================================
+// ZYRA NG UI — Design Tokens (_variables.scss)
+// Single source of truth for all design values.
+// These are STATIC tokens (not theme-dependent).
+// Theme-dependent tokens live in _dark-theme.scss / _light-theme.scss
+// ============================================================
+
+// ── Brand Palette (Raw) ──────────────────────────────────────
+// These are the raw color values. Use semantic tokens in components.
+
+$zyr-teal-100: #e6faf5;
+$zyr-teal-200: #b3f0e0;
+$zyr-teal-300: #7fe5cb;
+$zyr-teal-400: #63d2b4; // ← primary accent
+$zyr-teal-500: #3fbf9e;
+$zyr-teal-600: #2a9e82;
+
+$zyr-blue-100: #e6f4fe;
+$zyr-blue-200: #b3d9fb;
+$zyr-blue-300: #7ebef7;
+$zyr-blue-400: #4eaef5; // ← secondary accent
+$zyr-blue-500: #2491e8;
+$zyr-blue-600: #1573c2;
+
+$zyr-purple-100: #f0ecfe;
+$zyr-purple-200: #d4c8fb;
+$zyr-purple-300: #baa4f8;
+$zyr-purple-400: #a78bfa; // ← tertiary accent
+$zyr-purple-500: #8b6ef5;
+$zyr-purple-600: #6d4ef0;
+
+$zyr-red-100: #feeaec;
+$zyr-red-200: #fbb8be;
+$zyr-red-300: #f98690;
+$zyr-red-400: #f95f5f; // ← danger
+$zyr-red-500: #e03e3e;
+$zyr-red-600: #c02020;
+
+$zyr-yellow-100: #fef9e6;
+$zyr-yellow-200: #fceeb3;
+$zyr-yellow-300: #fae07f;
+$zyr-yellow-400: #f9c86a; // ← warning
+$zyr-yellow-500: #e8aa3a;
+$zyr-yellow-600: #c98a18;
+
+$zyr-green-100: #eafaf0;
+$zyr-green-200: #b8f0ce;
+$zyr-green-300: #86e5ad;
+$zyr-green-400: #4cca7c; // ← success
+$zyr-green-500: #2ea85b;
+$zyr-green-600: #1a8540;
+
+// ── Typography ───────────────────────────────────────────────
+$zyr-font-display: 'Syne', sans-serif;
+$zyr-font-body: 'Instrument Sans', sans-serif;
+$zyr-font-mono: 'DM Mono', monospace;
+
+// ── Font Sizes ───────────────────────────────────────────────
+$zyr-text-xs: 11px;
+$zyr-text-sm: 12px;
+$zyr-text-base: 14px;
+$zyr-text-md: 15px;
+$zyr-text-lg: 17px;
+$zyr-text-xl: 20px;
+$zyr-text-2xl: 24px;
+$zyr-text-3xl: 30px;
+$zyr-text-4xl: 36px;
+$zyr-text-5xl: 48px;
+
+// ── Font Weights ─────────────────────────────────────────────
+$zyr-weight-light: 300;
+$zyr-weight-regular: 400;
+$zyr-weight-medium: 500;
+$zyr-weight-semibold: 600;
+$zyr-weight-bold: 700;
+$zyr-weight-extrabold: 800;
+
+// ── Spacing ──────────────────────────────────────────────────
+$zyr-space-1: 4px;
+$zyr-space-2: 8px;
+$zyr-space-3: 12px;
+$zyr-space-4: 16px;
+$zyr-space-5: 20px;
+$zyr-space-6: 24px;
+$zyr-space-8: 32px;
+$zyr-space-10: 40px;
+$zyr-space-12: 48px;
+$zyr-space-16: 64px;
+$zyr-space-20: 80px;
+
+// ── Border Radius ────────────────────────────────────────────
+$zyr-radius-xs: 4px;
+$zyr-radius-sm: 6px;
+$zyr-radius-md: 10px;
+$zyr-radius-lg: 14px;
+$zyr-radius-xl: 20px;
+$zyr-radius-2xl: 28px;
+$zyr-radius-full: 9999px;
+
+// ── Z-Index ──────────────────────────────────────────────────
+$zyr-z-base: 0;
+$zyr-z-raised: 10;
+$zyr-z-dropdown: 100;
+$zyr-z-sticky: 200;
+$zyr-z-overlay: 300;
+$zyr-z-modal: 400;
+$zyr-z-toast: 500;
+
+// ── Transitions ──────────────────────────────────────────────
+$zyr-transition-fast: 0.12s ease;
+$zyr-transition-base: 0.18s ease;
+$zyr-transition-slow: 0.3s ease;
+$zyr-transition-spring: 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// ── Breakpoints ──────────────────────────────────────────────
+$zyr-screen-sm: 480px;
+$zyr-screen-md: 768px;
+$zyr-screen-lg: 1024px;
+$zyr-screen-xl: 1280px;
+$zyr-screen-2xl: 1536px;

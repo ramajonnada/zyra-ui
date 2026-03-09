@@ -1,42 +1,85 @@
-// projects/zyra-ng-ui/src/lib/theme/theme.service.ts
+// ============================================================
+// ZYRA NG UI — Theme Service (theme-service.ts)
+// Fully signal-based. No BehaviorSubjects.
+// ============================================================
 
-import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import {
+	Injectable,
+	signal,
+	computed,
+	effect,
+	inject,
+	PLATFORM_ID,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Zyratheme, ZyraThemeType } from './theme-type';
+import { ZyraTheme, ZyraConfig, ZYRA_CONFIG, ZyraThemeType } from './theme-type';
 
 @Injectable({ providedIn: 'root' })
-export class ThemeService {
-    private readonly STORAGE_KEY = 'data-theme';
-    private isBrowser: boolean;
-    readonly theme = signal<ZyraThemeType>('light');
+export class ZyraThemeService {
 
-    constructor(@Inject(PLATFORM_ID) platformId: object) {
-        this.isBrowser = isPlatformBrowser(platformId);
-    }
+	private platformId = inject(PLATFORM_ID);
+	private isBrowser = isPlatformBrowser(this.platformId);
 
-    // ✅ Now accepts an optional defaultTheme from provideZyraUI()
-    initTheme(defaultTheme?: ZyraThemeType): void {
-        if (!this.isBrowser) return;
+	private config: ZyraConfig = {
+		theme: 'dark',
+		storageKey: 'zyra-theme',
+		respectSystemTheme: true,
+	};
 
-        const savedTheme = localStorage.getItem(this.STORAGE_KEY) as ZyraThemeType;
+	// ── Core signal ───────────────────────────────────────────
+	private _theme = signal<ZyraTheme>(this.resolveInitialTheme());
 
-        // Priority: 1. saved in localStorage → 2. passed default → 3. 'light'
-        const resolvedTheme = savedTheme || defaultTheme || Zyratheme.Light;
+	// ── Public read-only signals ──────────────────────────────
+	theme = this._theme.asReadonly();
+	isDark = computed(() => this._theme() === 'dark');
+	isLight = computed(() => this._theme() === 'light');
 
-        this.theme.set(resolvedTheme);
-        this.setTheme(resolvedTheme);
-    }
+	constructor() {
+		// Apply theme to DOM whenever signal changes
+		effect(() => {
+			this.applyToDom(this._theme());
+		});
+	}
 
-    setTheme(theme: ZyraThemeType): void {
-        if (!this.isBrowser) return;
-        this.theme.set(theme);
-        document.documentElement.setAttribute(this.STORAGE_KEY, theme);
-        localStorage.setItem(this.STORAGE_KEY, theme);
-    }
+	// ── Public API ────────────────────────────────────────────
 
-    toggleTheme(): void {
-        if (!this.isBrowser) return;
-        const current = this.theme();
-        this.setTheme(current === Zyratheme.Dark ? Zyratheme.Light : Zyratheme.Dark);
-    }
+	setTheme(theme: ZyraTheme): void {
+		this._theme.set(theme);
+		if (this.isBrowser) {
+			localStorage.setItem(this.config.storageKey!, theme);
+		}
+	}
+
+	toggle(): void {
+		this.setTheme(this.isDark() ? 'light' : 'dark');
+	}
+
+	// ── Private helpers ───────────────────────────────────────
+
+	private resolveInitialTheme(): ZyraTheme {
+		if (!this.isBrowser) return this.config.theme ?? 'dark';
+
+		// 1. Check localStorage first
+		const stored = localStorage.getItem(
+			this.config.storageKey ?? 'zyra-theme'
+		) as ZyraTheme | null;
+
+		if (stored === 'dark' || stored === 'light') return stored;
+
+		// 2. Respect OS preference if configured
+		if (this.config.respectSystemTheme) {
+			const prefersDark = window.matchMedia(
+				'(prefers-color-scheme: dark)'
+			).matches;
+			return prefersDark ? 'dark' : 'light';
+		}
+
+		// 3. Fall back to config default
+		return this.config.theme ?? 'dark';
+	}
+
+	private applyToDom(theme: ZyraTheme): void {
+		if (!this.isBrowser) return;
+		document.documentElement.setAttribute('data-theme', theme);
+	}
 }

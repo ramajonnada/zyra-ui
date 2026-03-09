@@ -1,104 +1,70 @@
-import { Component, computed, input, signal, Optional, Self } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	computed,
+	effect,
+	input,
+	model,
+	output,
+	signal,
+	ViewChild,
+	ElementRef,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-import { NgControl } from '@angular/forms';
-
-let nextId = 0;
+export type InputType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url';
+export type InputSize = 'sm' | 'md' | 'lg';
+export type InputStatus = 'default' | 'success' | 'error';
 
 @Component({
-    selector: 'zyra-input',
-    templateUrl: './zyra-input.html',
-    styleUrls: ['./zyra-input.css'],
-    host: {
-        '[class.zyra-input-disabled]': 'disabled()',
-        '[class.zyra-input-focused]': 'focused()',
-        '[class.zyra-input-invalid]': 'errorState()',
-    },
+	selector: 'zyra-input',
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [FormsModule],
+	templateUrl: './zyra-input.html',
+	styleUrl: './zyra-input.scss',
 })
 export class ZyraInput {
-    /* =====================
-     * Public API (signals)
-     * ===================== */
+	// ── Inputs ────────────────────────────────────────────────
+	value = model<string>('');
+	type = input<InputType>('text');
+	size = input<InputSize>('md');
+	status = input<InputStatus>('default');
+	label = input<string>('');
+	placeholder = input<string>('');
+	hint = input<string>('');
+	error = input<string>('');
+	prefixIcon = input<string>('');
+	suffixIcon = input<string>('');
+	disabled = input<boolean>(false);
+	readonly = input<boolean>(false);
+	required = input<boolean>(false);
+	id = input<string>('');
 
-    type = input<'text' | 'email' | 'password' | 'number'>('text');
+	// ── Outputs ───────────────────────────────────────────────
+	valueChange = output<string>();
+	blurred = output<FocusEvent>();
 
-    placeholder = input('');
+	// ── Internal state ────────────────────────────────────────
+	focused = signal(false);
+	showPassword = signal(false);
 
-    id = input<string | null>(null);
+	// ── Computed ──────────────────────────────────────────────
+	inputId = computed(() => this.id() || `zyr-input-${Math.random().toString(36).slice(2, 7)}`);
 
-    required = input(false);
+	wrapClass = computed(() =>
+		`zyr-input zyr-input--${this.size()}`
+	);
 
-    /* =====================
-     * Internal state
-     * ===================== */
-
-    value = signal('');
-
-    focused = signal(false);
-
-    disabled = signal(false);
-
-    /** auto generate id */
-    inputId = computed(() => this.id() ?? `zyra-input-${nextId++}`);
-
-    /** empty state */
-    empty = computed(() => !this.value());
-
-    /** error state (Angular Forms) */
-    errorState = computed(() => !!this.ngControl?.invalid && !!this.ngControl?.touched);
-
-    constructor(
-        @Optional()
-        @Self()
-        public ngControl: NgControl,
-    ) {
-        if (this.ngControl) {
-            this.ngControl.valueAccessor = this;
-        }
-    }
-
-    /* =====================
-     * ControlValueAccessor
-     * ===================== */
-
-    private onChange = (_: string) => {};
-
-    private onTouched = () => {};
-
-    writeValue(value: string | null): void {
-        this.value.set(value ?? '');
-    }
-
-    registerOnChange(fn: (value: string) => void): void {
-        this.onChange = fn;
-    }
-
-    registerOnTouched(fn: () => void): void {
-        this.onTouched = fn;
-    }
-
-    setDisabledState(isDisabled: boolean): void {
-        this.disabled.set(isDisabled);
-    }
-
-    /* =====================
-     * DOM events
-     * ===================== */
-
-    handleInput(event: Event) {
-        const newValue = (event.target as HTMLInputElement).value;
-
-        this.value.set(newValue);
-
-        this.onChange(newValue);
-    }
-
-    handleFocus() {
-        this.focused.set(true);
-    }
-
-    handleBlur() {
-        this.focused.set(false);
-
-        this.onTouched();
-    }
+	fieldClass = computed(() => {
+		const classes = [
+			'zyr-input__field',
+			`zyr-input__field--${this.size()}`,
+		];
+		if (this.focused()) classes.push('zyr-input__field--focused');
+		if (this.status() !== 'default') classes.push(`zyr-input__field--${this.status()}`);
+		if (this.prefixIcon()) classes.push('zyr-input__field--has-prefix');
+		if (this.suffixIcon() || this.type() === 'password') classes.push('zyr-input__field--has-suffix');
+		return classes.join(' ');
+	});
 }

@@ -1,4 +1,24 @@
-<div [class.full-width]="fullWidth">
+<button [class]="hostClass()" [type]="type()" [disabled]="disabled() || loading()"
+	[attr.aria-disabled]="disabled() || loading()" [attr.aria-busy]="loading()" (click)="handleClick($event)">
+	@if (loading()) {
+	<zyra-spinner [size]="spinnerSize()" [color]="spinnerColor()" />
+	}
+	@if (iconLeft() && !loading()) {
+	<span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
+		{{ iconLeft() }}
+	</span>
+	}
+	<span class="zyr-btn__label">
+		<ng-content />
+	</span>
+	@if (iconRight()) {
+	<span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
+		{{ iconRight() }}
+	</span>
+	}
+</button>
+
+<!-- <div [class.full-width]="fullWidth">
     <button
         class="zyra-btn"
         [class]="variant + ' ' + size"
@@ -11,4 +31,4 @@
             <span class="loader"> Processing…</span>
         }
     </button>
-</div>
+</div> -->

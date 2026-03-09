@@ -1,0 +1,11 @@
+<div [class]="hostClass()" role="alert" aria-live="polite">
+	<span class="zyr-toast__icon" aria-hidden="true">{{ icon() }}</span>
+	<div class="zyr-toast__content">
+		<p class="zyr-toast__title">{{ toast().title }}</p>
+		@if (toast().description) {
+		<p class="zyr-toast__desc">{{ toast().description }}</p>
+		}
+	</div>
+	<button class="zyr-toast__close" type="button" aria-label="Dismiss"
+		(click)="toastService.dismiss(toast().id)">✕</button>
+</div>

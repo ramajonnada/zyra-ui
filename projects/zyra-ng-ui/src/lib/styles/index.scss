@@ -1,22 +1,41 @@
-@use 'variables';
-@use 'light-theme';
-@use 'dark-theme';
+// ============================================================
+// ZYRA NG UI — Styles Entry Point (index.scss)
+// Import this file in your angular.json or styles.scss
+//
+// Usage in angular.json:
+//   "styles": ["projects/zyra-ng-ui/src/styles/index.scss"]
+//
+// Usage in styles.scss:
+//   @use 'projects/zyra-ng-ui/src/styles/index' as *;
+// ============================================================
+
+// 1. Static design tokens (SCSS variables — for use in component SCSS)
+@forward 'variables';
+
+// 2. Dark theme CSS custom properties (default — :root)
+@forward 'dark-theme';
+
+// 3. Light theme CSS custom properties ([data-theme="light"])
+@forward 'light-theme';
+
+// 4. Global base styles
+@use 'base';
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 html,
 body {
-    font-family: var(--zyra-font);
-    font-size: var(--font-size-base);
-    background-color: var(--background);
-    color: var(--foreground);
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
+	font-family: var(--zyra-font);
+	font-size: var(--font-size-base);
+	background-color: var(--background);
+	color: var(--foreground);
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
 }
