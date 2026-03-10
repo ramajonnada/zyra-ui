@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 export type BadgeVariant = 'success' | 'warning' | 'danger' | 'info' | 'purple' | 'default';
-export type BadgeSize = 'sm' | 'md';
+export type BadgeSize = 'sm' | 'md' | 'lg';
 
 @Component({
 	selector: 'zyra-badge',

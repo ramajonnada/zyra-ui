@@ -23,6 +23,11 @@
 		font-size: 11px;
 	}
 
+	&--lg {
+		padding: 5px 12px;
+		font-size: 13px;
+	}
+
 	// ── Variants ──────────────────────────────────────────────
 	&--default {
 		background: var(--zyr-bg-3);

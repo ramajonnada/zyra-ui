@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { TestButton } from './test-button/test-button';
 import { CardTest } from './card-test/card-test';
+import { Badge } from './badge/badge';
 
 export const routes: Routes = [
 	{
@@ -9,7 +10,7 @@ export const routes: Routes = [
 	{
 		path: 'card', component: CardTest
 	},
-	// {
-		// path: '', component: 
-	// }
+	{
+		path: 'badge', component: Badge
+	}
 ];
