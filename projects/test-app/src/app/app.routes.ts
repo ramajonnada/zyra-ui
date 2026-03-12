@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { TestButton } from './test-button/test-button';
 import { CardTest } from './card-test/card-test';
 import { Badge } from './badge/badge';
+import { Tooltip } from './tooltip/tooltip';
+import { Input } from './input/input';
 
 export const routes: Routes = [
 	{
@@ -12,5 +14,11 @@ export const routes: Routes = [
 	},
 	{
 		path: 'badge', component: Badge
+	},
+	{
+		path: 'tooltip', component: Tooltip
+	},
+	{
+		path: 'inputcomp', component: Input
 	}
 ];

@@ -1,59 +1,15 @@
-<!-- <input
-    class="zyra-input-element"
-    [id]="inputId()"
-    [type]="type()"
-    [attr.placeholder]="placeholder()"
-    [value]="value()"
-    [required]="required()"
-    [disabled]="disabled()"
-    [attr.aria-invalid]="errorState()"
-    [attr.aria-required]="required()"
-    (input)="handleInput($event)"
-    (focus)="handleFocus()"
-    (blur)="handleBlur()"
-/> -->
-<div [class]="wrapClass()">
+<!-- projects/zyr-ng-ui/src/lib/input/zyr-input.html -->
 
-	@if (label()) {
-	<label [for]="inputId()" class="zyr-input__label">
-		{{ label() }}
-		@if (required()) {
-		<span class="zyr-input__required" aria-hidden="true">*</span>
-		}
-	</label>
-	}
-
-	<div class="zyr-input__field-wrap">
-		@if (prefixIcon()) {
-		<span class="zyr-input__prefix" aria-hidden="true">{{ prefixIcon() }}</span>
-		}
-
-		<input #inputEl [class]="fieldClass()" [id]="inputId()" [type]="showPassword() ? 'text' : type()"
-			[placeholder]="placeholder()" [disabled]="disabled()" [readonly]="readonly()" [required]="required()"
-			[attr.aria-invalid]="status() === 'error'"
-			[attr.aria-describedby]="hint() || error() ? inputId() + '-hint' : null" [(ngModel)]="value"
-			(focus)="focused.set(true)" (blur)="focused.set(false); blurred.emit($event)"
-			(input)="valueChange.emit(value())" />
-
-		@if (type() === 'password') {
-		<button class="zyr-input__suffix zyr-input__toggle" type="button"
-			[attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
-			(click)="showPassword.set(!showPassword())">
-			{{ showPassword() ? '🙈' : '👁️' }}
-		</button>
-		} @else if (suffixIcon()) {
-		<span class="zyr-input__suffix" aria-hidden="true">{{ suffixIcon() }}</span>
-		}
-	</div>
-
-	@if (error() && status() === 'error') {
-	<span [id]="inputId() + '-hint'" class="zyr-input__hint zyr-input__hint--error" role="alert">
-		{{ error() }}
-	</span>
-	} @else if (hint()) {
-	<span [id]="inputId() + '-hint'" class="zyr-input__hint">
-		{{ hint() }}
-	</span>
-	}
-
-</div>
+<input
+  [class]="'zyr-input zyr-input--' + size()"
+  [id]="inputId"
+  [type]="showPassword() ? 'text' : type()"
+  [placeholder]="placeholder()"
+  [disabled]="isDisabled()"
+  [readonly]="readonly()"
+  [attr.autocomplete]="type() === 'password' ? 'current-password' : type() === 'email' ? 'email' : null"
+  [ngModel]="innerValue()"
+  (ngModelChange)="onModelChange($event)"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+/>

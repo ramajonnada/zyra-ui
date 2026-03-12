@@ -3,7 +3,7 @@
 	<ng-content />
 
 	@if (visible() && text()) {
-	<span [class]="tooltipClass()" role="tooltip">
+	<span [class]="tooltipClass()"  role="tooltip">
 		{{ text() }}
 		<span class="zyr-tooltip__arrow"></span>
 	</span>

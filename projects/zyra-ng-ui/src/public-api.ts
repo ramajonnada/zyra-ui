@@ -12,6 +12,7 @@ export * from './lib/components/zyra-badge/zyra-badge';
 
 export * from './lib/components/zyra-avatar/zyra-avatar';
 export * from './lib/components/zyra-input/zyra-input';
+export * from './lib/components/zyra-form-field/zyra-form-field';
 export * from './lib/components/zyra-spinner/zyra-spinner';
 export * from './lib/components/zyra-toast/zyra-toast';
 export * from './lib/components/zyra-tooltip/zyra-tooltip';
