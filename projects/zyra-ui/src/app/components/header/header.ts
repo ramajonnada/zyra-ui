@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ThemeService, ZyraButton, ZyraTheme } from 'zyra-ng-ui';
+import { ZyraButton, ZyraThemeService } from 'zyra-ng-ui';
 
 @Component({
 	selector: 'app-header',
@@ -10,15 +10,10 @@ import { ThemeService, ZyraButton, ZyraTheme } from 'zyra-ng-ui';
 })
 export class Header {
 
-	$$toogleThemeText() {
-		if (this._themeService.theme === 'light') return 'Dark';
-		else return 'Light';
-	}
-
-	constructor(private _themeService: ThemeService) {
+	constructor(private _themeService: ZyraThemeService) {
 
 	}
 	$$toggleTheme() {
-		this._themeService.toggleTheme();
+		this._themeService.toggle();
 	}
 }

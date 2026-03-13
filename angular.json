@@ -37,8 +37,7 @@
 							}
 						],
 						"styles": [
-							"projects/zyra-ui/src/styles.scss",
-							"projects/zyra-ui/src/_variables.scss"
+							"projects/zyra-ui/src/styles.scss"
 						],
 						"server": "projects/zyra-ui/src/main.server.ts",
 						"outputMode": "server",
