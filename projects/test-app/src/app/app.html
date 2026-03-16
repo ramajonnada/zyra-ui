@@ -1,0 +1,18 @@
+<nav class="header">
+	<div>
+		<a routerLink="button">Button</a>
+		<a routerLink="card">Card</a>
+		<a routerLink="badge">Badge</a>
+		<a routerLink="tooltip">Tooltip</a>
+		<a routerLink="avatar">Avatar</a>
+		<a routerLink="spinner">Spinner</a>
+		<a routerLink="toast">Toast</a>
+		<a routerLink="inputcomp">Input & FormField</a>
+	</div>
+	<button class="theme-btn" (click)="$$toggle()">
+		{{ isDark() ? '☀️' : '🌙' }}
+	</button>
+</nav>
+<main>
+	<router-outlet></router-outlet>
+</main>

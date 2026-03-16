@@ -15,5 +15,8 @@
 </nav>
 
 <div class="zy-toolbar__right">
-	<zyra-button variant="secondary" (click)="$$toggleTheme()" [size]="'sm'"></zyra-button>
+	<zyra-button variant="secondary" (click)="$$toggleTheme()" [size]="'sm'">{{ isDark() ? '☀️' :
+		'🌙'}}</zyra-button>
+	<zyra-button variant="outline" [size]="'sm'">GitHub</zyra-button>
+	<zyra-button variant="primary" size="md" routerLink="/components">Get Started</zyra-button>
 </div>

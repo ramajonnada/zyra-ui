@@ -1,0 +1,211 @@
+// ============================================================
+// ZYRA NG UI — Dark Theme (_dark-theme.scss)
+// Applied when: [data-theme="dark"] or :root by default
+// ============================================================
+
+@use 'variables' as *;
+
+[data-theme='dark'],
+:root {
+
+	// ── Backgrounds ─────────────────────────────────────────────
+	--zyr-bg: #080B10; // deepest bg — page background
+	--zyr-bg-2: #0D1117; // sidebar, panels
+	--zyr-bg-3: #13191F; // card headers, inputs, hover
+	--zyr-bg-4: #1A2130; // elevated cards, dropdowns
+	--zyr-bg-overlay: rgba(0, 0, 0, 0.65); // modal backdrops
+
+	// ── Borders ──────────────────────────────────────────────────
+	--zyr-border: rgba(255, 255, 255, 0.07);
+	--zyr-border-hover: rgba(99, 210, 180, 0.35);
+	--zyr-border-focus: rgba(99, 210, 180, 0.6);
+	--zyr-border-strong: rgba(255, 255, 255, 0.14);
+
+	// ── Text ─────────────────────────────────────────────────────
+	--zyr-text: #E8EDF2; // primary text
+	--zyr-text-muted: #6B7A8D; // secondary / supporting text
+	--zyr-text-dim: #3D4B5C; // placeholder, disabled
+	--zyr-text-inverse: #080B10; // text on accent bg
+
+	// ── Accent — Teal (Primary) ──────────────────────────────────
+	--zyr-accent: #{$zyr-teal-400}; // #63D2B4
+	--zyr-accent-hover: #{$zyr-teal-300};
+	--zyr-accent-muted: rgba(99, 210, 180, 0.12);
+	--zyr-accent-border: rgba(99, 210, 180, 0.25);
+	--zyr-accent-text: #{$zyr-teal-400};
+
+	// ── Accent 2 — Blue (Secondary) ─────────────────────────────
+	--zyr-accent-2: #{$zyr-blue-400}; // #4EAEF5
+	--zyr-accent-2-hover: #{$zyr-blue-300};
+	--zyr-accent-2-muted: rgba(78, 174, 245, 0.12);
+	--zyr-accent-2-border: rgba(78, 174, 245, 0.25);
+
+	// ── Accent 3 — Purple (Tertiary) ────────────────────────────
+	--zyr-accent-3: #{$zyr-purple-400}; // #A78BFA
+	--zyr-accent-3-hover: #{$zyr-purple-300};
+	--zyr-accent-3-muted: rgba(167, 139, 250, 0.12);
+	--zyr-accent-3-border: rgba(167, 139, 250, 0.25);
+
+	// ── Semantic — Success ───────────────────────────────────────
+	--zyr-success: #{$zyr-green-400};
+	--zyr-success-muted: rgba(76, 202, 124, 0.10);
+	--zyr-success-border: rgba(76, 202, 124, 0.22);
+	--zyr-success-text: #{$zyr-green-400};
+
+	// ── Semantic — Warning ───────────────────────────────────────
+	--zyr-warning: #{$zyr-yellow-400};
+	--zyr-warning-muted: rgba(249, 200, 106, 0.10);
+	--zyr-warning-border: rgba(249, 200, 106, 0.22);
+	--zyr-warning-text: #{$zyr-yellow-400};
+
+	// ── Semantic — Danger ────────────────────────────────────────
+	--zyr-danger: #{$zyr-red-400};
+	--zyr-danger-muted: rgba(249, 95, 95, 0.10);
+	--zyr-danger-border: rgba(249, 95, 95, 0.22);
+	--zyr-danger-text: #{$zyr-red-400};
+
+	// ── Semantic — Info ──────────────────────────────────────────
+	--zyr-info: #{$zyr-blue-400};
+	--zyr-info-muted: rgba(78, 174, 245, 0.10);
+	--zyr-info-border: rgba(78, 174, 245, 0.22);
+	--zyr-info-text: #{$zyr-blue-400};
+
+	// ── Typography ───────────────────────────────────────────────
+	--zyr-font-display: #{$zyr-font-display};
+	--zyr-font-body: #{$zyr-font-body};
+	--zyr-font-mono: #{$zyr-font-mono};
+
+	// ── Radius ───────────────────────────────────────────────────
+	--zyr-radius-xs: #{$zyr-radius-xs};
+	--zyr-radius-sm: #{$zyr-radius-sm};
+	--zyr-radius-md: #{$zyr-radius-md};
+	--zyr-radius-lg: #{$zyr-radius-lg};
+	--zyr-radius-xl: #{$zyr-radius-xl};
+	--zyr-radius-full: #{$zyr-radius-full};
+
+	// ── Spacing ──────────────────────────────────────────────────
+	--zyr-space-1: #{$zyr-space-1};
+	--zyr-space-2: #{$zyr-space-2};
+	--zyr-space-3: #{$zyr-space-3};
+	--zyr-space-4: #{$zyr-space-4};
+	--zyr-space-5: #{$zyr-space-5};
+	--zyr-space-6: #{$zyr-space-6};
+	--zyr-space-8: #{$zyr-space-8};
+	--zyr-space-10: #{$zyr-space-10};
+	--zyr-space-12: #{$zyr-space-12};
+	--zyr-space-16: #{$zyr-space-16};
+
+	// ── Shadows ──────────────────────────────────────────────────
+	--zyr-shadow-xs: 0 1px 4px rgba(0, 0, 0, 0.4);
+	--zyr-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+	--zyr-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5);
+	--zyr-shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.55);
+	--zyr-shadow-accent: 0 6px 20px rgba(99, 210, 180, 0.2);
+
+	// ── Transitions ──────────────────────────────────────────────
+	--zyr-transition-fast: #{$zyr-transition-fast};
+	--zyr-transition-base: #{$zyr-transition-base};
+	--zyr-transition-slow: #{$zyr-transition-slow};
+	--zyr-transition-spring: #{$zyr-transition-spring};
+
+	// ── Component-level Tokens ───────────────────────────────────
+
+	// Button
+	--zyr-btn-primary-bg: var(--zyr-accent);
+	--zyr-btn-primary-text: #080B10;
+	--zyr-btn-primary-hover-bg: var(--zyr-accent-hover);
+	--zyr-btn-secondary-bg: var(--zyr-bg-3);
+	--zyr-btn-secondary-text: var(--zyr-text);
+	--zyr-btn-secondary-border: var(--zyr-border);
+	--zyr-btn-ghost-text: var(--zyr-text-muted);
+	--zyr-btn-ghost-hover-bg: rgba(255, 255, 255, 0.04);
+	--zyr-btn-danger-bg: var(--zyr-danger-muted);
+	--zyr-btn-danger-text: var(--zyr-danger);
+	--zyr-btn-danger-border: var(--zyr-danger-border);
+
+	// Input
+	--zyr-input-bg: var(--zyr-bg-3);
+	--zyr-input-border: var(--zyr-border);
+	--zyr-input-border-focus: var(--zyr-accent);
+	--zyr-input-text: var(--zyr-text);
+	--zyr-input-placeholder: var(--zyr-text-dim);
+	--zyr-input-shadow-focus: 0 0 0 3px rgba(99, 210, 180, 0.12);
+
+	// Card
+	--zyr-card-bg: #0F151C;
+	--zyr-card-border: var(--zyr-border);
+	--zyr-card-hover-border: var(--zyr-border-hover);
+
+	// Badge
+	--zyr-badge-default-bg: var(--zyr-bg-3);
+	--zyr-badge-default-text: var(--zyr-text-muted);
+	--zyr-badge-default-border: var(--zyr-border);
+
+	// Sidebar
+	--zyr-sidebar-bg: var(--zyr-bg-2);
+	--zyr-sidebar-border: var(--zyr-border);
+	--zyr-sidebar-link-active-bg: rgba(99, 210, 180, 0.06);
+	--zyr-sidebar-link-active-text: var(--zyr-accent);
+	--zyr-sidebar-link-active-border: var(--zyr-accent);
+
+	// Code block
+	--zyr-code-bg: #0A0F15;
+	--zyr-code-border: var(--zyr-border);
+
+	// Scrollbar
+	--zyr-scrollbar-thumb: rgba(255, 255, 255, 0.08);
+	--zyr-scrollbar-track: transparent;
+}
+
+
+
+// [data-theme='dark'] {
+//     /* Base */
+//     --background: #0f172a;
+//     --foreground: #f1f5f9;
+
+//     --card: #1e293b;
+//     --card-foreground: #f1f5f9;
+
+//     --popover: #1e293b;
+//     --popover-foreground: #f1f5f9;
+
+//     /* Semantic mapping */
+//     --primary-foreground: #ffffff;
+//     --secondary-foreground: #ffffff;
+//     --accent-foreground: #ffffff;
+//     --success-foreground: #ffffff;
+//     --warning-foreground: #0f172a;
+//     --error-foreground: #ffffff;
+//     --destructive-foreground: #ffffff;
+
+//     /* UI */
+//     ---muted: #334155;
+//     ---muted-foreground: #94a3b8;
+
+//     --divider: #1e293b;
+
+//     --zyra-border: #ffffff1a;
+//     --input: #334155;
+//     --input-background: #1e293b;
+//     --zyra-label: var(--foreground);
+
+//     --switch-background: #475569;
+//     --ring: var(--zyra-accent);
+
+//     /* Shadows */
+//     --shadow-sm: 0 1px 2px 0 #0000004d;
+//     --shadow-md: 0 4px 6px -1px #0000004d, 0 2px 4px -2px #0000004d;
+//     --shadow-lg: 0 10px 15px -3px #0000004d, 0 4px 6px -4px #0000004d;
+//     --shadow-xl: 0 20px 25px -5px #0000004d, 0 8px 10px -6px #0000004d;
+
+//     /* Sidebar */
+//     --sidebar: #1e293b;
+//     --sidebar-foreground: #f1f5f9;
+//     --sidebar-primary: var(--zyra-primary);
+//     --sidebar-primary-foreground: #ffffff;
+//     --sidebar-accent: #334155;
+//     --sidebar-accent-foreground: #f1f5f9;
+//     --sidebar-border: #334155;
+//     --sidebar-ring: var(--zyra-accent);
+// }

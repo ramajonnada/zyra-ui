@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ZyraButton, ZyraThemeService } from 'zyra-ng-ui';
 
@@ -9,10 +9,9 @@ import { ZyraButton, ZyraThemeService } from 'zyra-ng-ui';
 	styleUrl: './header.scss',
 })
 export class Header {
+	private _themeService: ZyraThemeService = inject(ZyraThemeService);
+	isDark = computed(() => this._themeService.isDark());
 
-	constructor(private _themeService: ZyraThemeService) {
-
-	}
 	$$toggleTheme() {
 		this._themeService.toggle();
 	}

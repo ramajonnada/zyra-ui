@@ -1,0 +1,16 @@
+<span [class]="hostClass()" [style]="hostStyle()" [attr.aria-label]="ariaLabel()">
+
+	@if (src() && !imgError()) {
+	<img [src]="src()" [alt]="name() || 'Avatar'" class="zyr-avatar__img" (error)="imgError.set(true)" />
+	} @else {
+	<span class="zyr-avatar__initials" aria-hidden="true">
+		{{ initials() }}
+	</span>
+	}
+
+	@if (online() !== null) {
+	<span class="zyr-avatar__status" [class.zyr-avatar__status--online]="online()"
+		[class.zyr-avatar__status--offline]="!online()" [attr.aria-label]="online() ? 'Online' : 'Offline'"></span>
+	}
+
+</span>

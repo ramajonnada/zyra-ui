@@ -1,0 +1,65 @@
+.zyr-spinner {
+	display: inline-block;
+	border-style: solid;
+	border-radius: 50%;
+	animation: zyr-spin 0.7s linear infinite;
+	flex-shrink: 0;
+
+	/* ── Border widths by size ────────────────────────────────── */
+	&--xs {
+		border-width: 1.5px;
+	}
+
+	&--sm {
+		border-width: 2px;
+	}
+
+	&--md {
+		border-width: 2.5px;
+	}
+
+	&--lg {
+		border-width: 3px;
+	}
+
+	/* ── Colors ──────────────────────────────────────────────── */
+	&--accent {
+		border-color: var(--zyr-accent-muted);
+		border-top-color: var(--zyr-accent);
+	}
+
+	&--accent-2 {
+		border-color: var(--zyr-accent-2-muted);
+		border-top-color: var(--zyr-accent-2);
+	}
+
+	&--white {
+		border-color: rgba(255, 255, 255, 0.25);
+		border-top-color: #ffffff;
+	}
+
+	&--current {
+		border-color: transparent;
+		border-top-color: currentColor;
+		opacity: 0.85;
+	}
+}
+
+// Screen-reader only utility
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@keyframes zyr-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}

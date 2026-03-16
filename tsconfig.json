@@ -40,10 +40,10 @@
 			"path": "./projects/zyra-ng-ui/tsconfig.spec.json"
 		},
 		{
-			"path": "./projects/library-test/tsconfig.app.json"
+			"path": "./projects/test-app/tsconfig.app.json"
 		},
 		{
-			"path": "./projects/library-test/tsconfig.spec.json"
+			"path": "./projects/test-app/tsconfig.spec.json"
 		}
 	]
 }

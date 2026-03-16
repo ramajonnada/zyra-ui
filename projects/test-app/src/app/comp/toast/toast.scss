@@ -1,0 +1,145 @@
+// projects/zyra-ui/src/app/pages/test/toast/toast.scss
+@use '../../shared/pg_shared' as *;
+
+// ── Controls actions ──────────────────────────────────────────
+.controls__actions {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+
+// ── Fire area (preview) ───────────────────────────────────────
+.fire-area {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	background: var(--zyr-bg-2);
+	border: 1px solid var(--zyr-border);
+	border-radius: var(--zyr-radius-md);
+	padding: 16px 20px;
+	width: 100%;
+	max-width: 480px;
+
+	&__icon {
+		font-size: 20px;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: var(--zyr-accent-muted);
+		border: 1px solid var(--zyr-accent-border);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		color: var(--zyr-accent);
+		font-weight: 700;
+	}
+
+	&__text {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+
+		strong {
+			font-size: 14px;
+			font-weight: 600;
+			color: var(--zyr-text);
+		}
+
+		span {
+			font-size: 12px;
+			color: var(--zyr-text-muted);
+		}
+	}
+}
+
+// ── Variants grid ─────────────────────────────────────────────
+.variants-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 12px;
+}
+
+.variant-card {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	cursor: pointer;
+
+	&__icon {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		font-size: 15px;
+		flex-shrink: 0;
+
+		&--success {
+			background: var(--zyr-success-muted);
+			color: var(--zyr-success);
+		}
+
+		&--error {
+			background: var(--zyr-danger-muted);
+			color: var(--zyr-danger);
+		}
+
+		&--warning {
+			background: var(--zyr-warning-muted);
+			color: var(--zyr-warning);
+		}
+
+		&--info {
+			background: var(--zyr-info-muted);
+			color: var(--zyr-info);
+		}
+	}
+
+	&__title {
+		font-weight: 600;
+		font-size: 13px;
+		color: var(--zyr-text);
+	}
+
+	&__desc {
+		font-size: 11.5px;
+		color: var(--zyr-text-muted);
+		margin-top: 2px;
+	}
+
+	// Push badge to the right
+	zyr-badge {
+		margin-left: auto;
+	}
+}
+
+// ── Scenarios grid ────────────────────────────────────────────
+.scenarios-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 12px;
+}
+
+.scenario {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+
+	&__title {
+		font-size: 13.5px;
+		font-weight: 600;
+		color: var(--zyr-text);
+		margin-bottom: 3px;
+	}
+
+	&__desc {
+		font-size: 12px;
+		color: var(--zyr-text-muted);
+	}
+}

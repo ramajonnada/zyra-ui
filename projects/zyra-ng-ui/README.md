@@ -17,11 +17,10 @@ Components are added incrementally. APIs may evolve.
 - Focused on real-world Angular apps
 
 ### Installation
+
 ```bash
 npm install zyra-ng-ui
 ```
-
-
 
 ## Getting Started
 
@@ -31,21 +30,20 @@ Import styles in your global styles file:
 @import 'zyra-ng-ui/styles';
 
 ```
+
 ### Usage
+
 Import component in required Angular module or standalone component:
 
-```typescript		
-import { ZyraButton } from 'zyra-ng-ui/button';	
+```typescript
+import { ZyraButton } from 'zyra-ng-ui/button';
 ```
 
 Use component in your templates:
 
 ```html
-<zyra-button variant="primary">
-  Click me
-</zyra-button>
+<zyra-button variant="primary"> Click me </zyra-button>
 ```
-
 
 ## Roadmap (Planned)
 
@@ -55,13 +53,11 @@ Use component in your templates:
 - Documentation improvements
 - Roadmap may evolve as the library grows.
 
-
 ## Documentation
 
 Documentation is being built alongside the library.
 
 👉 https://www.zyraui.dev
-
 
 ## Note
 

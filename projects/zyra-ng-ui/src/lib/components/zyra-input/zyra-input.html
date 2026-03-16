@@ -1,0 +1,15 @@
+<!-- projects/zyr-ng-ui/src/lib/input/zyr-input.html -->
+
+<input
+  [class]="'zyr-input zyr-input--' + size()"
+  [id]="inputId"
+  [type]="showPassword() ? 'text' : type()"
+  [placeholder]="placeholder()"
+  [disabled]="isDisabled()"
+  [readonly]="readonly()"
+  [attr.autocomplete]="type() === 'password' ? 'current-password' : type() === 'email' ? 'email' : null"
+  [ngModel]="innerValue()"
+  (ngModelChange)="onModelChange($event)"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+/>
