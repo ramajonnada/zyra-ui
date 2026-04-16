@@ -1,18 +1,17 @@
-<header class="">
-	<div class="zy-container">
-		<app-header></app-header>
-	</div>
-</header>
+<div class="app-shell">
 
-<main class="">
-	<div class="zy-container ">
-		<router-outlet></router-outlet>
-	</div>
-</main>
+	<app-header (toggleSidebar)="toggleSidebar()"></app-header>
 
-<footer class="zy-section">
-	<div class="zy-container">
-		<app-footer></app-footer>
-	</div>
-</footer>
+	<div class="app-body">
 
+		<app-sidebar [isOpen]="sidebarOpen()" (closeSidebar)="closeSidebar()"></app-sidebar>
+
+		<!-- Page shifts right when sidebar open (desktop) -->
+		<div class="app-page" [style.margin-left]="pageMargin()">
+			<app-main></app-main>
+			<app-footer></app-footer>
+		</div>
+
+	</div>
+</div>
+<zyra-toast-container></zyra-toast-container>

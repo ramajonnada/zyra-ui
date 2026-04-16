@@ -136,6 +136,14 @@
   &__stage { display: flex; align-items: flex-start; flex: 1; }
 }
 
+.preview-form-demo {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 // ── Status chips ───────────────────────────────────────────
 .status-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 

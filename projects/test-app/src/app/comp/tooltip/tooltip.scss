@@ -457,6 +457,10 @@
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
+
+	&--spaced {
+		margin-top: 12px;
+	}
 }
 
 .form-label {

@@ -1,0 +1,304 @@
+<div class="playground">
+
+	<!-- TOPBAR -->
+	<div class="topbar">
+		<div class="topbar__left">
+			<span class="topbar__title">ZyraButton</span>
+			<span class="topbar__tag">zyra-button</span>
+		</div>
+	</div>
+
+
+
+	<!-- ── 1. VARIANTS ──────────────────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>Variants</h2>
+			<code>variant="primary | secondary | ghost | outline | danger"</code>
+		</div>
+		<div class="section__body">
+			<div class="row">
+				<zyra-button variant="primary" (clicked)="log('primary clicked')">Primary</zyra-button>
+				<zyra-button variant="secondary" (clicked)="log('secondary clicked')">Secondary</zyra-button>
+				<zyra-button variant="ghost" (clicked)="log('ghost clicked')">Ghost</zyra-button>
+				<zyra-button variant="outline" (clicked)="log('outline clicked')">Outline</zyra-button>
+				<zyra-button variant="danger" (clicked)="log('danger clicked')">Danger</zyra-button>
+			</div>
+		</div>
+	</div>
+
+	<!-- ── 2. SIZES ─────────────────────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>Sizes</h2>
+			<code>size="sm | md | lg"</code>
+		</div>
+		<div class="section__body">
+			<div class="row">
+				<zyra-button variant="primary" size="sm">Small</zyra-button>
+				<zyra-button variant="primary" size="md">Medium</zyra-button>
+				<zyra-button variant="primary" size="lg">Large</zyra-button>
+			</div>
+			<div class="row">
+				<zyra-button variant="secondary" size="sm">Small</zyra-button>
+				<zyra-button variant="secondary" size="md">Medium</zyra-button>
+				<zyra-button variant="secondary" size="lg">Large</zyra-button>
+			</div>
+			<div class="row">
+				<zyra-button variant="ghost" size="sm">Small</zyra-button>
+				<zyra-button variant="ghost" size="md">Medium</zyra-button>
+				<zyra-button variant="ghost" size="lg">Large</zyra-button>
+			</div>
+		</div>
+	</div>
+
+	<!-- ── 3. LOADING STATE ─────────────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>Loading State</h2>
+			<code>[loading]="true | false"</code>
+		</div>
+		<div class="section__body">
+
+			<!-- Static loading -->
+			<div class="sub-label">Static</div>
+			<div class="row">
+				<zyra-button variant="primary" [loading]="true">Primary</zyra-button>
+				<zyra-button variant="secondary" [loading]="true">Secondary</zyra-button>
+				<zyra-button variant="ghost" [loading]="true">Ghost</zyra-button>
+				<zyra-button variant="outline" [loading]="true">Outline</zyra-button>
+				<zyra-button variant="danger" [loading]="true">Danger</zyra-button>
+			</div>
+
+			<!-- Interactive loading -->
+			<div class="sub-label">Interactive — click to trigger</div>
+			<div class="row">
+				<zyra-button variant="primary" [loading]="loadingMap['save']" (clicked)="triggerLoading('save', 2000)">
+					{{ loadingMap['save'] ? 'Saving...' : '💾 Save' }}
+				</zyra-button>
+
+				<zyra-button variant="secondary" [loading]="loadingMap['upload']"
+					(clicked)="triggerLoading('upload', 3000)">
+					{{ loadingMap['upload'] ? 'Uploading...' : '📤 Upload' }}
+				</zyra-button>
+
+				<zyra-button variant="danger" [loading]="loadingMap['delete']"
+					(clicked)="triggerLoading('delete', 1500)">
+					{{ loadingMap['delete'] ? 'Deleting...' : '🗑️ Delete' }}
+				</zyra-button>
+			</div>
+
+			<!-- Loading with different sizes -->
+			<div class="sub-label">Loading — all sizes</div>
+			<div class="row">
+				<zyra-button variant="primary" size="sm" [loading]="true">Small</zyra-button>
+				<zyra-button variant="primary" size="md" [loading]="false">Medium</zyra-button>
+				<zyra-button variant="primary" size="lg" [loading]="true">Large</zyra-button>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- ── 4. DISABLED STATE ────────────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>Disabled State</h2>
+			<code>[disabled]="true | false"</code>
+		</div>
+		<div class="section__body">
+			<div class="row">
+				<zyra-button variant="primary" [disabled]="true">Primary</zyra-button>
+				<zyra-button variant="secondary" [disabled]="true">Secondary</zyra-button>
+				<zyra-button variant="ghost" [disabled]="true">Ghost</zyra-button>
+				<zyra-button variant="outline" [disabled]="true">Outline</zyra-button>
+				<zyra-button variant="danger" [disabled]="true">Danger</zyra-button>
+			</div>
+
+			<!-- Toggle disabled -->
+			<div class="sub-label">Toggle disabled</div>
+			<div class="row">
+				<zyra-button variant="primary" [disabled]="isDisabled()" (clicked)="log('clicked while enabled')">
+					{{ isDisabled() ? 'I am Disabled' : 'I am Enabled' }}
+				</zyra-button>
+				<zyra-button variant="outline" size="sm" (clicked)="isDisabled.set(!isDisabled())">
+					{{ isDisabled() ? 'Enable' : 'Disable' }} button
+				</zyra-button>
+			</div>
+		</div>
+	</div>
+
+	<!-- ── 5. FULL WIDTH ────────────────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>Full Width</h2>
+			<code>[fullWidth]="true"</code>
+		</div>
+		<div class="section__body">
+			<zyra-button variant="primary" [fullWidth]="true">Full Width Primary</zyra-button>
+			<zyra-button variant="secondary" [fullWidth]="true">Full Width
+				Secondary</zyra-button>
+			<zyra-button variant="outline" [fullWidth]="true">Full Width Outline</zyra-button>
+		</div>
+	</div>
+
+	<!-- ── 6. ICONS ─────────────────────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>With Icons</h2>
+			<code>iconLeft="🔍"  iconRight="→"</code>
+		</div>
+		<div class="section__body">
+			<div class="row">
+				<zyra-button variant="primary" iconLeft="🚀">Launch</zyra-button>
+				<zyra-button variant="secondary" iconLeft="📁">Open File</zyra-button>
+				<zyra-button variant="outline" iconRight="→">Next Step</zyra-button>
+				<zyra-button variant="ghost" iconLeft="🔍" iconRight="↵">Search</zyra-button>
+				<zyra-button variant="danger" iconLeft="🗑️">Delete</zyra-button>
+			</div>
+		</div>
+	</div>
+
+	<!-- ── 7. BUTTON TYPE ───────────────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>Button Type</h2>
+			<code>type="button | submit | reset"</code>
+		</div>
+		<div class="section__body">
+			<div class="row">
+				<zyra-button variant="primary" type="button">type=button</zyra-button>
+				<zyra-button variant="primary" type="submit">type=submit</zyra-button>
+				<zyra-button variant="secondary" type="reset">type=reset</zyra-button>
+			</div>
+		</div>
+	</div>
+
+	<!-- ── 8. CLICK OUTPUT ──────────────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>Click Output</h2>
+			<code>(clicked)="handler($event)"</code>
+		</div>
+		<div class="section__body">
+			<div class="row">
+				<zyra-button variant="primary" (clicked)="onClicked($event)">
+					Click me — check log
+				</zyra-button>
+				<zyra-button variant="primary" [disabled]="true" (clicked)="onClicked($event)">
+					Disabled — won't fire
+				</zyra-button>
+				<zyra-button variant="primary" [loading]="true" (clicked)="onClicked($event)">
+					Loading — won't fire
+				</zyra-button>
+			</div>
+
+			<!-- Event log -->
+			<div class="event-log">
+				<div class="event-log__header">
+					<span>Event Log</span>
+					<button class="event-log__clear" (click)="eventLog.set([])">Clear</button>
+				</div>
+				<div class="event-log__body">
+					@if (eventLog().length === 0) {
+					<span class="event-log__empty">No events yet — click a button above</span>
+					}
+					@for (entry of eventLog(); track $index) {
+					<div class="event-log__entry">
+						<span class="event-log__time">{{ entry.time }}</span>
+						<span class="event-log__msg">{{ entry.msg }}</span>
+					</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ── 9. REAL WORLD EXAMPLES ───────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>Real World Examples</h2>
+			<code>Practical usage patterns</code>
+		</div>
+		<div class="section__body">
+
+			<!-- Form actions -->
+			<div class="sub-label">Form Actions</div>
+			<div class="row">
+				<zyra-button variant="primary" (clicked)="log('form submitted')">Submit Form</zyra-button>
+				<zyra-button variant="ghost" (clicked)="log('cancelled')">Cancel</zyra-button>
+			</div>
+
+			<!-- Confirm / Destructive -->
+			<div class="sub-label" >Confirm Destructive Action</div>
+			<div class="row">
+				<zyra-button variant="secondary" (clicked)="log('kept')">Keep it</zyra-button>
+				<zyra-button variant="danger" (clicked)="log('deleted')">Yes, Delete</zyra-button>
+			</div>
+
+			<!-- Async save -->
+			<div class="sub-label" >Async Save Pattern</div>
+			<div class="row">
+				<zyra-button variant="primary" [loading]="loadingMap['async']" [disabled]="saveDisabled()"
+					(clicked)="asyncSave()">
+					{{ loadingMap['async'] ? 'Saving...' : saveDisabled() ? 'Saved ✓' : 'Save Changes' }}
+				</zyra-button>
+				<zyra-button variant="ghost" size="sm" (clicked)="resetSave()">Reset</zyra-button>
+			</div>
+
+			<!-- Icon button group -->
+			<div class="sub-label">Action Group</div>
+			<div class="row">
+				<zyra-button variant="outline" size="sm" iconLeft="✏️" (clicked)="log('edit')">Edit</zyra-button>
+				<zyra-button variant="outline" size="sm" iconLeft="📋"
+					(clicked)="log('duplicate')">Duplicate</zyra-button>
+				<zyra-button variant="outline" size="sm" iconLeft="📤" (clicked)="log('share')">Share</zyra-button>
+				<zyra-button variant="danger" size="sm" iconLeft="🗑️" (clicked)="log('delete')">Delete</zyra-button>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- ── 10. ALL COMBINATIONS ─────────────────────────── -->
+	<div class="section">
+		<div class="section__head">
+			<h2>All Combinations</h2>
+			<code>variant × size grid</code>
+		</div>
+		<div class="section__body">
+			<table class="combo-table">
+				<thead>
+					<tr>
+						<th>Variant \ Size</th>
+						<th>sm</th>
+						<th>md</th>
+						<th>lg</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (v of variants; track v) {
+					<tr>
+						<td class="combo-table__label">{{ v }}</td>
+						@for (s of sizes; track s) {
+						<td>
+							<zyra-button [variant]="v" [size]="s">{{ v }}</zyra-button>
+						</td>
+						}
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<!-- pill-shaped rounded button -->
+		<!-- <zyra-button variant="primary" [rounded]="true">Get Started</zyra-button>
+
+		<zyra-button variant="outline" size="sm" [rounded]="true">Badge style</zyra-button>
+		<zyra-button variant="ghost" [rounded]="true" iconLeft="→">Arrow</zyra-button> -->
+	</div>
+
+</div>
+
+<zyra-toast-container />

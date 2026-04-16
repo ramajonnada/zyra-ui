@@ -11,12 +11,24 @@
 	font-size: 11px;
 	color: var(--zyr-text-dim);
 	font-family: var(--zyr-font-mono);
+
+	&--muted {
+		color: #888;
+	}
 }
 
 .dark-bg {
 	background: #1a1a2e;
 	border-radius: var(--zyr-radius-md);
 	padding: 24px;
+}
+
+.spinner-card--dark {
+	--zyr-card-bg: #1a1a2e;
+}
+
+.showcase-item--current {
+	color: #e91e63;
 }
 
 // ── Button demos ──────────────────────────────────────────────

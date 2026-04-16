@@ -1,1 +1,45 @@
-<app-home></app-home>
+<section class="components-page">
+    <header class="components-page__header">
+        <div class="components-page__copy">
+            <p class="components-page__eyebrow">Zyra UI</p>
+            <h1>UI Components</h1>
+            <p class="components-page__intro">
+                Explore the library components and open each one on its own dedicated route for
+                previews and usage examples.
+            </p>
+        </div>
+
+        <div class="components-page__meta">
+            <zyra-badge variant="info" size="md">{{ componentCount }} components</zyra-badge>
+            <zyra-badge variant="default" size="md">{{ categoryCount }} categories</zyra-badge>
+        </div>
+    </header>
+
+    <div class="components-page__grid">
+        @for (card of showcaseCards; track card.slug) {
+            <a class="component-card" [routerLink]="['/components', card.slug]">
+                <zyra-card variant="outlined" [clickable]="true" padding="lg">
+                    <div class="component-card__body">
+                        <div class="component-card__header">
+                            <div [class]="'component-card__icon component-card__icon--' + card.accent">
+                                <i [class]="card.icon" aria-hidden="true"></i>
+                            </div>
+
+                            <zyra-badge variant="default" size="md">{{ card.category }}</zyra-badge>
+                        </div>
+
+                        <div class="component-card__copy">
+                            <h3>{{ card.title }}</h3>
+                            <p>{{ card.description }}</p>
+                        </div>
+
+                        <div class="component-card__footer">
+                            <span>{{ card.selector }}</span>
+                            <span>Open showcase</span>
+                        </div>
+                    </div>
+                </zyra-card>
+            </a>
+        }
+    </div>
+</section>

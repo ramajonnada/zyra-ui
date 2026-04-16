@@ -10,8 +10,10 @@ export interface PostMeta {
 	readTime: string;
 	badge?: string;
 	tags?: string[];
+	keywords?: string[];
 	link?: string;
-	category: string;
+	imageUrl?: string;
+	category: string | string[];
 }
 
 @Injectable({ providedIn: 'root' })

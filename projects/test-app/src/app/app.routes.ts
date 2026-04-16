@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { TestButton } from './comp/test-button/test-button';
+import { Button } from './comp/button/button';
 import { CardTest } from './comp/card-test/card-test';
 import { Badge } from './comp/badge/badge';
 import { Tooltip } from './comp/tooltip/tooltip';
@@ -10,7 +10,7 @@ import { Avatar } from './comp/avatar/avatar';
 
 export const routes: Routes = [
 	{
-		path: 'button', component: TestButton
+		path: 'button', component: Button
 	},
 	{
 		path: 'card', component: CardTest
@@ -29,7 +29,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'toast', component: Toast
-	}, 
+	},
 	{
 		path: 'avatar', component: Avatar
 	}

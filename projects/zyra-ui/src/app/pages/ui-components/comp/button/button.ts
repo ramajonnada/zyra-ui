@@ -2,12 +2,13 @@ import { Component, inject, signal } from '@angular/core';
 import { ZyraButton, ZyraThemeService, ZyraToastContainer, ZyraToastService } from 'zyra-ng-ui';
 
 @Component({
-	selector: 'app-test-button',
+	selector: 'app-button',
+	standalone: true,
 	imports: [ZyraButton, ZyraToastContainer],
-	templateUrl: './test-button.html',
-	styleUrl: './test-button.scss',
+	templateUrl: './button.html',
+	styleUrl: './button.scss',
 })
-export class TestButton {
+export class Button {
 	toastService = inject(ZyraToastService);
 
 	// ── State ─────────────────────────────────────────────────

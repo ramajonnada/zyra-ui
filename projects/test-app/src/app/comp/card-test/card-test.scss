@@ -1,4 +1,4 @@
-// projects/zyra-ui/src/app/pages/test/card-playground.component.scss
+@use '../../shared/pg_shared.scss' as *;
 
 .pg {
 	min-height: 100vh;
@@ -62,7 +62,6 @@
 	}
 }
 
-// ── Controls ───────────────────────────────────────────────
 .controls {
 	border-right: 1px solid var(--zyr-border);
 	padding: 24px 20px;
@@ -103,6 +102,11 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 6px;
+
+	&--stack {
+		flex-direction: column;
+		align-items: flex-start;
+	}
 }
 
 .opt-btn {
@@ -126,6 +130,11 @@
 		border-color: var(--zyr-accent-border);
 		color: var(--zyr-accent);
 		font-weight: 600;
+	}
+
+	&--block {
+		width: 100%;
+		text-align: left;
 	}
 }
 
@@ -168,7 +177,7 @@
 		}
 	}
 
-	input:checked+&__track {
+	input:checked + &__track {
 		background: var(--zyr-accent-muted);
 		border-color: var(--zyr-accent-border);
 
@@ -205,7 +214,6 @@
 	}
 }
 
-// ── Preview area ───────────────────────────────────────────
 .preview-area {
 	display: flex;
 	flex-direction: column;
@@ -247,7 +255,89 @@
 	max-width: 420px;
 }
 
-// Card slots styling
+.preset-body {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.preset-copy,
+.card-slot-copy {
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.6;
+	color: var(--zyr-text-muted);
+}
+
+.card-slot-copy--compact {
+	line-height: 1.4;
+}
+
+.preset-image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	margin-bottom: 12px;
+	border-radius: var(--zyr-radius-sm);
+	background: var(--zyr-accent-muted);
+	font-size: 28px;
+	font-family: var(--zyr-font-mono);
+	letter-spacing: 0.08em;
+}
+
+.preset-stats {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+}
+
+.preset-stat-card {
+	padding: 12px;
+	border: 1px solid var(--zyr-border);
+	border-radius: var(--zyr-radius-sm);
+	background: var(--zyr-bg-3);
+}
+
+.preset-stat-value {
+	font-family: var(--zyr-font-display);
+	font-size: 20px;
+	font-weight: 800;
+	color: var(--zyr-text);
+
+	&--accent {
+		color: var(--zyr-accent);
+	}
+}
+
+.preset-stat-label {
+	margin-top: 2px;
+	font-size: 11px;
+	color: var(--zyr-text-muted);
+}
+
+.preset-empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
+	font-family: var(--zyr-font-mono);
+	font-size: 13px;
+	color: var(--zyr-text-dim);
+}
+
+.card-slot-title {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--zyr-text);
+}
+
+.card-slot-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+}
+
 .card-header-slot {
 	display: flex;
 	align-items: center;
@@ -290,7 +380,6 @@
 	}
 }
 
-// Code box
 .code-box {
 	border-bottom: 1px solid var(--zyr-border);
 	background: var(--zyr-code-bg);
@@ -338,7 +427,6 @@
 	}
 }
 
-// Log box
 .log-box {
 	flex: 1;
 
@@ -405,7 +493,6 @@
 	font-family: var(--zyr-font-mono);
 }
 
-// ── Grid sections ──────────────────────────────────────────
 .grid-section {
 	padding: 40px 32px;
 	border-top: 1px solid var(--zyr-border);
@@ -443,7 +530,6 @@
 	}
 }
 
-// ── Real world examples ────────────────────────────────────
 .realworld-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -478,6 +564,18 @@
 	}
 }
 
+.rw-stats-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	&__title {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--zyr-text);
+	}
+}
+
 .rw-stats {
 	&__value {
 		font-family: var(--zyr-font-display);
@@ -505,6 +603,10 @@
 		background: linear-gradient(90deg, var(--zyr-accent), var(--zyr-accent-2));
 		border-radius: var(--zyr-radius-full);
 		transition: width 0.8s var(--zyr-transition-spring);
+
+		&--72 {
+			width: 72%;
+		}
 	}
 
 	&__meta {

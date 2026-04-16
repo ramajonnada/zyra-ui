@@ -11,7 +11,7 @@
 
 html {
   scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+//   -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -28,10 +28,10 @@ body {
 }
 
 // ── Scrollbar ─────────────────────────────────────────────────
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--zyr-scrollbar-thumb) var(--zyr-scrollbar-track);
-}
+// * {
+//   scrollbar-width:inherit;
+//   scrollbar-color: var(--zyr-scrollbar-thumb) var(--zyr-scrollbar-track);
+// }
 
 *::-webkit-scrollbar {
   width: 5px;

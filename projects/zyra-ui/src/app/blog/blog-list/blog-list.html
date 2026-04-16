@@ -4,12 +4,39 @@
 </div>
 
 <h2>Articles</h2>
-@if (!posts.length) {
-<div>Loading posts...</div>
-}
 
+@if (loading()) {
+<div class="loading-state">Loading posts...</div>
+} @else if (error(); as errorMessage) {
+<div class="loading-state">{{ errorMessage }}</div>
+} @else if (!posts().length) {
+<div class="loading-state">No posts available yet.</div>
+} @else {
 <div class="zyra-blog-list">
-	@for (post of posts; track $index) {
-	<app-blog-card [blog]="post"></app-blog-card>
+	@for (post of posts(); track post.slug) {
+	<zyra-card variant="outlined" [hasHeader]="true" [hasFooter]="true" [clickable]="true" class="blog-card"
+		(cardClick)="openPost(post.slug)">
+		<div slot="header" class="card-header">
+			<span class="card-category">{{ categoryLabel(post.category) }}</span>
+			<span class="card-date">{{ post.date | date:'MMM dd, yyyy' }}</span>
+		</div>
+
+		<div class="blog-card__body">
+			<h3 class="blog-card__title">{{ post.title }}</h3>
+			<p class="blog-card__description">{{ post.description }}</p>
+		</div>
+
+		<div slot="footer" class="card-footer">
+			<!-- <div class="card-footer__meta">
+				
+			</div> -->
+			<span class="card-footer__meta">{{ post.readTime }}</span>
+			@if (post.tags?.length) {
+			<span class="card-footer__meta">{{ post.tags![0] }}</span>
+			}
+			<!-- <span class="card-footer__cta">Read More</span> -->
+		</div>
+	</zyra-card>
 	}
 </div>
+}

@@ -81,6 +81,7 @@
 	--zyr-radius-md: #{$zyr-radius-md};
 	--zyr-radius-lg: #{$zyr-radius-lg};
 	--zyr-radius-xl: #{$zyr-radius-xl};
+	--zyr-radius-2xl: #{$zyr-radius-2xl};
 	--zyr-radius-full: #{$zyr-radius-full};
 
 	// ── Spacing ──────────────────────────────────────────────────
@@ -135,6 +136,10 @@
 	--zyr-card-bg: #0F151C;
 	--zyr-card-border: var(--zyr-border);
 	--zyr-card-hover-border: var(--zyr-border-hover);
+	--zyr-card-section-bg: rgba(255, 255, 255, 0.02);
+	--zyr-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+	--zyr-card-elevated-shadow: 0 20px 42px rgba(0, 0, 0, 0.36);
+	--zyr-card-focus-ring: rgba(99, 210, 180, 0.16);
 
 	// Badge
 	--zyr-badge-default-bg: var(--zyr-bg-3);
@@ -155,6 +160,11 @@
 	// Scrollbar
 	--zyr-scrollbar-thumb: rgba(255, 255, 255, 0.08);
 	--zyr-scrollbar-track: transparent;
+
+
+	// layout --------------
+	--zyra-header-height: 80px;
+
 }
 
 
