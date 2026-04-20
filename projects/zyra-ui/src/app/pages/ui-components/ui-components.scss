@@ -15,9 +15,11 @@
 
 .components-page__header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     gap: 24px;
-    align-items: flex-end;
+    align-items: center;
+    text-align: center;
     padding-bottom: 24px;
     border-bottom: 1px solid var(--zyr-border);
 }
@@ -53,7 +55,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .components-page__grid {
@@ -167,12 +169,12 @@
 
 @media (max-width: 960px) {
     .components-page__header {
-        align-items: flex-start;
+        align-items: center;
         flex-direction: column;
     }
 
     .components-page__meta {
-        justify-content: flex-start;
+        justify-content: center;
     }
 
     .components-page__grid {

@@ -7,8 +7,6 @@
 			<span aria-hidden="true">&larr;</span>
 			<span>Back to blog</span>
 		</a>
-
-		<div class="eyebrow">Zyra Journal</div>
 		<div class="article-meta-row">
 			<span class="article-chip">{{ categoryLabel() }}</span>
 			@if (postDate) {
@@ -21,17 +19,9 @@
 
 		<h1 class="article-title">{{ postTitle || 'Loading article...' }}</h1>
 		<p class="article-description">{{ postDescription }}</p>
-
-		@if (postTags.length) {
-		<div class="tag-list">
-			@for (tag of postTags; track tag) {
-			<span class="tag">{{ tag }}</span>
-			}
-		</div>
-		}
 	</section>
 
-	@if (!loading && !error) {
+	<!-- @if (!loading && !error) {
 	<section class="article-summary">
 		<zyra-card variant="outlined" class="summary-card">
 			<div class="summary-grid">
@@ -85,13 +75,34 @@
 			<p class="info-card__copy">{{ error }}</p>
 		</zyra-card>
 	</section>
-	} @else {
+	} @else { -->
 	<section class="article-layout">
 		<zyra-card variant="elevated" class="article-shell">
 			<div class="zyra-markdown">
 				<markdown [data]="markdownContent"></markdown>
 			</div>
+
+			@if (postTags.length) {
+			<div class="tag-list">
+				@for (tag of postTags; track tag) {
+				<span class="tag">{{ tag }}</span>
+				}
+			</div>
+			}
+
+			<!-- <div class="blog-author-row">
+				<div class="blog-author-left">
+					<div class="blog-avatar">RJ</div>
+					<div class="blog-author-info">
+						<div class="blog-author-name">RAMA JONNADA</div>
+						<div class="blog-author-bio">
+							Senior Frontend Developer with 4+ years of experience in Angular and modern web
+							technologies.
+						</div>
+					</div>
+				</div>
+			</div> -->
 		</zyra-card>
 	</section>
-	}
+	<!-- } -->
 </div>

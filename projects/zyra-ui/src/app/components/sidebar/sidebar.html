@@ -1,11 +1,22 @@
 <!-- Mobile overlay -->
 <div class="sidebar-overlay" [class.visible]="overlayVisible()" (click)="onOverlayClick()"></div>
 
-<aside class="sidebar" [class.open]="isOpen()">
+<aside class="sidebar" [class.open]="isOpen()" [class.collapsed]="!isOpen()">
 
-	<div class="sidebar__section-label">Menu</div>
+	<div class="sidebar__top">
+		<div class="sidebar__section-label">Menu</div>
+		<button type="button" class="sidebar__toggle" (click)="onToggleSidebar()"
+			[attr.aria-label]="isOpen() ? 'Collapse sidebar' : 'Expand sidebar'">
+			@if (isOpen()) {
+			<span class="sidebar__toggle-icon" aria-hidden="true">&#8249;</span>
+			} @else {
+			<span class="sidebar__toggle-icon" aria-hidden="true">&#8250;</span>
+			}
+		</button>
+	</div>
 	<nav class="sidebar__nav">
-		<a *ngFor="let item of navItems" [routerLink]="item.route" routerLinkActive="active" class="sidebar__item">
+		<a *ngFor="let item of navItems" [routerLink]="item.route" routerLinkActive="active" class="sidebar__item"
+			[attr.aria-label]="item.label" [attr.title]="!isOpen() ? item.label : null">
 			<span class="sidebar__icon">{{ item.icon }}</span>
 			<span class="sidebar__label">{{ item.label }}</span>
 			@if (item.badge) {

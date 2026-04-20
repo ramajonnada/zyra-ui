@@ -31,7 +31,7 @@
 	padding: 20px 12px;
 	overflow-y: auto;
 	z-index: 99;
-	transition: transform 0.3s ease;
+	transition: width 0.3s ease, padding 0.3s ease, transform 0.3s ease;
 
 	@media (max-width: 768px) {
 		transform: translateX(-100%);
@@ -39,6 +39,42 @@
 		&.open {
 			transform: translateX(0);
 		}
+
+		&.collapsed {
+			width: 260px;
+			padding: 20px 12px;
+		}
+	}
+
+	@media (min-width: 769px) {
+		&.collapsed {
+			width: 84px;
+			padding-inline: 10px;
+
+			.sidebar__top {
+				justify-content: center;
+			}
+
+			.sidebar__section-label,
+			.sidebar__label,
+			.sidebar__badge {
+				display: none;
+			}
+
+			.sidebar__item {
+				justify-content: center;
+				padding-inline: 0;
+				gap: 0;
+			}
+		}
+	}
+
+	&__top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+		margin-bottom: 12px;
 	}
 
 	&__section-label {
@@ -48,7 +84,34 @@
 		text-transform: uppercase;
 		color: var(--zyr-text-muted);
 		padding: 0 12px;
-		margin-bottom: 6px;
+		margin-bottom: 0;
+		transition: opacity 0.2s ease;
+	}
+
+	&__toggle {
+		width: 32px;
+		height: 32px;
+		border: 1px solid var(--zyr-sidebar-border);
+		border-radius: 10px;
+		background: transparent;
+		color: var(--zyr-text-muted);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+		&:hover {
+			background: var(--zyr-bg-3);
+			color: var(--zyr-text);
+			border-color: var(--zyr-accent);
+		}
+	}
+
+	&__toggle-icon {
+		font-size: 1.2rem;
+		line-height: 1;
+		font-weight: 600;
 	}
 
 	&__nav {
@@ -96,6 +159,8 @@
 
 	&__label {
 		flex: 1;
+		white-space: nowrap;
+		transition: opacity 0.2s ease;
 	}
 
 	&__badge {
@@ -107,6 +172,7 @@
 		border-radius: 20px;
 		min-width: 20px;
 		text-align: center;
+		transition: opacity 0.2s ease;
 	}
 
 	&__divider {

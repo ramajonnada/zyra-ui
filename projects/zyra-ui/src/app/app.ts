@@ -13,18 +13,16 @@ import { Sidebar } from './components/sidebar/sidebar';
 	styleUrl: './app.scss',
 })
 export class App {
-	readonly sidebarOpen = signal(true);
+	readonly sidebarOpen = signal(false);
+	private readonly expandedSidebarWidth = '260px';
+	private readonly collapsedSidebarWidth = '84px';
 
 	// Computed: dynamic margin for page shift
 	readonly pageMargin = computed(() =>
-		this.sidebarOpen() ? '260px' : '0px'
+		this.sidebarOpen() ? this.expandedSidebarWidth : this.collapsedSidebarWidth
 	);
 
 	toggleSidebar() {
 		this.sidebarOpen.update(open => !open);
-	}
-
-	closeSidebar() {
-		this.sidebarOpen.set(false);
 	}
 }

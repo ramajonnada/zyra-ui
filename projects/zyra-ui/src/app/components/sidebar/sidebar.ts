@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, input, output, computed } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -17,13 +17,8 @@ export interface NavItem {
 	styleUrls: ['./sidebar.scss']
 })
 export class Sidebar {
-	// Signal-based input (Angular 17.1+)
 	readonly isOpen = input<boolean>(true);
-
-	// Signal-based output
-	readonly closeSidebar = output<void>();
-
-	// Computed class binding from signal input
+	readonly toggleSidebar = output<void>();
 	readonly overlayVisible = computed(() => this.isOpen());
 
 	readonly navItems: NavItem[] = [
@@ -42,8 +37,11 @@ export class Sidebar {
 	// 	initials: 'JD',
 	// };
 
-	onOverlayClick() {
-		this.closeSidebar.emit();
+	onToggleSidebar() {
+		this.toggleSidebar.emit();
 	}
 
+	onOverlayClick() {
+		this.toggleSidebar.emit();
+	}
 }

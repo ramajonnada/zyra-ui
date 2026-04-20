@@ -4,7 +4,7 @@
 
 	<div class="app-body">
 
-		<app-sidebar [isOpen]="sidebarOpen()" (closeSidebar)="closeSidebar()"></app-sidebar>
+		<app-sidebar [isOpen]="sidebarOpen()" (toggleSidebar)="toggleSidebar()"></app-sidebar>
 
 		<!-- Page shifts right when sidebar open (desktop) -->
 		<div class="app-page" [style.margin-left]="pageMargin()">

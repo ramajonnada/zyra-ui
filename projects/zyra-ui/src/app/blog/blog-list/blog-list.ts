@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { BlogService, PostMeta } from '../../services/blog-service';
 import { CommonModule } from '@angular/common';
 import { ZyraCard } from 'zyra-ng-ui';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
 	selector: 'app-blog-list',
-	imports: [ZyraCard, CommonModule],
+	imports: [ZyraCard, CommonModule, RouterLink],
 	templateUrl: './blog-list.html',
 	styleUrl: './blog-list.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,9 +15,18 @@ export class BlogList implements OnInit {
 	loading = signal(true);
 	error = signal<string | null>(null);
 	posts = signal<PostMeta[]>([]);
+	readonly articleCount = computed(() => this.posts().length);
+	readonly categoryCount = computed(() => {
+		const categories = new Set(
+			this.posts()
+				.map((post) => this.categoryLabel(post.category))
+				.filter(Boolean)
+		);
+
+		return categories.size;
+	});
 
 	private blogService: BlogService = inject(BlogService);
-	private router = inject(Router);
 
 	ngOnInit() {
 		this.blogService.getAllPosts().subscribe({
@@ -34,10 +43,6 @@ export class BlogList implements OnInit {
 				this.loading.set(false);
 			},
 		});
-	}
-
-	openPost(slug: string): void {
-		void this.router.navigate(['/blog', slug]);
 	}
 
 	categoryLabel(category: PostMeta['category']): string {
