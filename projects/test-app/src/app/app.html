@@ -9,9 +9,9 @@
 		<a routerLink="toast">Toast</a>
 		<a routerLink="inputcomp">Input & FormField</a>
 	</div>
-	<button class="theme-btn" (click)="$$toggle()">
+	<zyra-button  (click)="$$toggle()">
 		{{ isDark() ? '☀️' : '🌙' }}
-	</button>
+	</zyra-button>
 </nav>
 <main>
 	<router-outlet></router-outlet>

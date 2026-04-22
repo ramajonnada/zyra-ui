@@ -1,10 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
-import { ZyraButton, ZyraThemeService, ZyraToastContainer, ZyraToastService } from 'zyra-ng-ui';
+import { Component, computed, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ZyraButton, ZyraBadge, ZyraThemeService, ZyraToastContainer, ZyraToastService } from 'zyra-ng-ui';
 
 @Component({
 	selector: 'app-button',
 	standalone: true,
-	imports: [ZyraButton, ZyraToastContainer],
+	imports: [FormsModule, ZyraButton, ZyraBadge],
 	templateUrl: './button.html',
 	styleUrl: './button.scss',
 })
@@ -12,12 +13,14 @@ export class Button {
 	toastService = inject(ZyraToastService);
 
 	// ── State ─────────────────────────────────────────────────
+	selectedVariant = signal<'primary' | 'secondary' | 'ghost' | 'outline' | 'danger'>('primary');
+	selectedSize = signal<'sm' | 'md' | 'lg'>('md');
+	isLoading = signal(false);
 	isDisabled = signal(false);
-	saveDisabled = signal(false);
-	eventLog = signal<{ time: string; msg: string }[]>([]);
-	loadingMap: Record<string, boolean> = {
-		save: false, upload: false, delete: false, async: false,
-	};
+	isFullWidth = signal(false);
+	iconLeft = signal('');
+	iconRight = signal('');
+	buttonLabel = 'Button';
 
 	// ── Data for combo table ──────────────────────────────────
 	variants = ['primary', 'secondary', 'ghost', 'outline', 'danger'] as const;
@@ -25,34 +28,16 @@ export class Button {
 
 	// ── Methods ───────────────────────────────────────────────
 	log(msg: string): void {
-		const time = new Date().toLocaleTimeString();
-		this.eventLog.update(log => [{ time, msg }, ...log].slice(0, 8));
 		this.toastService.info(msg);
 	}
 
-	onClicked(event: MouseEvent): void {
-		this.log(`clicked — x:${event.clientX} y:${event.clientY}`);
+	copyCode(): void {
+		const code = `<zyra-button variant="${this.selectedVariant()}" size="${this.selectedSize()}"${this.isLoading() ? ' [loading]="true"' : ''}${this.isDisabled() ? ' [disabled]="true"' : ''}${this.isFullWidth() ? ' [fullWidth]="true"' : ''}${this.iconLeft() ? ` iconLeft="${this.iconLeft()}"` : ''}${this.iconRight() ? ` iconRight="${this.iconRight()}"` : ''}>${this.buttonLabel}</zyra-button>`;
+		navigator.clipboard.writeText(code);
+		this.toastService.success('Code copied to clipboard!');
 	}
 
-	triggerLoading(key: string, duration: number): void {
-		this.loadingMap[key] = true;
-		setTimeout(() => {
-			this.loadingMap[key] = false;
-			this.toastService.success(`${key} complete!`);
-		}, duration);
-	}
-
-	asyncSave(): void {
-		this.loadingMap['async'] = true;
-		setTimeout(() => {
-			this.loadingMap['async'] = false;
-			this.saveDisabled.set(true);
-			this.toastService.success('Saved!', { description: 'Changes applied successfully.' });
-		}, 2000);
-	}
-
-	resetSave(): void {
-		this.saveDisabled.set(false);
-		this.loadingMap['async'] = false;
-	}
+	generatedCode = computed(() => {
+		return `<zyra-button variant="${this.selectedVariant()}" size="${this.selectedSize()}"${this.isLoading() ? ' [loading]="true"' : ''}${this.isDisabled() ? ' [disabled]="true"' : ''}${this.isFullWidth() ? ' [fullWidth]="true"' : ''}${this.iconLeft() ? ` iconLeft="${this.iconLeft()}"` : ''}${this.iconRight() ? ` iconRight="${this.iconRight()}"` : ''}>${this.buttonLabel}</zyra-button>`;
+	});
 }

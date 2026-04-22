@@ -27,7 +27,8 @@
 				<label class="control-label">variant</label>
 				<div class="control-options">
 					@for (v of variants; track v) {
-					<button class="opt-btn" [class.active]="variant() === v" (click)="variant.set(v)">{{ v }}</button>
+					<zyra-button variant="outline" [class.active]="variant() === v" (clicked)="variant.set(v)">{{ v
+						}}</zyra-button>
 					}
 				</div>
 			</div>
@@ -48,8 +49,8 @@
 				<label class="control-label">duration (ms)</label>
 				<div class="control-options">
 					@for (d of durations; track d) {
-					<button class="opt-btn" [class.active]="duration() === d && !persistent()"
-						(click)="duration.set(d); persistent.set(false)">{{ d / 1000 }}s</button>
+					<zyra-button variant="outline" [class.active]="duration() === d && !persistent()"
+						(clicked)="duration.set(d); persistent.set(false)">{{ d / 1000 }}s</zyra-button>
 					}
 				</div>
 			</div>

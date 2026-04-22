@@ -33,4 +33,9 @@ export class Header {
 	onToggle() {
 		this.toggleSidebar.emit();
 	}
+
+
+	openGithub(){
+		
+	}
 }

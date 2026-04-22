@@ -24,7 +24,8 @@
 				<label class="control-label">size</label>
 				<div class="control-options">
 					@for (s of sizes; track s) {
-					<button class="opt-btn" [class.active]="size() === s" (click)="size.set(s)">{{ s }}</button>
+					<zyra-button variant="outline" [class.active]="size() === s" (clicked)="size.set(s)">{{ s
+						}}</zyra-button>
 					}
 				</div>
 			</div>
@@ -33,7 +34,8 @@
 				<label class="control-label">color</label>
 				<div class="control-options">
 					@for (c of colors; track c) {
-					<button class="opt-btn" [class.active]="color() === c" (click)="color.set(c)">{{ c }}</button>
+					<zyra-button variant="outline" [class.active]="color() === c" (clicked)="color.set(c)">{{ c
+						}}</zyra-button>
 					}
 				</div>
 			</div>

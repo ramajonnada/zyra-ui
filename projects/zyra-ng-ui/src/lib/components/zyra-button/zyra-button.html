@@ -4,16 +4,14 @@
 	<zyra-spinner [size]="spinnerSize()" [color]="spinnerColor()" />
 	}
 	@if (iconLeft() && !loading()) {
-	<span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
-		{{ iconLeft() }}
+	<span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true" [innerHTML]="iconLeft()">
 	</span>
 	}
 	<span class="zyr-btn__label">
 		<ng-content />
 	</span>
 	@if (iconRight()) {
-	<span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
-		{{ iconRight() }}
+	<span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true" [innerHTML]="iconRight()">
 	</span>
 	}
 </button>

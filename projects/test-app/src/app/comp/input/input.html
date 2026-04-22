@@ -24,7 +24,7 @@
 				<label class="control-label">type</label>
 				<div class="control-options">
 					@for (t of types; track t) {
-					<button class="opt-btn" [class.active]="type() === t" (click)="type.set(t)">{{ t }}</button>
+					<zyra-button [class.active]="type() === t" (click)="type.set(t)">{{ t }}</zyra-button>
 					}
 				</div>
 			</div>
@@ -33,8 +33,8 @@
 				<label class="control-label">appearance</label>
 				<div class="control-options">
 					@for (a of appearances; track a) {
-					<button class="opt-btn" [class.active]="appearance() === a" (click)="appearance.set(a)">{{ a
-						}}</button>
+					<zyra-button [class.active]="appearance() === a" (click)="appearance.set(a)">{{ a
+						}}</zyra-button>
 					}
 				</div>
 			</div>
@@ -43,7 +43,7 @@
 				<label class="control-label">size</label>
 				<div class="control-options">
 					@for (s of sizes; track s) {
-					<button class="opt-btn" [class.active]="size() === s" (click)="size.set(s)">{{ s }}</button>
+					<zyra-button [class.active]="size() === s" (click)="size.set(s)">{{ s }}</zyra-button>
 					}
 				</div>
 			</div>
@@ -52,8 +52,8 @@
 				<label class="control-label">prefixIcon</label>
 				<div class="control-options">
 					@for (icon of icons; track icon) {
-					<button class="opt-btn" [class.active]="prefixIcon() === icon"
-						(click)="prefixIcon.set(prefixIcon() === icon ? '' : icon)">{{ icon }}</button>
+					<zyra-button [class.active]="prefixIcon() === icon"
+						(click)="prefixIcon.set(prefixIcon() === icon ? '' : icon)">{{ icon }}</zyra-button>
 					}
 				</div>
 			</div>
@@ -62,8 +62,8 @@
 				<label class="control-label">suffixIcon</label>
 				<div class="control-options">
 					@for (icon of icons; track icon) {
-					<button class="opt-btn" [class.active]="suffixIcon() === icon"
-						(click)="suffixIcon.set(suffixIcon() === icon ? '' : icon)">{{ icon }}</button>
+					<zyra-button [class.active]="suffixIcon() === icon"
+						(click)="suffixIcon.set(suffixIcon() === icon ? '' : icon)">{{ icon }}</zyra-button>
 					}
 				</div>
 			</div>
@@ -82,8 +82,8 @@
 				<label class="control-label">maxLength</label>
 				<div class="control-options">
 					@for (n of [null, 20, 50, 100]; track n) {
-					<button class="opt-btn" [class.active]="maxLen() === n" (click)="maxLen.set(n)">{{ n ?? 'off'
-						}}</button>
+					<zyra-button [class.active]="maxLen() === n" (click)="maxLen.set(n)">{{ n ?? 'off'
+						}}</zyra-button>
 					}
 				</div>
 			</div>

@@ -15,7 +15,7 @@
 				<label class="control-label">variant</label>
 				<div class="control-options">
 					@for (v of variants; track v) {
-					<button class="opt-btn" [class.active]="variant() === v" (click)="variant.set(v)">
+					<button [class.active]="variant() === v" (click)="variant.set(v)">
 						{{ v }}
 					</button>
 					}
@@ -26,7 +26,7 @@
 				<label class="control-label">padding</label>
 				<div class="control-options">
 					@for (p of paddings; track p) {
-					<button class="opt-btn" [class.active]="padding() === p" (click)="padding.set(p)">
+					<button [class.active]="padding() === p" (click)="padding.set(p)">
 						{{ p }}
 					</button>
 					}

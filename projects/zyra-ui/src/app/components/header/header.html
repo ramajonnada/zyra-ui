@@ -68,7 +68,7 @@
 	<button class="header__burger" (click)="onToggle()" aria-label="Toggle sidebar">
 		<span></span><span></span><span></span>
 	</button>
-	<a class="header__logo">
+	<a class="header__logo" routerLink="/">
 		<span class="header__logo-mark"></span>
 		<span class="header__logo-text">Zyra UI</span>
 	</a>
@@ -88,8 +88,10 @@
 		[attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'">
 		{{ isDark() ? '☀️' : '🌙' }}
 	</zyra-button>
-	<zyra-button variant="secondary" aria-label="View source on GitHub">
-		<i class="fa-brands fa-github"></i>
+	<zyra-button variant="secondary" size="sm" aria-label="View source on GitHub">
+		<a href="https://github.com/ramajonnada/zyra-ui" rel="">
+			<i class="fa-brands fa-github"></i>
+		</a>
 	</zyra-button>
 	<zyra-button variant="primary" size="sm" routerLink="/components">Get Started</zyra-button>
 

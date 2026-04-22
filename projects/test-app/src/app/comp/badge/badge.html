@@ -19,7 +19,7 @@
 				<label class="control-label">variant</label>
 				<div class="control-options">
 					@for (v of variants; track v) {
-					<button class="opt-btn" [class.active]="variant() === v" (click)="variant.set(v)">{{ v }}</button>
+					<zyra-button variant="secondary" [class.active]="variant() === v" (click)="variant.set(v)">{{ v }}</zyra-button>
 					}
 				</div>
 			</div>
@@ -29,7 +29,8 @@
 				<label class="control-label">size</label>
 				<div class="control-options">
 					@for (s of sizes; track s) {
-					<button class="opt-btn" [class.active]="size() === s" (click)="size.set(s)">{{ s }}</button>
+					<zyra-button variant="secondary" [class.active]="size() === s" (click)="size.set(s)">{{ s
+						}}</zyra-button>
 					}
 				</div>
 			</div>
@@ -53,7 +54,7 @@
 			</div>
 
 			<!-- reset -->
-			<button class="reset-btn" (click)="reset()">↺ Reset all</button>
+			<zyra-button variant="secondary" class="reset-btn" (click)="reset()">↺ Reset all</zyra-button>
 		</div>
 
 		<!-- ── RIGHT: PREVIEW + CODE ──────────────────────── -->
@@ -71,9 +72,9 @@
 			<div class="code-box">
 				<div class="code-box__header">
 					<span>Generated Code</span>
-					<button class="copy-btn" (click)="copy()">
+					<zyra-button variant="secondary" size="sm" (click)="copy()">
 						{{ copied() ? '✓ Copied!' : 'Copy' }}
-					</button>
+					</zyra-button>
 				</div>
 				<pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
 			</div>
@@ -201,7 +202,7 @@
 				<div class="rw-card__title">Component Labels</div>
 				<div class="rw-card__body">
 					<div class="rw-item">
-						<span class="rw-item__name">ZyraButton</span>
+						<span class="rw-item__name">ZyraZyra-button</span>
 						<div class="rw-item__tags">
 							<zyra-badge variant="success" size="sm">stable</zyra-badge>
 							<zyra-badge variant="info" size="sm">signals</zyra-badge>

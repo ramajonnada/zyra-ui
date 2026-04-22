@@ -26,7 +26,8 @@
 				<label class="control-label">name</label>
 				<div class="control-options">
 					@for (n of sampleNames; track n) {
-					<button class="opt-btn" [class.active]="name() === n" (click)="name.set(n)">{{ n }}</button>
+					<zyra-button variant="ghost" [class.active]="name() === n" (click)="name.set(n)">{{ n
+						}}</zyra-button>
 					}
 				</div>
 			</div>
@@ -35,11 +36,11 @@
 			<div class="control-group">
 				<label class="control-label">src (image)</label>
 				<div class="control-options">
-					<button class="opt-btn" [class.active]="src() === ''" (click)="src.set('')">none</button>
+					<zyra-button variant="ghost" [class.active]="src() === ''" (click)="src.set('')">none</zyra-button>
 					@for (img of sampleImages; track img) {
-					<button class="opt-btn" [class.active]="src() === img" (click)="src.set(img)">
+					<zyra-button variant="ghost" [class.active]="src() === img" (click)="src.set(img)">
 						{{ img.includes('pravatar') ? 'img-' + img.slice(-1) : 'broken' }}
-					</button>
+					</zyra-button>
 					}
 				</div>
 			</div>
@@ -49,7 +50,8 @@
 				<label class="control-label">size</label>
 				<div class="control-options">
 					@for (s of sizes; track s) {
-					<button class="opt-btn" [class.active]="size() === s" (click)="size.set(s)">{{ s }}</button>
+					<zyra-button variant="ghost" [class.active]="size() === s" (click)="size.set(s)">{{ s
+						}}</zyra-button>
 					}
 				</div>
 			</div>
@@ -59,7 +61,7 @@
 				<label class="control-label">variant</label>
 				<div class="control-options">
 					@for (v of variants; track v) {
-					<button class="opt-btn" [class.active]="variant() === v" (click)="variant.set(v)">{{ v }}</button>
+					<zyra-button [class.active]="variant() === v" (click)="variant.set(v)">{{ v }}</zyra-button>
 					}
 				</div>
 			</div>
@@ -69,9 +71,9 @@
 				<label class="control-label">online</label>
 				<div class="control-options">
 					@for (o of onlineOptions; track o.label) {
-					<button class="opt-btn" [class.active]="online() === o.value" (click)="online.set(o.value)">
+					<zyra-button variant="ghost" [class.active]="online() === o.value" (click)="online.set(o.value)">
 						{{ o.label }}
-					</button>
+					</zyra-button>
 					}
 				</div>
 			</div>

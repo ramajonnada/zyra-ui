@@ -1,10 +1,10 @@
 import { Component, computed, inject, Signal, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { ZyraThemeService } from 'zyra-ng-ui';
+import { ZyraButton, ZyraThemeService } from 'zyra-ng-ui';
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterLink, RouterOutlet],
+	imports: [RouterLink, RouterOutlet,ZyraButton],
 	templateUrl: './app.html',
 	styleUrl: './app.scss'
 })

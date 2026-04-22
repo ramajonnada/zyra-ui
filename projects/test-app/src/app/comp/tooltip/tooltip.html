@@ -1,323 +1,304 @@
- <div class="pg">
+<div class="pg">
 
-      <!-- HEADER -->
-      <div class="pg__header">
-        <div>
-          <h1>zyra-tooltip <span>Playground</span></h1>
-          <p>Hover over elements to see tooltips. Control every input live.</p>
-        </div>
-      </div>
+	<!-- HEADER -->
+	<div class="pg__header">
+		<div>
+			<h1>zyra-tooltip <span>Playground</span></h1>
+			<p>Hover over elements to see tooltips. Control every input live.</p>
+		</div>
+	</div>
 
-      <div class="pg__body">
+	<div class="pg__body">
 
-        <!-- ── LEFT: CONTROLS ──────────────────────────────── -->
-        <div class="controls">
-          <div class="controls__title">Controls</div>
+		<!-- ── LEFT: CONTROLS ──────────────────────────────── -->
+		<div class="controls">
+			<div class="controls__title">Controls</div>
 
-          <!-- position -->
-          <div class="control-group">
-            <label class="control-label">position</label>
-            <div class="control-options">
-              @for (p of positions; track p) {
-                <button
-                  class="opt-btn"
-                  [class.active]="position() === p"
-                  (click)="position.set(p)"
-                >{{ p }}</button>
-              }
-            </div>
-          </div>
+			<!-- position -->
+			<div class="control-group">
+				<label class="control-label">position</label>
+				<div class="control-options">
+					@for (p of positions; track p) {
+					<zyra-button [class.active]="position() === p" (click)="position.set(p)">{{ p }}</zyra-button>
+					}
+				</div>
+			</div>
 
-          <!-- tooltip text -->
-          <div class="control-group">
-            <label class="control-label">text</label>
-            <input
-              class="control-input"
-              type="text"
-              [(ngModel)]="tooltipText"
-              placeholder="Tooltip text..."
-            />
-          </div>
+			<!-- tooltip text -->
+			<div class="control-group">
+				<label class="control-label">text</label>
+				<input class="control-input" type="text" [(ngModel)]="tooltipText" placeholder="Tooltip text..." />
+			</div>
 
-          <!-- max width -->
-          <div class="control-group">
-            <label class="control-label">maxWidth</label>
-            <div class="control-options">
-              @for (w of maxWidths; track w) {
-                <button
-                  class="opt-btn"
-                  [class.active]="maxWidth() === w"
-                  (click)="maxWidth.set(w)"
-                >{{ w }}</button>
-              }
-            </div>
-          </div>
+			<!-- max width -->
+			<div class="control-group">
+				<label class="control-label">maxWidth</label>
+				<div class="control-options">
+					@for (w of maxWidths; track w) {
+					<zyra-button [class.active]="maxWidth() === w" (click)="maxWidth.set(w)">{{ w }}</zyra-button>
+					}
+				</div>
+			</div>
 
-          <!-- trigger type -->
-          <div class="control-group">
-            <label class="control-label">trigger element</label>
-            <div class="control-options">
-              @for (t of triggerTypes; track t) {
-                <button
-                  class="opt-btn"
-                  [class.active]="triggerType() === t"
-                  (click)="triggerType.set(t)"
-                >{{ t }}</button>
-              }
-            </div>
-          </div>
+			<!-- trigger type -->
+			<div class="control-group">
+				<label class="control-label">trigger element</label>
+				<div class="control-options">
+					@for (t of triggerTypes; track t) {
+					<zyra-button [class.active]="triggerType() === t" (click)="triggerType.set(t)">{{ t }}</zyra-button>
+					}
+				</div>
+			</div>
 
-          <!-- reset -->
-          <button class="reset-btn" (click)="reset()">↺ Reset all</button>
+			<!-- reset -->
+			<zyra-button class="reset-btn" (click)="reset()">↺ Reset all</zyra-button>
 
-          <!-- hint -->
-          <div class="controls__hint">
-            💡 Hover over the element in the preview to trigger the tooltip
-          </div>
-        </div>
+			<!-- hint -->
+			<div class="controls__hint">
+				💡 Hover over the element in the preview to trigger the tooltip
+			</div>
+		</div>
 
-        <!-- ── RIGHT: PREVIEW + CODE ──────────────────────── -->
-        <div class="preview-area">
+		<!-- ── RIGHT: PREVIEW + CODE ──────────────────────── -->
+		<div class="preview-area">
 
-          <!-- Live preview -->
-          <div class="preview-box">
-            <div class="preview-box__label">Preview — hover the element</div>
-            <div class="preview-box__stage">
-              <zyra-tooltip
-                [text]="tooltipText"
-                [position]="position()"
-                [maxWidth]="maxWidth()"
-              >
-                <!-- trigger element changes based on selection -->
-                @switch (triggerType()) {
-                  @case ('Button') {
-                    <zyra-button variant="primary">Hover me</zyra-button>
-                  }
-                  @case ('Icon') {
-                    <button class="icon-trigger">ℹ️</button>
-                  }
-                  @case ('Text') {
-                    <span class="text-trigger">Hover this text</span>
-                  }
-                  @case ('Badge') {
-                    <zyra-badge variant="info">Hover me</zyra-badge>
-                  }
-                  @case ('Avatar') {
-                    <div class="avatar-trigger">AK</div>
-                  }
-                }
-              </zyra-tooltip>
-            </div>
-          </div>
+			<!-- Live preview -->
+			<div class="preview-box">
+				<div class="preview-box__label">Preview — hover the element</div>
+				<div class="preview-box__stage">
+					<zyra-tooltip [text]="tooltipText" [position]="position()" [maxWidth]="maxWidth()">
+						<!-- trigger element changes based on selection -->
+						@switch (triggerType()) {
+						@case ('Button') {
+						<zyra-button variant="primary">Hover me</zyra-button>
+						}
+						@case ('Icon') {
+						<zyra-button class="icon-trigger">ℹ️</zyra-button>
+						}
+						@case ('Text') {
+						<span class="text-trigger">Hover this text</span>
+						}
+						@case ('Badge') {
+						<zyra-badge variant="info">Hover me</zyra-badge>
+						}
+						@case ('Avatar') {
+						<div class="avatar-trigger">AK</div>
+						}
+						}
+					</zyra-tooltip>
+				</div>
+			</div>
 
-          <!-- Generated code -->
-          <div class="code-box">
-            <div class="code-box__header">
-              <span>Generated Code</span>
-              <button class="copy-btn" (click)="copy()">
-                {{ copied() ? '✓ Copied!' : 'Copy' }}
-              </button>
-            </div>
-            <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
-          </div>
+			<!-- Generated code -->
+			<div class="code-box">
+				<div class="code-box__header">
+					<span>Generated Code</span>
+					<zyra-button class="copy-btn" (click)="copy()">
+						{{ copied() ? '✓ Copied!' : 'Copy' }}
+					</zyra-button>
+				</div>
+				<pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
+			</div>
 
-        </div>
-      </div>
+		</div>
+	</div>
 
-      <!-- ── ALL POSITIONS ──────────────────────────────── -->
-      <div class="grid-section">
-        <div class="grid-section__title">All Positions</div>
-        <div class="positions-grid">
+	<!-- ── ALL POSITIONS ──────────────────────────────── -->
+	<div class="grid-section">
+		<div class="grid-section__title">All Positions</div>
+		<div class="positions-grid">
 
-          @for (p of positions; track p) {
-            <div class="position-cell">
-              <div class="position-cell__label">position="{{ p }}"</div>
-              <div class="position-cell__stage">
-                <zyra-tooltip [text]="'Tooltip on ' + p" [position]="p">
-                  <zyra-button variant="secondary" size="sm">{{ p }}</zyra-button>
-                </zyra-tooltip>
-              </div>
-            </div>
-          }
+			@for (p of positions; track p) {
+			<div class="position-cell">
+				<div class="position-cell__label">position="{{ p }}"</div>
+				<div class="position-cell__stage">
+					<zyra-tooltip [text]="'Tooltip on ' + p" [position]="p">
+						<zyra-button variant="secondary" size="sm">{{ p }}</zyra-button>
+					</zyra-tooltip>
+				</div>
+			</div>
+			}
 
-        </div>
-      </div>
+		</div>
+	</div>
 
-      <!-- ── DIFFERENT TRIGGERS ─────────────────────────── -->
-      <div class="grid-section">
-        <div class="grid-section__title">Different Trigger Elements</div>
-        <div class="triggers-grid">
+	<!-- ── DIFFERENT TRIGGERS ─────────────────────────── -->
+	<div class="grid-section">
+		<div class="grid-section__title">Different Trigger Elements</div>
+		<div class="triggers-grid">
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">Button</div>
-            <zyra-tooltip text="I'm a button tooltip" position="top">
-              <zyra-button variant="primary" size="sm">Hover me</zyra-button>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">Button</div>
+				<zyra-tooltip text="I'm a button tooltip" position="top">
+					<zyra-button variant="primary" size="sm">Hover me</zyra-button>
+				</zyra-tooltip>
+			</div>
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">Icon</div>
-            <zyra-tooltip text="More information here" position="top">
-              <button class="icon-trigger">ℹ️</button>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">Icon</div>
+				<zyra-tooltip text="More information here" position="top">
+					<zyra-button class="icon-trigger">ℹ️</zyra-button>
+				</zyra-tooltip>
+			</div>
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">Text</div>
-            <zyra-tooltip text="This is an underlined hint" position="top">
-              <span class="text-trigger">Hover this text</span>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">Text</div>
+				<zyra-tooltip text="This is an underlined hint" position="top">
+					<span class="text-trigger">Hover this text</span>
+				</zyra-tooltip>
+			</div>
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">Badge</div>
-            <zyra-tooltip text="Signal-based component" position="top">
-              <zyra-badge variant="info">Signals</zyra-badge>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">Badge</div>
+				<zyra-tooltip text="Signal-based component" position="top">
+					<zyra-badge variant="info">Signals</zyra-badge>
+				</zyra-tooltip>
+			</div>
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">Avatar</div>
-            <zyra-tooltip text="Arjun Kumar — Frontend Dev" position="top">
-              <div class="avatar-trigger">AK</div>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">Avatar</div>
+				<zyra-tooltip text="Arjun Kumar — Frontend Dev" position="top">
+					<div class="avatar-trigger">AK</div>
+				</zyra-tooltip>
+			</div>
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">Disabled btn</div>
-            <zyra-tooltip text="This action is disabled" position="top">
-              <zyra-button variant="secondary" size="sm" [disabled]="true">
-                Disabled
-              </zyra-button>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">Disabled btn</div>
+				<zyra-tooltip text="This action is disabled" position="top">
+					<zyra-button variant="secondary" size="sm" [disabled]="true">
+						Disabled
+					</zyra-button>
+				</zyra-tooltip>
+			</div>
 
-        </div>
-      </div>
+		</div>
+	</div>
 
-      <!-- ── LONG TEXT ──────────────────────────────────── -->
-      <div class="grid-section">
-        <div class="grid-section__title">Text Length & Max Width</div>
-        <div class="triggers-grid">
+	<!-- ── LONG TEXT ──────────────────────────────────── -->
+	<div class="grid-section">
+		<div class="grid-section__title">Text Length & Max Width</div>
+		<div class="triggers-grid">
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">Short text</div>
-            <zyra-tooltip text="Quick tip" position="top" maxWidth="500px">
-              <zyra-button variant="outline" size="sm">Short</zyra-button>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">Short text</div>
+				<zyra-tooltip text="Quick tip" position="top" maxWidth="500px">
+					<zyra-button variant="outline" size="sm">Short</zyra-button>
+				</zyra-tooltip>
+			</div>
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">Medium text</div>
-            <zyra-tooltip text="This is a medium length tooltip with some detail" position="top" maxWidth="200px">
-              <zyra-button variant="outline" size="sm">Medium</zyra-button>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">Medium text</div>
+				<zyra-tooltip text="This is a medium length tooltip with some detail" position="top" maxWidth="200px">
+					<zyra-button variant="outline" size="sm">Medium</zyra-button>
+				</zyra-tooltip>
+			</div>
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">Long text</div>
-            <zyra-tooltip text="This is a longer tooltip that wraps across multiple lines to show the max width behavior in action" position="top" maxWidth="240px">
-              <zyra-button variant="outline" size="sm">Long</zyra-button>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">Long text</div>
+				<zyra-tooltip
+					text="This is a longer tooltip that wraps across multiple lines to show the max width behavior in action"
+					position="top" maxWidth="240px">
+					<zyra-button variant="outline" size="sm">Long</zyra-button>
+				</zyra-tooltip>
+			</div>
 
-          <div class="trigger-cell">
-            <div class="trigger-cell__label">maxWidth="120px"</div>
-            <zyra-tooltip text="Narrow tooltip that wraps early" position="top" maxWidth="120px">
-              <zyra-button variant="outline" size="sm">Narrow</zyra-button>
-            </zyra-tooltip>
-          </div>
+			<div class="trigger-cell">
+				<div class="trigger-cell__label">maxWidth="120px"</div>
+				<zyra-tooltip text="Narrow tooltip that wraps early" position="top" maxWidth="120px">
+					<zyra-button variant="outline" size="sm">Narrow</zyra-button>
+				</zyra-tooltip>
+			</div>
 
-        </div>
-      </div>
+		</div>
+	</div>
 
-      <!-- ── REAL WORLD ─────────────────────────────────── -->
-      <div class="grid-section">
-        <div class="grid-section__title">Real World Examples</div>
-        <div class="realworld-grid">
+	<!-- ── REAL WORLD ─────────────────────────────────── -->
+	<div class="grid-section">
+		<div class="grid-section__title">Real World Examples</div>
+		<div class="realworld-grid">
 
-          <!-- Toolbar with tooltips -->
-          <div class="rw-card">
-            <div class="rw-card__title">Toolbar Actions</div>
-            <div class="rw-card__body">
-              <div class="toolbar">
-                <zyra-tooltip text="Bold (Ctrl+B)" position="bottom">
-                  <button class="toolbar-btn">𝐁</button>
-                </zyra-tooltip>
-                <zyra-tooltip text="Italic (Ctrl+I)" position="bottom">
-                  <button class="toolbar-btn">𝘐</button>
-                </zyra-tooltip>
-                <zyra-tooltip text="Underline (Ctrl+U)" position="bottom">
-                  <button class="toolbar-btn">U̲</button>
-                </zyra-tooltip>
-                <div class="toolbar-divider"></div>
-                <zyra-tooltip text="Align Left" position="bottom">
-                  <button class="toolbar-btn">≡</button>
-                </zyra-tooltip>
-                <zyra-tooltip text="Align Center" position="bottom">
-                  <button class="toolbar-btn">☰</button>
-                </zyra-tooltip>
-                <div class="toolbar-divider"></div>
-                <zyra-tooltip text="Delete this item" position="bottom">
-                  <button class="toolbar-btn toolbar-btn--danger">🗑️</button>
-                </zyra-tooltip>
-              </div>
-            </div>
-          </div>
+			<!-- Toolbar with tooltips -->
+			<div class="rw-card">
+				<div class="rw-card__title">Toolbar Actions</div>
+				<div class="rw-card__body">
+					<div class="toolbar">
+						<zyra-tooltip text="Bold (Ctrl+B)" position="bottom">
+							<zyra-button class="toolbar-btn">𝐁</zyra-button>
+						</zyra-tooltip>
+						<zyra-tooltip text="Italic (Ctrl+I)" position="bottom">
+							<zyra-button class="toolbar-btn">𝘐</zyra-button>
+						</zyra-tooltip>
+						<zyra-tooltip text="Underline (Ctrl+U)" position="bottom">
+							<zyra-button class="toolbar-btn">U̲</zyra-button>
+						</zyra-tooltip>
+						<div class="toolbar-divider"></div>
+						<zyra-tooltip text="Align Left" position="bottom">
+							<zyra-button class="toolbar-btn">≡</zyra-button>
+						</zyra-tooltip>
+						<zyra-tooltip text="Align Center" position="bottom">
+							<zyra-button class="toolbar-btn">☰</zyra-button>
+						</zyra-tooltip>
+						<div class="toolbar-divider"></div>
+						<zyra-tooltip text="Delete this item" position="bottom">
+							<zyra-button class="toolbar-btn toolbar-btn--danger">🗑️</zyra-button>
+						</zyra-tooltip>
+					</div>
+				</div>
+			</div>
 
-          <!-- Form field hints -->
-          <div class="rw-card">
-            <div class="rw-card__title">Form Field Hints</div>
-            <div class="rw-card__body">
-              <div class="form-row">
-                <label class="form-label">
-                  API Key
-                  <zyra-tooltip text="Find your API key in Settings → Developer" position="right">
-                    <span class="help-icon">?</span>
-                  </zyra-tooltip>
-                </label>
-                <div class="form-input-mock">sk-••••••••••••••••</div>
-              </div>
-              <div class="form-row form-row--spaced">
-                <label class="form-label">
-                  Webhook URL
-                  <zyra-tooltip text="POST requests will be sent to this URL on events" position="right">
-                    <span class="help-icon">?</span>
-                  </zyra-tooltip>
-                </label>
-                <div class="form-input-mock">https://example.com/hook</div>
-              </div>
-            </div>
-          </div>
+			<!-- Form field hints -->
+			<div class="rw-card">
+				<div class="rw-card__title">Form Field Hints</div>
+				<div class="rw-card__body">
+					<div class="form-row">
+						<label class="form-label">
+							API Key
+							<zyra-tooltip text="Find your API key in Settings → Developer" position="right">
+								<span class="help-icon">?</span>
+							</zyra-tooltip>
+						</label>
+						<div class="form-input-mock">sk-••••••••••••••••</div>
+					</div>
+					<div class="form-row form-row--spaced">
+						<label class="form-label">
+							Webhook URL
+							<zyra-tooltip text="POST requests will be sent to this URL on events" position="right">
+								<span class="help-icon">?</span>
+							</zyra-tooltip>
+						</label>
+						<div class="form-input-mock">https://example.com/hook</div>
+					</div>
+				</div>
+			</div>
 
-          <!-- Status with tooltips -->
-          <div class="rw-card">
-            <div class="rw-card__title">Status Details</div>
-            <div class="rw-card__body">
-              <div class="status-row">
-                <span class="status-name">API Server</span>
-                <zyra-tooltip text="All systems operational — 99.9% uptime" position="left">
-                  <zyra-badge variant="success" [dot]="true">Online</zyra-badge>
-                </zyra-tooltip>
-              </div>
-              <div class="status-row">
-                <span class="status-name">Database</span>
-                <zyra-tooltip text="Scheduled maintenance at 2:00 AM IST" position="left">
-                  <zyra-badge variant="warning" [dot]="true">Maintenance</zyra-badge>
-                </zyra-tooltip>
-              </div>
-              <div class="status-row">
-                <span class="status-name">CDN</span>
-                <zyra-tooltip text="Degraded performance in Asia-Pacific region" position="left">
-                  <zyra-badge variant="danger" [dot]="true">Degraded</zyra-badge>
-                </zyra-tooltip>
-              </div>
-            </div>
-          </div>
+			<!-- Status with tooltips -->
+			<div class="rw-card">
+				<div class="rw-card__title">Status Details</div>
+				<div class="rw-card__body">
+					<div class="status-row">
+						<span class="status-name">API Server</span>
+						<zyra-tooltip text="All systems operational — 99.9% uptime" position="left">
+							<zyra-badge variant="success" [dot]="true">Online</zyra-badge>
+						</zyra-tooltip>
+					</div>
+					<div class="status-row">
+						<span class="status-name">Database</span>
+						<zyra-tooltip text="Scheduled maintenance at 2:00 AM IST" position="left">
+							<zyra-badge variant="warning" [dot]="true">Maintenance</zyra-badge>
+						</zyra-tooltip>
+					</div>
+					<div class="status-row">
+						<span class="status-name">CDN</span>
+						<zyra-tooltip text="Degraded performance in Asia-Pacific region" position="left">
+							<zyra-badge variant="danger" [dot]="true">Degraded</zyra-badge>
+						</zyra-tooltip>
+					</div>
+				</div>
+			</div>
 
-        </div>
-      </div>
+		</div>
+	</div>
 
-    </div>
+</div>
 
-    <zyra-toast-container />
+<zyra-toast-container />

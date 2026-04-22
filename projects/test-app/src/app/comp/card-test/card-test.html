@@ -14,9 +14,9 @@
 				<label class="control-label">variant</label>
 				<div class="control-options">
 					@for (v of variants; track v) {
-					<button class="opt-btn" [class.active]="variant() === v" (click)="variant.set(v)">
+					<zyra-button [class.active]="variant() === v" (click)="variant.set(v)">
 						{{ v }}
-					</button>
+					</zyra-button>
 					}
 				</div>
 			</div>
@@ -25,9 +25,9 @@
 				<label class="control-label">padding</label>
 				<div class="control-options">
 					@for (p of paddings; track p) {
-					<button class="opt-btn" [class.active]="padding() === p" (click)="padding.set(p)">
+					<zyra-button [class.active]="padding() === p" (click)="padding.set(p)">
 						{{ p }}
-					</button>
+					</zyra-button>
 					}
 				</div>
 			</div>
@@ -36,9 +36,9 @@
 				<label class="control-label">content preset</label>
 				<div class="control-options control-options--stack">
 					@for (p of presets; track p) {
-					<button class="opt-btn opt-btn--block" [class.active]="preset() === p" (click)="preset.set(p)">
+					<zyra-button class="opt-btn opt-btn--block" [class.active]="preset() === p" (click)="preset.set(p)">
 						{{ p }}
-					</button>
+					</zyra-button>
 					}
 				</div>
 			</div>
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 
-			<button class="reset-btn" (click)="reset()">Reset all</button>
+			<zyra-button class="reset-btn" (click)="reset()">Reset all</zyra-button>
 		</div>
 
 		<div class="preview-area">
@@ -138,9 +138,9 @@
 			<div class="code-box">
 				<div class="code-box__header">
 					<span>Generated Code</span>
-					<button class="copy-btn" (click)="copy()">
+					<zyra-button class="copy-btn" (click)="copy()">
 						{{ copied() ? 'Copied!' : 'Copy' }}
-					</button>
+					</zyra-button>
 				</div>
 				<pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
 			</div>
@@ -148,7 +148,7 @@
 			<div class="log-box">
 				<div class="log-box__header">
 					<span>Event Log <span class="log-count">{{ eventLog().length }}</span></span>
-					<button class="copy-btn" (click)="eventLog.set([])">Clear</button>
+					<zyra-button class="copy-btn" (click)="eventLog.set([])">Clear</zyra-button>
 				</div>
 				<div class="log-box__body">
 					@if (eventLog().length === 0) {

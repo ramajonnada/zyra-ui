@@ -19,7 +19,7 @@
 				<label class="control-label">variant</label>
 				<div class="control-options">
 					@for (v of variants; track v) {
-					<button class="opt-btn" [class.active]="variant() === v" (click)="variant.set(v)">{{ v }}</button>
+					<button [class.active]="variant() === v" (click)="variant.set(v)">{{ v }}</button>
 					}
 				</div>
 			</div>
@@ -29,7 +29,7 @@
 				<label class="control-label">size</label>
 				<div class="control-options">
 					@for (s of sizes; track s) {
-					<button class="opt-btn" [class.active]="size() === s" (click)="size.set(s)">{{ s }}</button>
+					<button [class.active]="size() === s" (click)="size.set(s)">{{ s }}</button>
 					}
 				</div>
 			</div>

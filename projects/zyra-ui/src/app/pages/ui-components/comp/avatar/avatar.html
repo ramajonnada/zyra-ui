@@ -26,7 +26,7 @@
 				<label class="control-label">name</label>
 				<div class="control-options">
 					@for (n of sampleNames; track n) {
-					<button class="opt-btn" [class.active]="name() === n" (click)="name.set(n)">{{ n }}</button>
+					<button [class.active]="name() === n" (click)="name.set(n)">{{ n }}</button>
 					}
 				</div>
 			</div>
@@ -35,9 +35,9 @@
 			<div class="control-group">
 				<label class="control-label">src (image)</label>
 				<div class="control-options">
-					<button class="opt-btn" [class.active]="src() === ''" (click)="src.set('')">none</button>
+					<button [class.active]="src() === ''" (click)="src.set('')">none</button>
 					@for (img of sampleImages; track img) {
-					<button class="opt-btn" [class.active]="src() === img" (click)="src.set(img)">
+					<button [class.active]="src() === img" (click)="src.set(img)">
 						{{ img.includes('pravatar') ? 'img-' + img.slice(-1) : 'broken' }}
 					</button>
 					}
@@ -49,7 +49,7 @@
 				<label class="control-label">size</label>
 				<div class="control-options">
 					@for (s of sizes; track s) {
-					<button class="opt-btn" [class.active]="size() === s" (click)="size.set(s)">{{ s }}</button>
+					<button [class.active]="size() === s" (click)="size.set(s)">{{ s }}</button>
 					}
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 				<label class="control-label">variant</label>
 				<div class="control-options">
 					@for (v of variants; track v) {
-					<button class="opt-btn" [class.active]="variant() === v" (click)="variant.set(v)">{{ v }}</button>
+					<button [class.active]="variant() === v" (click)="variant.set(v)">{{ v }}</button>
 					}
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 				<label class="control-label">online</label>
 				<div class="control-options">
 					@for (o of onlineOptions; track o.label) {
-					<button class="opt-btn" [class.active]="online() === o.value" (click)="online.set(o.value)">
+					<button [class.active]="online() === o.value" (click)="online.set(o.value)">
 						{{ o.label }}
 					</button>
 					}

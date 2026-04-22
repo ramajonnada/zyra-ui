@@ -4,6 +4,7 @@ import {
 	BadgeSize,
 	BadgeVariant,
 	ZyraBadge,
+	ZyraButton,
 	ZyraThemeService,
 	ZyraToastContainer,
 	ZyraToastService,
@@ -16,6 +17,7 @@ import {
 		FormsModule,
 		ZyraBadge,
 		ZyraToastContainer,
+		ZyraButton
 	],
 	templateUrl: './badge.html',
 	styleUrl: './badge.scss',
