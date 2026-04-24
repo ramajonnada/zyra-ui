@@ -1,30 +1,40 @@
-<button [class]="hostClass()" [type]="type()" [disabled]="disabled() || loading()"
-	[attr.aria-label]="ariaLabel()" [attr.aria-disabled]="disabled() || loading()" [attr.aria-busy]="loading()"
-	(click)="handleClick($event)">
-	@if (loading()) {
-	<zyra-spinner [size]="spinnerSize()" [color]="spinnerColor()" />
-	}
-	@if (!loading()) {
-	<span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
-		<ng-content select="[slot=prefix]" />
-	</span>
-	}
-	@if (iconLeft() && !loading()) {
-	<span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true" [innerHTML]="iconLeft()">
-	</span>
-	}
-	<span class="zyr-btn__label">
-		<ng-content />
-	</span>
-	@if (!loading()) {
-	<span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
-		<ng-content select="[slot=suffix]" />
-	</span>
-	}
-	@if (iconRight() && !loading()) {
-	<span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true" [innerHTML]="iconRight()">
-	</span>
-	}
+<button
+    [class]="hostClass()"
+    [type]="type()"
+    [disabled]="disabled() || loading()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-disabled]="disabled() || loading()"
+    [attr.aria-busy]="loading()"
+    (click)="handleClick($event)"
+>
+    @if (loading()) {
+        <zyra-spinner [size]="spinnerSize()" [color]="spinnerColor()" />
+    }
+    @if (!loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
+            <ng-content select="[slot=prefix]" />
+        </span>
+    }
+    @if (iconLeft() && !loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true" [innerHTML]="iconLeft()">
+        </span>
+    }
+    <span class="zyr-btn__label">
+        <ng-content />
+    </span>
+    @if (!loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
+            <ng-content select="[slot=suffix]" />
+        </span>
+    }
+    @if (iconRight() && !loading()) {
+        <span
+            class="zyr-btn__icon zyr-btn__icon--right"
+            aria-hidden="true"
+            [innerHTML]="iconRight()"
+        >
+        </span>
+    }
 </button>
 
 <!-- <div [class.full-width]="fullWidth">

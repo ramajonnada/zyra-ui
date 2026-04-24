@@ -1,55 +1,64 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    inject,
+    OnInit,
+    signal,
+} from '@angular/core';
 import { BlogService, PostMeta } from '../../services/blog-service';
 import { CommonModule } from '@angular/common';
 import { ZyraCard } from 'zyra-ng-ui';
 import { RouterLink } from '@angular/router';
 
 @Component({
-	selector: 'app-blog-list',
-	imports: [ZyraCard, CommonModule, RouterLink],
-	templateUrl: './blog-list.html',
-	styleUrl: './blog-list.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-blog-list',
+    imports: [ZyraCard, CommonModule, RouterLink],
+    templateUrl: './blog-list.html',
+    styleUrl: './blog-list.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogList implements OnInit {
-	loading = signal(true);
-	error = signal<string | null>(null);
-	posts = signal<PostMeta[]>([]);
-	readonly articleCount = computed(() => this.posts().length);
-	readonly categoryCount = computed(() => {
-		const categories = new Set(
-			this.posts()
-				.map((post) => this.categoryLabel(post.category))
-				.filter(Boolean)
-		);
+    loading = signal(true);
+    error = signal<string | null>(null);
+    posts = signal<PostMeta[]>([]);
+    readonly articleCount = computed(() => this.posts().length);
+    readonly categoryCount = computed(() => {
+        const categories = new Set(
+            this.posts()
+                .map((post) => this.categoryLabel(post.category))
+                .filter(Boolean),
+        );
 
-		return categories.size;
-	});
+        return categories.size;
+    });
 
-	private blogService: BlogService = inject(BlogService);
+    private blogService: BlogService = inject(BlogService);
 
-	ngOnInit() {
-		this.blogService.getAllPosts().subscribe({
-			next: (posts) => {
-				this.posts.set(
-					[...posts].sort(
-						(left, right) => new Date(right.date.trim()).getTime() - new Date(left.date.trim()).getTime()
-					)
-				);
-				this.loading.set(false);
-			},
-			error: () => {
-				this.error.set('Unable to load articles right now. Please try again in a moment.');
-				this.loading.set(false);
-			},
-		});
-	}
+    ngOnInit() {
+        this.blogService.getAllPosts().subscribe({
+            next: (posts) => {
+                this.posts.set(
+                    [...posts].sort(
+                        (left, right) =>
+                            new Date(right.date.trim()).getTime() -
+                            new Date(left.date.trim()).getTime(),
+                    ),
+                );
+                this.loading.set(false);
+            },
+            error: () => {
+                this.error.set('Unable to load articles right now. Please try again in a moment.');
+                this.loading.set(false);
+            },
+        });
+    }
 
-	categoryLabel(category: PostMeta['category']): string {
-		if (Array.isArray(category)) {
-			return category[0]?.trim() || 'Angular';
-		}
+    categoryLabel(category: PostMeta['category']): string {
+        if (Array.isArray(category)) {
+            return category[0]?.trim() || 'Angular';
+        }
 
-		return category?.trim() || 'Angular';
-	}
+        return category?.trim() || 'Angular';
+    }
 }

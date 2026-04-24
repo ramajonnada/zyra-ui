@@ -1,147 +1,148 @@
 .zyr-btn {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	border: none;
-	border-radius: var(--zyr-radius-md);
-	font-family: var(--zyr-font-body);
-	font-weight: 600;
-	cursor: pointer;
-	white-space: nowrap;
-	text-decoration: none;
-	position: relative;
-	overflow: hidden;
-	transition:
-		background var(--zyr-transition-base),
-		color var(--zyr-transition-base),
-		border-color var(--zyr-transition-base),
-		box-shadow var(--zyr-transition-base),
-		transform var(--zyr-transition-spring),
-		opacity var(--zyr-transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    border-radius: var(--zyr-radius-md);
+    font-family: var(--zyr-font-body);
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition:
+        background var(--zyr-transition-base),
+        color var(--zyr-transition-base),
+        border-color var(--zyr-transition-base),
+        box-shadow var(--zyr-transition-base),
+        transform var(--zyr-transition-spring),
+        opacity var(--zyr-transition-fast);
 
-	&:focus-visible {
-		// outline: 2px solid var(--zyr-accent);
-		outline-offset: 3px;
-	}
+    &:focus-visible {
+        // outline: 2px solid var(--zyr-accent);
+        outline-offset: 3px;
+    }
 
-	&:active:not(:disabled) {
-		transform: scale(0.97);
-	}
+    &:active:not(:disabled) {
+        transform: scale(0.97);
+    }
 
-	// ── Sizes ─────────────────────────────────────────────────
-	&--sm {
-		padding: 5px 12px;
-		font-size: 12px;
-		line-height: 1.5;
-	}
+    // ── Sizes ─────────────────────────────────────────────────
+    &--sm {
+        padding: 5px 12px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
 
-	&--md {
-		padding: 8px 18px;
-		font-size: 13.5px;
-		line-height: 1.5;
-	}
+    &--md {
+        padding: 8px 18px;
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
 
-	&--lg {
-		padding: 11px 24px;
-		font-size: 15px;
-		line-height: 1.5;
-	}
+    &--lg {
+        padding: 11px 24px;
+        font-size: 15px;
+        line-height: 1.5;
+    }
 
-	// ── Variants ──────────────────────────────────────────────
-	&--primary {
-		background: var(--zyr-btn-primary-bg);
-		color: var(--zyr-btn-primary-text);
-		border: 1px solid transparent;
+    // ── Variants ──────────────────────────────────────────────
+    &--primary {
+        background: var(--zyr-btn-primary-bg);
+        color: var(--zyr-btn-primary-text);
+        border: 1px solid transparent;
 
-		&:hover:not(:disabled) {
-			opacity: 0.88;
-			transform: translateY(-1px);
-			box-shadow: var(--zyr-shadow-accent);
-		}
-	}
+        &:hover:not(:disabled) {
+            opacity: 0.88;
+            transform: translateY(-1px);
+            box-shadow: var(--zyr-shadow-accent);
+        }
+    }
 
-	&--secondary {
-		background: var(--zyr-btn-secondary-bg);
-		color: var(--zyr-btn-secondary-text);
-		border: 1px solid var(--zyr-btn-secondary-border);
+    &--secondary {
+        background: var(--zyr-btn-secondary-bg);
+        color: var(--zyr-btn-secondary-text);
+        border: 1px solid var(--zyr-btn-secondary-border);
 
-		&:hover:not(:disabled) {
-			border-color: var(--zyr-border-hover);
-			background: var(--zyr-bg-4);
-		}
-	}
+        &:hover:not(:disabled) {
+            border-color: var(--zyr-border-hover);
+            background: var(--zyr-bg-4);
+        }
+    }
 
-	&--ghost {
-		background: transparent;
-		color: var(--zyr-btn-ghost-text);
-		border: 1px solid transparent;
+    &--ghost {
+        background: transparent;
+        color: var(--zyr-btn-ghost-text);
+        border: 1px solid transparent;
 
-		&:hover:not(:disabled) {
-			background: var(--zyr-btn-ghost-hover-bg);
-			color: var(--zyr-text);
-		}
-	}
+        &:hover:not(:disabled) {
+            background: var(--zyr-btn-ghost-hover-bg);
+            color: var(--zyr-text);
+        }
+    }
 
-	&--outline {
-		background: transparent;
-		color: var(--zyr-accent);
-		border: 1px solid var(--zyr-accent-border);
+    &--outline {
+        background: transparent;
+        color: var(--zyr-accent);
+        border: 1px solid var(--zyr-accent-border);
 
-		&:hover:not(:disabled) {
-			background: var(--zyr-accent-muted);
-			border-color: var(--zyr-accent);
-		}
-	}
+        &:hover:not(:disabled) {
+            background: var(--zyr-accent-muted);
+            border-color: var(--zyr-accent);
+        }
+    }
 
-	&--danger {
-		background: var(--zyr-btn-danger-bg);
-		color: var(--zyr-btn-danger-text);
-		border: 1px solid var(--zyr-btn-danger-border);
+    &--danger {
+        background: var(--zyr-btn-danger-bg);
+        color: var(--zyr-btn-danger-text);
+        border: 1px solid var(--zyr-btn-danger-border);
 
-		&:hover:not(:disabled) {
-			opacity: 0.85;
-		}
-	}
+        &:hover:not(:disabled) {
+            opacity: 0.85;
+        }
+    }
 
-	// ── States ────────────────────────────────────────────────
-	&--loading {
-		cursor: wait;
-		pointer-events: none;
-	}
+    // ── States ────────────────────────────────────────────────
+    &--loading {
+        cursor: wait;
+        pointer-events: none;
+    }
 
-	&--disabled,
-	&:disabled {
-		opacity: 0.38;
-		cursor: not-allowed;
-		pointer-events: none;
-	}
+    &--disabled,
+    &:disabled {
+        opacity: 0.38;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
 
-	&--full {
-		width: 100%;
-	}
+    &--full {
+        width: 100%;
+    }
 
-	// ── Icon ──────────────────────────────────────────────────
-	&__icon {
-		display: flex;
-		align-items: center;
-		font-size: 1em;
-		line-height: 1;
+    // ── Icon ──────────────────────────────────────────────────
+    &__icon {
+        display: flex;
+        align-items: center;
+        font-size: 1em;
+        line-height: 1;
 
-		&:empty {
-			display: none;
-		}
+        &:empty {
+            display: none;
+        }
 
-		:where(svg) {
-			width: 1em;
-			height: 1em;
-			display: block;
-			flex-shrink: 0;
-		}
-	}
+        :where(svg) {
+            width: 1em;
+            height: 1em;
+            display: block;
+            flex-shrink: 0;
+        }
+    }
 
-	&__label {
-		display: inline-flex;
-		align-items: center;
-	}
+    &__label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
 }

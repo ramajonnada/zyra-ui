@@ -1,107 +1,115 @@
 @if (component(); as selected) {
-<section class="component-detail-page">
-	<div class="component-detail-page__hero">
-		<a class="component-detail-page__back" routerLink="/components">Back to components</a>
+    <section class="component-detail-page">
+        <div class="component-detail-page__hero">
+            <a class="component-detail-page__back" routerLink="/components">Back to components</a>
 
-		<div class="component-detail-page__title-row">
-			<h1>{{ selected.title }}</h1>
-			<zyra-badge variant="success" size="md">{{ selected.selector }}</zyra-badge>
-		</div>
+            <div class="component-detail-page__title-row">
+                <h1>{{ selected.title }}</h1>
+                <zyra-badge variant="success" size="md">{{ selected.selector }}</zyra-badge>
+            </div>
 
-		<!-- <p class="component-detail-page__intro">{{ selected.description }}</p> -->
-	</div>
+            <!-- <p class="component-detail-page__intro">{{ selected.description }}</p> -->
+        </div>
 
-	<section class="component-detail">
-		<div class="component-detail__header">
-			<div class="component-detail__copy">
-				<div class="component-detail__meta">
-					<zyra-badge variant="info" size="md">{{ selected.category }}</zyra-badge>
-					<span>{{ selected.importName }}</span>
-				</div>
+        <section class="component-detail">
+            <div class="component-detail__header">
+                <div class="component-detail__copy">
+                    <div class="component-detail__meta">
+                        <zyra-badge variant="info" size="md">{{ selected.category }}</zyra-badge>
+                        <span>{{ selected.importName }}</span>
+                    </div>
 
-				<h2>Component preview</h2>
-				<p>Explore the available states and the real library behavior for this component.</p>
-			</div>
-		</div>
+                    <h2>Component preview</h2>
+                    <p>
+                        Explore the available states and the real library behavior for this
+                        component.
+                    </p>
+                </div>
+            </div>
 
-		<zyra-card variant="elevated" [hasHeader]="true">
-			<div slot="header" class="component-detail__panel-head">
-				<span>Live preview</span>
-				<span>{{ selected.importName }}</span>
-			</div>
+            <zyra-card variant="elevated" [hasHeader]="true">
+                <div slot="header" class="component-detail__panel-head">
+                    <span>Live preview</span>
+                    <span>{{ selected.importName }}</span>
+                </div>
 
-			<div class="component-detail__preview">
-				@switch (selected.slug) {
-				@case ('button') {
-				<app-button></app-button>
-				}
+                <div class="component-detail__preview">
+                    @switch (selected.slug) {
+                        @case ('button') {
+                            <app-button></app-button>
+                        }
 
-				@case ('badge') {
-				<app-badge></app-badge>
-				}
+                        @case ('badge') {
+                            <app-badge></app-badge>
+                        }
 
-				@case ('card') {
-				<app-card-test></app-card-test>
-				}
+                        @case ('card') {
+                            <app-card-test></app-card-test>
+                        }
 
-				@case ('avatar') {
-				<app-avatar></app-avatar>
-				}
+                        @case ('avatar') {
+                            <app-avatar></app-avatar>
+                        }
 
-				@case ('input') {
-				<app-input></app-input>
-				}
+                        @case ('input') {
+                            <app-input></app-input>
+                        }
 
-				@case ('form-field') {
-				<app-input></app-input>
-				}
+                        @case ('form-field') {
+                            <app-input></app-input>
+                        }
 
-				@case ('spinner') {
-				<app-spinner></app-spinner>
-				}
+                        @case ('spinner') {
+                            <app-spinner></app-spinner>
+                        }
 
-				@case ('toast') {
-				<app-toast></app-toast>
-				}
+                        @case ('toast') {
+                            <app-toast></app-toast>
+                        }
 
-				@case ('tooltip') {
-				<app-tooltip-playground></app-tooltip-playground>
-				}
-				}
-			</div>
-		</zyra-card>
+                        @case ('tooltip') {
+                            <app-tooltip-playground></app-tooltip-playground>
+                        }
+                    }
+                </div>
+            </zyra-card>
 
-		@if (selected.exampleCode; as exampleCode) {
-		<zyra-card variant="elevated" [hasHeader]="true">
-			<div slot="header" class="component-detail__panel-head">
-				<span>Usage code</span>
-				<div class="component-detail__panel-actions">
-					<span>{{ selected.selector }}</span>
-					<button class="component-detail__copy-btn" (click)="copyExampleCode(selected.slug, exampleCode)">
-						{{ copiedExampleSlug() === selected.slug ? 'Copied!' : 'Copy code' }}
-					</button>
-				</div>
-			</div>
+            @if (selected.exampleCode; as exampleCode) {
+                <zyra-card variant="elevated" [hasHeader]="true">
+                    <div slot="header" class="component-detail__panel-head">
+                        <span>Usage code</span>
+                        <div class="component-detail__panel-actions">
+                            <span>{{ selected.selector }}</span>
+                            <button
+                                class="component-detail__copy-btn"
+                                (click)="copyExampleCode(selected.slug, exampleCode)"
+                            >
+                                {{
+                                    copiedExampleSlug() === selected.slug ? 'Copied!' : 'Copy code'
+                                }}
+                            </button>
+                        </div>
+                    </div>
 
-			<div class="component-detail__code">
-				<pre><code>{{ exampleCode }}</code></pre>
-			</div>
-		</zyra-card>
-		}
+                    <div class="component-detail__code">
+                        <pre><code>{{ exampleCode }}</code></pre>
+                    </div>
+                </zyra-card>
+            }
 
-		<div class="component-detail__highlights">
-			@for (highlight of selected.highlights; track highlight) {
-			<span class="component-detail__chip">{{ highlight }}</span>
-			}
-		</div>
-	</section>
-</section>
+            <div class="component-detail__highlights">
+                @for (highlight of selected.highlights; track highlight) {
+                    <span class="component-detail__chip">{{ highlight }}</span>
+                }
+            </div>
+        </section>
+    </section>
 } @else {
-<section class="component-detail-page">
-	<section class="component-detail component-detail--missing">
-		<h2>Component not found</h2>
-		<p>The requested component showcase is not available in the current library catalog.</p>
-		<a class="component-detail-page__back" routerLink="/components">Return to components</a>
-	</section>
-</section>
+    <section class="component-detail-page">
+        <section class="component-detail component-detail--missing">
+            <h2>Component not found</h2>
+            <p>The requested component showcase is not available in the current library catalog.</p>
+            <a class="component-detail-page__back" routerLink="/components">Return to components</a>
+        </section>
+    </section>
 }

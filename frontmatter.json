@@ -1,44 +1,44 @@
 {
-  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
-  "frontMatter.framework.id": "astro",
-  "frontMatter.preview.host": "http://localhost:4321",
-  "frontMatter.content.publicFolder": "public",
-  "frontMatter.content.pageFolders": [],
-  "frontMatter.taxonomy.contentTypes": [
-    {
-      "name": "default",
-      "pageBundle": false,
-      "previewPath": "'blog'",
-      "filePrefix": null,
-      "clearEmpty": true,
-      "fields": [
+    "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+    "frontMatter.framework.id": "astro",
+    "frontMatter.preview.host": "http://localhost:4321",
+    "frontMatter.content.publicFolder": "public",
+    "frontMatter.content.pageFolders": [],
+    "frontMatter.taxonomy.contentTypes": [
         {
-          "title": "title",
-          "name": "title",
-          "type": "string"
-        },
-        {
-          "title": "description",
-          "name": "description",
-          "type": "string"
-        },
-        {
-          "title": "category",
-          "name": "category",
-          "type": "categories"
-        },
-        {
-          "title": "tags",
-          "name": "tags",
-          "type": "tags"
-        },
-        {
-          "title": "date",
-          "name": "date",
-          "type": "datetime"
+            "name": "default",
+            "pageBundle": false,
+            "previewPath": "'blog'",
+            "filePrefix": null,
+            "clearEmpty": true,
+            "fields": [
+                {
+                    "title": "title",
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "title": "description",
+                    "name": "description",
+                    "type": "string"
+                },
+                {
+                    "title": "category",
+                    "name": "category",
+                    "type": "categories"
+                },
+                {
+                    "title": "tags",
+                    "name": "tags",
+                    "type": "tags"
+                },
+                {
+                    "title": "date",
+                    "name": "date",
+                    "type": "datetime"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "frontMatter.git.enabled": true
+    ],
+    "frontMatter.git.enabled": true
 }

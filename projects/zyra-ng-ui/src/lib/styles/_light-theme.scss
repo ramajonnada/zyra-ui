@@ -8,169 +8,164 @@
 @use 'variables' as *;
 
 [data-theme='light'] {
+    // ── Backgrounds ─────────────────────────────────────────────
+    --zyr-bg: #f7f8fa; // page background — warm off-white
+    --zyr-bg-2: #ffffff; // sidebar, panels — pure white
+    --zyr-bg-3: #eff1f5; // card headers, inputs, hover
+    --zyr-bg-4: #e5e8ee; // elevated cards, dropdowns
+    --zyr-bg-overlay: rgba(15, 20, 30, 0.45); // modal backdrops
 
-	// ── Backgrounds ─────────────────────────────────────────────
-	--zyr-bg: #F7F8FA; // page background — warm off-white
-	--zyr-bg-2: #FFFFFF; // sidebar, panels — pure white
-	--zyr-bg-3: #EFF1F5; // card headers, inputs, hover
-	--zyr-bg-4: #E5E8EE; // elevated cards, dropdowns
-	--zyr-bg-overlay: rgba(15, 20, 30, 0.45); // modal backdrops
+    // ── Borders ──────────────────────────────────────────────────
+    --zyr-border: rgba(0, 0, 0, 0.08);
+    --zyr-border-hover: rgba(40, 160, 130, 0.4);
+    --zyr-border-focus: rgba(40, 160, 130, 0.65);
+    --zyr-border-strong: rgba(0, 0, 0, 0.14);
 
-	// ── Borders ──────────────────────────────────────────────────
-	--zyr-border: rgba(0, 0, 0, 0.08);
-	--zyr-border-hover: rgba(40, 160, 130, 0.4);
-	--zyr-border-focus: rgba(40, 160, 130, 0.65);
-	--zyr-border-strong: rgba(0, 0, 0, 0.14);
+    // ── Text ─────────────────────────────────────────────────────
+    --zyr-text: #0d1117; // primary text — near black
+    --zyr-text-muted: #5a6478; // secondary / supporting text
+    --zyr-text-dim: #a0aabb; // placeholder, disabled
+    --zyr-text-inverse: #ffffff; // text on dark/accent bg
 
-	// ── Text ─────────────────────────────────────────────────────
-	--zyr-text: #0D1117; // primary text — near black
-	--zyr-text-muted: #5A6478; // secondary / supporting text
-	--zyr-text-dim: #A0AABB; // placeholder, disabled
-	--zyr-text-inverse: #FFFFFF; // text on dark/accent bg
+    // ── Accent — Teal (Primary) ──────────────────────────────────
+    // Slightly deeper teal for legibility on light bg
+    --zyr-accent: #28a082;
+    --zyr-accent-hover: #1e8870;
+    --zyr-accent-muted: rgba(40, 160, 130, 0.1);
+    --zyr-accent-border: rgba(40, 160, 130, 0.25);
+    --zyr-accent-text: #28a082;
 
-	// ── Accent — Teal (Primary) ──────────────────────────────────
-	// Slightly deeper teal for legibility on light bg
-	--zyr-accent: #28A082;
-	--zyr-accent-hover: #1E8870;
-	--zyr-accent-muted: rgba(40, 160, 130, 0.10);
-	--zyr-accent-border: rgba(40, 160, 130, 0.25);
-	--zyr-accent-text: #28A082;
+    // ── Accent 2 — Blue (Secondary) ─────────────────────────────
+    --zyr-accent-2: #1a7fd4;
+    --zyr-accent-2-hover: #1468b8;
+    --zyr-accent-2-muted: rgba(26, 127, 212, 0.1);
+    --zyr-accent-2-border: rgba(26, 127, 212, 0.22);
 
-	// ── Accent 2 — Blue (Secondary) ─────────────────────────────
-	--zyr-accent-2: #1A7FD4;
-	--zyr-accent-2-hover: #1468B8;
-	--zyr-accent-2-muted: rgba(26, 127, 212, 0.10);
-	--zyr-accent-2-border: rgba(26, 127, 212, 0.22);
+    // ── Accent 3 — Purple (Tertiary) ────────────────────────────
+    --zyr-accent-3: #7c5ce8;
+    --zyr-accent-3-hover: #6748d0;
+    --zyr-accent-3-muted: rgba(124, 92, 232, 0.1);
+    --zyr-accent-3-border: rgba(124, 92, 232, 0.22);
 
-	// ── Accent 3 — Purple (Tertiary) ────────────────────────────
-	--zyr-accent-3: #7C5CE8;
-	--zyr-accent-3-hover: #6748D0;
-	--zyr-accent-3-muted: rgba(124, 92, 232, 0.10);
-	--zyr-accent-3-border: rgba(124, 92, 232, 0.22);
+    // ── Semantic — Success ───────────────────────────────────────
+    --zyr-success: #1e9e55;
+    --zyr-success-muted: rgba(30, 158, 85, 0.1);
+    --zyr-success-border: rgba(30, 158, 85, 0.22);
+    --zyr-success-text: #1e9e55;
 
-	// ── Semantic — Success ───────────────────────────────────────
-	--zyr-success: #1E9E55;
-	--zyr-success-muted: rgba(30, 158, 85, 0.10);
-	--zyr-success-border: rgba(30, 158, 85, 0.22);
-	--zyr-success-text: #1E9E55;
+    // ── Semantic — Warning ───────────────────────────────────────
+    --zyr-warning: #c47c10;
+    --zyr-warning-muted: rgba(196, 124, 16, 0.1);
+    --zyr-warning-border: rgba(196, 124, 16, 0.22);
+    --zyr-warning-text: #c47c10;
 
-	// ── Semantic — Warning ───────────────────────────────────────
-	--zyr-warning: #C47C10;
-	--zyr-warning-muted: rgba(196, 124, 16, 0.10);
-	--zyr-warning-border: rgba(196, 124, 16, 0.22);
-	--zyr-warning-text: #C47C10;
+    // ── Semantic — Danger ────────────────────────────────────────
+    --zyr-danger: #d63030;
+    --zyr-danger-muted: rgba(214, 48, 48, 0.08);
+    --zyr-danger-border: rgba(214, 48, 48, 0.22);
+    --zyr-danger-text: #d63030;
 
-	// ── Semantic — Danger ────────────────────────────────────────
-	--zyr-danger: #D63030;
-	--zyr-danger-muted: rgba(214, 48, 48, 0.08);
-	--zyr-danger-border: rgba(214, 48, 48, 0.22);
-	--zyr-danger-text: #D63030;
+    // ── Semantic — Info ──────────────────────────────────────────
+    --zyr-info: #1a7fd4;
+    --zyr-info-muted: rgba(26, 127, 212, 0.1);
+    --zyr-info-border: rgba(26, 127, 212, 0.22);
+    --zyr-info-text: #1a7fd4;
 
-	// ── Semantic — Info ──────────────────────────────────────────
-	--zyr-info: #1A7FD4;
-	--zyr-info-muted: rgba(26, 127, 212, 0.10);
-	--zyr-info-border: rgba(26, 127, 212, 0.22);
-	--zyr-info-text: #1A7FD4;
+    // ── Typography ───────────────────────────────────────────────
+    --zyr-font-display: #{$zyr-font-display};
+    --zyr-font-body: #{$zyr-font-body};
+    --zyr-font-mono: #{$zyr-font-mono};
 
-	// ── Typography ───────────────────────────────────────────────
-	--zyr-font-display: #{$zyr-font-display};
-	--zyr-font-body: #{$zyr-font-body};
-	--zyr-font-mono: #{$zyr-font-mono};
+    // ── Radius (same as dark) ────────────────────────────────────
+    --zyr-radius-xs: #{$zyr-radius-xs};
+    --zyr-radius-sm: #{$zyr-radius-sm};
+    --zyr-radius-md: #{$zyr-radius-md};
+    --zyr-radius-lg: #{$zyr-radius-lg};
+    --zyr-radius-xl: #{$zyr-radius-xl};
+    --zyr-radius-2xl: #{$zyr-radius-2xl};
+    --zyr-radius-full: #{$zyr-radius-full};
 
-	// ── Radius (same as dark) ────────────────────────────────────
-	--zyr-radius-xs: #{$zyr-radius-xs};
-	--zyr-radius-sm: #{$zyr-radius-sm};
-	--zyr-radius-md: #{$zyr-radius-md};
-	--zyr-radius-lg: #{$zyr-radius-lg};
-	--zyr-radius-xl: #{$zyr-radius-xl};
-	--zyr-radius-2xl: #{$zyr-radius-2xl};
-	--zyr-radius-full: #{$zyr-radius-full};
+    // ── Spacing (same as dark) ───────────────────────────────────
+    --zyr-space-1: #{$zyr-space-1};
+    --zyr-space-2: #{$zyr-space-2};
+    --zyr-space-3: #{$zyr-space-3};
+    --zyr-space-4: #{$zyr-space-4};
+    --zyr-space-5: #{$zyr-space-5};
+    --zyr-space-6: #{$zyr-space-6};
+    --zyr-space-8: #{$zyr-space-8};
+    --zyr-space-10: #{$zyr-space-10};
+    --zyr-space-12: #{$zyr-space-12};
+    --zyr-space-16: #{$zyr-space-16};
 
-	// ── Spacing (same as dark) ───────────────────────────────────
-	--zyr-space-1: #{$zyr-space-1};
-	--zyr-space-2: #{$zyr-space-2};
-	--zyr-space-3: #{$zyr-space-3};
-	--zyr-space-4: #{$zyr-space-4};
-	--zyr-space-5: #{$zyr-space-5};
-	--zyr-space-6: #{$zyr-space-6};
-	--zyr-space-8: #{$zyr-space-8};
-	--zyr-space-10: #{$zyr-space-10};
-	--zyr-space-12: #{$zyr-space-12};
-	--zyr-space-16: #{$zyr-space-16};
+    // ── Shadows (lighter, softer for light theme) ────────────────
+    --zyr-shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --zyr-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --zyr-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.1);
+    --zyr-shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.12);
+    --zyr-shadow-accent: 0 6px 20px rgba(40, 160, 130, 0.18);
 
-	// ── Shadows (lighter, softer for light theme) ────────────────
-	--zyr-shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.08);
-	--zyr-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.10);
-	--zyr-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.10);
-	--zyr-shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.12);
-	--zyr-shadow-accent: 0 6px 20px rgba(40, 160, 130, 0.18);
+    // ── Transitions (same as dark) ───────────────────────────────
+    --zyr-transition-fast: #{$zyr-transition-fast};
+    --zyr-transition-base: #{$zyr-transition-base};
+    --zyr-transition-slow: #{$zyr-transition-slow};
+    --zyr-transition-spring: #{$zyr-transition-spring};
 
-	// ── Transitions (same as dark) ───────────────────────────────
-	--zyr-transition-fast: #{$zyr-transition-fast};
-	--zyr-transition-base: #{$zyr-transition-base};
-	--zyr-transition-slow: #{$zyr-transition-slow};
-	--zyr-transition-spring: #{$zyr-transition-spring};
+    // ── Component-level Tokens ───────────────────────────────────
 
-	// ── Component-level Tokens ───────────────────────────────────
+    // Button
+    --zyr-btn-primary-bg: var(--zyr-accent);
+    --zyr-btn-primary-text: #ffffff;
+    --zyr-btn-primary-hover-bg: var(--zyr-accent-hover);
+    --zyr-btn-secondary-bg: var(--zyr-bg-3);
+    --zyr-btn-secondary-text: var(--zyr-text);
+    --zyr-btn-secondary-border: var(--zyr-border);
+    --zyr-btn-ghost-text: var(--zyr-text-muted);
+    --zyr-btn-ghost-hover-bg: rgba(0, 0, 0, 0.04);
+    --zyr-btn-danger-bg: var(--zyr-danger-muted);
+    --zyr-btn-danger-text: var(--zyr-danger);
+    --zyr-btn-danger-border: var(--zyr-danger-border);
 
-	// Button
-	--zyr-btn-primary-bg: var(--zyr-accent);
-	--zyr-btn-primary-text: #FFFFFF;
-	--zyr-btn-primary-hover-bg: var(--zyr-accent-hover);
-	--zyr-btn-secondary-bg: var(--zyr-bg-3);
-	--zyr-btn-secondary-text: var(--zyr-text);
-	--zyr-btn-secondary-border: var(--zyr-border);
-	--zyr-btn-ghost-text: var(--zyr-text-muted);
-	--zyr-btn-ghost-hover-bg: rgba(0, 0, 0, 0.04);
-	--zyr-btn-danger-bg: var(--zyr-danger-muted);
-	--zyr-btn-danger-text: var(--zyr-danger);
-	--zyr-btn-danger-border: var(--zyr-danger-border);
+    // Input
+    --zyr-input-bg: var(--zyr-bg-2);
+    --zyr-input-border: var(--zyr-border-strong);
+    --zyr-input-border-focus: var(--zyr-accent);
+    --zyr-input-text: var(--zyr-text);
+    --zyr-input-placeholder: var(--zyr-text-dim);
+    --zyr-input-shadow-focus: 0 0 0 3px rgba(40, 160, 130, 0.14);
 
-	// Input
-	--zyr-input-bg: var(--zyr-bg-2);
-	--zyr-input-border: var(--zyr-border-strong);
-	--zyr-input-border-focus: var(--zyr-accent);
-	--zyr-input-text: var(--zyr-text);
-	--zyr-input-placeholder: var(--zyr-text-dim);
-	--zyr-input-shadow-focus: 0 0 0 3px rgba(40, 160, 130, 0.14);
+    // Card
+    --zyr-card-bg: var(--zyr-bg-2);
+    --zyr-card-border: var(--zyr-border);
+    --zyr-card-hover-border: var(--zyr-border-hover);
+    --zyr-card-section-bg: rgba(15, 20, 30, 0.025);
+    --zyr-card-shadow: 0 1px 2px rgba(15, 20, 30, 0.04);
+    --zyr-card-elevated-shadow: 0 18px 40px rgba(15, 20, 30, 0.08);
+    --zyr-card-focus-ring: rgba(40, 160, 130, 0.16);
 
-	// Card
-	--zyr-card-bg: var(--zyr-bg-2);
-	--zyr-card-border: var(--zyr-border);
-	--zyr-card-hover-border: var(--zyr-border-hover);
-	--zyr-card-section-bg: rgba(15, 20, 30, 0.025);
-	--zyr-card-shadow: 0 1px 2px rgba(15, 20, 30, 0.04);
-	--zyr-card-elevated-shadow: 0 18px 40px rgba(15, 20, 30, 0.08);
-	--zyr-card-focus-ring: rgba(40, 160, 130, 0.16);
+    // Badge
+    --zyr-badge-default-bg: var(--zyr-bg-3);
+    --zyr-badge-default-text: var(--zyr-text-muted);
+    --zyr-badge-default-border: var(--zyr-border);
 
-	// Badge
-	--zyr-badge-default-bg: var(--zyr-bg-3);
-	--zyr-badge-default-text: var(--zyr-text-muted);
-	--zyr-badge-default-border: var(--zyr-border);
+    // Sidebar
+    --zyr-sidebar-bg: var(--zyr-bg-2);
+    --zyr-sidebar-border: var(--zyr-border);
+    --zyr-sidebar-link-active-bg: rgba(40, 160, 130, 0.07);
+    --zyr-sidebar-link-active-text: var(--zyr-accent);
+    --zyr-sidebar-link-active-border: var(--zyr-accent);
 
-	// Sidebar
-	--zyr-sidebar-bg: var(--zyr-bg-2);
-	--zyr-sidebar-border: var(--zyr-border);
-	--zyr-sidebar-link-active-bg: rgba(40, 160, 130, 0.07);
-	--zyr-sidebar-link-active-text: var(--zyr-accent);
-	--zyr-sidebar-link-active-border: var(--zyr-accent);
+    // Code block
+    --zyr-code-bg: #f0f2f5;
+    --zyr-code-border: var(--zyr-border);
 
-	// Code block
-	--zyr-code-bg: #F0F2F5;
-	--zyr-code-border: var(--zyr-border);
+    // Scrollbar
+    --zyr-scrollbar-thumb: rgba(0, 0, 0, 0.12);
+    --zyr-scrollbar-track: transparent;
 
-	// Scrollbar
-	--zyr-scrollbar-thumb: rgba(0, 0, 0, 0.12);
-	--zyr-scrollbar-track: transparent;
+    // layoutt -------------------------------------
 
-
-
-	// layoutt -------------------------------------
-
-
-	--zyra-header-height: 80px;
+    --zyra-header-height: 80px;
 }
-
 
 // [data-theme='light'] {
 //     /* Base */

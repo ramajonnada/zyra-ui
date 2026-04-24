@@ -1,16 +1,16 @@
 export type UiComponentAccent = 'teal' | 'blue' | 'purple' | 'amber' | 'green';
 
 export interface UiComponentShowcaseCard {
-	slug: string;
-	title: string;
-	selector: string;
-	importName: string;
-	category: string;
-	description?: string;
-	icon: string;
-	accent: UiComponentAccent;
-	highlights: string[];
-	exampleCode?: string;
+    slug: string;
+    title: string;
+    selector: string;
+    importName: string;
+    category: string;
+    description?: string;
+    icon: string;
+    accent: UiComponentAccent;
+    highlights: string[];
+    exampleCode?: string;
 }
 
 const BUTTON_EXAMPLE_CODE = `import { Component } from '@angular/core';
@@ -194,127 +194,159 @@ export class DemoTooltipComponent {}
 `;
 
 export const UI_COMPONENT_SHOWCASE = [
-	{
-		slug: 'button',
-		title: 'Button',
-		selector: 'zyra-button',
-		importName: 'ZyraButton',
-		category: 'Actions',
-		description:
-			'Token-aware action buttons for primary flows, secondary actions, and compact utility triggers.',
-		icon: 'fa-solid fa-hand-pointer',
-		accent: 'blue',
-		highlights: ['Clear action hierarchy', 'Works in forms and toolbars', 'Easy variant switching'],
-		exampleCode: BUTTON_EXAMPLE_CODE,
-	},
-	{
-		slug: 'badge',
-		title: 'Badge',
-		selector: 'zyra-badge',
-		importName: 'ZyraBadge',
-		category: 'Status',
-		description:
-			'Small status labels for updates, counts, state pills, and quick metadata throughout the interface.',
-		icon: 'fa-solid fa-certificate',
-		accent: 'teal',
-		highlights: ['Compact semantic states', 'Dot support for live signals', 'Fits dense UI surfaces'],
-		exampleCode: BADGE_EXAMPLE_CODE,
-	},
-	{
-		slug: 'card',
-		title: 'Card',
-		selector: 'zyra-card',
-		importName: 'ZyraCard',
-		category: 'Layout',
-		description:
-			'Flexible content containers for dashboards, previews, settings panels, and modular content blocks.',
-		icon: 'fa-regular fa-square',
-		accent: 'purple',
-		highlights: ['Header and footer slots', 'Clickable mode support', 'Multiple visual variants'],
-		exampleCode: CARD_EXAMPLE_CODE,
-	},
-	{
-		slug: 'avatar',
-		title: 'Avatar',
-		selector: 'zyra-avatar',
-		importName: 'ZyraAvatar',
-		category: 'Identity',
-		description:
-			'Profile and team visuals that make lists, comments, and user surfaces feel more human and scannable.',
-		icon: 'fa-solid fa-user-circle',
-		accent: 'green',
-		highlights: ['Great for team UIs', 'Pairs well with badges', 'Readable at smaller sizes'],
-		exampleCode: AVATAR_EXAMPLE_CODE,
-	},
-	{
-		slug: 'input',
-		title: 'Input',
-		selector: 'zyra-input',
-		importName: 'ZyraInput',
-		category: 'Forms',
-		description:
-			'Foundation text inputs for login forms, filters, search flows, and structured data entry experiences.',
-		icon: 'fa-solid fa-keyboard',
-		accent: 'amber',
-		highlights: ['Built for normal form flows', 'Works with standalone imports', 'Clean token styling'],
-		exampleCode: INPUT_EXAMPLE_CODE,
-	},
-	{
-		slug: 'form-field',
-		title: 'Form Field',
-		selector: 'zyra-form-field',
-		importName: 'ZyraFormField',
-		category: 'Forms',
-		description:
-			'Field wrappers that align labels, hints, and validation copy into a more polished form system.',
-		icon: 'fa-solid fa-align-left',
-		accent: 'blue',
-		highlights: ['Helps compose accessible forms', 'Supports helper and error text', 'Keeps spacing consistent'],
-		exampleCode: FORM_FIELD_EXAMPLE_CODE,
-	},
-	{
-		slug: 'spinner',
-		title: 'Spinner',
-		selector: 'zyra-spinner',
-		importName: 'ZyraSpinner',
-		category: 'Feedback',
-		description:
-			'Loading indicators for async states, background fetches, and actions that need a clear pending signal.',
-		icon: 'fa-solid fa-spinner',
-		accent: 'purple',
-		highlights: ['Useful for async states', 'Easy to drop into buttons', 'Keeps loading feedback visible'],
-		exampleCode: SPINNER_EXAMPLE_CODE,
-	},
-	{
-		slug: 'toast',
-		title: 'Toast',
-		selector: 'zyra-toast-container',
-		importName: 'ZyraToastContainer',
-		category: 'Feedback',
-		description:
-			'Transient notifications for confirmations, warnings, and system messages without interrupting the flow.',
-		icon: 'fa-solid fa-message',
-		accent: 'teal',
-		highlights: ['Success, info, warning, error flows', 'Great for action confirmation', 'Fits app-wide feedback'],
-		exampleCode: TOAST_EXAMPLE_CODE,
-	},
-	{
-		slug: 'tooltip',
-		title: 'Tooltip',
-		selector: 'zyra-tooltip',
-		importName: 'ZyraTooltip',
-		category: 'Overlays',
-		description:
-			'Helpful hover and focus details for dense controls, icon actions, and space-constrained interfaces.',
-		icon: 'fa-solid fa-circle-info',
-		accent: 'green',
-		highlights: ['Adds context without clutter', 'Works well on icon-only actions', 'Supports compact UIs'],
-		exampleCode: TOOLTIP_EXAMPLE_CODE,
-	},
-] satisfies ReadonlyArray<UiComponentShowcaseCard>;
+    {
+        slug: 'button',
+        title: 'Button',
+        selector: 'zyra-button',
+        importName: 'ZyraButton',
+        category: 'Actions',
+        description:
+            'Token-aware action buttons for primary flows, secondary actions, and compact utility triggers.',
+        icon: 'fa-solid fa-hand-pointer',
+        accent: 'blue',
+        highlights: [
+            'Clear action hierarchy',
+            'Works in forms and toolbars',
+            'Easy variant switching',
+        ],
+        exampleCode: BUTTON_EXAMPLE_CODE,
+    },
+    {
+        slug: 'badge',
+        title: 'Badge',
+        selector: 'zyra-badge',
+        importName: 'ZyraBadge',
+        category: 'Status',
+        description:
+            'Small status labels for updates, counts, state pills, and quick metadata throughout the interface.',
+        icon: 'fa-solid fa-certificate',
+        accent: 'teal',
+        highlights: [
+            'Compact semantic states',
+            'Dot support for live signals',
+            'Fits dense UI surfaces',
+        ],
+        exampleCode: BADGE_EXAMPLE_CODE,
+    },
+    {
+        slug: 'card',
+        title: 'Card',
+        selector: 'zyra-card',
+        importName: 'ZyraCard',
+        category: 'Layout',
+        description:
+            'Flexible content containers for dashboards, previews, settings panels, and modular content blocks.',
+        icon: 'fa-regular fa-square',
+        accent: 'purple',
+        highlights: [
+            'Header and footer slots',
+            'Clickable mode support',
+            'Multiple visual variants',
+        ],
+        exampleCode: CARD_EXAMPLE_CODE,
+    },
+    {
+        slug: 'avatar',
+        title: 'Avatar',
+        selector: 'zyra-avatar',
+        importName: 'ZyraAvatar',
+        category: 'Identity',
+        description:
+            'Profile and team visuals that make lists, comments, and user surfaces feel more human and scannable.',
+        icon: 'fa-solid fa-user-circle',
+        accent: 'green',
+        highlights: ['Great for team UIs', 'Pairs well with badges', 'Readable at smaller sizes'],
+        exampleCode: AVATAR_EXAMPLE_CODE,
+    },
+    {
+        slug: 'input',
+        title: 'Input',
+        selector: 'zyra-input',
+        importName: 'ZyraInput',
+        category: 'Forms',
+        description:
+            'Foundation text inputs for login forms, filters, search flows, and structured data entry experiences.',
+        icon: 'fa-solid fa-keyboard',
+        accent: 'amber',
+        highlights: [
+            'Built for normal form flows',
+            'Works with standalone imports',
+            'Clean token styling',
+        ],
+        exampleCode: INPUT_EXAMPLE_CODE,
+    },
+    {
+        slug: 'form-field',
+        title: 'Form Field',
+        selector: 'zyra-form-field',
+        importName: 'ZyraFormField',
+        category: 'Forms',
+        description:
+            'Field wrappers that align labels, hints, and validation copy into a more polished form system.',
+        icon: 'fa-solid fa-align-left',
+        accent: 'blue',
+        highlights: [
+            'Helps compose accessible forms',
+            'Supports helper and error text',
+            'Keeps spacing consistent',
+        ],
+        exampleCode: FORM_FIELD_EXAMPLE_CODE,
+    },
+    {
+        slug: 'spinner',
+        title: 'Spinner',
+        selector: 'zyra-spinner',
+        importName: 'ZyraSpinner',
+        category: 'Feedback',
+        description:
+            'Loading indicators for async states, background fetches, and actions that need a clear pending signal.',
+        icon: 'fa-solid fa-spinner',
+        accent: 'purple',
+        highlights: [
+            'Useful for async states',
+            'Easy to drop into buttons',
+            'Keeps loading feedback visible',
+        ],
+        exampleCode: SPINNER_EXAMPLE_CODE,
+    },
+    {
+        slug: 'toast',
+        title: 'Toast',
+        selector: 'zyra-toast-container',
+        importName: 'ZyraToastContainer',
+        category: 'Feedback',
+        description:
+            'Transient notifications for confirmations, warnings, and system messages without interrupting the flow.',
+        icon: 'fa-solid fa-message',
+        accent: 'teal',
+        highlights: [
+            'Success, info, warning, error flows',
+            'Great for action confirmation',
+            'Fits app-wide feedback',
+        ],
+        exampleCode: TOAST_EXAMPLE_CODE,
+    },
+    {
+        slug: 'tooltip',
+        title: 'Tooltip',
+        selector: 'zyra-tooltip',
+        importName: 'ZyraTooltip',
+        category: 'Overlays',
+        description:
+            'Helpful hover and focus details for dense controls, icon actions, and space-constrained interfaces.',
+        icon: 'fa-solid fa-circle-info',
+        accent: 'green',
+        highlights: [
+            'Adds context without clutter',
+            'Works well on icon-only actions',
+            'Supports compact UIs',
+        ],
+        exampleCode: TOOLTIP_EXAMPLE_CODE,
+    },
+] satisfies readonly UiComponentShowcaseCard[];
 
 export function getUiComponentShowcaseCard(
-	slug: string | null | undefined
+    slug: string | null | undefined,
 ): UiComponentShowcaseCard | undefined {
-	return UI_COMPONENT_SHOWCASE.find((card) => card.slug === slug);
+    return UI_COMPONENT_SHOWCASE.find((card) => card.slug === slug);
 }

@@ -21,7 +21,11 @@
                 <zyra-card variant="outlined" [clickable]="true" padding="lg">
                     <div class="component-card__body">
                         <div class="component-card__header">
-                            <div [class]="'component-card__icon component-card__icon--' + card.accent">
+                            <div
+                                [class]="
+                                    'component-card__icon component-card__icon--' + card.accent
+                                "
+                            >
                                 <i [class]="card.icon" aria-hidden="true"></i>
                             </div>
 

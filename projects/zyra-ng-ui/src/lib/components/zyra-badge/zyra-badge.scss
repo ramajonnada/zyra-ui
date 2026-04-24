@@ -1,76 +1,76 @@
 .zyr-badge {
-	display: inline-flex;
-	align-items: center;
-	gap: 5px;
-	border-radius: var(--zyr-radius-full);
-	font-family: var(--zyr-font-mono);
-	font-weight: 500;
-	border: 1px solid;
-	white-space: nowrap;
-	transition:
-		background var(--zyr-transition-slow),
-		color var(--zyr-transition-slow),
-		border-color var(--zyr-transition-slow);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: var(--zyr-radius-full);
+    font-family: var(--zyr-font-mono);
+    font-weight: 500;
+    border: 1px solid;
+    white-space: nowrap;
+    transition:
+        background var(--zyr-transition-slow),
+        color var(--zyr-transition-slow),
+        border-color var(--zyr-transition-slow);
 
-	// ── Sizes ─────────────────────────────────────────────────
-	&--sm {
-		padding: 2px 7px;
-		font-size: 10px;
-	}
+    // ── Sizes ─────────────────────────────────────────────────
+    &--sm {
+        padding: 2px 7px;
+        font-size: 10px;
+    }
 
-	&--md {
-		padding: 3px 9px;
-		font-size: 11px;
-	}
+    &--md {
+        padding: 3px 9px;
+        font-size: 11px;
+    }
 
-	&--lg {
-		padding: 5px 12px;
-		font-size: 13px;
-	}
+    &--lg {
+        padding: 5px 12px;
+        font-size: 13px;
+    }
 
-	// ── Variants ──────────────────────────────────────────────
-	&--default {
-		background: var(--zyr-bg-3);
-		color: var(--zyr-text-muted);
-		border-color: var(--zyr-border);
-	}
+    // ── Variants ──────────────────────────────────────────────
+    &--default {
+        background: var(--zyr-bg-3);
+        color: var(--zyr-text-muted);
+        border-color: var(--zyr-border);
+    }
 
-	&--success {
-		background: var(--zyr-success-muted);
-		color: var(--zyr-success);
-		border-color: var(--zyr-success-border);
-	}
+    &--success {
+        background: var(--zyr-success-muted);
+        color: var(--zyr-success);
+        border-color: var(--zyr-success-border);
+    }
 
-	&--warning {
-		background: var(--zyr-warning-muted);
-		color: var(--zyr-warning);
-		border-color: var(--zyr-warning-border);
-	}
+    &--warning {
+        background: var(--zyr-warning-muted);
+        color: var(--zyr-warning);
+        border-color: var(--zyr-warning-border);
+    }
 
-	&--danger {
-		background: var(--zyr-danger-muted);
-		color: var(--zyr-danger);
-		border-color: var(--zyr-danger-border);
-	}
+    &--danger {
+        background: var(--zyr-danger-muted);
+        color: var(--zyr-danger);
+        border-color: var(--zyr-danger-border);
+    }
 
-	&--info {
-		background: var(--zyr-info-muted);
-		color: var(--zyr-info);
-		border-color: var(--zyr-info-border);
-	}
+    &--info {
+        background: var(--zyr-info-muted);
+        color: var(--zyr-info);
+        border-color: var(--zyr-info-border);
+    }
 
-	&--purple {
-		background: var(--zyr-accent-3-muted);
-		color: var(--zyr-accent-3);
-		border-color: var(--zyr-accent-3-border);
-	}
+    &--purple {
+        background: var(--zyr-accent-3-muted);
+        color: var(--zyr-accent-3);
+        border-color: var(--zyr-accent-3-border);
+    }
 
-	// ── Dot indicator ─────────────────────────────────────────
-	&__dot {
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: currentColor;
-		flex-shrink: 0;
-	}
+    // ── Dot indicator ─────────────────────────────────────────
+    &__dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        flex-shrink: 0;
+    }
 }

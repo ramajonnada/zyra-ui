@@ -1,11 +1,16 @@
-<span class="zyr-tooltip-wrap" (mouseenter)="visible.set(true)" (mouseleave)="visible.set(false)"
-	(focusin)="visible.set(true)" (focusout)="visible.set(false)">
-	<ng-content />
+<span
+    class="zyr-tooltip-wrap"
+    (mouseenter)="visible.set(true)"
+    (mouseleave)="visible.set(false)"
+    (focusin)="visible.set(true)"
+    (focusout)="visible.set(false)"
+>
+    <ng-content />
 
-	@if (visible() && text()) {
-	<span [class]="tooltipClass()"  role="tooltip">
-		{{ text() }}
-		<span class="zyr-tooltip__arrow"></span>
-	</span>
-	}
+    @if (visible() && text()) {
+        <span [class]="tooltipClass()" role="tooltip">
+            {{ text() }}
+            <span class="zyr-tooltip__arrow"></span>
+        </span>
+    }
 </span>

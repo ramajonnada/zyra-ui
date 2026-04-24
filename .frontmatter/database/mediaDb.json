@@ -1,1 +1,25 @@
-{"projects":{"zyra-ui":{"projects":{"zyra-ui":{"src":{"content":{}}},"zyra-ng-ui":{"src":{"lib":{"components":{"zyra-badge":{},"zyra-avatar":{},"zyra-card":{},"zyra-toast":{},"zyra-tooltip":{}}},"theme":{}},"theme":{}}}}}}
+{
+    "projects": {
+        "zyra-ui": {
+            "projects": {
+                "zyra-ui": { "src": { "content": {} } },
+                "zyra-ng-ui": {
+                    "src": {
+                        "lib": {
+                            "components": {
+                                "zyra-badge": {},
+                                "zyra-avatar": {},
+                                "zyra-card": {},
+                                "zyra-toast": {},
+                                "zyra-tooltip": {}
+                            }
+                        },
+                        "theme": {}
+                    },
+                    "theme": {}
+                }
+            },
+            "src": { "app": { "blog": { "blog-details": {} } } }
+        }
+    }
+}

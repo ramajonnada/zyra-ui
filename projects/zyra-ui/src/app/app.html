@@ -1,17 +1,14 @@
 <div class="app-shell">
+    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
 
-	<app-header (toggleSidebar)="toggleSidebar()"></app-header>
+    <div class="app-body">
+        <app-sidebar [isOpen]="sidebarOpen()" (toggleSidebar)="toggleSidebar()"></app-sidebar>
 
-	<div class="app-body">
-
-		<app-sidebar [isOpen]="sidebarOpen()" (toggleSidebar)="toggleSidebar()"></app-sidebar>
-
-		<!-- Page shifts right when sidebar open (desktop) -->
-		<div class="app-page" [style.margin-left]="pageMargin()">
-			<app-main></app-main>
-			<app-footer></app-footer>
-		</div>
-
-	</div>
+        <!-- Page shifts right when sidebar open (desktop) -->
+        <div class="app-page" [style.margin-left]="pageMargin()">
+            <app-main></app-main>
+            <app-footer></app-footer>
+        </div>
+    </div>
 </div>
 <zyra-toast-container></zyra-toast-container>

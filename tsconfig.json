@@ -1,50 +1,50 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-	"compileOnSave": false,
-	"compilerOptions": {
-		"esModuleInterop": true,
-		"paths": {},
-		"strict": true,
-		"noImplicitOverride": true,
-		"noPropertyAccessFromIndexSignature": true,
-		"moduleResolution": "bundler",
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
-		"skipLibCheck": true,
-		"isolatedModules": true,
-		"experimentalDecorators": true,
-		"importHelpers": true,
-		"target": "ES2022",
-		"module": "ES2022",
-		"forceConsistentCasingInFileNames": true
-	},
-	"angularCompilerOptions": {
-		"enableI18nLegacyMessageIdFormat": false,
-		"strictInjectionParameters": true,
-		"strictInputAccessModifiers": true,
-		"typeCheckHostBindings": true,
-		"strictTemplates": true
-	},
-	"files": [],
-	"references": [
-		{
-			"path": "./projects/zyra-ui/tsconfig.app.json"
-		},
-		{
-			"path": "./projects/zyra-ui/tsconfig.spec.json"
-		},
-		{
-			"path": "./projects/zyra-ng-ui/tsconfig.lib.json"
-		},
-		{
-			"path": "./projects/zyra-ng-ui/tsconfig.spec.json"
-		},
-		{
-			"path": "./projects/test-app/tsconfig.app.json"
-		},
-		{
-			"path": "./projects/test-app/tsconfig.spec.json"
-		}
-	]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "paths": {},
+        "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "moduleResolution": "bundler",
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "ES2022",
+        "forceConsistentCasingInFileNames": true
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "typeCheckHostBindings": true,
+        "strictTemplates": true
+    },
+    "files": [],
+    "references": [
+        {
+            "path": "./projects/zyra-ui/tsconfig.app.json"
+        },
+        {
+            "path": "./projects/zyra-ui/tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/zyra-ng-ui/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/zyra-ng-ui/tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/test-app/tsconfig.app.json"
+        },
+        {
+            "path": "./projects/test-app/tsconfig.spec.json"
+        }
+    ]
 }

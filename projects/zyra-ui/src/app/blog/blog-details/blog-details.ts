@@ -1,121 +1,144 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 import { Title, Meta } from '@angular/platform-browser';
 import { BlogService, PostMeta } from '../../services/blog-service';
 import { ZyraCard } from 'zyra-ng-ui';
+import { timeout } from 'rxjs';
 
 @Component({
-	selector: 'app-blog-details',
-	standalone: true,
-	imports: [CommonModule, MarkdownModule, RouterLink, ZyraCard],
-	templateUrl: './blog-details.html',
-	styleUrls: ['./blog-details.scss'],
+    selector: 'app-blog-details',
+    standalone: true,
+    imports: [CommonModule, MarkdownModule, RouterLink, ZyraCard],
+    templateUrl: './blog-details.html',
+    styleUrls: ['./blog-details.scss'],
 })
 export class BlogDetails implements OnInit {
-	markdownContent = '';
-	slug = '';
-	postTitle = '';
-	postDescription = '';
-	postDate = '';
-	postReadTime = '';
-	postCategory = 'Angular';
-	postTags: string[] = [];
-	loading = true;
-	error = '';
+    markdownContent = signal('');
+    slug = signal('');
+    postTitle = signal('');
+    postDescription = signal('');
+    postDate = signal('');
+    postReadTime = signal('');
+    postCategory = signal('Angular');
+    postTags = signal<string[]>([]);
+    loading = signal(true);
+    error = signal('');
 
-	private route = inject(ActivatedRoute);
-	private blogService = inject(BlogService);
-	private title = inject(Title);
-	private meta = inject(Meta);
+    private route = inject(ActivatedRoute);
+    private blogService = inject(BlogService);
+    private title = inject(Title);
+    private meta = inject(Meta);
 
-	ngOnInit() {
-		this.slug = this.route.snapshot.paramMap.get('slug')!;
+    ngOnInit() {
+        this.route.paramMap.subscribe((params) => {
+            this.slug.set(params.get('slug')!);
+            this.loadPost();
+        });
+    }
 
-		this.blogService.getPostContent(this.slug).subscribe({
-			next: (md) => {
-				const titleFromFrontMatter = this.extractFrontMatterValue(md, 'title');
-				const descriptionFromFrontMatter = this.extractFrontMatterValue(md, 'description');
-				const dateFromFrontMatter = this.extractFrontMatterValue(md, 'date');
+    loadPost() {
+        this.loading.set(true);
+        this.error.set('');
+        this.markdownContent.set('');
+        this.postTitle.set('');
+        this.postDescription.set('');
+        this.postDate.set('');
+        this.postReadTime.set('');
+        this.postTags.set([]);
 
-				this.postTitle = titleFromFrontMatter || this.slug;
-				this.postDescription =
-					descriptionFromFrontMatter || `Read blog post: ${this.postTitle}`;
-				this.postDate = dateFromFrontMatter;
-				this.markdownContent = this.stripIntroBlocks(this.stripFrontMatter(md));
+        this.blogService
+            .getPostContent(this.slug())
+            .pipe(timeout(5000))
+            .subscribe({
+                next: (md) => {
+                    const titleFromFrontMatter = this.extractFrontMatterValue(md, 'title');
+                    const descriptionFromFrontMatter = this.extractFrontMatterValue(
+                        md,
+                        'description',
+                    );
+                    const dateFromFrontMatter = this.extractFrontMatterValue(md, 'date');
 
-				this.title.setTitle(this.postTitle);
-				this.meta.updateTag({ name: 'description', content: this.postDescription });
-				this.loading = false;
-			},
-			error: () => {
-				this.error = 'Unable to load this article right now. Please try again in a moment.';
-				this.loading = false;
-			},
-		});
+                    this.postTitle.set(titleFromFrontMatter || this.slug());
+                    this.postDescription.set(
+                        descriptionFromFrontMatter || `Read blog post: ${this.postTitle()}`,
+                    );
+                    this.postDate.set(dateFromFrontMatter);
+                    this.markdownContent.set(this.stripIntroBlocks(this.stripFrontMatter(md)));
 
-		this.blogService.getAllPosts().subscribe((posts) => {
-			const currentPost = posts.find((post) => post.slug === this.slug);
-			if (!currentPost) {
-				return;
-			}
+                    this.title.setTitle(this.postTitle());
+                    this.meta.updateTag({ name: 'description', content: this.postDescription() });
+                    this.loading.set(false);
+                },
+                error: (err) => {
+                    console.error('Error loading post', this.slug(), err);
+                    this.error.set(
+                        'Unable to load this article right now. Please try again in a moment.',
+                    );
+                    this.loading.set(false);
+                },
+            });
 
-			this.applyPostMeta(currentPost);
-		});
-	}
+        this.blogService.getAllPosts().subscribe((posts) => {
+            const currentPost = posts.find((post) => post.slug === this.slug());
+            if (!currentPost) {
+                return;
+            }
 
-	categoryLabel(): string {
-		return this.postCategory || 'Angular';
-	}
+            this.applyPostMeta(currentPost);
+        });
+    }
 
-	stripFrontMatter(md: string): string {
-		return md.replace(/^---[\s\S]*?---/, '').trim();
-	}
+    categoryLabel(): string {
+        return this.postCategory() || 'Angular';
+    }
 
-	private applyPostMeta(post: PostMeta): void {
-		if (!this.postTitle) {
-			this.postTitle = post.title.trim();
-		}
+    stripFrontMatter(md: string): string {
+        return md.replace(/^---[\s\S]*?---/, '').trim();
+    }
 
-		if (!this.postDescription) {
-			this.postDescription = post.description.trim();
-		}
+    private applyPostMeta(post: PostMeta): void {
+        if (!this.postTitle()) {
+            this.postTitle.set(post.title.trim());
+        }
 
-		if (!this.postDate) {
-			this.postDate = post.date.trim();
-		}
+        if (!this.postDescription()) {
+            this.postDescription.set(post.description.trim());
+        }
 
-		this.postReadTime = post.readTime.trim();
-		this.postCategory = this.toList(post.category)[0] ?? 'Angular';
-		this.postTags = this.toList(post.tags).slice(0, 6);
-	}
+        if (!this.postDate()) {
+            this.postDate.set(post.date.trim());
+        }
 
-	private extractFrontMatterValue(md: string, key: string): string {
-		const match = md.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
-		if (!match) {
-			return '';
-		}
+        this.postReadTime.set(post.readTime.trim());
+        this.postCategory.set(this.toList(post.category)[0] ?? 'Angular');
+        this.postTags.set(this.toList(post.tags).slice(0, 6));
+    }
 
-		return match[1].trim().replace(/^['"]|['"]$/g, '');
-	}
+    private extractFrontMatterValue(md: string, key: string): string {
+        const match = md.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
+        if (!match) {
+            return '';
+        }
 
-	private stripIntroBlocks(md: string): string {
-		return md
-			.replace(/^\s*<div class="blog-meta-row">[\s\S]*?<\/div>\s*/i, '')
-			.replace(/^\s*#\s+[^\r\n]+(?:\r?\n)+/i, '')
-			.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>\s*/i, '')
-			.trim();
-	}
+        return match[1].trim().replace(/^['"]|['"]$/g, '');
+    }
 
-	private toList(value: string | string[] | undefined): string[] {
-		if (!value) {
-			return [];
-		}
+    private stripIntroBlocks(md: string): string {
+        return md
+            .replace(/^\s*<div class="blog-meta-row">[\s\S]*?<\/div>\s*/i, '')
+            .replace(/^\s*#\s+[^\r\n]+(?:\r?\n)+/i, '')
+            .replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>\s*/i, '')
+            .trim();
+    }
 
-		const raw = Array.isArray(value) ? value : [value];
-		return raw
-			.map((item) => item.trim())
-			.filter(Boolean);
-	}
+    private toList(value: string | string[] | undefined): string[] {
+        if (!value) {
+            return [];
+        }
+
+        const raw = Array.isArray(value) ? value : [value];
+        return raw.map((item) => item.trim()).filter(Boolean);
+    }
 }

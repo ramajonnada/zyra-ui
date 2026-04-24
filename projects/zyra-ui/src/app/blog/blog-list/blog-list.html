@@ -1,55 +1,63 @@
 <section class="blog-page">
-	<header class="blog-page__header">
-		<div class="blog-page__copy">
-			<p class="blog-page__eyebrow">Blog & Insights</p>
-			<h1>Tutorials, tips &
-				deep dives</h1>
-			<p class="blog-page__intro">
-				Everything Angular 19, signals, and modern UI architecture — written for developers building real
-				products.
-			</p>
-		</div>
+    <header class="blog-page__header">
+        <div class="blog-page__copy">
+            <p class="blog-page__eyebrow">Blog & Insights</p>
+            <h1>Tutorials, tips & deep dives</h1>
+            <p class="blog-page__intro">
+                Everything Angular 19, signals, and modern UI architecture — written for developers
+                building real products.
+            </p>
+        </div>
 
-		<div class="blog-page__meta">
-			<span class="blog-page__meta-pill">{{ articleCount() }} articles</span>
-			<span class="blog-page__meta-pill">{{ categoryCount() }} categories</span>
-		</div>
-	</header>
+        <div class="blog-page__meta">
+            <span class="blog-page__meta-pill">{{ articleCount() }} articles</span>
+            <span class="blog-page__meta-pill">{{ categoryCount() }} categories</span>
+        </div>
+    </header>
 
-	<div class="blog-page__section-head">
-		<h2>Latest articles</h2>
-	</div>
+    <div class="blog-page__section-head">
+        <h2>Latest articles</h2>
+    </div>
 
-	@if (loading()) {
-	<div class="blog-page__state">Loading posts...</div>
-	} @else if (error(); as errorMessage) {
-	<div class="blog-page__state">{{ errorMessage }}</div>
-	} @else if (!posts().length) {
-	<div class="blog-page__state">No posts available yet.</div>
-	} @else {
-	<div class="blog-page__grid">
-		@for (post of posts(); track post.slug) {
-		<a class="blog-card" [routerLink]="['/blog', post.slug]">
-			<zyra-card variant="outlined" [hasHeader]="true" [hasFooter]="true" [clickable]="true">
-				<div slot="header" class="blog-card__header">
-					<span class="blog-card__category">{{ categoryLabel(post.category) }}</span>
-					<span class="blog-card__date">{{ post.date | date:'MMM dd, yyyy' }}</span>
-				</div>
+    @if (loading()) {
+        <div class="blog-page__state">Loading posts...</div>
+    } @else if (error(); as errorMessage) {
+        <div class="blog-page__state">{{ errorMessage }}</div>
+    } @else if (!posts().length) {
+        <div class="blog-page__state">No posts available yet.</div>
+    } @else {
+        <div class="blog-page__grid">
+            @for (post of posts(); track post.slug) {
+                <a class="blog-card" [routerLink]="['/blog', post.slug]">
+                    <zyra-card
+                        variant="outlined"
+                        [hasHeader]="true"
+                        [hasFooter]="true"
+                        [clickable]="true"
+                    >
+                        <div slot="header" class="blog-card__header">
+                            <span class="blog-card__category">{{
+                                categoryLabel(post.category)
+                            }}</span>
+                            <span class="blog-card__date">{{
+                                post.date | date: 'MMM dd, yyyy'
+                            }}</span>
+                        </div>
 
-				<div class="blog-card__body">
-					<h3 class="blog-card__title">{{ post.title }}</h3>
-					<p class="blog-card__description">{{ post.description }}</p>
-				</div>
+                        <div class="blog-card__body">
+                            <h3 class="blog-card__title">{{ post.title }}</h3>
+                            <p class="blog-card__description">{{ post.description }}</p>
+                        </div>
 
-				<div slot="footer" class="blog-card__footer">
-					<span class="blog-card__meta">{{ post.readTime }}</span>
-					@if (post.tags?.length) {
-					<span class="blog-card__meta">{{ post.tags![0] }}</span>
-					}
-				</div>
-			</zyra-card>
-		</a>
-		}
-	</div>
-	}
+                        <div slot="footer" class="blog-card__footer">
+                            <span class="blog-card__meta">{{ post.readTime }}</span>
+                            @if (post.tags?.length) {
+                                <span class="blog-card__meta">{{ post.tags![0] }}</span>
+                            }
+                        </div>
+                    </zyra-card>
+                </a>
+            }
+        </div>
+    }
 </section>

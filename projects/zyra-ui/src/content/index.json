@@ -1,57 +1,53 @@
 [
-	{
-		"imageUrl": "",
-		"readTime": "8 mins",
-		"slug": "angular-21-signals-explained-signals-signal-forms",
-		"title": "Angular 21 Signals Explained: Signals, Signal Forms",
-		"description": "In-depth Angular 21 Signals guide for 2026: learn signals, Signal Forms, zoneless change detection, and how to use Angular Signals with RxJS and HttpClient.",
-		"category": [
-			"Angular 21 signals"
-		],
-		"tags": [
-			"angular 21",
-			"angular signals",
-			"signal forms",
-			"zoneless change detection",
-			"angular 2026",
-			"angular reactivity",
-			"rxjs interop",
-			"angular seo"
-		],
-		"keywords": [
-			"Angular 21 signals",
-			"Angular 21 new features",
-			"Angular signals tutorial",
-			"Signal Forms in Angular 21",
-			"Zoneless Angular change detection",
-			"Angular signals vs RxJS",
-			"Angular reactive programming 2026"
-		],
-		"date": " 2026-01-03"
-	},
-	{
-		"imageUrl": "",
-		"readTime": "10 mins",
-		"slug": "angular-folder-structure-practices-2026-guide",
-		"title": "Angular Folder Structure Best Practices (2026 Guide)",
-		"description": "Learn the best Angular folder structure for scalable, maintainable applications in 2026 with real-world examples.",
-		"category": [
-			"Angular"
-		],
-		"tags": [
-			"angular",
-			"angular best practices",
-			"angular folder structure",
-			"frontend architecture",
-			"scalable angular apps"
-		],
-		"keywords": [
-			"Angular folder structure",
-			"Angular best practices",
-			"Frontend architecture",
-			"Scalable Angular apps",
-			"Angular 2026 guide"
-		],
-		"date": "2026-01-03"
-	}
+    {
+        "imageUrl": "",
+        "readTime": "8 mins",
+        "slug": "angular-21-signals-explained-signals-signal-forms",
+        "title": "Angular 21 Signals Explained: Signals, Signal Forms",
+        "description": "In-depth Angular 21 Signals guide for 2026: learn signals, Signal Forms, zoneless change detection, and how to use Angular Signals with RxJS and HttpClient.",
+        "category": ["Angular 21 signals"],
+        "tags": [
+            "angular 21",
+            "angular signals",
+            "signal forms",
+            "zoneless change detection",
+            "angular 2026",
+            "angular reactivity",
+            "rxjs interop",
+            "angular seo"
+        ],
+        "keywords": [
+            "Angular 21 signals",
+            "Angular 21 new features",
+            "Angular signals tutorial",
+            "Signal Forms in Angular 21",
+            "Zoneless Angular change detection",
+            "Angular signals vs RxJS",
+            "Angular reactive programming 2026"
+        ],
+        "date": " 2026-01-03"
+    },
+    {
+        "imageUrl": "",
+        "readTime": "10 mins",
+        "slug": "angular-folder-structure-practices-2026-guide",
+        "title": "Angular Folder Structure Best Practices (2026 Guide)",
+        "description": "Learn the best Angular folder structure for scalable, maintainable applications in 2026 with real-world examples.",
+        "category": ["Angular"],
+        "tags": [
+            "angular",
+            "angular best practices",
+            "angular folder structure",
+            "frontend architecture",
+            "scalable angular apps"
+        ],
+        "keywords": [
+            "Angular folder structure",
+            "Angular best practices",
+            "Frontend architecture",
+            "Scalable Angular apps",
+            "Angular 2026 guide"
+        ],
+        "date": "2026-01-03"
+    }
 ]

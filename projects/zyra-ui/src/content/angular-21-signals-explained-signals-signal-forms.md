@@ -1,6 +1,6 @@
 ---
-title: "Angular 21 Signals Explained: Signals, Signal Forms"
-description: "In-depth Angular 21 Signals guide for 2026: learn signals, Signal Forms, zoneless change detection, and how to use Angular Signals with RxJS and HttpClient."
+title: 'Angular 21 Signals Explained: Signals, Signal Forms'
+description: 'In-depth Angular 21 Signals guide for 2026: learn signals, Signal Forms, zoneless change detection, and how to use Angular Signals with RxJS and HttpClient.'
 slug: angular-21-signals-explained-signals-signal-forms
 tags:
     - angular 21
@@ -27,7 +27,6 @@ date: 2026-01-06T05:29:59.318Z
 Angular 21 introduces powerful changes to reactive state management. Among the most important **Angular 21 new features** are signals, signal forms,
 and zoneless change detection.
 
-
 Angular has changed a lot over the years, but Angular 21 Signals might be the biggest shift yet. Angular has evolved a lot over the years. If you’re new to Angular, you may want to start with [Angular fundamentals guide](https://angular.dev/tutorials/learn-angular) before diving into Angular 21 Signals.
 
 In 2026, Angular apps are faster, cleaner, and easier to reason about thanks to signals, zoneless change detection, and better RxJS integration.
@@ -40,7 +39,7 @@ At the simplest level, a signal is a reactive value.
 
 It holds data, and Angular automatically knows when that data changes. When a signal changes, only the parts of the UI that depend on it update.
 
-Angular Signals are a fine‑grained reactivity primitive that store a value, track where that value is read, and notify Angular when the value changes.  You can also read the official
+Angular Signals are a fine‑grained reactivity primitive that store a value, track where that value is read, and notify Angular when the value changes. You can also read the official
 [Angular Signals documentation](https://angular.dev/guide/signals)
 
 Instead of dirty‑checking everything on every change detection cycle, Angular can now update only the bindings that depend on changed Signals.
@@ -50,7 +49,6 @@ Think of a signal like a smart variable.
 import { signal } from '@angular/core';
 
 const counter = signal(0);
-
 ```
 
 - counter() → reads the value
@@ -68,6 +66,7 @@ Core properties of Signals:
 ## Why Angular Signals Matter in 2026 ?
 
 **Before signals, Angular relied heavily on**:
+
 - Zone.js
 - Change detection cycles
 - RxJS for almost everything
@@ -75,6 +74,7 @@ Core properties of Signals:
 This worked, but it was complex and sometimes slow.
 
 **With Angular 21 signals, you get**:
+
 - Faster rendering
 - Less boilerplate
 - Clear data flow
@@ -96,10 +96,12 @@ increment() {
   this.count++;
 }
 ```
+
 Angular had to check the whole component tree to update the UI.
 
 ### With Angular 21 signals
-```ts 
+
+```ts
 count = signal(0);
 
 increment() {
@@ -109,6 +111,7 @@ increment() {
 ```
 
 **Template**:
+
 ```html
 <p>Count: {{ count() }}</p>
 <button (click)="increment()">+</button>
@@ -117,7 +120,9 @@ increment() {
 Angular knows exactly which part depends on count. Only that part updates.
 
 ---
+
 ### Computed Signals: Derived State
+
 A computed signal is a value calculated from other signals.
 
 ```ts
@@ -127,40 +132,42 @@ price = signal(100);
 tax = signal(10);
 
 total = computed(() => {
-  return this.price() + this.tax();
+    return this.price() + this.tax();
 });
-
 ```
 
 Whenever **price** or **tax** changes, **total** updates automatically.
 
 ### Practical example
+
 In an online store:
+
 - Product price
 - Discount
 - Final total
-Computed signals keep this logic clean and bug-free.
+  Computed signals keep this logic clean and bug-free.
 
 ---
 
 ### Effect Signals: Reacting to Changes
+
 **Effects** let you run code when a signal changes.
 
 ```ts
 import { effect } from '@angular/core';
 
 effect(() => {
-  console.log('Counter changed:', this.count());
+    console.log('Counter changed:', this.count());
 });
-
 ```
+
 Good use cases for effects:
 
 - Logging
 - Saving data to local storage
 - Analytics events
 - Triggering API calls
-Avoid putting complex business logic inside effects.
+  Avoid putting complex business logic inside effects.
 
 ---
 
@@ -174,8 +181,8 @@ Angular 21 introduces Signal Forms, which make forms easier and cleaner.
 import { signalForm } from '@angular/forms';
 
 loginForm = signalForm({
-  email: '',
-  password: ''
+    email: '',
+    password: '',
 });
 ```
 
@@ -184,10 +191,12 @@ loginForm = signalForm({
 ```ts
 this.loginForm.value().email;
 ```
+
 **Update values**:
+
 ```ts
 this.loginForm.patchValue({
-  email: 'user@example.com'
+    email: 'user@example.com',
 });
 ```
 
@@ -211,6 +220,7 @@ Angular 21 allows you to run apps without Zone.js.
 - Any async action triggered change detection everywhere
 
 Now:
+
 - Angular updates only when signals change
 - No unnecessary checks
 - Better performance
@@ -244,13 +254,13 @@ users = toSignal(this.users$, { initialValue: [] });
 ```
 
 Template usage:
+
 ```html
-<li *ngFor="let user of users()">
-  {{ user.name }}
-</li>
+<li *ngFor="let user of users()">{{ user.name }}</li>
 ```
 
 **Convert Signal to Observable**
+
 ```ts
 import { toObservable } from '@angular/core/rxjs-interop';
 
@@ -266,6 +276,7 @@ This makes migration from older Angular code much easier.
 **HttpClient** still returns observables, but signals simplify UI state handling.
 
 **Example**: **Loading Users**
+
 ```ts
 users = signal<User[]>([]);
 loading = signal(true);
@@ -279,13 +290,12 @@ loadUsers() {
 ```
 
 **Template**:
+
 ```html
 <p *ngIf="loading()">Loading...</p>
 
 <ul>
-  <li *ngFor="let user of users()">
-    {{ user.name }}
-  </li>
+    <li *ngFor="let user of users()">{{ user.name }}</li>
 </ul>
 ```
 
@@ -331,7 +341,7 @@ In 2026, modern Angular applications:
 - Avoid Zone.js unless required
 - Keep components simple and readable
 
-If you are starting a new Angular project today, Angular Signals should be your default choice. 
+If you are starting a new Angular project today, Angular Signals should be your default choice.
 
 They are faster, easier to understand, and built for the future.
 

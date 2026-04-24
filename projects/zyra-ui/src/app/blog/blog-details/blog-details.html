@@ -1,108 +1,104 @@
 <div class="article-page">
-	<div class="article-page__glow article-page__glow--one"></div>
-	<div class="article-page__glow article-page__glow--two"></div>
+    <div class="article-page__glow article-page__glow--one"></div>
+    <div class="article-page__glow article-page__glow--two"></div>
 
-	<section class="article-hero">
-		<a routerLink="/blog-list" class="back-link">
-			<span aria-hidden="true">&larr;</span>
-			<span>Back to blog</span>
-		</a>
-		<div class="article-meta-row">
-			<span class="article-chip">{{ categoryLabel() }}</span>
-			@if (postDate) {
-			<span class="article-meta">{{ postDate | date:'MMM dd, yyyy' }}</span>
+    <section class="article-hero">
+        <a routerLink="/blog-list" class="back-link">
+            <span aria-hidden="true">&larr;</span>
+            <span>Back to blog</span>
+        </a>
+        <div class="article-meta-row">
+            <span class="article-chip">{{ categoryLabel() }}</span>
+            @if (postDate()) {
+                <span class="article-meta">{{ postDate() | date: 'MMM dd, yyyy' }}</span>
+            }
+            @if (postReadTime()) {
+                <span class="article-meta">{{ postReadTime() }}</span>
+            }
+        </div>
+
+        <h1 class="article-title">{{ postTitle() || 'Loading article...' }}</h1>
+        <p class="article-description">{{ postDescription() }}</p>
+    </section>
+
+    <!-- @if (!loading() && !error()) { -->
+    <!-- <section class="article-summary">
+		<div class="summary-grid">
+			<div class="summary-item">
+				<span class="summary-item__label">Category</span>
+				<strong>{{ categoryLabel() }}</strong>
+			</div>
+			@if (postDate()) {
+			<div class="summary-item">
+				<span class="summary-item__label">Published</span>
+				<strong>{{ postDate() | date:'MMM dd, yyyy' }}</strong>
+			</div>
 			}
-			@if (postReadTime) {
-			<span class="article-meta">{{ postReadTime }}</span>
+			@if (postReadTime()) {
+			<div class="summary-item">
+				<span class="summary-item__label">Read time</span>
+				<strong>{{ postReadTime() }}</strong>
+			</div>
+			}
+			@if (postTags().length) {
+			<div class="summary-item summary-item--topics">
+				<span class="summary-item__label">Topics</span>
+				<div class="tag-list tag-list--compact">
+					@for (tag of postTags(); track tag) {
+					<span class="tag">{{ tag }}</span>
+					}
+				</div>
+			</div>
 			}
 		</div>
+	</section> -->
+    <!-- } -->
 
-		<h1 class="article-title">{{ postTitle || 'Loading article...' }}</h1>
-		<p class="article-description">{{ postDescription }}</p>
-	</section>
+    @if (loading()) {
+        <section class="article-layout">
+            <zyra-card variant="elevated" class="article-shell article-shell--loading">
+                <div class="info-card__label">Preparing article</div>
+                <p class="info-card__copy">Loading the content and metadata for this page.</p>
+                <div class="skeleton skeleton--title"></div>
+                <div class="skeleton skeleton--line"></div>
+                <div class="skeleton skeleton--line"></div>
+                <div class="skeleton skeleton--line skeleton--short"></div>
+                <div class="skeleton skeleton--block"></div>
+            </zyra-card>
+        </section>
+    } @else if (error()) {
+        <section class="article-layout">
+            <zyra-card variant="outlined" class="article-shell">
+                <div class="info-card__label">Unable to load article</div>
+                <p class="info-card__copy">{{ error() }}</p>
+            </zyra-card>
+        </section>
+    } @else {
+        <section class="article-layout">
+            <div class="zyra-markdown">
+                <div class="blog-author-row">
+                    <div class="blog-author-left">
+                        <div class="blog-avatar">RJ</div>
+                        <div class="blog-author-info">
+                            <div class="blog-author-name">RAMA JONNADA</div>
+                            <div class="blog-author-bio">
+                                Senior Frontend Developer with 4+ years of experience in Angular and
+                                modern web technologies.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <markdown [data]="markdownContent()"></markdown>
 
-	<!-- @if (!loading && !error) {
-	<section class="article-summary">
-		<zyra-card variant="outlined" class="summary-card">
-			<div class="summary-grid">
-				<div class="summary-item">
-					<span class="summary-item__label">Category</span>
-					<strong>{{ categoryLabel() }}</strong>
-				</div>
-				@if (postDate) {
-				<div class="summary-item">
-					<span class="summary-item__label">Published</span>
-					<strong>{{ postDate | date:'MMM dd, yyyy' }}</strong>
-				</div>
-				}
-				@if (postReadTime) {
-				<div class="summary-item">
-					<span class="summary-item__label">Read time</span>
-					<strong>{{ postReadTime }}</strong>
-				</div>
-				}
-				@if (postTags.length) {
-				<div class="summary-item summary-item--topics">
-					<span class="summary-item__label">Topics</span>
-					<div class="tag-list tag-list--compact">
-						@for (tag of postTags; track tag) {
-						<span class="tag">{{ tag }}</span>
-						}
-					</div>
-				</div>
-				}
-			</div>
-		</zyra-card>
-	</section>
-	}
-
-	@if (loading) {
-	<section class="article-layout">
-		<zyra-card variant="elevated" class="article-shell article-shell--loading">
-			<div class="info-card__label">Preparing article</div>
-			<p class="info-card__copy">Loading the content and metadata for this page.</p>
-			<div class="skeleton skeleton--title"></div>
-			<div class="skeleton skeleton--line"></div>
-			<div class="skeleton skeleton--line"></div>
-			<div class="skeleton skeleton--line skeleton--short"></div>
-			<div class="skeleton skeleton--block"></div>
-		</zyra-card>
-	</section>
-	} @else if (error) {
-	<section class="article-layout">
-		<zyra-card variant="outlined" class="article-shell">
-			<div class="info-card__label">Unable to load article</div>
-			<p class="info-card__copy">{{ error }}</p>
-		</zyra-card>
-	</section>
-	} @else { -->
-	<section class="article-layout">
-		<zyra-card variant="elevated" class="article-shell">
-			<div class="zyra-markdown">
-				<markdown [data]="markdownContent"></markdown>
-			</div>
-
-			@if (postTags.length) {
-			<div class="tag-list">
-				@for (tag of postTags; track tag) {
-				<span class="tag">{{ tag }}</span>
-				}
-			</div>
-			}
-
-			<!-- <div class="blog-author-row">
-				<div class="blog-author-left">
-					<div class="blog-avatar">RJ</div>
-					<div class="blog-author-info">
-						<div class="blog-author-name">RAMA JONNADA</div>
-						<div class="blog-author-bio">
-							Senior Frontend Developer with 4+ years of experience in Angular and modern web
-							technologies.
-						</div>
-					</div>
-				</div>
-			</div> -->
-		</zyra-card>
-	</section>
-	<!-- } -->
+                @if (postTags().length) {
+                    <h5>Topics</h5>
+                    <div class="tag-list">
+                        @for (tag of postTags(); track tag) {
+                            <span class="tag">{{ tag }}</span>
+                        }
+                    </div>
+                }
+            </div>
+        </section>
+    }
 </div>

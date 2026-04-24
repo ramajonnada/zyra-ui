@@ -1,18 +1,24 @@
-<div [class]="hostClass()" [attr.role]="clickable() ? 'button' : null" [attr.tabindex]="clickable() ? 0 : null"
-	(click)="handleClick()" (keydown.enter)="handleClick()" (keydown.space)="handleClick()">
-	@if (hasHeader()) {
-	<div class="zyr-card__header">
-		<ng-content select="[slot=header]" />
-	</div>
-	}
+<div
+    [class]="hostClass()"
+    [attr.role]="clickable() ? 'button' : null"
+    [attr.tabindex]="clickable() ? 0 : null"
+    (click)="handleClick()"
+    (keydown.enter)="handleClick()"
+    (keydown.space)="handleClick()"
+>
+    @if (hasHeader()) {
+        <div class="zyr-card__header">
+            <ng-content select="[slot=header]" />
+        </div>
+    }
 
-	<div [class]="bodyClass()">
-		<ng-content />
-	</div>
+    <div [class]="bodyClass()">
+        <ng-content />
+    </div>
 
-	@if (hasFooter()) {
-	<div class="zyr-card__footer">
-		<ng-content select="[slot=footer]" />
-	</div>
-	}
+    @if (hasFooter()) {
+        <div class="zyr-card__footer">
+            <ng-content select="[slot=footer]" />
+        </div>
+    }
 </div>

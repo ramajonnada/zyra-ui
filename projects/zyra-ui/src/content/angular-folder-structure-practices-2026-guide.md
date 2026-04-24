@@ -33,6 +33,7 @@ In this guide, you’ll learn **modern Angular folder structure best practices**
 - New developers struggle to onboard
 
 **A good structure gives you**:
+
 - Clear separation of concerns
 - Easy scaling
 - Better reusability
@@ -57,15 +58,16 @@ Before learning the right way, avoid these mistakes:
 
 ![folder-structure](image.png)
 
-
 ---
 
 ## 📂 Folder Responsibilities Explained
 
 ### `core/`
+
 Used **once** in the entire app.
 
 Contains:
+
 - Global services (AuthService, ThemeService)
 - HTTP interceptors
 - Route guards
@@ -75,9 +77,11 @@ Contains:
 ---
 
 ### `shared/`
+
 Reusable across features.
 
 Contains:
+
 - UI components (buttons, modals)
 - Pipes
 - Directives
@@ -90,6 +94,7 @@ This is perfect for libraries like **Zyra-UI**.
 ---
 
 ### `features/`
+
 Each feature is **self-contained**.
 
 Example:
@@ -97,8 +102,8 @@ features/auth/
 features/blog/
 features/profile/
 
-
 Each feature handles:
+
 - Pages
 - Feature-specific components
 - Routes
@@ -113,9 +118,9 @@ With **Standalone Components**, you no longer need heavy modules.
 Example:
 ts
 @Component({
-  standalone: true,
-  selector: 'app-login',
-  templateUrl: './login.component.html',
+standalone: true,
+selector: 'app-login',
+templateUrl: './login.component.html',
 })
 export class LoginComponent {}
 
@@ -131,4 +136,3 @@ export class LoginComponent {}
 | Directive | `auto-focus.directive.ts` |
 
 Consistency = professionalism.
-

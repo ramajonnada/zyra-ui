@@ -65,36 +65,55 @@
 </div> -->
 
 <div class="header__left">
-	<button class="header__burger" (click)="onToggle()" aria-label="Toggle sidebar">
-		<span></span><span></span><span></span>
-	</button>
-	<a class="header__logo" routerLink="/">
-		<span class="header__logo-mark"></span>
-		<span class="header__logo-text">Zyra UI</span>
-	</a>
+    <button class="header__burger" (click)="onToggle()" aria-label="Toggle sidebar">
+        <span></span><span></span><span></span>
+    </button>
+    <a class="header__logo" routerLink="/">
+        <span class="header__logo-mark"></span>
+        <span class="header__logo-text">Zyra UI</span>
+    </a>
 </div>
 
 <nav class="header__nav" aria-label="Primary">
-	<a routerLink="/blog-list" class="header__nav__link" routerLinkActive="is-active" #rla="routerLinkActive"
-		[attr.aria-current]="rla.isActive ? 'page' : null">Blog</a>
-	<a routerLink="/components" class="header__nav__link" routerLinkActive="is-active" #rla="routerLinkActive"
-		[attr.aria-current]="rla.isActive ? 'page' : null">Components</a>
-	<a routerLink="/docs" class="header__nav__link" routerLinkActive="is-active" #rla="routerLinkActive"
-		[attr.aria-current]="rla.isActive ? 'page' : null">Docs</a>
+    <a
+        routerLink="/blog-list"
+        class="header__nav__link"
+        routerLinkActive="is-active"
+        #rla="routerLinkActive"
+        [attr.aria-current]="rla.isActive ? 'page' : null"
+        >Blog</a
+    >
+    <a
+        routerLink="/components"
+        class="header__nav__link"
+        routerLinkActive="is-active"
+        #rla="routerLinkActive"
+        [attr.aria-current]="rla.isActive ? 'page' : null"
+        >Components</a
+    >
+    <a
+        routerLink="/docs"
+        class="header__nav__link"
+        routerLinkActive="is-active"
+        #rla="routerLinkActive"
+        [attr.aria-current]="rla.isActive ? 'page' : null"
+        >Docs</a
+    >
 </nav>
 
 <div class="header__right">
-	<zyra-button variant="outline" size="sm" (click)="toggleTheme()"
-		[attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'">
-		{{ isDark() ? '☀️' : '🌙' }}
-	</zyra-button>
-	<zyra-button variant="secondary" size="sm" aria-label="View source on GitHub">
-		<a href="https://github.com/ramajonnada/zyra-ui" rel="" title="View source on GitHub">
-			<i class="fa-brands fa-github"></i>
-		</a>
-	</zyra-button>
-	<zyra-button variant="primary" size="sm" routerLink="/components">Get Started</zyra-button>
-
-
-
+    <zyra-button
+        variant="outline"
+        size="sm"
+        (click)="toggleTheme()"
+        [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+    >
+        {{ isDark() ? '☀️' : '🌙' }}
+    </zyra-button>
+    <zyra-button variant="secondary" size="sm" aria-label="View source on GitHub">
+        <a href="https://github.com/ramajonnada/zyra-ui" rel="" title="View source on GitHub">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    </zyra-button>
+    <zyra-button variant="primary" size="sm" routerLink="/components">Get Started</zyra-button>
 </div>
