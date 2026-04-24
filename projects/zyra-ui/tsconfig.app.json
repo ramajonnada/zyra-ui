@@ -4,12 +4,14 @@
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"outDir": "../../out-tsc/app",
+		"rootDir": "./src",
+		"forceConsistentCasingInFileNames": true,
 		"types": [
 			"node"
 		],
 		"paths": {
 			"zyra-ng-ui": [
-				"../../dist/zyra-ng-ui" 
+				"../../dist/zyra-ng-ui"
 			]
 		}
 	},

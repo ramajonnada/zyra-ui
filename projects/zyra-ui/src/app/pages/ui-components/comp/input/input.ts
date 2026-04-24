@@ -79,7 +79,7 @@ export class Input {
 	types: InputType[] = ['text', 'email', 'password', 'number', 'search', 'tel', 'url'];
 	sizes: FormFieldSize[] = ['sm', 'md', 'lg'];
 	appearances: FormFieldAppearance[] = ['outline', 'filled', 'underline'];
-	icons = ['🔍', '✉️', '📞', '👤', '🌐', '🔒'];
+	icons = ['<i class="fa-solid fa-magnifying-glass"></i>', '<i class="fa-solid fa-envelope"></i>', '<i class="fa-solid fa-phone"></i>', '<i class="fa-solid fa-user"></i>', '<i class="fa-solid fa-globe"></i>', '<i class="fa-solid fa-lock"></i>'];
 
 	// ── Playground form control ───────────────────────────────
 	playgroundControl = computed(() => {

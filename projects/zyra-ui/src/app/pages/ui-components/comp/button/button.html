@@ -17,7 +17,7 @@
 
 	<div class="pg__body">
 
-		<!-- ── LEFT: CONTROLS ──────────────────────────────────── -->
+		<!-- LEFT: CONTROLS -->
 		<div class="controls">
 			<div class="controls__title">Controls</div>
 
@@ -27,8 +27,7 @@
 				<div class="control-options">
 					@for (v of variants; track v) {
 					<zyra-button variant="outline" [class.active]="selectedVariant() === v"
-						(clicked)="selectedVariant.set(v)">{{
-						v }}</zyra-button>
+						(clicked)="selectedVariant.set(v)">{{ v }}</zyra-button>
 					}
 				</div>
 			</div>
@@ -39,8 +38,7 @@
 				<div class="control-options">
 					@for (s of sizes; track s) {
 					<zyra-button variant="outline" [class.active]="selectedSize() === s"
-						(clicked)="selectedSize.set(s)">{{ s
-						}}</zyra-button>
+						(clicked)="selectedSize.set(s)">{{ s }}</zyra-button>
 					}
 				</div>
 			</div>
@@ -85,16 +83,15 @@
 			<div class="control-group">
 				<label class="control-label">iconLeft</label>
 				<div class="control-options">
-					<zyra-button variant="outline" [class.active]="iconLeft() === ''"
-						(clicked)="iconLeft.set('')">none</zyra-button>
-					<zyra-button variant="outline" [class.active]="iconLeft() === '🚀'"
-						(clicked)="iconLeft.set('🚀')">🚀</zyra-button>
-					<zyra-button variant="outline" [class.active]="iconLeft() === '📁'"
-						(clicked)="iconLeft.set('📁')">📁</zyra-button>
-					<zyra-button variant="outline" [class.active]="iconLeft() === '🔍'"
-						(clicked)="iconLeft.set('🔍')">🔍</zyra-button>
-					<zyra-button variant="outline" [class.active]="iconLeft() === '🗑️'"
-						(clicked)="iconLeft.set('🗑️')">🗑️</zyra-button>
+					<zyra-button variant="outline" [class.active]="iconLeft() === 'fa-solid fa-rocket'"
+						(clicked)="iconLeft.set('fa-solid fa-rocket')"><i class="fa-solid fa-rocket"></i></zyra-button>
+					<zyra-button variant="outline" [class.active]="iconLeft() === 'fa-solid fa-folder'"
+						(clicked)="iconLeft.set('fa-solid fa-folder')"><i class="fa-solid fa-folder"></i></zyra-button>
+					<zyra-button variant="outline" [class.active]="iconLeft() === 'fa-solid fa-magnifying-glass'"
+						(clicked)="iconLeft.set('fa-solid fa-magnifying-glass')"><i
+							class="fa-solid fa-magnifying-glass"></i></zyra-button>
+					<zyra-button variant="outline" [class.active]="iconLeft() === 'fa-solid fa-trash'"
+						(clicked)="iconLeft.set('fa-solid fa-trash')"><i class="fa-solid fa-trash"></i></zyra-button>
 				</div>
 			</div>
 
@@ -102,14 +99,16 @@
 			<div class="control-group">
 				<label class="control-label">iconRight</label>
 				<div class="control-options">
-					<zyra-button variant="outline" [class.active]="iconRight() === ''"
-						(clicked)="iconRight.set('')">none</zyra-button>
-					<zyra-button variant="outline" [class.active]="iconRight() === '→'"
-						(clicked)="iconRight.set('→')">→</zyra-button>
-					<zyra-button variant="outline" [class.active]="iconRight() === '↩'"
-						(clicked)="iconRight.set('↩')">↩</zyra-button>
-					<zyra-button variant="outline" [class.active]="iconRight() === '⬆️'"
-						(clicked)="iconRight.set('⬆️')">⬆️</zyra-button>
+					<zyra-button variant="outline" [class.active]="iconRight() === 'fa-solid fa-arrow-right'"
+						(clicked)="iconRight.set('fa-solid fa-arrow-right')"><i
+							class="fa-solid fa-arrow-right"></i></zyra-button>
+					<zyra-button variant="outline" [class.active]="iconRight() === 'fa-solid fa-arrow-left'"
+						(clicked)="iconRight.set('fa-solid fa-arrow-left')"><i
+							class="fa-solid fa-arrow-left"></i></zyra-button>
+					<zyra-button variant="outline" [class.active]="iconRight() === 'fa-solid fa-arrow-up'"
+						(clicked)="iconRight.set('fa-solid fa-arrow-up')">
+						<i class="fa-solid fa-arrow-up"></i>
+					</zyra-button>
 				</div>
 			</div>
 
@@ -121,7 +120,7 @@
 
 		</div>
 
-		<!-- ── RIGHT: PREVIEW ─────────────────────────────────── -->
+		<!-- RIGHT: PREVIEW -->
 		<div class="preview-area">
 
 			<!-- Live Preview -->
@@ -129,9 +128,14 @@
 				<div class="preview-box__label">Live Preview</div>
 				<div class="preview-box__stage">
 					<zyra-button [variant]="selectedVariant()" [size]="selectedSize()" [loading]="isLoading()"
-						[disabled]="isDisabled()" [fullWidth]="isFullWidth()" [iconLeft]="iconLeft()"
-						[iconRight]="iconRight()" (clicked)="log('Button clicked')">
+						[disabled]="isDisabled()" [fullWidth]="isFullWidth()" (clicked)="log('Button clicked')">
+						@if (iconLeft()) {
+						<i slot="prefix" [class]="iconLeft()"></i>
+						}
 						{{ buttonLabel || 'Button' }}
+						@if (iconRight()) {
+						<i slot="suffix" [class]="iconRight()"></i>
+						}
 					</zyra-button>
 				</div>
 			</div>

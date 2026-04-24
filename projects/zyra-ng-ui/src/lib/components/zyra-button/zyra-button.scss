@@ -127,6 +127,17 @@
 		align-items: center;
 		font-size: 1em;
 		line-height: 1;
+
+		&:empty {
+			display: none;
+		}
+
+		:where(svg) {
+			width: 1em;
+			height: 1em;
+			display: block;
+			flex-shrink: 0;
+		}
 	}
 
 	&__label {

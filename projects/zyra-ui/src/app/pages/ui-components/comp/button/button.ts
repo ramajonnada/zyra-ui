@@ -1,6 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
+﻿import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ZyraButton, ZyraBadge, ZyraThemeService, ZyraToastContainer, ZyraToastService } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraButton, ZyraToastService } from 'zyra-ng-ui';
 
 @Component({
 	selector: 'app-button',
@@ -12,7 +12,6 @@ import { ZyraButton, ZyraBadge, ZyraThemeService, ZyraToastContainer, ZyraToastS
 export class Button {
 	toastService = inject(ZyraToastService);
 
-	// ── State ─────────────────────────────────────────────────
 	selectedVariant = signal<'primary' | 'secondary' | 'ghost' | 'outline' | 'danger'>('primary');
 	selectedSize = signal<'sm' | 'md' | 'lg'>('md');
 	isLoading = signal(false);
@@ -22,22 +21,29 @@ export class Button {
 	iconRight = signal('');
 	buttonLabel = 'Button';
 
-	// ── Data for combo table ──────────────────────────────────
 	variants = ['primary', 'secondary', 'ghost', 'outline', 'danger'] as const;
 	sizes = ['sm', 'md', 'lg'] as const;
 
-	// ── Methods ───────────────────────────────────────────────
 	log(msg: string): void {
 		this.toastService.info(msg);
 	}
 
 	copyCode(): void {
-		const code = `<zyra-button variant="${this.selectedVariant()}" size="${this.selectedSize()}"${this.isLoading() ? ' [loading]="true"' : ''}${this.isDisabled() ? ' [disabled]="true"' : ''}${this.isFullWidth() ? ' [fullWidth]="true"' : ''}${this.iconLeft() ? ` iconLeft="${this.iconLeft()}"` : ''}${this.iconRight() ? ` iconRight="${this.iconRight()}"` : ''}>${this.buttonLabel}</zyra-button>`;
+		const code = this.generatedCode();
 		navigator.clipboard.writeText(code);
 		this.toastService.success('Code copied to clipboard!');
 	}
 
 	generatedCode = computed(() => {
-		return `<zyra-button variant="${this.selectedVariant()}" size="${this.selectedSize()}"${this.isLoading() ? ' [loading]="true"' : ''}${this.isDisabled() ? ' [disabled]="true"' : ''}${this.isFullWidth() ? ' [fullWidth]="true"' : ''}${this.iconLeft() ? ` iconLeft="${this.iconLeft()}"` : ''}${this.iconRight() ? ` iconRight="${this.iconRight()}"` : ''}>${this.buttonLabel}</zyra-button>`;
+		let code = `<zyra-button variant="${this.selectedVariant()}" size="${this.selectedSize()}"`;
+		if (this.isLoading()) code += ` [loading]="true"`;
+		if (this.isDisabled()) code += ` [disabled]="true"`;
+		if (this.isFullWidth()) code += ` [fullWidth]="true"`;
+		code += `>`;
+		if (this.iconLeft()) code += `\n  <i slot="prefix" class="${this.iconLeft()}"></i>`;
+		code += `\n  ${this.buttonLabel || 'Button'}`;
+		if (this.iconRight()) code += `\n  <i slot="suffix" class="${this.iconRight()}"></i>`;
+		code += `\n</zyra-button>`;
+		return code;
 	});
 }

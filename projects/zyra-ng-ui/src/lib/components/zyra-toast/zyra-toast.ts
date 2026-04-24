@@ -97,11 +97,11 @@ export class ZyraToastItem {
 
 	icon = computed(() => {
 		const map: Record<ToastVariant, string> = {
-			success: '✓',
-			error: '✕',
-			warning: '⚠',
-			info: 'ℹ',
-			default: '●',
+			success: '<i class="fa-solid fa-check"></i>',
+			error: '<i class="fa-solid fa-xmark"></i>',
+			warning: '<i class="fa-solid fa-triangle-exclamation"></i>',
+			info: '<i class="fa-solid fa-circle-info"></i>',
+			default: '<i class="fa-solid fa-circle"></i>',
 		};
 		return map[this.toast().variant];
 	});

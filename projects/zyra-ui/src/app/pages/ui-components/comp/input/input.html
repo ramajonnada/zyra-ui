@@ -56,7 +56,8 @@
 				<div class="control-options">
 					@for (icon of icons; track icon) {
 					<zyra-button variant="outline" [class.active]="prefixIcon() === icon"
-						(clicked)="prefixIcon.set(prefixIcon() === icon ? '' : icon)">{{ icon }}</zyra-button>
+						(clicked)="prefixIcon.set(prefixIcon() === icon ? '' : icon)"><span
+							[innerHTML]="icon"></span></zyra-button>
 					}
 				</div>
 			</div>
@@ -66,7 +67,8 @@
 				<div class="control-options">
 					@for (icon of icons; track icon) {
 					<zyra-button variant="outline" [class.active]="suffixIcon() === icon"
-						(clicked)="suffixIcon.set(suffixIcon() === icon ? '' : icon)">{{ icon }}</zyra-button>
+						(clicked)="suffixIcon.set(suffixIcon() === icon ? '' : icon)"><span
+							[innerHTML]="icon"></span></zyra-button>
 					}
 				</div>
 			</div>
