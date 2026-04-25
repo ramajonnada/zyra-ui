@@ -52,7 +52,7 @@ export function provideZyra(config: ZyraConfig = {}): EnvironmentProviders {
         {
             provide: APP_INITIALIZER,
             useFactory: () => {
-                const themeService = inject(ZyraThemeService);
+                inject(ZyraThemeService);
                 return () => {
                     // Theme service constructor handles DOM setup via effect()
                     // This ensures it runs before first render

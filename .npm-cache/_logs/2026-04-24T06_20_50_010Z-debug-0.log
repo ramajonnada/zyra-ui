@@ -1,0 +1,43 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\91964\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.8.0
+2 info using node@v24.1.0
+3 silly config load:file:C:\Users\91964\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:C:\Projects\zyra-ui\dist\zyra-ng-ui\.npmrc
+5 silly config load:file:C:\Users\91964\.npmrc
+6 silly config load:file:C:\Users\91964\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm pack
+8 verbose argv "pack" "--cache" "C:\\Projects\\zyra-ui\\.npm-cache"
+9 verbose logfile logs-max:10 dir:C:\Projects\zyra-ui\.npm-cache\_logs\2026-04-24T06_20_50_010Z-
+10 verbose logfile C:\Projects\zyra-ui\.npm-cache\_logs\2026-04-24T06_20_50_010Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+13 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with EACCES
+14 notice
+15 notice package: zyra-ng-ui@1.3.25
+16 notice Tarball Contents
+17 notice 1.4kB README.md
+17 notice 107.6kB fesm2022/zyra-ng-ui.mjs
+17 notice 71.2kB fesm2022/zyra-ng-ui.mjs.map
+17 notice 864B package.json
+17 notice 2.7kB styles/_base.scss
+17 notice 9.5kB styles/_dark-theme.scss
+17 notice 9.7kB styles/_light-theme.scss
+17 notice 6.3kB styles/_variables.scss
+17 notice 714B styles/index.scss
+17 notice 14.5kB types/zyra-ng-ui.d.ts
+18 notice Tarball Details
+19 notice name: zyra-ng-ui
+20 notice version: 1.3.25
+21 notice filename: zyra-ng-ui-1.3.25.tgz
+22 notice package size: 35.8 kB
+23 notice unpacked size: 224.4 kB
+24 notice shasum: 47198bda93e25cf9dbc8c80c1867a3bc61bee5ba
+25 notice integrity: sha512-HjktKGsMBuOQO[...]tNFFnG6AmN1pg==
+26 notice total files: 10
+27 notice
+28 verbose cwd C:\Projects\zyra-ui\dist\zyra-ng-ui
+29 verbose os Windows_NT 10.0.26200
+30 verbose node v24.1.0
+31 verbose npm  v11.8.0
+32 verbose exit 0
+33 info ok

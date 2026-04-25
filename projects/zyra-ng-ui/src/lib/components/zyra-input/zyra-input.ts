@@ -57,8 +57,8 @@ export class ZyraInput implements ControlValueAccessor, OnInit {
     readonly inputId = `zyra-input-${++inputIdCounter}`;
 
     // ── CVA callbacks ─────────────────────────────────────────
-    private _onChange: (val: string) => void = () => {};
-    private _onTouched: () => void = () => {};
+    private _onChange: (val: string) => void = () => undefined;
+    private _onTouched: () => void = () => undefined;
 
     // ── ControlValueAccessor ──────────────────────────────────
     writeValue(val: string): void {

@@ -1,3 +1,5 @@
+import { InjectionToken } from '@angular/core';
+
 export enum ZyraThemeType {
     Light = 'light',
     Dark = 'dark',
@@ -17,4 +19,4 @@ export interface ZyraConfig {
     respectSystemTheme?: boolean; // follow OS preference on first load
 }
 
-export const ZYRA_CONFIG = Symbol('ZYRA_CONFIG');
+export const ZYRA_CONFIG = new InjectionToken<ZyraConfig>('ZYRA_CONFIG');

@@ -5,17 +5,17 @@
 
 import { Injectable, signal, computed, effect, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ZyraTheme, ZyraConfig, ZYRA_CONFIG, ZyraThemeType } from './theme-type';
+import { ZyraTheme, ZyraConfig, ZYRA_CONFIG } from './theme-type';
 
 @Injectable({ providedIn: 'root' })
 export class ZyraThemeService {
-    private platformId = inject(PLATFORM_ID);
-    private isBrowser = isPlatformBrowser(this.platformId);
-
-    private config: ZyraConfig = {
+    private readonly platformId = inject(PLATFORM_ID);
+    private readonly isBrowser = isPlatformBrowser(this.platformId);
+    private readonly config: ZyraConfig = {
         theme: 'dark',
         storageKey: 'zyra-theme',
         respectSystemTheme: true,
+        ...inject(ZYRA_CONFIG, { optional: true }),
     };
 
     // ── Core signal ───────────────────────────────────────────
