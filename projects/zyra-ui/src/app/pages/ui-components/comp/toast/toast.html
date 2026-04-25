@@ -1,8 +1,6 @@
-<p>toast works!</p>
 <!-- projects/zyra-ui/src/app/pages/test/toast/toast.html -->
 
 <div class="pg">
-    <!-- HEADER -->
     <div class="pg__header">
         <div class="pg__header-left">
             <div class="pg__header-title">
@@ -12,12 +10,11 @@
                 <zyra-badge variant="warning" size="sm">warning</zyra-badge>
                 <zyra-badge variant="info" size="sm">info</zyra-badge>
             </div>
-            <p>Toast notification service — call from anywhere, auto-dismiss, persistent support</p>
+            <p>Toast notification service - call from anywhere, auto-dismiss, persistent support</p>
         </div>
     </div>
 
     <div class="pg__body">
-        <!-- ── LEFT: CONTROLS ──────────────────────────────────── -->
         <div class="controls">
             <div class="controls__title">Controls</div>
 
@@ -42,7 +39,7 @@
                     type="text"
                     [value]="title()"
                     (input)="title.set($any($event.target).value)"
-                    placeholder="Toast title…"
+                    placeholder="Toast title..."
                 />
             </div>
 
@@ -53,7 +50,7 @@
                     type="text"
                     [value]="description()"
                     (input)="description.set($any($event.target).value)"
-                    placeholder="Optional description…"
+                    placeholder="Optional description..."
                 />
             </div>
 
@@ -88,13 +85,13 @@
 
             <div class="controls__actions">
                 <zyra-button variant="primary" size="md" [fullWidth]="true" (clicked)="fire()">
-                    🔥 Fire Toast
+                    Fire Toast
                 </zyra-button>
                 <zyra-button variant="danger" size="sm" [fullWidth]="true" (clicked)="dismissAll()">
-                    ✕ Dismiss All
+                    Dismiss All
                 </zyra-button>
                 <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()">
-                    ↺ Reset Controls
+                    Reset Controls
                 </zyra-button>
             </div>
 
@@ -110,11 +107,10 @@
             </div>
         </div>
 
-        <!-- ── RIGHT: PREVIEW ────────────────────────────────────── -->
         <div class="preview-area">
             <div class="preview-box">
                 <div class="preview-box__label">
-                    Live Preview — toasts appear bottom-right
+                    Live Preview - toasts appear bottom-right
                     <zyra-badge [variant]="'success'" size="sm">{{ variant() }}</zyra-badge>
                     <zyra-badge variant="default" size="sm">{{
                         persistent() ? 'persistent' : duration() / 1000 + 's'
@@ -125,19 +121,19 @@
                         <div class="fire-area__icon">
                             @switch (variant()) {
                                 @case ('success') {
-                                    <span>✓</span>
+                                    <span>&#10003;</span>
                                 }
                                 @case ('error') {
-                                    <span>✕</span>
+                                    <span>&#10005;</span>
                                 }
                                 @case ('warning') {
-                                    <span>⚠</span>
+                                    <span>&#9888;</span>
                                 }
                                 @case ('info') {
-                                    <span>ℹ</span>
+                                    <span>&#9432;</span>
                                 }
                                 @default {
-                                    <span>●</span>
+                                    <span>&#9679;</span>
                                 }
                             }
                         </div>
@@ -147,14 +143,23 @@
                                 <span>{{ description() }}</span>
                             }
                         </div>
-                        <zyra-button variant="primary" (clicked)="fire()">Fire →</zyra-button>
+                        <zyra-button variant="primary" (clicked)="fire()">Fire -&gt;</zyra-button>
                     </div>
                 </div>
+            </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()"
+                        >Copy</zyra-button
+                    >
+                </div>
+                <pre class="code-box__pre">{{ generatedCode() }}</pre>
             </div>
         </div>
     </div>
 
-    <!-- ── ALL VARIANTS ───────────────────────────────────────── -->
     <div class="grid-section">
         <div class="grid-section__title">
             All Variants
@@ -172,7 +177,7 @@
                 "
             >
                 <div class="variant-card">
-                    <span class="variant-card__icon variant-card__icon--success">✓</span>
+                    <span class="variant-card__icon variant-card__icon--success">&#10003;</span>
                     <div>
                         <div class="variant-card__title">success</div>
                         <div class="variant-card__desc">Saved successfully!</div>
@@ -192,7 +197,7 @@
                 "
             >
                 <div class="variant-card">
-                    <span class="variant-card__icon variant-card__icon--error">✕</span>
+                    <span class="variant-card__icon variant-card__icon--error">&#10005;</span>
                     <div>
                         <div class="variant-card__title">error</div>
                         <div class="variant-card__desc">Something went wrong</div>
@@ -212,7 +217,7 @@
                 "
             >
                 <div class="variant-card">
-                    <span class="variant-card__icon variant-card__icon--warning">⚠</span>
+                    <span class="variant-card__icon variant-card__icon--warning">&#9888;</span>
                     <div>
                         <div class="variant-card__title">warning</div>
                         <div class="variant-card__desc">Session expiring soon</div>
@@ -232,7 +237,7 @@
                 "
             >
                 <div class="variant-card">
-                    <span class="variant-card__icon variant-card__icon--info">ℹ</span>
+                    <span class="variant-card__icon variant-card__icon--info">&#9432;</span>
                     <div>
                         <div class="variant-card__title">info</div>
                         <div class="variant-card__desc">New update available</div>
@@ -243,7 +248,6 @@
         </div>
     </div>
 
-    <!-- ── REAL WORLD SCENARIOS ───────────────────────────────── -->
     <div class="grid-section">
         <div class="grid-section__title">
             Real World Scenarios
@@ -302,7 +306,7 @@
                 <div class="scenario">
                     <div class="scenario__info">
                         <div class="scenario__title">Multiple in sequence</div>
-                        <div class="scenario__desc">Upload → processing → done</div>
+                        <div class="scenario__desc">Upload -&gt; processing -&gt; done</div>
                     </div>
                     <zyra-button variant="primary" size="sm" (clicked)="demoMultiple()"
                         >Demo</zyra-button
@@ -314,7 +318,7 @@
                 <div class="scenario">
                     <div class="scenario__info">
                         <div class="scenario__title">Persistent toast</div>
-                        <div class="scenario__desc">duration: 0 — stays until dismissed</div>
+                        <div class="scenario__desc">duration: 0 - stays until dismissed</div>
                     </div>
                     <zyra-button variant="secondary" size="sm" (clicked)="demoPersistent()"
                         >Demo</zyra-button

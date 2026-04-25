@@ -1,5 +1,3 @@
-<!-- projects/zyra-ui/src/app/pages/test/avatar/avatar.html -->
-
 <div class="pg">
     <!-- HEADER -->
     <div class="pg__header">
@@ -24,7 +22,7 @@
                 <span class="control-label">name</span>
                 <div class="control-options">
                     @for (n of sampleNames; track n) {
-                        <button [class.active]="name() === n" (click)="name.set(n)">{{ n }}</button>
+                        <zyra-button [class.active]="name() === n" (click)="name.set(n)">{{ n }}</zyra-button>
                     }
                 </div>
             </div>
@@ -33,11 +31,11 @@
             <div class="control-group">
                 <span class="control-label">src (image)</span>
                 <div class="control-options">
-                    <button [class.active]="src() === ''" (click)="src.set('')">none</button>
+                    <zyra-button [class.active]="src() === ''" (click)="src.set('')">none</zyra-button>
                     @for (img of sampleImages; track img) {
-                        <button [class.active]="src() === img" (click)="src.set(img)">
+                        <zyra-button [class.active]="src() === img" (click)="src.set(img)">
                             {{ img.includes('pravatar') ? 'img-' + img.slice(-1) : 'broken' }}
-                        </button>
+                        </zyra-button>
                     }
                 </div>
             </div>
@@ -47,7 +45,7 @@
                 <span class="control-label">size</span>
                 <div class="control-options">
                     @for (s of sizes; track s) {
-                        <button [class.active]="size() === s" (click)="size.set(s)">{{ s }}</button>
+                        <zyra-button [class.active]="size() === s" (click)="size.set(s)">{{ s }}</zyra-button>
                     }
                 </div>
             </div>
@@ -57,9 +55,9 @@
                 <span class="control-label">variant</span>
                 <div class="control-options">
                     @for (v of variants; track v) {
-                        <button [class.active]="variant() === v" (click)="variant.set(v)">
+                        <zyra-button [class.active]="variant() === v" (click)="variant.set(v)">
                             {{ v }}
-                        </button>
+                        </zyra-button>
                     }
                 </div>
             </div>
@@ -69,9 +67,9 @@
                 <span class="control-label">online</span>
                 <div class="control-options">
                     @for (o of onlineOptions; track o.label) {
-                        <button [class.active]="online() === o.value" (click)="online.set(o.value)">
+                        <zyra-button [class.active]="online() === o.value" (click)="online.set(o.value)">
                             {{ o.label }}
-                        </button>
+                        </zyra-button>
                     }
                 </div>
             </div>
@@ -125,6 +123,16 @@
                         />
                     </zyra-tooltip>
                 </div>
+            </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()"
+                        >Copy</zyra-button
+                    >
+                </div>
+                <pre class="code-box__pre">{{ generatedCode() }}</pre>
             </div>
         </div>
     </div>

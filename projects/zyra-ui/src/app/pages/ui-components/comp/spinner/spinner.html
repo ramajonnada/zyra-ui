@@ -1,7 +1,6 @@
 <!-- projects/zyra-ui/src/app/pages/test/spinner/spinner.html -->
 
 <div class="pg">
-    <!-- HEADER -->
     <div class="pg__header">
         <div class="pg__header-left">
             <div class="pg__header-title">
@@ -14,7 +13,6 @@
     </div>
 
     <div class="pg__body">
-        <!-- ── LEFT: CONTROLS ──────────────────────────────────── -->
         <div class="controls">
             <div class="controls__title">Controls</div>
 
@@ -53,24 +51,23 @@
                     type="text"
                     [value]="label()"
                     (input)="label.set($any($event.target).value)"
-                    placeholder="Loading…"
+                    placeholder="Loading..."
                 />
             </div>
 
             <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()"
-                >↺ Reset</zyra-button
+                >Reset</zyra-button
             >
 
             <div class="controls__info">
                 <div class="controls__info-title">Usage</div>
                 <p><code>&lt;zyra-spinner /&gt;</code></p>
-                <p><code>size</code> — xs / sm / md / lg</p>
-                <p><code>color</code> — accent / accent-2 / white / current</p>
-                <p><code>label</code> — screen reader text</p>
+                <p><code>size</code> - xs / sm / md / lg</p>
+                <p><code>color</code> - accent / accent-2 / white / current</p>
+                <p><code>label</code> - screen reader text</p>
             </div>
         </div>
 
-        <!-- ── RIGHT: PREVIEW ────────────────────────────────────── -->
         <div class="preview-area">
             <div class="preview-box">
                 <div class="preview-box__label">
@@ -84,14 +81,23 @@
                     </div>
                 </div>
             </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()"
+                        >Copy</zyra-button
+                    >
+                </div>
+                <pre class="code-box__pre">{{ generatedCode() }}</pre>
+            </div>
         </div>
     </div>
 
-    <!-- ── ALL SIZES ──────────────────────────────────────────── -->
     <div class="grid-section">
         <div class="grid-section__title">
             Sizes
-            <zyra-badge variant="default" size="sm">xs → lg</zyra-badge>
+            <zyra-badge variant="default" size="sm">xs to lg</zyra-badge>
         </div>
         <zyra-card variant="default" padding="lg">
             <div class="showcase-row showcase-row--center">
@@ -105,7 +111,6 @@
         </zyra-card>
     </div>
 
-    <!-- ── ALL COLORS ─────────────────────────────────────────── -->
     <div class="grid-section">
         <div class="grid-section__title">
             Colors
@@ -146,10 +151,9 @@
         </div>
     </div>
 
-    <!-- ── REAL WORLD: BUTTONS ────────────────────────────────── -->
     <div class="grid-section">
         <div class="grid-section__title">
-            Real World — Button Loading States
+            Real World - Button Loading States
             <zyra-badge variant="success" size="sm">click to simulate</zyra-badge>
         </div>
         <zyra-card variant="default" padding="lg">
@@ -161,7 +165,7 @@
                         [loading]="btn1Loading()"
                         (clicked)="simulate(1)"
                     >
-                        {{ btn1Loading() ? 'Saving…' : 'Save' }}
+                        {{ btn1Loading() ? 'Saving...' : 'Save' }}
                     </zyra-button>
                 </div>
 
@@ -172,29 +176,28 @@
                         [loading]="btn2Loading()"
                         (clicked)="simulate(2)"
                     >
-                        {{ btn2Loading() ? 'Uploading…' : 'Upload' }}
+                        {{ btn2Loading() ? 'Uploading...' : 'Upload' }}
                     </zyra-button>
                 </div>
 
                 <div class="btn-demo">
                     <div class="btn-demo__label">Delete (shows error)</div>
                     <zyra-button variant="danger" [loading]="btn3Loading()" (clicked)="simulate(3)">
-                        {{ btn3Loading() ? 'Deleting…' : 'Delete' }}
+                        {{ btn3Loading() ? 'Deleting...' : 'Delete' }}
                     </zyra-button>
                 </div>
             </div>
         </zyra-card>
     </div>
 
-    <!-- ── REAL WORLD: INLINE ─────────────────────────────────── -->
     <div class="grid-section">
-        <div class="grid-section__title">Real World — Inline Usage</div>
+        <div class="grid-section__title">Real World - Inline Usage</div>
         <div class="inline-grid">
             <zyra-card variant="default" padding="lg">
                 <div class="inline-demo__label">Loading data table</div>
                 <div class="loading-state">
                     <zyra-spinner size="md" color="accent" />
-                    <span>Fetching records…</span>
+                    <span>Fetching records...</span>
                 </div>
             </zyra-card>
 
@@ -210,7 +213,7 @@
                 <div class="inline-demo__label">Full page overlay</div>
                 <div class="overlay-demo">
                     <div class="overlay-demo__backdrop">
-                        <zyra-spinner size="lg" color="white" label="Loading page…" />
+                        <zyra-spinner size="lg" color="white" label="Loading page..." />
                     </div>
                 </div>
             </zyra-card>

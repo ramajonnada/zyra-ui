@@ -1,6 +1,6 @@
 // projects/zyra-ui/src/app/pages/test/toast/toast.ts
 
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import {
     ZyraButton,
     ZyraBadge,
@@ -22,7 +22,6 @@ export class Toast {
     themeService = inject(ZyraThemeService);
     toastService = inject(ZyraToastService);
 
-    // ── Playground controls ───────────────────────────────────
     variant = signal<ToastVariant>('success');
     title = signal('Operation completed');
     description = signal('Your changes have been saved.');
@@ -68,7 +67,6 @@ export class Toast {
         this.persistent.set(false);
     }
 
-    // ── Scenario demos ────────────────────────────────────────
     demoFormSave(): void {
         this.toastService.success('Profile saved!', {
             description: 'Your profile info has been updated.',
@@ -97,7 +95,7 @@ export class Toast {
 
     demoMultiple(): void {
         this.toastService.success('File uploaded');
-        setTimeout(() => this.toastService.info('Processing started…'), 400);
+        setTimeout(() => this.toastService.info('Processing started...'), 400);
         setTimeout(() => this.toastService.success('Done! File is ready.'), 1800);
     }
 
@@ -106,5 +104,41 @@ export class Toast {
             description: 'You have unsaved changes. Save before leaving.',
             duration: 0,
         });
+    }
+
+    copyCode(): void {
+        const code = this.generatedCode();
+        navigator.clipboard.writeText(code);
+        this.toastService.success('Code copied to clipboard!');
+    }
+
+    generatedCode = computed(() => {
+        const variant = this.variant() === 'default' ? 'info' : this.variant();
+        const title = this.escapeString(this.title());
+        const description = this.description().trim();
+        const duration = this.persistent() ? 0 : this.duration();
+
+        const optionLines = [
+            description ? `  description: '${this.escapeString(description)}',` : '',
+            `  duration: ${duration},`,
+        ].filter(Boolean);
+
+        return [
+            `import { inject } from '@angular/core';`,
+            `import { ZyraToastService } from 'zyra-ng-ui';`,
+            ``,
+            `const toastService = inject(ZyraToastService);`,
+            ``,
+            `toastService.${variant}('${title}', {`,
+            ...optionLines,
+            `});`,
+            ``,
+            `// Place this once in your app template`,
+            `<zyra-toast-container />`,
+        ].join('\n');
+    });
+
+    private escapeString(value: string): string {
+        return value.replaceAll('\\', '\\\\').replaceAll('\'', '\\\'');
     }
 }

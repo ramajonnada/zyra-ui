@@ -1,6 +1,6 @@
 // projects/zyra-ui/src/app/pages/test/avatar/avatar.ts
 
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import {
     ZyraAvatar,
     ZyraButton,
@@ -61,5 +61,37 @@ export class Avatar {
 
     onAvatarClick(name: string): void {
         this.toastService.info(`Clicked: ${name}`);
+    }
+
+    copyCode(): void {
+        const code = this.generatedCode();
+        navigator.clipboard.writeText(code);
+        this.toastService.success('Code copied to clipboard!');
+    }
+
+    generatedCode = computed(() => {
+        let code = `<zyra-avatar\n  name="${this.escapeAttribute(this.name())}"`;
+
+        if (this.src()) {
+            code += `\n  src="${this.escapeAttribute(this.src())}"`;
+        }
+
+        code += `\n  size="${this.size()}"`;
+        code += `\n  variant="${this.variant()}"`;
+
+        if (this.online() !== null) {
+            code += `\n  [online]="${this.online()}"`;
+        }
+
+        if (this.square()) {
+            code += `\n  [square]="true"`;
+        }
+
+        code += `\n/>`;
+        return code;
+    });
+
+    private escapeAttribute(value: string): string {
+        return value.replaceAll('"', '&quot;');
     }
 }
