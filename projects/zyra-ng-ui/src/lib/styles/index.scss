@@ -1,22 +1,9 @@
-// ============================================================
-// ZYRA NG UI — Styles Entry Point (index.scss)
-// Import this file in your angular.json or styles.scss
-//
-// Usage in angular.json:
-//   "styles": ["projects/zyra-ng-ui/src/styles/index.scss"]
-//
-// Usage in styles.scss:
-//   @use 'projects/zyra-ng-ui/src/styles/index' as *;
-// ============================================================
+// Styles entry point for the Zyra UI library.
 
-// 1. Static design tokens (SCSS variables — for use in component SCSS)
 @forward 'variables';
 
-// 2. Dark theme CSS custom properties (default — :root)
+@use 'shared-theme';
 @forward 'dark-theme';
-
-// 3. Light theme CSS custom properties ([data-theme="light"])
 @forward 'light-theme';
 
-// 4. Global base styles
 @use 'base';

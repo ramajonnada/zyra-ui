@@ -1,0 +1,37 @@
+@use 'variables' as *;
+
+:root,
+[data-theme='light'],
+[data-theme='dark'] {
+    --zyr-font-display: #{$zyr-font-display};
+    --zyr-font-body: #{$zyr-font-body};
+    --zyr-font-mono: #{$zyr-font-mono};
+
+    --zyr-radius-xs: #{$zyr-radius-xs};
+    --zyr-radius-sm: #{$zyr-radius-sm};
+    --zyr-radius-md: #{$zyr-radius-md};
+    --zyr-radius-lg: #{$zyr-radius-lg};
+    --zyr-radius-xl: #{$zyr-radius-xl};
+    --zyr-radius-2xl: #{$zyr-radius-2xl};
+    --zyr-radius-full: #{$zyr-radius-full};
+
+    --zyr-transition-fast: #{$zyr-transition-fast};
+    --zyr-transition-base: #{$zyr-transition-base};
+    --zyr-transition-slow: #{$zyr-transition-slow};
+    --zyr-transition-spring: #{$zyr-transition-spring};
+
+    --zyr-btn-primary-bg: var(--zyr-accent);
+    --zyr-btn-secondary-bg: var(--zyr-bg-3);
+    --zyr-btn-secondary-text: var(--zyr-text);
+    --zyr-btn-secondary-border: var(--zyr-border);
+    --zyr-btn-ghost-text: var(--zyr-text-muted);
+    --zyr-btn-danger-bg: var(--zyr-danger-muted);
+    --zyr-btn-danger-text: var(--zyr-danger);
+    --zyr-btn-danger-border: var(--zyr-danger-border);
+
+    --zyr-card-border: var(--zyr-border);
+    --zyr-card-hover-border: var(--zyr-border-hover);
+
+    --zyr-sidebar-bg: var(--zyr-bg-2);
+    --zyr-sidebar-border: var(--zyr-border);
+}

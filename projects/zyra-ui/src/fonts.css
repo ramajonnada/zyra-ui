@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'Instrument Sans';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400 700;
+    src: url('/fonts/instrument-sans-latin-standard-normal.woff2') format('woff2-variations');
+}
+
+@font-face {
+    font-family: 'Syne';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url('/fonts/syne-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Syne';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url('/fonts/syne-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Syne';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url('/fonts/syne-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Syne';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url('/fonts/syne-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Syne';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 800;
+    src: url('/fonts/syne-latin-800-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'DM Mono';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300;
+    src: url('/fonts/dm-mono-latin-300-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'DM Mono';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url('/fonts/dm-mono-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'DM Mono';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url('/fonts/dm-mono-latin-500-normal.woff2') format('woff2');
+}

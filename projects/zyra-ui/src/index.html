@@ -34,13 +34,34 @@
         <meta property="og:url" content="https://www.zyraui.dev" />
         <meta property="og:image" content="https://www.zyraui.dev/og-image.png" />
 
-        <!-- Performance: Preconnect Fonts (if using Google Fonts) -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <!-- Performance: Load external stylesheets without blocking first paint -->
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
         <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            rel="preload"
+            href="/fonts/instrument-sans-latin-standard-normal.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
         />
+        <link
+            rel="preload"
+            href="/fonts/syne-latin-700-normal.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript>
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            />
+        </noscript>
 
         <script type="application/ld+json">
             {

@@ -138,7 +138,7 @@
                                 "output": "/content"
                             }
                         ],
-                        "styles": ["projects/zyra-ui/src/styles.scss"],
+                        "styles": ["projects/zyra-ui/src/fonts.css", "projects/zyra-ui/src/styles.scss"],
                         "server": "projects/zyra-ui/src/main.server.ts",
                         "outputMode": "server",
                         "ssr": {
@@ -201,7 +201,7 @@
                                 "input": "projects/zyra-ui/public"
                             }
                         ],
-                        "styles": ["projects/zyra-ui/src/styles.scss"]
+                        "styles": ["projects/zyra-ui/src/fonts.css", "projects/zyra-ui/src/styles.scss"]
                     }
                 },
                 "lint": {
