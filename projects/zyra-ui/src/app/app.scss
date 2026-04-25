@@ -1,24 +1,24 @@
 .app-shell {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: var(--zyr-bg);
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background: var(--zyr-bg);
 }
 
 .app-body {
-    display: flex;
-    flex: 1;
-    margin-top: 64px;
+	display: flex;
+	flex: 1;
+	margin-top: 64px;
 }
 
 .app-page {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 0;
-    transition: margin-left 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-width: 0;
+	transition: margin-left 0.3s ease;
 
-    @media (max-width: 768px) {
-        margin-left: 0 !important; // override inline style on mobile
-    }
+	@media (max-width: 768px) {
+		margin-left: 0 !important; // override inline style on mobile
+	}
 }
