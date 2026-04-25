@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SafeHtml } from '@angular/platform-browser';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ZyraSpinner, SpinnerColor } from '../zyra-spinner/zyra-spinner';
+import { asIconDefinition, asIconText, type ZyraIcon } from '../../shared/fontawesome-icons';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -11,7 +12,7 @@ export type ButtonType = 'button' | 'submit' | 'reset';
     selector: 'zyra-button',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, ZyraSpinner],
+    imports: [CommonModule, ZyraSpinner, FaIconComponent],
     templateUrl: './zyra-button.html',
     styleUrl: './zyra-button.scss',
 })
@@ -24,8 +25,8 @@ export class ZyraButton {
     loading = input<boolean>(false);
     disabled = input<boolean>(false);
     fullWidth = input<boolean>(false);
-    iconLeft = input<string | SafeHtml | null>(null);
-    iconRight = input<string | SafeHtml | null>(null);
+    iconLeft = input<ZyraIcon>(null);
+    iconRight = input<ZyraIcon>(null);
 
     // ── Outputs ───────────────────────────────────────────────
     clicked = output<MouseEvent>();
@@ -52,6 +53,11 @@ export class ZyraButton {
         const solidVariants: ButtonVariant[] = ['primary', 'danger'];
         return solidVariants.includes(this.variant()) ? 'white' : 'accent';
     });
+
+    leftIconDefinition = computed(() => asIconDefinition(this.iconLeft()));
+    leftIconText = computed(() => asIconText(this.iconLeft()));
+    rightIconDefinition = computed(() => asIconDefinition(this.iconRight()));
+    rightIconText = computed(() => asIconText(this.iconRight()));
 
     // ── Methods ───────────────────────────────────────────────
     handleClick(event: MouseEvent): void {

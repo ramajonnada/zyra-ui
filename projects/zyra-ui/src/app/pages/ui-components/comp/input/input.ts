@@ -1,6 +1,6 @@
 // projects/zyra-ui/src/app/pages/test/input/input.ts
-
 import { Component, inject, signal, computed } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import {
     ReactiveFormsModule,
     FormsModule,
@@ -10,6 +10,7 @@ import {
     AbstractControl,
     ValidationErrors,
 } from '@angular/forms';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
     ZyraInput,
     ZyraFormField,
@@ -24,6 +25,7 @@ import {
     FormFieldSize,
     ZyraThemeService,
 } from 'zyra-ng-ui';
+import { appIcons, inputIconOptions, type AppIconKey } from '../../../../shared/fontawesome-icons';
 
 function noSpaces(ctrl: AbstractControl): ValidationErrors | null {
     return ctrl.value?.includes(' ') ? { message: 'Username cannot contain spaces' } : null;
@@ -56,6 +58,7 @@ function strongPassword(ctrl: AbstractControl): ValidationErrors | null {
         ZyraCard,
         ZyraAvatar,
         ZyraToastContainer,
+        FaIconComponent,
     ],
 })
 export class Input {
@@ -66,8 +69,8 @@ export class Input {
     type = signal<InputType>('text');
     size = signal<FormFieldSize>('md');
     appearance = signal<FormFieldAppearance>('outline');
-    prefixIcon = signal('');
-    suffixIcon = signal('');
+    prefixIcon = signal<AppIconKey | null>(null);
+    suffixIcon = signal<AppIconKey | null>(null);
     clearButton = signal(false);
     loading = signal(false);
     maxLen = signal<number | null>(null);
@@ -78,14 +81,7 @@ export class Input {
     types: InputType[] = ['text', 'email', 'password', 'number', 'search', 'tel', 'url'];
     sizes: FormFieldSize[] = ['sm', 'md', 'lg'];
     appearances: FormFieldAppearance[] = ['outline', 'filled', 'underline'];
-    icons = [
-        '<i class="fa-solid fa-magnifying-glass"></i>',
-        '<i class="fa-solid fa-envelope"></i>',
-        '<i class="fa-solid fa-phone"></i>',
-        '<i class="fa-solid fa-user"></i>',
-        '<i class="fa-solid fa-globe"></i>',
-        '<i class="fa-solid fa-lock"></i>',
-    ];
+    icons = inputIconOptions;
 
     // ── Playground form control ───────────────────────────────
     playgroundControl = computed(() => {
@@ -152,7 +148,8 @@ export class Input {
             `  hint="We'll never share it"`,
             `  successHint="Valid email"`,
             `  appearance="${this.appearance()}"`,
-            ...(this.prefixIcon() ? [`  prefixIcon="${this.prefixIcon()}"`] : []),
+            ...(this.prefixIcon() ? [`  [prefixIcon]="appIcons.${this.prefixIcon()}"`] : []),
+            ...(this.suffixIcon() ? [`  [suffixIcon]="appIcons.${this.suffixIcon()}"`] : []),
             ...(this.clearButton() ? [`  [clearButton]="true"`] : []),
             ...(this.maxLen() ? [`  [maxLength]="${this.maxLen()}"`] : []),
             `>`,
@@ -160,11 +157,15 @@ export class Input {
             `</zyra-form-field>`,
             ``,
             `// Component:`,
+            `readonly appIcons = appIcons;`,
             `form = new FormGroup(${o}`,
             `  email: new FormControl('', [Validators.required, Validators.email])`,
             `${c});`,
         ].join('\n');
     });
+
+    prefixIconValue = computed(() => this.iconOrNull(this.prefixIcon()));
+    suffixIconValue = computed(() => this.iconOrNull(this.suffixIcon()));
 
     // ── Methods ───────────────────────────────────────────────
     onValueChange(val: string, label: string): void {
@@ -233,8 +234,8 @@ export class Input {
         this.type.set('text');
         this.size.set('md');
         this.appearance.set('outline');
-        this.prefixIcon.set('');
-        this.suffixIcon.set('');
+        this.prefixIcon.set(null);
+        this.suffixIcon.set(null);
         this.clearButton.set(false);
         this.loading.set(false);
         this.maxLen.set(null);
@@ -246,5 +247,9 @@ export class Input {
     simulateLoading(): void {
         this.loading.set(true);
         setTimeout(() => this.loading.set(false), 2000);
+    }
+
+    private iconOrNull(key: AppIconKey | null): IconDefinition | null {
+        return key ? appIcons[key] : null;
     }
 }

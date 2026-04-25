@@ -1,4 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FormsModule } from '@angular/forms';
 import {
     ToastVariant,
@@ -11,18 +13,19 @@ import {
     ZyraSpinner,
     ZyraToastService,
 } from 'zyra-ng-ui';
+import { appIcons } from '../../shared/fontawesome-icons';
 
 interface ProofStat {
     value: string;
     label: string;
-    icon: string;
+    icon: IconDefinition;
     iconClass: string;
 }
 
 interface FeatureCard {
     title: string;
     description: string;
-    icon: string;
+    icon: IconDefinition;
     iconClass: string;
 }
 
@@ -43,7 +46,7 @@ interface ComparisonRow {
 interface OpenSourceStat {
     title: string;
     description: string;
-    icon: string;
+    icon: IconDefinition;
     iconClass: string;
 }
 
@@ -58,6 +61,7 @@ interface OpenSourceStat {
         ZyraFormField,
         ZyraInput,
         ZyraSpinner,
+        FaIconComponent,
     ],
     templateUrl: './home.html',
     styleUrl: './home.scss',
@@ -67,6 +71,7 @@ export class Home {
 
     readonly installCommand = 'npm install zyra-ng-ui';
     readonly copied = signal(false);
+    readonly icons = appIcons;
 
     demoEmail = 'hello@zyraui.dev';
     demoPassword = 'signals-only';
@@ -77,19 +82,19 @@ export class Home {
         {
             value: '9',
             label: 'Core components',
-            icon: 'fa-solid fa-cubes',
+            icon: appIcons.cubes,
             iconClass: 'proof-stat__icon proof-stat__icon--teal',
         },
         {
             value: '100%',
             label: 'Standalone-first',
-            icon: 'fa-solid fa-bolt',
+            icon: appIcons.bolt,
             iconClass: 'proof-stat__icon proof-stat__icon--blue',
         },
         {
             value: '3',
             label: 'Accent token families',
-            icon: 'fa-solid fa-palette',
+            icon: appIcons.palette,
             iconClass: 'proof-stat__icon proof-stat__icon--purple',
         },
     ];
@@ -99,42 +104,42 @@ export class Home {
             title: 'Signal-based architecture',
             description:
                 'Components lean into Angular signals with modern input and output patterns so state stays granular and predictable.',
-            icon: 'fa-solid fa-wave-square',
+            icon: appIcons.waveSquare,
             iconClass: 'feature-card__icon feature-card__icon--teal',
         },
         {
             title: 'Token-driven theming',
             description:
                 'The full --zyr-* token system gives you dark and light foundations plus enough semantic color hooks for product-level polish.',
-            icon: 'fa-solid fa-swatchbook',
+            icon: appIcons.swatchbook,
             iconClass: 'feature-card__icon feature-card__icon--blue',
         },
         {
             title: 'Accessible by default',
             description:
                 'Keyboard behavior, focus visibility, and sensible states are already built into the primitives instead of added later.',
-            icon: 'fa-solid fa-universal-access',
+            icon: appIcons.universalAccess,
             iconClass: 'feature-card__icon feature-card__icon--green',
         },
         {
             title: 'Tree-shakeable package',
             description:
                 'Import only what you use. The library stays lightweight and works naturally with standalone Angular applications.',
-            icon: 'fa-solid fa-box-open',
+            icon: appIcons.boxOpen,
             iconClass: 'feature-card__icon feature-card__icon--purple',
         },
         {
             title: 'CVA-ready forms',
             description:
                 'Inputs and form fields are set up for real Angular forms, with a cleaner ControlValueAccessor story and easier validation states.',
-            icon: 'fa-solid fa-puzzle-piece',
+            icon: appIcons.puzzlePiece,
             iconClass: 'feature-card__icon feature-card__icon--yellow',
         },
         {
             title: 'Dark-first visual language',
             description:
                 'The foundation already matches the library token set, so the marketing site can feel premium without drifting away from product UI.',
-            icon: 'fa-solid fa-moon',
+            icon: appIcons.moon,
             iconClass: 'feature-card__icon feature-card__icon--teal',
         },
     ];
@@ -208,25 +213,25 @@ export class Home {
         {
             title: 'MIT licensed',
             description: 'Friendly for commercial and personal work.',
-            icon: 'fa-solid fa-scale-balanced',
+            icon: appIcons.scaleBalanced,
             iconClass: 'oss-stat__icon oss-stat__icon--teal',
         },
         {
             title: 'Active development',
             description: 'The component set is evolving with the docs site.',
-            icon: 'fa-solid fa-hammer',
+            icon: appIcons.hammer,
             iconClass: 'oss-stat__icon oss-stat__icon--blue',
         },
         {
             title: 'Token aligned',
             description: 'Website polish and library primitives share the same foundation.',
-            icon: 'fa-solid fa-droplet',
+            icon: appIcons.droplet,
             iconClass: 'oss-stat__icon oss-stat__icon--purple',
         },
         {
             title: 'Built for Angular 21+',
             description: 'Optimized for current Angular app architecture.',
-            icon: 'fa-solid fa-code-branch',
+            icon: appIcons.codeBranch,
             iconClass: 'oss-stat__icon oss-stat__icon--green',
         },
     ];

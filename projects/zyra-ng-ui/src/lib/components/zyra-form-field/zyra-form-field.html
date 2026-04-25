@@ -14,8 +14,13 @@
     <!-- ── Field row ──────────────────────────────────────────── -->
     <div class="zyra-form-field__field-row">
         <!-- Prefix icon -->
-        @if (prefixIcon()) {
-            <span class="zyra-form-field__prefix" aria-hidden="true" [innerHTML]="prefixIcon()">
+        @if (prefixIconDefinition) {
+            <span class="zyra-form-field__prefix" aria-hidden="true">
+                <fa-icon [icon]="prefixIconDefinition" />
+            </span>
+        } @else if (prefixIconText) {
+            <span class="zyra-form-field__prefix" aria-hidden="true">
+                {{ prefixIconText }}
             </span>
         }
 
@@ -40,12 +45,8 @@
                     [title]="showingPassword ? 'Hide password' : 'Show password'"
                     (click)="onTogglePassword()"
                 >
-                    <i
-                        class="fa-solid"
-                        [class.fa-eye-slash]="showingPassword"
-                        [class.fa-eye]="!showingPassword"
-                    ></i
-                    ><span class="sr-only">{{
+                    <fa-icon [icon]="showingPassword ? icons.eyeSlash : icons.eye" />
+                    <span class="sr-only">{{
                         showingPassword ? 'Hide password' : 'Show password'
                     }}</span>
                 </button>
@@ -60,7 +61,8 @@
                     title="Clear field"
                     (click)="onClear()"
                 >
-                    <i class="fa-solid fa-xmark"></i><span class="sr-only">Clear field</span>
+                    <fa-icon [icon]="icons.xmark" />
+                    <span class="sr-only">Clear field</span>
                 </button>
 
                 <!-- 4. Validation status icons — after touched -->
@@ -68,22 +70,26 @@
                 <span
                     class="zyra-form-field__status-icon zyra-form-field__status-icon--success"
                     aria-hidden="true"
-                    ><i class="fa-solid fa-check"></i
-                ></span>
+                >
+                    <fa-icon [icon]="icons.check" />
+                </span>
             } @else if (isTouched && showError) {
                 <span
                     class="zyra-form-field__status-icon zyra-form-field__status-icon--error"
                     aria-hidden="true"
-                    ><i class="fa-solid fa-xmark"></i
-                ></span>
+                >
+                    <fa-icon [icon]="icons.xmark" />
+                </span>
 
                 <!-- 5. Static suffix icon -->
-            } @else if (suffixIcon()) {
-                <span
-                    class="zyra-form-field__suffix-icon"
-                    aria-hidden="true"
-                    [innerHTML]="suffixIcon()"
-                ></span>
+            } @else if (suffixIconDefinition) {
+                <span class="zyra-form-field__suffix-icon" aria-hidden="true">
+                    <fa-icon [icon]="suffixIconDefinition" />
+                </span>
+            } @else if (suffixIconText) {
+                <span class="zyra-form-field__suffix-icon" aria-hidden="true">
+                    {{ suffixIconText }}
+                </span>
             }
         </div>
     </div>

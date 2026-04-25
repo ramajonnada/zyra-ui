@@ -89,6 +89,13 @@
         margin-top: 1px;
     }
 
+    &__icon :where(svg),
+    &__close :where(svg) {
+        width: 1em;
+        height: 1em;
+        display: block;
+    }
+
     &__content {
         flex: 1;
         min-width: 0;

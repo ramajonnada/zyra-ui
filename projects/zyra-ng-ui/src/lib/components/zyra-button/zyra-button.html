@@ -15,8 +15,13 @@
             <ng-content select="[slot=prefix]" />
         </span>
     }
-    @if (iconLeft() && !loading()) {
-        <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true" [innerHTML]="iconLeft()">
+    @if (leftIconDefinition() && !loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
+            <fa-icon [icon]="leftIconDefinition()!" />
+        </span>
+    } @else if (leftIconText() && !loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
+            {{ leftIconText() }}
         </span>
     }
     <span class="zyr-btn__label">
@@ -27,12 +32,13 @@
             <ng-content select="[slot=suffix]" />
         </span>
     }
-    @if (iconRight() && !loading()) {
-        <span
-            class="zyr-btn__icon zyr-btn__icon--right"
-            aria-hidden="true"
-            [innerHTML]="iconRight()"
-        >
+    @if (rightIconDefinition() && !loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
+            <fa-icon [icon]="rightIconDefinition()!" />
+        </span>
+    } @else if (rightIconText() && !loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
+            {{ rightIconText() }}
         </span>
     }
 </button>

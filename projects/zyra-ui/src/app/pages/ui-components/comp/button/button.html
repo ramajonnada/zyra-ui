@@ -101,30 +101,17 @@
             <div class="control-group">
                 <span class="control-label">iconLeft</span>
                 <div class="control-options">
-                    <zyra-button
-                        variant="outline"
-                        [class.active]="iconLeft() === 'fa-solid fa-rocket'"
-                        (clicked)="iconLeft.set('fa-solid fa-rocket')"
-                        ><i class="fa-solid fa-rocket"></i
-                    ></zyra-button>
-                    <zyra-button
-                        variant="outline"
-                        [class.active]="iconLeft() === 'fa-solid fa-folder'"
-                        (clicked)="iconLeft.set('fa-solid fa-folder')"
-                        ><i class="fa-solid fa-folder"></i
-                    ></zyra-button>
-                    <zyra-button
-                        variant="outline"
-                        [class.active]="iconLeft() === 'fa-solid fa-magnifying-glass'"
-                        (clicked)="iconLeft.set('fa-solid fa-magnifying-glass')"
-                        ><i class="fa-solid fa-magnifying-glass"></i
-                    ></zyra-button>
-                    <zyra-button
-                        variant="outline"
-                        [class.active]="iconLeft() === 'fa-solid fa-trash'"
-                        (clicked)="iconLeft.set('fa-solid fa-trash')"
-                        ><i class="fa-solid fa-trash"></i
-                    ></zyra-button>
+                    @for (iconOption of leftIconOptions; track iconOption.key) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="iconLeft() === iconOption.key"
+                            (clicked)="
+                                iconLeft.set(iconLeft() === iconOption.key ? null : iconOption.key)
+                            "
+                        >
+                            <fa-icon [icon]="iconOption.icon" />
+                        </zyra-button>
+                    }
                 </div>
             </div>
 
@@ -132,25 +119,19 @@
             <div class="control-group">
                 <span class="control-label">iconRight</span>
                 <div class="control-options">
-                    <zyra-button
-                        variant="outline"
-                        [class.active]="iconRight() === 'fa-solid fa-arrow-right'"
-                        (clicked)="iconRight.set('fa-solid fa-arrow-right')"
-                        ><i class="fa-solid fa-arrow-right"></i
-                    ></zyra-button>
-                    <zyra-button
-                        variant="outline"
-                        [class.active]="iconRight() === 'fa-solid fa-arrow-left'"
-                        (clicked)="iconRight.set('fa-solid fa-arrow-left')"
-                        ><i class="fa-solid fa-arrow-left"></i
-                    ></zyra-button>
-                    <zyra-button
-                        variant="outline"
-                        [class.active]="iconRight() === 'fa-solid fa-arrow-up'"
-                        (clicked)="iconRight.set('fa-solid fa-arrow-up')"
-                    >
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </zyra-button>
+                    @for (iconOption of rightIconOptions; track iconOption.key) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="iconRight() === iconOption.key"
+                            (clicked)="
+                                iconRight.set(
+                                    iconRight() === iconOption.key ? null : iconOption.key
+                                )
+                            "
+                        >
+                            <fa-icon [icon]="iconOption.icon" />
+                        </zyra-button>
+                    }
                 </div>
             </div>
 
@@ -180,12 +161,12 @@
                         [fullWidth]="isFullWidth()"
                         (clicked)="log('Button clicked')"
                     >
-                        @if (iconLeft()) {
-                            <i slot="prefix" [class]="iconLeft()"></i>
+                        @if (leftPreviewIcon()) {
+                            <fa-icon slot="prefix" [icon]="leftPreviewIcon()!" />
                         }
                         <span>{{ buttonLabel }}</span>
-                        @if (iconRight()) {
-                            <i slot="suffix" [class]="iconRight()"></i>
+                        @if (rightPreviewIcon()) {
+                            <fa-icon slot="suffix" [icon]="rightPreviewIcon()!" />
                         }
                     </zyra-button>
                 </div>

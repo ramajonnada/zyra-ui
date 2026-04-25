@@ -63,13 +63,18 @@
             <div class="control-group">
                 <div class="control-label">prefixIcon</div>
                 <div class="control-options">
-                    @for (icon of icons; track icon) {
+                    @for (iconOption of icons; track iconOption.key) {
                         <zyra-button
                             variant="outline"
-                            [class.active]="prefixIcon() === icon"
-                            (clicked)="prefixIcon.set(prefixIcon() === icon ? '' : icon)"
-                            ><span [innerHTML]="icon"></span
-                        ></zyra-button>
+                            [class.active]="prefixIcon() === iconOption.key"
+                            (clicked)="
+                                prefixIcon.set(
+                                    prefixIcon() === iconOption.key ? null : iconOption.key
+                                )
+                            "
+                        >
+                            <fa-icon [icon]="iconOption.icon" />
+                        </zyra-button>
                     }
                 </div>
             </div>
@@ -77,13 +82,18 @@
             <div class="control-group">
                 <div class="control-label">suffixIcon</div>
                 <div class="control-options">
-                    @for (icon of icons; track icon) {
+                    @for (iconOption of icons; track iconOption.key) {
                         <zyra-button
                             variant="outline"
-                            [class.active]="suffixIcon() === icon"
-                            (clicked)="suffixIcon.set(suffixIcon() === icon ? '' : icon)"
-                            ><span [innerHTML]="icon"></span
-                        ></zyra-button>
+                            [class.active]="suffixIcon() === iconOption.key"
+                            (clicked)="
+                                suffixIcon.set(
+                                    suffixIcon() === iconOption.key ? null : iconOption.key
+                                )
+                            "
+                        >
+                            <fa-icon [icon]="iconOption.icon" />
+                        </zyra-button>
                     }
                 </div>
             </div>
@@ -185,8 +195,8 @@
                             [successHint]="successHint"
                             [appearance]="appearance()"
                             [size]="size()"
-                            [prefixIcon]="prefixIcon()"
-                            [suffixIcon]="suffixIcon()"
+                            [prefixIcon]="prefixIconValue()"
+                            [suffixIcon]="suffixIconValue()"
                             [clearButton]="clearButton()"
                             [loading]="loading()"
                             [maxLength]="maxLen()"

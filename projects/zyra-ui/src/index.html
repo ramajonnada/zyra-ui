@@ -16,6 +16,7 @@
         <link rel="canonical" href="https://www.zyraui.dev/" />
 
         <!-- Responsive -->
+        <meta name="google-adsense-account" content="ca-pub-6271235629779387" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <!-- Favicon (Best Practice) -->
@@ -34,8 +35,7 @@
         <meta property="og:url" content="https://www.zyraui.dev" />
         <meta property="og:image" content="https://www.zyraui.dev/og-image.png" />
 
-        <!-- Performance: Load external stylesheets without blocking first paint -->
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+        <!-- Performance: Preload critical local fonts -->
         <link
             rel="preload"
             href="/fonts/instrument-sans-latin-standard-normal.woff2"
@@ -50,18 +50,6 @@
             type="font/woff2"
             crossorigin
         />
-        <link
-            rel="preload"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-            as="style"
-            onload="this.onload=null;this.rel='stylesheet'"
-        />
-        <noscript>
-            <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-            />
-        </noscript>
 
         <script type="application/ld+json">
             {

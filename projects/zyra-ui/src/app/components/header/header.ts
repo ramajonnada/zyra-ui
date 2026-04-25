@@ -1,10 +1,12 @@
 import { Component, computed, inject, PLATFORM_ID, output } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ZyraButton, ZyraThemeService } from 'zyra-ng-ui';
+import { appIcons } from '../../shared/fontawesome-icons';
 
 @Component({
     selector: 'app-header',
-    imports: [RouterLink, ZyraButton, RouterLinkActive],
+    imports: [RouterLink, ZyraButton, RouterLinkActive, FaIconComponent],
     templateUrl: './header.html',
     styleUrl: './header.scss',
 })
@@ -15,6 +17,7 @@ export class Header {
 
     readonly isDark = computed(() => this.themeService.isDark());
     readonly version = 'v1.3.24';
+    readonly icons = appIcons;
 
     toggleTheme() {
         this.themeService.toggle();

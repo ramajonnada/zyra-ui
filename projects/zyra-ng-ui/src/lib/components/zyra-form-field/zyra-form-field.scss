@@ -64,6 +64,15 @@
         transition: color var(--zyr-transition-base);
     }
 
+    &__prefix :where(svg),
+    &__suffix-icon :where(svg),
+    &__icon-btn :where(svg),
+    &__status-icon :where(svg) {
+        width: 1em;
+        height: 1em;
+        display: block;
+    }
+
     // ── Icon button (password toggle, clear) ─────────────────────
     &__icon-btn {
         display: flex;

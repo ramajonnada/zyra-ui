@@ -8,6 +8,9 @@ import {
     signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { zyraIcons } from '../../shared/fontawesome-icons';
 
 // ─────────────────────────────────────────────────────────────────
 // Types
@@ -82,6 +85,7 @@ export class ZyraToastService {
     selector: 'zyra-toast-item',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FaIconComponent],
     template: ``,
     templateUrl: './zyra-toast.html',
     styleUrl: './zyra-toast.scss',
@@ -89,16 +93,17 @@ export class ZyraToastService {
 export class ZyraToastItem {
     toast = input.required<Toast>();
     toastService = inject(ZyraToastService);
+    readonly closeIcon = zyraIcons.xmark;
 
     hostClass = computed(() => `zyr-toast zyr-toast--${this.toast().variant}`);
 
-    icon = computed(() => {
-        const map: Record<ToastVariant, string> = {
-            success: '<i class="fa-solid fa-check"></i>',
-            error: '<i class="fa-solid fa-xmark"></i>',
-            warning: '<i class="fa-solid fa-triangle-exclamation"></i>',
-            info: '<i class="fa-solid fa-circle-info"></i>',
-            default: '<i class="fa-solid fa-circle"></i>',
+    icon = computed((): IconDefinition => {
+        const map: Record<ToastVariant, IconDefinition> = {
+            success: zyraIcons.check,
+            error: zyraIcons.xmark,
+            warning: zyraIcons.triangleExclamation,
+            info: zyraIcons.circleInfo,
+            default: zyraIcons.circle,
         };
         return map[this.toast().variant];
     });

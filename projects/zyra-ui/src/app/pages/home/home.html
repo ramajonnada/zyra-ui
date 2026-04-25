@@ -108,7 +108,7 @@
                 @for (stat of proofStats; track stat.label) {
                     <div class="proof-stat">
                         <div [class]="stat.iconClass">
-                            <i [class]="stat.icon" aria-hidden="true"></i>
+                            <fa-icon [icon]="stat.icon" aria-hidden="true" />
                         </div>
                         <div>
                             <div class="proof-stat__value">{{ stat.value }}</div>
@@ -143,7 +143,7 @@
                 @for (feature of features; track feature.title) {
                     <article class="feature-card">
                         <div [class]="feature.iconClass">
-                            <i [class]="feature.icon" aria-hidden="true"></i>
+                            <fa-icon [icon]="feature.icon" aria-hidden="true" />
                         </div>
                         <h3>{{ feature.title }}</h3>
                         <p>{{ feature.description }}</p>
@@ -363,7 +363,7 @@
                     @for (check of codeChecks; track check) {
                         <div class="code-check">
                             <span class="code-check__tick">
-                                <i class="fa-solid fa-check"></i>
+                                <fa-icon [icon]="icons.check" />
                             </span>
                             <span>{{ check }}</span>
                         </div>
@@ -452,7 +452,7 @@
                     <div class="comparison-table__row">
                         <div class="comparison-table__feature">{{ row.feature }}</div>
                         <div class="comparison-meta comparison-meta--good">
-                            <i class="fa-solid fa-check"></i>
+                            <fa-icon [icon]="icons.check" />
                             <span>{{ row.zyra }}</span>
                         </div>
                         <div
@@ -460,7 +460,7 @@
                             [class.comparison-meta--warning]="row.otherTone === 'warning'"
                             [class.comparison-meta--danger]="row.otherTone === 'danger'"
                         >
-                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <fa-icon [icon]="icons.triangleExclamation" />
                             <span>{{ row.other }}</span>
                         </div>
                     </div>
@@ -497,7 +497,7 @@
                     @for (stat of openSourceStats; track stat.title) {
                         <div class="oss-stat">
                             <div [class]="stat.iconClass">
-                                <i [class]="stat.icon" aria-hidden="true"></i>
+                                <fa-icon [icon]="stat.icon" aria-hidden="true" />
                             </div>
                             <div>
                                 <h3>{{ stat.title }}</h3>

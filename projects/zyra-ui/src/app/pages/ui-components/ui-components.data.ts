@@ -1,3 +1,6 @@
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { appIcons } from '../../shared/fontawesome-icons';
+
 export type UiComponentAccent = 'teal' | 'blue' | 'purple' | 'amber' | 'green';
 
 export interface UiComponentShowcaseCard {
@@ -7,7 +10,7 @@ export interface UiComponentShowcaseCard {
     importName: string;
     category: string;
     description?: string;
-    icon: string;
+    icon: IconDefinition;
     accent: UiComponentAccent;
     highlights: string[];
     exampleCode?: string;
@@ -202,7 +205,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Actions',
         description:
             'Token-aware action buttons for primary flows, secondary actions, and compact utility triggers.',
-        icon: 'fa-solid fa-hand-pointer',
+        icon: appIcons.handPointer,
         accent: 'blue',
         highlights: [
             'Clear action hierarchy',
@@ -219,7 +222,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Status',
         description:
             'Small status labels for updates, counts, state pills, and quick metadata throughout the interface.',
-        icon: 'fa-solid fa-certificate',
+        icon: appIcons.certificate,
         accent: 'teal',
         highlights: [
             'Compact semantic states',
@@ -236,7 +239,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Layout',
         description:
             'Flexible content containers for dashboards, previews, settings panels, and modular content blocks.',
-        icon: 'fa-regular fa-square',
+        icon: appIcons.square,
         accent: 'purple',
         highlights: [
             'Header and footer slots',
@@ -253,7 +256,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Identity',
         description:
             'Profile and team visuals that make lists, comments, and user surfaces feel more human and scannable.',
-        icon: 'fa-solid fa-user-circle',
+        icon: appIcons.circleUser,
         accent: 'green',
         highlights: ['Great for team UIs', 'Pairs well with badges', 'Readable at smaller sizes'],
         exampleCode: AVATAR_EXAMPLE_CODE,
@@ -266,7 +269,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Forms',
         description:
             'Foundation text inputs for login forms, filters, search flows, and structured data entry experiences.',
-        icon: 'fa-solid fa-keyboard',
+        icon: appIcons.keyboard,
         accent: 'amber',
         highlights: [
             'Built for normal form flows',
@@ -283,7 +286,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Forms',
         description:
             'Field wrappers that align labels, hints, and validation copy into a more polished form system.',
-        icon: 'fa-solid fa-align-left',
+        icon: appIcons.alignLeft,
         accent: 'blue',
         highlights: [
             'Helps compose accessible forms',
@@ -300,7 +303,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Feedback',
         description:
             'Loading indicators for async states, background fetches, and actions that need a clear pending signal.',
-        icon: 'fa-solid fa-spinner',
+        icon: appIcons.spinner,
         accent: 'purple',
         highlights: [
             'Useful for async states',
@@ -317,7 +320,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Feedback',
         description:
             'Transient notifications for confirmations, warnings, and system messages without interrupting the flow.',
-        icon: 'fa-solid fa-message',
+        icon: appIcons.message,
         accent: 'teal',
         highlights: [
             'Success, info, warning, error flows',
@@ -334,7 +337,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Overlays',
         description:
             'Helpful hover and focus details for dense controls, icon actions, and space-constrained interfaces.',
-        icon: 'fa-solid fa-circle-info',
+        icon: appIcons.circleInfo,
         accent: 'green',
         highlights: [
             'Adds context without clutter',
