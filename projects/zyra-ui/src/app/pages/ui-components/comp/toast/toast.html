@@ -1,0 +1,332 @@
+<!-- projects/zyra-ui/src/app/pages/test/toast/toast.html -->
+
+<div class="pg">
+    <div class="pg__header">
+        <div class="pg__header-left">
+            <div class="pg__header-title">
+                <h1>zyra-toast <span>Playground</span></h1>
+                <zyra-badge variant="success" size="sm">success</zyra-badge>
+                <zyra-badge variant="danger" size="sm">error</zyra-badge>
+                <zyra-badge variant="warning" size="sm">warning</zyra-badge>
+                <zyra-badge variant="info" size="sm">info</zyra-badge>
+            </div>
+            <p>Toast notification service - call from anywhere, auto-dismiss, persistent support</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <div class="controls">
+            <div class="controls__title">Controls</div>
+
+            <div class="control-group">
+                <div class="control-label">variant</div>
+                <div class="control-options">
+                    @for (v of variants; track v) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="variant() === v"
+                            (clicked)="variant.set(v)"
+                            >{{ v }}</zyra-button
+                        >
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">title</div>
+                <input
+                    class="control-input"
+                    type="text"
+                    [value]="title()"
+                    (input)="title.set($any($event.target).value)"
+                    placeholder="Toast title..."
+                />
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">description</div>
+                <input
+                    class="control-input"
+                    type="text"
+                    [value]="description()"
+                    (input)="description.set($any($event.target).value)"
+                    placeholder="Optional description..."
+                />
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">duration (ms)</div>
+                <div class="control-options">
+                    @for (d of durations; track d) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="duration() === d && !persistent()"
+                            (clicked)="duration.set(d); persistent.set(false)"
+                            >{{ d / 1000 }}s</zyra-button
+                        >
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">persistent</div>
+                <div class="control-toggles">
+                    <label class="toggle">
+                        <input
+                            type="checkbox"
+                            [checked]="persistent()"
+                            (change)="persistent.set(!persistent())"
+                        />
+                        <span class="toggle__track"></span>
+                        <span class="toggle__label">duration: 0 (never auto-dismiss)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="controls__actions">
+                <zyra-button variant="primary" size="md" [fullWidth]="true" (clicked)="fire()">
+                    Fire Toast
+                </zyra-button>
+                <zyra-button variant="danger" size="sm" [fullWidth]="true" (clicked)="dismissAll()">
+                    Dismiss All
+                </zyra-button>
+                <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()">
+                    Reset Controls
+                </zyra-button>
+            </div>
+
+            <div class="controls__info">
+                <div class="controls__info-title">Service API</div>
+                <p><code>toastService.success(title, opts?)</code></p>
+                <p><code>toastService.error(title, opts?)</code></p>
+                <p><code>toastService.warning(title, opts?)</code></p>
+                <p><code>toastService.info(title, opts?)</code></p>
+                <p><code>toastService.dismiss(id)</code></p>
+                <p><code>toastService.dismissAll()</code></p>
+                <p><strong>opts:</strong> description, duration (0 = persistent)</p>
+            </div>
+        </div>
+
+        <div class="preview-area">
+            <div class="preview-box">
+                <div class="preview-box__label">
+                    Live Preview - toasts appear bottom-right
+                    <zyra-badge [variant]="'success'" size="sm">{{ variant() }}</zyra-badge>
+                    <zyra-badge variant="default" size="sm">{{
+                        persistent() ? 'persistent' : duration() / 1000 + 's'
+                    }}</zyra-badge>
+                </div>
+                <div class="preview-box__stage">
+                    <div class="fire-area">
+                        <div class="fire-area__icon">
+                            @switch (variant()) {
+                                @case ('success') {
+                                    <span>&#10003;</span>
+                                }
+                                @case ('error') {
+                                    <span>&#10005;</span>
+                                }
+                                @case ('warning') {
+                                    <span>&#9888;</span>
+                                }
+                                @case ('info') {
+                                    <span>&#9432;</span>
+                                }
+                                @default {
+                                    <span>&#9679;</span>
+                                }
+                            }
+                        </div>
+                        <div class="fire-area__text">
+                            <strong>{{ title() }}</strong>
+                            @if (description()) {
+                                <span>{{ description() }}</span>
+                            }
+                        </div>
+                        <zyra-button variant="primary" (clicked)="fire()">Fire -&gt;</zyra-button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()"
+                        >Copy</zyra-button
+                    >
+                </div>
+                <pre class="code-box__pre">{{ generatedCode() }}</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-section">
+        <div class="grid-section__title">
+            All Variants
+            <zyra-badge variant="default" size="sm">click to fire each</zyra-badge>
+        </div>
+        <div class="variants-grid">
+            <zyra-card
+                variant="default"
+                padding="md"
+                [clickable]="true"
+                (cardClick)="
+                    toastService.success('Saved successfully!', {
+                        description: 'Your profile has been updated.',
+                    })
+                "
+            >
+                <div class="variant-card">
+                    <span class="variant-card__icon variant-card__icon--success">&#10003;</span>
+                    <div>
+                        <div class="variant-card__title">success</div>
+                        <div class="variant-card__desc">Saved successfully!</div>
+                    </div>
+                    <zyra-badge variant="success" size="sm">fire</zyra-badge>
+                </div>
+            </zyra-card>
+
+            <zyra-card
+                variant="default"
+                padding="md"
+                [clickable]="true"
+                (cardClick)="
+                    toastService.error('Something went wrong', {
+                        description: 'Please try again later.',
+                    })
+                "
+            >
+                <div class="variant-card">
+                    <span class="variant-card__icon variant-card__icon--error">&#10005;</span>
+                    <div>
+                        <div class="variant-card__title">error</div>
+                        <div class="variant-card__desc">Something went wrong</div>
+                    </div>
+                    <zyra-badge variant="danger" size="sm">fire</zyra-badge>
+                </div>
+            </zyra-card>
+
+            <zyra-card
+                variant="default"
+                padding="md"
+                [clickable]="true"
+                (cardClick)="
+                    toastService.warning('Session expiring soon', {
+                        description: 'Save your work before timeout.',
+                    })
+                "
+            >
+                <div class="variant-card">
+                    <span class="variant-card__icon variant-card__icon--warning">&#9888;</span>
+                    <div>
+                        <div class="variant-card__title">warning</div>
+                        <div class="variant-card__desc">Session expiring soon</div>
+                    </div>
+                    <zyra-badge variant="warning" size="sm">fire</zyra-badge>
+                </div>
+            </zyra-card>
+
+            <zyra-card
+                variant="default"
+                padding="md"
+                [clickable]="true"
+                (cardClick)="
+                    toastService.info('New update available', {
+                        description: 'Refresh to get the latest version.',
+                    })
+                "
+            >
+                <div class="variant-card">
+                    <span class="variant-card__icon variant-card__icon--info">&#9432;</span>
+                    <div>
+                        <div class="variant-card__title">info</div>
+                        <div class="variant-card__desc">New update available</div>
+                    </div>
+                    <zyra-badge variant="info" size="sm">fire</zyra-badge>
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+
+    <div class="grid-section">
+        <div class="grid-section__title">
+            Real World Scenarios
+            <zyra-badge variant="success" size="sm">click to demo</zyra-badge>
+        </div>
+        <div class="scenarios-grid">
+            <zyra-card variant="default" padding="md">
+                <div class="scenario">
+                    <div class="scenario__info">
+                        <div class="scenario__title">Form saved</div>
+                        <div class="scenario__desc">After a successful form submit</div>
+                    </div>
+                    <zyra-button variant="primary" size="sm" (clicked)="demoFormSave()"
+                        >Demo</zyra-button
+                    >
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="scenario">
+                    <div class="scenario__info">
+                        <div class="scenario__title">Network error</div>
+                        <div class="scenario__desc">API call fails, shows for 6s</div>
+                    </div>
+                    <zyra-button variant="danger" size="sm" (clicked)="demoNetworkError()"
+                        >Demo</zyra-button
+                    >
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="scenario">
+                    <div class="scenario__info">
+                        <div class="scenario__title">Session warning</div>
+                        <div class="scenario__desc">Auth token expiring, shows for 8s</div>
+                    </div>
+                    <zyra-button variant="secondary" size="sm" (clicked)="demoSessionWarning()"
+                        >Demo</zyra-button
+                    >
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="scenario">
+                    <div class="scenario__info">
+                        <div class="scenario__title">New message</div>
+                        <div class="scenario__desc">Real-time notification event</div>
+                    </div>
+                    <zyra-button variant="secondary" size="sm" (clicked)="demoNewMessage()"
+                        >Demo</zyra-button
+                    >
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="scenario">
+                    <div class="scenario__info">
+                        <div class="scenario__title">Multiple in sequence</div>
+                        <div class="scenario__desc">Upload -&gt; processing -&gt; done</div>
+                    </div>
+                    <zyra-button variant="primary" size="sm" (clicked)="demoMultiple()"
+                        >Demo</zyra-button
+                    >
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="scenario">
+                    <div class="scenario__info">
+                        <div class="scenario__title">Persistent toast</div>
+                        <div class="scenario__desc">duration: 0 - stays until dismissed</div>
+                    </div>
+                    <zyra-button variant="secondary" size="sm" (clicked)="demoPersistent()"
+                        >Demo</zyra-button
+                    >
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+</div>
+
+<zyra-toast-container />

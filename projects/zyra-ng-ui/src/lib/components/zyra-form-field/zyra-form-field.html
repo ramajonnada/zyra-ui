@@ -1,0 +1,121 @@
+<!-- projects/zyra-ng-ui/src/lib/form-field/zyra-form-field.html -->
+
+<div [class]="wrapClass">
+    <!-- ── Label ──────────────────────────────────────────────── -->
+    @if (label()) {
+        <label class="zyra-form-field__label" [for]="zyraInput.inputId">
+            {{ label() }}
+            @if (isRequired) {
+                <span class="zyra-form-field__required" aria-hidden="true">*</span>
+            }
+        </label>
+    }
+
+    <!-- ── Field row ──────────────────────────────────────────── -->
+    <div class="zyra-form-field__field-row">
+        <!-- Prefix icon -->
+        @if (prefixIcon()) {
+            <span class="zyra-form-field__prefix" aria-hidden="true" [innerHTML]="prefixIcon()">
+            </span>
+        }
+
+        <!-- Projected zyra-input -->
+        <div class="zyra-form-field__input-wrap">
+            <ng-content select="zyra-input" />
+        </div>
+
+        <!-- Suffix area — only one shown at a time in priority order -->
+        <div class="zyra-form-field__suffix">
+            <!-- 1. Loading / async validator pending -->
+            @if (loading() || isPending) {
+                <zyra-spinner size="sm" color="accent" />
+
+                <!-- 2. Password toggle -->
+            } @else if (showPasswordToggle) {
+                <button
+                    class="zyra-form-field__icon-btn"
+                    type="button"
+                    tabindex="-1"
+                    [attr.aria-label]="showingPassword ? 'Hide password' : 'Show password'"
+                    [title]="showingPassword ? 'Hide password' : 'Show password'"
+                    (click)="onTogglePassword()"
+                >
+                    <i
+                        class="fa-solid"
+                        [class.fa-eye-slash]="showingPassword"
+                        [class.fa-eye]="!showingPassword"
+                    ></i
+                    ><span class="sr-only">{{
+                        showingPassword ? 'Hide password' : 'Show password'
+                    }}</span>
+                </button>
+
+                <!-- 3. Clear button — shown when field has value -->
+            } @else if (clearButton() && hasValue && !isDisabled) {
+                <button
+                    class="zyra-form-field__icon-btn zyra-form-field__clear-btn"
+                    type="button"
+                    tabindex="-1"
+                    aria-label="Clear field"
+                    title="Clear field"
+                    (click)="onClear()"
+                >
+                    <i class="fa-solid fa-xmark"></i><span class="sr-only">Clear field</span>
+                </button>
+
+                <!-- 4. Validation status icons — after touched -->
+            } @else if (isTouched && showSuccess) {
+                <span
+                    class="zyra-form-field__status-icon zyra-form-field__status-icon--success"
+                    aria-hidden="true"
+                    ><i class="fa-solid fa-check"></i
+                ></span>
+            } @else if (isTouched && showError) {
+                <span
+                    class="zyra-form-field__status-icon zyra-form-field__status-icon--error"
+                    aria-hidden="true"
+                    ><i class="fa-solid fa-xmark"></i
+                ></span>
+
+                <!-- 5. Static suffix icon -->
+            } @else if (suffixIcon()) {
+                <span
+                    class="zyra-form-field__suffix-icon"
+                    aria-hidden="true"
+                    [innerHTML]="suffixIcon()"
+                ></span>
+            }
+        </div>
+    </div>
+
+    <!-- ── Bottom row: hint/error + character counter ─────────── -->
+    <div class="zyra-form-field__bottom">
+        <!-- Left: error / success hint / hint -->
+        <div class="zyra-form-field__messages">
+            @if (isTouched && showError && errorMessage) {
+                <span class="zyra-form-field__hint zyra-form-field__hint--error" role="alert">
+                    ⚠ {{ errorMessage }}
+                </span>
+            } @else if (isTouched && showSuccess && successHint()) {
+                <span class="zyra-form-field__hint zyra-form-field__hint--success">
+                    {{ successHint() }}
+                </span>
+            } @else if (hint()) {
+                <span class="zyra-form-field__hint">
+                    {{ hint() }}
+                </span>
+            }
+        </div>
+
+        <!-- Right: character counter -->
+        @if (maxLength()) {
+            <span
+                class="zyra-form-field__counter"
+                [class.zyra-form-field__counter--warn]="currentLength > maxLength()! * 0.9"
+                [class.zyra-form-field__counter--error]="currentLength > maxLength()!"
+            >
+                {{ currentLength }} / {{ maxLength() }}
+            </span>
+        }
+    </div>
+</div>

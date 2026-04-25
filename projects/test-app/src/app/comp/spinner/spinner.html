@@ -1,0 +1,209 @@
+<!-- projects/zyra-ui/src/app/pages/test/spinner/spinner.html -->
+
+<div class="pg">
+    <!-- HEADER -->
+    <div class="pg__header">
+        <div class="pg__header-left">
+            <div class="pg__header-title">
+                <h1>zyra-spinner <span>Playground</span></h1>
+                <zyra-badge variant="purple" size="sm">4 sizes</zyra-badge>
+                <zyra-badge variant="default" size="sm">4 colors</zyra-badge>
+            </div>
+            <p>Loading spinner with size, color and accessibility label support</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <div class="controls">
+            <div class="controls__title">Controls</div>
+
+            <div class="control-group">
+                <label class="control-label">size</label>
+                <div class="control-options">
+                    @for (s of sizes; track s) {
+                        <zyra-button [class.active]="size() === s" (click)="size.set(s)">{{
+                            s
+                        }}</zyra-button>
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">color</label>
+                <div class="control-options">
+                    @for (c of colors; track c) {
+                        <zyra-button [class.active]="color() === c" (click)="color.set(c)">{{
+                            c
+                        }}</zyra-button>
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">label (aria)</label>
+                <input
+                    class="control-input"
+                    type="text"
+                    [value]="label()"
+                    (input)="label.set($any($event.target).value)"
+                    placeholder="Loadingâ€¦"
+                />
+            </div>
+
+            <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()"
+                >â†º Reset</zyra-button
+            >
+
+            <div class="controls__info">
+                <div class="controls__info-title">Usage</div>
+                <p><code>&lt;zyra-spinner /&gt;</code></p>
+                <p><code>size</code> â€” xs / sm / md / lg</p>
+                <p><code>color</code> â€” accent / accent-2 / white / current</p>
+                <p><code>label</code> â€” screen reader text</p>
+            </div>
+        </div>
+
+        <div class="preview-area">
+            <div class="preview-box">
+                <div class="preview-box__label">
+                    Live Preview
+                    <zyra-badge variant="default" size="sm">{{ size() }}</zyra-badge>
+                    <zyra-badge variant="default" size="sm">{{ color() }}</zyra-badge>
+                </div>
+                <div class="preview-box__stage">
+                    <div [class]="color() === 'white' ? 'dark-bg' : ''">
+                        <zyra-spinner [size]="size()" [color]="color()" [label]="label()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-section">
+        <div class="grid-section__title">
+            Sizes
+            <zyra-badge variant="default" size="sm">xs â†’ lg</zyra-badge>
+        </div>
+        <zyra-card variant="default" padding="lg">
+            <div class="showcase-row showcase-row--center">
+                @for (s of sizes; track s) {
+                    <div class="showcase-item">
+                        <zyra-spinner [size]="s" color="accent" />
+                        <zyra-badge variant="default" size="sm">{{ s }}</zyra-badge>
+                    </div>
+                }
+            </div>
+        </zyra-card>
+    </div>
+
+    <div class="grid-section">
+        <div class="grid-section__title">
+            Colors
+            <zyra-badge variant="default" size="sm">4 variants</zyra-badge>
+        </div>
+        <div class="colors-grid">
+            <zyra-card variant="default" padding="lg">
+                <div class="showcase-item">
+                    <zyra-spinner size="lg" color="accent" />
+                    <zyra-badge variant="purple" size="sm">accent</zyra-badge>
+                    <span class="color-note">primary teal</span>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="lg">
+                <div class="showcase-item">
+                    <zyra-spinner size="lg" color="accent-2" />
+                    <zyra-badge variant="info" size="sm">accent-2</zyra-badge>
+                    <span class="color-note">secondary blue</span>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="lg" class="spinner-card--dark">
+                <div class="showcase-item">
+                    <zyra-spinner size="lg" color="white" />
+                    <zyra-badge variant="default" size="sm">white</zyra-badge>
+                    <span class="color-note color-note--muted">for dark backgrounds</span>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="lg">
+                <div class="showcase-item showcase-item--current">
+                    <zyra-spinner size="lg" color="current" />
+                    <zyra-badge variant="default" size="sm">current</zyra-badge>
+                    <span class="color-note">inherits currentColor</span>
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+
+    <div class="grid-section">
+        <div class="grid-section__title">
+            Real World â€” Button Loading States
+            <zyra-badge variant="success" size="sm">click to simulate</zyra-badge>
+        </div>
+        <zyra-card variant="default" padding="lg">
+            <div class="btn-demo-grid">
+                <div class="btn-demo">
+                    <div class="btn-demo__label">Save changes</div>
+                    <zyra-button
+                        variant="primary"
+                        [loading]="btn1Loading()"
+                        (clicked)="simulate(1)"
+                    >
+                        {{ btn1Loading() ? 'Savingâ€¦' : 'Save' }}
+                    </zyra-button>
+                </div>
+
+                <div class="btn-demo">
+                    <div class="btn-demo__label">Upload file</div>
+                    <zyra-button
+                        variant="secondary"
+                        [loading]="btn2Loading()"
+                        (clicked)="simulate(2)"
+                    >
+                        {{ btn2Loading() ? 'Uploadingâ€¦' : 'Upload' }}
+                    </zyra-button>
+                </div>
+
+                <div class="btn-demo">
+                    <div class="btn-demo__label">Delete (shows error)</div>
+                    <zyra-button variant="danger" [loading]="btn3Loading()" (clicked)="simulate(3)">
+                        {{ btn3Loading() ? 'Deletingâ€¦' : 'Delete' }}
+                    </zyra-button>
+                </div>
+            </div>
+        </zyra-card>
+    </div>
+
+    <div class="grid-section">
+        <div class="grid-section__title">Real World â€” Inline Usage</div>
+        <div class="inline-grid">
+            <zyra-card variant="default" padding="lg">
+                <div class="inline-demo__label">Loading data table</div>
+                <div class="loading-state">
+                    <zyra-spinner size="md" color="accent" />
+                    <span>Fetching recordsâ€¦</span>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="lg">
+                <div class="inline-demo__label">Async validator in input</div>
+                <div class="loading-state">
+                    <span>Checking username</span>
+                    <zyra-spinner size="xs" color="accent" />
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="lg">
+                <div class="inline-demo__label">Full page overlay</div>
+                <div class="overlay-demo">
+                    <div class="overlay-demo__backdrop">
+                        <zyra-spinner size="lg" color="white" label="Loading pageâ€¦" />
+                    </div>
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+</div>
+
+<zyra-toast-container />

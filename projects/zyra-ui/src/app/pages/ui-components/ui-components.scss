@@ -1,4 +1,202 @@
 :host {
+    display: block;
     min-height: 100vh;
-    padding: 32px 0 32px;
+    padding: 40px 0 56px;
+    background: var(--zyr-bg);
+    color: var(--zyr-text);
+}
+
+.components-page {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    display: grid;
+    gap: 28px;
+}
+
+.components-page__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--zyr-border);
+}
+
+.components-page__copy {
+    max-width: 44rem;
+}
+
+.components-page__eyebrow {
+    margin: 0 0 10px;
+    color: var(--zyr-accent);
+    font-family: var(--zyr-font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.components-page__header h1 {
+    margin: 0;
+    font-family: var(--zyr-font-display);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+}
+
+.components-page__intro {
+    margin: 14px 0 0;
+    color: var(--zyr-text-muted);
+    line-height: 1.75;
+}
+
+.components-page__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.components-page__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.component-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.component-card zyra-card {
+    display: block;
+    height: 100%;
+    transition:
+        transform var(--zyr-transition-spring),
+        box-shadow var(--zyr-transition-base),
+        border-color var(--zyr-transition-base);
+}
+
+.component-card:hover zyra-card,
+.component-card:focus-visible zyra-card {
+    transform: translateY(-4px);
+    box-shadow: var(--zyr-shadow-md);
+}
+
+.component-card__body {
+    display: grid;
+    gap: 18px;
+    min-height: 100%;
+}
+
+.component-card__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+}
+
+.component-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--zyr-radius-lg);
+    border: 1px solid transparent;
+    font-size: 1.1rem;
+}
+
+.component-card__icon--teal {
+    background: var(--zyr-accent-muted);
+    border-color: var(--zyr-accent-border);
+    color: var(--zyr-accent);
+}
+
+.component-card__icon--blue {
+    background: var(--zyr-accent-2-muted);
+    border-color: var(--zyr-accent-2-border);
+    color: var(--zyr-accent-2);
+}
+
+.component-card__icon--purple {
+    background: var(--zyr-accent-3-muted);
+    border-color: var(--zyr-accent-3-border);
+    color: var(--zyr-accent-3);
+}
+
+.component-card__icon--amber {
+    background: var(--zyr-warning-muted);
+    border-color: var(--zyr-warning-border);
+    color: var(--zyr-warning);
+}
+
+.component-card__icon--green {
+    background: var(--zyr-success-muted);
+    border-color: var(--zyr-success-border);
+    color: var(--zyr-success);
+}
+
+.component-card__copy h3 {
+    margin: 0 0 8px;
+    font-family: var(--zyr-font-display);
+    font-size: 1.15rem;
+}
+
+.component-card__copy p {
+    margin: 0;
+    color: var(--zyr-text-muted);
+    line-height: 1.7;
+    min-height: calc(1.7em * 3);
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+.component-card__footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    color: var(--zyr-text-dim);
+    font-size: 0.9rem;
+    font-family: var(--zyr-font-mono);
+}
+
+@media (max-width: 960px) {
+    .components-page__header {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .components-page__meta {
+        justify-content: center;
+    }
+
+    .components-page__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    :host {
+        padding: 32px 0 48px;
+    }
+
+    .components-page {
+        width: min(1120px, calc(100% - 24px));
+    }
+
+    .components-page__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .component-card__footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

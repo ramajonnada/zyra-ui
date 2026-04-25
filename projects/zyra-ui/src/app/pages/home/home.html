@@ -1,12 +1,540 @@
-<img src="final-icon248.png" alt="Zyra UI logo" class="zy-logo__img" />
-<h1 class="zy-logo__text">ZyraUI</h1>
-<h5>Modern SaaS Component Library for Angular</h5>
+<div class="landing">
+    <section id="hero">
+        <div class="wrap hero">
+            <div class="hero__content">
+                <div class="hero__pill">
+                    <span class="hero__dot"></span>
+                    Angular 21 · Signals · Standalone · v1.3.24
+                </div>
+                <h1 class="hero__title">
+                    The Modern Angular UI Library
+                    <em>Built with Tokens and Signals</em>
+                </h1>
+                <p class="hero__subtitle">
+                    Bring the reference design into the real product stack with shared Zyra tokens,
+                    production-ready components, and just enough custom layout styling to make the
+                    brand feel polished.
+                </p>
+                <div class="hero__actions">
+                    <zyra-button size="lg" (clicked)="scrollToSection('install')"
+                        >Get Started</zyra-button
+                    >
+                    <zyra-button
+                        variant="secondary"
+                        size="lg"
+                        (clicked)="scrollToSection('components')"
+                    >
+                        View Components
+                    </zyra-button>
+                </div>
+                <div class="install-box">
+                    <span class="install-box__prompt">$</span>
+                    <span class="install-box__command">{{ installCommand }}</span>
+                    <button type="button" class="install-box__copy" (click)="copyInstallCommand()">
+                        {{ copied() ? 'copied' : 'copy' }}
+                    </button>
+                </div>
+                <div class="hero__meta">
+                    @for (metric of heroMetrics; track metric) {
+                        <span>{{ metric }}</span>
+                    }
+                </div>
+            </div>
 
-<p>
-    ZyraUI is a thoughtfully Production-Ready UI Components library for Angular, focused on modern
-    design, accessibility, and developer experience.
-</p>
-<p>Coming Soon 🚀</p>
+            <div class="hero__preview">
+                <article class="preview-card">
+                    <div class="preview-card__label">zyra-button · variants</div>
+                    <div class="preview-row">
+                        <zyra-button size="sm">Primary</zyra-button>
+                        <zyra-button variant="secondary" size="sm">Secondary</zyra-button>
+                        <zyra-button variant="ghost" size="sm">Ghost</zyra-button>
+                        <zyra-button variant="danger" size="sm">Danger</zyra-button>
+                        <zyra-button variant="outline" size="sm">Outline</zyra-button>
+                    </div>
+                </article>
 
-<!-- <a routerLink="/blog-list" routerLinkActive="is-active" class="zy-nav__item">Blog</a> -->
-<!-- <zyra-button [variant]="'gradient'" [size]="'sm'"></zyra-button> -->
+                <article class="preview-card">
+                    <div class="preview-card__label">zyra-form-field · inputs</div>
+                    <div class="preview-stack">
+                        <zyra-form-field
+                            label="Email address"
+                            hint="CVA ready and signal friendly"
+                            prefixIcon="✉"
+                        >
+                            <zyra-input [(ngModel)]="demoEmail" [readonly]="true"></zyra-input>
+                        </zyra-form-field>
+                        <zyra-form-field
+                            label="Password"
+                            hint="Token-styled focus and states"
+                            prefixIcon="•"
+                        >
+                            <zyra-input
+                                [(ngModel)]="demoPassword"
+                                type="password"
+                                [readonly]="true"
+                            ></zyra-input>
+                        </zyra-form-field>
+                    </div>
+                </article>
+
+                <article class="preview-card">
+                    <div class="preview-card__label">zyra-badge + zyra-avatar</div>
+                    <div class="preview-row preview-row--badges">
+                        <zyra-badge variant="success" size="md" [dot]="true">Stable</zyra-badge>
+                        <zyra-badge variant="info" size="md">Tokens</zyra-badge>
+                        <zyra-badge variant="purple" size="md">Signals</zyra-badge>
+                        <zyra-badge size="md">v1.3.24</zyra-badge>
+                    </div>
+                    <div class="preview-row preview-row--avatars">
+                        <zyra-avatar name="Aanya Kale" size="sm"></zyra-avatar>
+                        <zyra-avatar name="Pavan Shah" size="sm" variant="blue"></zyra-avatar>
+                        <zyra-avatar name="Riya Varma" size="sm" variant="purple"></zyra-avatar>
+                        <zyra-avatar
+                            name="Milan Kumar"
+                            size="sm"
+                            variant="warm"
+                            [online]="true"
+                        ></zyra-avatar>
+                        <zyra-badge variant="success" size="md" [dot]="true">Online</zyra-badge>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <div id="proof" class="proof">
+        <div class="wrap">
+            <div class="proof__row">
+                @for (stat of proofStats; track stat.label) {
+                    <div class="proof-stat">
+                        <div [class]="stat.iconClass">
+                            <i [class]="stat.icon" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <div class="proof-stat__value">{{ stat.value }}</div>
+                            <div class="proof-stat__label">{{ stat.label }}</div>
+                        </div>
+                    </div>
+                }
+                <div class="proof__trust">
+                    <div class="proof__avatars">
+                        <zyra-avatar name="Aanya Kale" size="xs"></zyra-avatar>
+                        <zyra-avatar name="Pavan Shah" size="xs" variant="blue"></zyra-avatar>
+                        <zyra-avatar name="Riya Varma" size="xs" variant="purple"></zyra-avatar>
+                        <zyra-avatar name="Milan Kumar" size="xs" variant="warm"></zyra-avatar>
+                    </div>
+                    <span>Shared styling between the site and the component library</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="features" class="landing-section">
+        <div class="wrap">
+            <div class="section-header">
+                <div class="eyebrow">Features</div>
+                <h2>Everything you need to <em>ship faster</em></h2>
+                <p>
+                    The landing page now speaks the same visual language as the Zyra library, using
+                    the same color system, spacing rhythm, and component primitives.
+                </p>
+            </div>
+            <div class="feature-grid">
+                @for (feature of features; track feature.title) {
+                    <article class="feature-card">
+                        <div [class]="feature.iconClass">
+                            <i [class]="feature.icon" aria-hidden="true"></i>
+                        </div>
+                        <h3>{{ feature.title }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </article>
+                }
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-sep"></div>
+
+    <section id="components" class="landing-section">
+        <div class="wrap">
+            <div class="section-header">
+                <div class="eyebrow">Components</div>
+                <h2>Production-ready <em>UI primitives</em></h2>
+                <p>
+                    Instead of recreating controls by hand, the page leans on the existing library
+                    and wraps it in a marketing-focused presentation layer.
+                </p>
+            </div>
+
+            <div class="component-grid">
+                <article class="component-card">
+                    <div class="component-card__bar">
+                        <span>zyra-button</span>
+                        <div class="component-card__dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="component-card__body component-card__body--stack">
+                        <div class="preview-row">
+                            <zyra-button size="sm">Primary</zyra-button>
+                            <zyra-button variant="secondary" size="sm">Secondary</zyra-button>
+                            <zyra-button variant="ghost" size="sm">Ghost</zyra-button>
+                        </div>
+                        <div class="preview-row">
+                            <zyra-button variant="danger" size="sm">Danger</zyra-button>
+                            <zyra-button variant="outline" size="sm">Outline</zyra-button>
+                            <zyra-button size="sm" [loading]="true">Loading</zyra-button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="component-card">
+                    <div class="component-card__bar">
+                        <span>zyra-form-field</span>
+                        <div class="component-card__dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="component-card__body component-card__body--stack">
+                        <zyra-form-field
+                            label="Work email"
+                            hint="Signal-ready form control"
+                            prefixIcon="✉"
+                        >
+                            <zyra-input [(ngModel)]="demoEmail"></zyra-input>
+                        </zyra-form-field>
+                        <zyra-form-field
+                            label="Password"
+                            hint="Styled with shared input tokens"
+                            prefixIcon="•"
+                        >
+                            <zyra-input [(ngModel)]="demoPassword" type="password"></zyra-input>
+                        </zyra-form-field>
+                    </div>
+                </article>
+
+                <article class="component-card">
+                    <div class="component-card__bar">
+                        <span>zyra-card</span>
+                        <div class="component-card__dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="component-card__body">
+                        <zyra-card [hasHeader]="true" [hasFooter]="true">
+                            <div slot="header" class="slot-head">
+                                <strong>Project overview</strong>
+                                <span>Updated 2 hours ago</span>
+                            </div>
+                            <div class="slot-copy">
+                                A signal-first Angular UI setup that now shares a polished marketing
+                                skin with the core component library.
+                            </div>
+                            <div slot="footer" class="slot-actions">
+                                <zyra-button size="sm">View details</zyra-button>
+                                <zyra-button variant="ghost" size="sm">Archive</zyra-button>
+                            </div>
+                        </zyra-card>
+                    </div>
+                </article>
+
+                <article class="component-card">
+                    <div class="component-card__bar">
+                        <span>zyra-toast</span>
+                        <div class="component-card__dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="component-card__body component-card__body--stack">
+                        <p class="component-note">
+                            Trigger the live toast component and preview the library states.
+                        </p>
+                        <div class="preview-row">
+                            <zyra-button size="sm" (clicked)="showToast('success')"
+                                >Success</zyra-button
+                            >
+                            <zyra-button variant="secondary" size="sm" (clicked)="showToast('info')"
+                                >Info</zyra-button
+                            >
+                            <zyra-button
+                                variant="outline"
+                                size="sm"
+                                (clicked)="showToast('warning')"
+                                >Warning</zyra-button
+                            >
+                            <zyra-button variant="danger" size="sm" (clicked)="showToast('error')"
+                                >Error</zyra-button
+                            >
+                        </div>
+                    </div>
+                </article>
+
+                <article class="component-card">
+                    <div class="component-card__bar">
+                        <span>zyra-spinner</span>
+                        <div class="component-card__dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="component-card__body">
+                        <div class="spinner-demo">
+                            <div class="spinner-demo__item">
+                                <zyra-spinner size="xs"></zyra-spinner>
+                                <span>xs</span>
+                            </div>
+                            <div class="spinner-demo__item">
+                                <zyra-spinner size="sm" color="accent-2"></zyra-spinner>
+                                <span>sm</span>
+                            </div>
+                            <div class="spinner-demo__item">
+                                <zyra-spinner size="md"></zyra-spinner>
+                                <span>md</span>
+                            </div>
+                            <div class="spinner-demo__item">
+                                <zyra-spinner size="lg"></zyra-spinner>
+                                <span>lg</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="component-card">
+                    <div class="component-card__bar">
+                        <span>zyra-avatar + zyra-badge</span>
+                        <div class="component-card__dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="component-card__body component-card__body--stack">
+                        <div class="avatar-demo">
+                            <div class="avatar-demo__item">
+                                <zyra-avatar name="Aanya Kale" size="xs"></zyra-avatar>
+                                <span>xs</span>
+                            </div>
+                            <div class="avatar-demo__item">
+                                <zyra-avatar
+                                    name="Pavan Shah"
+                                    size="sm"
+                                    variant="blue"
+                                ></zyra-avatar>
+                                <span>sm</span>
+                            </div>
+                            <div class="avatar-demo__item">
+                                <zyra-avatar
+                                    name="Riya Varma"
+                                    size="md"
+                                    variant="purple"
+                                    [online]="true"
+                                ></zyra-avatar>
+                                <span>md</span>
+                            </div>
+                            <div class="avatar-demo__item">
+                                <zyra-avatar
+                                    name="Milan Kumar"
+                                    size="lg"
+                                    variant="warm"
+                                ></zyra-avatar>
+                                <span>lg</span>
+                            </div>
+                        </div>
+                        <div class="preview-row preview-row--badges">
+                            <zyra-badge variant="success" size="md" [dot]="true">Stable</zyra-badge>
+                            <zyra-badge variant="info" size="md">Docs</zyra-badge>
+                            <zyra-badge variant="purple" size="md">Signals</zyra-badge>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-sep"></div>
+
+    <section id="code-ex" class="landing-section">
+        <div class="wrap code-layout">
+            <div class="code-copy">
+                <div class="eyebrow">Developer Experience</div>
+                <h2>Simple API, <em>powerful results</em></h2>
+                <p>
+                    The implementation stays honest to the current library API, so the site
+                    showcases real usage instead of made-up component names.
+                </p>
+                <div class="code-checks">
+                    @for (check of codeChecks; track check) {
+                        <div class="code-check">
+                            <span class="code-check__tick">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span>{{ check }}</span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="editor">
+                <div class="editor__bar">
+                    <div class="component-card__dots"><span></span><span></span><span></span></div>
+                    <span>login.component.ts</span>
+                    <span class="editor__lang">typescript</span>
+                </div>
+                <div class="editor__body">
+                    <pre><span class="ln">1</span><span class="kw">import</span> &#123; <span class="ty">Component</span>, <span class="fn">inject</span>, <span class="fn">signal</span> &#125; <span class="kw">from</span> <span class="str">'@angular/core'</span>;
+<span class="ln">2</span><span class="kw">import</span> &#123; <span class="ty">ZyraButton</span>, <span class="ty">ZyraFormField</span>, <span class="ty">ZyraInput</span>, <span class="ty">ZyraToastService</span> &#125; <span class="kw">from</span> <span class="str">'zyra-ng-ui'</span>;
+<span class="ln">3</span>
+<span class="ln">4</span>@<span class="fn">Component</span>(&#123;
+<span class="ln">5</span>  <span class="at">standalone</span>: <span class="kw">true</span>,
+<span class="ln">6</span>  <span class="at">imports</span>: [<span class="ty">ZyraButton</span>, <span class="ty">ZyraFormField</span>, <span class="ty">ZyraInput</span>],
+<span class="ln">7</span>  <span class="at">template</span>: <span class="str">`
+<span class="ln">8</span>    &lt;zyra-form-field label="Email"&gt;
+<span class="ln">9</span>      &lt;zyra-input type="email" /&gt;
+<span class="ln">10</span>    &lt;/zyra-form-field&gt;
+<span class="ln">11</span>    &lt;zyra-button [loading]="saving()" (clicked)="submit()"&gt;
+<span class="ln">12</span>      Sign In
+<span class="ln">13</span>    &lt;/zyra-button&gt;
+<span class="ln">14</span>  `</span>
+<span class="ln">15</span>&#125;)
+<span class="ln">16</span><span class="kw">export class</span> <span class="ty">LoginComponent</span> &#123;
+<span class="ln">17</span>  <span class="at">saving</span> = <span class="fn">signal</span>(<span class="kw">false</span>);
+<span class="ln">18</span>  <span class="at">toast</span> = <span class="fn">inject</span>(<span class="ty">ZyraToastService</span>);
+<span class="ln">19</span>
+<span class="ln">20</span>  <span class="fn">submit</span>() &#123;
+<span class="ln">21</span>    <span class="kw">this</span>.<span class="at">saving</span>.<span class="fn">set</span>(<span class="kw">true</span>);
+<span class="ln">22</span>    <span class="kw">this</span>.<span class="at">toast</span>.<span class="fn">success</span>(<span class="str">'Signed in!'</span>);
+<span class="ln">23</span>  &#125;
+<span class="ln">24</span>&#125;</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-sep"></div>
+
+    <section id="install" class="landing-section">
+        <div class="wrap">
+            <div class="section-header">
+                <div class="eyebrow">Quick Start</div>
+                <h2>Up and running in <em>3 steps</em></h2>
+                <p>
+                    The site now shows the real setup path for this library instead of placeholder
+                    marketing copy.
+                </p>
+            </div>
+            <div class="step-grid">
+                @for (step of installSteps; track step.title) {
+                    <article class="step-card">
+                        <div class="step-card__number">{{ step.step }}</div>
+                        <h3>{{ step.title }}</h3>
+                        <p>{{ step.description }}</p>
+                        <pre class="step-card__code"><code>{{ step.code }}</code></pre>
+                    </article>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section id="compare" class="landing-section">
+        <div class="wrap">
+            <div class="section-header">
+                <div class="eyebrow">Why Zyra UI</div>
+                <h2>Built for <em>modern Angular</em>, not retrofitted</h2>
+                <p>
+                    The comparison section keeps the reference design direction, but the points now
+                    reflect the actual library architecture in this workspace.
+                </p>
+            </div>
+            <div class="comparison-table">
+                <div class="comparison-table__head">
+                    <div>Feature</div>
+                    <div>Zyra NG UI</div>
+                    <div>Typical older patterns</div>
+                </div>
+                @for (row of comparisonRows; track row.feature) {
+                    <div class="comparison-table__row">
+                        <div class="comparison-table__feature">{{ row.feature }}</div>
+                        <div class="comparison-meta comparison-meta--good">
+                            <i class="fa-solid fa-check"></i>
+                            <span>{{ row.zyra }}</span>
+                        </div>
+                        <div
+                            class="comparison-meta"
+                            [class.comparison-meta--warning]="row.otherTone === 'warning'"
+                            [class.comparison-meta--danger]="row.otherTone === 'danger'"
+                        >
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>{{ row.other }}</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section id="oss" class="landing-section">
+        <div class="wrap">
+            <div class="oss-card">
+                <div class="oss-card__copy">
+                    <div class="eyebrow">Open Source</div>
+                    <h2>Built in the open, <em>for the community</em></h2>
+                    <p>
+                        The redesigned landing page keeps your product narrative centered on the
+                        real strengths of the library: tokens, Angular-first APIs, and ongoing
+                        buildout.
+                    </p>
+                    <div class="hero__actions">
+                        <zyra-button size="lg" (clicked)="scrollToSection('install')"
+                            >Install Zyra</zyra-button
+                        >
+                        <zyra-button
+                            variant="secondary"
+                            size="lg"
+                            (clicked)="scrollToSection('code-ex')"
+                        >
+                            View API Style
+                        </zyra-button>
+                    </div>
+                </div>
+                <div class="oss-card__stats">
+                    @for (stat of openSourceStats; track stat.title) {
+                        <div class="oss-stat">
+                            <div [class]="stat.iconClass">
+                                <i [class]="stat.icon" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3>{{ stat.title }}</h3>
+                                <p>{{ stat.description }}</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="cta">
+        <div class="wrap-sm">
+            <div class="eyebrow eyebrow--center">Get started today</div>
+            <h2>Build better Angular interfaces <em>faster</em></h2>
+            <p>
+                The homepage now feels like a real product site instead of a placeholder, while
+                still staying grounded in the existing Zyra design system.
+            </p>
+            <div class="hero__actions hero__actions--center">
+                <zyra-button size="lg" (clicked)="scrollToSection('install')"
+                    >Get Started</zyra-button
+                >
+                <zyra-button
+                    variant="secondary"
+                    size="lg"
+                    (clicked)="scrollToSection('components')"
+                >
+                    View Components
+                </zyra-button>
+            </div>
+            <div class="cta__note">
+                npm install zyra-ng-ui · v1.3.24 · MIT License · Angular 21+
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-sep"></div>
+</div>

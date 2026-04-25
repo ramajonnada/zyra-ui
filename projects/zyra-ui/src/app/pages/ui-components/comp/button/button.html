@@ -1,0 +1,206 @@
+<!-- projects/zyra-ui/src/app/pages/test/button/button.html -->
+
+<div class="pg">
+    <!-- HEADER -->
+    <div class="pg__header">
+        <div class="pg__header-left">
+            <div class="pg__header-title">
+                <h1>zyra-button <span>Playground</span></h1>
+                <zyra-badge variant="info" size="sm">Variants</zyra-badge>
+                <zyra-badge variant="success" size="sm">Sizes</zyra-badge>
+                <zyra-badge variant="warning" size="sm">States</zyra-badge>
+            </div>
+            <p>Interactive button component with loading states, icons, and multiple variants</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <!-- LEFT: CONTROLS -->
+        <div class="controls">
+            <div class="controls__title">Controls</div>
+
+            <!-- variant -->
+            <div class="control-group">
+                <span class="control-label">variant</span>
+                <div class="control-options">
+                    @for (v of variants; track v) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="selectedVariant() === v"
+                            (clicked)="selectedVariant.set(v)"
+                            >{{ v }}</zyra-button
+                        >
+                    }
+                </div>
+            </div>
+
+            <!-- size -->
+            <div class="control-group">
+                <span class="control-label">size</span>
+                <div class="control-options">
+                    @for (s of sizes; track s) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="selectedSize() === s"
+                            (clicked)="selectedSize.set(s)"
+                            >{{ s }}</zyra-button
+                        >
+                    }
+                </div>
+            </div>
+
+            <!-- loading -->
+            <div class="control-group">
+                <span class="control-label">loading</span>
+                <div class="control-toggles">
+                    <label class="toggle">
+                        <input
+                            type="checkbox"
+                            [checked]="isLoading()"
+                            (change)="isLoading.set(!isLoading())"
+                        />
+                        <span class="toggle__track"></span>
+                        <span class="toggle__label">loading state</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- disabled -->
+            <div class="control-group">
+                <span class="control-label">disabled</span>
+                <div class="control-toggles">
+                    <label class="toggle">
+                        <input
+                            type="checkbox"
+                            [checked]="isDisabled()"
+                            (change)="isDisabled.set(!isDisabled())"
+                        />
+                        <span class="toggle__track"></span>
+                        <span class="toggle__label">disabled state</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- fullWidth -->
+            <div class="control-group">
+                <span class="control-label">fullWidth</span>
+                <div class="control-toggles">
+                    <label class="toggle">
+                        <input
+                            type="checkbox"
+                            [checked]="isFullWidth()"
+                            (change)="isFullWidth.set(!isFullWidth())"
+                        />
+                        <span class="toggle__track"></span>
+                        <span class="toggle__label">full width</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- iconLeft -->
+            <div class="control-group">
+                <span class="control-label">iconLeft</span>
+                <div class="control-options">
+                    <zyra-button
+                        variant="outline"
+                        [class.active]="iconLeft() === 'fa-solid fa-rocket'"
+                        (clicked)="iconLeft.set('fa-solid fa-rocket')"
+                        ><i class="fa-solid fa-rocket"></i
+                    ></zyra-button>
+                    <zyra-button
+                        variant="outline"
+                        [class.active]="iconLeft() === 'fa-solid fa-folder'"
+                        (clicked)="iconLeft.set('fa-solid fa-folder')"
+                        ><i class="fa-solid fa-folder"></i
+                    ></zyra-button>
+                    <zyra-button
+                        variant="outline"
+                        [class.active]="iconLeft() === 'fa-solid fa-magnifying-glass'"
+                        (clicked)="iconLeft.set('fa-solid fa-magnifying-glass')"
+                        ><i class="fa-solid fa-magnifying-glass"></i
+                    ></zyra-button>
+                    <zyra-button
+                        variant="outline"
+                        [class.active]="iconLeft() === 'fa-solid fa-trash'"
+                        (clicked)="iconLeft.set('fa-solid fa-trash')"
+                        ><i class="fa-solid fa-trash"></i
+                    ></zyra-button>
+                </div>
+            </div>
+
+            <!-- iconRight -->
+            <div class="control-group">
+                <span class="control-label">iconRight</span>
+                <div class="control-options">
+                    <zyra-button
+                        variant="outline"
+                        [class.active]="iconRight() === 'fa-solid fa-arrow-right'"
+                        (clicked)="iconRight.set('fa-solid fa-arrow-right')"
+                        ><i class="fa-solid fa-arrow-right"></i
+                    ></zyra-button>
+                    <zyra-button
+                        variant="outline"
+                        [class.active]="iconRight() === 'fa-solid fa-arrow-left'"
+                        (clicked)="iconRight.set('fa-solid fa-arrow-left')"
+                        ><i class="fa-solid fa-arrow-left"></i
+                    ></zyra-button>
+                    <zyra-button
+                        variant="outline"
+                        [class.active]="iconRight() === 'fa-solid fa-arrow-up'"
+                        (clicked)="iconRight.set('fa-solid fa-arrow-up')"
+                    >
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </zyra-button>
+                </div>
+            </div>
+
+            <!-- label -->
+            <div class="control-group">
+                <span class="control-label">label</span>
+                <input
+                    class="control-input"
+                    type="text"
+                    [(ngModel)]="buttonLabel"
+                    placeholder="Button text..."
+                />
+            </div>
+        </div>
+
+        <!-- RIGHT: PREVIEW -->
+        <div class="preview-area">
+            <!-- Live Preview -->
+            <div class="preview-box">
+                <div class="preview-box__label">Live Preview</div>
+                <div class="preview-box__stage">
+                    <zyra-button
+                        [variant]="selectedVariant()"
+                        [size]="selectedSize()"
+                        [loading]="isLoading()"
+                        [disabled]="isDisabled()"
+                        [fullWidth]="isFullWidth()"
+                        (clicked)="log('Button clicked')"
+                    >
+                        @if (iconLeft()) {
+                            <i slot="prefix" [class]="iconLeft()"></i>
+                        }
+                        <span>{{ buttonLabel }}</span>
+                        @if (iconRight()) {
+                            <i slot="suffix" [class]="iconRight()"></i>
+                        }
+                    </zyra-button>
+                </div>
+            </div>
+
+            <!-- Code -->
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()"
+                        >Copy</zyra-button
+                    >
+                </div>
+                <pre class="code-box__pre">{{ generatedCode() }}</pre>
+            </div>
+        </div>
+    </div>
+</div>

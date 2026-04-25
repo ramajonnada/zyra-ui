@@ -1,0 +1,344 @@
+<div class="pg">
+    <!-- HEADER -->
+    <div class="pg__header">
+        <div class="pg__header-left">
+            <div class="pg__header-title">
+                <h1>zyra-avatar <span>Playground</span></h1>
+                <zyra-badge variant="purple" size="sm">Initials</zyra-badge>
+                <zyra-badge variant="success" size="sm">Image</zyra-badge>
+                <zyra-badge variant="default" size="sm">Fallback</zyra-badge>
+            </div>
+            <p>Avatar component with initials, image support, status indicator and variants</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <!-- ── LEFT: CONTROLS ──────────────────────────────────── -->
+        <div class="controls">
+            <div class="controls__title">Controls</div>
+
+            <!-- name -->
+            <div class="control-group">
+                <span class="control-label">name</span>
+                <div class="control-options">
+                    @for (n of sampleNames; track n) {
+                        <zyra-button [class.active]="name() === n" (click)="name.set(n)">{{ n }}</zyra-button>
+                    }
+                </div>
+            </div>
+
+            <!-- src -->
+            <div class="control-group">
+                <span class="control-label">src (image)</span>
+                <div class="control-options">
+                    <zyra-button [class.active]="src() === ''" (click)="src.set('')">none</zyra-button>
+                    @for (img of sampleImages; track img) {
+                        <zyra-button [class.active]="src() === img" (click)="src.set(img)">
+                            {{ img.includes('pravatar') ? 'img-' + img.slice(-1) : 'broken' }}
+                        </zyra-button>
+                    }
+                </div>
+            </div>
+
+            <!-- size -->
+            <div class="control-group">
+                <span class="control-label">size</span>
+                <div class="control-options">
+                    @for (s of sizes; track s) {
+                        <zyra-button [class.active]="size() === s" (click)="size.set(s)">{{ s }}</zyra-button>
+                    }
+                </div>
+            </div>
+
+            <!-- variant -->
+            <div class="control-group">
+                <span class="control-label">variant</span>
+                <div class="control-options">
+                    @for (v of variants; track v) {
+                        <zyra-button [class.active]="variant() === v" (click)="variant.set(v)">
+                            {{ v }}
+                        </zyra-button>
+                    }
+                </div>
+            </div>
+
+            <!-- online -->
+            <div class="control-group">
+                <span class="control-label">online</span>
+                <div class="control-options">
+                    @for (o of onlineOptions; track o.label) {
+                        <zyra-button [class.active]="online() === o.value" (click)="online.set(o.value)">
+                            {{ o.label }}
+                        </zyra-button>
+                    }
+                </div>
+            </div>
+
+            <!-- boolean -->
+            <div class="control-group">
+                <span class="control-label">shape</span>
+                <div class="control-toggles">
+                    <label class="toggle">
+                        <input
+                            type="checkbox"
+                            [checked]="square()"
+                            (change)="square.set(!square())"
+                        />
+                        <span class="toggle__track"></span>
+                        <span class="toggle__label">square</span>
+                    </label>
+                </div>
+            </div>
+
+            <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()"
+                >↺ Reset</zyra-button
+            >
+        </div>
+
+        <!-- ── RIGHT: PREVIEW ────────────────────────────────────── -->
+        <div class="preview-area">
+            <div class="preview-box">
+                <div class="preview-box__label">
+                    Live Preview
+                    <zyra-badge variant="default" size="sm">{{ size() }}</zyra-badge>
+                    <zyra-badge variant="default" size="sm">{{ variant() }}</zyra-badge>
+                    @if (square()) {
+                        <zyra-badge variant="purple" size="sm">square</zyra-badge>
+                    }
+                    @if (online() !== null) {
+                        <zyra-badge [variant]="online() ? 'success' : 'default'" size="sm">
+                            {{ online() ? 'online' : 'offline' }}
+                        </zyra-badge>
+                    }
+                </div>
+                <div class="preview-box__stage">
+                    <zyra-tooltip [text]="name()" position="top">
+                        <zyra-avatar
+                            [name]="name()"
+                            [src]="src()"
+                            [size]="size()"
+                            [variant]="variant()"
+                            [online]="online()"
+                            [square]="square()"
+                        />
+                    </zyra-tooltip>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()"
+                        >Copy</zyra-button
+                    >
+                </div>
+                <pre class="code-box__pre">{{ generatedCode() }}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── ALL SIZES ──────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">
+            Sizes
+            <zyra-badge variant="default" size="sm">5 sizes</zyra-badge>
+        </div>
+        <zyra-card variant="default" padding="lg">
+            <div class="showcase-row showcase-row--center">
+                @for (s of sizes; track s) {
+                    <div class="showcase-item">
+                        <zyra-avatar name="Arjun Kumar" [size]="s" variant="teal" />
+                        <zyra-badge variant="default" size="sm">{{ s }}</zyra-badge>
+                    </div>
+                }
+            </div>
+        </zyra-card>
+    </div>
+
+    <!-- ── ALL VARIANTS ───────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">
+            Color Variants
+            <zyra-badge variant="default" size="sm">5 variants</zyra-badge>
+        </div>
+        <zyra-card variant="default" padding="lg">
+            <div class="showcase-row showcase-row--center">
+                @for (v of variants; track v) {
+                    <div class="showcase-item">
+                        <zyra-avatar name="Zyra UI" size="lg" [variant]="v" />
+                        <zyra-badge variant="default" size="sm">{{ v }}</zyra-badge>
+                    </div>
+                }
+            </div>
+        </zyra-card>
+    </div>
+
+    <!-- ── ONLINE STATUS ──────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Online Status</div>
+        <zyra-card variant="default" padding="lg">
+            <div class="showcase-row showcase-row--center">
+                <div class="showcase-item">
+                    <zyra-avatar name="Arjun Kumar" size="lg" variant="teal" [online]="true" />
+                    <zyra-badge variant="success" size="sm">online</zyra-badge>
+                </div>
+                <div class="showcase-item">
+                    <zyra-avatar name="Priya Sharma" size="lg" variant="purple" [online]="false" />
+                    <zyra-badge variant="default" size="sm">offline</zyra-badge>
+                </div>
+                <div class="showcase-item">
+                    <zyra-avatar name="Rohit Verma" size="lg" variant="blue" [online]="null" />
+                    <zyra-badge variant="default" size="sm">no status</zyra-badge>
+                </div>
+            </div>
+        </zyra-card>
+    </div>
+
+    <!-- ── SHAPES ─────────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Shapes</div>
+        <zyra-card variant="default" padding="lg">
+            <div class="showcase-row showcase-row--center">
+                <div class="showcase-item">
+                    <zyra-avatar name="Arjun Kumar" size="lg" variant="teal" [square]="false" />
+                    <zyra-badge variant="default" size="sm">circle</zyra-badge>
+                </div>
+                <div class="showcase-item">
+                    <zyra-avatar name="Arjun Kumar" size="lg" variant="teal" [square]="true" />
+                    <zyra-badge variant="default" size="sm">square</zyra-badge>
+                </div>
+            </div>
+        </zyra-card>
+    </div>
+
+    <!-- ── IMAGE + FALLBACK ───────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">
+            Image &amp; Fallback
+            <zyra-badge variant="warning" size="sm">auto fallback on error</zyra-badge>
+        </div>
+        <zyra-card variant="default" padding="lg">
+            <div class="showcase-row showcase-row--center">
+                <div class="showcase-item">
+                    <zyra-avatar
+                        name="User One"
+                        src="https://i.pravatar.cc/150?img=1"
+                        size="lg"
+                        variant="teal"
+                    />
+                    <zyra-badge variant="success" size="sm">image loads</zyra-badge>
+                </div>
+                <div class="showcase-item">
+                    <zyra-avatar
+                        name="User Two"
+                        src="https://i.pravatar.cc/150?img=2"
+                        size="lg"
+                        variant="blue"
+                    />
+                    <zyra-badge variant="success" size="sm">image loads</zyra-badge>
+                </div>
+                <div class="showcase-item">
+                    <zyra-avatar
+                        name="Broken Image"
+                        src="broken-url.jpg"
+                        size="lg"
+                        variant="purple"
+                    />
+                    <zyra-badge variant="warning" size="sm">fallback → initials</zyra-badge>
+                </div>
+                <div class="showcase-item">
+                    <zyra-avatar name="No Image" size="lg" variant="warm" />
+                    <zyra-badge variant="default" size="sm">initials only</zyra-badge>
+                </div>
+            </div>
+        </zyra-card>
+    </div>
+
+    <!-- ── REAL WORLD: TEAM ───────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Real World — Team List</div>
+        <zyra-card variant="default" padding="lg">
+            <div class="team-list">
+                @for (
+                    member of [
+                        {
+                            name: 'Arjun Kumar',
+                            role: 'Lead Developer',
+                            variant: 'teal',
+                            online: true,
+                        },
+                        {
+                            name: 'Priya Sharma',
+                            role: 'UI Designer',
+                            variant: 'purple',
+                            online: true,
+                        },
+                        {
+                            name: 'Rohit Verma',
+                            role: 'Backend Engineer',
+                            variant: 'blue',
+                            online: false,
+                        },
+                        {
+                            name: 'Sneha Patel',
+                            role: 'Product Manager',
+                            variant: 'warm',
+                            online: true,
+                        },
+                        {
+                            name: 'Dev Zyra',
+                            role: 'QA Engineer',
+                            variant: 'neutral',
+                            online: false,
+                        },
+                    ];
+                    track member.name
+                ) {
+                    <div class="team-member">
+                        <zyra-avatar
+                            [name]="member.name"
+                            [variant]="$any(member.variant)"
+                            [online]="member.online"
+                            size="md"
+                        />
+                        <div class="team-member__info">
+                            <span class="team-member__name">{{ member.name }}</span>
+                            <span class="team-member__role">{{ member.role }}</span>
+                        </div>
+                        <zyra-badge [variant]="member.online ? 'success' : 'default'" size="sm">
+                            {{ member.online ? 'Online' : 'Offline' }}
+                        </zyra-badge>
+                        <zyra-tooltip text="View profile" position="left">
+                            <zyra-button
+                                variant="ghost"
+                                size="sm"
+                                (clicked)="onAvatarClick(member.name)"
+                            >
+                                View
+                            </zyra-button>
+                        </zyra-tooltip>
+                    </div>
+                }
+            </div>
+        </zyra-card>
+    </div>
+
+    <!-- ── AVATAR GROUP ───────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Avatar Group — Stacked</div>
+        <zyra-card variant="default" padding="lg">
+            <div class="avatar-group-demo">
+                <div class="avatar-group">
+                    <zyra-avatar name="Arjun Kumar" variant="teal" size="md" />
+                    <zyra-avatar name="Priya Sharma" variant="purple" size="md" />
+                    <zyra-avatar name="Rohit Verma" variant="blue" size="md" />
+                    <zyra-avatar name="Sneha Patel" variant="warm" size="md" />
+                    <div class="avatar-group__more">+3</div>
+                </div>
+                <zyra-badge variant="default" size="sm">7 members</zyra-badge>
+            </div>
+        </zyra-card>
+    </div>
+</div>
+
+<zyra-toast-container />

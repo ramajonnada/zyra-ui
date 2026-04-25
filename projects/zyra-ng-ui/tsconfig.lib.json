@@ -4,6 +4,8 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "../../out-tsc/lib",
+        "rootDir": "./src",
+        "forceConsistentCasingInFileNames": true,
         "declaration": true,
         "declarationMap": true,
         // "inlineSources": true,

@@ -1,0 +1,569 @@
+<!-- projects/zyra-ui/src/app/pages/test/input/input.html -->
+
+<div class="pg">
+    <!-- ── HEADER ───────────────────────────────────────────── -->
+    <div class="pg__header">
+        <div class="pg__header-left">
+            <div class="pg__header-title">
+                <h1>zyra-form-field <span>+</span> zyra-input</h1>
+                <zyra-badge variant="purple" size="sm">CVA</zyra-badge>
+                <zyra-badge variant="success" size="sm">Angular Forms</zyra-badge>
+            </div>
+            <p>Smart wrapper + pure CVA input — Reactive &amp; Template Forms</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <!-- ── LEFT: CONTROLS ──────────────────────────────────── -->
+        <div class="controls">
+            <div class="controls__title">Controls</div>
+
+            <div class="control-group">
+                <div class="control-label">type</div>
+                <div class="control-options">
+                    @for (t of types; track t) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="type() === t"
+                            (clicked)="type.set(t)"
+                            >{{ t }}</zyra-button
+                        >
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">appearance</div>
+                <div class="control-options">
+                    @for (a of appearances; track a) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="appearance() === a"
+                            (clicked)="appearance.set(a)"
+                            >{{ a }}</zyra-button
+                        >
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">size</div>
+                <div class="control-options">
+                    @for (s of sizes; track s) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="size() === s"
+                            (clicked)="size.set(s)"
+                            >{{ s }}</zyra-button
+                        >
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">prefixIcon</div>
+                <div class="control-options">
+                    @for (icon of icons; track icon) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="prefixIcon() === icon"
+                            (clicked)="prefixIcon.set(prefixIcon() === icon ? '' : icon)"
+                            ><span [innerHTML]="icon"></span
+                        ></zyra-button>
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">suffixIcon</div>
+                <div class="control-options">
+                    @for (icon of icons; track icon) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="suffixIcon() === icon"
+                            (clicked)="suffixIcon.set(suffixIcon() === icon ? '' : icon)"
+                            ><span [innerHTML]="icon"></span
+                        ></zyra-button>
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">hint</div>
+                <input
+                    class="control-input"
+                    type="text"
+                    [(ngModel)]="hintText"
+                    placeholder="Hint text..."
+                />
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">successHint</div>
+                <input
+                    class="control-input"
+                    type="text"
+                    [(ngModel)]="successHint"
+                    placeholder="Success message..."
+                />
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">maxLength</div>
+                <div class="control-options">
+                    @for (n of [null, 20, 50, 100]; track n) {
+                        <zyra-button
+                            variant="outline"
+                            [class.active]="maxLen() === n"
+                            (clicked)="maxLen.set(n)"
+                            >{{ n ?? 'off' }}</zyra-button
+                        >
+                    }
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">features</div>
+                <div class="control-toggles">
+                    <label class="toggle">
+                        <input
+                            type="checkbox"
+                            [checked]="clearButton()"
+                            (change)="clearButton.set(!clearButton())"
+                        />
+                        <span class="toggle__track"></span>
+                        <span class="toggle__label">clearButton</span>
+                    </label>
+                    <label class="toggle">
+                        <input
+                            type="checkbox"
+                            [checked]="loading()"
+                            (change)="loading.set(!loading())"
+                        />
+                        <span class="toggle__track"></span>
+                        <span class="toggle__label">loading</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="controls__actions">
+                <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()"
+                    >↺ Reset all</zyra-button
+                >
+                <zyra-button
+                    variant="secondary"
+                    size="sm"
+                    [fullWidth]="true"
+                    (clicked)="simulateLoading()"
+                    >▷ Simulate loading</zyra-button
+                >
+            </div>
+
+            <div class="controls__info">
+                <div class="controls__info-title">Architecture</div>
+                <p><code>zyra-form-field</code> — label, hint, icons, counter</p>
+                <p><code>zyra-input</code> — pure CVA, no chrome</p>
+                <p>Use <code>zyra-input</code> standalone inside toolbars, tables etc.</p>
+            </div>
+        </div>
+
+        <!-- ── RIGHT: PREVIEW + CODE ────────────────────────────── -->
+        <div class="preview-area">
+            <!-- Live preview -->
+            <div class="preview-box">
+                <div class="preview-box__label">
+                    Live Preview
+                    <zyra-badge variant="default" size="sm">{{ appearance() }}</zyra-badge>
+                    <zyra-badge variant="default" size="sm">{{ size() }}</zyra-badge>
+                    <zyra-badge variant="default" size="sm">{{ type() }}</zyra-badge>
+                </div>
+                <div class="preview-box__stage">
+                    <div>
+                        <zyra-form-field
+                            [label]="labelText"
+                            [hint]="hintText"
+                            [successHint]="successHint"
+                            [appearance]="appearance()"
+                            [size]="size()"
+                            [prefixIcon]="prefixIcon()"
+                            [suffixIcon]="suffixIcon()"
+                            [clearButton]="clearButton()"
+                            [loading]="loading()"
+                            [maxLength]="maxLen()"
+                        >
+                            <zyra-input
+                                [type]="type()"
+                                [size]="size()"
+                                [formControl]="playgroundControl()"
+                                (valueChange)="onValueChange($event, type())"
+                                (blurred)="onBlur(type())"
+                            />
+                        </zyra-form-field>
+
+                        <!-- Status badges row -->
+                        <div class="status-chips">
+                            <zyra-badge
+                                [variant]="playgroundControl().valid ? 'success' : 'default'"
+                                size="sm"
+                            >
+                                valid: {{ playgroundControl().valid }}
+                            </zyra-badge>
+                            <zyra-badge
+                                [variant]="playgroundControl().touched ? 'purple' : 'default'"
+                                size="sm"
+                            >
+                                touched: {{ playgroundControl().touched }}
+                            </zyra-badge>
+                            <zyra-badge
+                                [variant]="playgroundControl().dirty ? 'warning' : 'default'"
+                                size="sm"
+                            >
+                                dirty: {{ playgroundControl().dirty }}
+                            </zyra-badge>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generated code -->
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="ghost" size="sm" (clicked)="copy()">
+                        {{ copied() ? '✓ Copied!' : '⎘ Copy' }}
+                    </zyra-button>
+                </div>
+                <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
+            </div>
+
+            <!-- Event log -->
+            <div class="log-box">
+                <div class="log-box__header">
+                    <span>
+                        Event Log
+                        <zyra-badge variant="purple" size="sm">{{ eventLog().length }}</zyra-badge>
+                    </span>
+                    <zyra-button variant="ghost" size="sm" (clicked)="eventLog.set([])"
+                        >Clear</zyra-button
+                    >
+                </div>
+                <div class="log-box__body">
+                    @if (eventLog().length === 0) {
+                        <span class="log-empty">Interact with the input above to see events</span>
+                    }
+                    @for (e of eventLog(); track $index) {
+                        <div class="log-entry">
+                            <span class="log-time">{{ e.time }}</span>
+                            <zyra-badge variant="purple" size="sm">{{ e.event }}</zyra-badge>
+                            <span class="log-msg">{{ e.msg }}</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── APPEARANCES ───────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">
+            Appearances
+            <zyra-badge variant="default" size="sm">3 variants</zyra-badge>
+        </div>
+        <div class="sizes-grid">
+            @for (a of appearances; track a) {
+                <zyra-card variant="default" padding="md">
+                    <div class="size-col__label">appearance="{{ a }}"</div>
+                    <zyra-form-field [label]="a" [appearance]="a" [hint]="a + ' style input'">
+                        <zyra-input size="md" />
+                    </zyra-form-field>
+                </zyra-card>
+            }
+        </div>
+    </div>
+
+    <!-- ── REAL WORLD: LOGIN ─────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">
+            Real World Forms
+            <zyra-badge variant="success" size="sm">Reactive Forms</zyra-badge>
+        </div>
+        <div class="form-grid">
+            <!-- Login card -->
+            <zyra-card variant="default" padding="lg">
+                <div class="rw-card__head">
+                    <zyra-avatar name="Sign In" variant="teal" size="md" />
+                    <div>
+                        <div class="rw-card__title">Login</div>
+                        <div class="rw-card__subtitle">Welcome back</div>
+                    </div>
+                </div>
+                <form
+                    class="rw-card__body"
+                    [formGroup]="loginForm"
+                    (ngSubmit)="submitLogin()"
+                    autocomplete="on"
+                >
+                    <zyra-form-field
+                        label="Email"
+                        hint="We'll never share your email"
+                        successHint="✓ Valid email"
+                        prefixIcon="✉️"
+                    >
+                        <zyra-input type="email" formControlName="email" />
+                    </zyra-form-field>
+                    <zyra-form-field
+                        label="Password"
+                        hint="At least 8 characters"
+                        successHint="✓ Strong password"
+                        [clearButton]="false"
+                    >
+                        <zyra-input type="password" formControlName="password" />
+                    </zyra-form-field>
+                    <zyra-button
+                        variant="primary"
+                        [fullWidth]="true"
+                        [loading]="loginLoading()"
+                        type="submit"
+                        (clicked)="submitLogin()"
+                    >
+                        Sign In
+                    </zyra-button>
+                    <div class="form-status">
+                        <zyra-badge [variant]="loginForm.valid ? 'success' : 'danger'" size="sm">
+                            {{ loginForm.valid ? '✓ Form valid' : '✗ Has errors' }}
+                        </zyra-badge>
+                    </div>
+                </form>
+            </zyra-card>
+
+            <!-- Registration card -->
+            <zyra-card variant="default" padding="lg">
+                <div class="rw-card__head">
+                    <zyra-avatar name="New User" variant="purple" size="md" />
+                    <div>
+                        <div class="rw-card__title">Register</div>
+                        <div class="rw-card__subtitle">Create your account</div>
+                    </div>
+                </div>
+                <form
+                    class="rw-card__body"
+                    [formGroup]="registerForm"
+                    (ngSubmit)="submitRegister()"
+                    autocomplete="on"
+                >
+                    <zyra-form-field
+                        label="Full Name"
+                        hint="Min 2 characters"
+                        successHint="✓ Valid"
+                        prefixIcon="👤"
+                    >
+                        <zyra-input formControlName="name" />
+                    </zyra-form-field>
+                    <zyra-form-field label="Email" successHint="✓ Valid email" prefixIcon="✉️">
+                        <zyra-input type="email" formControlName="email" />
+                    </zyra-form-field>
+                    <zyra-form-field label="Phone" hint="Min 10 digits" prefixIcon="📞">
+                        <zyra-input type="tel" formControlName="phone" />
+                    </zyra-form-field>
+                    <zyra-form-field
+                        label="Password"
+                        hint="Min 8 chars + uppercase + number + symbol"
+                    >
+                        <zyra-input type="password" formControlName="password" />
+                    </zyra-form-field>
+                    <zyra-button
+                        variant="primary"
+                        [fullWidth]="true"
+                        [loading]="regLoading()"
+                        type="submit"
+                        (clicked)="submitRegister()"
+                    >
+                        Create Account
+                    </zyra-button>
+                    <div class="form-status">
+                        <zyra-badge [variant]="registerForm.valid ? 'success' : 'danger'" size="sm">
+                            {{ registerForm.valid ? '✓ Form valid' : '✗ Has errors' }}
+                        </zyra-badge>
+                    </div>
+                </form>
+            </zyra-card>
+
+            <!-- Profile card -->
+            <zyra-card variant="default" padding="lg">
+                <div class="rw-card__head">
+                    <zyra-avatar name="Arjun Kumar" variant="purple" size="md" [online]="true" />
+                    <div>
+                        <div class="rw-card__title">Profile Settings</div>
+                        <div class="rw-card__subtitle">Update your info</div>
+                    </div>
+                </div>
+                <form
+                    class="rw-card__body"
+                    [formGroup]="profileForm"
+                    (ngSubmit)="submitProfile()"
+                    autocomplete="on"
+                >
+                    <zyra-form-field
+                        label="Username"
+                        hint="Min 3 chars, no spaces"
+                        successHint="✓ Looks good"
+                        prefixIcon="👤"
+                        [clearButton]="true"
+                    >
+                        <zyra-input formControlName="username" />
+                    </zyra-form-field>
+                    <zyra-form-field
+                        label="Website"
+                        hint="Must start with https://"
+                        successHint="✓ Valid URL"
+                        suffixIcon="🌐"
+                    >
+                        <zyra-input type="url" formControlName="website" />
+                    </zyra-form-field>
+                    <zyra-form-field label="Bio" hint="Max 160 characters" [maxLength]="160">
+                        <zyra-input formControlName="bio" />
+                    </zyra-form-field>
+                    <zyra-button
+                        variant="primary"
+                        [fullWidth]="true"
+                        type="submit"
+                        (clicked)="submitProfile()"
+                    >
+                        Save Profile
+                    </zyra-button>
+                    <div class="form-status">
+                        <zyra-badge [variant]="profileForm.valid ? 'success' : 'danger'" size="sm">
+                            {{ profileForm.valid ? '✓ Form valid' : '✗ Has errors' }}
+                        </zyra-badge>
+                    </div>
+                </form>
+            </zyra-card>
+        </div>
+    </div>
+
+    <!-- ── ALL VALIDATORS ─────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">
+            All Validators
+            <zyra-badge variant="default" size="sm">Blur each to trigger</zyra-badge>
+        </div>
+        <div class="validators-grid">
+            <zyra-card variant="default" padding="md">
+                <div class="validator-item">
+                    <zyra-badge variant="purple" size="sm">Validators.required</zyra-badge>
+                    <zyra-form-field label="Required" hint="Leave empty and blur">
+                        <zyra-input [formControl]="requiredCtrl" />
+                    </zyra-form-field>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="validator-item">
+                    <zyra-badge variant="purple" size="sm">Validators.email</zyra-badge>
+                    <zyra-form-field label="Email" hint="Try: notanemail" prefixIcon="✉️">
+                        <zyra-input type="email" [formControl]="emailCtrl" />
+                    </zyra-form-field>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="validator-item">
+                    <zyra-badge variant="purple" size="sm">Validators.minLength(6)</zyra-badge>
+                    <zyra-form-field label="Min 6 chars" hint="Try: abc">
+                        <zyra-input [formControl]="minLenCtrl" />
+                    </zyra-form-field>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="validator-item">
+                    <zyra-badge variant="purple" size="sm">Validators.maxLength(10)</zyra-badge>
+                    <zyra-form-field
+                        label="Max 10 chars"
+                        hint="Try more than 10 chars"
+                        [maxLength]="10"
+                    >
+                        <zyra-input [formControl]="maxLenCtrl" />
+                    </zyra-form-field>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="validator-item">
+                    <zyra-badge variant="purple" size="sm">Validators.min(18)</zyra-badge>
+                    <zyra-form-field label="Age (min 18)" hint="Try: 15">
+                        <zyra-input type="number" [formControl]="minCtrl" />
+                    </zyra-form-field>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="validator-item">
+                    <zyra-badge variant="purple" size="sm">Validators.max(100)</zyra-badge>
+                    <zyra-form-field label="Score (max 100)" hint="Try: 150">
+                        <zyra-input type="number" [formControl]="maxCtrl" />
+                    </zyra-form-field>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="validator-item">
+                    <zyra-badge variant="purple" size="sm">Validators.pattern</zyra-badge>
+                    <zyra-form-field label="Pincode" hint="6 digits only. Try: abc123">
+                        <zyra-input [formControl]="patternCtrl" />
+                    </zyra-form-field>
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="validator-item">
+                    <zyra-badge variant="warning" size="sm">Custom validator</zyra-badge>
+                    <zyra-form-field
+                        label="Username"
+                        hint="No spaces. Try: hello world"
+                        [clearButton]="true"
+                    >
+                        <zyra-input [formControl]="customCtrl" />
+                    </zyra-form-field>
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+
+    <!-- ── STANDALONE zyra-input ─────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">
+            zyra-input Standalone
+            <zyra-badge variant="default" size="sm">No zyra-form-field needed</zyra-badge>
+        </div>
+        <div class="standalone-grid">
+            <zyra-card variant="default" padding="md">
+                <div class="standalone-item__label">Search bar</div>
+                <div class="search-wrap">
+                    <span class="search-icon">🔍</span>
+                    <zyra-input placeholder="Search components..." size="md" />
+                </div>
+            </zyra-card>
+
+            <zyra-card variant="default" padding="md">
+                <div class="standalone-item__label">Inside a table cell</div>
+                <div class="table-mock">
+                    <div class="table-row">
+                        <zyra-badge variant="default" size="sm">Row 1</zyra-badge>
+                        <zyra-input placeholder="Inline edit..." size="sm" />
+                    </div>
+                    <div class="table-row">
+                        <zyra-badge variant="default" size="sm">Row 2</zyra-badge>
+                        <zyra-input placeholder="Inline edit..." size="sm" />
+                    </div>
+                    <div class="table-row">
+                        <zyra-badge variant="default" size="sm">Row 3</zyra-badge>
+                        <zyra-input placeholder="Inline edit..." size="sm" />
+                    </div>
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+</div>
+
+<zyra-toast-container />

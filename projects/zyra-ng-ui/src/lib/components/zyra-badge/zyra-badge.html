@@ -1,0 +1,6 @@
+<span [class]="hostClass()" [attr.aria-label]="ariaLabel()">
+    @if (dot()) {
+        <span class="zyr-badge__dot" aria-hidden="true"></span>
+    }
+    <ng-content />
+</span>

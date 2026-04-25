@@ -17,6 +17,11 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/ui-components/ui-components').then(() => UiComponents),
     },
     {
+        path: 'components/:component',
+        loadComponent: () =>
+            import('./pages/ui-components/ui-component-detail').then((m) => m.UiComponentDetail),
+    },
+    {
         path: 'blog-list',
         loadComponent: () => import('./blog/blog-list/blog-list').then((m) => m.BlogList),
     },

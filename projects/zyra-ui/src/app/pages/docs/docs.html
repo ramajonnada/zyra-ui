@@ -1,1 +1,26 @@
-<app-home></app-home>
+<div class="landing">
+    <!-- <div class="glow-sep"></div> -->
+
+    <section id="install" class="landing-section">
+        <div class="wrap">
+            <div class="section-header">
+                <div class="eyebrow">Quick Start</div>
+                <h2>Up and running in <em>3 steps</em></h2>
+                <p>
+                    The site now shows the real setup path for this library instead of placeholder
+                    marketing copy.
+                </p>
+            </div>
+            <div class="step-grid">
+                @for (step of installSteps; track step.title) {
+                    <article class="step-card">
+                        <div class="step-card__number">{{ step.step }}</div>
+                        <h3>{{ step.title }}</h3>
+                        <p>{{ step.description }}</p>
+                        <pre class="step-card__code"><code>{{ step.code }}</code></pre>
+                    </article>
+                }
+            </div>
+        </div>
+    </section>
+</div>

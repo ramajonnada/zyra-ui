@@ -1,0 +1,65 @@
+<!-- Mobile overlay -->
+<div
+    class="sidebar-overlay"
+    [class.visible]="overlayVisible()"
+    (click)="onOverlayClick()"
+    (keydown.enter)="onOverlayClick()"
+    tabindex="0"
+></div>
+
+<aside class="sidebar" [class.open]="isOpen()" [class.collapsed]="!isOpen()">
+    <div class="sidebar__top">
+        <div class="sidebar__section-label">Menu</div>
+        <button
+            type="button"
+            class="sidebar__toggle"
+            (click)="onToggleSidebar()"
+            [attr.aria-label]="isOpen() ? 'Collapse sidebar' : 'Expand sidebar'"
+        >
+            @if (isOpen()) {
+                <span class="sidebar__toggle-icon" aria-hidden="true">&#8249;</span>
+            } @else {
+                <span class="sidebar__toggle-icon" aria-hidden="true">&#8250;</span>
+            }
+        </button>
+    </div>
+    <nav class="sidebar__nav">
+        @for (item of navItems; track item.route) {
+            <a
+                [routerLink]="item.route"
+                routerLinkActive="active"
+                class="sidebar__item"
+                [attr.aria-label]="item.label"
+                [attr.title]="!isOpen() ? item.label : null"
+            >
+                <span class="sidebar__icon">{{ item.icon }}</span>
+                <span class="sidebar__label">{{ item.label }}</span>
+                @if (item.badge) {
+                    <span class="sidebar__badge">{{ item.badge }}</span>
+                }
+            </a>
+        }
+    </nav>
+
+    <!-- <div class="sidebar__divider"></div> -->
+    <!-- <div class="sidebar__section-label">Support</div>
+
+	<nav class="sidebar__nav">
+		<a href="#" class="sidebar__item">
+			<span class="sidebar__icon">?</span>
+			<span class="sidebar__label">Help Center</span>
+		</a>
+		<a href="#" class="sidebar__item">
+			<span class="sidebar__icon">↗</span>
+			<span class="sidebar__label">Feedback</span>
+		</a>
+	</nav> -->
+
+    <!-- <div class="sidebar__user">
+		<div class="sidebar__user-avatar">{{ user.initials }}</div>
+		<div class="sidebar__user-info">
+			<span class="sidebar__user-name">{{ user.name }}</span>
+			<span class="sidebar__user-role">{{ user.role }}</span>
+		</div>
+	</div> -->
+</aside>

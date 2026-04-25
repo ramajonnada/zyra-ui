@@ -1,0 +1,23 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\91964\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.8.0
+2 info using node@v24.1.0
+3 silly config load:file:C:\Users\91964\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:C:\Projects\zyra-ui\.npmrc
+5 silly config load:file:C:\Users\91964\.npmrc
+6 silly config load:file:C:\Users\91964\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install .\dist\zyra-ng-ui\zyra-ng-ui-1.3.25.tgz
+8 verbose argv "install" "--no-save" "--package-lock" "false" "--cache" "C:\\Projects\\zyra-ui\\.npm-cache" ".\\dist\\zyra-ng-ui\\zyra-ng-ui-1.3.25.tgz"
+9 verbose logfile logs-max:10 dir:C:\Projects\zyra-ui\.npm-cache\_logs\2026-04-24T06_21_13_989Z-
+10 verbose logfile C:\Projects\zyra-ui\.npm-cache\_logs\2026-04-24T06_21_13_989Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+13 silly idealTree buildDeps
+14 silly fetch manifest @angular/cdk@^21.0.6
+15 silly packumentCache full:https://registry.npmjs.org/@angular%2fcdk cache-miss
+16 http fetch GET https://registry.npmjs.org/@angular%2fcdk attempt 1 failed with EACCES
+17 http fetch GET https://registry.npmjs.org/@angular%2fcdk attempt 2 failed with EACCES
+18 http fetch GET https://registry.npmjs.org/@angular%2fcdk attempt 3 failed with EHOSTUNREACH
+19 silly fetch manifest @angular/common@^21.0.6
+20 silly packumentCache full:https://registry.npmjs.org/@angular%2fcommon cache-miss
+21 http fetch GET https://registry.npmjs.org/@angular%2fcommon attempt 1 failed with EHOSTUNREACH
+22 http fetch GET https://registry.npmjs.org/@angular%2fcommon attempt 2 failed with EHOSTUNREACH

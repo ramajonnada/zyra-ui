@@ -1,21 +1,39 @@
-import { Component, inject, Signal, computed } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { ThemeService, ZyraButton, Zyratheme } from 'zyra-ng-ui';
+import { Component, computed, inject, PLATFORM_ID, output } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ZyraButton, ZyraThemeService } from 'zyra-ng-ui';
 
 @Component({
     selector: 'app-header',
-    imports: [RouterLink, ZyraButton],
+    imports: [RouterLink, ZyraButton, RouterLinkActive],
     templateUrl: './header.html',
     styleUrl: './header.scss',
 })
 export class Header {
-	private _themeService: ThemeService = inject(ThemeService);
-	readonly label: Signal<string> = computed(() =>
-		this._themeService.theme() === Zyratheme.Light ? 'Dark' : 'Light'
-	);
+    private readonly router = inject(Router);
+    private readonly themeService = inject(ZyraThemeService);
+    private readonly platformId = inject(PLATFORM_ID);
 
+    readonly isDark = computed(() => this.themeService.isDark());
+    readonly version = 'v1.3.24';
 
-	$$toggleTheme() {
-		this._themeService.toggleTheme();
-	}
+    toggleTheme() {
+        this.themeService.toggle();
+    }
+
+    readonly toggleSidebar = output<void>();
+
+    // Signals
+    // readonly notifCount = signal(3);
+    // readonly userName = signal('John Doe');
+    // readonly initials = computed(() =>
+    // 	this.userName().split(' ').map(n => n[0]).join('').toUpperCase()
+    // );
+
+    onToggle() {
+        this.toggleSidebar.emit();
+    }
+
+    openGithub() {
+        // TODO: Implement GitHub link opening
+    }
 }

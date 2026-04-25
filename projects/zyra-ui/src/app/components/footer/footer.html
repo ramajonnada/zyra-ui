@@ -1,59 +1,78 @@
-<div class="zy-footer-main">
-    <!-- Brand block -->
-    <div class="zy-footer-brand">
-        <span class="zy-logo__text">Zyra UI</span>
-        <p class="brand-text">
-            A next-generation Angular UI component library designed for modern web applications.
-            Build faster, ship sooner.
-        </p>
+<footer class="shell-footer">
+    <div class="shell-footer__inner">
+        <div class="shell-footer__brand">
+            <a class="shell-footer__logo" routerLink="/">
+                <span class="shell-footer__spark"></span>
+                <span>zyra<em>ui</em></span>
+            </a>
+            <p>
+                A signal-first Angular UI library with modern tokens, standalone components, and a
+                dark-first design system built for production apps.
+            </p>
+            <div class="shell-footer__badges">
+                <zyra-badge size="md">v1.3.24</zyra-badge>
+                <zyra-badge variant="info" size="md">Angular 21+</zyra-badge>
+                <zyra-badge variant="success" size="md">MIT</zyra-badge>
+            </div>
+        </div>
 
-        <div class="brand-social">
-            <button aria-label="Twitter" class="icon-btn">
-                <i class="fa-brands fa-x-twitter"></i>
-            </button>
-            <!-- <button aria-label="GitHub" class="icon-btn"><i class="fa-brands fa-github"></i></button> -->
-            <button aria-label="LinkedIn" class="icon-btn">
-                <i class="fa-brands fa-linkedin"></i>
-            </button>
-            <button aria-label="Email" class="icon-btn">
+        <div class="shell-footer__columns">
+            <div class="shell-footer__col">
+                <h4>Documentation</h4>
+                <a routerLink="/" fragment="install">Getting Started</a>
+                <a routerLink="/" fragment="docs">Usage</a>
+                <a routerLink="/" fragment="features">Design Tokens</a>
+                <a routerLink="/" fragment="compare">Why Zyra</a>
+            </div>
+            <div class="shell-footer__col">
+                <h4>Components</h4>
+                <a routerLink="/" fragment="components">Button</a>
+                <a routerLink="/" fragment="components">Input / Form Field</a>
+                <a routerLink="/" fragment="components">Avatar / Badge</a>
+                <a routerLink="/" fragment="components">Card / Spinner / Toast</a>
+            </div>
+            <div class="shell-footer__col">
+                <h4>Project</h4>
+                <a
+                    href="https://github.com/ramajonnada/zyra-ui"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >GitHub</a
+                >
+                <a
+                    href="https://www.npmjs.com/package/zyra-ng-ui"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >npm</a
+                >
+                <a routerLink="/blog-list">Blog</a>
+                <a routerLink="/contact">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="shell-footer__bottom">
+        <span>© 2026 Zyra UI. Built with Angular 21 and design tokens from zyra-ng-ui.</span>
+        <div class="shell-footer__socials">
+            <a
+                href="https://github.com/zyraui"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+            >
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a
+                href="https://www.npmjs.com/package/zyra-ng-ui"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="npm"
+            >
+                <i class="fa-brands fa-npm"></i>
+            </a>
+            <a href="mailto:hello@zyraui.dev" aria-label="Email">
                 <i class="fa-solid fa-envelope"></i>
-            </button>
+            </a>
         </div>
     </div>
-
-    <!-- Link columns -->
-    <div class="zy-footer-columns">
-        <div class="footer-column">
-            <h4>Product</h4>
-            <a routerLink="/components">Components</a>
-            <!-- <a routerLink="/docs">Documentation</a> -->
-            <a routerLink="/blog-list">Blog</a>
-        </div>
-
-        <div class="footer-column">
-            <h4>Resources</h4>
-            <!-- <a routerLink="/about">About</a> -->
-            <a routerLink="/contact">Contact</a>
-        </div>
-
-        <!-- <div class="footer-column">
-			<h4>Company</h4>
-			<a href="#">Templates</a>
-			<a href="#">Pricing</a>
-			<a href="#">Community</a>
-			<a href="#">Examples</a>
-			<a href="#">Tutorials</a>
-			<a href="#">Privacy</a>
-			<a href="#">Terms</a>
-		</div> -->
-    </div>
-</div>
-<div class="divider"></div>
-<div class="zy-footer-bottom">
-    <p>Copyright © 2025 ZyraUI. All rights reserved.</p>
-
-    <!-- <div class="footer-bottom-links">
-		<a routerLink="privacy-and-policy">Privacy Policy</a>
-		<a routerLink="termsofservices">Terms of Service</a>
-	</div> -->
-</div>
+</footer>

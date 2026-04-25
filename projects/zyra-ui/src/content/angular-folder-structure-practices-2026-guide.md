@@ -1,7 +1,7 @@
 ---
 title: Angular Folder Structure Best Practices (2026 Guide)
 description: Learn the best Angular folder structure for scalable, maintainable applications in 2026 with real-world examples.
-category: Angular
+category: [Angular]
 tags:
     - angular
     - angular best practices
@@ -14,36 +14,7 @@ slug: angular-folder-structure-practices-2026-guide
 
 ![folder-structure](/laptap-working.jpg)
 
-<div class="blog-meta-row">
-    <span class="zy-chip">Tutorial</span>
-    <span class="blog-meta-text"><i class="icon fa-regular fa-calendar"></i> Jan 10, 2026<span>
-    <span class="blog-meta-text"><i class="icon fa-regular fa-clock"></i> 8 min read</span>
-</div>
-
-# Building Modern Angular Applications with ZyraUI
-
-<div class="blog-author-row">
-            <div class="blog-author-left">
-                <div class="blog-avatar">RJ</div>
-                <div class="blog-author-info">
-                    <div class="blog-author-name">RAMA JONNADA</div>
-                    <div class="blog-author-bio">
-                        Senior Frontend Developer with 4+ years of experience in Angular and modern web technologies.
-                    </div>
-                </div>
-            </div>
-	        <div class="blog-actions">
-                <button class="blog-icon-btn">
-                    <span class="icon"><i class="fa-regular fa-heart"></i> <span class="icon-text">42</span></span>
-                </button>
-                <button class="blog-icon-btn">
-                    <span class="icon"><i class="fa-regular fa-bookmark"></i></span>
-                </button>
-                <button class="blog-icon-btn">
-                    <span class="icon"><i class="fa-solid fa-share-nodes"></i></span>
-                </button>
-            </div>
-</div>
+## Building Modern Angular Applications with ZyraUI
 
 Choosing the right folder structure in Angular is **critical** for scalability, maintainability, and team collaboration.  
 A poor structure leads to confusion, tight coupling, and technical debt.

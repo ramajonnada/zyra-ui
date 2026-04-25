@@ -2,19 +2,24 @@
     "projects": {
         "zyra-ui": {
             "projects": {
-                "zyra-ui": {
-                    "src": {
-                        "content": {}
-                    }
-                },
+                "zyra-ui": { "src": { "content": {} } },
                 "zyra-ng-ui": {
                     "src": {
-                        "lib": {},
+                        "lib": {
+                            "components": {
+                                "zyra-badge": {},
+                                "zyra-avatar": {},
+                                "zyra-card": {},
+                                "zyra-toast": {},
+                                "zyra-tooltip": {}
+                            }
+                        },
                         "theme": {}
                     },
                     "theme": {}
                 }
-            }
+            },
+            "src": { "app": { "blog": { "blog-details": {} } } }
         }
     }
 }
