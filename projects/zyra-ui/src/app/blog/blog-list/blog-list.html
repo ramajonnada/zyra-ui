@@ -4,7 +4,7 @@
             <p class="blog-page__eyebrow">Blog & Insights</p>
             <h1>Tutorials, tips & deep dives</h1>
             <p class="blog-page__intro">
-                Everything Angular 19, signals, and modern UI architecture — written for developers
+                Everything Angular 19, signals, and modern UI architecture, written for developers
                 building real products.
             </p>
         </div>
@@ -30,6 +30,7 @@
             @for (post of posts(); track post.slug) {
                 <a class="blog-card" [routerLink]="['/blog', post.slug]">
                     <zyra-card
+                        class="blog-card__shell"
                         variant="outlined"
                         [hasHeader]="true"
                         [hasFooter]="true"
@@ -50,10 +51,18 @@
                         </div>
 
                         <div slot="footer" class="blog-card__footer">
-                            <span class="blog-card__meta">{{ post.readTime }}</span>
-                            @if (post.tags?.length) {
-                                <span class="blog-card__meta">{{ post.tags![0] }}</span>
-                            }
+                            <div class="blog-card__meta-group">
+                                <span class="blog-card__meta">{{ post.readTime }}</span>
+                                @if (post.tags?.length) {
+                                    <span class="blog-card__meta blog-card__meta--tag">
+                                        {{ post.tags![0] }}
+                                    </span>
+                                }
+                            </div>
+                            <span class="blog-card__cta">
+                                Read article
+                                <span aria-hidden="true">&rarr;</span>
+                            </span>
                         </div>
                     </zyra-card>
                 </a>
