@@ -54,13 +54,23 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        white-space: nowrap;
         text-decoration: none;
         font-weight: 800;
         font-size: 1.2rem;
         letter-spacing: -0.02em;
         color: var(--zyr-text);
         text-decoration: none;
-        font-family: var(--zyr-font-display);
+    }
+
+    .header__logo-text {
+        display: inline-block;
+        font-family: var(--zyr-font-body);
+        font-size: 1.1rem;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        white-space: nowrap;
     }
 
     .header__logo-mark {
@@ -106,6 +116,22 @@
         display: flex;
         align-items: center;
         gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 16px;
+
+        .header__left {
+            gap: 12px;
+        }
+
+        .header__logo {
+            gap: 6px;
+        }
+
+        .header__logo-text {
+            font-size: 1rem;
+        }
     }
 
     // .header__icon-btn {
