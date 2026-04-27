@@ -1,25 +1,25 @@
 ---
 title: 'Angular 21 Signals Explained: Signals, Signal Forms'
 description: 'In-depth Angular 21 Signals guide for 2026: learn signals, Signal Forms, zoneless change detection, and how to use Angular Signals with RxJS and HttpClient.'
-slug: angular-21-signals-explained-signals-signal-forms
+slug: 'angular-21-signals-explained-signals-signal-forms'
 tags:
-    - angular 21
-    - angular signals
-    - signal forms
-    - zoneless change detection
-    - angular 2026
-    - angular reactivity
-    - rxjs interop
-    - angular seo
+    - 'angular 21'
+    - 'angular signals'
+    - 'signal forms'
+    - 'zoneless change detection'
+    - 'angular 2026'
+    - 'angular reactivity'
+    - 'rxjs interop'
+    - 'angular seo'
 keywords:
-    - Angular 21
-    - Angular 21 signals
-    - Signal Forms
-    - zoneless change detection
+    - 'Angular 21'
+    - 'Angular 21 signals'
+    - 'Signal Forms'
+    - 'zoneless change detection'
 category:
-    - angular 21
-    - angular 21 signal
-date: 2026-01-06T05:29:59.318Z
+    - 'angular 21'
+    - 'angular 21 signal'
+date: '2026-01-06T05:29:59.318Z'
 ---
 
 # Angular 21 Signals Explained: Signals, Signal Forms

@@ -1,6 +1,30 @@
 [
     {
         "imageUrl": "",
+        "readTime": "9 mins",
+        "slug": "angular-v21-zoneless-guide-remove-zonejs-use-signals",
+        "title": "Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals",
+        "description": "Learn what zoneless Angular means in v21, why ZoneJS is no longer the default, how signals fit in, and how to migrate safely.",
+        "category": ["Angular 21"],
+        "tags": [
+            "angular v21",
+            "zoneless angular",
+            "zonejs",
+            "angular signals",
+            "angular performance",
+            "angular migration",
+            "standalone angular"
+        ],
+        "keywords": [
+            "Angular v21 zoneless",
+            "remove ZoneJS Angular",
+            "Angular signals performance",
+            "zoneless Angular migration"
+        ],
+        "date": "2026-04-27"
+    },
+    {
+        "imageUrl": "",
         "readTime": "8 mins",
         "slug": "angular-21-signals-explained-signals-signal-forms",
         "title": "Angular 21 Signals Explained: Signals, Signal Forms",

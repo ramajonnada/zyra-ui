@@ -1,15 +1,15 @@
 ---
-title: Angular Folder Structure Best Practices (2026 Guide)
-description: Learn the best Angular folder structure for scalable, maintainable applications in 2026 with real-world examples.
-category: [Angular]
+title: "Angular Folder Structure Best Practices (2026 Guide)"
+description: "Learn the best Angular folder structure for scalable, maintainable applications in 2026 with real-world examples."
+category: ["Angular"]
 tags:
-    - angular
-    - angular best practices
-    - angular folder structure
-    - frontend architecture
-    - scalable angular apps
-date: 2026-01-03
-slug: angular-folder-structure-practices-2026-guide
+    - "angular"
+    - "angular best practices"
+    - "angular folder structure"
+    - "frontend architecture"
+    - "scalable angular apps"
+date: "2026-01-03"
+slug: "angular-folder-structure-practices-2026-guide"
 ---
 
 ![folder-structure](/laptap-working.jpg)
