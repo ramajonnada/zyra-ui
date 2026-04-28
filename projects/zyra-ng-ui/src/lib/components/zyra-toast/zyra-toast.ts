@@ -86,7 +86,6 @@ export class ZyraToastService {
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
-    template: ``,
     templateUrl: './zyra-toast.html',
     styleUrl: './zyra-toast.scss',
 })

@@ -24,7 +24,7 @@ export class Sidebar {
     readonly navItems: NavItem[] = [
         { label: 'Documents', icon: '◧', route: '/docs' },
         { label: 'Components', icon: '◈', route: '/components', badge: 8 },
-        { label: 'Blog', icon: '◻', route: '/blog-list' },
+        { label: 'Blog', icon: '◻', route: '/blog' },
         // { label: 'Docs', icon: '⊞', route: '/docs' },
         // { label: 'Messages', icon: '◻', route: '/messages', badge: 12 },
         // { label: 'Team', icon: '◉', route: '/team' },

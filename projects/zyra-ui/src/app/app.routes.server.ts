@@ -5,7 +5,7 @@ import { UI_COMPONENT_SHOWCASE } from './pages/ui-components/ui-components.data'
 export const serverRoutes: ServerRoute[] = [
     { path: '', renderMode: RenderMode.Prerender },
     { path: 'docs', renderMode: RenderMode.Prerender },
-    { path: 'blog-list', renderMode: RenderMode.Prerender },
+    { path: 'blog', renderMode: RenderMode.Prerender },
     {
         path: 'blog/:slug',
         renderMode: RenderMode.Prerender,

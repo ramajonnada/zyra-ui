@@ -15,6 +15,7 @@ import {
 } from 'zyra-ng-ui';
 import { appIcons } from '../../shared/fontawesome-icons';
 import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from '../../../seo/seo.service';
 
 interface ProofStat {
 	value: string;
@@ -239,25 +240,6 @@ export class Home {
 
 	constructor(private title: Title, private meta: Meta) { }
 
-	ngOnInit() {
-		this.title.setTitle('Zyrang UI - Modern Angular UI Library');
-
-		this.meta.updateTag({
-			name: 'description',
-			content: 'Build fast Angular apps with Zyrang UI components.'
-		});
-
-		this.meta.updateTag({
-			property: 'og:title',
-			content: 'Zyrang UI'
-		});
-
-		this.meta.updateTag({
-			property: 'og:url',
-			content: 'https://www.zyraui.dev/'
-		});
-	}
-
 	scrollToSection(id: string) {
 		if (typeof document === 'undefined') return;
 
@@ -312,7 +294,15 @@ export class Home {
 				});
 		}
 	}
+	private seo = inject(SeoService);
 
+	ngOnInit() {
+		this.seo.setSEO({
+			title: 'Zyrang UI – Modern Angular UI Library with Signals',
+			description: 'Build fast Angular apps with Zyrang UI. Components, signals, and modern architecture.',
+			url: 'https://www.zyraui.dev/'
+		});
+	}
 
 
 }
