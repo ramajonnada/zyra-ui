@@ -1,12 +1,6 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-
-export interface SeoConfig {
-	title: string;
-	description: string;
-	url?: string;
-	image?: string;
-}
 
 @Injectable({
 	providedIn: 'root'
@@ -14,36 +8,29 @@ export interface SeoConfig {
 export class SeoService {
 	private title = inject(Title);
 	private meta = inject(Meta);
+	private platformId = inject(PLATFORM_ID);
 
-	setSEO(config: SeoConfig) {
+	setSEO(config: any) {
 		const {
 			title,
 			description,
-			url = 'https://www.zyraui.dev/',
+			url,
 			image = 'https://www.zyraui.dev/final-icon.png'
 		} = config;
 
-		// ✅ Title
 		this.title.setTitle(title);
 
-		// ✅ Basic Meta
 		this.meta.updateTag({ name: 'description', content: description });
 
-		// ✅ Open Graph
 		this.meta.updateTag({ property: 'og:title', content: title });
 		this.meta.updateTag({ property: 'og:description', content: description });
 		this.meta.updateTag({ property: 'og:url', content: url });
 		this.meta.updateTag({ property: 'og:image', content: image });
-		this.meta.updateTag({ property: 'og:type', content: 'website' });
 
-		// ✅ Twitter
-		this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-		this.meta.updateTag({ name: 'twitter:title', content: title });
-		this.meta.updateTag({ name: 'twitter:description', content: description });
-		this.meta.updateTag({ name: 'twitter:image', content: image });
-
-		// ✅ Canonical
-		this.setCanonical(url);
+		// ✅ FIX: Only run in browser
+		if (isPlatformBrowser(this.platformId)) {
+			this.setCanonical(url);
+		}
 	}
 
 	private setCanonical(url: string) {
