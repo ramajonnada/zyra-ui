@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"ng": "ng",
-		"prerender": "ng run zyra-ui:prerender",
+		"prerender": "ng build zyra-ui",
 		"start": "ng serve zyra-ui",
 		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
