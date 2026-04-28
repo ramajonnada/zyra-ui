@@ -1,6 +1,6 @@
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ToastVariant, ZyraBadge, ZyraCard, ZyraToastService } from 'zyra-ng-ui';
 import { map } from 'rxjs';
@@ -13,6 +13,7 @@ import { Avatar } from './comp/avatar/avatar';
 import { Input } from './comp/input/input';
 import { Spinner } from './comp/spinner/spinner';
 import { Tooltip } from './comp/tooltip/tooltip';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
     selector: 'app-ui-component-detail',
@@ -36,6 +37,7 @@ import { Tooltip } from './comp/tooltip/tooltip';
 export class UiComponentDetail {
     private readonly route = inject(ActivatedRoute);
     private readonly toast = inject(ZyraToastService);
+    private readonly seo = inject(SeoService);
     private copyResetTimer: ReturnType<typeof setTimeout> | null = null;
 
     demoEmail = 'hello@zyraui.dev';
@@ -49,6 +51,31 @@ export class UiComponentDetail {
     );
 
     readonly component = computed(() => getUiComponentShowcaseCard(this.componentSlug()));
+
+    constructor() {
+        effect(() => {
+            const component = this.component();
+
+            if (!component) {
+                return;
+            }
+
+            this.seo.apply({
+                title: `${component.title} Component for Angular | Zyra UI`,
+                description:
+                    component.description ||
+                    `Explore the ${component.title} component in Zyra UI with usage notes and live Angular examples.`,
+                keywords: [
+                    component.title,
+                    component.selector,
+                    component.importName,
+                    'Angular UI component',
+                    'Zyra UI',
+                ],
+                canonicalPath: `/components/${component.slug}`,
+            });
+        });
+    }
 
     showToast(variant: ToastVariant) {
         switch (variant) {

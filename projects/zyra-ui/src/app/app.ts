@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
@@ -8,6 +7,7 @@ import { Footer } from './components/footer/footer';
 import { ZyraToastContainer } from 'zyra-ng-ui';
 import { Main } from './components/main/main';
 import { Sidebar } from './components/sidebar/sidebar';
+import { SeoService } from './services/seo.service';
 
 @Component({
     selector: 'app-root',
@@ -19,13 +19,12 @@ export class App {
     readonly sidebarOpen = signal(false);
     private readonly expandedSidebarWidth = '260px';
     private readonly collapsedSidebarWidth = '84px';
-    private readonly canonicalBaseUrl = 'https://www.zyraui.dev';
-    private readonly document = inject(DOCUMENT);
     private readonly router = inject(Router);
     private readonly destroyRef = inject(DestroyRef);
+    private readonly seo = inject(SeoService);
 
     constructor() {
-        this.updateCanonicalUrl(this.router.url);
+        this.seo.applyRouteSeo(this.router.routerState.snapshot.root, this.router.url);
 
         this.router.events
             .pipe(
@@ -33,7 +32,10 @@ export class App {
                 takeUntilDestroyed(this.destroyRef),
             )
             .subscribe((event) => {
-                this.updateCanonicalUrl(event.urlAfterRedirects);
+                this.seo.applyRouteSeo(
+                    this.router.routerState.snapshot.root,
+                    event.urlAfterRedirects,
+                );
             });
     }
 
@@ -44,42 +46,5 @@ export class App {
 
     toggleSidebar() {
         this.sidebarOpen.update((open) => !open);
-    }
-
-    private updateCanonicalUrl(url: string): void {
-        const canonicalUrl = this.buildCanonicalUrl(url);
-        let canonicalLink = this.document.head.querySelector(
-            'link[rel="canonical"]',
-        ) as HTMLLinkElement | null;
-
-        if (!canonicalLink) {
-            canonicalLink = this.document.createElement('link');
-            canonicalLink.setAttribute('rel', 'canonical');
-            this.document.head.appendChild(canonicalLink);
-        }
-
-        canonicalLink.setAttribute('href', canonicalUrl);
-        this.updateOgUrl(canonicalUrl);
-    }
-
-    private updateOgUrl(canonicalUrl: string): void {
-        const ogUrlMeta = this.document.head.querySelector(
-            'meta[property="og:url"]',
-        ) as HTMLMetaElement | null;
-
-        if (ogUrlMeta) {
-            ogUrlMeta.setAttribute('content', canonicalUrl);
-        }
-    }
-
-    private buildCanonicalUrl(url: string): string {
-        const path = (url.split(/[?#]/, 1)[0] || '/').trim();
-
-        if (path === '/' || path === '') {
-            return `${this.canonicalBaseUrl}/`;
-        }
-
-        const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
-        return `${this.canonicalBaseUrl}${normalizedPath}`;
     }
 }

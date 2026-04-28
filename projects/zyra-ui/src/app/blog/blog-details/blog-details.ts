@@ -1,11 +1,11 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
-import { Title, Meta } from '@angular/platform-browser';
 import { BlogService, PostMeta } from '../../services/blog-service';
 import { ZyraCard } from 'zyra-ng-ui';
 import { timeout } from 'rxjs';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
     selector: 'app-blog-details',
@@ -23,13 +23,39 @@ export class BlogDetails implements OnInit {
     postReadTime = signal('');
     postCategory = signal('Angular');
     postTags = signal<string[]>([]);
+    postKeywords = signal<string[]>([]);
+    postImageUrl = signal('');
     loading = signal(true);
     error = signal('');
 
-    private route = inject(ActivatedRoute);
-    private blogService = inject(BlogService);
-    private title = inject(Title);
-    private meta = inject(Meta);
+    private readonly route = inject(ActivatedRoute);
+    private readonly blogService = inject(BlogService);
+    private readonly seo = inject(SeoService);
+
+    constructor() {
+        effect(() => {
+            const slug = this.slug();
+            const title = this.postTitle();
+
+            if (!slug || !title) {
+                return;
+            }
+
+            const tags = this.postTags();
+            const category = this.postCategory();
+            const description = this.postDescription() || `Read blog post: ${title}`;
+            const keywords = [...this.postKeywords(), ...tags, category];
+
+            this.seo.apply({
+                title: `${title} | Zyra UI Blog`,
+                description,
+                type: 'article',
+                keywords,
+                image: this.postImageUrl(),
+                canonicalPath: `/blog/${slug}`,
+            });
+        });
+    }
 
     ngOnInit() {
         this.route.paramMap.subscribe((params) => {
@@ -47,6 +73,8 @@ export class BlogDetails implements OnInit {
         this.postDate.set('');
         this.postReadTime.set('');
         this.postTags.set([]);
+        this.postKeywords.set([]);
+        this.postImageUrl.set('');
 
         this.blogService
             .getPostContent(this.slug())
@@ -66,9 +94,6 @@ export class BlogDetails implements OnInit {
                     );
                     this.postDate.set(dateFromFrontMatter);
                     this.markdownContent.set(this.stripIntroBlocks(this.stripFrontMatter(md)));
-
-                    this.title.setTitle(this.postTitle());
-                    this.meta.updateTag({ name: 'description', content: this.postDescription() });
                     this.loading.set(false);
                 },
                 error: (err) => {
@@ -114,6 +139,8 @@ export class BlogDetails implements OnInit {
         this.postReadTime.set(post.readTime.trim());
         this.postCategory.set(this.toList(post.category)[0] ?? 'Angular');
         this.postTags.set(this.toList(post.tags).slice(0, 6));
+        this.postKeywords.set(this.toList(post.keywords).slice(0, 10));
+        this.postImageUrl.set(post.imageUrl?.trim() ?? '');
     }
 
     private extractFrontMatterValue(md: string, key: string): string {
