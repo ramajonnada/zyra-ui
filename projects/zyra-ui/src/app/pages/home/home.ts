@@ -298,8 +298,8 @@ export class Home {
 
 	ngOnInit() {
 		this.seo.setSEO({
-			title: 'Zyrang UI – Modern Angular UI Library with Signals',
-			description: 'Build fast Angular apps with Zyrang UI. Components, signals, and modern architecture.',
+			title: 'Zyra UI – Modern Angular UI Library with Signals',
+			description: 'Build fast Angular apps with Zyra UI. Components, signals, and modern architecture.',
 			url: 'https://www.zyraui.dev/'
 		});
 	}

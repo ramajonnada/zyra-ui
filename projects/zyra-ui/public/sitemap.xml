@@ -28,6 +28,8 @@
   <url>
     <loc>https://www.zyraui.dev/blog</loc>
     <lastmod>2026-04-28</lastmod>
+	<priority>0.8</priority>
+	<changefreq>Weekly</changefreq>
   </url>
 
   <!-- Blog Post Example -->
