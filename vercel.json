@@ -1,7 +1,7 @@
 {
 	"version": 2,
 	"buildCommand": "npm run build:ssr",
-	"outputDirectory": "dist/zyra-ui",
+	"outputDirectory": "dist/zyra-ui/browser",
 	"framework": null,
 	"routes": [
 		{
