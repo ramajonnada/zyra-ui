@@ -4,6 +4,7 @@ import {
     BadgeSize,
     BadgeVariant,
     ZyraBadge,
+    ZyraButton,
     ZyraThemeService,
     ZyraToastContainer,
     ZyraToastService,
@@ -12,7 +13,7 @@ import {
 @Component({
     selector: 'app-badge',
     standalone: true,
-    imports: [FormsModule, ZyraBadge, ZyraToastContainer],
+    imports: [FormsModule, ZyraBadge,ZyraButton, ZyraToastContainer],
     templateUrl: './badge.html',
     styleUrl: './badge.scss',
 })

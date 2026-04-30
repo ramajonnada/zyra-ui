@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -30,6 +31,7 @@ export class BlogDetails implements OnInit {
 	private blogService = inject(BlogService);
 	private title = inject(Title);
 	private meta = inject(Meta);
+	private document = inject(DOCUMENT);
 
 	ngOnInit() {
 		this.route.paramMap.subscribe((params) => {
@@ -132,11 +134,11 @@ export class BlogDetails implements OnInit {
 		this.meta.updateTag({ property: 'og:type', content: 'article' });
 
 		// Canonical
-		let canonical = document.querySelector('link[rel="canonical"]');
+		let canonical = this.document.querySelector('link[rel="canonical"]');
 		if (!canonical) {
-			canonical = document.createElement('link');
+			canonical = this.document.createElement('link');
 			canonical.setAttribute('rel', 'canonical');
-			document.head.appendChild(canonical);
+			this.document.head.appendChild(canonical);
 		}
 		canonical.setAttribute('href', url);
 	}
