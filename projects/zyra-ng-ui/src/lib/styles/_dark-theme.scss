@@ -1,25 +1,29 @@
 @use 'variables' as *;
 
 [data-theme='dark'],
-:root {
+:root,
+.zyra-theme-dark {
+    color-scheme: dark;
+
     --zyr-bg: #080b10;
-    --zyr-bg-2: #0d1117;
-    --zyr-bg-3: #13191f;
-    --zyr-bg-4: #1a2130;
+    --zyr-bg-2: #0d1219;
+    --zyr-bg-3: #121922;
+    --zyr-bg-4: #18212b;
 
     --zyr-border: rgba(255, 255, 255, 0.07);
-    --zyr-border-hover: rgba(99, 210, 180, 0.35);
+    --zyr-border-hover: rgba(0, 234, 255, 0.36);
     --zyr-border-strong: rgba(255, 255, 255, 0.14);
 
-    --zyr-text: #e8edf2;
-    --zyr-text-muted: #6b7a8d;
-    --zyr-text-dim: #3d4b5c;
+    --zyr-text: var(--zyr-neutral-50);
+    --zyr-text-muted: var(--zyr-neutral-300);
+    --zyr-text-dim: var(--zyr-neutral-500);
     --zyr-text-inverse: #080b10;
+    --zyr-surface-inverse: #effcff;
 
-    --zyr-accent: #{$zyr-teal-400};
-    --zyr-accent-hover: #{$zyr-teal-300};
-    --zyr-accent-muted: rgba(99, 210, 180, 0.12);
-    --zyr-accent-border: rgba(99, 210, 180, 0.25);
+    --zyr-accent: var(--zyr-cyan-500);
+    --zyr-accent-hover: var(--zyr-cyan-300);
+    --zyr-accent-muted: rgba(0, 234, 255, 0.12);
+    --zyr-accent-border: rgba(0, 234, 255, 0.28);
 
     --zyr-accent-2: #{$zyr-blue-400};
     --zyr-accent-2-muted: rgba(78, 174, 245, 0.12);
@@ -45,25 +49,38 @@
     --zyr-info-muted: rgba(78, 174, 245, 0.1);
     --zyr-info-border: rgba(78, 174, 245, 0.22);
 
-    --zyr-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
-    --zyr-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5);
-    --zyr-shadow-accent: 0 6px 20px rgba(99, 210, 180, 0.2);
+    --zyr-shadow-sm: 0 10px 24px rgba(0, 0, 0, 0.24);
+    --zyr-shadow-md: 0 18px 42px rgba(0, 0, 0, 0.34);
+    --zyr-shadow-accent: 0 18px 42px rgba(0, 234, 255, 0.16);
 
     --zyr-btn-primary-text: #080b10;
+    --zyr-btn-primary-border: rgba(0, 234, 255, 0.42);
     --zyr-btn-ghost-hover-bg: rgba(255, 255, 255, 0.04);
 
     --zyr-input-bg: var(--zyr-bg-3);
     --zyr-input-border: var(--zyr-border);
-    --zyr-input-shadow-focus: 0 0 0 3px rgba(99, 210, 180, 0.12);
+    --zyr-input-shadow-focus: 0 0 0 3px rgba(0, 234, 255, 0.14);
 
-    --zyr-card-bg: #0f151c;
-    --zyr-card-section-bg: rgba(255, 255, 255, 0.02);
-    --zyr-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
-    --zyr-card-elevated-shadow: 0 20px 42px rgba(0, 0, 0, 0.36);
-    --zyr-card-focus-ring: rgba(99, 210, 180, 0.16);
+    --zyr-card-bg: #0e141d;
+    --zyr-card-section-bg: rgba(255, 255, 255, 0.03);
+    --zyr-card-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    --zyr-card-elevated-shadow: 0 26px 56px rgba(0, 0, 0, 0.32);
+    --zyr-card-focus-ring: rgba(0, 234, 255, 0.18);
 
     --zyr-code-bg: #0a0f15;
+    --zyr-overlay-bg: rgba(4, 8, 12, 0.72);
 
     --zyr-scrollbar-thumb: rgba(255, 255, 255, 0.08);
     --zyr-scrollbar-track: transparent;
+
+    --zyr-tooltip-bg: #effcff;
+    --zyr-tooltip-text: #041015;
+    --zyr-tooltip-border: rgba(0, 234, 255, 0.24);
+    --zyr-tooltip-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+
+    --zyr-toast-bg: rgba(14, 20, 29, 0.96);
+    --zyr-toast-border: rgba(255, 255, 255, 0.08);
+
+    --zyr-spinner-inverse-track: rgba(255, 255, 255, 0.28);
+    --zyr-spinner-inverse-head: #ffffff;
 }

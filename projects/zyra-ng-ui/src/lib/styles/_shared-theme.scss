@@ -2,7 +2,33 @@
 
 :root,
 [data-theme='light'],
-[data-theme='dark'] {
+[data-theme='dark'],
+.zyra-theme-light,
+.zyra-theme-dark {
+    --zyr-cyan-50: #{$zyr-cyan-50};
+    --zyr-cyan-100: #{$zyr-cyan-100};
+    --zyr-cyan-200: #{$zyr-cyan-200};
+    --zyr-cyan-300: #{$zyr-cyan-300};
+    --zyr-cyan-400: #{$zyr-cyan-400};
+    --zyr-cyan-500: #{$zyr-cyan-500};
+    --zyr-cyan-600: #{$zyr-cyan-600};
+    --zyr-cyan-700: #{$zyr-cyan-700};
+    --zyr-cyan-800: #{$zyr-cyan-800};
+    --zyr-cyan-900: #{$zyr-cyan-900};
+    --zyr-cyan-950: #{$zyr-cyan-950};
+
+    --zyr-neutral-50: #{$zyr-neutral-50};
+    --zyr-neutral-100: #{$zyr-neutral-100};
+    --zyr-neutral-200: #{$zyr-neutral-200};
+    --zyr-neutral-300: #{$zyr-neutral-300};
+    --zyr-neutral-400: #{$zyr-neutral-400};
+    --zyr-neutral-500: #{$zyr-neutral-500};
+    --zyr-neutral-600: #{$zyr-neutral-600};
+    --zyr-neutral-700: #{$zyr-neutral-700};
+    --zyr-neutral-800: #{$zyr-neutral-800};
+    --zyr-neutral-900: #{$zyr-neutral-900};
+    --zyr-neutral-950: #{$zyr-neutral-950};
+
     --zyr-font-display: #{$zyr-font-display};
     --zyr-font-body: #{$zyr-font-body};
     --zyr-font-mono: #{$zyr-font-mono};
@@ -19,19 +45,112 @@
     --zyr-transition-base: #{$zyr-transition-base};
     --zyr-transition-slow: #{$zyr-transition-slow};
     --zyr-transition-spring: #{$zyr-transition-spring};
+    --zyr-duration-fast: #{$zyr-duration-fast};
+    --zyr-duration-base: #{$zyr-duration-base};
+    --zyr-duration-slow: #{$zyr-duration-slow};
+    --zyr-ease-standard: #{$zyr-ease-standard};
+
+    --zyr-surface-canvas: var(--zyr-bg);
+    --zyr-surface-raised: var(--zyr-bg-2);
+    --zyr-surface-muted: var(--zyr-bg-3);
+    --zyr-surface-strong: var(--zyr-bg-4);
+    --zyr-focus-ring: var(--zyr-accent-muted);
+    --zyr-background: var(--zyr-bg);
+    --zyr-background-elevated: var(--zyr-bg-2);
+    --zyr-surface: var(--zyr-card-bg);
+    --zyr-surface-subtle: var(--zyr-card-section-bg);
+    --zyr-surface-inset: var(--zyr-bg-3);
+    --zyr-foreground: var(--zyr-text);
+    --zyr-foreground-muted: var(--zyr-text-muted);
+    --zyr-foreground-subtle: var(--zyr-text-dim);
+    --zyr-primary: var(--zyr-accent);
+    --zyr-primary-hover: var(--zyr-accent-hover);
+    --zyr-primary-subtle: var(--zyr-accent-muted);
+    --zyr-primary-border: var(--zyr-accent-border);
+    --zyr-border-color: var(--zyr-border);
+    --zyr-border-strong-color: var(--zyr-border-strong);
+    --zyr-ring: var(--zyr-focus-ring);
+    --zyr-overlay: var(--zyr-overlay-bg);
+    --zyr-success-foreground: var(--zyr-success);
+    --zyr-success-subtle: var(--zyr-success-muted);
+    --zyr-success-border-color: var(--zyr-success-border);
+    --zyr-warning-foreground: var(--zyr-warning);
+    --zyr-warning-subtle: var(--zyr-warning-muted);
+    --zyr-warning-border-color: var(--zyr-warning-border);
+    --zyr-danger-foreground: var(--zyr-danger);
+    --zyr-danger-subtle: var(--zyr-danger-muted);
+    --zyr-danger-border-color: var(--zyr-danger-border);
+    --zyr-info-foreground: var(--zyr-info);
+    --zyr-info-subtle: var(--zyr-info-muted);
+    --zyr-info-border-color: var(--zyr-info-border);
 
     --zyr-btn-primary-bg: var(--zyr-accent);
+    --zyr-btn-primary-border: var(--zyr-accent-border);
+    --zyr-btn-primary-hover-bg: var(--zyr-accent-hover);
     --zyr-btn-secondary-bg: var(--zyr-bg-3);
     --zyr-btn-secondary-text: var(--zyr-text);
     --zyr-btn-secondary-border: var(--zyr-border);
+    --zyr-btn-secondary-hover-bg: var(--zyr-bg-4);
+    --zyr-btn-secondary-hover-border: var(--zyr-border-hover);
     --zyr-btn-ghost-text: var(--zyr-text-muted);
+    --zyr-btn-ghost-hover-text: var(--zyr-text);
     --zyr-btn-danger-bg: var(--zyr-danger-muted);
     --zyr-btn-danger-text: var(--zyr-danger);
     --zyr-btn-danger-border: var(--zyr-danger-border);
+    --zyr-btn-danger-hover-bg: var(--zyr-danger);
+    --zyr-btn-danger-hover-text: var(--zyr-text-inverse);
+    --zyr-btn-danger-hover-border: var(--zyr-danger);
+    --zyr-btn-outline-hover-bg: var(--zyr-accent-muted);
+    --zyr-btn-outline-hover-border: var(--zyr-accent);
+    --zyr-btn-disabled-opacity: 0.42;
 
     --zyr-card-border: var(--zyr-border);
     --zyr-card-hover-border: var(--zyr-border-hover);
 
     --zyr-sidebar-bg: var(--zyr-bg-2);
     --zyr-sidebar-border: var(--zyr-border);
+
+    --zyr-avatar-primary-end: var(--zyr-accent-2);
+    --zyr-avatar-blue-end: var(--zyr-accent);
+    --zyr-avatar-purple-end: var(--zyr-accent-2);
+    --zyr-avatar-warm-end: var(--zyr-danger);
+    --zyr-avatar-contrast: var(--zyr-btn-primary-text);
+
+    --zyr-spinner-inverse-track: rgba(255, 255, 255, 0.25);
+    --zyr-spinner-inverse-head: #ffffff;
+
+    --zyr-tooltip-bg: var(--zyr-surface-inverse);
+    --zyr-tooltip-text: var(--zyr-text-inverse);
+    --zyr-tooltip-border: var(--zyr-border);
+    --zyr-tooltip-shadow: var(--zyr-shadow-md);
+
+    --zyr-toast-bg: var(--zyr-card-bg);
+    --zyr-toast-border: var(--zyr-border);
+    --zyr-toast-icon-bg: var(--zyr-card-section-bg);
+    --zyr-toast-success-icon-bg: var(--zyr-success-muted);
+    --zyr-toast-warning-icon-bg: var(--zyr-warning-muted);
+    --zyr-toast-danger-icon-bg: var(--zyr-danger-muted);
+    --zyr-toast-info-icon-bg: var(--zyr-info-muted);
+
+    --zyr-theme-primary-50: var(--zyr-cyan-50);
+    --zyr-theme-primary-100: var(--zyr-cyan-100);
+    --zyr-theme-primary-200: var(--zyr-cyan-200);
+    --zyr-theme-primary-300: var(--zyr-cyan-300);
+    --zyr-theme-primary-400: var(--zyr-cyan-400);
+    --zyr-theme-primary-500: var(--zyr-cyan-500);
+    --zyr-theme-primary-600: var(--zyr-cyan-600);
+    --zyr-theme-primary-700: var(--zyr-cyan-700);
+    --zyr-theme-primary-800: var(--zyr-cyan-800);
+    --zyr-theme-primary-900: var(--zyr-cyan-900);
+    --zyr-theme-primary-950: var(--zyr-cyan-950);
+
+    --zyr-color-background: var(--zyr-background);
+    --zyr-color-surface: var(--zyr-surface);
+    --zyr-color-surface-subtle: var(--zyr-surface-subtle);
+    --zyr-color-foreground: var(--zyr-foreground);
+    --zyr-color-foreground-muted: var(--zyr-foreground-muted);
+    --zyr-color-primary: var(--zyr-primary);
+    --zyr-color-primary-subtle: var(--zyr-primary-subtle);
+    --zyr-color-border: var(--zyr-border-color);
+    --zyr-color-ring: var(--zyr-ring);
 }

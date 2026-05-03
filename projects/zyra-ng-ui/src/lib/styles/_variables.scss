@@ -1,61 +1,82 @@
 // ============================================================
-// ZYRA NG UI — Design Tokens (_variables.scss)
-// Single source of truth for all design values.
-// These are STATIC tokens (not theme-dependent).
+// ZYRA NG UI - Design Tokens (_variables.scss)
+// Single source of truth for all static design values.
 // Theme-dependent tokens live in _dark-theme.scss / _light-theme.scss
 // ============================================================
 
-// ── Brand Palette (Raw) ──────────────────────────────────────
-// These are the raw color values. Use semantic tokens in components.
+// Brand palette
+$zyr-cyan-50: #e0fcfd;
+$zyr-cyan-100: #b3f8fb;
+$zyr-cyan-200: #80f3f8;
+$zyr-cyan-300: #4df0f6;
+$zyr-cyan-400: #26edf4;
+$zyr-cyan-500: #00eaff;
+$zyr-cyan-600: #00d2e6;
+$zyr-cyan-700: #0099a8;
+$zyr-cyan-800: #00737e;
+$zyr-cyan-900: #004c54;
+$zyr-cyan-950: #00262a;
 
-$zyr-teal-100: #e6faf5;
-$zyr-teal-200: #b3f0e0;
-$zyr-teal-300: #7fe5cb;
-$zyr-teal-400: #63d2b4; // ← primary accent
-$zyr-teal-500: #3fbf9e;
-$zyr-teal-600: #2a9e82;
+$zyr-teal-100: $zyr-cyan-100;
+$zyr-teal-200: $zyr-cyan-200;
+$zyr-teal-300: $zyr-cyan-300;
+$zyr-teal-400: $zyr-cyan-500;
+$zyr-teal-500: $zyr-cyan-600;
+$zyr-teal-600: $zyr-cyan-700;
 
 $zyr-blue-100: #e6f4fe;
 $zyr-blue-200: #b3d9fb;
 $zyr-blue-300: #7ebef7;
-$zyr-blue-400: #4eaef5; // ← secondary accent
+$zyr-blue-400: #4eaef5;
 $zyr-blue-500: #2491e8;
 $zyr-blue-600: #1573c2;
 
 $zyr-purple-100: #f0ecfe;
 $zyr-purple-200: #d4c8fb;
 $zyr-purple-300: #baa4f8;
-$zyr-purple-400: #a78bfa; // ← tertiary accent
+$zyr-purple-400: #a78bfa;
 $zyr-purple-500: #8b6ef5;
 $zyr-purple-600: #6d4ef0;
 
 $zyr-red-100: #feeaec;
 $zyr-red-200: #fbb8be;
 $zyr-red-300: #f98690;
-$zyr-red-400: #f95f5f; // ← danger
+$zyr-red-400: #f95f5f;
 $zyr-red-500: #e03e3e;
 $zyr-red-600: #c02020;
 
 $zyr-yellow-100: #fef9e6;
 $zyr-yellow-200: #fceeb3;
 $zyr-yellow-300: #fae07f;
-$zyr-yellow-400: #f9c86a; // ← warning
+$zyr-yellow-400: #f9c86a;
 $zyr-yellow-500: #e8aa3a;
 $zyr-yellow-600: #c98a18;
 
 $zyr-green-100: #eafaf0;
 $zyr-green-200: #b8f0ce;
 $zyr-green-300: #86e5ad;
-$zyr-green-400: #4cca7c; // ← success
+$zyr-green-400: #4cca7c;
 $zyr-green-500: #2ea85b;
 $zyr-green-600: #1a8540;
 
-// ── Typography ───────────────────────────────────────────────
-$zyr-font-display: 'Syne', sans-serif;
-$zyr-font-body: 'Instrument Sans', sans-serif;
-$zyr-font-mono: 'DM Mono', monospace;
+$zyr-neutral-50: #f6f7f9;
+$zyr-neutral-100: #ecedf1;
+$zyr-neutral-200: #d5d7e0;
+$zyr-neutral-300: #b1b5c3;
+$zyr-neutral-400: #8a8f9f;
+$zyr-neutral-500: #666c7f;
+$zyr-neutral-600: #4d5260;
+$zyr-neutral-700: #3a3e49;
+$zyr-neutral-800: #272a31;
+$zyr-neutral-900: #16181c;
+$zyr-neutral-950: #0b0c0e;
 
-// ── Font Sizes ───────────────────────────────────────────────
+// Typography
+$zyr-font-display: 'Outfit', 'Syne', 'Inter', sans-serif;
+$zyr-font-body: 'IBM Plex Sans', 'Instrument Sans', 'Inter', sans-serif;
+$zyr-font-mono: 'JetBrains Mono', 'DM Mono', monospace;
+
+// Font sizes
 $zyr-text-xs: 11px;
 $zyr-text-sm: 12px;
 $zyr-text-base: 14px;
@@ -67,7 +88,7 @@ $zyr-text-3xl: 30px;
 $zyr-text-4xl: 36px;
 $zyr-text-5xl: 48px;
 
-// ── Font Weights ─────────────────────────────────────────────
+// Font weights
 $zyr-weight-light: 300;
 $zyr-weight-regular: 400;
 $zyr-weight-medium: 500;
@@ -75,7 +96,7 @@ $zyr-weight-semibold: 600;
 $zyr-weight-bold: 700;
 $zyr-weight-extrabold: 800;
 
-// ── Spacing ──────────────────────────────────────────────────
+// Spacing
 $zyr-space-1: 4px;
 $zyr-space-2: 8px;
 $zyr-space-3: 12px;
@@ -88,7 +109,7 @@ $zyr-space-12: 48px;
 $zyr-space-16: 64px;
 $zyr-space-20: 80px;
 
-// ── Border Radius ────────────────────────────────────────────
+// Radius
 $zyr-radius-xs: 4px;
 $zyr-radius-sm: 6px;
 $zyr-radius-md: 10px;
@@ -97,7 +118,7 @@ $zyr-radius-xl: 20px;
 $zyr-radius-2xl: 28px;
 $zyr-radius-full: 9999px;
 
-// ── Z-Index ──────────────────────────────────────────────────
+// Z-index
 $zyr-z-base: 0;
 $zyr-z-raised: 10;
 $zyr-z-dropdown: 100;
@@ -106,13 +127,17 @@ $zyr-z-overlay: 300;
 $zyr-z-modal: 400;
 $zyr-z-toast: 500;
 
-// ── Transitions ──────────────────────────────────────────────
-$zyr-transition-fast: 0.12s ease;
-$zyr-transition-base: 0.18s ease;
-$zyr-transition-slow: 0.3s ease;
-$zyr-transition-spring: 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+// Motion
+$zyr-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+$zyr-duration-fast: 150ms;
+$zyr-duration-base: 300ms;
+$zyr-duration-slow: 600ms;
+$zyr-transition-fast: 150ms cubic-bezier(0.22, 1, 0.36, 1);
+$zyr-transition-base: 300ms cubic-bezier(0.22, 1, 0.36, 1);
+$zyr-transition-slow: 600ms cubic-bezier(0.22, 1, 0.36, 1);
+$zyr-transition-spring: 280ms cubic-bezier(0.22, 1, 0.36, 1);
 
-// ── Breakpoints ──────────────────────────────────────────────
+// Breakpoints
 $zyr-screen-sm: 480px;
 $zyr-screen-md: 768px;
 $zyr-screen-lg: 1024px;

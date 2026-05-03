@@ -52,10 +52,10 @@
     &--primary {
         background: var(--zyr-btn-primary-bg);
         color: var(--zyr-btn-primary-text);
-        border: 1px solid transparent;
+        border: 1px solid var(--zyr-btn-primary-border);
 
         &:hover:not(:disabled) {
-            opacity: 0.88;
+            background: var(--zyr-btn-primary-hover-bg);
             transform: translateY(-1px);
             box-shadow: var(--zyr-shadow-accent);
         }
@@ -67,8 +67,8 @@
         border: 1px solid var(--zyr-btn-secondary-border);
 
         &:hover:not(:disabled) {
-            border-color: var(--zyr-border-hover);
-            background: var(--zyr-bg-4);
+            border-color: var(--zyr-btn-secondary-hover-border);
+            background: var(--zyr-btn-secondary-hover-bg);
         }
     }
 
@@ -79,18 +79,18 @@
 
         &:hover:not(:disabled) {
             background: var(--zyr-btn-ghost-hover-bg);
-            color: var(--zyr-text);
+            color: var(--zyr-btn-ghost-hover-text);
         }
     }
 
     &--outline {
         background: transparent;
-        color: var(--zyr-accent);
-        border: 1px solid var(--zyr-accent-border);
+        color: var(--zyr-primary);
+        border: 1px solid var(--zyr-primary-border);
 
         &:hover:not(:disabled) {
-            background: var(--zyr-accent-muted);
-            border-color: var(--zyr-accent);
+            background: var(--zyr-btn-outline-hover-bg);
+            border-color: var(--zyr-btn-outline-hover-border);
         }
     }
 
@@ -100,7 +100,9 @@
         border: 1px solid var(--zyr-btn-danger-border);
 
         &:hover:not(:disabled) {
-            opacity: 0.85;
+            background: var(--zyr-btn-danger-hover-bg);
+            color: var(--zyr-btn-danger-hover-text);
+            border-color: var(--zyr-btn-danger-hover-border);
         }
     }
 
@@ -112,7 +114,7 @@
 
     &--disabled,
     &:disabled {
-        opacity: 0.38;
+        opacity: var(--zyr-btn-disabled-opacity);
         cursor: not-allowed;
         pointer-events: none;
     }

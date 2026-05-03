@@ -1,5 +1,5 @@
 // ============================================================
-// ZYRA NG UI — Base Styles (_base.scss)
+// ZYRA NG UI - Base Styles (_base.scss)
 // Global resets and base styles using design tokens
 // ============================================================
 
@@ -13,11 +13,13 @@
 
 html {
     scroll-behavior: smooth;
+    background-color: var(--zyr-background);
 }
 
 body {
-    background-color: var(--zyr-bg);
-    color: var(--zyr-text);
+    min-height: 100vh;
+    background-color: var(--zyr-background);
+    color: var(--zyr-foreground);
     font-family: var(--zyr-font-body);
     font-size: 15px;
     line-height: 1.65;
@@ -28,7 +30,11 @@ body {
         color var(--zyr-transition-slow);
 }
 
-// ── Scrollbar ─────────────────────────────────────────────────
+::selection {
+    background: var(--zyr-primary-subtle);
+    color: var(--zyr-foreground);
+}
+
 *::-webkit-scrollbar {
     width: 5px;
     height: 5px;
@@ -43,7 +49,6 @@ body {
     border-radius: 3px;
 }
 
-// ── Typography base ───────────────────────────────────────────
 h1,
 h2,
 h3,
@@ -51,18 +56,18 @@ h4,
 h5,
 h6 {
     font-family: var(--zyr-font-display);
-    color: var(--zyr-text);
+    color: var(--zyr-foreground);
     line-height: 1.15;
     letter-spacing: -0.01em;
 }
 
 p {
-    color: var(--zyr-text-muted);
+    color: var(--zyr-foreground-muted);
     line-height: 1.7;
 }
 
 a {
-    color: var(--zyr-accent);
+    color: var(--zyr-primary);
     text-decoration: none;
     transition: opacity var(--zyr-transition-fast);
 
@@ -88,17 +93,23 @@ button {
     font-family: var(--zyr-font-body);
 }
 
-// ── Focus visible ──────────────────────────────────────────────
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
 :focus-visible {
-    outline: 2px solid var(--zyr-accent);
+    outline: 2px solid var(--zyr-primary);
     outline-offset: 2px;
     border-radius: 3px;
 }
 
-// ── Theme transition ──────────────────────────────────────────
-// Smooth transition when toggling themes
 [data-theme='light'],
-[data-theme='dark'] {
+[data-theme='dark'],
+.zyra-theme-light,
+.zyra-theme-dark {
     transition:
         background-color var(--zyr-transition-slow),
         border-color var(--zyr-transition-slow),

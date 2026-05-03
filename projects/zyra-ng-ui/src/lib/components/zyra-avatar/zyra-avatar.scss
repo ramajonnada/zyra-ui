@@ -8,7 +8,6 @@
     overflow: hidden;
     font-family: var(--zyr-font-display);
     font-weight: 700;
-    user-select: none;
     transition: box-shadow var(--zyr-transition-base);
 
     &--square {
@@ -44,29 +43,33 @@
 
     // ── Variants (gradient backgrounds) ───────────────────────
     &--teal {
-        background: linear-gradient(135deg, var(--zyr-accent), var(--zyr-accent-2));
-        color: var(--zyr-btn-primary-text);
+        background: linear-gradient(135deg, var(--zyr-primary), var(--zyr-avatar-primary-end));
+        color: var(--zyr-avatar-contrast);
     }
 
     &--blue {
-        background: linear-gradient(135deg, var(--zyr-accent-2), #6dd5fa);
-        color: #fff;
+        background: linear-gradient(135deg, var(--zyr-accent-2), var(--zyr-avatar-blue-end));
+        color: var(--zyr-avatar-contrast);
     }
 
     &--purple {
-        background: linear-gradient(135deg, var(--zyr-accent-3), var(--zyr-accent-2));
-        color: #fff;
+        background: linear-gradient(
+            135deg,
+            var(--zyr-accent-3),
+            var(--zyr-avatar-purple-end)
+        );
+        color: var(--zyr-avatar-contrast);
     }
 
     &--warm {
-        background: linear-gradient(135deg, var(--zyr-warning), var(--zyr-danger));
-        color: #fff;
+        background: linear-gradient(135deg, var(--zyr-warning), var(--zyr-avatar-warm-end));
+        color: var(--zyr-avatar-contrast);
     }
 
     &--neutral {
-        background: var(--zyr-bg-3);
-        color: var(--zyr-text-muted);
-        border: 1px solid var(--zyr-border);
+        background: var(--zyr-surface-inset);
+        color: var(--zyr-foreground-muted);
+        border: 1px solid var(--zyr-border-color);
     }
 
     // ── Image ─────────────────────────────────────────────────
