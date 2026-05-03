@@ -1,12 +1,16 @@
 {
     "name": "zyra-ng-ui",
-    "version": "1.3.25",
+    "version": "1.4.25",
     "description": "ZyraUI – Modern Angular UI Components",
     "author": "Rama Jonnada",
     "license": "MIT",
     "peerDependencies": {
         "@angular/core": "^21.0.0",
-        "@angular/common": "^21.0.0"
+        "@angular/common": "^21.0.0",
+        "@angular/forms": "^21.0.0",
+        "@fortawesome/angular-fontawesome": "^4.0.0",
+        "@fortawesome/fontawesome-svg-core": "^7.1.0",
+        "@fortawesome/free-solid-svg-icons": "^7.1.0"
     },
     "exports": {
         ".": {

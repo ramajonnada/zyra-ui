@@ -19,7 +19,7 @@ Components are added incrementally. APIs may evolve.
 ### Installation
 
 ```bash
-npm install zyra-ng-ui
+npm install zyra-ng-ui @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons
 ```
 
 ## Getting Started
@@ -36,7 +36,7 @@ Import styles in your global styles file:
 Import component in required Angular module or standalone component:
 
 ```typescript
-import { ZyraButton } from 'zyra-ng-ui/button';
+import { ZyraButton } from 'zyra-ng-ui';
 ```
 
 Use component in your templates:
