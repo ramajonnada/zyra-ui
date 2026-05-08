@@ -18,7 +18,7 @@
 	color: transparent;
 }
 
-.light .zyra-gradient-text {
+[data-theme="light"] .zyra-gradient-text {
 	background: linear-gradient(135deg, #00737E 0%, #0099A8 40%, #00D2E6 75%, #00EAFF 100%);
 	-webkit-background-clip: text;
 	background-clip: text;

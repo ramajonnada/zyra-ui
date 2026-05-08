@@ -43,21 +43,6 @@
         </div>
     </div>
 
-    <div class="brand-rail">
-        <div class="brand-rail__inner">
-            <span class="brand-rail__label">Shipped by teams at</span>
-            <div class="brand-rail__track" aria-hidden="true">
-                <div class="brand-rail__logos">
-                    @for (logo of brandLogos; track logo) {
-                        <span>{{ logo }}</span>
-                    }
-                    @for (logo of brandLogos; track logo + '_2') {
-                        <span>{{ logo }}</span>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 <section id="components" class="landing-section">
@@ -76,12 +61,14 @@
                 <span class="surface__label">Button</span>
 
                 <div class="button-row">
-                    <zyra-button size="sm">Ship it</zyra-button>
+                    <zyra-button variant="primary" size="sm">Primary</zyra-button>
+                    <zyra-button variant="secondary" size="sm">Secondary</zyra-button>
                     <zyra-button variant="outline" size="sm">Outline</zyra-button>
                     <zyra-button variant="ghost" size="sm">Ghost</zyra-button>
+                    <zyra-button variant="danger" size="sm">Danger</zyra-button>
                 </div>
 
-                <p class="surface__foot">3 variants / 4 sizes</p>
+                <p class="surface__foot">5 variants / 4 sizes</p>
             </zyra-card>
 
             <zyra-card class="mosaic-command">
@@ -267,38 +254,6 @@
     </div>
 </section>
 
-<section id="stories" class="landing-section">
-    <div class="landing-shell">
-        <div class="section-heading section-heading--compact">
-            <p class="section-heading__eyebrow">/ Loved by devs</p>
-            <h2>The feeling you get from great tools.</h2>
-        </div>
-
-        <div class="testimonial-grid">
-            @for (quote of testimonials; track quote.author) {
-                <article class="quote-card">
-                    <div class="quote-card__rating" aria-label="5 stars">
-                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-
-                    <p>{{ quote.quote }}</p>
-
-                    <div class="quote-card__author">
-                        <zyra-avatar
-                            [name]="quote.author"
-                            size="sm"
-                            [variant]="quote.avatarVariant || 'teal'"
-                        ></zyra-avatar>
-                        <div>
-                            <strong>{{ quote.author }}</strong>
-                            <span>{{ quote.role }}</span>
-                        </div>
-                    </div>
-                </article>
-            }
-        </div>
-    </div>
-</section>
 
 <section id="waitlist" class="landing-section landing-section--cta">
     <div class="landing-shell">
@@ -306,12 +261,14 @@
             <div class="cta-panel__eyebrow">/ v2 waitlist</div>
             <h2>Be first to try ZyraUI v2.</h2>
             <p>
-                Motion Studio, AI recipes, 40 new primitives. Drops January 2026 — waitlist closes
-                soon.
+                More components, richer motion, and a design token system built for teams that ship.
+                Join the waitlist and get early access before the public launch.
             </p>
 
             <div class="cta-panel__form">
-                <zyra-input type="email" [placeholder]="waitlistEmail" size="lg"></zyra-input>
+                <zyra-form-field size="lg" [prefixIcon]="icons.envelope" [clearButton]="true">
+                    <zyra-input type="email" [placeholder]="waitlistEmail" size="lg"></zyra-input>
+                </zyra-form-field>
                 <zyra-button size="lg">Reserve spot &#8594;</zyra-button>
             </div>
 
