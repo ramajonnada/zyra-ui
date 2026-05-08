@@ -19,6 +19,7 @@
         "./styles": {
             "sass": "./styles/index.scss"
         },
+        "./fonts.css": "./styles/fonts.css",
         "./dark-theme": {
             "style": "./styles/_dark-theme.scss"
         },

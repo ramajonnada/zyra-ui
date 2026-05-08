@@ -4,63 +4,24 @@
 }
 
 .article-page {
-    --article-surface: rgba(10, 16, 24, 0.88);
-    --article-surface-soft: rgba(10, 16, 24, 0.58);
-    --article-shadow: 0 24px 70px rgba(4, 9, 16, 0.24);
+    --article-surface: color-mix(in srgb, var(--zyr-bg-2) 94%, transparent);
+    --article-surface-soft: color-mix(in srgb, var(--zyr-bg-3) 74%, transparent);
+    --article-shadow: var(--zyr-shadow-lg);
     --article-heading: var(--zyr-text);
-    --article-copy: rgba(232, 237, 242, 0.88);
-    --article-copy-strong: rgba(232, 237, 242, 0.96);
-    --article-muted: #93a2b5;
-    --article-tag-text: rgba(232, 237, 242, 0.84);
+    --article-copy: var(--zyr-text-muted);
+    --article-copy-strong: var(--zyr-text);
+    --article-muted: var(--zyr-text-dim);
+    --article-tag-text: var(--zyr-text-muted);
     --article-link: var(--zyr-accent);
-    --article-code-bg: #0b1118;
-    --article-inline-code-bg: rgba(255, 255, 255, 0.04);
-    --article-inline-code-border: rgba(255, 255, 255, 0.08);
+    --article-code-bg: var(--zyr-bg-3);
+    --article-inline-code-bg: var(--zyr-bg-3);
+    --article-inline-code-border: var(--zyr-border);
     position: relative;
     max-width: 1220px;
     margin: 0 auto;
     padding: 28px 28px 72px;
     color: var(--article-heading);
     overflow: hidden;
-}
-
-:host-context([data-theme='light']) .article-page {
-    --article-surface: rgba(255, 255, 255, 0.94);
-    --article-surface-soft: rgba(247, 250, 252, 0.84);
-    --article-shadow: 0 20px 50px rgba(164, 177, 191, 0.2);
-    --article-heading: #0d1117;
-    --article-copy: #344255;
-    --article-copy-strong: #1a2433;
-    --article-muted: #647287;
-    --article-tag-text: #506074;
-    --article-link: #1a7fd4;
-    --article-code-bg: #f3f6fa;
-    --article-inline-code-bg: rgba(15, 20, 30, 0.04);
-    --article-inline-code-border: rgba(15, 20, 30, 0.08);
-}
-
-.article-page__glow {
-    position: absolute;
-    border-radius: 999px;
-    filter: blur(84px);
-    opacity: 0.34;
-    pointer-events: none;
-}
-
-.article-page__glow--one {
-    top: -70px;
-    left: -60px;
-    width: 220px;
-    height: 220px;
-    background: rgba(67, 197, 163, 0.26);
-}
-
-.article-page__glow--two {
-    top: 120px;
-    right: -80px;
-    width: 300px;
-    height: 300px;
-    background: rgba(88, 134, 255, 0.2);
 }
 
 .article-hero,
@@ -159,9 +120,9 @@
     margin: 0 0 14px;
     color: var(--article-heading);
     font-family: var(--zyr-font-display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: 3.2rem;
     line-height: 1.1;
-    letter-spacing: -0.05em;
+    letter-spacing: 0;
 }
 
 .article-description {
@@ -251,7 +212,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 999px;
-    background: rgba(117, 146, 173, 0.14);
+    background: color-mix(in srgb, var(--zyr-text-muted) 14%, transparent);
     margin-bottom: 14px;
 
     &::after {
@@ -259,7 +220,12 @@
         position: absolute;
         inset: 0;
         transform: translateX(-100%);
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+        background: linear-gradient(
+            90deg,
+            transparent,
+            color-mix(in srgb, var(--zyr-text-inverse) 18%, transparent),
+            transparent
+        );
         animation: shimmer 1.3s infinite;
     }
 }
@@ -305,7 +271,11 @@
         border: 1px solid var(--zyr-border);
         border-radius: var(--zyr-radius-xl);
         background:
-            linear-gradient(135deg, rgba(99, 210, 180, 0.08), transparent 60%),
+            linear-gradient(
+                135deg,
+                color-mix(in srgb, var(--zyr-accent) 8%, transparent),
+                transparent 60%
+            ),
             var(--article-surface-soft);
     }
 
@@ -371,16 +341,16 @@
         margin: 40px 0 16px;
         font-family: var(--zyr-font-display);
         line-height: 1.08;
-        letter-spacing: -0.03em;
+        letter-spacing: 0;
         color: var(--article-heading);
     }
 
     h2 {
-        font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+        font-size: 2.05rem;
     }
 
     h3 {
-        font-size: clamp(1.35rem, 2vw, 1.75rem);
+        font-size: 1.55rem;
     }
 
     p,
@@ -475,12 +445,8 @@
     }
 
     .article-title {
-        font-size: clamp(1.8rem, 9vw, 2.5rem);
+        font-size: 2.35rem;
     }
-
-    // .summary-grid {
-    // 	grid-template-columns: 1fr;
-    // }
 
     :host ::ng-deep .zyra-markdown .blog-author-row {
         padding: 16px;

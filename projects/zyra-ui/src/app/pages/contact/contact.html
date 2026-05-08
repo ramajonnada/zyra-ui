@@ -1,48 +1,32 @@
-<!-- Header -->
-<section class="contact-header">
-	<h1>Contact Us</h1>
-	<p>
-		We’d love to hear from you! Questions, feedback, or collaboration ideas – send us a message.
-	</p>
-</section>
+<main class="contact-page">
+    <section class="contact-hero">
+        <zyra-badge size="md">Contact</zyra-badge>
+        <h1>Questions, feedback, or component ideas?</h1>
+        <p>
+            Send a note about docs, Angular examples, design-token usage, or anything that would
+            make Zyra UI more useful for your team.
+        </p>
+    </section>
 
-<!-- Contact Info Cards -->
-<section class="contact-cards">
-	<div class="zyra-card">
-		<h3>Email</h3>
-		<a href="mailto:zyraui.contact@gmail.co">zyraui.contact@gmail.com</a>
-	</div>
+    <section class="contact-grid" aria-label="Contact methods">
+        @for (method of contactMethods; track method.label) {
+            <zyra-card variant="outlined" padding="lg">
+                <div class="contact-card__icon">
+                    <fa-icon [icon]="method.icon" aria-hidden="true" />
+                </div>
+                <h2>{{ method.label }}</h2>
+                <a [href]="method.href" target="_blank" rel="noopener noreferrer">
+                    {{ method.value }}
+                </a>
+            </zyra-card>
+        }
+    </section>
 
-	<div class="zyra-card">
-		<h3>Website</h3>
-		<a href="https://www.zyraui.dev">zyraui.dev</a>
-	</div>
-
-	<!-- <div class="zyra-card">
-		<h3>Twitter</h3>
-		<a href="https://twitter.com/zyraui_dev" target="_blank">@zyraui_dev</a>
-	</div> -->
-
-	<!-- <div class="zyra-card">
-		<h3>GitHub</h3>
-		<a href="https://github.com/zyraui" target="_blank">github.com/zyraui</a>
-	</div> -->
-</section>
-
-<!-- Contact Form -->
-<!-- <section class="contact-form">
-	<div class="zyra-card">
-		<h2>Send Us a Message</h2>
-		<form action="https://www.zyraui.dev/contact-form" method="POST">
-			<input label="Name" type="text" name="name" placeholder="Your Name" required>
-			<input label="Email" type="email" name="email" placeholder="you@example.com" required>
-			<textarea label="Message" name="message" placeholder="Your message here..." required></textarea>
-			<zyra-button type="button" [variant]="'gradient'">Send Message</zyra-button>
-		</form>
-	</div>
-
-	<section class="contact-footer">
-		<p>We aim to respond within 24-48 hours. Thanks for connecting with ZyraUI.dev!</p>
-	</section>
-
-</section> -->
+    <section class="contact-note">
+        <div>
+            <p class="contact-note__eyebrow">Response time</p>
+            <h2>Most messages are reviewed within a few business days.</h2>
+        </div>
+        <a class="contact-note__button" href="mailto:zyraui.contact@gmail.com">Email Zyra UI</a>
+    </section>
+</main>

@@ -10,10 +10,8 @@ export const serverRoutes: ServerRoute[] = [
         path: 'blog/:slug',
         renderMode: RenderMode.Prerender,
         async getPrerenderParams(): Promise<Record<string, string>[]> {
-            // This must return Promise<string[]>
             const slugs = await getAllSlugs();
             console.log('Prerendering blog slugs:', slugs);
-            // This returns Promise<Record<string,string>[]>
             return slugs.map((slug) => ({ slug }));
         },
     },
@@ -27,8 +25,9 @@ export const serverRoutes: ServerRoute[] = [
     },
     { path: 'about', renderMode: RenderMode.Prerender },
     { path: 'contact', renderMode: RenderMode.Prerender },
-
-    { path: 'login', renderMode: RenderMode.Server },
+    { path: 'privacy', renderMode: RenderMode.Prerender },
+    { path: 'terms', renderMode: RenderMode.Prerender },
     { path: 'privacy-and-policy', renderMode: RenderMode.Server },
     { path: 'termsofservices', renderMode: RenderMode.Server },
+    { path: '**', renderMode: RenderMode.Server },
 ];

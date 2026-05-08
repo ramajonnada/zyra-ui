@@ -1,1 +1,39 @@
-<p>about works!</p>
+<main class="public-page about-page">
+    <section class="public-hero">
+        <zyra-badge size="md">About Zyra UI</zyra-badge>
+        <h1>Angular components shaped for public websites and real apps.</h1>
+        <p>
+            Zyra UI is a design-token driven Angular library for teams who want the website,
+            documentation, and product interface to feel like one thoughtful system.
+        </p>
+
+        <div class="public-hero__actions">
+            <zyra-button size="lg" routerLink="/components">Explore components</zyra-button>
+            <zyra-button size="lg" variant="outline" routerLink="/docs">Read docs</zyra-button>
+        </div>
+    </section>
+
+    <section class="about-grid" aria-label="What Zyra UI focuses on">
+        @for (value of values; track value.title) {
+            <zyra-card variant="outlined" padding="lg">
+                <div class="about-card__icon">
+                    <fa-icon [icon]="value.icon" aria-hidden="true" />
+                </div>
+                <h2>{{ value.title }}</h2>
+                <p>{{ value.description }}</p>
+            </zyra-card>
+        }
+    </section>
+
+    <section class="about-story">
+        <div>
+            <p class="public-eyebrow">Principle</p>
+            <h2>One visual language from marketing page to component preview.</h2>
+        </div>
+        <p>
+            The website intentionally uses the same library tokens and primitives it documents. That
+            keeps demos honest, improves maintainability, and gives visitors a real preview of how
+            Zyra UI behaves in production.
+        </p>
+    </section>
+</main>
