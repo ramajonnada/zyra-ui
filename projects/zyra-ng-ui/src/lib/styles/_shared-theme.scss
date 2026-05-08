@@ -2,10 +2,8 @@
 
 :root,
 [data-theme='light'],
-[data-theme='dark'],
-.zyra-theme-light,
-.zyra-theme-dark {
-    --zyr-cyan-50: #{$zyr-cyan-50};
+[data-theme='dark'] {
+    --zyr-cyan-50:  #{$zyr-cyan-50};
     --zyr-cyan-100: #{$zyr-cyan-100};
     --zyr-cyan-200: #{$zyr-cyan-200};
     --zyr-cyan-300: #{$zyr-cyan-300};
@@ -16,18 +14,6 @@
     --zyr-cyan-800: #{$zyr-cyan-800};
     --zyr-cyan-900: #{$zyr-cyan-900};
     --zyr-cyan-950: #{$zyr-cyan-950};
-
-    --zyr-neutral-50: #{$zyr-neutral-50};
-    --zyr-neutral-100: #{$zyr-neutral-100};
-    --zyr-neutral-200: #{$zyr-neutral-200};
-    --zyr-neutral-300: #{$zyr-neutral-300};
-    --zyr-neutral-400: #{$zyr-neutral-400};
-    --zyr-neutral-500: #{$zyr-neutral-500};
-    --zyr-neutral-600: #{$zyr-neutral-600};
-    --zyr-neutral-700: #{$zyr-neutral-700};
-    --zyr-neutral-800: #{$zyr-neutral-800};
-    --zyr-neutral-900: #{$zyr-neutral-900};
-    --zyr-neutral-950: #{$zyr-neutral-950};
 
     --zyr-font-display: #{$zyr-font-display};
     --zyr-font-body: #{$zyr-font-body};
