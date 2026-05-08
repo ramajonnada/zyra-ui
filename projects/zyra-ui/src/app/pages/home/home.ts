@@ -227,14 +227,45 @@ export class Home implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.seo.setSEO({
-			title: 'Zyra UI - Angular components with tokens and polished DX',
+			title: 'Zyra UI — Angular Component Library with Design Tokens',
 			description:
-				'Build premium Angular interfaces with Zyra UI. Token-driven components, polished motion, and a dark-first design system.',
+				'Zyra UI is a modern Angular component library and UI kit with design tokens, dark-mode-first theming, and accessible primitives. Built for Angular 21, signals, and SSR.',
 			url: 'https://www.zyraui.dev/',
+		});
+
+		this.seo.injectJsonLd('home-software', {
+			'@context': 'https://schema.org',
+			'@type': 'SoftwareApplication',
+			name: 'Zyra UI',
+			applicationCategory: 'DeveloperApplication',
+			operatingSystem: 'Web',
+			url: 'https://www.zyraui.dev/',
+			image: 'https://www.zyraui.dev/final-icon248.png',
+			description:
+				'A modern Angular component library and design system with design tokens, accessible UI primitives, polished motion, and dark-mode-first theming.',
+			keywords:
+				'Angular component library, Angular UI kit, Angular design system, Angular components, Angular 21 UI',
+			offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+			author: { '@type': 'Person', name: 'Rama Jonnada' },
+		});
+
+		this.seo.injectJsonLd('home-website', {
+			'@context': 'https://schema.org',
+			'@type': 'WebSite',
+			name: 'Zyra UI',
+			url: 'https://www.zyraui.dev/',
+			description: 'Angular component library and UI design system.',
+			potentialAction: {
+				'@type': 'SearchAction',
+				target: 'https://www.zyraui.dev/components?q={search_term_string}',
+				'query-input': 'required name=search_term_string',
+			},
 		});
 	}
 
 	ngOnDestroy() {
+		this.seo.removeJsonLd('home-software');
+		this.seo.removeJsonLd('home-website');
 		this.clearCopyResetTimer();
 	}
 
