@@ -1,16 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-export enum ZyraThemeType {
-    Light = 'light',
-    Dark = 'dark',
-}
-
-// export type ZyraThemeType = 'light' | 'dark';
-
-// ============================================================
-// ZYRA NG UI — Theme Types (theme-type.ts)
-// ============================================================
-
 export type ZyraTheme = 'dark' | 'light';
 
 export interface ZyraConfig {

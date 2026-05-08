@@ -35,8 +35,4 @@ export class Header {
     onToggle() {
         this.toggleSidebar.emit();
     }
-
-    openGithub() {
-        // TODO: Implement GitHub link opening
-    }
 }

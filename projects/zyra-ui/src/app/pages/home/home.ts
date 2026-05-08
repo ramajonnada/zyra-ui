@@ -14,7 +14,6 @@ import {
 	ZyraToastService,
 } from 'zyra-ng-ui';
 import { appIcons } from '../../shared/fontawesome-icons';
-import { Meta, Title } from '@angular/platform-browser';
 import { SeoService } from '../../../seo/seo.service';
 
 interface ProofStat {
@@ -236,7 +235,7 @@ export class Home {
 		},
 	];
 
-	constructor(private title: Title, private meta: Meta) { }
+	constructor() { }
 
 	scrollToSection(id: string) {
 		if (typeof document === 'undefined') return;
