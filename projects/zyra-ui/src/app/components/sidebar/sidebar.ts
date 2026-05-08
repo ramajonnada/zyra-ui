@@ -1,18 +1,21 @@
-import { Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, computed, input, output } from '@angular/core';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { RouterModule } from '@angular/router';
+import { appIcons } from '../../shared/fontawesome-icons';
 
 export interface NavItem {
     label: string;
-    icon: string;
+    icon: IconDefinition;
     route: string;
-    badge?: number;
+    badge?: string;
 }
 
 @Component({
     selector: 'app-sidebar',
     standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, FaIconComponent],
     templateUrl: './sidebar.html',
     styleUrls: ['./sidebar.scss'],
 })
@@ -20,22 +23,14 @@ export class Sidebar {
     readonly isOpen = input<boolean>(true);
     readonly toggleSidebar = output<void>();
     readonly overlayVisible = computed(() => this.isOpen());
+    readonly icons = appIcons;
 
-    readonly navItems: NavItem[] = [
-        { label: 'Documents', icon: '◧', route: '/docs' },
-        { label: 'Components', icon: '◈', route: '/components', badge: 8 },
-        { label: 'Blog', icon: '◻', route: '/blog' },
-        // { label: 'Docs', icon: '⊞', route: '/docs' },
-        // { label: 'Messages', icon: '◻', route: '/messages', badge: 12 },
-        // { label: 'Team', icon: '◉', route: '/team' },
-        // { label: 'Settings', icon: '⚙', route: '/settings' },
+    readonly navItems: readonly NavItem[] = [
+        { label: 'Docs', icon: appIcons.folder, route: '/docs' },
+        { label: 'Components', icon: appIcons.cubes, route: '/components', badge: '9' },
+        { label: 'Blog', icon: appIcons.message, route: '/blog' },
+        { label: 'Contact', icon: appIcons.envelope, route: '/contact' },
     ];
-
-    // readonly user = {
-    // 	name: 'John Doe',
-    // 	role: 'Administrator',
-    // 	initials: 'JD',
-    // };
 
     onToggleSidebar() {
         this.toggleSidebar.emit();

@@ -7,6 +7,394 @@ Laptop:        1024px – 1279px
 Desktop:       1280px – 1535px
 Large Desktop: 1536px+
  */
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
+// :root {
+
+//   --background: #050816;
+//   --foreground: #ffffff;
+
+//   --card: rgba(10, 14, 25, 0.75);
+
+//   --primary: #00EAFF;
+//   --secondary: #111827;
+
+//   --border: rgba(255,255,255,0.08);
+
+//   --zyra-glow: 0,234,255;
+
+//   --radius: 24px;
+
+//   --grid-color: rgba(255,255,255,0.06);
+
+//   --gradient-primary:
+//     linear-gradient(
+//       135deg,
+//       #00EAFF 0%,
+//       #4DF0F6 40%,
+//       #80F3F8 70%,
+//       #FFFFFF 100%
+//     );
+// }
+
+// /* =========================================================
+//    GLOBAL RESET
+// ========================================================= */
+
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+
+// html {
+//   scroll-behavior: smooth;
+// }
+
+// body {
+
+//   background: var(--background);
+//   color: var(--foreground);
+
+//   font-family: 'IBM Plex Sans', sans-serif;
+
+//   overflow-x: hidden;
+
+//   -webkit-font-smoothing: antialiased;
+// }
+
+// /* =========================================================
+//    TYPOGRAPHY
+// ========================================================= */
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+
+//   font-family: 'Outfit', sans-serif;
+
+//   letter-spacing: -0.03em;
+// }
+
+// code,
+// pre {
+//   font-family: 'JetBrains Mono', monospace;
+// }
+
+// /* =========================================================
+//    GRID BACKGROUND
+// ========================================================= */
+
+// .zyra-grid-bg {
+
+//   background-image:
+//     linear-gradient(var(--grid-color) 1px, transparent 1px),
+//     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+
+//   background-size: 48px 48px;
+// }
+
+// /* =========================================================
+//    GRADIENT TEXT
+// ========================================================= */
+
+// .zyra-gradient-text {
+
+//   background: var(--gradient-primary);
+
+//   -webkit-background-clip: text;
+//   background-clip: text;
+
+//   color: transparent;
+// }
+
+// /* =========================================================
+//    GLASS EFFECT
+// ========================================================= */
+
+// .zyra-glass {
+
+//   background: rgba(255,255,255,0.04);
+
+//   border: 1px solid var(--border);
+
+//   backdrop-filter: blur(20px);
+
+//   -webkit-backdrop-filter: blur(20px);
+
+//   box-shadow:
+//     0 8px 32px rgba(0,0,0,0.2);
+// }
+
+// /* =========================================================
+//    GLOW EFFECT
+// ========================================================= */
+
+// .zyra-glow {
+
+//   box-shadow:
+//     0 0 24px rgba(var(--zyra-glow), 0.35),
+//     0 0 48px rgba(var(--zyra-glow), 0.15);
+// }
+
+// /* =========================================================
+//    HOVER GLOW
+// ========================================================= */
+
+// .zyra-glow-hover {
+
+//   transition:
+//     transform .35s ease,
+//     box-shadow .35s ease,
+//     border-color .35s ease;
+// }
+
+// .zyra-glow-hover:hover {
+
+//   transform: translateY(-6px);
+
+//   border-color: rgba(var(--zyra-glow), 0.5);
+
+//   box-shadow:
+//     0 0 32px rgba(var(--zyra-glow), 0.55),
+//     0 0 64px rgba(var(--zyra-glow), 0.25);
+// }
+
+// /* =========================================================
+//    CARD
+// ========================================================= */
+
+// .zyra-card {
+
+//   position: relative;
+
+//   overflow: hidden;
+
+//   border-radius: var(--radius);
+
+//   background: #070b14;
+
+//   border: 1px solid rgba(255,255,255,0.08);
+
+//   transition:
+//     transform .35s ease,
+//     border-color .35s ease;
+// }
+
+// .zyra-card:hover {
+
+//   transform: translateY(-6px);
+
+//   border-color: rgba(var(--zyra-glow), 0.4);
+// }
+
+// /* =========================================================
+//    CURSOR GLOW EFFECT
+// ========================================================= */
+
+// .zyra-card::before {
+
+//   content: "";
+
+//   position: absolute;
+
+//   inset: -100px;
+
+//   background:
+//     radial-gradient(
+//       circle at var(--x, 50%) var(--y, 50%),
+//       rgba(var(--zyra-glow), 0.35),
+//       transparent 30%
+//     );
+
+//   opacity: 0;
+
+//   transition: opacity .3s ease;
+
+//   filter: blur(40px);
+// }
+
+// .zyra-card:hover::before {
+//   opacity: 1;
+// }
+
+// /* =========================================================
+//    CARD CONTENT
+// ========================================================= */
+
+// .zyra-card-content {
+
+//   position: relative;
+
+//   z-index: 2;
+
+//   padding: 24px;
+// }
+
+// /* =========================================================
+//    INPUT
+// ========================================================= */
+
+// .zyra-input {
+
+//   width: 100%;
+
+//   padding: 14px 18px;
+
+//   border-radius: 14px;
+
+//   border: 1px solid rgba(255,255,255,0.08);
+
+//   background: rgba(255,255,255,0.03);
+
+//   color: white;
+
+//   outline: none;
+
+//   transition: all .3s ease;
+// }
+
+// .zyra-input:focus {
+
+//   border-color: rgba(var(--zyra-glow), 0.5);
+
+//   box-shadow:
+//     0 0 20px rgba(var(--zyra-glow), 0.25);
+// }
+
+// /* =========================================================
+//    BUTTON
+// ========================================================= */
+
+// .zyra-btn {
+
+//   display: inline-flex;
+
+//   align-items: center;
+//   justify-content: center;
+
+//   padding: 14px 24px;
+
+//   border-radius: 14px;
+
+//   border: 1px solid rgba(255,255,255,0.08);
+
+//   background: rgba(255,255,255,0.03);
+
+//   color: white;
+
+//   cursor: pointer;
+
+//   transition: all .3s ease;
+// }
+
+// .zyra-btn:hover {
+
+//   transform: translateY(-2px);
+
+//   border-color: rgba(var(--zyra-glow), 0.5);
+
+//   box-shadow:
+//     0 0 20px rgba(var(--zyra-glow), 0.25);
+// }
+
+// /* =========================================================
+//    FLOAT ANIMATION
+// ========================================================= */
+
+// @keyframes zyraFloat {
+
+//   0%,100% {
+//     transform: translateY(0px);
+//   }
+
+//   50% {
+//     transform: translateY(-8px);
+//   }
+// }
+
+// .zyra-float {
+//   animation: zyraFloat 6s ease-in-out infinite;
+// }
+
+// /* =========================================================
+//    SHIMMER EFFECT
+// ========================================================= */
+
+// @keyframes zyraShimmer {
+
+//   0% {
+//     background-position: -200% 0;
+//   }
+
+//   100% {
+//     background-position: 200% 0;
+//   }
+// }
+
+// .zyra-shimmer {
+
+//   background:
+//     linear-gradient(
+//       90deg,
+//       transparent 0%,
+//       rgba(var(--zyra-glow), 0.15) 50%,
+//       transparent 100%
+//     );
+
+//   background-size: 200% 100%;
+
+//   animation: zyraShimmer 2.5s linear infinite;
+// }
+
+// /* =========================================================
+//    CUSTOM SCROLLBAR
+// ========================================================= */
+
+// ::-webkit-scrollbar {
+//   width: 8px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+
+//   background: rgba(255,255,255,0.15);
+
+//   border-radius: 999px;
+// }
+
+// ::-webkit-scrollbar-thumb:hover {
+
+//   background: rgba(var(--zyra-glow), 0.5);
+// }
+
+// --------------------------------------------------------------------------------------------------------------------------
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'IBM Plex Sans', system-ui, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: "ss01", "cv01";
+}
+
+code,
+pre,
+.font-mono {
+	font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+::selection {
+	background: rgba(var(--zyra-glow), 0.3);
+	color: hsl(var(--foreground));
+}
 
 h1,
 h2,
@@ -14,79 +402,80 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: var(--font-sans);
-    font-weight: 400;
+	font-weight: 600;
+	font-family: 'Outfit', 'IBM Plex Sans', sans-serif;
+	letter-spacing: -0.02em;
 }
 
 h1 {
-    font-size: var(--fs-h1);
+	font-size: var(--fs-h1);
 }
 
 h2 {
-    font-size: var(--fs-h2);
+	font-size: var(--fs-h2);
 }
 
 h3 {
-    font-size: var(--fs-h3);
+	font-size: var(--fs-h3);
 }
 
 h4 {
-    font-size: var(--fs-h4);
+	font-size: var(--fs-h4);
 }
 
 h5 {
-    font-size: var(--fs-h5);
+	font-size: var(--fs-h5);
 }
 
 h6 {
-    font-size: var(--fs-h6);
+	font-size: var(--fs-h6);
 }
 
 p {
-    font-size: var(--fs-p);
-    line-height: var(--line-height-p);
+	font-size: var(--fs-p);
+	line-height: var(--line-height-p);
 }
 
 :root {
-    --fs-p: 14px;
-    --line-height-p: 22px;
-    --fs-h1: 28px;
-    --fs-h2: 24px;
-    --fs-h3: 20px;
-    --fs-h4: 18px;
-    --fs-h5: 16px;
-    --fs-h6: 14px;
+	--fs-p: 14px;
+	--line-height-p: 22px;
+	--fs-h1: 32px;
+	--fs-h2: 28px;
+	--fs-h3: 24px;
+	--fs-h4: 20px;
+	--fs-h5: 18px;
+	--fs-h6: 16px;
 }
 
 /* tablets */
 @media (min-width: 768px) {
-    :root {
-        --fs-p: 15px;
-        --line-height-p: 24px;
-        --fs-h1: 32px;
-        --fs-h2: 28px;
-        --fs-h3: 24px;
-        --fs-h4: 20px;
-        --fs-h5: 18px;
-        --fs-h6: 16px;
-    }
+	:root {
+		--fs-p: 15px;
+		--line-height-p: 24px;
+		--fs-h1: 32px;
+		--fs-h2: 28px;
+		--fs-h3: 24px;
+		--fs-h4: 20px;
+		--fs-h5: 18px;
+		--fs-h6: 16px;
+	}
 }
 
 a {
-    color: var(--zyra-secondary);
-    text-decoration: none;
+	color: var(--zyra-secondary);
+	text-decoration: none;
 }
 
 /* small laptops */
 @media (min-width: 1024px) {
-    :root {
-        --fs-p: 16px;
-        --line-height-p: 28px;
-        --fs-h1: 40px;
-        --fs-h2: 32px;
-        --fs-h3: 22px;
-        --fs-h4: 20px;
-        --fs-h5: 18px;
-        --fs-h6: 16px;
-    }
+	:root {
+		--fs-p: 16px;
+		--line-height-p: 28px;
+		--fs-h1: 72px;
+		--fs-h2: 48px;
+		--fs-h3: 56px;
+		--fs-h4: 48px;
+		--fs-h5: 32px;
+		--fs-h6: 28px;
+	}
 }

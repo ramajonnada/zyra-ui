@@ -1,78 +1,62 @@
-<footer class="shell-footer">
-    <div class="shell-footer__inner">
-        <div class="shell-footer__brand">
-            <a class="shell-footer__logo" routerLink="/">
-                <span class="shell-footer__spark"></span>
-                <span>zyra<em>ui</em></span>
+<footer class="site-footer">
+    <div class="site-footer__inner">
+        <div class="site-footer__brand">
+            <a class="site-footer__logo" routerLink="/">
+                <img
+                    class="site-footer__logo-img"
+                    [src]="isDark() ? '/without-bg-white-line-zyra-ui.png' : '/without-bg-black-line-zyra-ui.png'"
+                    alt=""
+                    aria-hidden="true"
+                    width="36"
+                    height="36"
+                />
+                <span class="site-footer__wordmark">Zyra<span>UI</span></span>
             </a>
+
             <p>
-                A signal-first Angular UI library with modern tokens, standalone components, and a
-                dark-first design system built for production apps.
+                A premium, developer-first component library. Copy-paste what you need and keep the
+                same token language from the landing page to the product UI.
             </p>
-            <div class="shell-footer__badges">
-                <zyra-badge size="md">v1.3.24</zyra-badge>
-                <zyra-badge variant="info" size="md">Angular 21+</zyra-badge>
-                <zyra-badge variant="success" size="md">MIT</zyra-badge>
+
+            <div class="site-footer__socials">
+                @for (social of socials; track social.label) {
+                    <a
+                        [href]="social.href"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        [attr.aria-label]="social.label"
+                    >
+                        <fa-icon [icon]="social.icon" />
+                    </a>
+                }
             </div>
         </div>
 
-        <div class="shell-footer__columns">
-            <div class="shell-footer__col">
-                <h4>Documentation</h4>
-                <a routerLink="/" fragment="install">Getting Started</a>
-                <a routerLink="/docs" >Usage</a>
-                <!-- <a routerLink="/" fragment="features">Design Tokens</a> -->
-                <!-- <a routerLink="/" fragment="compare">Why Zyra</a> -->
-            </div>
-            <div class="shell-footer__col">
-                <h4>Components</h4>
-                <a routerLink="/components/button">Button</a>
-                <a routerLink="/components/input">Input / Form Field</a>
-                <a routerLink="/components/avatar">Avatar / Badge</a>
-                <a routerLink="/components/card">Card / Spinner / Toast</a>
-            </div>
-            <div class="shell-footer__col">
-                <h4>Project</h4>
-                <a
-                    href="https://github.com/ramajonnada/zyra-ui"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >GitHub</a
-                >
-                <a
-                    href="https://www.npmjs.com/package/zyra-ng-ui"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >npm</a
-                >
-                <a routerLink="/blog">Blog</a>
-                <a routerLink="/contact">Contact</a>
-            </div>
+        <div class="site-footer__columns">
+            @for (section of sections; track section.title) {
+                <section class="site-footer__column">
+                    <h2>{{ section.title }}</h2>
+
+                    @for (link of section.links; track link.label) {
+                        @if (link.route) {
+                            <a [routerLink]="link.route">{{ link.label }}</a>
+                        } @else if (link.href) {
+                            <a [href]="link.href" target="_blank" rel="noopener noreferrer">
+                                {{ link.label }}
+                            </a>
+                        }
+                    }
+                </section>
+            }
         </div>
     </div>
 
-    <div class="shell-footer__bottom">
-        <span>© 2026 Zyra UI. Built with Angular 21 and design tokens from zyra-ng-ui.</span>
-        <div class="shell-footer__socials">
-            <a
-                href="https://github.com/zyraui"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-            >
-                <fa-icon [icon]="icons.github" />
-            </a>
-            <a
-                href="https://www.npmjs.com/package/zyra-ng-ui"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="npm"
-            >
-                <fa-icon [icon]="icons.npm" />
-            </a>
-            <a href="mailto:zyraui.contact@gmail.com" target="_blank" aria-label="Email">
-                <fa-icon [icon]="icons.envelope" />
-            </a>
-        </div>
+    <div class="site-footer__bottom">
+        <span
+            >&copy; {{ year }} ZyraUI Labs. MIT licensed. Built with Angular and Zyra tokens.</span
+        >
+        <span class="site-footer__status">All systems operational</span>
     </div>
+
+    <div class="site-footer__watermark" aria-hidden="true">ZyraUI</div>
 </footer>

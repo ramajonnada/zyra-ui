@@ -23,7 +23,7 @@
             font-weight: 800;
             color: var(--zyr-text);
             margin: 0 0 6px;
-            letter-spacing: -0.02em;
+            letter-spacing: 0;
 
             span {
                 color: var(--zyr-accent);
@@ -313,7 +313,7 @@
         margin-bottom: 20px;
         padding-left: 12px;
         border-left: 3px solid var(--zyr-accent);
-        letter-spacing: -0.01em;
+        letter-spacing: 0;
     }
 }
 

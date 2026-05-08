@@ -5,13 +5,13 @@ import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 import { Title, Meta } from '@angular/platform-browser';
 import { BlogService, PostMeta } from '../../services/blog-service';
-import { ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
 import { timeout } from 'rxjs';
 
 @Component({
 	selector: 'app-blog-details',
 	standalone: true,
-	imports: [CommonModule, MarkdownModule, RouterLink, ZyraCard],
+	imports: [CommonModule, MarkdownModule, RouterLink, ZyraBadge, ZyraButton, ZyraCard],
 	templateUrl: './blog-details.html',
 	styleUrls: ['./blog-details.scss'],
 })

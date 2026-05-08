@@ -1,305 +1,284 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { FormsModule } from '@angular/forms';
-import {
-	ToastVariant,
-	ZyraAvatar,
-	ZyraBadge,
-	ZyraButton,
-	ZyraCard,
-	ZyraFormField,
-	ZyraInput,
-	ZyraSpinner,
-	ZyraToastService,
-} from 'zyra-ng-ui';
-import { appIcons } from '../../shared/fontawesome-icons';
+import { RouterLink } from '@angular/router';
+import { ZyraAvatar, ZyraBadge, ZyraButton, ZyraCard, ZyraInput, ZyraToastService } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
+import { appIcons } from '../../shared/fontawesome-icons';
 
-interface ProofStat {
-	value: string;
-	label: string;
-	icon: IconDefinition;
-	iconClass: string;
+type AvatarVariant = 'teal' | 'blue' | 'purple' | 'warm' | 'neutral';
+type FeatureTone = 'accent' | 'blue' | 'purple' | 'green' | 'warning' | 'neutral';
+type MetricTone = 'accent' | 'blue' | 'warning';
+type SystemTone = 'accent' | 'blue' | 'purple';
+
+interface IconCard {
+    title: string;
+    description: string;
+    icon: IconDefinition;
+    tone: FeatureTone;
 }
 
-interface FeatureCard {
-	title: string;
-	description: string;
-	icon: IconDefinition;
-	iconClass: string;
+interface MetricBar {
+    label: string;
+    value: string;
+    width: string;
+    tone: MetricTone;
+}
+
+interface SystemCard {
+    title: string;
+    description: string;
+    icon: IconDefinition;
+    tone: SystemTone;
+    points: readonly string[];
+}
+
+interface Testimonial {
+    quote: string;
+    author: string;
+    role: string;
+    avatarVariant?: AvatarVariant;
 }
 
 export interface InstallStep {
-	step: string;
-	title: string;
-	description: string;
-	code: string;
+    step: string;
+    title: string;
+    description: string;
+    code: string;
 }
 
-interface ComparisonRow {
-	feature: string;
-	zyra: string;
-	other: string;
-	otherTone: 'warning' | 'danger';
-}
+const COPY_RESET_DELAY = 2200;
+const WAITLIST_PLACEHOLDER = 'your@company.dev';
+const INSTALL_COMMAND = 'npm install zyra-ng-ui';
+const RATING_MARKS = [1, 2, 3, 4, 5] as const;
 
-interface OpenSourceStat {
-	title: string;
-	description: string;
-	icon: IconDefinition;
-	iconClass: string;
-}
+const HERO_META = [
+    'Open source',
+    'MIT Licensed',
+    'TypeScript ready',
+    'Angular 21+',
+] as const;
+
+const BRAND_LOGOS = [
+    'Resend',
+    'Cal.com',
+    'Plane',
+    'Vercel',
+    'Linear',
+    'Stripe',
+    'Framer',
+    'Supabase',
+    'Raycast',
+] as const;
+
+const DEVELOPER_CHECKS = [
+    'Framework-agnostic: Next.js, Remix, Vite, Astro',
+    '100% ownership – copy the code, tweak forever',
+    'CSS variables for effortless theming',
+    'A11y-first – tested with ARIA + VoiceOver',
+] as const;
+
+const SYSTEM_CARDS: readonly SystemCard[] = [
+    {
+        title: 'Typography from tokens',
+        description:
+            'Display, body, and mono families stay consistent because the website reads directly from the same library font roles.',
+        icon: appIcons.swatchbook,
+        tone: 'accent',
+        points: [
+            'Hero headlines use the display family',
+            'Body copy stays legible at every breakpoint',
+            'Meta labels and commands use the mono role',
+        ],
+    },
+    {
+        title: 'Semantic surfaces',
+        description:
+            'Backgrounds, borders, glows, and cards are layered from semantic tokens instead of hard-coded colors.',
+        icon: appIcons.palette,
+        tone: 'blue',
+        points: [
+            'Accent glow comes from shared brand tokens',
+            'Surface elevation matches component previews',
+            'Hover and focus states inherit the same system values',
+        ],
+    },
+    {
+        title: 'Responsive rhythm',
+        description:
+            'Spacing, grids, and content density scale down cleanly so the site still feels intentional on phones.',
+        icon: appIcons.cubes,
+        tone: 'purple',
+        points: [
+            'Hero shifts from two columns to one story flow',
+            'Feature cards collapse without awkward gaps',
+            'Navigation and CTAs stay accessible on touch devices',
+        ],
+    },
+] as const;
+
+const FEATURE_CARDS: readonly IconCard[] = [
+    {
+        title: 'Accessible',
+        description:
+            'WCAG 2.0 AA compliant. Keyboard nav, focus rings, and screen-reader labels baked in.',
+        icon: appIcons.universalAccess,
+        tone: 'accent',
+    },
+    {
+        title: 'Themeable',
+        description:
+            'CSS variables + token-defined colors. Re-skin the entire library with a single token file.',
+        icon: appIcons.palette,
+        tone: 'purple',
+    },
+    {
+        title: 'Framework-agnostic',
+        description:
+            'Works with Angular standalone, signals, SSR, and Vite. No bundler magic required.',
+        icon: appIcons.codeBranch,
+        tone: 'blue',
+    },
+    {
+        title: 'Tree-shakeable',
+        description: 'Tiny per-component footprint. Average button ships under 2kb gzip.',
+        icon: appIcons.boxOpen,
+        tone: 'green',
+    },
+    {
+        title: 'Dark-mode first',
+        description:
+            'Designed in the dark, perfected in the light. Auto-switch based on OS preference.',
+        icon: appIcons.moon,
+        tone: 'neutral',
+    },
+    {
+        title: 'Smooth animations',
+        description:
+            'Hand-crafted easings for hover, press, enter, and scroll. Never janky.',
+        icon: appIcons.waveSquare,
+        tone: 'warning',
+    },
+] as const;
+
+const METRICS: readonly MetricBar[] = [
+    { label: 'Build', value: '93%', width: '93%', tone: 'accent' },
+    { label: 'Coverage', value: '94%', width: '94%', tone: 'blue' },
+    { label: 'Bundle', value: '32.4kb', width: '72%', tone: 'warning' },
+] as const;
+
+const INSTALL_STEPS: readonly InstallStep[] = [
+    {
+        step: '01',
+        title: 'Set the font roles',
+        description:
+            'Load the library families once so every component and section reads the same typography tokens.',
+        code: '--zyr-font-display / --zyr-font-body / --zyr-font-mono',
+    },
+    {
+        step: '02',
+        title: 'Compose with surfaces',
+        description:
+            'Build the hero, stats, cards, and CTA from semantic background and border tokens instead of isolated custom colors.',
+        code: 'var(--zyr-bg-2) + var(--zyr-border) + var(--zyr-accent)',
+    },
+    {
+        step: '03',
+        title: 'Collapse gracefully',
+        description:
+            'Let the layout tighten through grid changes, not hidden content, so mobile still feels like the full experience.',
+        code: 'desktop -> tablet -> mobile',
+    },
+] as const;
+
+const TESTIMONIALS: readonly Testimonial[] = [
+    {
+        quote: "ZyraUI is the first library that doesn't make my designer cry. We rebuilt our entire dashboard in two days.",
+        author: 'Maya Chen',
+        role: 'Staff engineer, Superhuman',
+    },
+    {
+        quote: "The motion system alone is worth it. Every interaction feels considered. It's the Linear of UI libraries.",
+        author: 'Dev Patel',
+        role: 'Founding eng, @Orbital',
+        avatarVariant: 'blue',
+    },
+    {
+        quote: "Finally a dark theme I don't want to tear apart. The neon cyan is tasteful — it whispers instead of shouting.",
+        author: 'Ines Müller',
+        role: 'Design engineer, Lumen',
+        avatarVariant: 'purple',
+    },
+] as const;
 
 @Component({
-	selector: 'app-home',
-	imports: [
-		FormsModule,
-		ZyraAvatar,
-		ZyraBadge,
-		ZyraButton,
-		ZyraFormField,
-		ZyraInput,
-		FaIconComponent,
-	],
-	templateUrl: './home.html',
-	styleUrl: './home.scss',
+    selector: 'app-home',
+    imports: [RouterLink, FaIconComponent, ZyraAvatar, ZyraBadge, ZyraButton, ZyraCard, ZyraInput],
+    templateUrl: './home.html',
+    styleUrl: './home.scss',
 })
-export class Home {
-	private readonly toast = inject(ZyraToastService);
+export class Home implements OnInit, OnDestroy {
+    private readonly toast = inject(ZyraToastService);
+    private readonly seo = inject(SeoService);
+    private copyResetTimer?: ReturnType<typeof setTimeout>;
 
-	readonly installCommand = 'npm install zyra-ng-ui';
-	readonly copied = signal(false);
-	readonly icons = appIcons;
+    readonly installCommand = INSTALL_COMMAND;
+    readonly copied = signal(false);
+    readonly icons = appIcons;
+    readonly ratingMarks = RATING_MARKS;
+    readonly waitlistEmail = WAITLIST_PLACEHOLDER;
 
-	demoEmail = 'hello@zyraui.dev';
-	demoPassword = 'signals-only';
+    readonly heroMeta = HERO_META;
+    readonly brandLogos = BRAND_LOGOS;
+    readonly developerChecks = DEVELOPER_CHECKS;
+    readonly systemCards = SYSTEM_CARDS;
+    readonly featureCards = FEATURE_CARDS;
+    readonly metrics = METRICS;
+    readonly installSteps = INSTALL_STEPS;
+    readonly testimonials = TESTIMONIALS;
 
-	readonly heroMetrics = ['9 core components', '100% standalone', 'Angular 21+', 'MIT licensed'];
+    ngOnInit() {
+        this.seo.setSEO({
+            title: 'Zyra UI - Angular components with tokens and polished DX',
+            description:
+                'Build premium Angular interfaces with Zyra UI. Token-driven components, polished motion, and a dark-first design system.',
+            url: 'https://www.zyraui.dev/',
+        });
+    }
 
-	readonly proofStats: ProofStat[] = [
-		{
-			value: '9',
-			label: 'Core components',
-			icon: appIcons.cubes,
-			iconClass: 'proof-stat__icon proof-stat__icon--teal',
-		},
-		{
-			value: '100%',
-			label: 'Standalone-first',
-			icon: appIcons.bolt,
-			iconClass: 'proof-stat__icon proof-stat__icon--blue',
-		},
-		{
-			value: '3',
-			label: 'Accent token families',
-			icon: appIcons.palette,
-			iconClass: 'proof-stat__icon proof-stat__icon--purple',
-		},
-	];
+    ngOnDestroy() {
+        this.clearCopyResetTimer();
+    }
 
-	readonly features: FeatureCard[] = [
-		{
-			title: 'Signal-based architecture',
-			description:
-				'Components lean into Angular signals with modern input and output patterns so state stays granular and predictable.',
-			icon: appIcons.waveSquare,
-			iconClass: 'feature-card__icon feature-card__icon--teal',
-		},
-		{
-			title: 'Token-driven theming',
-			description:
-				'The full --zyr-* token system gives you dark and light foundations plus enough semantic color hooks for product-level polish.',
-			icon: appIcons.swatchbook,
-			iconClass: 'feature-card__icon feature-card__icon--blue',
-		},
-		{
-			title: 'Accessible by default',
-			description:
-				'Keyboard behavior, focus visibility, and sensible states are already built into the primitives instead of added later.',
-			icon: appIcons.universalAccess,
-			iconClass: 'feature-card__icon feature-card__icon--green',
-		},
-		{
-			title: 'Tree-shakeable package',
-			description:
-				'Import only what you use. The library stays lightweight and works naturally with standalone Angular applications.',
-			icon: appIcons.boxOpen,
-			iconClass: 'feature-card__icon feature-card__icon--purple',
-		},
-		{
-			title: 'CVA-ready forms',
-			description:
-				'Inputs and form fields are set up for real Angular forms, with a cleaner ControlValueAccessor story and easier validation states.',
-			icon: appIcons.puzzlePiece,
-			iconClass: 'feature-card__icon feature-card__icon--yellow',
-		},
-		{
-			title: 'Dark-first visual language',
-			description:
-				'The foundation already matches the library token set, so the marketing site can feel premium without drifting away from product UI.',
-			icon: appIcons.moon,
-			iconClass: 'feature-card__icon feature-card__icon--teal',
-		},
-	];
+    async copyInstallCommand() {
+        try {
+            if (typeof navigator === 'undefined' || !navigator.clipboard?.writeText) {
+                throw new Error('Clipboard API is unavailable');
+            }
 
-	readonly codeChecks = [
-		'Typed APIs designed for Angular-first DX',
-		'Standalone components with minimal setup',
-		'Theme provider integration via provideZyra()',
-		'CVA-friendly form primitives',
-		'Signal-based state patterns throughout',
-	];
+            await navigator.clipboard.writeText(this.installCommand);
+            this.copied.set(true);
+            this.toast.success('Install command copied', {
+                description: this.installCommand,
+                duration: COPY_RESET_DELAY,
+            });
 
-	readonly installSteps: InstallStep[] = [
-		{
-			step: '1',
-			title: 'Install the package',
-			description:
-				'Add Zyra NG UI to your Angular 21+ workspace with your package manager of choice.',
-			code: '# npm\nnpm install zyra-ng-ui\n\n# pnpm\npnpm add zyra-ng-ui',
-		},
-		{
-			step: '2',
-			title: 'Register the provider',
-			description:
-				'Enable the theme service once at bootstrap so tokens and runtime theme switching are ready immediately.',
-			code: "import { provideZyra } from 'zyra-ng-ui';\n\nproviders: [\n  provideZyra({ theme: 'dark' })\n]",
-		},
-		{
-			step: '3',
-			title: 'Start building',
-			description:
-				'Pull in any standalone component and use it directly in your feature templates.',
-			code: "import { ZyraButton } from 'zyra-ng-ui';\n\n@Component({\n  imports: [ZyraButton],\n})",
-		},
-	];
+            this.clearCopyResetTimer();
+            this.copyResetTimer = setTimeout(() => this.copied.set(false), COPY_RESET_DELAY);
+        } catch {
+            this.toast.info('Copy is unavailable in this browser', {
+                description: this.installCommand,
+                duration: 2600,
+            });
+        }
+    }
 
-	readonly comparisonRows: ComparisonRow[] = [
-		{
-			feature: 'Signal-native APIs',
-			zyra: 'Modern component state patterns already baked in',
-			other: 'Older decorator-era APIs are still common',
-			otherTone: 'warning',
-		},
-		{
-			feature: 'Standalone component setup',
-			zyra: 'Designed around standalone imports from the start',
-			other: 'Mixed patterns often need extra migration work',
-			otherTone: 'warning',
-		},
-		{
-			feature: 'Design token coverage',
-			zyra: 'Shared CSS tokens keep app UI and marketing UI aligned',
-			other: 'Token depth can vary or require custom layering',
-			otherTone: 'danger',
-		},
-		{
-			feature: 'Form-field ergonomics',
-			zyra: 'CVA-ready primitives fit normal Angular form flows',
-			other: 'Form support can be heavier or less cohesive',
-			otherTone: 'warning',
-		},
-		{
-			feature: 'Dark-first polish',
-			zyra: 'The library visual language already starts from dark mode',
-			other: 'Many systems still treat dark mode as a follow-up pass',
-			otherTone: 'warning',
-		},
-	];
+    private clearCopyResetTimer() {
+        if (!this.copyResetTimer) {
+            return;
+        }
 
-	readonly openSourceStats: OpenSourceStat[] = [
-		{
-			title: 'MIT licensed',
-			description: 'Friendly for commercial and personal work.',
-			icon: appIcons.scaleBalanced,
-			iconClass: 'oss-stat__icon oss-stat__icon--teal',
-		},
-		{
-			title: 'Active development',
-			description: 'The component set is evolving with the docs site.',
-			icon: appIcons.hammer,
-			iconClass: 'oss-stat__icon oss-stat__icon--blue',
-		},
-		{
-			title: 'Token aligned',
-			description: 'Website polish and library primitives share the same foundation.',
-			icon: appIcons.droplet,
-			iconClass: 'oss-stat__icon oss-stat__icon--purple',
-		},
-		{
-			title: 'Built for Angular 21+',
-			description: 'Optimized for current Angular app architecture.',
-			icon: appIcons.codeBranch,
-			iconClass: 'oss-stat__icon oss-stat__icon--green',
-		},
-	];
-
-	constructor() { }
-
-	scrollToSection(id: string) {
-		if (typeof document === 'undefined') return;
-
-		document.getElementById(id)?.scrollIntoView({
-			behavior: 'smooth',
-			block: 'start',
-		});
-	}
-
-	async copyInstallCommand() {
-		try {
-			if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
-				await navigator.clipboard.writeText(this.installCommand);
-			}
-
-			this.copied.set(true);
-			this.toast.success('Install command copied', {
-				description: this.installCommand,
-				duration: 2200,
-			});
-
-			setTimeout(() => this.copied.set(false), 2200);
-		} catch {
-			this.toast.info('Copy is unavailable in this browser', {
-				description: this.installCommand,
-				duration: 2600,
-			});
-		}
-	}
-
-	showToast(variant: ToastVariant) {
-		switch (variant) {
-			case 'success':
-				this.toast.success('Saved successfully', {
-					description: 'Zyra toast styles are active in the live page.',
-				});
-				break;
-			case 'warning':
-				this.toast.warning('Heads up', {
-					description: 'Theme and token changes can be previewed instantly.',
-				});
-				break;
-			case 'error':
-				this.toast.error('Upload failed', {
-					description: 'Demo toast component styles are wired and ready.',
-				});
-				break;
-			case 'info':
-			default:
-				this.toast.info('New release available', {
-					description: 'Version 1.3.24 is ready to install.',
-				});
-		}
-	}
-	private seo = inject(SeoService);
-
-	ngOnInit() {
-		this.seo.setSEO({
-			title: 'Zyra UI – Modern Angular UI Library with Signals',
-			description: 'Build fast Angular apps with Zyra UI. Components, signals, and modern architecture.',
-			url: 'https://www.zyraui.dev/'
-		});
-	}
-
-
+        clearTimeout(this.copyResetTimer);
+        this.copyResetTimer = undefined;
+    }
 }
