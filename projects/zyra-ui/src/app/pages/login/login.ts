@@ -22,6 +22,7 @@ export class Login {
             title: 'Sign in - Zyra UI',
             description: 'Sign in to your Zyra UI account.',
             url: 'https://www.zyraui.dev/login',
+            noindex: true,
         });
     }
 
