@@ -1,8 +1,7 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { RouterLink } from '@angular/router';
-import { ZyraThemeService } from 'zyra-ng-ui';
 import { appIcons } from '../../shared/fontawesome-icons';
 
 interface FooterLink {
@@ -29,8 +28,6 @@ interface FooterSocial {
     styleUrl: './footer.scss',
 })
 export class Footer {
-    private readonly themeService = inject(ZyraThemeService);
-    readonly isDark = computed(() => this.themeService.isDark());
     readonly year = new Date().getFullYear();
     readonly sections: readonly FooterSection[] = [
         {
