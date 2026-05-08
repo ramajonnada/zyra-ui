@@ -106,7 +106,6 @@
 
 .hero-pill,
 .install-action,
-.command-card,
 .surface-input,
 .toast-mini,
 .step-card,
@@ -408,9 +407,6 @@
 	grid-column: span 4;
 }
 
-.surface--command {
-	grid-column: span 8;
-}
 
 .surface__label {
 	display: inline-block;
@@ -432,41 +428,7 @@
 	gap: 10px;
 }
 
-.command-card {
-	padding: 10px;
-	border-radius: 8px;
-	background: var(--zyr-bg);
-}
 
-.command-card__input,
-.command-card__item {
-	display: grid;
-	gap: 6px;
-}
-
-.command-card__input {
-	grid-template-columns: auto 1fr auto;
-	align-items: center;
-	min-height: 32px;
-	padding: 0 12px;
-	border: 1px solid var(--landing-border);
-	border-radius: 7px;
-	color: var(--zyr-text-muted);
-}
-
-.command-card__input kbd {
-	border: 1px solid var(--landing-border);
-	border-radius: var(--zyr-radius-full);
-	background: transparent;
-	color: var(--zyr-text-dim);
-}
-
-.command-card__input kbd {
-	padding: 3px 8px;
-	font-size: 0.72rem;
-}
-
-.command-card__results,
 .metric-list,
 .system-grid,
 .testimonial-grid,
@@ -476,23 +438,10 @@
 	display: grid;
 }
 
-.command-card__results {
-	gap: 4px;
-	margin-top: 8px;
-}
-
-.command-card__item {
-	padding: 7px 12px;
-	border-radius: 7px;
-	color: var(--zyr-text-muted);
-}
-
-.command-card__item span,
 .toast-mini strong {
 	color: var(--zyr-text);
 }
 
-.command-card__item small,
 .surface-input,
 .step-card code,
 .toast-mini p {
@@ -501,9 +450,6 @@
 	font-size: 0.72rem;
 }
 
-.command-card__item.is-active {
-	background: var(--landing-soft);
-}
 
 .toggle-demo {
 	align-items: center;
@@ -919,14 +865,13 @@ pre {
 }
 
 // ── Mosaic grid spans ─────────────────────────────────────────
-// Row 1: btn(3) + command(9) = 12
-// Row 2: switch(3) + badge(3) + progress(3) + toast(3) = 12
-.mosaic-btn      { grid-column: span 4; }
-.mosaic-command  { grid-column: span 8; }
-.mosaic-switch   { grid-column: span 3; }
-.mosaic-badge    { grid-column: span 3; }
-.mosaic-progress { grid-column: span 3; }
-.mosaic-toast    { grid-column: span 3; }
+// Row 1: btn(6) + switch(6) = 12
+// Row 2: badge(4) + progress(4) + toast(4) = 12
+.mosaic-btn      { grid-column: span 6; }
+.mosaic-switch   { grid-column: span 6; }
+.mosaic-badge    { grid-column: span 4; }
+.mosaic-progress { grid-column: span 4; }
+.mosaic-toast    { grid-column: span 4; }
 
 @media (max-width: 1080px) {
 	.landing-shell--split {
@@ -949,14 +894,13 @@ pre {
 	}
 
 	.mosaic-btn,
-	.mosaic-switch,
-	.mosaic-badge,
-	.mosaic-progress,
-	.mosaic-toast {
+	.mosaic-switch {
 		grid-column: span 6;
 	}
 
-	.mosaic-command {
+	.mosaic-badge,
+	.mosaic-progress,
+	.mosaic-toast {
 		grid-column: span 6;
 	}
 
@@ -1017,13 +961,13 @@ pre {
 	}
 
 	.mosaic-btn,
-	.mosaic-command,
 	.mosaic-switch,
 	.mosaic-badge,
 	.mosaic-progress,
 	.mosaic-toast {
 		grid-column: span 12;
 	}
+
 
 	.install-action {
 		width: 100%;
