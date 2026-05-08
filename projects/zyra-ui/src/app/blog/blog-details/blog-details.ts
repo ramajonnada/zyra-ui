@@ -1,21 +1,21 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
-import { Title, Meta } from '@angular/platform-browser';
 import { BlogService, PostMeta } from '../../services/blog-service';
-import { ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
+import { SeoService } from '../../../seo/seo.service';
 import { timeout } from 'rxjs';
 
 @Component({
 	selector: 'app-blog-details',
 	standalone: true,
-	imports: [CommonModule, MarkdownModule, RouterLink, ZyraCard],
+	imports: [CommonModule, MarkdownModule, RouterLink, ZyraBadge, ZyraButton, ZyraCard],
 	templateUrl: './blog-details.html',
 	styleUrls: ['./blog-details.scss'],
 })
-export class BlogDetails implements OnInit {
+export class BlogDetails implements OnDestroy {
 	markdownContent = signal('');
 	slug = signal('');
 	postTitle = signal('');
@@ -29,15 +29,18 @@ export class BlogDetails implements OnInit {
 
 	private route = inject(ActivatedRoute);
 	private blogService = inject(BlogService);
-	private title = inject(Title);
-	private meta = inject(Meta);
+	private seo = inject(SeoService);
 	private document = inject(DOCUMENT);
 
-	ngOnInit() {
+	constructor() {
 		this.route.paramMap.subscribe((params) => {
 			this.slug.set(params.get('slug')!);
 			this.loadPost();
 		});
+	}
+
+	ngOnDestroy() {
+		this.seo.removeJsonLd('blog-post-jsonld');
 	}
 
 	loadPost() {
@@ -56,10 +59,7 @@ export class BlogDetails implements OnInit {
 			.subscribe({
 				next: (md) => {
 					const titleFromFrontMatter = this.extractFrontMatterValue(md, 'title');
-					const descriptionFromFrontMatter = this.extractFrontMatterValue(
-						md,
-						'description',
-					);
+					const descriptionFromFrontMatter = this.extractFrontMatterValue(md, 'description');
 					const dateFromFrontMatter = this.extractFrontMatterValue(md, 'date');
 
 					this.postTitle.set(titleFromFrontMatter || this.slug());
@@ -68,10 +68,9 @@ export class BlogDetails implements OnInit {
 					);
 					this.postDate.set(dateFromFrontMatter);
 					this.markdownContent.set(this.stripIntroBlocks(this.stripFrontMatter(md)));
-
-					this.title.setTitle(`${this.postTitle()} | Zyra UI`);
-					this.meta.updateTag({ name: 'description', content: this.postDescription() });
 					this.loading.set(false);
+
+					this.updatePageSEO();
 				},
 				error: (err) => {
 					console.error('Error loading post', this.slug(), err);
@@ -84,10 +83,7 @@ export class BlogDetails implements OnInit {
 
 		this.blogService.getAllPosts().subscribe((posts) => {
 			const currentPost = posts.find((post) => post.slug === this.slug());
-			if (!currentPost) {
-				return;
-			}
-
+			if (!currentPost) return;
 			this.applyPostMeta(currentPost);
 			this.updatePageSEO();
 		});
@@ -102,53 +98,61 @@ export class BlogDetails implements OnInit {
 	}
 
 	private applyPostMeta(post: PostMeta): void {
-		if (!this.postTitle()) {
-			this.postTitle.set(post.title.trim());
-		}
-
-		if (!this.postDescription()) {
-			this.postDescription.set(post.description.trim());
-		}
-
-		if (!this.postDate()) {
-			this.postDate.set(post.date.trim());
-		}
+		if (!this.postTitle()) this.postTitle.set(post.title.trim());
+		if (!this.postDescription()) this.postDescription.set(post.description.trim());
+		if (!this.postDate()) this.postDate.set(post.date.trim());
 
 		this.postReadTime.set(post.readTime.trim());
 		this.postCategory.set(this.toList(post.category)[0] ?? 'Angular');
 		this.postTags.set(this.toList(post.tags).slice(0, 6));
 	}
 
-	// After applyPostMeta() runs, add this full SEO update:
 	private updatePageSEO(): void {
 		const url = `https://www.zyraui.dev/blog/${this.slug()}`;
 		const fullTitle = `${this.postTitle()} | Zyra UI`;
 
-		this.title.setTitle(fullTitle);
-		this.meta.updateTag({ name: 'description', content: this.postDescription() });
+		this.seo.setSEO({
+			title: fullTitle,
+			description: this.postDescription(),
+			url,
+			type: 'article',
+			publishedTime: this.postDate() || undefined,
+			tags: this.postTags(),
+		});
 
-		// Open Graph
-		this.meta.updateTag({ property: 'og:title', content: fullTitle });
-		this.meta.updateTag({ property: 'og:description', content: this.postDescription() });
-		this.meta.updateTag({ property: 'og:url', content: url });
-		this.meta.updateTag({ property: 'og:type', content: 'article' });
-
-		// Canonical
-		let canonical = this.document.querySelector('link[rel="canonical"]');
-		if (!canonical) {
-			canonical = this.document.createElement('link');
-			canonical.setAttribute('rel', 'canonical');
-			this.document.head.appendChild(canonical);
-		}
-		canonical.setAttribute('href', url);
+		this.seo.injectJsonLd('blog-post-jsonld', {
+			'@context': 'https://schema.org',
+			'@type': 'BlogPosting',
+			headline: this.postTitle(),
+			description: this.postDescription(),
+			url,
+			datePublished: this.postDate() || undefined,
+			author: {
+				'@type': 'Person',
+				name: 'Rama Jonnada',
+				url: 'https://www.zyraui.dev/about',
+			},
+			publisher: {
+				'@type': 'Organization',
+				name: 'Zyra UI',
+				url: 'https://www.zyraui.dev/',
+				logo: {
+					'@type': 'ImageObject',
+					url: 'https://www.zyraui.dev/final-icon248.png',
+				},
+			},
+			mainEntityOfPage: {
+				'@type': 'WebPage',
+				'@id': url,
+			},
+			keywords: this.postTags().join(', '),
+			articleSection: this.postCategory(),
+		});
 	}
 
 	private extractFrontMatterValue(md: string, key: string): string {
 		const match = md.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
-		if (!match) {
-			return '';
-		}
-
+		if (!match) return '';
 		return match[1].trim().replace(/^['"]|['"]$/g, '');
 	}
 
@@ -161,10 +165,7 @@ export class BlogDetails implements OnInit {
 	}
 
 	private toList(value: string | string[] | undefined): string[] {
-		if (!value) {
-			return [];
-		}
-
+		if (!value) return [];
 		const raw = Array.isArray(value) ? value : [value];
 		return raw.map((item) => item.trim()).filter(Boolean);
 	}

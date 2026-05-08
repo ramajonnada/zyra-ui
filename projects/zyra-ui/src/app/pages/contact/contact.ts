@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { ZyraBadge, ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { appIcons } from '../../shared/fontawesome-icons';
 
@@ -14,12 +15,13 @@ interface ContactMethod {
 
 @Component({
     selector: 'app-contact',
-    imports: [FaIconComponent, ZyraBadge, ZyraCard],
+    imports: [FaIconComponent, ZyraBadge, ZyraButton, ZyraCard],
     templateUrl: './contact.html',
     styleUrl: './contact.scss',
 })
 export class Contact implements OnInit {
     private readonly seo = inject(SeoService);
+    private readonly document = inject(DOCUMENT);
 
     readonly contactMethods: readonly ContactMethod[] = [
         {
@@ -49,5 +51,9 @@ export class Contact implements OnInit {
                 'Contact the Zyra UI team for component library questions, documentation feedback, collaboration, or support.',
             url: 'https://www.zyraui.dev/contact',
         });
+    }
+
+    openEmail(): void {
+        this.document.location.href = 'mailto:zyraui.contact@gmail.com';
     }
 }

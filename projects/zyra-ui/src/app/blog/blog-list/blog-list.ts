@@ -8,13 +8,13 @@ import {
     signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { BlogService, PostMeta } from '../../services/blog-service';
 
 @Component({
     selector: 'app-blog-list',
-    imports: [ZyraCard, CommonModule, RouterLink],
+    imports: [ZyraBadge, ZyraCard, CommonModule, RouterLink],
     templateUrl: './blog-list.html',
     styleUrl: './blog-list.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,

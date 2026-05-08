@@ -1,1 +1,54 @@
-<p>login works!</p>
+<main class="login-page">
+    <div class="login-shell">
+        <div class="login-header">
+            <a class="login-logo" routerLink="/">
+                <span class="login-logo__mark"></span>
+                <span class="login-logo__text">Zyra<span>UI</span></span>
+            </a>
+            <zyra-badge size="sm">Beta</zyra-badge>
+        </div>
+
+        <zyra-card class="login-card" variant="outlined" padding="lg">
+            <div class="login-card__head">
+                <h1>Welcome back</h1>
+                <p>Sign in to your Zyra UI account</p>
+            </div>
+
+            <form class="login-form" (ngSubmit)="onSubmit()" novalidate>
+                <zyra-form-field label="Email address">
+                    <zyra-input
+                        type="email"
+                        placeholder="you@company.dev"
+                        [ngModel]="email()"
+                        (valueChange)="email.set($event)"
+                        name="email"
+                    ></zyra-input>
+                </zyra-form-field>
+
+                <zyra-form-field label="Password">
+                    <zyra-input
+                        type="password"
+                        placeholder="••••••••"
+                        [ngModel]="password()"
+                        (valueChange)="password.set($event)"
+                        name="password"
+                    ></zyra-input>
+                </zyra-form-field>
+
+                <zyra-button
+                    type="submit"
+                    size="lg"
+                    [fullWidth]="true"
+                    [loading]="loading()"
+                >
+                    Sign in
+                </zyra-button>
+            </form>
+
+            <p class="login-card__footer">
+                Don't have an account?
+                <a routerLink="/components">Explore components</a>
+            </p>
+        </zyra-card>
+    </div>
+</main>

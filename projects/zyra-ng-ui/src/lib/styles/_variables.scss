@@ -4,25 +4,28 @@
 // Theme-dependent tokens live in _dark-theme.scss / _light-theme.scss
 // ============================================================
 
-// Brand palette
-$zyr-cyan-50: #e0fcfd;
-$zyr-cyan-100: #b3f8fb;
-$zyr-cyan-200: #80f3f8;
-$zyr-cyan-300: #4df0f6;
-$zyr-cyan-400: #26edf4;
-$zyr-cyan-500: #00eaff;
-$zyr-cyan-600: #00d2e6;
-$zyr-cyan-700: #0099a8;
-$zyr-cyan-800: #00737e;
-$zyr-cyan-900: #004c54;
-$zyr-cyan-950: #00262a;
+// ── Brand Palette (Raw) ──────────────────────────────────────
+// These are the raw color values. Use semantic tokens in components.
 
-$zyr-teal-100: $zyr-cyan-100;
-$zyr-teal-200: $zyr-cyan-200;
-$zyr-teal-300: $zyr-cyan-300;
-$zyr-teal-400: $zyr-cyan-500;
-$zyr-teal-500: $zyr-cyan-600;
-$zyr-teal-600: $zyr-cyan-700;
+// ── Neutral Palette ──────────────────────────────────────────
+$zyr-neutral-50:  #f8fafc;
+$zyr-neutral-100: #f1f5f9;
+$zyr-neutral-200: #e2e8f0;
+$zyr-neutral-300: #cbd5e1;
+$zyr-neutral-400: #94a3b8;
+$zyr-neutral-500: #64748b;
+$zyr-neutral-600: #475569;
+$zyr-neutral-700: #334155;
+$zyr-neutral-800: #1e293b;
+$zyr-neutral-900: #0f172a;
+$zyr-neutral-950: #080d18;
+
+$zyr-teal-100: #e6faf5;
+$zyr-teal-200: #b3f0e0;
+$zyr-teal-300: #7fe5cb;
+$zyr-teal-400: #63d2b4; // ← primary accent
+$zyr-teal-500: #3fbf9e;
+$zyr-teal-600: #2a9e82;
 
 $zyr-blue-100: #e6f4fe;
 $zyr-blue-200: #b3d9fb;

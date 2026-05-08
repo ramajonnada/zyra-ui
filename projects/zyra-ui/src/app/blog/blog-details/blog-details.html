@@ -1,11 +1,11 @@
 <div class="article-page">
     <section class="article-hero">
-        <a routerLink="/blog" class="back-link">
-            <span aria-hidden="true">&larr;</span>
-            <span>Back to blog</span>
-        </a>
+        <zyra-button variant="ghost" size="sm" routerLink="/blog">
+            <span slot="prefix" aria-hidden="true">&larr;</span>
+            Back to blog
+        </zyra-button>
         <div class="article-meta-row">
-            <span class="article-chip">{{ categoryLabel() }}</span>
+            <zyra-badge size="md">{{ categoryLabel() }}</zyra-badge>
             @if (postDate()) {
                 <span class="article-meta">{{ postDate() | date: 'MMM dd, yyyy' }}</span>
             }
@@ -58,7 +58,7 @@
                     <h5>Topics</h5>
                     <div class="tag-list">
                         @for (tag of postTags(); track tag) {
-                            <span class="tag">{{ tag }}</span>
+                            <zyra-badge variant="default" size="sm">{{ tag }}</zyra-badge>
                         }
                     </div>
                 }

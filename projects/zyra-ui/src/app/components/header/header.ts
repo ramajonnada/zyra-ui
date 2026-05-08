@@ -37,8 +37,8 @@ export class Header {
 
     readonly toggleSidebar = output<void>();
     readonly icons = appIcons;
-    readonly version = 'v1.3.24';
-    readonly githubStars = '11.3k';
+    readonly version = 'v1.4.26';
+    readonly githubStars = '';
     readonly isScrolled = signal(false);
     readonly mobileNavOpen = signal(false);
     readonly navLinks: readonly HeaderLink[] = [

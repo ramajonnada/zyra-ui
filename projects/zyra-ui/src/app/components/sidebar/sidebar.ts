@@ -23,6 +23,7 @@ export class Sidebar {
     readonly isOpen = input<boolean>(true);
     readonly toggleSidebar = output<void>();
     readonly overlayVisible = computed(() => this.isOpen());
+    readonly icons = appIcons;
 
     readonly navItems: readonly NavItem[] = [
         { label: 'Docs', icon: appIcons.folder, route: '/docs' },

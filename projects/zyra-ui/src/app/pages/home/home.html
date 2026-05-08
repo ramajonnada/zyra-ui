@@ -10,7 +10,7 @@
                     <span class="hero-pill__divider"></span>
                     <span class="hero-pill__item">
                         <span class="hero-pill__spark">+</span>
-                        <span>74 components</span>
+                        <span>9 components</span>
                     </span>
                 </div>
             </div>
@@ -43,57 +43,48 @@
         </div>
     </div>
 
-    <!-- <div class="brand-rail">
-        <div class="brand-rail__inner">
-            <span class="brand-rail__label">Shipped by teams at</span>
-
-            <div class="brand-rail__logos">
-                @for (logo of brandLogos; track logo) {
-                    <span>{{ logo }}</span>
-                }
-            </div>
-        </div>
-    </div> -->
 </section>
 
 <section id="components" class="landing-section">
     <div class="landing-shell">
         <div class="section-heading">
-            <p class="section-heading__eyebrow">Components</p>
+            <p class="section-heading__eyebrow">/ Components</p>
             <h2>Built from primitives polished like products.</h2>
             <p>
-                Every component is accessible, themeable, and production-friendly. The examples
-                below use the same token language as the rest of the system.
+                Every component is accessible, themeable and obsessively crafted. Hover anything
+                below— yes, it reacts.
             </p>
         </div>
 
         <div class="mosaic">
-            <zyra-card>
-                <span class="surface__label">Buttons</span>
+            <zyra-card class="mosaic-btn">
+                <span class="surface__label">Button</span>
 
                 <div class="button-row">
-                    <zyra-button size="sm">Ship it</zyra-button>
+                    <zyra-button variant="primary" size="sm">Primary</zyra-button>
+                    <zyra-button variant="secondary" size="sm">Secondary</zyra-button>
                     <zyra-button variant="outline" size="sm">Outline</zyra-button>
                     <zyra-button variant="ghost" size="sm">Ghost</zyra-button>
+                    <zyra-button variant="danger" size="sm">Danger</zyra-button>
                 </div>
 
-                <p class="surface__foot">3 variants / 4 sizes</p>
+                <p class="surface__foot">5 variants / 4 sizes</p>
             </zyra-card>
 
-            <!-- <zyra-card class="surface surface--command">
+            <zyra-card class="mosaic-command">
                 <span class="surface__label" id="command-palette-label">Command palette</span>
 
                 <div class="command-card" role="group" aria-labelledby="command-palette-label">
                     <div class="command-card__input">
                         <fa-icon [icon]="icons.magnifyingGlass" aria-hidden="true" />
                         <span>Search components, docs, hooks...</span>
-                        <kbd>Ctrl K</kbd>
+                        <kbd>&#8984;K</kbd>
                     </div>
 
                     <div class="command-card__results">
                         <div class="command-card__item is-active">
                             <span>Install component</span>
-                            <small>npm zyra add button</small>
+                            <small>npx zyra add button</small>
                         </div>
                         <div class="command-card__item">
                             <span>Open documentation</span>
@@ -101,19 +92,19 @@
                         </div>
                         <div class="command-card__item">
                             <span>Subscribe to changelog</span>
-                            <small>@newsletter</small>
+                            <small>&#64;newsletter</small>
                         </div>
                     </div>
                 </div>
-            </zyra-card> -->
+            </zyra-card>
 
-            <zyra-card >
+            <zyra-card class="mosaic-switch">
                 <span class="surface__label">Switch</span>
 
                 <div class="toggle-demo">
                     <div>
                         <strong>Neon mode</strong>
-                        <p>Bridge product and brand glow</p>
+                        <p>Brighter accents, louder glow</p>
                     </div>
 
                     <button class="toggle-demo__pill" type="button" aria-label="Enable neon mode">
@@ -121,23 +112,23 @@
                     </button>
                 </div>
 
-                <p class="surface__foot">Enabled</p>
+                <p class="surface__foot">&#8226; Active</p>
             </zyra-card>
 
-            <zyra-card >
-                <span class="surface__label">Labels</span>
+            <zyra-card class="mosaic-badge">
+                <span class="surface__label">Badge</span>
 
                 <div class="badge-row">
                     <zyra-badge size="md">Live</zyra-badge>
-                    <zyra-badge variant="default" size="md">v1.0</zyra-badge>
+                    <zyra-badge variant="default" size="md">v1.0.0</zyra-badge>
                     <zyra-badge variant="info" size="md">TypeScript</zyra-badge>
                     <zyra-badge variant="success" size="md">Passed</zyra-badge>
                 </div>
 
-                <div class="surface-input">your@email.dev</div>
+                <div class="surface-input">your&#64;email.dev</div>
             </zyra-card>
 
-            <zyra-card >
+            <zyra-card class="mosaic-progress">
                 <span class="surface__label">Progress</span>
 
                 <div class="metric-list">
@@ -161,7 +152,7 @@
                 </div>
             </zyra-card>
 
-            <zyra-card >
+            <zyra-card class="mosaic-toast">
                 <span class="surface__label">Toast</span>
 
                 <div class="toast-mini">
@@ -171,50 +162,12 @@
 
                     <div>
                         <strong>Deployed to production</strong>
-                        <p>zyra-ui.vercel.app</p>
+                        <p>zyra-ui.preview.vercel.app</p>
                     </div>
 
-                    <button type="button" aria-label="Undo deployment">Undo</button>
+                    <zyra-button variant="ghost" size="sm">Undo</zyra-button>
                 </div>
             </zyra-card>
-        </div>
-    </div>
-</section>
-
-<section id="system" class="landing-section">
-    <div class="landing-shell">
-        <div class="section-header">
-            <div>
-                <p class="section-heading__eyebrow">Design System</p>
-                <h2>Use the library as the website foundation, not just the docs demo.</h2>
-            </div>
-
-            <p class="section-header__note">
-                The website should feel like a real brand surface built from your component system,
-                with the same fonts, spacing, motion, and semantic surfaces everywhere.
-            </p>
-        </div>
-
-        <div class="system-grid">
-            @for (card of systemCards; track card.title) {
-                <zyra-card class="system-card" variant="outlined" padding="lg">
-                    <div [class]="'system-card__icon system-card__icon--' + card.tone">
-                        <fa-icon [icon]="card.icon" aria-hidden="true" />
-                    </div>
-
-                    <h3>{{ card.title }}</h3>
-                    <p>{{ card.description }}</p>
-
-                    <div class="system-card__list">
-                        @for (point of card.points; track point) {
-                            <div class="system-card__item">
-                                <fa-icon [icon]="icons.check" aria-hidden="true" />
-                                <span>{{ point }}</span>
-                            </div>
-                        }
-                    </div>
-                </zyra-card>
-            }
         </div>
     </div>
 </section>
@@ -222,27 +175,13 @@
 <section id="dx" class="landing-section landing-section--split">
     <div class="landing-shell landing-shell--split">
         <div class="section-copy">
-            <p class="section-heading__eyebrow">Developer Experience</p>
-            <h2>Zero config. TypeScript native. Website ready.</h2>
+            <p class="section-heading__eyebrow">/ Developer Experience</p>
+            <h2>Zero config. TypeScript native.</h2>
             <p>
-                Import what you need. Tree-shake the rest. ZyraUI is built for modern Angular stacks
-                with tokens, standalone components, and honest DX that can scale from a landing page
-                to a product UI.
+                Import what you need. Tree-shake the rest. ZyraUI is built on Angular standalone
+                components, styled with CSS variables, and ships with fully typed, zero-runtime
+                primitives.
             </p>
-
-            <div class="step-list">
-                @for (step of installSteps; track step.step) {
-                    <article class="step-card">
-                        <span class="step-card__index">{{ step.step }}</span>
-
-                        <div>
-                            <strong>{{ step.title }}</strong>
-                            <p>{{ step.description }}</p>
-                            <code>{{ step.code }}</code>
-                        </div>
-                    </article>
-                }
-            </div>
 
             <div class="check-list">
                 @for (item of developerChecks; track item) {
@@ -263,7 +202,7 @@
                 </div>
 
                 <span>signup-card.tsx</span>
-                <button type="button">Copy</button>
+                <zyra-button variant="ghost" size="sm">Copy</zyra-button>
             </div>
 
             <div class="editor__body">
@@ -271,9 +210,14 @@
 
 <span class="kw">export</span> <span class="kw">function</span> <span class="fn">SignupCard</span>() &#123;
   <span class="kw">return</span> (
-    &lt;<span class="ty">Card</span> <span class="at">className</span>=<span class="str">"p-6"</span>&gt;
+    &lt;<span class="ty">Card</span> <span class="at">className</span>=<span class="str">"p-6 text-xl font-display"</span>&gt;
+      &lt;<span class="ty">h2</span> <span class="at">className</span>=<span class="str">"text-xl font-display"</span>&gt;
+        Join the waitlist
+      &lt;/<span class="ty">h2</span>&gt;
       &lt;<span class="ty">Input</span> <span class="at">placeholder</span>=<span class="str">"you@company.dev"</span> /&gt;
-      &lt;<span class="ty">Button</span>&gt;<span class="str">Reserve your spot</span>&lt;/<span class="ty">Button</span>&gt;
+      &lt;<span class="ty">Button</span> <span class="at">variant</span>=<span class="str">"ghost"</span>&gt;
+        Reserve your spot &#10230;
+      &lt;/<span class="ty">Button</span>&gt;
     &lt;/<span class="ty">Card</span>&gt;
   )
 &#125;</pre>
@@ -286,12 +230,12 @@
     <div class="landing-shell">
         <div class="section-header">
             <div>
-                <p class="section-heading__eyebrow">Why ZyraUI</p>
+                <p class="section-heading__eyebrow">/ Why ZyraUI</p>
                 <h2>Everything you'd build. None of the boilerplate.</h2>
             </div>
 
             <p class="section-header__note">
-                Deliberately crafted primitives so you can focus on what actually makes your product
+                Obsessively crafted primitives so you can focus on what actually makes your product
                 memorable.
             </p>
         </div>
@@ -310,57 +254,25 @@
     </div>
 </section>
 
-<section id="stories" class="landing-section">
-    <div class="landing-shell">
-        <div class="section-heading section-heading--compact">
-            <p class="section-heading__eyebrow">Loved by devs</p>
-            <h2>The feeling you get from great tools.</h2>
-        </div>
-
-        <div class="testimonial-grid">
-            @for (quote of testimonials; track quote.author) {
-                <article class="quote-card">
-                    <div class="quote-card__rating">
-                        @for (star of ratingMarks; track star) {
-                            <span>*</span>
-                        }
-                    </div>
-
-                    <p>{{ quote.quote }}</p>
-
-                    <div class="quote-card__author">
-                        <zyra-avatar
-                            [name]="quote.author"
-                            size="sm"
-                            [variant]="quote.avatarVariant || 'teal'"
-                        ></zyra-avatar>
-                        <div>
-                            <strong>{{ quote.author }}</strong>
-                            <span>{{ quote.role }}</span>
-                        </div>
-                    </div>
-                </article>
-            }
-        </div>
-    </div>
-</section>
 
 <section id="waitlist" class="landing-section landing-section--cta">
     <div class="landing-shell">
         <div class="cta-panel">
-            <div class="cta-panel__eyebrow">v2 waitlist</div>
+            <div class="cta-panel__eyebrow">/ v2 waitlist</div>
             <h2>Be first to try ZyraUI v2.</h2>
             <p>
-                Motion Studio, AI recipes, and a larger primitive set are in progress. Drop your
-                email and we will send the first invite.
+                More components, richer motion, and a design token system built for teams that ship.
+                Join the waitlist and get early access before the public launch.
             </p>
 
             <div class="cta-panel__form">
-                <input type="email" [placeholder]="waitlistEmail" aria-label="Email address" />
-                <zyra-button size="lg">Reserve spot</zyra-button>
+                <zyra-form-field size="lg" [prefixIcon]="icons.envelope" [clearButton]="true">
+                    <zyra-input type="email" [placeholder]="waitlistEmail" size="lg"></zyra-input>
+                </zyra-form-field>
+                <zyra-button size="lg">Reserve spot &#8594;</zyra-button>
             </div>
 
-            <div class="cta-panel__note">2 developers already on the waitlist</div>
+            <div class="cta-panel__note">&#8226; 2 developers already on the waitlist</div>
         </div>
     </div>
 </section>

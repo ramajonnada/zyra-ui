@@ -8,7 +8,7 @@
 
 <aside class="sidebar" [class.open]="isOpen()" [class.collapsed]="!isOpen()">
     <div class="sidebar__top">
-        <div class="sidebar__section-label">Navigation</div>
+        <span class="sidebar__section-label">Menu</span>
 
         <button
             type="button"
@@ -16,11 +16,10 @@
             (click)="onToggleSidebar()"
             [attr.aria-label]="isOpen() ? 'Collapse sidebar' : 'Expand sidebar'"
         >
-            @if (isOpen()) {
-                <span class="sidebar__toggle-icon" aria-hidden="true">&lt;</span>
-            } @else {
-                <span class="sidebar__toggle-icon" aria-hidden="true">&gt;</span>
-            }
+            <fa-icon
+                [icon]="isOpen() ? icons.caretLeft : icons.caretRight"
+                aria-hidden="true"
+            />
         </button>
     </div>
 
@@ -43,4 +42,8 @@
             </a>
         }
     </nav>
+
+    <div class="sidebar__footer">
+        <span class="sidebar__footer-text">Zyra<span>UI</span></span>
+    </div>
 </aside>

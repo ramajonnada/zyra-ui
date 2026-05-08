@@ -43,27 +43,6 @@
     text-decoration: none;
 }
 
-.site-footer__mark {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--zyr-radius-full);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(
-        circle at 30% 30%,
-        color-mix(in srgb, var(--zyr-accent) 70%, var(--zyr-text-inverse)) 0%,
-        var(--zyr-accent) 58%,
-        color-mix(in srgb, var(--zyr-accent) 78%, var(--zyr-cyan-700)) 100%
-    );
-}
-
-.site-footer__mark-core {
-    width: 10px;
-    height: 10px;
-    border-radius: var(--zyr-radius-full);
-    background: var(--zyr-text-inverse);
-}
 
 .site-footer__wordmark {
     font-family: var(--zyr-font-display);
