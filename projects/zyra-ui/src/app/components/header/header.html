@@ -14,16 +14,8 @@
         </button>
 
         <a class="site-header__logo" routerLink="/">
-            <img
-                class="site-header__logo-img"
-                [src]="isDark() ? '/without-bg-white-line-zyra-ui.png' : '/without-bg-black-line-zyra-ui.png'"
-                alt=""
-                aria-hidden="true"
-                width="28"
-                height="28"
-            />
             <span class="site-header__logo-text">Zyra<span>UI</span></span>
-            <span class="site-header__version">{{ version }}</span>
+            <span class="site-header__version">v1.0 beta</span>
         </a>
     </div>
 
@@ -49,10 +41,7 @@
             aria-label="Open Zyra UI on GitHub"
         >
             <fa-icon [icon]="icons.github" />
-            <span>GitHub</span>
-            @if (githubStars) {
-                <strong>{{ githubStars }}</strong>
-            }
+            <span>Star</span>
         </a>
 
         <button
@@ -64,7 +53,7 @@
             <span class="site-header__sr-only">
                 {{ isDark() ? 'Switch to light mode' : 'Switch to dark mode' }}
             </span>
-            <fa-icon [icon]="icons.moon" />
+            <fa-icon [icon]="isDark() ? icons.sun : icons.moon" />
         </button>
 
         <zyra-button size="sm" routerLink="/components">Get started</zyra-button>

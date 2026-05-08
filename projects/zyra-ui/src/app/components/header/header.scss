@@ -3,10 +3,13 @@
 	inset: 0 0 auto;
 	z-index: 100;
 	display: block;
-	background: transparent;
-	border-bottom: 1px solid transparent;
-	-webkit-backdrop-filter: blur(0);
-	backdrop-filter: blur(0);
+	background: color-mix(in srgb, var(--zyr-bg) 45%, transparent);
+	border-bottom: 1px solid color-mix(in srgb, var(--zyr-border) 40%, transparent);
+	box-shadow:
+		inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
+		0 1px 0 color-mix(in srgb, var(--zyr-border) 30%, transparent);
+	-webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.04);
+	backdrop-filter: blur(28px) saturate(200%) brightness(1.04);
 	transition:
 		background var(--zyr-transition-base),
 		border-color var(--zyr-transition-base),
@@ -16,20 +19,21 @@
 }
 
 :host(.is-scrolled) {
-	background: var(--zyr-bg-2);
-	border-bottom-color: var(--zyr-border);
+	background: color-mix(in srgb, var(--zyr-bg-2) 55%, transparent);
+	border-bottom-color: color-mix(in srgb, var(--zyr-border) 60%, transparent);
 	box-shadow:
-		inset 0 1px 0 rgb(255 255 255 / 4%),
-		0 18px 42px rgb(0 0 0 / 18%);
-	-webkit-backdrop-filter: blur(16px) saturate(140%);
-	backdrop-filter: blur(16px) saturate(140%);
+		inset 0 1px 0 color-mix(in srgb, white 10%, transparent),
+		0 4px 6px -1px color-mix(in srgb, black 12%, transparent),
+		0 16px 48px -8px color-mix(in srgb, black 20%, transparent);
+	-webkit-backdrop-filter: blur(40px) saturate(220%) brightness(1.06);
+	backdrop-filter: blur(40px) saturate(220%) brightness(1.06);
 }
 
 .site-header {
 	min-height: 64px;
 	max-width: 1280px;
 	margin: 0 auto;
-	padding: 12px 28px;
+	padding: 12px 48px;
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	align-items: center;
@@ -173,16 +177,10 @@
 	text-decoration: none;
 }
 
-.site-header__logo-img {
-	width: 28px;
-	height: 28px;
-	object-fit: contain;
-	flex-shrink: 0;
-}
 
 .site-header__logo-text {
 	font-family: var(--zyr-font-display);
-	font-size: 1.1rem;
+	font-size: 1.4rem;
 	font-weight: 800;
 	letter-spacing: 0;
 
@@ -192,13 +190,13 @@
 }
 
 .site-header__version {
-	padding: 5px 9px;
+	padding: 3px 10px;
 	border-radius: var(--zyr-radius-full);
-	border: 1px solid var(--zyr-border);
-	color: var(--zyr-text-muted);
+	background: color-mix(in srgb, var(--zyr-bg-3) 80%, transparent);
+	color: var(--zyr-text-dim);
 	font-family: var(--zyr-font-mono);
-	font-size: 0.64rem;
-	letter-spacing: 0.06em;
+	font-size: 0.62rem;
+	letter-spacing: 0.04em;
 }
 
 .site-header__nav {
