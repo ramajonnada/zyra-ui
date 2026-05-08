@@ -2,6 +2,7 @@
 	"name": "zyra-workspace",
 	"version": "1.3.23",
 	"private": true,
+	"license": "MIT",
 	"scripts": {
 		"ng": "ng",
 		"prerender": "ng build zyra-ui",
