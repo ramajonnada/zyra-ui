@@ -34,8 +34,8 @@
     }
 
     &--white {
-        border-color: rgba(255, 255, 255, 0.25);
-        border-top-color: #ffffff;
+        border-color: var(--zyr-spinner-inverse-track);
+        border-top-color: var(--zyr-spinner-inverse-head);
     }
 
     &--current {

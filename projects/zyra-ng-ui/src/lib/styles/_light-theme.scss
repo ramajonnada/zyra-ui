@@ -12,6 +12,7 @@
     --zyr-text-muted: #5e6d82;
     --zyr-text-dim: #98a6b8;
     --zyr-text-inverse: #ffffff;
+    --zyr-surface-inverse: #0f151c;
 
     --zyr-accent: #18d5ea;
     --zyr-accent-hover: #10bfd4;
@@ -63,4 +64,15 @@
 
     --zyr-scrollbar-thumb: rgba(9, 19, 31, 0.14);
     --zyr-scrollbar-track: transparent;
+
+    --zyr-tooltip-bg: #0f151c;
+    --zyr-tooltip-text: #f6f7f9;
+    --zyr-tooltip-border: rgba(0, 234, 255, 0.16);
+    --zyr-tooltip-shadow: 0 16px 38px rgba(11, 12, 14, 0.14);
+
+    --zyr-toast-bg: rgba(255, 255, 255, 0.96);
+    --zyr-toast-border: rgba(11, 12, 14, 0.08);
+
+    --zyr-spinner-inverse-track: rgba(11, 12, 14, 0.18);
+    --zyr-spinner-inverse-head: #0b0c0e;
 }

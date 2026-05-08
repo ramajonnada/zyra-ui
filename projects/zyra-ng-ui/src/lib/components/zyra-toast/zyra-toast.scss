@@ -23,54 +23,56 @@
     gap: 10px;
     padding: 12px 14px;
     border-radius: var(--zyr-radius-md);
-    border: 1px solid;
-    background: var(--zyr-bg-3);
+    border: 1px solid var(--zyr-toast-border);
+    background: var(--zyr-toast-bg);
     box-shadow: var(--zyr-shadow-md);
     animation: zyr-toast-in 0.25s var(--zyr-transition-spring) both;
-    transition: background var(--zyr-transition-slow);
+    transition:
+        background var(--zyr-transition-slow),
+        border-color var(--zyr-transition-base);
 
     // ── Variants ──────────────────────────────────────────────
     &--success {
-        border-color: var(--zyr-success-border);
+        border-color: var(--zyr-success-border-color);
 
         .zyr-toast__icon {
-            background: none;
-            color: var(--zyr-text);
+            background: var(--zyr-toast-success-icon-bg);
+            color: var(--zyr-success-foreground);
         }
     }
 
     &--error {
-        border-color: var(--zyr-danger-border);
+        border-color: var(--zyr-danger-border-color);
 
         .zyr-toast__icon {
-            background: none;
-            color: var(--zyr-text);
+            background: var(--zyr-toast-danger-icon-bg);
+            color: var(--zyr-danger-foreground);
         }
     }
 
     &--warning {
-        border-color: var(--zyr-warning-border);
+        border-color: var(--zyr-warning-border-color);
 
         .zyr-toast__icon {
-            background: none;
-            color: var(--zyr-text);
+            background: var(--zyr-toast-warning-icon-bg);
+            color: var(--zyr-warning-foreground);
         }
     }
 
     &--info {
-        border-color: var(--zyr-info-border);
+        border-color: var(--zyr-info-border-color);
 
         .zyr-toast__icon {
-            background: none;
-            color: var(--zyr-text);
+            background: var(--zyr-toast-info-icon-bg);
+            color: var(--zyr-info-foreground);
         }
     }
 
     &--default {
-        border-color: var(--zyr-border);
+        border-color: var(--zyr-toast-border);
 
         .zyr-toast__icon {
-            background: none;
+            background: var(--zyr-toast-icon-bg);
             color: var(--zyr-text);
         }
     }
@@ -104,14 +106,14 @@
     &__title {
         font-size: 13px;
         font-weight: 600;
-        color: var(--zyr-text);
+        color: var(--zyr-foreground);
         margin: 0 0 2px;
         line-height: 1.4;
     }
 
     &__desc {
         font-size: 12px;
-        color: var(--zyr-text-muted);
+        color: var(--zyr-foreground-muted);
         margin: 0;
         line-height: 1.5;
     }
@@ -119,7 +121,7 @@
     &__close {
         background: none;
         border: none;
-        color: var(--zyr-text-dim);
+        color: var(--zyr-foreground-subtle);
         font-size: 11px;
         cursor: pointer;
         padding: 2px;
@@ -129,7 +131,7 @@
         transition: color var(--zyr-transition-fast);
 
         &:hover {
-            color: var(--zyr-text);
+            color: var(--zyr-foreground);
         }
     }
 }
