@@ -1,1 +1,16 @@
-<p>privacy-policy works!</p>
+<main class="legal-page">
+    <section class="legal-hero">
+        <zyra-badge size="md">Legal</zyra-badge>
+        <h1>Privacy Policy</h1>
+        <p>Last updated: May 7, 2026</p>
+    </section>
+
+    <zyra-card class="legal-card" variant="outlined" padding="lg">
+        @for (section of sections; track section.title) {
+            <section>
+                <h2>{{ section.title }}</h2>
+                <p>{{ section.body }}</p>
+            </section>
+        }
+    </zyra-card>
+</main>

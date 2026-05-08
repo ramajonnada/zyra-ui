@@ -40,9 +40,9 @@
 .blog-page__header h1 {
     margin: 0;
     font-family: var(--zyr-font-display);
-    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-size: 3.2rem;
     line-height: 1.02;
-    letter-spacing: -0.04em;
+    letter-spacing: 0;
 }
 
 .blog-page__intro {
@@ -81,8 +81,8 @@
 .blog-page__section-head h2 {
     margin: 0;
     font-family: var(--zyr-font-display);
-    font-size: clamp(1.5rem, 2.2vw, 1.9rem);
-    letter-spacing: -0.03em;
+    font-size: 1.85rem;
+    letter-spacing: 0;
 }
 
 .blog-page__state {
@@ -115,8 +115,11 @@
     inset: 18px 22px auto;
     height: 88px;
     border-radius: 999px;
-    background:
-        radial-gradient(circle at center, color-mix(in srgb, var(--zyr-accent) 28%, transparent) 0%, transparent 72%);
+    background: radial-gradient(
+        circle at center,
+        color-mix(in srgb, var(--zyr-accent) 28%, transparent) 0%,
+        transparent 72%
+    );
     opacity: 0;
     filter: blur(28px);
     transition: opacity var(--zyr-transition-base);
@@ -125,13 +128,16 @@
 }
 
 .blog-card__shell {
-    --zyr-card-bg: linear-gradient(180deg, color-mix(in srgb, var(--zyr-bg-2) 92%, transparent) 0%, var(--zyr-bg-2) 100%);
+    --zyr-card-bg: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--zyr-bg-2) 92%, transparent) 0%,
+        var(--zyr-bg-2) 100%
+    );
     --zyr-card-border: color-mix(in srgb, var(--zyr-border) 88%, transparent);
     --zyr-card-hover-border: color-mix(in srgb, var(--zyr-accent) 42%, var(--zyr-border));
     --zyr-card-section-bg: color-mix(in srgb, var(--zyr-bg-3) 82%, transparent);
     --zyr-card-elevated-shadow:
-        0 18px 44px rgba(0, 0, 0, 0.22),
-        0 0 0 1px color-mix(in srgb, var(--zyr-accent) 10%, transparent);
+        var(--zyr-shadow-lg), 0 0 0 1px color-mix(in srgb, var(--zyr-accent) 10%, transparent);
     position: relative;
     z-index: 1;
 }
@@ -176,7 +182,7 @@
     background: var(--zyr-accent-muted);
     border-color: var(--zyr-accent-border);
     color: var(--zyr-accent);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--zyr-text-inverse) 6%, transparent);
 }
 
 .blog-card__date,
@@ -188,9 +194,9 @@
 .blog-card__title {
     margin: 0;
     font-family: var(--zyr-font-display);
-    font-size: clamp(1.28rem, 1.3vw, 1.55rem);
+    font-size: 1.45rem;
     line-height: 1.22;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     color: var(--zyr-text);
     transition: color var(--zyr-transition-base);
 }
@@ -284,6 +290,10 @@
 
     .blog-page {
         width: min(1120px, calc(100% - 24px));
+    }
+
+    .blog-page__header h1 {
+        font-size: 2.45rem;
     }
 
     .blog-card__header,

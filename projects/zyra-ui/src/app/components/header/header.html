@@ -1,53 +1,99 @@
-<div class="header__left">
-    <button class="header__burger" (click)="onToggle()" aria-label="Toggle sidebar">
-        <span></span><span></span><span></span>
-    </button>
-    <a class="header__logo" routerLink="/">
-        <span class="header__logo-mark"></span>
-        <span class="header__logo-text">ZyraUI</span>
-    </a>
-</div>
+<header class="site-header">
+    <div class="site-header__left">
+        <button
+            class="site-header__burger"
+            type="button"
+            (click)="onToggle()"
+            [attr.aria-label]="menuLabel()"
+            [attr.aria-expanded]="publicPage() ? mobileNavOpen() : null"
+        >
+            <span class="site-header__sr-only">{{ menuLabel() }}</span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-<nav class="header__nav" aria-label="Primary">
-    <a
-        routerLink="/blog"
-        class="header__nav__link"
-        routerLinkActive="is-active"
-        #rla="routerLinkActive"
-        [attr.aria-current]="rla.isActive ? 'page' : null"
-        >Blog</a
-    >
-    <a
-        routerLink="/components"
-        class="header__nav__link"
-        routerLinkActive="is-active"
-        #rla="routerLinkActive"
-        [attr.aria-current]="rla.isActive ? 'page' : null"
-        >Components</a
-    >
-    <a
-        routerLink="/docs"
-        class="header__nav__link"
-        routerLinkActive="is-active"
-        #rla="routerLinkActive"
-        [attr.aria-current]="rla.isActive ? 'page' : null"
-        >Docs</a
-    >
-</nav>
-
-<div class="header__right">
-    <zyra-button
-        variant="outline"
-        size="sm"
-        (click)="toggleTheme()"
-        [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
-    >
-        {{ isDark() ? '☀️' : '🌙' }}
-    </zyra-button>
-    <zyra-button variant="secondary" size="sm" aria-label="View source on GitHub">
-        <a href="https://github.com/ramajonnada/zyra-ui" rel="" title="View source on GitHub">
-            <fa-icon [icon]="icons.github" />
+        <a class="site-header__logo" routerLink="/">
+            <span class="site-header__logo-mark">
+                <span class="site-header__logo-core"></span>
+            </span>
+            <span class="site-header__logo-text">Zyra<span>UI</span></span>
+            <span class="site-header__version">{{ version }}</span>
         </a>
-    </zyra-button>
-    <zyra-button variant="primary" size="sm" routerLink="/components">Get Started</zyra-button>
-</div>
+    </div>
+
+    <nav class="site-header__nav" aria-label="Primary">
+        @for (link of navLinks; track link.route) {
+            <a
+                class="site-header__nav-link"
+                [routerLink]="link.route"
+                routerLinkActive="is-active"
+                [routerLinkActiveOptions]="{ exact: link.route === '/' }"
+            >
+                {{ link.label }}
+            </a>
+        }
+    </nav>
+
+    <div class="site-header__actions">
+        <a
+            class="site-header__repo"
+            href="https://github.com/ramajonnada/zyra-ui"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Zyra UI on GitHub"
+        >
+            <fa-icon [icon]="icons.github" />
+            <span>Star</span>
+            <strong>{{ githubStars }}</strong>
+        </a>
+
+        <button
+            type="button"
+            class="site-header__theme"
+            (click)="toggleTheme()"
+            [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+        >
+            <span class="site-header__sr-only">
+                {{ isDark() ? 'Switch to light mode' : 'Switch to dark mode' }}
+            </span>
+            <fa-icon [icon]="icons.moon" />
+        </button>
+
+        <zyra-button size="sm" routerLink="/components">Get started</zyra-button>
+    </div>
+</header>
+
+@if (mobileNavOpen()) {
+    <div class="site-header__mobile-panel">
+        <nav class="site-header__mobile-nav" aria-label="Mobile">
+            @for (link of navLinks; track link.route) {
+                <a
+                    class="site-header__mobile-link"
+                    [routerLink]="link.route"
+                    routerLinkActive="is-active"
+                    [routerLinkActiveOptions]="{ exact: link.route === '/' }"
+                    (click)="closeMobileNav()"
+                >
+                    {{ link.label }}
+                </a>
+            }
+        </nav>
+
+        <div class="site-header__mobile-actions">
+            <a
+                class="site-header__mobile-repo"
+                href="https://github.com/ramajonnada/zyra-ui"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <fa-icon [icon]="icons.github" />
+                <span>GitHub</span>
+            </a>
+
+            <a class="site-header__mobile-cta" routerLink="/components" (click)="closeMobileNav()">
+                Get started
+            </a>
+        </div>
+    </div>
+}

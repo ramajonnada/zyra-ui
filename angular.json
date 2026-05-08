@@ -73,7 +73,7 @@
 							}
 						],
 						"styles": [
-							"projects/zyra-ui/src/fonts.css",
+							"projects/zyra-ng-ui/src/lib/styles/fonts.css",
 							"projects/zyra-ui/src/styles.scss"
 						],
 						"server": "projects/zyra-ui/src/main.server.ts",
@@ -137,7 +137,7 @@
 							}
 						],
 						"styles": [
-							"projects/zyra-ui/src/fonts.css",
+							"projects/zyra-ng-ui/src/lib/styles/fonts.css",
 							"projects/zyra-ui/src/styles.scss"
 						]
 					}

@@ -2,65 +2,65 @@
 
 [data-theme='dark'],
 :root {
-    --zyr-bg: #080b10;
+    --zyr-bg: #090b10;
     --zyr-bg-2: #0d1117;
-    --zyr-bg-3: #13191f;
+    --zyr-bg-3: #12171f;
     --zyr-bg-4: #1a2130;
 
     --zyr-border: rgba(255, 255, 255, 0.07);
-    --zyr-border-hover: rgba(99, 210, 180, 0.35);
+    --zyr-border-hover: rgba(24, 213, 234, 0.28);
     --zyr-border-strong: rgba(255, 255, 255, 0.14);
 
-    --zyr-text: #e8edf2;
-    --zyr-text-muted: #6b7a8d;
-    --zyr-text-dim: #3d4b5c;
-    --zyr-text-inverse: #080b10;
+    --zyr-text: #f3f7fb;
+    --zyr-text-muted: #98a8bb;
+    --zyr-text-dim: #5a6778;
+    --zyr-text-inverse: #060a10;
 
-    --zyr-accent: #{$zyr-teal-400};
-    --zyr-accent-hover: #{$zyr-teal-300};
-    --zyr-accent-muted: rgba(99, 210, 180, 0.12);
-    --zyr-accent-border: rgba(99, 210, 180, 0.25);
+    --zyr-accent: #18d5ea;
+    --zyr-accent-hover: #43ddf0;
+    --zyr-accent-muted: rgba(24, 213, 234, 0.12);
+    --zyr-accent-border: rgba(24, 213, 234, 0.24);
 
-    --zyr-accent-2: #{$zyr-blue-400};
-    --zyr-accent-2-muted: rgba(78, 174, 245, 0.12);
-    --zyr-accent-2-border: rgba(78, 174, 245, 0.25);
+    --zyr-accent-2: #2491e8;
+    --zyr-accent-2-muted: rgba(36, 145, 232, 0.12);
+    --zyr-accent-2-border: rgba(36, 145, 232, 0.24);
 
-    --zyr-accent-3: #{$zyr-purple-400};
-    --zyr-accent-3-muted: rgba(167, 139, 250, 0.12);
-    --zyr-accent-3-border: rgba(167, 139, 250, 0.25);
+    --zyr-accent-3: #8b6ef5;
+    --zyr-accent-3-muted: rgba(139, 110, 245, 0.12);
+    --zyr-accent-3-border: rgba(139, 110, 245, 0.24);
 
-    --zyr-success: #{$zyr-green-400};
-    --zyr-success-muted: rgba(76, 202, 124, 0.1);
+    --zyr-success: #2ea85b;
+    --zyr-success-muted: rgba(46, 168, 91, 0.1);
     --zyr-success-border: rgba(76, 202, 124, 0.22);
 
-    --zyr-warning: #{$zyr-yellow-400};
-    --zyr-warning-muted: rgba(249, 200, 106, 0.1);
-    --zyr-warning-border: rgba(249, 200, 106, 0.22);
+    --zyr-warning: #e8aa3a;
+    --zyr-warning-muted: rgba(232, 170, 58, 0.12);
+    --zyr-warning-border: rgba(232, 170, 58, 0.24);
 
-    --zyr-danger: #{$zyr-red-400};
-    --zyr-danger-muted: rgba(249, 95, 95, 0.1);
-    --zyr-danger-border: rgba(249, 95, 95, 0.22);
+    --zyr-danger: #e03e3e;
+    --zyr-danger-muted: rgba(224, 62, 62, 0.1);
+    --zyr-danger-border: rgba(224, 62, 62, 0.22);
 
-    --zyr-info: #{$zyr-blue-400};
-    --zyr-info-muted: rgba(78, 174, 245, 0.1);
-    --zyr-info-border: rgba(78, 174, 245, 0.22);
+    --zyr-info: #2491e8;
+    --zyr-info-muted: rgba(36, 145, 232, 0.1);
+    --zyr-info-border: rgba(36, 145, 232, 0.22);
 
     --zyr-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
     --zyr-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5);
-    --zyr-shadow-accent: 0 6px 20px rgba(99, 210, 180, 0.2);
+    --zyr-shadow-accent: 0 10px 26px rgba(24, 213, 234, 0.18);
 
-    --zyr-btn-primary-text: #080b10;
+    --zyr-btn-primary-text: #04131a;
     --zyr-btn-ghost-hover-bg: rgba(255, 255, 255, 0.04);
 
     --zyr-input-bg: var(--zyr-bg-3);
     --zyr-input-border: var(--zyr-border);
-    --zyr-input-shadow-focus: 0 0 0 3px rgba(99, 210, 180, 0.12);
+    --zyr-input-shadow-focus: 0 0 0 3px rgba(24, 213, 234, 0.14);
 
-    --zyr-card-bg: #0f151c;
+    --zyr-card-bg: #0f141b;
     --zyr-card-section-bg: rgba(255, 255, 255, 0.02);
     --zyr-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
     --zyr-card-elevated-shadow: 0 20px 42px rgba(0, 0, 0, 0.36);
-    --zyr-card-focus-ring: rgba(99, 210, 180, 0.16);
+    --zyr-card-focus-ring: rgba(24, 213, 234, 0.16);
 
     --zyr-code-bg: #0a0f15;
 

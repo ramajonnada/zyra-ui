@@ -1,74 +1,73 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	computed,
-	inject,
-	OnInit,
-	signal,
-} from '@angular/core';
-import { BlogService, PostMeta } from '../../services/blog-service';
 import { CommonModule } from '@angular/common';
-import { ZyraCard } from 'zyra-ng-ui';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    OnInit,
+    computed,
+    inject,
+    signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
+import { BlogService, PostMeta } from '../../services/blog-service';
 
 @Component({
-	selector: 'app-blog-list',
-	imports: [ZyraCard, CommonModule, RouterLink],
-	templateUrl: './blog-list.html',
-	styleUrl: './blog-list.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-blog-list',
+    imports: [ZyraCard, CommonModule, RouterLink],
+    templateUrl: './blog-list.html',
+    styleUrl: './blog-list.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogList implements OnInit {
-	loading = signal(true);
-	error = signal<string | null>(null);
-	posts = signal<PostMeta[]>([]);
-	readonly articleCount = computed(() => this.posts().length);
-	readonly categoryCount = computed(() => {
-		const categories = new Set(
-			this.posts()
-				.map((post) => this.categoryLabel(post.category))
-				.filter(Boolean),
-		);
+    private readonly blogService = inject(BlogService);
+    private readonly seo = inject(SeoService);
 
-		return categories.size;
-	});
+    readonly loading = signal(true);
+    readonly error = signal<string | null>(null);
+    readonly posts = signal<PostMeta[]>([]);
+    readonly articleCount = computed(() => this.posts().length);
+    readonly categoryCount = computed(() => {
+        const categories = new Set(
+            this.posts()
+                .map((post) => this.categoryLabel(post.category))
+                .filter(Boolean),
+        );
 
-	private blogService: BlogService = inject(BlogService);
+        return categories.size;
+    });
 
-	private seo = inject(SeoService);
+    ngOnInit(): void {
+        this.seo.setSEO({
+            title: 'Angular Blog - Zyra UI guides, tokens, and components',
+            description:
+                'Read Angular tutorials, design-token guidance, component architecture notes, and public website SEO tips from Zyra UI.',
+            url: 'https://www.zyraui.dev/blog',
+        });
 
-	ngOnInit() {
-		this.seo.setSEO({
-			title: 'Angular Blog – Zyra UI',
-			description: 'Read Angular tutorials, performance tips, and modern development guides.',
-			url: 'https://www.zyraui.dev/blog'
-		});
-		this.blogService.getAllPosts().subscribe({
-			next: (posts) => {
-				this.posts.set(
-					[...posts].sort(
-						(left, right) =>
-							new Date(right.date.trim()).getTime() -
-							new Date(left.date.trim()).getTime(),
-					),
-				);
-				this.loading.set(false);
-			},
-			error: () => {
-				this.error.set('Unable to load articles right now. Please try again in a moment.');
-				this.loading.set(false);
-			},
-		});
-	}
+        this.blogService.getAllPosts().subscribe({
+            next: (posts) => {
+                this.posts.set(
+                    [...posts].sort(
+                        (left, right) =>
+                            new Date(right.date.trim()).getTime() -
+                            new Date(left.date.trim()).getTime(),
+                    ),
+                );
+                this.loading.set(false);
+            },
+            error: () => {
+                this.error.set('Unable to load articles right now. Please try again in a moment.');
+                this.loading.set(false);
+            },
+        });
+    }
 
-	categoryLabel(category: PostMeta['category']): string {
-		if (Array.isArray(category)) {
-			return category[0]?.trim() || 'Angular';
-		}
+    categoryLabel(category: PostMeta['category']): string {
+        if (Array.isArray(category)) {
+            return category[0]?.trim() || 'Angular';
+        }
 
-		return category?.trim() || 'Angular';
-	}
-
-
+        return category?.trim() || 'Angular';
+    }
 }
