@@ -25,8 +25,7 @@
                 <div class="control-options">
                     @for (v of variants; track v) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="selectedVariant() === v"
+                            [variant]="selectedVariant() === v ? 'primary' : 'secondary'"
                             (clicked)="selectedVariant.set(v)"
                             >{{ v }}</zyra-button
                         >
@@ -40,8 +39,7 @@
                 <div class="control-options">
                     @for (s of sizes; track s) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="selectedSize() === s"
+                            [variant]="selectedSize() === s ? 'primary' : 'secondary'"
                             (clicked)="selectedSize.set(s)"
                             >{{ s }}</zyra-button
                         >
@@ -103,8 +101,7 @@
                 <div class="control-options">
                     @for (iconOption of leftIconOptions; track iconOption.key) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="iconLeft() === iconOption.key"
+                            [variant]="iconLeft() === iconOption.key ? 'primary' : 'secondary'"
                             (clicked)="
                                 iconLeft.set(iconLeft() === iconOption.key ? null : iconOption.key)
                             "
@@ -121,8 +118,7 @@
                 <div class="control-options">
                     @for (iconOption of rightIconOptions; track iconOption.key) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="iconRight() === iconOption.key"
+                            [variant]="iconRight() === iconOption.key ? 'primary' : 'secondary'"
                             (clicked)="
                                 iconRight.set(
                                     iconRight() === iconOption.key ? null : iconOption.key

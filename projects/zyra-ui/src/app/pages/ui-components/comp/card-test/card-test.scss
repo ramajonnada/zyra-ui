@@ -1,25 +1,6 @@
 // projects/zyra-ui/src/app/pages/test/card-playground.component.scss
 @use '../../shared/pg_shared.scss' as *;
 
-.reset-btn {
-    width: 100%;
-    margin-top: 8px;
-    padding: 8px;
-    background: transparent;
-    border: 1px dashed var(--zyr-border);
-    border-radius: var(--zyr-radius-sm);
-    color: var(--zyr-text-dim);
-    font-family: var(--zyr-font-mono);
-    font-size: 12px;
-    cursor: pointer;
-    transition: all var(--zyr-transition-base);
-
-    &:hover {
-        border-color: var(--zyr-danger-border);
-        color: var(--zyr-danger);
-        background: var(--zyr-danger-muted);
-    }
-}
 
 // ── Preview area ───────────────────────────────────────────
 

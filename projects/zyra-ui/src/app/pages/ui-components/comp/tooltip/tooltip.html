@@ -18,8 +18,7 @@
                 <div class="control-options">
                     @for (p of positions; track p) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="position() === p"
+                            [variant]="position() === p ? 'primary' : 'secondary'"
                             (clicked)="position.set(p)"
                             >{{ p }}</zyra-button
                         >
@@ -44,8 +43,7 @@
                 <div class="control-options">
                     @for (w of maxWidths; track w) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="maxWidth() === w"
+                            [variant]="maxWidth() === w ? 'primary' : 'secondary'"
                             (clicked)="maxWidth.set(w)"
                             >{{ w }}</zyra-button
                         >
@@ -59,8 +57,7 @@
                 <div class="control-options">
                     @for (t of triggerTypes; track t) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="triggerType() === t"
+                            [variant]="triggerType() === t ? 'primary' : 'secondary'"
                             (clicked)="triggerType.set(t)"
                             >{{ t }}</zyra-button
                         >
@@ -116,9 +113,9 @@
             <div class="code-box">
                 <div class="code-box__header">
                     <span>Generated Code</span>
-                    <button class="copy-btn" (click)="copy()">
+                    <zyra-button variant="ghost" size="sm" (clicked)="copy()">
                         {{ copied() ? '✓ Copied!' : 'Copy' }}
-                    </button>
+                    </zyra-button>
                 </div>
                 <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
             </div>

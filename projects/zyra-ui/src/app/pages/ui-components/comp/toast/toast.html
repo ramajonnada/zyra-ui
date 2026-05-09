@@ -23,8 +23,7 @@
                 <div class="control-options">
                     @for (v of variants; track v) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="variant() === v"
+                            [variant]="variant() === v ? 'primary' : 'secondary'"
                             (clicked)="variant.set(v)"
                             >{{ v }}</zyra-button
                         >
@@ -59,8 +58,7 @@
                 <div class="control-options">
                     @for (d of durations; track d) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="duration() === d && !persistent()"
+                            [variant]="duration() === d && !persistent() ? 'primary' : 'secondary'"
                             (clicked)="duration.set(d); persistent.set(false)"
                             >{{ d / 1000 }}s</zyra-button
                         >

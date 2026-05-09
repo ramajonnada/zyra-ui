@@ -21,8 +21,7 @@
                 <div class="control-options">
                     @for (s of sizes; track s) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="size() === s"
+                            [variant]="size() === s ? 'primary' : 'secondary'"
                             (clicked)="size.set(s)"
                             >{{ s }}</zyra-button
                         >
@@ -35,8 +34,7 @@
                 <div class="control-options">
                     @for (c of colors; track c) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="color() === c"
+                            [variant]="color() === c ? 'primary' : 'secondary'"
                             (clicked)="color.set(c)"
                             >{{ c }}</zyra-button
                         >

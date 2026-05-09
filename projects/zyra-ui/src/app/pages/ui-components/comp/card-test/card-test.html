@@ -1,4 +1,4 @@
-<div class="pg">
+﻿<div class="pg">
     <div class="pg__header">
         <div>
             <h1>zyra-card <span>Playground</span></h1>
@@ -14,9 +14,11 @@
                 <div class="control-label">variant</div>
                 <div class="control-options">
                     @for (v of variants; track v) {
-                        <button [class.active]="variant() === v" (click)="variant.set(v)">
-                            {{ v }}
-                        </button>
+                        <zyra-button
+                            [variant]="variant() === v ? 'primary' : 'secondary'"
+                            size="sm"
+                            (clicked)="variant.set(v)"
+                        >{{ v }}</zyra-button>
                     }
                 </div>
             </div>
@@ -25,9 +27,11 @@
                 <div class="control-label">padding</div>
                 <div class="control-options">
                     @for (p of paddings; track p) {
-                        <button [class.active]="padding() === p" (click)="padding.set(p)">
-                            {{ p }}
-                        </button>
+                        <zyra-button
+                            [variant]="padding() === p ? 'primary' : 'secondary'"
+                            size="sm"
+                            (clicked)="padding.set(p)"
+                        >{{ p }}</zyra-button>
                     }
                 </div>
             </div>
@@ -36,13 +40,11 @@
                 <div class="control-label">content preset</div>
                 <div class="control-options control-options--stack">
                     @for (p of presets; track p) {
-                        <button
-                            class="opt-btn opt-btn--block"
-                            [class.active]="preset() === p"
-                            (click)="preset.set(p)"
-                        >
-                            {{ p }}
-                        </button>
+                        <zyra-button
+                            [variant]="preset() === p ? 'primary' : 'secondary'"
+                            size="sm"
+                            (clicked)="preset.set(p)"
+                        >{{ p }}</zyra-button>
                     }
                 </div>
             </div>
@@ -82,7 +84,7 @@
                 </div>
             </div>
 
-            <button class="reset-btn" (click)="reset()">â†º Reset all</button>
+            <zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset all</zyra-button>
         </div>
 
         <div class="preview-area">
@@ -174,9 +176,9 @@
             <div class="code-box">
                 <div class="code-box__header">
                     <span>Generated Code</span>
-                    <button class="copy-btn" (click)="copy()">
-                        {{ copied() ? 'âœ“ Copied!' : 'Copy' }}
-                    </button>
+                    <zyra-button variant="ghost" size="sm" (clicked)="copy()">
+                        {{ copied() ? '✓ Copied!' : 'Copy' }}
+                    </zyra-button>
                 </div>
                 <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
             </div>
@@ -186,7 +188,7 @@
                     <span
                         >Event Log <span class="log-count">{{ eventLog().length }}</span></span
                     >
-                    <button class="copy-btn" (click)="eventLog.set([])">Clear</button>
+                    <zyra-button variant="ghost" size="sm" (clicked)="eventLog.set([])">Clear</zyra-button>
                 </div>
                 <div class="log-box__body">
                     @if (eventLog().length === 0) {
@@ -245,7 +247,7 @@
                     <div class="variant-col__label">padding="{{ p }}"</div>
                     <zyra-card variant="default" [padding]="p">
                         <p class="card-slot-copy card-slot-copy--compact">
-                            padding="{{ p }}" â€”
+                            padding="{{ p }}" â€"
                             {{
                                 p === 'none'
                                     ? 'no padding at all'

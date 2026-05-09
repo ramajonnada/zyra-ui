@@ -23,8 +23,7 @@
                 <div class="control-options">
                     @for (t of types; track t) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="type() === t"
+                            [variant]="type() === t ? 'primary' : 'secondary'"
                             (clicked)="type.set(t)"
                             >{{ t }}</zyra-button
                         >
@@ -37,8 +36,7 @@
                 <div class="control-options">
                     @for (a of appearances; track a) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="appearance() === a"
+                            [variant]="appearance() === a ? 'primary' : 'secondary'"
                             (clicked)="appearance.set(a)"
                             >{{ a }}</zyra-button
                         >
@@ -51,8 +49,7 @@
                 <div class="control-options">
                     @for (s of sizes; track s) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="size() === s"
+                            [variant]="size() === s ? 'primary' : 'secondary'"
                             (clicked)="size.set(s)"
                             >{{ s }}</zyra-button
                         >
@@ -65,8 +62,7 @@
                 <div class="control-options">
                     @for (iconOption of icons; track iconOption.key) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="prefixIcon() === iconOption.key"
+                            [variant]="prefixIcon() === iconOption.key ? 'primary' : 'secondary'"
                             (clicked)="
                                 prefixIcon.set(
                                     prefixIcon() === iconOption.key ? null : iconOption.key
@@ -84,8 +80,7 @@
                 <div class="control-options">
                     @for (iconOption of icons; track iconOption.key) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="suffixIcon() === iconOption.key"
+                            [variant]="suffixIcon() === iconOption.key ? 'primary' : 'secondary'"
                             (clicked)="
                                 suffixIcon.set(
                                     suffixIcon() === iconOption.key ? null : iconOption.key
@@ -123,8 +118,7 @@
                 <div class="control-options">
                     @for (n of [null, 20, 50, 100]; track n) {
                         <zyra-button
-                            variant="outline"
-                            [class.active]="maxLen() === n"
+                            [variant]="maxLen() === n ? 'primary' : 'secondary'"
                             (clicked)="maxLen.set(n)"
                             >{{ n ?? 'off' }}</zyra-button
                         >
