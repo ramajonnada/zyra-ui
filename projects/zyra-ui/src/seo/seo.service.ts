@@ -25,7 +25,7 @@ export class SeoService {
             title,
             description,
             url,
-            image = 'https://www.zyraui.dev/final-icon248.png',
+            image = 'https://www.zyraui.dev/og-preview.png',
             type = 'website',
             publishedTime,
             tags,

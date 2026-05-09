@@ -240,7 +240,7 @@ export class Home implements OnInit, OnDestroy {
 			applicationCategory: 'DeveloperApplication',
 			operatingSystem: 'Web',
 			url: 'https://www.zyraui.dev/',
-			image: 'https://www.zyraui.dev/final-icon248.png',
+			image: 'https://www.zyraui.dev/og-preview.png',
 			description:
 				'A modern Angular component library and design system with design tokens, accessible UI primitives, polished motion, and dark-mode-first theming.',
 			keywords:
