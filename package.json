@@ -18,7 +18,8 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"commit": "cz",
-		"check-all": "npm run format:check && npm run lint"
+		"check-all": "npm run format:check && npm run lint",
+		"publish:lib": "ng build zyra-ng-ui && npm publish dist/zyra-ng-ui --access public"
 	},
 	"prettier": {
 		"printWidth": 100,
@@ -51,7 +52,7 @@
 		"prettier": "^3.6.2",
 		"rxjs": "~7.8.0",
 		"tslib": "^2.3.0",
-		"zyra-ng-ui": "^1.5.27"
+		"zyra-ng-ui": "^1.5.28"
 	},
 	"devDependencies": {
 		"@angular/build": "^21.0.4",
