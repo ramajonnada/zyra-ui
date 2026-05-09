@@ -306,14 +306,15 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        font-family: var(--zyr-font-display);
-        font-size: 16px;
-        font-weight: 700;
+        font-family: var(--zyr-font-mono);
+        font-size: 12px;
+        font-weight: 600;
         color: var(--zyr-text);
         margin-bottom: 20px;
         padding-left: 12px;
         border-left: 3px solid var(--zyr-accent);
-        letter-spacing: 0;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
     }
 }
 
