@@ -1,6 +1,26 @@
 // projects/zyra-ui/src/app/pages/test/badge-playground.component.scss
 @use '../../shared/pg_shared.scss' as *;
 
+// Badge variant selector buttons
+.badge-opt {
+    background: none;
+    border: 2px solid transparent;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: var(--zyr-radius-sm);
+    transition: border-color 0.15s, opacity 0.15s;
+    opacity: 0.55;
+
+    &--active {
+        border-color: var(--zyr-accent);
+        opacity: 1;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
 // All variants grid
 .grid-row {
     display: grid;
