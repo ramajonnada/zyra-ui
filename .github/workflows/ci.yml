@@ -17,14 +17,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Build library (zyra-ng-ui)
-        run: npx ng build zyra-ng-ui --configuration=production
+        run: npx ng build zyra-ng-ui --configuration=production --no-progress
 
       - name: Build app (zyra-ui)
-        run: npx ng build zyra-ui --configuration=production
+        run: npx ng build zyra-ui --configuration=production --no-progress
