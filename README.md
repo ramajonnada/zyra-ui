@@ -1,59 +1,117 @@
-# ZyraWorkspace
+# Zyra UI
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+[![CI](https://github.com/ramajonnada/zyra-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/ramajonnada/zyra-ui/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/zyra-ng-ui.svg)](https://www.npmjs.com/package/zyra-ng-ui)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## Development server
+A dark-mode-first Angular component library built with design tokens, signals, and zero-runtime theming.
 
-To start a local development server, run:
+**[Live Playground →](https://www.zyraui.dev)**
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Features
 
-## Code scaffolding
+- **Angular 21+ signals-first** — every component uses `input()`, `output()`, `signal()`, `computed()`
+- **Design-token theming** — swap the entire look with one CSS variable file
+- **Dark-mode first** — designed in the dark, perfected in the light
+- **Standalone components** — no NgModules, just import what you need
+- **Tree-shakeable** — only ship what you use
+- **WCAG 2.1 AA accessible** — keyboard nav, focus rings, ARIA labels built in
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Components
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+| Component | Selector | Description |
+|-----------|----------|-------------|
+| Button | `zyra-button` | Variants, sizes, loading, icons |
+| Badge | `zyra-badge` | Status labels with dot indicator |
+| Card | `zyra-card` | Content containers with slots |
+| Input | `zyra-input` | Text input with validation states |
+| Spinner | `zyra-spinner` | Loading indicator |
+| Toast | `zyra-toast` | Notification toasts |
+| Tooltip | `zyra-tooltip` | Hover tooltips with positioning |
+| Avatar | `zyra-avatar` | Profile avatars with online indicator |
+| Form Field | `zyra-form-field` | Label + input + hint wrapper |
 
-```bash
-ng generate --help
-```
+---
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Installation
 
 ```bash
-ng e2e
+npm install zyra-ng-ui
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Peer dependencies
 
-## Additional Resources
+```bash
+npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Import styles
+
+In your `styles.scss`:
+
+```scss
+@import 'zyra-ng-ui/styles';
+```
+
+---
+
+## Quick Start
+
+```typescript
+import { ZyraButton, ZyraBadge } from 'zyra-ng-ui';
+
+@Component({
+  imports: [ZyraButton, ZyraBadge],
+  template: `
+    <zyra-button variant="primary" (clicked)="onClick()">
+      Get Started
+    </zyra-button>
+
+    <zyra-badge variant="success" [dot]="true">Online</zyra-badge>
+  `
+})
+export class AppComponent {
+  onClick() {}
+}
+```
+
+---
+
+## Theming
+
+All colors, spacing, and radii are CSS variables. Override them in your global styles:
+
+```scss
+:root {
+  --zyr-accent: #your-brand-color;
+  --zyr-radius-md: 8px;
+}
+```
+
+---
+
+## Monorepo Structure
+
+```
+projects/
+  zyra-ng-ui/     ← publishable Angular library (npm)
+  zyra-ui/        ← marketing site + component playground
+```
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions and branch workflow.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.
+
+## License
+
+MIT © [Rama Jonnada](https://github.com/ramajonnada)
