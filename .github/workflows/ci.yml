@@ -24,7 +24,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build library (zyra-ng-ui)
-        run: npx ng build zyra-ng-ui --configuration=production --no-progress
+        run: npx ng build zyra-ng-ui --configuration=production
 
       - name: Build app (zyra-ui)
         run: npx ng build zyra-ui --configuration=production --no-progress
