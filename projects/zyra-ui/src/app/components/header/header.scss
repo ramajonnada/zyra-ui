@@ -251,6 +251,16 @@
 		transform: translateY(-1px);
 		opacity: 1;
 	}
+
+	.site-header__stars {
+		padding: 1px 7px;
+		border-radius: var(--zyr-radius-full);
+		background: var(--zyr-bg-3);
+		border: 1px solid var(--zyr-border);
+		color: var(--zyr-text);
+		font-size: 0.68rem;
+		font-weight: 500;
+	}
 }
 
 @media (max-width: 1040px) {

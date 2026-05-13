@@ -15,7 +15,7 @@
 
         <a class="site-header__logo" routerLink="/">
             <span class="site-header__logo-text">Zyra<span>UI</span></span>
-            <span class="site-header__version">v1.0 beta</span>
+            <span class="site-header__version">v{{ version }}</span>
         </a>
     </div>
 
@@ -42,6 +42,9 @@
         >
             <fa-icon [icon]="icons.github" />
             <span>Star</span>
+            @if (githubStars() !== null) {
+                <span class="site-header__stars">{{ githubStars() }}</span>
+            }
         </a>
 
         <button
