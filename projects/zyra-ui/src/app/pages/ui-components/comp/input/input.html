@@ -15,161 +15,57 @@
 
     <div class="pg__body">
         <!-- ── LEFT: CONTROLS ──────────────────────────────────── -->
-        <div class="controls">
-            <div class="controls__title">Controls</div>
-
+        <app-controls [controls]="controlDefs">
+            <!-- prefixIcon picker -->
             <div class="control-group">
-                <div class="control-label">type</div>
-                <div class="control-options">
-                    @for (t of types; track t) {
-                        <zyra-button
-                            [variant]="type() === t ? 'primary' : 'secondary'"
-                            (clicked)="type.set(t)"
-                            >{{ t }}</zyra-button
-                        >
-                    }
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">appearance</div>
-                <div class="control-options">
-                    @for (a of appearances; track a) {
-                        <zyra-button
-                            [variant]="appearance() === a ? 'primary' : 'secondary'"
-                            (clicked)="appearance.set(a)"
-                            >{{ a }}</zyra-button
-                        >
-                    }
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">size</div>
-                <div class="control-options">
-                    @for (s of sizes; track s) {
-                        <zyra-button
-                            [variant]="size() === s ? 'primary' : 'secondary'"
-                            (clicked)="size.set(s)"
-                            >{{ s }}</zyra-button
-                        >
-                    }
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">prefixIcon</div>
+                <span class="control-label">prefixIcon</span>
                 <div class="control-options">
                     @for (iconOption of icons; track iconOption.key) {
                         <zyra-button
+                            size="sm"
                             [variant]="prefixIcon() === iconOption.key ? 'primary' : 'secondary'"
-                            (clicked)="
-                                prefixIcon.set(
-                                    prefixIcon() === iconOption.key ? null : iconOption.key
-                                )
-                            "
-                        >
-                            <fa-icon [icon]="iconOption.icon" />
-                        </zyra-button>
+                            (clicked)="prefixIcon.set(prefixIcon() === iconOption.key ? null : iconOption.key)"
+                        ><fa-icon [icon]="iconOption.icon" /></zyra-button>
                     }
                 </div>
             </div>
-
+            <!-- suffixIcon picker -->
             <div class="control-group">
-                <div class="control-label">suffixIcon</div>
+                <span class="control-label">suffixIcon</span>
                 <div class="control-options">
                     @for (iconOption of icons; track iconOption.key) {
                         <zyra-button
+                            size="sm"
                             [variant]="suffixIcon() === iconOption.key ? 'primary' : 'secondary'"
-                            (clicked)="
-                                suffixIcon.set(
-                                    suffixIcon() === iconOption.key ? null : iconOption.key
-                                )
-                            "
-                        >
-                            <fa-icon [icon]="iconOption.icon" />
-                        </zyra-button>
+                            (clicked)="suffixIcon.set(suffixIcon() === iconOption.key ? null : iconOption.key)"
+                        ><fa-icon [icon]="iconOption.icon" /></zyra-button>
                     }
                 </div>
             </div>
-
+            <!-- maxLength with null option -->
             <div class="control-group">
-                <div class="control-label">hint</div>
-                <input
-                    class="control-input"
-                    type="text"
-                    [(ngModel)]="hintText"
-                    placeholder="Hint text..."
-                />
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">successHint</div>
-                <input
-                    class="control-input"
-                    type="text"
-                    [(ngModel)]="successHint"
-                    placeholder="Success message..."
-                />
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">maxLength</div>
+                <span class="control-label">maxLength</span>
                 <div class="control-options">
                     @for (n of [null, 20, 50, 100]; track n) {
                         <zyra-button
+                            size="sm"
                             [variant]="maxLen() === n ? 'primary' : 'secondary'"
                             (clicked)="maxLen.set(n)"
-                            >{{ n ?? 'off' }}</zyra-button
-                        >
+                        >{{ n ?? 'off' }}</zyra-button>
                     }
                 </div>
             </div>
-
-            <div class="control-group">
-                <div class="control-label">features</div>
-                <div class="control-toggles">
-                    <label class="toggle">
-                        <input
-                            type="checkbox"
-                            [checked]="clearButton()"
-                            (change)="clearButton.set(!clearButton())"
-                        />
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label">clearButton</span>
-                    </label>
-                    <label class="toggle">
-                        <input
-                            type="checkbox"
-                            [checked]="loading()"
-                            (change)="loading.set(!loading())"
-                        />
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label">loading</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="controls__actions">
-                <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()"
-                    >↺ Reset all</zyra-button
-                >
-                <zyra-button
-                    variant="secondary"
-                    size="sm"
-                    [fullWidth]="true"
-                    (clicked)="simulateLoading()"
-                    >▷ Simulate loading</zyra-button
-                >
-            </div>
-
+            <!-- actions -->
+            <zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset all</zyra-button>
+            <zyra-button variant="secondary" size="sm" (clicked)="simulateLoading()">▷ Simulate loading</zyra-button>
+            <!-- architecture info -->
             <div class="controls__info">
                 <div class="controls__info-title">Architecture</div>
                 <p><code>zyra-form-field</code> — label, hint, icons, counter</p>
                 <p><code>zyra-input</code> — pure CVA, no chrome</p>
                 <p>Use <code>zyra-input</code> standalone inside toolbars, tables etc.</p>
             </div>
-        </div>
+        </app-controls>
 
         <!-- ── RIGHT: PREVIEW + CODE ────────────────────────────── -->
         <div class="preview-area">
@@ -185,8 +81,8 @@
                     <div>
                         <zyra-form-field
                             [label]="labelText"
-                            [hint]="hintText"
-                            [successHint]="successHint"
+                            [hint]="hintText()"
+                            [successHint]="successHint()"
                             [appearance]="appearance()"
                             [size]="size()"
                             [prefixIcon]="prefixIconValue()"
@@ -241,17 +137,15 @@
             </div>
 
             <!-- Event log -->
-            <div class="log-box">
-                <div class="log-box__header">
+            <zyra-card variant="default" padding="none" [hasHeader]="true">
+                <div slot="header" class="log-header">
                     <span>
                         Event Log
                         <zyra-badge variant="purple" size="sm">{{ eventLog().length }}</zyra-badge>
                     </span>
-                    <zyra-button variant="ghost" size="sm" (clicked)="eventLog.set([])"
-                        >Clear</zyra-button
-                    >
+                    <zyra-button variant="ghost" size="sm" (clicked)="eventLog.set([])">Clear</zyra-button>
                 </div>
-                <div class="log-box__body">
+                <div class="log-body">
                     @if (eventLog().length === 0) {
                         <span class="log-empty">Interact with the input above to see events</span>
                     }
@@ -263,7 +157,7 @@
                         </div>
                     }
                 </div>
-            </div>
+            </zyra-card>
         </div>
     </div>
 
@@ -293,16 +187,16 @@
         </div>
         <div class="form-grid">
             <!-- Login card -->
-            <zyra-card variant="default" padding="lg">
-                <div class="rw-card__head">
+            <zyra-card variant="default" padding="lg" [hasHeader]="true">
+                <div slot="header" class="card-head">
                     <zyra-avatar name="Sign In" variant="teal" size="md" />
                     <div>
-                        <div class="rw-card__title">Login</div>
-                        <div class="rw-card__subtitle">Welcome back</div>
+                        <div class="card-head__title">Login</div>
+                        <div class="card-head__sub">Welcome back</div>
                     </div>
                 </div>
                 <form
-                    class="rw-card__body"
+                    class="card-form"
                     [formGroup]="loginForm"
                     (ngSubmit)="submitLogin()"
                     autocomplete="on"
@@ -341,16 +235,16 @@
             </zyra-card>
 
             <!-- Registration card -->
-            <zyra-card variant="default" padding="lg">
-                <div class="rw-card__head">
+            <zyra-card variant="default" padding="lg" [hasHeader]="true">
+                <div slot="header" class="card-head">
                     <zyra-avatar name="New User" variant="purple" size="md" />
                     <div>
-                        <div class="rw-card__title">Register</div>
-                        <div class="rw-card__subtitle">Create your account</div>
+                        <div class="card-head__title">Register</div>
+                        <div class="card-head__sub">Create your account</div>
                     </div>
                 </div>
                 <form
-                    class="rw-card__body"
+                    class="card-form"
                     [formGroup]="registerForm"
                     (ngSubmit)="submitRegister()"
                     autocomplete="on"
@@ -393,16 +287,16 @@
             </zyra-card>
 
             <!-- Profile card -->
-            <zyra-card variant="default" padding="lg">
-                <div class="rw-card__head">
+            <zyra-card variant="default" padding="lg" [hasHeader]="true">
+                <div slot="header" class="card-head">
                     <zyra-avatar name="Arjun Kumar" variant="purple" size="md" [online]="true" />
                     <div>
-                        <div class="rw-card__title">Profile Settings</div>
-                        <div class="rw-card__subtitle">Update your info</div>
+                        <div class="card-head__title">Profile Settings</div>
+                        <div class="card-head__sub">Update your info</div>
                     </div>
                 </div>
                 <form
-                    class="rw-card__body"
+                    class="card-form"
                     [formGroup]="profileForm"
                     (ngSubmit)="submitProfile()"
                     autocomplete="on"

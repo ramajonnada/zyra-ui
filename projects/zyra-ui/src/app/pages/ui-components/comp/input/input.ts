@@ -26,6 +26,8 @@ import {
     ZyraThemeService,
 } from 'zyra-ng-ui';
 import { appIcons, inputIconOptions, type AppIconKey } from '../../../../shared/fontawesome-icons';
+import { Controls } from '../../shared/controls/controls';
+import { ControlDef } from '../../shared/controls/control-def';
 
 function noSpaces(ctrl: AbstractControl): ValidationErrors | null {
     return ctrl.value?.includes(' ') ? { message: 'Username cannot contain spaces' } : null;
@@ -59,6 +61,7 @@ function strongPassword(ctrl: AbstractControl): ValidationErrors | null {
         ZyraAvatar,
         ZyraToastContainer,
         FaIconComponent,
+        Controls,
     ],
 })
 export class Input {
@@ -74,14 +77,66 @@ export class Input {
     clearButton = signal(false);
     loading = signal(false);
     maxLen = signal<number | null>(null);
-    hintText = 'This is a hint message';
-    successHint = 'Looks great!';
+    hintText = signal('This is a hint message');
+    successHint = signal('Looks great!');
     labelText = 'Label';
 
     types: InputType[] = ['text', 'email', 'password', 'number', 'search', 'tel', 'url'];
     sizes: FormFieldSize[] = ['sm', 'md', 'lg'];
     appearances: FormFieldAppearance[] = ['outline', 'filled', 'underline'];
     icons = inputIconOptions;
+
+    readonly controlDefs: ControlDef[] = [
+        {
+            type: 'button-group',
+            key: 'type',
+            label: 'type',
+            options: ['text', 'email', 'password', 'number', 'search', 'tel', 'url'],
+            signal: this.type as ReturnType<typeof signal<string>>,
+        },
+        {
+            type: 'button-group',
+            key: 'appearance',
+            label: 'appearance',
+            options: ['outline', 'filled', 'underline'],
+            signal: this.appearance as ReturnType<typeof signal<string>>,
+        },
+        {
+            type: 'button-group',
+            key: 'size',
+            label: 'size',
+            options: ['sm', 'md', 'lg'],
+            signal: this.size as ReturnType<typeof signal<string>>,
+        },
+        {
+            type: 'text',
+            key: 'hintText',
+            label: 'hint',
+            placeholder: 'Hint text...',
+            signal: this.hintText,
+        },
+        {
+            type: 'text',
+            key: 'successHint',
+            label: 'successHint',
+            placeholder: 'Success message...',
+            signal: this.successHint,
+        },
+        {
+            type: 'toggle',
+            key: 'clearButton',
+            label: 'features',
+            toggleLabel: 'clearButton',
+            signal: this.clearButton,
+        },
+        {
+            type: 'toggle',
+            key: 'loading',
+            label: '',
+            toggleLabel: 'loading',
+            signal: this.loading,
+        },
+    ];
 
     // ── Playground form control ───────────────────────────────
     playgroundControl = computed(() => {
@@ -239,8 +294,8 @@ export class Input {
         this.clearButton.set(false);
         this.loading.set(false);
         this.maxLen.set(null);
-        this.hintText = 'This is a hint message';
-        this.labelText = 'Label';
+        this.hintText.set('This is a hint message');
+        this.successHint.set('Looks great!');
         this.eventLog.set([]);
     }
 

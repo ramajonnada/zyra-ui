@@ -1,26 +1,6 @@
 // projects/zyra-ui/src/app/pages/test/badge-playground.component.scss
 @use '../../shared/pg_shared.scss' as *;
 
-// Badge variant selector buttons
-.badge-opt {
-    background: none;
-    border: 2px solid transparent;
-    padding: 2px;
-    cursor: pointer;
-    border-radius: var(--zyr-radius-sm);
-    transition: border-color 0.15s, opacity 0.15s;
-    opacity: 0.55;
-
-    &--active {
-        border-color: var(--zyr-accent);
-        opacity: 1;
-    }
-
-    &:hover {
-        opacity: 1;
-    }
-}
-
 // All variants grid
 .grid-row {
     display: grid;
@@ -76,32 +56,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 16px;
-}
-
-.rw-card {
-    background: var(--zyr-card-bg);
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
-    overflow: hidden;
-    transition: background var(--zyr-transition-slow);
-
-    &__title {
-        padding: 12px 16px;
-        border-bottom: 1px solid var(--zyr-border);
-        font-size: 12px;
-        font-weight: 600;
-        color: var(--zyr-text-muted);
-        font-family: var(--zyr-font-mono);
-        background: var(--zyr-bg-3);
-        transition: background var(--zyr-transition-slow);
-    }
-
-    &__body {
-        padding: 12px 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
 }
 
 .rw-row {

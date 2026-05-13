@@ -15,84 +15,25 @@
     </div>
 
     <div class="pg__body">
-        <div class="controls">
-            <div class="controls__title">Controls</div>
-
+        <app-controls [controls]="controlDefs">
+            <!-- duration — projected because it has a persistent side-effect -->
             <div class="control-group">
-                <div class="control-label">variant</div>
-                <div class="control-options">
-                    @for (v of variants; track v) {
-                        <zyra-button
-                            [variant]="variant() === v ? 'primary' : 'secondary'"
-                            (clicked)="variant.set(v)"
-                            >{{ v }}</zyra-button
-                        >
-                    }
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">title</div>
-                <input
-                    class="control-input"
-                    type="text"
-                    [value]="title()"
-                    (input)="title.set($any($event.target).value)"
-                    placeholder="Toast title..."
-                />
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">description</div>
-                <input
-                    class="control-input"
-                    type="text"
-                    [value]="description()"
-                    (input)="description.set($any($event.target).value)"
-                    placeholder="Optional description..."
-                />
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">duration (ms)</div>
+                <span class="control-label">duration (ms)</span>
                 <div class="control-options">
                     @for (d of durations; track d) {
                         <zyra-button
+                            size="sm"
                             [variant]="duration() === d && !persistent() ? 'primary' : 'secondary'"
                             (clicked)="duration.set(d); persistent.set(false)"
-                            >{{ d / 1000 }}s</zyra-button
-                        >
+                        >{{ d / 1000 }}s</zyra-button>
                     }
                 </div>
             </div>
-
-            <div class="control-group">
-                <div class="control-label">persistent</div>
-                <div class="control-toggles">
-                    <label class="toggle">
-                        <input
-                            type="checkbox"
-                            [checked]="persistent()"
-                            (change)="persistent.set(!persistent())"
-                        />
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label">duration: 0 (never auto-dismiss)</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="controls__actions">
-                <zyra-button variant="primary" size="md" [fullWidth]="true" (clicked)="fire()">
-                    Fire Toast
-                </zyra-button>
-                <zyra-button variant="danger" size="sm" [fullWidth]="true" (clicked)="dismissAll()">
-                    Dismiss All
-                </zyra-button>
-                <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()">
-                    Reset Controls
-                </zyra-button>
-            </div>
-
+            <!-- actions -->
+            <zyra-button variant="primary" size="sm" (clicked)="fire()">Fire Toast</zyra-button>
+            <zyra-button variant="danger" size="sm" (clicked)="dismissAll()">Dismiss All</zyra-button>
+            <zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset</zyra-button>
+            <!-- API info -->
             <div class="controls__info">
                 <div class="controls__info-title">Service API</div>
                 <p><code>toastService.success(title, opts?)</code></p>
@@ -103,7 +44,7 @@
                 <p><code>toastService.dismissAll()</code></p>
                 <p><strong>opts:</strong> description, duration (0 = persistent)</p>
             </div>
-        </div>
+        </app-controls>
 
         <div class="preview-area">
             <div class="preview-box">

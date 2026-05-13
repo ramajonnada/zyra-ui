@@ -1,7 +1,4 @@
-<!-- projects/zyra-ui/src/app/pages/test/button/button.html -->
-
 <div class="pg">
-    <!-- HEADER -->
     <div class="pg__header">
         <div class="pg__header-left">
             <div class="pg__header-title">
@@ -16,98 +13,17 @@
 
     <div class="pg__body">
         <!-- LEFT: CONTROLS -->
-        <div class="controls">
-            <div class="controls__title">Controls</div>
-
-            <!-- variant -->
-            <div class="control-group">
-                <span class="control-label">variant</span>
-                <div class="control-options">
-                    @for (v of variants; track v) {
-                        <zyra-button
-                            [variant]="selectedVariant() === v ? 'primary' : 'secondary'"
-                            (clicked)="selectedVariant.set(v)"
-                            >{{ v }}</zyra-button
-                        >
-                    }
-                </div>
-            </div>
-
-            <!-- size -->
-            <div class="control-group">
-                <span class="control-label">size</span>
-                <div class="control-options">
-                    @for (s of sizes; track s) {
-                        <zyra-button
-                            [variant]="selectedSize() === s ? 'primary' : 'secondary'"
-                            (clicked)="selectedSize.set(s)"
-                            >{{ s }}</zyra-button
-                        >
-                    }
-                </div>
-            </div>
-
-            <!-- loading -->
-            <div class="control-group">
-                <span class="control-label">loading</span>
-                <div class="control-toggles">
-                    <label class="toggle">
-                        <input
-                            type="checkbox"
-                            [checked]="isLoading()"
-                            (change)="isLoading.set(!isLoading())"
-                        />
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label">loading state</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- disabled -->
-            <div class="control-group">
-                <span class="control-label">disabled</span>
-                <div class="control-toggles">
-                    <label class="toggle">
-                        <input
-                            type="checkbox"
-                            [checked]="isDisabled()"
-                            (change)="isDisabled.set(!isDisabled())"
-                        />
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label">disabled state</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- fullWidth -->
-            <div class="control-group">
-                <span class="control-label">fullWidth</span>
-                <div class="control-toggles">
-                    <label class="toggle">
-                        <input
-                            type="checkbox"
-                            [checked]="isFullWidth()"
-                            (change)="isFullWidth.set(!isFullWidth())"
-                        />
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label">full width</span>
-                    </label>
-                </div>
-            </div>
-
+        <app-controls [controls]="controlDefs">
             <!-- iconLeft -->
             <div class="control-group">
                 <span class="control-label">iconLeft</span>
                 <div class="control-options">
                     @for (iconOption of leftIconOptions; track iconOption.key) {
                         <zyra-button
+                            size="sm"
                             [variant]="iconLeft() === iconOption.key ? 'primary' : 'secondary'"
-                            (clicked)="
-                                iconLeft.set(iconLeft() === iconOption.key ? null : iconOption.key)
-                            "
-                        >
-                            <fa-icon [icon]="iconOption.icon" />
-                        </zyra-button>
+                            (clicked)="iconLeft.set(iconLeft() === iconOption.key ? null : iconOption.key)"
+                        ><fa-icon [icon]="iconOption.icon" /></zyra-button>
                     }
                 </div>
             </div>
@@ -118,34 +34,17 @@
                 <div class="control-options">
                     @for (iconOption of rightIconOptions; track iconOption.key) {
                         <zyra-button
+                            size="sm"
                             [variant]="iconRight() === iconOption.key ? 'primary' : 'secondary'"
-                            (clicked)="
-                                iconRight.set(
-                                    iconRight() === iconOption.key ? null : iconOption.key
-                                )
-                            "
-                        >
-                            <fa-icon [icon]="iconOption.icon" />
-                        </zyra-button>
+                            (clicked)="iconRight.set(iconRight() === iconOption.key ? null : iconOption.key)"
+                        ><fa-icon [icon]="iconOption.icon" /></zyra-button>
                     }
                 </div>
             </div>
-
-            <!-- label -->
-            <div class="control-group">
-                <span class="control-label">label</span>
-                <input
-                    class="control-input"
-                    type="text"
-                    [(ngModel)]="buttonLabel"
-                    placeholder="Button text..."
-                />
-            </div>
-        </div>
+        </app-controls>
 
         <!-- RIGHT: PREVIEW -->
         <div class="preview-area">
-            <!-- Live Preview -->
             <div class="preview-box">
                 <div class="preview-box__label">Live Preview</div>
                 <div class="preview-box__stage">
@@ -160,7 +59,7 @@
                         @if (leftPreviewIcon()) {
                             <fa-icon slot="prefix" [icon]="leftPreviewIcon()!" />
                         }
-                        <span>{{ buttonLabel }}</span>
+                        <span>{{ buttonLabel() }}</span>
                         @if (rightPreviewIcon()) {
                             <fa-icon slot="suffix" [icon]="rightPreviewIcon()!" />
                         }
@@ -168,13 +67,10 @@
                 </div>
             </div>
 
-            <!-- Code -->
             <div class="code-box">
                 <div class="code-box__header">
                     <span>Generated Code</span>
-                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()"
-                        >Copy</zyra-button
-                    >
+                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()">Copy</zyra-button>
                 </div>
                 <pre class="code-box__pre">{{ generatedCode() }}</pre>
             </div>

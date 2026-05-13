@@ -1,6 +1,5 @@
 import { TitleCasePipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import {
     CardPadding,
     CardVariant,
@@ -12,17 +11,19 @@ import {
     ZyraToastContainer,
     ZyraToastService,
 } from 'zyra-ng-ui';
+import { Controls } from '../../shared/controls/controls';
+import { ControlDef } from '../../shared/controls/control-def';
 
 @Component({
     selector: 'app-card-test',
     imports: [
-        FormsModule,
         ZyraCard,
         ZyraButton,
         ZyraBadge,
         ZyraAvatar,
         ZyraToastContainer,
         TitleCasePipe,
+        Controls,
     ],
     templateUrl: './card-test.html',
     styleUrl: './card-test.scss',
@@ -44,6 +45,51 @@ export class CardTest {
     variants: CardVariant[] = ['default', 'outlined', 'elevated', 'ghost'];
     paddings: CardPadding[] = ['none', 'sm', 'md', 'lg'];
     presets = ['Simple text', 'With image', 'With stats', 'Empty (no padding)'];
+
+    readonly controlDefs: ControlDef[] = [
+        {
+            type: 'button-group',
+            key: 'variant',
+            label: 'variant',
+            options: ['default', 'outlined', 'elevated', 'ghost'],
+            signal: this.variant as ReturnType<typeof signal<string>>,
+        },
+        {
+            type: 'button-group',
+            key: 'padding',
+            label: 'padding',
+            options: ['none', 'sm', 'md', 'lg'],
+            signal: this.padding as ReturnType<typeof signal<string>>,
+        },
+        {
+            type: 'button-group',
+            key: 'preset',
+            label: 'content preset',
+            options: ['Simple text', 'With image', 'With stats', 'Empty (no padding)'],
+            signal: this.preset,
+        },
+        {
+            type: 'toggle',
+            key: 'hasHeader',
+            label: 'boolean inputs',
+            toggleLabel: 'hasHeader',
+            signal: this.hasHeader,
+        },
+        {
+            type: 'toggle',
+            key: 'hasFooter',
+            label: '',
+            toggleLabel: 'hasFooter',
+            signal: this.hasFooter,
+        },
+        {
+            type: 'toggle',
+            key: 'clickable',
+            label: '',
+            toggleLabel: 'clickable',
+            signal: this.clickable,
+        },
+    ];
 
     generatedCode = computed(() => this.buildGeneratedCode());
 
