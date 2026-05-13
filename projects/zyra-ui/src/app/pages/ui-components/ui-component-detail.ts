@@ -21,7 +21,6 @@ import { SeoService } from '../../../seo/seo.service';
         FormsModule,
         RouterLink,
         ZyraBadge,
-        ZyraCard,
         Button,
         Badge,
         CardTest,
