@@ -94,16 +94,21 @@ export class CardTest {
     generatedCode = computed(() => this.buildGeneratedCode());
 
     private buildGeneratedCode(): string {
-        const lines: string[] = ['<zyr-card'];
+        const attrs: string[] = [];
 
-        if (this.variant() !== 'default') lines.push(`  variant="${this.variant()}"`);
-        if (this.padding() !== 'md') lines.push(`  padding="${this.padding()}"`);
-        if (this.hasHeader()) lines.push(`  [hasHeader]="true"`);
-        if (this.hasFooter()) lines.push(`  [hasFooter]="true"`);
-        if (this.clickable()) lines.push(`  [clickable]="true"`);
-        if (this.clickable()) lines.push(`  (cardClick)="onCardClick()"`);
+        if (this.variant() !== 'default') attrs.push(`  variant="${this.variant()}"`);
+        if (this.padding() !== 'md') attrs.push(`  padding="${this.padding()}"`);
+        if (this.hasHeader()) attrs.push(`  [hasHeader]="true"`);
+        if (this.hasFooter()) attrs.push(`  [hasFooter]="true"`);
+        if (this.clickable()) attrs.push(`  [clickable]="true"`);
+        if (this.clickable()) attrs.push(`  (cardClick)="onCardClick()"`);
 
-        lines.push(`>`);
+        const lines: string[] = [];
+        if (attrs.length === 0) {
+            lines.push(`<zyra-card>`);
+        } else {
+            lines.push(`<zyra-card`, ...attrs, `>`)
+        }
 
         if (this.hasHeader()) {
             lines.push(`  <div slot="header">`);
@@ -119,7 +124,7 @@ export class CardTest {
             lines.push(`  </div>`);
         }
 
-        lines.push(`</zyr-card>`);
+        lines.push(`</zyra-card>`);
         return lines.join('\n');
     }
 

@@ -47,11 +47,17 @@ export class Badge {
     ];
 
     generatedCode = computed(() => {
-        const lines: string[] = ['<zyra-badge'];
-        if (this.variant() !== 'default') lines.push(`  variant="${this.variant()}"`);
-        if (this.size() !== 'md') lines.push(`  size="${this.size()}"`);
-        if (this.dot()) lines.push(`  [dot]="true"`);
-        lines.push(`>`);
+        const attrs: string[] = [];
+        if (this.variant() !== 'default') attrs.push(`  variant="${this.variant()}"`);
+        if (this.size() !== 'md') attrs.push(`  size="${this.size()}"`);
+        if (this.dot()) attrs.push(`  [dot]="true"`);
+
+        const lines: string[] = [];
+        if (attrs.length === 0) {
+            lines.push(`<zyra-badge>`);
+        } else {
+            lines.push(`<zyra-badge`, ...attrs, `>`);
+        }
         lines.push(`  ${this.labelText()}`);
         lines.push(`</zyra-badge>`);
         return lines.join('\n');

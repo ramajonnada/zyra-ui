@@ -76,9 +76,10 @@ export class Spinner {
     }
 
     generatedCode = computed(() => {
-        let code = `<zyra-spinner size="${this.size()}" color="${this.color()}"`;
-        if (this.label().trim()) code += `\n  label="${this.label()}"`;
-        code += `\n/>`;
-        return code;
+        const label = this.label().trim();
+        if (label) {
+            return `<zyra-spinner size="${this.size()}" color="${this.color()}"\n  label="${label}"\n/>`;
+        }
+        return `<zyra-spinner size="${this.size()}" color="${this.color()}" />`;
     });
 }
