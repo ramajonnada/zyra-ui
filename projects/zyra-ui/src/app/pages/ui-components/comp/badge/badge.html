@@ -9,57 +9,17 @@
 
 	<div class="pg__body">
 		<!-- ── LEFT: CONTROLS ──────────────────────────────── -->
-		<div class="controls">
-			<div class="controls__title">Controls</div>
-
-			<!-- variant -->
+		<app-controls [controls]="controlDefs">
 			<div class="control-group">
 				<span class="control-label">variant</span>
 				<div class="control-options">
 					@for (v of variants; track v) {
-						<button class="badge-opt" [class.badge-opt--active]="variant() === v" (click)="variant.set(v)">
-							<zyra-badge [variant]="v" size="sm">{{ v }}</zyra-badge>
-						</button>
+						<zyra-button size="sm" [variant]="variant() === v ? 'primary' : 'secondary'" (clicked)="variant.set(v)">{{ v }}</zyra-button>
 					}
 				</div>
 			</div>
-
-			<!-- size -->
-			<div class="control-group">
-				<span class="control-label">size</span>
-				<div class="control-options">
-					@for (s of sizes; track s) {
-						<zyra-button
-							[variant]="size() === s ? 'primary' : 'secondary'"
-							size="sm"
-							(clicked)="size.set(s)"
-							>{{ s }}</zyra-button
-						>
-					}
-				</div>
-			</div>
-
-			<!-- label text -->
-			<div class="control-group">
-				<span class="control-label">label text</span>
-				<input class="control-input" type="text" [(ngModel)]="labelText" placeholder="Badge label..." />
-			</div>
-
-			<!-- dot toggle -->
-			<div class="control-group">
-				<span class="control-label">boolean inputs</span>
-				<div class="control-toggles">
-					<label class="toggle">
-						<input type="checkbox" [checked]="dot()" (change)="dot.set(!dot())" />
-						<span class="toggle__track"></span>
-						<span class="toggle__label">dot</span>
-					</label>
-				</div>
-			</div>
-
-			<!-- reset -->
 			<zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset all</zyra-button>
-		</div>
+		</app-controls>
 
 		<!-- ── RIGHT: PREVIEW + CODE ──────────────────────── -->
 		<div class="preview-area">
@@ -67,9 +27,7 @@
 			<div class="preview-box">
 				<div class="preview-box__label">Preview</div>
 				<div class="preview-box__stage">
-					<zyra-badge [variant]="variant()" [size]="size()" [dot]="dot()">{{
-						labelText
-						}}</zyra-badge>
+					<zyra-badge [variant]="variant()" [size]="size()" [dot]="dot()">{{ labelText() }}</zyra-badge>
 				</div>
 			</div>
 
@@ -140,91 +98,83 @@
 		<div class="grid-section__title">Real World Examples</div>
 		<div class="realworld-grid">
 			<!-- Status badges -->
-			<div class="rw-card">
-				<div class="rw-card__title">Status Indicators</div>
-				<div class="rw-card__body">
-					<div class="rw-row">
-						<span class="rw-label">Order Status</span>
-						<zyra-badge variant="success" [dot]="true">Delivered</zyra-badge>
-					</div>
-					<div class="rw-row">
-						<span class="rw-label">Payment</span>
-						<zyra-badge variant="warning" [dot]="true">Pending</zyra-badge>
-					</div>
-					<div class="rw-row">
-						<span class="rw-label">Account</span>
-						<zyra-badge variant="danger" [dot]="true">Suspended</zyra-badge>
-					</div>
-					<div class="rw-row">
-						<span class="rw-label">Server</span>
-						<zyra-badge variant="info" [dot]="true">Maintenance</zyra-badge>
-					</div>
+			<zyra-card [hasHeader]="true" padding="sm">
+				<span slot="header">Status Indicators</span>
+				<div class="rw-row">
+					<span class="rw-label">Order Status</span>
+					<zyra-badge variant="success" [dot]="true">Delivered</zyra-badge>
 				</div>
-			</div>
+				<div class="rw-row">
+					<span class="rw-label">Payment</span>
+					<zyra-badge variant="warning" [dot]="true">Pending</zyra-badge>
+				</div>
+				<div class="rw-row">
+					<span class="rw-label">Account</span>
+					<zyra-badge variant="danger" [dot]="true">Suspended</zyra-badge>
+				</div>
+				<div class="rw-row">
+					<span class="rw-label">Server</span>
+					<zyra-badge variant="info" [dot]="true">Maintenance</zyra-badge>
+				</div>
+			</zyra-card>
 
 			<!-- Version / Tag badges -->
-			<div class="rw-card">
-				<div class="rw-card__title">Version Tags</div>
-				<div class="rw-card__body">
-					<div class="rw-tags">
-						<zyra-badge variant="success">v1.0.0</zyra-badge>
-						<zyra-badge variant="warning">beta</zyra-badge>
-						<zyra-badge variant="danger">deprecated</zyra-badge>
-						<zyra-badge variant="info">new</zyra-badge>
-						<zyra-badge variant="purple">experimental</zyra-badge>
-						<zyra-badge variant="default">stable</zyra-badge>
-					</div>
+			<zyra-card [hasHeader]="true" padding="sm">
+				<span slot="header">Version Tags</span>
+				<div class="rw-tags">
+					<zyra-badge variant="success">v1.0.0</zyra-badge>
+					<zyra-badge variant="warning">beta</zyra-badge>
+					<zyra-badge variant="danger">deprecated</zyra-badge>
+					<zyra-badge variant="info">new</zyra-badge>
+					<zyra-badge variant="purple">experimental</zyra-badge>
+					<zyra-badge variant="default">stable</zyra-badge>
 				</div>
-			</div>
+			</zyra-card>
 
 			<!-- Notification counts -->
-			<div class="rw-card">
-				<div class="rw-card__title">Notification Counts</div>
-				<div class="rw-card__body">
-					<div class="rw-row">
-						<span class="rw-label">Messages</span>
-						<zyra-badge variant="info">12</zyra-badge>
-					</div>
-					<div class="rw-row">
-						<span class="rw-label">Alerts</span>
-						<zyra-badge variant="danger">3</zyra-badge>
-					</div>
-					<div class="rw-row">
-						<span class="rw-label">Updates</span>
-						<zyra-badge variant="success">99+</zyra-badge>
-					</div>
-					<div class="rw-row">
-						<span class="rw-label">Warnings</span>
-						<zyra-badge variant="warning">7</zyra-badge>
-					</div>
+			<zyra-card [hasHeader]="true" padding="sm">
+				<span slot="header">Notification Counts</span>
+				<div class="rw-row">
+					<span class="rw-label">Messages</span>
+					<zyra-badge variant="info">12</zyra-badge>
 				</div>
-			</div>
+				<div class="rw-row">
+					<span class="rw-label">Alerts</span>
+					<zyra-badge variant="danger">3</zyra-badge>
+				</div>
+				<div class="rw-row">
+					<span class="rw-label">Updates</span>
+					<zyra-badge variant="success">99+</zyra-badge>
+				</div>
+				<div class="rw-row">
+					<span class="rw-label">Warnings</span>
+					<zyra-badge variant="warning">7</zyra-badge>
+				</div>
+			</zyra-card>
 
 			<!-- Component labels -->
-			<div class="rw-card">
-				<div class="rw-card__title">Component Labels</div>
-				<div class="rw-card__body">
-					<div class="rw-item">
-						<span class="rw-item__name">ZyraButton</span>
-						<div class="rw-item__tags">
-							<zyra-badge variant="success" size="sm">stable</zyra-badge>
-							<zyra-badge variant="info" size="sm">signals</zyra-badge>
-						</div>
-					</div>
-					<div class="rw-item">
-						<span class="rw-item__name">ZyraTable</span>
-						<div class="rw-item__tags">
-							<zyra-badge variant="warning" size="sm">beta</zyra-badge>
-						</div>
-					</div>
-					<div class="rw-item">
-						<span class="rw-item__name">ZyraDatePicker</span>
-						<div class="rw-item__tags">
-							<zyra-badge variant="purple" size="sm">coming soon</zyra-badge>
-						</div>
+			<zyra-card [hasHeader]="true" padding="sm">
+				<span slot="header">Component Labels</span>
+				<div class="rw-item">
+					<span class="rw-item__name">ZyraButton</span>
+					<div class="rw-item__tags">
+						<zyra-badge variant="success" size="sm">stable</zyra-badge>
+						<zyra-badge variant="info" size="sm">signals</zyra-badge>
 					</div>
 				</div>
-			</div>
+				<div class="rw-item">
+					<span class="rw-item__name">ZyraTable</span>
+					<div class="rw-item__tags">
+						<zyra-badge variant="warning" size="sm">beta</zyra-badge>
+					</div>
+				</div>
+				<div class="rw-item">
+					<span class="rw-item__name">ZyraDatePicker</span>
+					<div class="rw-item__tags">
+						<zyra-badge variant="purple" size="sm">coming soon</zyra-badge>
+					</div>
+				</div>
+			</zyra-card>
 		</div>
 	</div>
 </div>

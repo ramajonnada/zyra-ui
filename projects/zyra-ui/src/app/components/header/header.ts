@@ -15,6 +15,8 @@ import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/ro
 import { filter, map, startWith } from 'rxjs';
 import { ZyraButton, ZyraThemeService } from 'zyra-ng-ui';
 import { appIcons } from '../../shared/fontawesome-icons';
+import { GithubService } from '../../services/github.service';
+import { LIBRARY_VERSION } from '../../shared/version';
 
 interface HeaderLink {
     label: string;
@@ -34,12 +36,13 @@ export class Header {
     private readonly router = inject(Router);
     private readonly platformId = inject(PLATFORM_ID);
     private readonly themeService = inject(ZyraThemeService);
+    private readonly github = inject(GithubService);
 
     readonly toggleSidebar = output<void>();
     readonly icons = appIcons;
-    readonly version = 'v1.4.26';
-    readonly githubStars = '';
+    readonly version = LIBRARY_VERSION;
     readonly isScrolled = signal(false);
+    readonly githubStars = toSignal(this.github.stars$, { initialValue: null });
     readonly mobileNavOpen = signal(false);
     readonly navLinks: readonly HeaderLink[] = [
         { label: 'Components', route: '/components' },

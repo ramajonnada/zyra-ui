@@ -1,0 +1,47 @@
+<div class="controls">
+    <div class="controls__title">Controls</div>
+
+    @for (control of controls(); track control.key) {
+        <div class="control-group">
+            <span class="control-label">{{ control.label }}</span>
+
+            @if (control.type === 'button-group') {
+                <div class="control-options">
+                    @for (opt of asBtnGroup(control).options; track opt) {
+                        <zyra-button
+                            size="sm"
+                            [variant]="asBtnGroup(control).signal() === opt ? 'primary' : 'secondary'"
+                            (clicked)="asBtnGroup(control).signal.set(opt)"
+                        >{{ opt }}</zyra-button>
+                    }
+                </div>
+            }
+
+            @if (control.type === 'toggle') {
+                <div class="control-toggles">
+                    <label class="toggle">
+                        <input
+                            type="checkbox"
+                            [checked]="asToggle(control).signal()"
+                            (change)="asToggle(control).signal.set(!asToggle(control).signal())"
+                        />
+                        <span class="toggle__track"></span>
+                        <span class="toggle__label">{{ asToggle(control).toggleLabel }}</span>
+                    </label>
+                </div>
+            }
+
+            @if (control.type === 'text') {
+                <zyra-form-field>
+                    <zyra-input
+                        [placeholder]="asText(control).placeholder ?? ''"
+                        [ngModel]="asText(control).signal()"
+                        (ngModelChange)="asText(control).signal.set($event)"
+                    />
+                </zyra-form-field>
+            }
+        </div>
+    }
+
+    <ng-content />
+</div>

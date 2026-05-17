@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { ZyraAvatar, ZyraBadge, ZyraButton, ZyraCard, ZyraFormField, ZyraInput, ZyraToastService } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { appIcons } from '../../shared/fontawesome-icons';
+import { LIBRARY_VERSION } from '../../shared/version';
 
 type AvatarVariant = 'teal' | 'blue' | 'purple' | 'warm' | 'neutral';
 type FeatureTone = 'accent' | 'blue' | 'purple' | 'green' | 'warning' | 'neutral';
@@ -212,6 +213,7 @@ export class Home implements OnInit, OnDestroy {
 	private copyResetTimer?: ReturnType<typeof setTimeout>;
 
 	readonly installCommand = INSTALL_COMMAND;
+	readonly version = LIBRARY_VERSION;
 	readonly copied = signal(false);
 	readonly icons = appIcons;
 	readonly ratingMarks = RATING_MARKS;

@@ -1,24 +1,14 @@
-// projects/zyra-ui/src/app/pages/test/spinner/spinner.ts
-
 import { Component, computed, inject, signal } from '@angular/core';
-import {
-    ZyraSpinner,
-    ZyraButton,
-    ZyraBadge,
-    ZyraCard,
-    ZyraToastContainer,
-    ZyraToastService,
-    ZyraThemeService,
-    SpinnerSize,
-    SpinnerColor,
-} from 'zyra-ng-ui';
+import { ZyraSpinner, ZyraButton, ZyraBadge, ZyraCard, ZyraToastContainer, ZyraToastService, ZyraThemeService, SpinnerSize, SpinnerColor } from 'zyra-ng-ui';
+import { Controls } from '../../shared/controls/controls';
+import { ControlDef } from '../../shared/controls/control-def';
 
 @Component({
     selector: 'app-spinner',
     standalone: true,
     templateUrl: './spinner.html',
     styleUrl: './spinner.scss',
-    imports: [ZyraSpinner, ZyraButton, ZyraBadge, ZyraCard, ZyraToastContainer],
+    imports: [ZyraSpinner, ZyraButton, ZyraBadge, ZyraCard, ZyraToastContainer, Controls],
 })
 export class Spinner {
     themeService = inject(ZyraThemeService);
@@ -28,34 +18,49 @@ export class Spinner {
     color = signal<SpinnerColor>('accent');
     label = signal('Loading...');
 
-    sizes: SpinnerSize[] = ['xs', 'sm', 'md', 'lg'];
-    colors: SpinnerColor[] = ['accent', 'accent-2', 'white', 'current'];
+    readonly sizes: SpinnerSize[] = ['xs', 'sm', 'md', 'lg'];
+    readonly colors: SpinnerColor[] = ['accent', 'accent-2', 'white', 'current'];
 
     btn1Loading = signal(false);
     btn2Loading = signal(false);
     btn3Loading = signal(false);
 
+    readonly controlDefs: ControlDef[] = [
+        {
+            type: 'button-group',
+            key: 'size',
+            label: 'size',
+            options: ['xs', 'sm', 'md', 'lg'],
+            signal: this.size as ReturnType<typeof signal<string>>,
+        },
+        {
+            type: 'button-group',
+            key: 'color',
+            label: 'color',
+            options: ['accent', 'accent-2', 'white', 'current'],
+            signal: this.color as ReturnType<typeof signal<string>>,
+        },
+        {
+            type: 'text',
+            key: 'label',
+            label: 'label (aria)',
+            placeholder: 'Loading...',
+            signal: this.label,
+        },
+    ];
+
     simulate(which: 1 | 2 | 3, ms = 2000): void {
         if (which === 1) {
             this.btn1Loading.set(true);
-            setTimeout(() => {
-                this.btn1Loading.set(false);
-                this.toastService.success('Saved!');
-            }, ms);
+            setTimeout(() => { this.btn1Loading.set(false); this.toastService.success('Saved!'); }, ms);
         }
         if (which === 2) {
             this.btn2Loading.set(true);
-            setTimeout(() => {
-                this.btn2Loading.set(false);
-                this.toastService.info('Uploaded!');
-            }, ms);
+            setTimeout(() => { this.btn2Loading.set(false); this.toastService.info('Uploaded!'); }, ms);
         }
         if (which === 3) {
             this.btn3Loading.set(true);
-            setTimeout(() => {
-                this.btn3Loading.set(false);
-                this.toastService.error('Failed - try again');
-            }, ms);
+            setTimeout(() => { this.btn3Loading.set(false); this.toastService.error('Failed - try again'); }, ms);
         }
     }
 
@@ -66,23 +71,15 @@ export class Spinner {
     }
 
     copyCode(): void {
-        const code = this.generatedCode();
-        navigator.clipboard.writeText(code);
+        navigator.clipboard.writeText(this.generatedCode());
         this.toastService.success('Code copied to clipboard!');
     }
 
     generatedCode = computed(() => {
-        let code = `<zyra-spinner size="${this.size()}" color="${this.color()}"`;
-
-        if (this.label().trim()) {
-            code += `\n  label="${this.escapeAttribute(this.label())}"`;
+        const label = this.label().trim();
+        if (label) {
+            return `<zyra-spinner size="${this.size()}" color="${this.color()}"\n  label="${label}"\n/>`;
         }
-
-        code += `\n/>`;
-        return code;
+        return `<zyra-spinner size="${this.size()}" color="${this.color()}" />`;
     });
-
-    private escapeAttribute(value: string): string {
-        return value.replaceAll('"', '&quot;');
-    }
 }

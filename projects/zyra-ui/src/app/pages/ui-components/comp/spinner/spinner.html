@@ -13,50 +13,8 @@
     </div>
 
     <div class="pg__body">
-        <div class="controls">
-            <div class="controls__title">Controls</div>
-
-            <div class="control-group">
-                <div class="control-label">size</div>
-                <div class="control-options">
-                    @for (s of sizes; track s) {
-                        <zyra-button
-                            [variant]="size() === s ? 'primary' : 'secondary'"
-                            (clicked)="size.set(s)"
-                            >{{ s }}</zyra-button
-                        >
-                    }
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">color</div>
-                <div class="control-options">
-                    @for (c of colors; track c) {
-                        <zyra-button
-                            [variant]="color() === c ? 'primary' : 'secondary'"
-                            (clicked)="color.set(c)"
-                            >{{ c }}</zyra-button
-                        >
-                    }
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">label (aria)</div>
-                <input
-                    class="control-input"
-                    type="text"
-                    [value]="label()"
-                    (input)="label.set($any($event.target).value)"
-                    placeholder="Loading..."
-                />
-            </div>
-
-            <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()"
-                >Reset</zyra-button
-            >
-
+        <app-controls [controls]="controlDefs">
+            <zyra-button variant="ghost" size="sm" [fullWidth]="true" (clicked)="reset()">Reset</zyra-button>
             <div class="controls__info">
                 <div class="controls__info-title">Usage</div>
                 <p><code>&lt;zyra-spinner /&gt;</code></p>
@@ -64,7 +22,7 @@
                 <p><code>color</code> - accent / accent-2 / white / current</p>
                 <p><code>label</code> - screen reader text</p>
             </div>
-        </div>
+        </app-controls>
 
         <div class="preview-area">
             <div class="preview-box">

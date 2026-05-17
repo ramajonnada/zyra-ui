@@ -7,85 +7,9 @@
     </div>
 
     <div class="pg__body">
-        <div class="controls">
-            <div class="controls__title">Controls</div>
-
-            <div class="control-group">
-                <div class="control-label">variant</div>
-                <div class="control-options">
-                    @for (v of variants; track v) {
-                        <zyra-button
-                            [variant]="variant() === v ? 'primary' : 'secondary'"
-                            size="sm"
-                            (clicked)="variant.set(v)"
-                        >{{ v }}</zyra-button>
-                    }
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">padding</div>
-                <div class="control-options">
-                    @for (p of paddings; track p) {
-                        <zyra-button
-                            [variant]="padding() === p ? 'primary' : 'secondary'"
-                            size="sm"
-                            (clicked)="padding.set(p)"
-                        >{{ p }}</zyra-button>
-                    }
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">content preset</div>
-                <div class="control-options control-options--stack">
-                    @for (p of presets; track p) {
-                        <zyra-button
-                            [variant]="preset() === p ? 'primary' : 'secondary'"
-                            size="sm"
-                            (clicked)="preset.set(p)"
-                        >{{ p }}</zyra-button>
-                    }
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">boolean inputs</div>
-                <div class="control-toggles">
-                    <label class="toggle">
-                        <input
-                            type="checkbox"
-                            [checked]="hasHeader()"
-                            (change)="hasHeader.set(!hasHeader())"
-                        />
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label">hasHeader</span>
-                    </label>
-
-                    <label class="toggle">
-                        <input
-                            type="checkbox"
-                            [checked]="hasFooter()"
-                            (change)="hasFooter.set(!hasFooter())"
-                        />
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label">hasFooter</span>
-                    </label>
-
-                    <label class="toggle">
-                        <input
-                            type="checkbox"
-                            [checked]="clickable()"
-                            (change)="clickable.set(!clickable())"
-                        />
-                        <span class="toggle__track"></span>
-                        <span class="toggle__label">clickable</span>
-                    </label>
-                </div>
-            </div>
-
+        <app-controls [controls]="controlDefs">
             <zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset all</zyra-button>
-        </div>
+        </app-controls>
 
         <div class="preview-area">
             <div class="preview-box">
@@ -183,14 +107,15 @@
                 <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
             </div>
 
-            <div class="log-box">
-                <div class="log-box__header">
-                    <span
-                        >Event Log <span class="log-count">{{ eventLog().length }}</span></span
-                    >
+            <zyra-card variant="default" padding="none" [hasHeader]="true">
+                <div slot="header" class="log-header">
+                    <span>
+                        Event Log
+                        <zyra-badge variant="purple" size="sm">{{ eventLog().length }}</zyra-badge>
+                    </span>
                     <zyra-button variant="ghost" size="sm" (clicked)="eventLog.set([])">Clear</zyra-button>
                 </div>
-                <div class="log-box__body">
+                <div class="log-body">
                     @if (eventLog().length === 0) {
                         <span class="log-empty">
                             {{
@@ -207,7 +132,7 @@
                         </div>
                     }
                 </div>
-            </div>
+            </zyra-card>
         </div>
     </div>
 
