@@ -1,0 +1,5 @@
+<div [class]="hostClass()" [style]="hostStyle()" role="separator" [attr.aria-orientation]="orientation()">
+    @if (hasLabel()) {
+        <span class="zyr-divider__label">{{ label() }}</span>
+    }
+</div>

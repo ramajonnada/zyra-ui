@@ -16,3 +16,5 @@ export * from './lib/components/zyra-form-field/zyra-form-field';
 export * from './lib/components/zyra-spinner/zyra-spinner';
 export * from './lib/components/zyra-toast/zyra-toast';
 export * from './lib/components/zyra-tooltip/zyra-tooltip';
+export * from './lib/components/zyra-progress/zyra-progress';
+export * from './lib/components/zyra-divider/zyra-divider';
