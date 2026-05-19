@@ -346,6 +346,40 @@ export const UI_COMPONENT_SHOWCASE = [
         ],
         exampleCode: TOOLTIP_EXAMPLE_CODE,
     },
+    {
+        slug: 'progress',
+        title: 'Progress',
+        selector: 'zyra-progress',
+        importName: 'ZyraProgress',
+        category: 'Feedback',
+        description:
+            'Linear progress bars for uploads, task completion, storage usage, and any measurable loading state.',
+        icon: appIcons.waveSquare,
+        accent: 'blue',
+        highlights: [
+            'Indeterminate loading mode',
+            'Built-in label support',
+            'All semantic variants',
+        ],
+        exampleCode: `import { Component } from '@angular/core';\nimport { ZyraProgress } from 'zyra-ng-ui';\n\n@Component({\n  selector: 'app-demo',\n  standalone: true,\n  imports: [ZyraProgress],\n  template: \`\n    <zyra-progress\n      variant="success"\n      [value]="72"\n      [showLabel]="true"\n    />\n  \`,\n})\nexport class DemoComponent {}`,
+    },
+    {
+        slug: 'divider',
+        title: 'Divider',
+        selector: 'zyra-divider',
+        importName: 'ZyraDivider',
+        category: 'Layout',
+        description:
+            'Horizontal and vertical separators for organizing content sections, form layouts, and navigation groups.',
+        icon: appIcons.scaleBalanced,
+        accent: 'teal',
+        highlights: [
+            'Horizontal and vertical modes',
+            'Optional centered label',
+            'Solid, dashed, and dotted styles',
+        ],
+        exampleCode: `import { Component } from '@angular/core';\nimport { ZyraDivider } from 'zyra-ng-ui';\n\n@Component({\n  selector: 'app-demo',\n  standalone: true,\n  imports: [ZyraDivider],\n  template: \`\n    <zyra-divider label="or" />\n  \`,\n})\nexport class DemoComponent {}`,
+    },
 ] satisfies readonly UiComponentShowcaseCard[];
 
 export function getUiComponentShowcaseCard(

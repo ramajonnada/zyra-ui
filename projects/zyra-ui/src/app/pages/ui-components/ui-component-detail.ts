@@ -13,6 +13,8 @@ import { Avatar } from './comp/avatar/avatar';
 import { Input } from './comp/input/input';
 import { Spinner } from './comp/spinner/spinner';
 import { Tooltip } from './comp/tooltip/tooltip';
+import { Progress } from './comp/progress/progress';
+import { Divider } from './comp/divider/divider';
 import { SeoService } from '../../../seo/seo.service';
 
 @Component({
@@ -29,6 +31,8 @@ import { SeoService } from '../../../seo/seo.service';
         Input,
         Spinner,
         Tooltip,
+        Progress,
+        Divider,
     ],
     templateUrl: './ui-component-detail.html',
     styleUrl: './ui-component-detail.scss',
