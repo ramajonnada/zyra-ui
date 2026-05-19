@@ -1,0 +1,79 @@
+// ============================================================
+// ZYRA NG UI - Mixins (_mixins.scss)
+// Shared SCSS mixins for common component patterns.
+// Usage in component files: @use '../../styles/mixins' as *;
+// ============================================================
+
+// Focus ring — consistent keyboard focus style
+@mixin focus-ring($offset: 3px) {
+    &:focus-visible {
+        outline-offset: $offset;
+        box-shadow:
+            0 0 0 3px var(--zyr-focus-ring),
+            var(--zyr-glow-shadow-strong);
+    }
+}
+
+// Glow ::before — radial gradient glow effect on hover
+@mixin glow-before {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        z-index: 0;
+        opacity: 0;
+        background: radial-gradient(circle at 50% 100%, var(--zyr-glow-surface), transparent 68%);
+        transition: opacity var(--zyr-transition-base);
+        pointer-events: none;
+    }
+
+    &:hover:not(:disabled)::before {
+        opacity: 1;
+    }
+}
+
+// Interactive element base — hover glow border + shadow
+@mixin interactive-hover {
+    &:hover:not(:disabled) {
+        border-color: var(--zyr-glow-border);
+        box-shadow: var(--zyr-glow-shadow-strong);
+    }
+}
+
+// Disabled state
+@mixin disabled($opacity: var(--zyr-btn-disabled-opacity)) {
+    opacity: $opacity;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+// Screen-reader only — visually hidden but accessible
+@mixin sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+// Flex center — center content in both axes
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Truncate — single-line text overflow with ellipsis
+@mixin truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

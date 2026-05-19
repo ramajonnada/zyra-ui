@@ -1,0 +1,34 @@
+// ============================================================
+// ZYRA NG UI - Animations (_animations.scss)
+// Centralized @keyframes for all library components.
+// ============================================================
+
+@keyframes zyr-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes zyr-toast-in {
+    from {
+        opacity: 0;
+        transform: translateX(24px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes zyr-tooltip-in {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}

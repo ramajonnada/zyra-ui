@@ -1,9 +1,10 @@
 // Styles entry point for the Zyra UI library.
 
-@forward 'variables';
+@forward 'mixins';
 
 @use 'shared-theme';
 @forward 'dark-theme';
 @forward 'light-theme';
 
 @use 'base';
+@use 'animations';

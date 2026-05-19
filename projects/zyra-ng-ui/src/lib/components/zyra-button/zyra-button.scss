@@ -42,7 +42,6 @@
     }
 
     &:focus-visible {
-        // outline: 2px solid var(--zyr-accent);
         outline-offset: 3px;
         box-shadow:
             0 0 0 3px var(--zyr-card-focus-ring, var(--zyr-accent-muted)),

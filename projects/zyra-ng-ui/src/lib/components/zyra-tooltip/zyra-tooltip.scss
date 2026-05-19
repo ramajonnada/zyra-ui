@@ -6,7 +6,7 @@
 
 .zyr-tooltip {
     position: absolute;
-    z-index: 1000;
+    z-index: var(--zyr-z-tooltip);
     background: var(--zyr-tooltip-bg);
     color: var(--zyr-tooltip-text);
     border: 1px solid var(--zyr-tooltip-border);
@@ -90,14 +90,3 @@
     }
 }
 
-@keyframes zyr-tooltip-in {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(4px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
