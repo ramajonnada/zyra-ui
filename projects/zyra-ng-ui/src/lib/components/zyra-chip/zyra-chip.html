@@ -1,0 +1,26 @@
+<div
+    [class]="hostClass()"
+    [attr.role]="selectable() ? 'checkbox' : null"
+    [attr.aria-checked]="selectable() ? selected() : null"
+    [attr.aria-disabled]="disabled() || null"
+    [attr.tabindex]="selectable() && !disabled() ? 0 : null"
+    (click)="toggle()"
+    (keydown.space)="toggle()"
+    (keydown.enter)="toggle()"
+>
+    <span class="zyr-chip__label">
+        <ng-content />
+    </span>
+
+    @if (dismissible()) {
+        <button
+            class="zyr-chip__dismiss"
+            type="button"
+            aria-label="Remove"
+            [disabled]="disabled() || null"
+            (click)="dismiss($event)"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+    }
+</div>

@@ -1,0 +1,87 @@
+:host {
+    display: block;
+    border-bottom: 1px solid var(--zyr-border);
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.zyr-accordion-item {
+    padding: 0 20px;
+
+    // ── Trigger ───────────────────────────────────────────────
+    &__trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 16px 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--zyr-text);
+        font-family: var(--zyr-font-body);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+        text-align: left;
+        transition: color var(--zyr-transition-base);
+
+        &:hover { color: var(--zyr-accent); }
+
+        &--disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+
+            &:hover { color: var(--zyr-text); }
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--zyr-accent);
+            outline-offset: 2px;
+            border-radius: var(--zyr-radius-xs);
+        }
+    }
+
+    &__title { flex: 1; }
+
+    &__chevron {
+        flex-shrink: 0;
+        color: var(--zyr-text-muted);
+        transition: transform var(--zyr-transition-base);
+        display: flex;
+        align-items: center;
+    }
+
+    // ── Panel animation (CSS grid trick) ─────────────────────
+    &__panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows var(--zyr-transition-base);
+        overflow: hidden;
+    }
+
+    &__content {
+        overflow: hidden;
+        font-size: 14px;
+        line-height: 1.7;
+        color: var(--zyr-text-muted);
+    }
+
+    // ── Open state ────────────────────────────────────────────
+    &--open {
+        .zyr-accordion-item__chevron {
+            transform: rotate(180deg);
+        }
+
+        .zyr-accordion-item__panel {
+            grid-template-rows: 1fr;
+        }
+
+        .zyr-accordion-item__content {
+            padding-bottom: 16px;
+        }
+    }
+}
