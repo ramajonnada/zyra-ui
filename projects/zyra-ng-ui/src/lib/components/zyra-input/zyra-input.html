@@ -2,7 +2,7 @@
 
 <input
     [class]="'zyr-input zyr-input--' + size()"
-    [id]="inputId"
+    [id]="resolvedId()"
     [type]="showPassword() ? 'text' : type()"
     [placeholder]="placeholder()"
     [disabled]="isDisabled()"
@@ -11,6 +11,9 @@
     [attr.autocomplete]="
         type() === 'password' ? 'current-password' : type() === 'email' ? 'email' : null
     "
+    [attr.maxlength]="maxlength()"
+    [attr.min]="min()"
+    [attr.max]="max()"
     [ngModel]="innerValue()"
     (ngModelChange)="onModelChange($event)"
     (focus)="onFocus()"

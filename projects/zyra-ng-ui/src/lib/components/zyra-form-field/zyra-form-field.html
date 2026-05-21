@@ -3,7 +3,7 @@
 <div [class]="wrapClass">
     <!-- ── Label ──────────────────────────────────────────────── -->
     @if (label()) {
-        <label class="zyra-form-field__label" [for]="zyraInput.inputId">
+        <label class="zyra-form-field__label" [for]="zyraInput.resolvedId()">
             {{ label() }}
             @if (isRequired) {
                 <span class="zyra-form-field__required" aria-hidden="true">*</span>
@@ -13,7 +13,7 @@
 
     <!-- ── Field row ──────────────────────────────────────────── -->
     <div class="zyra-form-field__field-row">
-        <!-- Prefix icon -->
+        <!-- Prefix: FontAwesome icon, text, or custom [zyrPrefix] slot -->
         @if (prefixIconDefinition) {
             <span class="zyra-form-field__prefix" aria-hidden="true">
                 <fa-icon [icon]="prefixIconDefinition" />
@@ -21,6 +21,10 @@
         } @else if (prefixIconText) {
             <span class="zyra-form-field__prefix" aria-hidden="true">
                 {{ prefixIconText }}
+            </span>
+        } @else if (_customPrefix) {
+            <span class="zyra-form-field__prefix" aria-hidden="true">
+                <ng-content select="[zyrPrefix]" />
             </span>
         }
 
@@ -85,6 +89,12 @@
             } @else if (suffixIconText) {
                 <span class="zyra-form-field__suffix-icon" aria-hidden="true">
                     {{ suffixIconText }}
+                </span>
+
+                <!-- 6. Custom [zyrSuffix] slot -->
+            } @else if (_customSuffix) {
+                <span class="zyra-form-field__suffix-icon" aria-hidden="true">
+                    <ng-content select="[zyrSuffix]" />
                 </span>
             }
         </div>

@@ -3,6 +3,7 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    computed,
     forwardRef,
     inject,
     Injector,
@@ -40,6 +41,9 @@ export class ZyraInput implements ControlValueAccessor, OnInit {
     placeholder = input<string>('');
     readonly = input<boolean>(false);
     id = input<string>('');
+    maxlength = input<number | null>(null);
+    min = input<number | null>(null);
+    max = input<number | null>(null);
 
     // ── Outputs ───────────────────────────────────────────────
     valueChange = output<string>();
@@ -55,6 +59,7 @@ export class ZyraInput implements ControlValueAccessor, OnInit {
 
     // ── Unique ID — used by zyra-form-field to link label ─────
     readonly inputId = `zyra-input-${++inputIdCounter}`;
+    resolvedId = computed(() => this.id() || this.inputId);
 
     // ── CVA callbacks ─────────────────────────────────────────
     private _onChange: (val: string) => void = () => undefined;
