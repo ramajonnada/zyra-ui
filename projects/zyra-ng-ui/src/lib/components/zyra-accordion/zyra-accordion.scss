@@ -1,0 +1,7 @@
+.zyr-accordion {
+    border: 1px solid var(--zyr-border);
+    border-radius: var(--zyr-radius-md);
+    overflow: hidden;
+    background: var(--zyr-bg-2);
+    transition: background var(--zyr-transition-slow);
+}

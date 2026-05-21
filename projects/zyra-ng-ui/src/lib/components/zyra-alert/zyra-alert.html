@@ -1,0 +1,23 @@
+<div [class]="hostClass()" role="alert" aria-live="polite" (animationend)="onAnimationEnd()">
+    <span class="zyr-alert__icon" aria-hidden="true" [innerHTML]="icon()"></span>
+
+    <div class="zyr-alert__body">
+        @if (title()) {
+            <div class="zyr-alert__title">{{ title() }}</div>
+        }
+        <div class="zyr-alert__content">
+            <ng-content />
+        </div>
+    </div>
+
+    @if (dismissible()) {
+        <button
+            class="zyr-alert__dismiss"
+            type="button"
+            aria-label="Dismiss alert"
+            (click)="dismiss()"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+    }
+</div>

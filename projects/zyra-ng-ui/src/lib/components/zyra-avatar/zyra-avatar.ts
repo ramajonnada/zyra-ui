@@ -43,5 +43,4 @@ export class ZyraAvatar {
         return classes.join(' ');
     });
 
-    hostStyle = computed(() => (this.src() && !this.imgError() ? '' : ''));
 }

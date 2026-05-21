@@ -7,6 +7,60 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [1.5.32] — 2026-05-21
+
+### Added
+- `ZyrPrefix` / `ZyrSuffix` directives — custom prefix/suffix slot content in `zyra-form-field` (any HTML: SVG, text, emoji)
+- `zyra-alert`: smooth dismiss animation (fade + height collapse) via CSS keyframes
+- `zyra-alert`: entry animation on mount
+- `zyra-input`: `maxlength`, `min`, `max` inputs
+- `zyra-toggle`: full `ControlValueAccessor` support — works with `formControl`, `formControlName`, and `ngModel`
+
+### Fixed
+- `zyra-modal`: replaced `document.body` mutation with SSR-safe `DOCUMENT` injection token
+- `zyra-modal`: replaced fragile `setTimeout` focus with `afterNextRender`
+- `zyra-modal`: added Tab/Shift+Tab focus trap (WCAG compliance)
+- `zyra-modal`: footer buttons now have correct padding and gap
+- `zyra-button`: removed `CommonModule` import and dead commented-out code
+- `zyra-alert`: replaced Unicode icon characters with inline SVG for consistent cross-platform rendering
+- `zyra-alert`: added `aria-live="polite"` for screen reader announcements
+- `zyra-alert`: `dismissed` output now fires after animation ends, not immediately
+- `zyra-chip`: `selectedChange` output now emits on toggle (was silently missing)
+- `zyra-input`: `id` input now works correctly via `resolvedId` computed
+- `zyra-form-field`: label `[for]` now uses `resolvedId()` to respect custom `id` input
+
+### Changed
+- `zyra-button`: `loading`, `disabled`, `fullWidth` now use `booleanAttribute` transform — attribute syntax (`<zyra-button loading>`) supported
+- `zyra-alert`: `dismissible` now uses `booleanAttribute` transform
+
+---
+
+## [1.5.31] — 2026-05-19
+
+### Added
+- `zyra-progress`: Linear progress bar with indeterminate support
+- `zyra-divider`: Horizontal and vertical separator component
+- Playground pages for both components in zyra-ui
+
+---
+
+## [1.5.30] — 2026-05-19
+
+### Changed
+- Centralized style system: removed `_variables.scss`, introduced `_mixins.scss` and `_animations.scss`
+- Removed per-component SCSS variable duplication — all tokens now flow from `_shared-theme.scss`
+
+---
+
+## [1.5.29] — 2026-05-09
+
+### Fixed
+- `zyra-avatar`: removed duplicate `alt` attribute and dead `hostStyle` computed
+- Centralized `LIBRARY_VERSION` token in `zyra-ui` app
+- Live GitHub stars display in header
+
+---
+
 ## [1.5.28] — 2026-05-09
 
 ### Fixed

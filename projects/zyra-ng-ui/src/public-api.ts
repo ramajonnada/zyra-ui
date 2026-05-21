@@ -12,7 +12,15 @@ export * from './lib/components/zyra-badge/zyra-badge';
 
 export * from './lib/components/zyra-avatar/zyra-avatar';
 export * from './lib/components/zyra-input/zyra-input';
-export * from './lib/components/zyra-form-field/zyra-form-field';
+export * from './lib/components/zyra-form-field/zyra-form-field'; // also exports ZyrPrefix, ZyrSuffix
 export * from './lib/components/zyra-spinner/zyra-spinner';
 export * from './lib/components/zyra-toast/zyra-toast';
 export * from './lib/components/zyra-tooltip/zyra-tooltip';
+export * from './lib/components/zyra-progress/zyra-progress';
+export * from './lib/components/zyra-divider/zyra-divider';
+export * from './lib/components/zyra-toggle/zyra-toggle';
+export * from './lib/components/zyra-chip/zyra-chip';
+export * from './lib/components/zyra-alert/zyra-alert';
+export * from './lib/components/zyra-modal/zyra-modal';
+export * from './lib/components/zyra-accordion/zyra-accordion';
+export * from './lib/components/zyra-accordion/zyra-accordion-item';

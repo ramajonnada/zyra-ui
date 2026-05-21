@@ -6,9 +6,16 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChild,
+    Directive,
     inject,
     input,
 } from '@angular/core';
+
+@Directive({ selector: '[zyrPrefix]', standalone: true })
+export class ZyrPrefix {}
+
+@Directive({ selector: '[zyrSuffix]', standalone: true })
+export class ZyrSuffix {}
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -47,6 +54,8 @@ export class ZyraFormField implements AfterContentInit {
 
     // ── Get projected zyra-input child ────────────────────────
     @ContentChild(ZyraInput) zyraInput!: ZyraInput;
+    @ContentChild(ZyrPrefix) _customPrefix: ZyrPrefix | null = null;
+    @ContentChild(ZyrSuffix) _customSuffix: ZyrSuffix | null = null;
 
     private cdr = inject(ChangeDetectorRef);
     readonly icons = zyraIcons;
@@ -115,7 +124,7 @@ export class ZyraFormField implements AfterContentInit {
     }
 
     get hasPrefix(): boolean {
-        return !!(this.prefixIconDefinition || this.prefixIconText);
+        return !!(this.prefixIconDefinition || this.prefixIconText || this._customPrefix);
     }
 
     // ── Form state ────────────────────────────────────────────
@@ -185,6 +194,7 @@ export class ZyraFormField implements AfterContentInit {
         return !!(
             this.suffixIconDefinition ||
             this.suffixIconText ||
+            this._customSuffix ||
             this.showPasswordToggle ||
             this.clearButton() ||
             this.loading() ||

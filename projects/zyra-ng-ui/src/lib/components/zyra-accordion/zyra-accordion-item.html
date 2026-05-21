@@ -1,0 +1,28 @@
+<div class="zyr-accordion-item" [class.zyr-accordion-item--open]="open()">
+    <button
+        [id]="triggerId"
+        [class]="triggerClass()"
+        type="button"
+        [disabled]="disabled()"
+        [attr.aria-expanded]="open()"
+        [attr.aria-controls]="panelId"
+        (click)="toggle()"
+    >
+        <span class="zyr-accordion-item__title">{{ title() }}</span>
+        <span class="zyr-accordion-item__chevron" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </span>
+    </button>
+    <div
+        [id]="panelId"
+        class="zyr-accordion-item__panel"
+        role="region"
+        [attr.aria-labelledby]="triggerId"
+    >
+        <div class="zyr-accordion-item__content">
+            <ng-content />
+        </div>
+    </div>
+</div>

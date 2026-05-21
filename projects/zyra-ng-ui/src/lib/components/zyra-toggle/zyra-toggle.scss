@@ -1,0 +1,113 @@
+.zyr-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--zyr-space-2);
+    cursor: pointer;
+    user-select: none;
+
+    // ── Track ─────────────────────────────────────────────────
+    &__track {
+        position: relative;
+        flex-shrink: 0;
+        border: none;
+        border-radius: var(--zyr-radius-full);
+        background: var(--zyr-border-strong);
+        cursor: pointer;
+        transition:
+            background var(--zyr-transition-base),
+            box-shadow var(--zyr-transition-base);
+        padding: 0;
+
+        &[aria-checked='true'] {
+            background: var(--zyr-accent);
+            box-shadow: 0 0 0 3px var(--zyr-accent-muted);
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow:
+                0 0 0 3px var(--zyr-accent-muted),
+                var(--zyr-glow-shadow-strong);
+        }
+    }
+
+    // ── Thumb ─────────────────────────────────────────────────
+    &__thumb {
+        display: block;
+        background: #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        transition: transform var(--zyr-transition-base);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) translateX(var(--zyr-toggle-thumb-off));
+    }
+
+    &__track[aria-checked='true'] &__thumb {
+        transform: translateY(-50%) translateX(var(--zyr-toggle-thumb-on));
+    }
+
+    // ── Label ─────────────────────────────────────────────────
+    &__label {
+        font-size: 14px;
+        color: var(--zyr-text);
+        line-height: 1;
+    }
+
+    // ── Sizes ─────────────────────────────────────────────────
+    &--sm {
+        --zyr-toggle-thumb-off: 2px;
+        --zyr-toggle-thumb-on: 14px;
+
+        .zyr-toggle__track {
+            width: 28px;
+            height: 16px;
+        }
+
+        .zyr-toggle__thumb {
+            width: 12px;
+            height: 12px;
+        }
+
+        .zyr-toggle__label { font-size: 12px; }
+    }
+
+    &--md {
+        --zyr-toggle-thumb-off: 3px;
+        --zyr-toggle-thumb-on: 19px;
+
+        .zyr-toggle__track {
+            width: 40px;
+            height: 22px;
+        }
+
+        .zyr-toggle__thumb {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &--lg {
+        --zyr-toggle-thumb-off: 4px;
+        --zyr-toggle-thumb-on: 26px;
+
+        .zyr-toggle__track {
+            width: 52px;
+            height: 28px;
+        }
+
+        .zyr-toggle__thumb {
+            width: 20px;
+            height: 20px;
+        }
+
+        .zyr-toggle__label { font-size: 15px; }
+    }
+
+    // ── Disabled ──────────────────────────────────────────────
+    &--disabled {
+        opacity: 0.42;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}

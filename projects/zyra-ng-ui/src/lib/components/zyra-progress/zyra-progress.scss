@@ -1,0 +1,72 @@
+@keyframes zyr-progress-indeterminate {
+    0%   { transform: translateX(-100%) scaleX(0.4); }
+    50%  { transform: translateX(50%)  scaleX(0.6); }
+    100% { transform: translateX(200%) scaleX(0.4); }
+}
+
+.zyr-progress {
+    min-width: 100px;
+
+    // ── Header ────────────────────────────────────────────────
+    &__header {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: var(--zyr-space-1);
+    }
+
+    &__label {
+        font-size: 11px;
+        font-family: var(--zyr-font-mono);
+        color: var(--zyr-text-muted);
+    }
+
+    // ── Track ─────────────────────────────────────────────────
+    &__track {
+        min-width: 100px;
+        background: var(--zyr-bg-3);
+        border-radius: var(--zyr-radius-full);
+        overflow: hidden;
+        border: 1px solid var(--zyr-border);
+    }
+
+    // ── Bar ───────────────────────────────────────────────────
+    &__bar {
+        height: 100%;
+        border-radius: var(--zyr-radius-full);
+        transition: width var(--zyr-transition-base);
+        background: var(--zyr-progress-bar-bg);
+    }
+
+    // ── Sizes ─────────────────────────────────────────────────
+    &--sm .zyr-progress__track { height: 4px; }
+    &--md .zyr-progress__track { height: 8px; }
+    &--lg .zyr-progress__track { height: 12px; }
+
+    // ── Variants ──────────────────────────────────────────────
+    &--default {
+        --zyr-progress-bar-bg: var(--zyr-accent);
+    }
+
+    &--success {
+        --zyr-progress-bar-bg: var(--zyr-success);
+    }
+
+    &--warning {
+        --zyr-progress-bar-bg: var(--zyr-warning);
+    }
+
+    &--danger {
+        --zyr-progress-bar-bg: var(--zyr-danger);
+    }
+
+    &--info {
+        --zyr-progress-bar-bg: var(--zyr-info);
+    }
+
+    // ── Indeterminate ─────────────────────────────────────────
+    &--indeterminate .zyr-progress__bar {
+        width: 40%;
+        animation: zyr-progress-indeterminate 1.4s ease-in-out infinite;
+        transform-origin: left center;
+    }
+}

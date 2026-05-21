@@ -1,0 +1,25 @@
+@use '../../shared/pg_shared.scss' as *;
+
+.preview-box__stage--column {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.accordion-demo {
+    max-width: 600px;
+}
+
+.realworld-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+code {
+    font-family: var(--zyr-font-mono);
+    font-size: 12px;
+    color: var(--zyr-accent);
+    background: var(--zyr-bg-3);
+    padding: 1px 5px;
+    border-radius: var(--zyr-radius-xs);
+}

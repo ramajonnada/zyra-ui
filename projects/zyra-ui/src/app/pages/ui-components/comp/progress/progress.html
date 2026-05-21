@@ -1,0 +1,155 @@
+<div class="pg">
+    <!-- HEADER -->
+    <div class="pg__header">
+        <div>
+            <h1>zyra-progress <span>Playground</span></h1>
+            <p>Control every input live and see the result instantly</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <!-- ── LEFT: CONTROLS ──────────────────────────────── -->
+        <app-controls [controls]="controlDefs">
+            <div class="control-group">
+                <span class="control-label">variant</span>
+                <div class="control-options">
+                    @for (v of variants; track v) {
+                        <zyra-button size="sm" [variant]="variant() === v ? 'primary' : 'secondary'" (clicked)="variant.set(v)">{{ v }}</zyra-button>
+                    }
+                </div>
+            </div>
+            <div class="control-group">
+                <span class="control-label">value — {{ value() }}%</span>
+                <input class="range-input" type="range" min="0" max="100" [value]="value()" (input)="value.set(+$any($event.target).value)" />
+            </div>
+            <zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset all</zyra-button>
+        </app-controls>
+
+        <!-- ── RIGHT: PREVIEW + CODE ──────────────────────── -->
+        <div class="preview-area">
+            <div class="preview-box">
+                <div class="preview-box__label">Preview</div>
+                <div class="preview-box__stage">
+                    <zyra-progress
+                        [value]="value()"
+                        [variant]="variant()"
+                        [size]="size()"
+                        [indeterminate]="indeterminate()"
+                        [showLabel]="showLabel()"
+                    />
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="ghost" size="sm" (clicked)="copy()">
+                        {{ copied() ? '✓ Copied!' : 'Copy' }}
+                    </zyra-button>
+                </div>
+                <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── ALL VARIANTS ────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">All Variants</div>
+        <div class="variants-stack">
+            @for (v of variants; track v) {
+                <div class="variant-row">
+                    <span class="variant-row__label">{{ v }}</span>
+                    <zyra-progress [variant]="v" [value]="70" [showLabel]="true" />
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- ── SIZES ───────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Sizes</div>
+        <div class="variants-stack">
+            <div class="variant-row">
+                <span class="variant-row__label">sm</span>
+                <zyra-progress size="sm" [value]="50" />
+            </div>
+            <div class="variant-row">
+                <span class="variant-row__label">md</span>
+                <zyra-progress size="md" [value]="65" />
+            </div>
+            <div class="variant-row">
+                <span class="variant-row__label">lg</span>
+                <zyra-progress size="lg" [value]="80" />
+            </div>
+        </div>
+    </div>
+
+    <!-- ── INDETERMINATE ───────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Indeterminate</div>
+        <div class="variants-stack">
+            @for (v of variants; track v) {
+                <div class="variant-row">
+                    <span class="variant-row__label">{{ v }}</span>
+                    <zyra-progress [variant]="v" [indeterminate]="true" />
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- ── REAL WORLD ──────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Real World Examples</div>
+        <div class="realworld-grid">
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Storage Usage</span>
+                <div class="rw-stack">
+                    <div class="rw-item">
+                        <span class="rw-label">Documents</span>
+                        <zyra-progress variant="info" [value]="72" size="sm" [showLabel]="true" />
+                    </div>
+                    <div class="rw-item">
+                        <span class="rw-label">Images</span>
+                        <zyra-progress variant="warning" [value]="91" size="sm" [showLabel]="true" />
+                    </div>
+                    <div class="rw-item">
+                        <span class="rw-label">Videos</span>
+                        <zyra-progress variant="danger" [value]="38" size="sm" [showLabel]="true" />
+                    </div>
+                </div>
+            </zyra-card>
+
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Task Completion</span>
+                <div class="rw-stack">
+                    <div class="rw-item">
+                        <span class="rw-label">Design</span>
+                        <zyra-progress variant="success" [value]="100" size="sm" [showLabel]="true" />
+                    </div>
+                    <div class="rw-item">
+                        <span class="rw-label">Development</span>
+                        <zyra-progress variant="default" [value]="65" size="sm" [showLabel]="true" />
+                    </div>
+                    <div class="rw-item">
+                        <span class="rw-label">Testing</span>
+                        <zyra-progress variant="warning" [value]="20" size="sm" [showLabel]="true" />
+                    </div>
+                </div>
+            </zyra-card>
+
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Loading States</span>
+                <div class="rw-stack">
+                    <div class="rw-item">
+                        <span class="rw-label">Fetching data</span>
+                        <zyra-progress [indeterminate]="true" size="sm" />
+                    </div>
+                    <div class="rw-item">
+                        <span class="rw-label">Uploading</span>
+                        <zyra-progress variant="info" [indeterminate]="true" size="sm" />
+                    </div>
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+</div>

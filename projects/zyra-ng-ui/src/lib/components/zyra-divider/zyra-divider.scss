@@ -1,0 +1,71 @@
+.zyr-divider {
+
+	// ── Horizontal ────────────────────────────────────────────
+	&--horizontal {
+		display: flex;
+		align-items: center;
+		min-width: 60px;
+		gap: var(--zyr-space-3);
+		color: var(--zyr-text-muted);
+		font-size: 12px;
+		font-family: var(--zyr-font-body);
+
+		&::before,
+		&::after {
+			content: '';
+			flex: 1;
+			border-top-width: var(--zyr-divider-width, 1px);
+			border-top-style: var(--zyr-divider-style, solid);
+			border-top-color: var(--zyr-text-muted);
+		}
+
+		&.zyr-divider--start {
+			&::before {
+				flex: 0 0 16px;
+			}
+
+			&::after {
+				flex: 1;
+			}
+		}
+
+		&.zyr-divider--end {
+			&::before {
+				flex: 1;
+			}
+
+			&::after {
+				flex: 0 0 16px;
+			}
+		}
+	}
+
+	// ── Vertical ──────────────────────────────────────────────
+	&--vertical {
+		display: inline-block;
+		width: var(--zyr-divider-width, 1px);
+		height: 100%;
+		align-self: stretch;
+		border-left-width: var(--zyr-divider-width, 1px);
+		border-left-style: var(--zyr-divider-style, solid);
+		border-left-color: var(--zyr-text-muted);
+		min-height: 16px;
+	}
+
+	// ── Variants ──────────────────────────────────────────────
+	&--dashed {
+		--zyr-divider-style: dashed;
+	}
+
+	&--dotted {
+		--zyr-divider-style: dotted;
+	}
+
+	// ── Label ─────────────────────────────────────────────────
+	&__label {
+		white-space: nowrap;
+		flex-shrink: 0;
+		color: var(--zyr-text-muted);
+		font-size: 12px;
+	}
+}

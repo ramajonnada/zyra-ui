@@ -1,0 +1,64 @@
+@use '../../shared/pg_shared.scss' as *;
+
+.preview-box__stage--vertical {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    height: 80px;
+}
+
+.preview-text {
+    font-size: 13px;
+    color: var(--zyr-text-muted);
+}
+
+.style-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.style-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.style-label {
+    font-family: var(--zyr-font-mono);
+    font-size: 11px;
+    color: var(--zyr-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.realworld-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.rw-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rw-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rw-text {
+    font-size: 13px;
+    color: var(--zyr-text-muted);
+}
+
+.rw-inline {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}

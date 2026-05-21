@@ -1,0 +1,111 @@
+<div class="pg">
+    <!-- HEADER -->
+    <div class="pg__header">
+        <div>
+            <h1>zyra-divider <span>Playground</span></h1>
+            <p>Control every input live and see the result instantly</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <!-- ── LEFT: CONTROLS ──────────────────────────────── -->
+        <app-controls [controls]="controlDefs">
+            <zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset all</zyra-button>
+        </app-controls>
+
+        <!-- ── RIGHT: PREVIEW + CODE ──────────────────────── -->
+        <div class="preview-area">
+            <div class="preview-box">
+                <div class="preview-box__label">Preview</div>
+                <div class="preview-box__stage" [class.preview-box__stage--vertical]="orientation() === 'vertical'">
+                    @if (orientation() === 'horizontal') {
+                        <span class="preview-text">Above content</span>
+                        <zyra-divider [variant]="variant()" [align]="align()" [label]="label()" [width]="width()" />
+                        <span class="preview-text">Below content</span>
+                    } @else {
+                        <span class="preview-text">Left</span>
+                        <zyra-divider orientation="vertical" [variant]="variant()" [width]="width()" />
+                        <span class="preview-text">Right</span>
+                    }
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="ghost" size="sm" (clicked)="copy()">
+                        {{ copied() ? '✓ Copied!' : 'Copy' }}
+                    </zyra-button>
+                </div>
+                <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── STYLES ──────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Line Styles</div>
+        <div class="style-stack">
+            <div class="style-row">
+                <span class="style-label">solid</span>
+                <zyra-divider variant="solid" label="solid" />
+            </div>
+            <div class="style-row">
+                <span class="style-label">dashed</span>
+                <zyra-divider variant="dashed" label="dashed" />
+            </div>
+            <div class="style-row">
+                <span class="style-label">dotted</span>
+                <zyra-divider variant="dotted" label="dotted" />
+            </div>
+        </div>
+    </div>
+
+    <!-- ── LABEL ALIGNMENT ─────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Label Alignment</div>
+        <div class="style-stack">
+            <zyra-divider label="start" align="start" />
+            <zyra-divider label="center" align="center" />
+            <zyra-divider label="end" align="end" />
+        </div>
+    </div>
+
+    <!-- ── REAL WORLD ──────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Real World Examples</div>
+        <div class="realworld-grid">
+            <zyra-card padding="md">
+                <div class="rw-form">
+                    <p class="rw-text">Sign in with your account</p>
+                    <zyra-button variant="secondary" size="md">Continue with Google</zyra-button>
+                    <zyra-divider label="or" />
+                    <zyra-button variant="primary" size="md">Sign in with email</zyra-button>
+                </div>
+            </zyra-card>
+
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Settings sections</span>
+                <div class="rw-settings">
+                    <span class="rw-text">Profile</span>
+                    <zyra-divider />
+                    <span class="rw-text">Notifications</span>
+                    <zyra-divider variant="dashed" />
+                    <span class="rw-text">Security</span>
+                    <zyra-divider variant="dotted" />
+                    <span class="rw-text">Billing</span>
+                </div>
+            </zyra-card>
+
+            <zyra-card padding="md">
+                <div class="rw-inline">
+                    <span class="rw-text">Users</span>
+                    <zyra-divider orientation="vertical" />
+                    <span class="rw-text">Roles</span>
+                    <zyra-divider orientation="vertical" />
+                    <span class="rw-text">Permissions</span>
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+</div>

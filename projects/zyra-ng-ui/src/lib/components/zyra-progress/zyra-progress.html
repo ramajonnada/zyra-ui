@@ -1,0 +1,20 @@
+<div [class]="hostClass()">
+    @if (showLabel()) {
+        <div class="zyr-progress__header">
+            <span class="zyr-progress__label">{{ displayLabel() }}</span>
+        </div>
+    }
+    <div
+        class="zyr-progress__track"
+        role="progressbar"
+        [attr.aria-valuenow]="indeterminate() ? null : clampedValue()"
+        [attr.aria-valuemin]="indeterminate() ? null : 0"
+        [attr.aria-valuemax]="indeterminate() ? null : max()"
+        [attr.aria-label]="displayLabel()"
+    >
+        <div
+            class="zyr-progress__bar"
+            [style.width]="indeterminate() ? null : percent() + '%'"
+        ></div>
+    </div>
+</div>

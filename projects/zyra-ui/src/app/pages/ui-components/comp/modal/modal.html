@@ -1,0 +1,107 @@
+<div class="pg">
+    <div class="pg__header">
+        <div>
+            <h1>zyra-modal <span>Playground</span></h1>
+            <p>Control every input live and see the result instantly</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <app-controls [controls]="controlDefs">
+            <zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset all</zyra-button>
+        </app-controls>
+
+        <div class="preview-area">
+            <div class="preview-box">
+                <div class="preview-box__label">Preview</div>
+                <div class="preview-box__stage">
+                    <zyra-button variant="primary" (clicked)="open.set(true)">Open Modal</zyra-button>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="ghost" size="sm" (clicked)="copy()">
+                        {{ copied() ? '✓ Copied!' : 'Copy' }}
+                    </zyra-button>
+                </div>
+                <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live modal -->
+    <zyra-modal
+        [(open)]="open"
+        [size]="size()"
+        [title]="title()"
+        [dismissible]="dismissible()"
+    >
+        <p>This is the modal body. You can place any content here — forms, alerts, images, or text.</p>
+        <p>Click the backdrop or press <kbd>ESC</kbd> to close (when dismissible is on).</p>
+
+        <div slot="footer">
+            <zyra-button variant="ghost" (clicked)="open.set(false)">Cancel</zyra-button>
+            <zyra-button variant="primary" (clicked)="open.set(false)">Confirm</zyra-button>
+        </div>
+    </zyra-modal>
+
+    <!-- ── REAL WORLD EXAMPLES ─────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Real World Examples</div>
+        <div class="examples-grid">
+
+            <!-- Delete confirmation -->
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Delete Confirmation</span>
+                <p class="example-desc">Confirm before a destructive action.</p>
+                <zyra-button variant="danger" size="sm" (clicked)="deleteModal.set(true)">Delete item</zyra-button>
+            </zyra-card>
+
+            <!-- Info modal -->
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Information</span>
+                <p class="example-desc">Display additional details on demand.</p>
+                <zyra-button variant="secondary" size="sm" (clicked)="infoModal.set(true)">View details</zyra-button>
+            </zyra-card>
+
+            <!-- Non-dismissible -->
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Required Action</span>
+                <p class="example-desc">Force the user to make a choice.</p>
+                <zyra-button variant="outline" size="sm" (clicked)="forcedModal.set(true)">Open required</zyra-button>
+            </zyra-card>
+        </div>
+    </div>
+</div>
+
+<!-- Delete modal -->
+<zyra-modal [(open)]="deleteModal" title="Delete item?" size="sm">
+    <zyra-alert variant="danger">This action cannot be undone. The item will be permanently deleted.</zyra-alert>
+    <div slot="footer">
+        <zyra-button variant="ghost" (clicked)="deleteModal.set(false)">Cancel</zyra-button>
+        <zyra-button variant="danger" (clicked)="deleteModal.set(false)">Delete</zyra-button>
+    </div>
+</zyra-modal>
+
+<!-- Info modal -->
+<zyra-modal [(open)]="infoModal" title="Release notes — v1.5.31">
+    <p>This release includes two new components:</p>
+    <ul>
+        <li><strong>ZyraProgress</strong> — linear progress bar with indeterminate support</li>
+        <li><strong>ZyraDivider</strong> — horizontal and vertical separator</li>
+    </ul>
+    <div slot="footer">
+        <zyra-button variant="primary" (clicked)="infoModal.set(false)">Got it</zyra-button>
+    </div>
+</zyra-modal>
+
+<!-- Forced modal -->
+<zyra-modal [(open)]="forcedModal" title="Terms of Service" [dismissible]="false">
+    <p>You must accept the terms of service to continue using the application.</p>
+    <div slot="footer">
+        <zyra-button variant="ghost" (clicked)="forcedModal.set(false)">Decline</zyra-button>
+        <zyra-button variant="primary" (clicked)="forcedModal.set(false)">Accept</zyra-button>
+    </div>
+</zyra-modal>
