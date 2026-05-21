@@ -1,0 +1,21 @@
+<label [class]="hostClass()">
+    @if (label() && labelPosition() === 'left') {
+        <span class="zyr-toggle__label">{{ label() }}</span>
+    }
+
+    <button
+        class="zyr-toggle__track"
+        type="button"
+        role="switch"
+        [attr.aria-checked]="checked()"
+        [attr.aria-label]="label() || 'Toggle'"
+        [disabled]="isDisabled() || null"
+        (click)="toggle()"
+    >
+        <span class="zyr-toggle__thumb"></span>
+    </button>
+
+    @if (label() && labelPosition() === 'right') {
+        <span class="zyr-toggle__label">{{ label() }}</span>
+    }
+</label>
