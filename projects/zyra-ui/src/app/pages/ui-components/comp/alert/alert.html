@@ -1,0 +1,96 @@
+<div class="pg">
+    <div class="pg__header">
+        <div>
+            <h1>zyra-alert <span>Playground</span></h1>
+            <p>Control every input live and see the result instantly</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <app-controls [controls]="controlDefs">
+            <div class="control-group">
+                <span class="control-label">variant</span>
+                <div class="control-options">
+                    @for (v of variants; track v) {
+                        <zyra-button size="sm" [variant]="variant() === v ? 'primary' : 'secondary'" (clicked)="variant.set(v)">{{ v }}</zyra-button>
+                    }
+                </div>
+            </div>
+            <zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset all</zyra-button>
+        </app-controls>
+
+        <div class="preview-area">
+            <div class="preview-box">
+                <div class="preview-box__label">Preview</div>
+                <div class="preview-box__stage preview-box__stage--column">
+                    @if (visible()) {
+                        <zyra-alert
+                            [variant]="variant()"
+                            [title]="title()"
+                            [dismissible]="dismissible()"
+                            (dismissed)="visible.set(false)"
+                        >
+                            This is an example alert message. Use it to inform, warn, or confirm.
+                        </zyra-alert>
+                    } @else {
+                        <div class="dismissed-msg">
+                            Alert dismissed —
+                            <zyra-button variant="ghost" size="sm" (clicked)="visible.set(true)">restore</zyra-button>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="ghost" size="sm" (clicked)="copy()">
+                        {{ copied() ? '✓ Copied!' : 'Copy' }}
+                    </zyra-button>
+                </div>
+                <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── ALL VARIANTS ────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">All Variants</div>
+        <div class="alert-stack">
+            <zyra-alert variant="success" title="Changes saved">
+                Your profile has been updated successfully.
+            </zyra-alert>
+            <zyra-alert variant="info" title="New version available">
+                zyra-ng-ui v1.5.31 is ready to install.
+            </zyra-alert>
+            <zyra-alert variant="warning" title="Storage almost full">
+                You have used 90% of your storage quota.
+            </zyra-alert>
+            <zyra-alert variant="danger" title="Deployment failed">
+                Build step failed. Check the logs for more details.
+            </zyra-alert>
+        </div>
+    </div>
+
+    <!-- ── DISMISSIBLE ─────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Dismissible</div>
+        <div class="alert-stack">
+            <zyra-alert variant="success" title="Ready to publish" [dismissible]="true">
+                All checks passed. You can publish this release.
+            </zyra-alert>
+            <zyra-alert variant="warning" [dismissible]="true">
+                Your session will expire in 5 minutes.
+            </zyra-alert>
+        </div>
+    </div>
+
+    <!-- ── WITHOUT TITLE ───────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Without Title</div>
+        <div class="alert-stack">
+            <zyra-alert variant="info">Two-factor authentication is recommended for your account.</zyra-alert>
+            <zyra-alert variant="danger">You do not have permission to perform this action.</zyra-alert>
+        </div>
+    </div>
+</div>

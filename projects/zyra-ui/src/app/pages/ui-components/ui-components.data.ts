@@ -347,6 +347,74 @@ export const UI_COMPONENT_SHOWCASE = [
         exampleCode: TOOLTIP_EXAMPLE_CODE,
     },
     {
+        slug: 'modal',
+        title: 'Modal',
+        selector: 'zyra-modal',
+        importName: 'ZyraModal',
+        category: 'Overlays',
+        description:
+            'Accessible dialog overlay with focus trap, ESC to close, backdrop dismiss, and flexible header/footer slots.',
+        icon: appIcons.square,
+        accent: 'purple',
+        highlights: [
+            'Focus trap and ESC key support',
+            'Backdrop click to dismiss',
+            'Four sizes with smooth animation',
+        ],
+        exampleCode: `import { Component, signal } from '@angular/core';\nimport { ZyraModal, ZyraButton } from 'zyra-ng-ui';\n\n@Component({\n  selector: 'app-demo',\n  standalone: true,\n  imports: [ZyraModal, ZyraButton],\n  template: \`\n    <zyra-button (clicked)="open.set(true)">Open</zyra-button>\n    <zyra-modal [(open)]="open" title="Hello">\n      <p>Modal content here.</p>\n      <div slot="footer" class="zyr-modal__footer">\n        <zyra-button variant="ghost" (clicked)="open.set(false)">Cancel</zyra-button>\n        <zyra-button variant="primary" (clicked)="open.set(false)">Confirm</zyra-button>\n      </div>\n    </zyra-modal>\n  \`,\n})\nexport class DemoComponent {\n  open = signal(false);\n}`,
+    },
+    {
+        slug: 'alert',
+        title: 'Alert',
+        selector: 'zyra-alert',
+        importName: 'ZyraAlert',
+        category: 'Feedback',
+        description:
+            'Inline status messages for success, warning, danger, and info states with optional title and dismiss support.',
+        icon: appIcons.triangleExclamation,
+        accent: 'amber',
+        highlights: [
+            'Four semantic variants',
+            'Optional title and dismiss',
+            'Accessible role="alert"',
+        ],
+        exampleCode: `import { Component } from '@angular/core';\nimport { ZyraAlert } from 'zyra-ng-ui';\n\n@Component({\n  selector: 'app-demo',\n  standalone: true,\n  imports: [ZyraAlert],\n  template: \`\n    <zyra-alert\n      variant="success"\n      title="Saved"\n      [dismissible]="true"\n    >\n      Your changes have been saved.\n    </zyra-alert>\n  \`,\n})\nexport class DemoComponent {}`,
+    },
+    {
+        slug: 'chip',
+        title: 'Chip',
+        selector: 'zyra-chip',
+        importName: 'ZyraChip',
+        category: 'Actions',
+        description:
+            'Compact interactive labels for filters, tags, and selections — supports dismissible and selectable modes.',
+        icon: appIcons.certificate,
+        accent: 'purple',
+        highlights: [
+            'Dismissible with × button',
+            'Selectable with toggle state',
+            'All semantic variants',
+        ],
+        exampleCode: `import { Component } from '@angular/core';\nimport { ZyraChip } from 'zyra-ng-ui';\n\n@Component({\n  selector: 'app-demo',\n  standalone: true,\n  imports: [ZyraChip],\n  template: \`\n    <zyra-chip variant="info" [dismissible]="true">\n      Angular\n    </zyra-chip>\n  \`,\n})\nexport class DemoComponent {}`,
+    },
+    {
+        slug: 'toggle',
+        title: 'Toggle',
+        selector: 'zyra-toggle',
+        importName: 'ZyraToggle',
+        category: 'Forms',
+        description:
+            'On/off switch control for settings, preferences, and feature flags with full keyboard and accessibility support.',
+        icon: appIcons.bolt,
+        accent: 'teal',
+        highlights: [
+            'Three sizes with smooth animation',
+            'Label on left or right',
+            'Accessible role="switch"',
+        ],
+        exampleCode: `import { Component, signal } from '@angular/core';\nimport { ZyraToggle } from 'zyra-ng-ui';\n\n@Component({\n  selector: 'app-demo',\n  standalone: true,\n  imports: [ZyraToggle],\n  template: \`\n    <zyra-toggle\n      [(checked)]="enabled"\n      label="Enable notifications"\n    />\n  \`,\n})\nexport class DemoComponent {\n  enabled = signal(false);\n}`,
+    },
+    {
         slug: 'progress',
         title: 'Progress',
         selector: 'zyra-progress',
@@ -379,6 +447,23 @@ export const UI_COMPONENT_SHOWCASE = [
             'Solid, dashed, and dotted styles',
         ],
         exampleCode: `import { Component } from '@angular/core';\nimport { ZyraDivider } from 'zyra-ng-ui';\n\n@Component({\n  selector: 'app-demo',\n  standalone: true,\n  imports: [ZyraDivider],\n  template: \`\n    <zyra-divider label="or" />\n  \`,\n})\nexport class DemoComponent {}`,
+    },
+    {
+        slug: 'accordion',
+        title: 'Accordion',
+        selector: 'zyra-accordion',
+        importName: 'ZyraAccordion',
+        category: 'Layout',
+        description:
+            'Collapsible content sections for FAQs, settings panels, and any grouped information that benefits from progressive disclosure.',
+        icon: appIcons.alignLeft,
+        accent: 'amber',
+        highlights: [
+            'Single or multi-open modes',
+            'Smooth CSS grid animation',
+            'Keyboard accessible',
+        ],
+        exampleCode: `import { Component } from '@angular/core';\nimport { ZyraAccordion, ZyraAccordionItem } from 'zyra-ng-ui';\n\n@Component({\n  selector: 'app-demo',\n  standalone: true,\n  imports: [ZyraAccordion, ZyraAccordionItem],\n  template: \`\n    <zyra-accordion>\n      <zyra-accordion-item title="What is Zyra UI?">\n        A modern Angular component library built with signals.\n      </zyra-accordion-item>\n      <zyra-accordion-item title="Is it free?">\n        Yes, fully open source under MIT.\n      </zyra-accordion-item>\n    </zyra-accordion>\n  \`,\n})\nexport class DemoComponent {}`,
     },
 ] satisfies readonly UiComponentShowcaseCard[];
 

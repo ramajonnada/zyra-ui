@@ -1,0 +1,128 @@
+<div class="pg">
+    <div class="pg__header">
+        <div>
+            <h1>zyra-chip <span>Playground</span></h1>
+            <p>Control every input live and see the result instantly</p>
+        </div>
+    </div>
+
+    <div class="pg__body">
+        <app-controls [controls]="controlDefs">
+            <div class="control-group">
+                <span class="control-label">variant</span>
+                <div class="control-options">
+                    @for (v of variants; track v) {
+                        <zyra-button size="sm" [variant]="variant() === v ? 'primary' : 'secondary'" (clicked)="variant.set(v)">{{ v }}</zyra-button>
+                    }
+                </div>
+            </div>
+            <zyra-button variant="ghost" size="sm" (clicked)="reset()">↺ Reset all</zyra-button>
+        </app-controls>
+
+        <div class="preview-area">
+            <div class="preview-box">
+                <div class="preview-box__label">Preview</div>
+                <div class="preview-box__stage">
+                    <zyra-chip
+                        [variant]="variant()"
+                        [size]="size()"
+                        [dismissible]="dismissible()"
+                        [selectable]="selectable()"
+                        [(selected)]="selected"
+                        [disabled]="disabled()"
+                    >{{ labelText() }}</zyra-chip>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="code-box__header">
+                    <span>Generated Code</span>
+                    <zyra-button variant="ghost" size="sm" (clicked)="copy()">
+                        {{ copied() ? '✓ Copied!' : 'Copy' }}
+                    </zyra-button>
+                </div>
+                <pre class="code-box__pre"><code>{{ generatedCode() }}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── ALL VARIANTS ────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">All Variants</div>
+        <div class="chip-row">
+            @for (v of variants; track v) {
+                <zyra-chip [variant]="v">{{ v }}</zyra-chip>
+            }
+        </div>
+    </div>
+
+    <!-- ── SIZES ───────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Sizes</div>
+        <div class="chip-row">
+            <zyra-chip size="sm">Small</zyra-chip>
+            <zyra-chip size="md">Medium</zyra-chip>
+            <zyra-chip size="lg">Large</zyra-chip>
+        </div>
+    </div>
+
+    <!-- ── DISMISSIBLE ─────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Dismissible — click × to remove</div>
+        <div class="chip-row">
+            @for (chip of chips(); track chip) {
+                <zyra-chip [dismissible]="true" (dismissed)="dismiss(chip)">{{ chip }}</zyra-chip>
+            }
+            @if (chips().length === 0) {
+                <span class="empty-msg">All chips dismissed — reset to restore</span>
+            }
+        </div>
+    </div>
+
+    <!-- ── SELECTABLE ──────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Selectable</div>
+        <div class="chip-row">
+            @for (v of variants; track v) {
+                <zyra-chip [variant]="v" [selectable]="true">{{ v }}</zyra-chip>
+            }
+        </div>
+    </div>
+
+    <!-- ── REAL WORLD ──────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Real World Examples</div>
+        <div class="realworld-grid">
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Tech Stack Tags</span>
+                <div class="chip-row">
+                    <zyra-chip variant="info">Angular</zyra-chip>
+                    <zyra-chip variant="purple">TypeScript</zyra-chip>
+                    <zyra-chip variant="success">Node.js</zyra-chip>
+                    <zyra-chip variant="warning">MongoDB</zyra-chip>
+                    <zyra-chip variant="default">Docker</zyra-chip>
+                </div>
+            </zyra-card>
+
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Filter Selection</span>
+                <div class="chip-row">
+                    <zyra-chip [selectable]="true" [selected]="true">All</zyra-chip>
+                    <zyra-chip [selectable]="true">Design</zyra-chip>
+                    <zyra-chip [selectable]="true">Development</zyra-chip>
+                    <zyra-chip [selectable]="true">Marketing</zyra-chip>
+                </div>
+            </zyra-card>
+
+            <zyra-card [hasHeader]="true" padding="sm">
+                <span slot="header">Status Labels</span>
+                <div class="chip-row">
+                    <zyra-chip variant="success" [dismissible]="true">Deployed</zyra-chip>
+                    <zyra-chip variant="warning" [dismissible]="true">Pending</zyra-chip>
+                    <zyra-chip variant="danger" [dismissible]="true">Failed</zyra-chip>
+                    <zyra-chip variant="info" [dismissible]="true">Running</zyra-chip>
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+</div>

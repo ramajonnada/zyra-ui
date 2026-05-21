@@ -15,6 +15,11 @@ import { Spinner } from './comp/spinner/spinner';
 import { Tooltip } from './comp/tooltip/tooltip';
 import { Progress } from './comp/progress/progress';
 import { Divider } from './comp/divider/divider';
+import { Toggle } from './comp/toggle/toggle';
+import { Chip } from './comp/chip/chip';
+import { Alert } from './comp/alert/alert';
+import { Modal } from './comp/modal/modal';
+import { Accordion } from './comp/accordion/accordion';
 import { SeoService } from '../../../seo/seo.service';
 
 @Component({
@@ -33,6 +38,11 @@ import { SeoService } from '../../../seo/seo.service';
         Tooltip,
         Progress,
         Divider,
+        Toggle,
+        Chip,
+        Alert,
+        Modal,
+        Accordion,
     ],
     templateUrl: './ui-component-detail.html',
     styleUrl: './ui-component-detail.scss',
