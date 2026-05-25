@@ -6,7 +6,6 @@ import {
 	ZyraButton,
 	ZyraBadge,
 	ZyraCard,
-	ZyraInput,
 	ZyraToastContainer,
 	ZyraToastService,
 	ZyraThemeService,

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { RouterLink } from '@angular/router';
-import { ZyraAvatar, ZyraBadge, ZyraButton, ZyraCard, ZyraFormField, ZyraInput, ZyraToastService } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraButton, ZyraCard, ZyraFormField, ZyraInput, ZyraToastService } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { appIcons } from '../../shared/fontawesome-icons';
 import { LIBRARY_VERSION } from '../../shared/version';
