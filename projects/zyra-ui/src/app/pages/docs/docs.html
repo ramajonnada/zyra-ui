@@ -1,18 +1,20 @@
 <main class="docs-page">
+
+    <!-- ── Hero ──────────────────────────────────────────────── -->
     <section class="docs-hero">
         <zyra-badge size="md">Documentation</zyra-badge>
-        <h1>Start with tokens. Ship with Angular components.</h1>
+        <h1>Get up and running in minutes.</h1>
         <p>
-            A focused setup guide for adding Zyra UI to a public website or product interface while
-            keeping colors, fonts, motion, and surfaces aligned.
+            Install the package, register one provider, and import only the components you need.
+            Every component is standalone, tree-shakeable, and typed from the ground up.
         </p>
-
         <div class="docs-hero__actions">
             <zyra-button size="lg" routerLink="/components">Browse components</zyra-button>
             <zyra-button size="lg" variant="outline" routerLink="/blog">Read guides</zyra-button>
         </div>
     </section>
 
+    <!-- ── Install steps ─────────────────────────────────────── -->
     <section class="docs-steps" aria-label="Installation steps">
         @for (step of installSteps; track step.step) {
             <zyra-card variant="outlined" padding="lg">
@@ -23,4 +25,149 @@
             </zyra-card>
         }
     </section>
+
+    <!-- ── Component reference ───────────────────────────────── -->
+    <section class="docs-section">
+        <div class="docs-section__header">
+            <p class="docs-eyebrow">/ Components</p>
+            <h2>All 16 components</h2>
+            <p>
+                Every component is a standalone import — add only what your feature needs.
+                Click any name to open its interactive playground.
+            </p>
+        </div>
+
+        <div class="docs-table-wrap">
+            <table class="docs-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Selector</th>
+                        <th>Import name</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (comp of componentList; track comp.slug) {
+                        <tr>
+                            <td>
+                                <a [routerLink]="['/components', comp.slug]" class="docs-table__link">
+                                    {{ comp.name }}
+                                </a>
+                            </td>
+                            <td><code>{{ comp.selector }}</code></td>
+                            <td><code>{{ comp.importName }}</code></td>
+                            <td>
+                                <span class="docs-table__cat">{{ comp.category }}</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ── Theming ────────────────────────────────────────────── -->
+    <section class="docs-section">
+        <div class="docs-section__header">
+            <p class="docs-eyebrow">/ Theming</p>
+            <h2>Customize the token layer</h2>
+            <p>
+                Zyra UI uses CSS custom properties as its design token system. Override any
+                <code>--zyr-*</code> variable in your global stylesheet to instantly restyle every
+                component.
+            </p>
+        </div>
+
+        <div class="docs-split">
+            <div class="docs-split__block">
+                <p class="docs-split__label">Override tokens in CSS</p>
+                <pre><code>{{ themeOverrideCode }}</code></pre>
+            </div>
+            <div class="docs-split__block">
+                <p class="docs-split__label">Switch themes at runtime</p>
+                <pre><code>{{ themeSwitchCode }}</code></pre>
+            </div>
+        </div>
+
+        <div class="docs-token-grid">
+            @for (group of tokenGroups; track group.label) {
+                <div class="docs-token-group">
+                    <span class="docs-token-group__label">{{ group.label }}</span>
+                    <div class="docs-token-group__tokens">
+                        @for (token of group.tokens; track token) {
+                            <code class="docs-token">{{ token }}</code>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <!-- ── FAQ ───────────────────────────────────────────────── -->
+    <section class="docs-section">
+        <div class="docs-section__header">
+            <p class="docs-eyebrow">/ FAQ</p>
+            <h2>Common questions</h2>
+        </div>
+
+        <div class="docs-faq">
+            <zyra-accordion>
+                <zyra-accordion-item title="What Angular version does Zyra UI require?">
+                    Angular 17 or later. Zyra UI is built entirely with the new signals API —
+                    <code>input()</code>, <code>model()</code>, <code>output()</code>, and <code>computed()</code>
+                    — which requires Angular 17+. Angular 21 is recommended for the best experience.
+                </zyra-accordion-item>
+
+                <zyra-accordion-item title="Does Zyra UI support SSR?">
+                    Yes. All components are compatible with Angular Universal and the built-in SSR
+                    support introduced in Angular 17. The library avoids direct DOM access at render time,
+                    so hydration works without any special configuration.
+                </zyra-accordion-item>
+
+                <zyra-accordion-item title="Are there any peer dependencies?">
+                    None beyond Angular itself. Zyra UI ships zero runtime peer dependencies —
+                    no additional CSS frameworks, icon libraries, or animation packages required.
+                    Just install <code>zyra-ng-ui</code> and you're set.
+                </zyra-accordion-item>
+
+                <zyra-accordion-item title="Can I use it without standalone components?">
+                    All components are standalone by design, but you can still import them into an
+                    NgModule via the <code>imports</code> array of any module. The standalone architecture
+                    does not prevent module-based usage.
+                </zyra-accordion-item>
+
+                <zyra-accordion-item title="How do I change the accent color across all components?">
+                    Override <code>--zyr-accent</code> in your global styles. Zyra UI derives every
+                    accent-tinted surface — muted backgrounds, borders, focus rings — from that single
+                    variable, so one change cascades through the entire system.
+                </zyra-accordion-item>
+
+                <zyra-accordion-item title="Is dark mode supported out of the box?">
+                    Yes. Call <code>theme.setTheme('dark')</code> via the injected
+                    <code>ZyraThemeService</code> and every component switches immediately.
+                    The theme service also exposes a <code>toggle()</code> method for a one-line
+                    light/dark toggle.
+                </zyra-accordion-item>
+
+                <zyra-accordion-item title="How do I report a bug or request a feature?">
+                    Open an issue on the GitHub repository. Include your Angular version, the component
+                    selector, and a minimal reproduction — a StackBlitz link is ideal.
+                </zyra-accordion-item>
+            </zyra-accordion>
+        </div>
+    </section>
+
+    <!-- ── CTA ───────────────────────────────────────────────── -->
+    <section class="docs-cta">
+        <div class="docs-cta__inner">
+            <h2>Ready to build?</h2>
+            <p>Browse the interactive playground for every component and copy the code you need.</p>
+            <div class="docs-cta__actions">
+                <zyra-button size="lg" routerLink="/components">Explore components</zyra-button>
+                <zyra-button size="lg" variant="outline" routerLink="/blog">Read blog</zyra-button>
+            </div>
+        </div>
+    </section>
+
 </main>

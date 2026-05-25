@@ -7,32 +7,29 @@
 .docs-page {
     width: min(1080px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 56px 0 76px;
+    padding: 56px 0 80px;
 }
 
+// ── Hero ──────────────────────────────────────────────────────
 .docs-hero {
     max-width: 760px;
-    margin: 0 auto 34px;
+    margin: 0 auto 48px;
     text-align: center;
-}
 
-.docs-hero h1 {
-    margin: 16px 0 0;
-    font-family: var(--zyr-font-display);
-    font-size: 3.45rem;
-    line-height: 1;
-    letter-spacing: 0;
-}
+    h1 {
+        margin: 16px 0 0;
+        font-family: var(--zyr-font-display);
+        font-size: 3.45rem;
+        line-height: 1.02;
+        letter-spacing: 0;
+    }
 
-.docs-hero p,
-.docs-steps p {
-    color: var(--zyr-text-muted);
-    line-height: 1.75;
-}
-
-.docs-hero p {
-    max-width: 620px;
-    margin: 16px auto 0;
+    p {
+        max-width: 620px;
+        margin: 16px auto 0;
+        color: var(--zyr-text-muted);
+        line-height: 1.75;
+    }
 }
 
 .docs-hero__actions {
@@ -43,10 +40,24 @@
     margin-top: 26px;
 }
 
+// ── Install steps ─────────────────────────────────────────────
 .docs-steps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
+    margin-bottom: 56px;
+
+    h2 {
+        margin: 16px 0 8px;
+        font-size: 1.08rem;
+    }
+
+    p {
+        margin: 0;
+        color: var(--zyr-text-muted);
+        line-height: 1.7;
+        font-size: 0.92rem;
+    }
 }
 
 .docs-step__number {
@@ -60,15 +71,7 @@
     color: var(--zyr-accent);
     font-family: var(--zyr-font-mono);
     font-size: 0.78rem;
-}
-
-.docs-steps h2 {
-    margin: 16px 0 8px;
-    font-size: 1.08rem;
-}
-
-.docs-steps p {
-    margin: 0;
+    font-weight: 600;
 }
 
 pre {
@@ -80,15 +83,252 @@ pre {
     background: var(--zyr-bg-3);
     color: var(--zyr-text-muted);
     font-family: var(--zyr-font-mono);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    white-space: pre;
+    transition: background var(--zyr-transition-slow);
 }
 
+// ── Section wrapper ───────────────────────────────────────────
+.docs-section {
+    border-top: 1px solid var(--zyr-border);
+    padding-top: 48px;
+    margin-top: 48px;
+}
+
+.docs-section__header {
+    max-width: 660px;
+    margin-bottom: 32px;
+
+    h2 {
+        margin: 10px 0 12px;
+        font-family: var(--zyr-font-display);
+        font-size: 2rem;
+        line-height: 1.1;
+    }
+
+    p {
+        color: var(--zyr-text-muted);
+        line-height: 1.75;
+        margin: 0;
+        font-size: 0.95rem;
+
+        code {
+            font-family: var(--zyr-font-mono);
+            font-size: 0.85em;
+            color: var(--zyr-accent);
+        }
+    }
+}
+
+.docs-eyebrow {
+    margin: 0;
+    color: var(--zyr-accent);
+    font-family: var(--zyr-font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+// ── Component table ───────────────────────────────────────────
+.docs-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--zyr-border);
+    border-radius: var(--zyr-radius-lg);
+}
+
+.docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+
+    thead tr {
+        background: var(--zyr-bg-2);
+        border-bottom: 1px solid var(--zyr-border);
+        transition: background var(--zyr-transition-slow);
+    }
+
+    th {
+        padding: 12px 16px;
+        text-align: left;
+        font-family: var(--zyr-font-mono);
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--zyr-text-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid var(--zyr-border);
+        transition: background var(--zyr-transition-fast);
+
+        &:last-child { border-bottom: none; }
+        &:hover { background: var(--zyr-bg-2); }
+    }
+
+    td {
+        padding: 12px 16px;
+        color: var(--zyr-text-muted);
+        vertical-align: middle;
+
+        code {
+            font-family: var(--zyr-font-mono);
+            font-size: 12px;
+            color: var(--zyr-accent);
+            background: var(--zyr-accent-muted);
+            padding: 2px 7px;
+            border-radius: var(--zyr-radius-xs);
+        }
+    }
+
+    &__link {
+        color: var(--zyr-text);
+        font-weight: 500;
+        text-decoration: none;
+        transition: color var(--zyr-transition-base);
+
+        &:hover { color: var(--zyr-accent); }
+    }
+
+    &__cat {
+        font-family: var(--zyr-font-mono);
+        font-size: 11px;
+        color: var(--zyr-text-dim);
+    }
+}
+
+// ── Theming split ─────────────────────────────────────────────
+.docs-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.docs-split__block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.docs-split__label {
+    font-family: var(--zyr-font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--zyr-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+// ── Token grid ────────────────────────────────────────────────
+.docs-token-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.docs-token-group {
+    padding: 16px;
+    border: 1px solid var(--zyr-border);
+    border-radius: var(--zyr-radius-md);
+    background: var(--zyr-bg-2);
+    transition: background var(--zyr-transition-slow);
+
+    &__label {
+        display: block;
+        font-family: var(--zyr-font-mono);
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--zyr-accent);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 10px;
+    }
+
+    &__tokens {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+.docs-token {
+    font-family: var(--zyr-font-mono);
+    font-size: 12px;
+    color: var(--zyr-text-muted);
+    display: block;
+
+    &::before {
+        content: '·';
+        color: var(--zyr-accent);
+        margin-right: 6px;
+    }
+}
+
+// ── FAQ ───────────────────────────────────────────────────────
+.docs-faq {
+    max-width: 720px;
+
+    code {
+        font-family: var(--zyr-font-mono);
+        font-size: 0.85em;
+        color: var(--zyr-accent);
+    }
+}
+
+// ── CTA ───────────────────────────────────────────────────────
+.docs-cta {
+    margin-top: 56px;
+    border-top: 1px solid var(--zyr-border);
+    padding-top: 56px;
+    text-align: center;
+
+    &__inner {
+        max-width: 540px;
+        margin: 0 auto;
+
+        h2 {
+            font-family: var(--zyr-font-display);
+            font-size: 2.2rem;
+            margin: 0 0 12px;
+        }
+
+        p {
+            color: var(--zyr-text-muted);
+            line-height: 1.7;
+            margin: 0 0 24px;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+}
+
+// ── Responsive ────────────────────────────────────────────────
 @media (max-width: 900px) {
-    .docs-steps {
+    .docs-steps,
+    .docs-split {
         grid-template-columns: 1fr;
     }
 
     .docs-hero h1 {
         font-size: 2.55rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .docs-hero h1 {
+        font-size: 2rem;
+    }
+
+    .docs-section__header h2 {
+        font-size: 1.65rem;
     }
 }
