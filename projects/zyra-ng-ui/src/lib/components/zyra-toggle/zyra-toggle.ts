@@ -4,67 +4,70 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export type ToggleSize = 'sm' | 'md' | 'lg';
 
 @Component({
-    selector: 'zyra-toggle',
-    standalone: true,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ZyraToggle),
-            multi: true,
-        },
-    ],
-    templateUrl: './zyra-toggle.html',
-    styleUrl: './zyra-toggle.scss',
+	selector: 'zyra-toggle',
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => ZyraToggle),
+			multi: true,
+		},
+	],
+	templateUrl: './zyra-toggle.html',
+	styleUrl: './zyra-toggle.scss',
 })
 export class ZyraToggle implements ControlValueAccessor {
-    // ── Inputs ────────────────────────────────────────────────
-    checked = model<boolean>(false);
-    size = input<ToggleSize>('md');
-    disabled = input<boolean>(false);
-    label = input<string>('');
-    labelPosition = input<'left' | 'right'>('right');
+	// ── Inputs ────────────────────────────────────────────────
+	checked = model<boolean>(false);
+	size = input<ToggleSize>('md');
+	disabled = input<boolean>(false);
+	label = input<string>('');
+	labelPosition = input<'left' | 'right'>('right');
 
-    // ── Outputs ───────────────────────────────────────────────
-    changed = output<boolean>();
+	// ── Outputs ───────────────────────────────────────────────
+	changed = output<boolean>();
 
-    // ── CVA state ─────────────────────────────────────────────
-    private _cvaDisabled = signal(false);
+	// ── ID for label association ──────────────────────────────
+	readonly toggleId = `zyr-toggle-${Math.random().toString(36).slice(2, 9)}`;
 
-    // ── Computed ──────────────────────────────────────────────
-    isDisabled = computed(() => this.disabled() || this._cvaDisabled());
+	// ── CVA state ─────────────────────────────────────────────
+	private _cvaDisabled = signal(false);
 
-    hostClass = computed(() =>
-        `zyr-toggle zyr-toggle--${this.size()}${this.isDisabled() ? ' zyr-toggle--disabled' : ''}`
-    );
+	// ── Computed ──────────────────────────────────────────────
+	isDisabled = computed(() => this.disabled() || this._cvaDisabled());
 
-    // ── CVA callbacks ─────────────────────────────────────────
-    private _onChange: (val: boolean) => void = () => undefined;
-    private _onTouched: () => void = () => undefined;
+	hostClass = computed(() =>
+		`zyr-toggle zyr-toggle--${this.size()}${this.isDisabled() ? ' zyr-toggle--disabled' : ''}`
+	);
 
-    writeValue(val: boolean): void {
-        this.checked.set(!!val);
-    }
+	// ── CVA callbacks ─────────────────────────────────────────
+	private _onChange: (val: boolean) => void = () => undefined;
+	private _onTouched: () => void = () => undefined;
 
-    registerOnChange(fn: (val: boolean) => void): void {
-        this._onChange = fn;
-    }
+	writeValue(val: boolean): void {
+		this.checked.set(!!val);
+	}
 
-    registerOnTouched(fn: () => void): void {
-        this._onTouched = fn;
-    }
+	registerOnChange(fn: (val: boolean) => void): void {
+		this._onChange = fn;
+	}
 
-    setDisabledState(isDisabled: boolean): void {
-        this._cvaDisabled.set(isDisabled);
-    }
+	registerOnTouched(fn: () => void): void {
+		this._onTouched = fn;
+	}
 
-    // ── Methods ───────────────────────────────────────────────
-    toggle(): void {
-        if (this.isDisabled()) return;
-        const next = !this.checked();
-        this.checked.set(next);
-        this._onChange(next);
-        this._onTouched();
-        this.changed.emit(next);
-    }
+	setDisabledState(isDisabled: boolean): void {
+		this._cvaDisabled.set(isDisabled);
+	}
+
+	// ── Methods ───────────────────────────────────────────────
+	toggle(): void {
+		if (this.isDisabled()) return;
+		const next = !this.checked();
+		this.checked.set(next);
+		this._onChange(next);
+		this._onTouched();
+		this.changed.emit(next);
+	}
 }
