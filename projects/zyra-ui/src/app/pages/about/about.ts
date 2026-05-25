@@ -12,6 +12,11 @@ interface AboutValue {
     icon: IconDefinition;
 }
 
+interface AboutStat {
+    value: string;
+    label: string;
+}
+
 @Component({
     selector: 'app-about',
     imports: [RouterLink, FaIconComponent, ZyraBadge, ZyraButton, ZyraCard],
@@ -22,23 +27,42 @@ export class About implements OnInit {
     private readonly seo = inject(SeoService);
     readonly icons = appIcons;
 
+    readonly stats: readonly AboutStat[] = [
+        { value: '16', label: 'Components' },
+        { value: 'MIT', label: 'License' },
+        { value: 'v17+', label: 'Angular' },
+        { value: '100%', label: 'Signals-first' },
+    ];
+
     readonly values: readonly AboutValue[] = [
         {
             title: 'Token-first design',
             description:
-                'Colors, type, spacing, radius, elevation, and motion come from the Zyra token layer.',
+                'Colors, spacing, radius, elevation, and motion all live in the Zyra token layer — override one variable, update the entire system.',
             icon: appIcons.palette,
         },
         {
-            title: 'Angular-native DX',
+            title: 'Signals-first DX',
             description:
-                'Standalone components, typed APIs, and modern Angular patterns guide every public example.',
+                'Built for Angular 17+ with model(), input(), and output() — reactive by default, no RxJS required for component inputs.',
+            icon: appIcons.bolt,
+        },
+        {
+            title: 'Angular-native',
+            description:
+                'Standalone components, typed APIs, OnPush change detection, and modern Angular patterns guide every public example.',
             icon: appIcons.codeBranch,
         },
         {
-            title: 'Public-site polish',
+            title: 'Accessibility built in',
             description:
-                'Documentation, blog content, and landing pages are built to be readable, crawlable, and fast.',
+                'ARIA roles, keyboard navigation, focus management, and visible focus rings — every component ships accessible out of the box.',
+            icon: appIcons.universalAccess,
+        },
+        {
+            title: 'Public-site ready',
+            description:
+                'SSR-compatible, SEO-considered, and fast. Zyra UI powers the docs, blog, and landing pages it documents.',
             icon: appIcons.rocket,
         },
     ];
@@ -47,7 +71,7 @@ export class About implements OnInit {
         this.seo.setSEO({
             title: 'About Zyra UI - Angular components built with design tokens',
             description:
-                'Learn about Zyra UI, a token-driven Angular component library focused on polished public websites and product interfaces.',
+                'Learn about Zyra UI — a signals-first Angular component library with 16 accessible, token-driven components for real apps and public websites.',
             url: 'https://www.zyraui.dev/about',
         });
     }

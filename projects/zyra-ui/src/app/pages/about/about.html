@@ -1,10 +1,12 @@
 <main class="public-page about-page">
+
+    <!-- ── Hero ──────────────────────────────────────────────── -->
     <section class="public-hero">
         <zyra-badge size="md">About Zyra UI</zyra-badge>
         <h1>Angular components shaped for public websites and real apps.</h1>
         <p>
-            Zyra UI is a design-token driven Angular library for teams who want the website,
-            documentation, and product interface to feel like one thoughtful system.
+            Zyra UI is a design-token driven Angular library. 16 components, zero compromises —
+            built with the belief that the same system should power your landing page and your product.
         </p>
 
         <div class="public-hero__actions">
@@ -13,6 +15,17 @@
         </div>
     </section>
 
+    <!-- ── Stats strip ───────────────────────────────────────── -->
+    <section class="about-stats" aria-label="Library at a glance">
+        @for (stat of stats; track stat.label) {
+            <div class="about-stat">
+                <span class="about-stat__value">{{ stat.value }}</span>
+                <span class="about-stat__label">{{ stat.label }}</span>
+            </div>
+        }
+    </section>
+
+    <!-- ── Values grid ───────────────────────────────────────── -->
     <section class="about-grid" aria-label="What Zyra UI focuses on">
         @for (value of values; track value.title) {
             <zyra-card variant="outlined" padding="lg">
@@ -25,15 +38,46 @@
         }
     </section>
 
+    <!-- ── Story ─────────────────────────────────────────────── -->
     <section class="about-story">
-        <div>
-            <p class="public-eyebrow">Principle</p>
-            <h2>One visual language from marketing page to component preview.</h2>
+        <div class="about-story__copy">
+            <p class="public-eyebrow">Why it exists</p>
+            <h2>Built from frustration. Refined by real usage.</h2>
+            <p>
+                Zyra UI started as a personal project during the Angular signals era — a way to stop
+                copy-pasting the same button and form field into every new project. Over time it grew
+                into a full design system that works the same way whether you're building a marketing
+                page, a dashboard, or a docs site.
+            </p>
+            <p>
+                The library intentionally uses itself: every component shown on this website is the
+                real published package, same version, same tokens. Demos stay honest, regressions
+                surface immediately, and visitors get an accurate preview of what they'll ship.
+            </p>
         </div>
-        <p>
-            The website intentionally uses the same library tokens and primitives it documents. That
-            keeps demos honest, improves maintainability, and gives visitors a real preview of how
-            Zyra UI behaves in production.
-        </p>
+
+        <div class="about-story__meta">
+            <div class="about-meta-item">
+                <span class="about-meta-item__label">Started</span>
+                <span class="about-meta-item__value">Angular 17 era</span>
+            </div>
+            <div class="about-meta-item">
+                <span class="about-meta-item__label">Built with</span>
+                <span class="about-meta-item__value">Angular 21 + Signals</span>
+            </div>
+            <div class="about-meta-item">
+                <span class="about-meta-item__label">Styling</span>
+                <span class="about-meta-item__value">CSS custom properties</span>
+            </div>
+            <div class="about-meta-item">
+                <span class="about-meta-item__label">Distributed via</span>
+                <span class="about-meta-item__value">npm · zyra-ng-ui</span>
+            </div>
+            <div class="about-meta-item">
+                <span class="about-meta-item__label">License</span>
+                <span class="about-meta-item__value">MIT</span>
+            </div>
+        </div>
     </section>
+
 </main>
