@@ -133,6 +133,36 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.zyraui.dev/blog/angular-cli-mcp-server-generate-components-with-ai</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.zyraui.dev/blog/better-ai-generated-angular-code-llms-txt-web-codegen-scorer</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.zyraui.dev/blog/angular-ui-library-zoneless-ai-streaming-rerenders</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.zyraui.dev/blog/modern-angular-ui-animations-2026</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.zyraui.dev/blog/angular-ssr-seo-2026-core-web-vitals-component-library</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.zyraui.dev/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals</loc>
     <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>

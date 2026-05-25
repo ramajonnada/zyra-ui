@@ -1,0 +1,19 @@
+# ZyraUI
+
+> ZyraUI is a premium, modern Angular UI component library for building clean, animated, high-performance interfaces. It targets Angular 21 with signals, zoneless change detection, standalone components, and SSR-safe, tree-shakeable components. The ZyraUI blog covers modern Angular, AI-assisted frontend development, UI animation, performance, and SEO.
+
+## Blog
+
+- [Angular CLI MCP Server: Generate Components with AI](https://www.zyraui.dev/blog/angular-cli-mcp-server-generate-components-with-ai): How to set up the Angular CLI MCP server (`ng mcp`) and use it to generate accurate, modern Angular components with AI assistants.
+- [Better AI-Generated Angular Code: llms.txt & Codegen Scorer](https://www.zyraui.dev/blog/better-ai-generated-angular-code-llms-txt-web-codegen-scorer): Using llms.txt, the official Angular best-practices rules files, and the Web Codegen Scorer to make AI write modern Angular and measure its quality.
+- [Angular UI Performance in Zoneless, AI-Streaming Apps](https://www.zyraui.dev/blog/angular-ui-library-zoneless-ai-streaming-rerenders): Why your UI library and change detection strategy decide whether a streaming LLM chat UI feels smooth or janky in zoneless Angular 21.
+- [7 Modern Angular UI Animations You Can Build in 2026](https://www.zyraui.dev/blog/modern-angular-ui-animations-2026): Practical Angular animations using the View Transitions API, CSS, IntersectionObserver, and signals, built the performant, accessible way.
+- [Angular SSR & SEO in 2026: Core Web Vitals Done Right](https://www.zyraui.dev/blog/angular-ssr-seo-2026-core-web-vitals-component-library): A practical guide to Angular 21 SSR, hydration, meta tags, structured data, and keeping Core Web Vitals green with a component library.
+- [Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals](https://www.zyraui.dev/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals): What zoneless Angular means in v21, why ZoneJS is no longer the default, how signals fit in, and how to migrate safely.
+- [Angular 21 Signals Explained: Signals, Signal Forms](https://www.zyraui.dev/blog/angular-21-signals-explained-signals-signal-forms): An in-depth guide to Angular 21 signals, Signal Forms, zoneless change detection, and RxJS interoperability.
+- [Angular Folder Structure Best Practices (2026 Guide)](https://www.zyraui.dev/blog/angular-folder-structure-practices-2026-guide): A feature-based folder structure for scalable, maintainable Angular apps with standalone components.
+
+## Resources
+
+- [Blog index](https://www.zyraui.dev/blog): All ZyraUI articles.
+- [Sitemap](https://www.zyraui.dev/sitemap.xml): Full site URL index.

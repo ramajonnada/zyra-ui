@@ -14,6 +14,7 @@ export interface PostMeta {
     link?: string;
     imageUrl?: string;
     category: string | string[];
+    faq?: { q: string; a: string }[];
 }
 
 export type BlogPostsLoader = () => Promise<PostMeta[]>;

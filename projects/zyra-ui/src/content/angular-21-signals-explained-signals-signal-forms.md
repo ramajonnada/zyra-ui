@@ -24,6 +24,8 @@ date: '2026-01-06T05:29:59.318Z'
 
 # Angular 21 Signals Explained: Signals, Signal Forms
 
+> **TL;DR:** Angular 21 makes signals the default way to manage state. A signal is a reactive value you read by calling it (`count()`) and update with `.set()` or `.update()`. Signal Forms bring that same reactivity to forms without heavy FormBuilder setup, and signals pair naturally with zoneless change detection so Angular only updates when a value you actually use changes. RxJS still handles streams and events, with `toSignal()` and `toObservable()` bridging the two.
+
 Angular 21 introduces powerful changes to reactive state management. Among the most important **Angular 21 new features** are signals, signal forms,
 and zoneless change detection.
 
@@ -329,6 +331,24 @@ Angular Signals improve SEO indirectly by:
 Search engines reward fast and stable pages.
 
 ---
+
+## Frequently asked questions
+
+### What is a signal in Angular 21?
+
+A signal is a reactive value that wraps state. You read it by calling it like a function (`count()`) and change it with `.set()` or `.update()`. Angular tracks exactly where each signal is read, so only those parts of the UI update when the value changes.
+
+### What are Signal Forms in Angular 21?
+
+Signal Forms are a forms approach built on signals. They avoid heavy FormBuilder setup and manual subscriptions, give instant UI updates, and keep validation logic clear and readable, which works especially well in large applications.
+
+### Do signals replace RxJS in Angular?
+
+No. Angular 21 focuses on RxJS interoperability, not replacement. Use signals for UI and component state, and RxJS for streams, WebSockets, and complex async flows. Bridge them with `toSignal()` and `toObservable()`.
+
+### Should I use signals for a new Angular project?
+
+Yes. For new Angular projects in 2026, signals are the recommended default for most state, combined with RxJS where needed and zoneless change detection for performance.
 
 **Final Thoughts**
 

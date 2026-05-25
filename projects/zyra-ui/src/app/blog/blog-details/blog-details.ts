@@ -24,6 +24,7 @@ export class BlogDetails implements OnDestroy {
 	postReadTime = signal('');
 	postCategory = signal('Angular');
 	postTags = signal<string[]>([]);
+	postFaq = signal<{ q: string; a: string }[]>([]);
 	loading = signal(true);
 	error = signal('');
 
@@ -41,6 +42,7 @@ export class BlogDetails implements OnDestroy {
 
 	ngOnDestroy() {
 		this.seo.removeJsonLd('blog-post-jsonld');
+		this.seo.removeJsonLd('blog-faq-jsonld');
 	}
 
 	loadPost() {
@@ -52,6 +54,7 @@ export class BlogDetails implements OnDestroy {
 		this.postDate.set('');
 		this.postReadTime.set('');
 		this.postTags.set([]);
+		this.postFaq.set([]);
 
 		this.blogService
 			.getPostContent(this.slug())
@@ -105,6 +108,7 @@ export class BlogDetails implements OnDestroy {
 		this.postReadTime.set(post.readTime.trim());
 		this.postCategory.set(this.toList(post.category)[0] ?? 'Angular');
 		this.postTags.set(this.toList(post.tags).slice(0, 6));
+		this.postFaq.set(Array.isArray(post.faq) ? post.faq : []);
 	}
 
 	private updatePageSEO(): void {
@@ -148,6 +152,24 @@ export class BlogDetails implements OnDestroy {
 			keywords: this.postTags().join(', '),
 			articleSection: this.postCategory(),
 		});
+
+		const faq = this.postFaq();
+		if (faq.length) {
+			this.seo.injectJsonLd('blog-faq-jsonld', {
+				'@context': 'https://schema.org',
+				'@type': 'FAQPage',
+				mainEntity: faq.map((item) => ({
+					'@type': 'Question',
+					name: item.q,
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: item.a,
+					},
+				})),
+			});
+		} else {
+			this.seo.removeJsonLd('blog-faq-jsonld');
+		}
 	}
 
 	private extractFrontMatterValue(md: string, key: string): string {

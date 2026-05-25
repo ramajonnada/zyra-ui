@@ -16,6 +16,8 @@ slug: "angular-folder-structure-practices-2026-guide"
 
 ## Building Modern Angular Applications with ZyraUI
 
+> **TL;DR:** A scalable Angular folder structure in 2026 is feature-based: a `core/` folder for app-wide singletons (services, interceptors, guards), a `shared/` folder for reusable UI, pipes, and directives, and a `features/` folder where each feature is self-contained with its own pages, components, routes, and services. Combined with standalone components and consistent naming, this keeps large apps easy to navigate, refactor, and onboard into.
+
 Choosing the right folder structure in Angular is **critical** for scalability, maintainability, and team collaboration.  
 A poor structure leads to confusion, tight coupling, and technical debt.
 
@@ -113,16 +115,17 @@ Each feature handles:
 
 ## 🧠 Standalone Components (Modern Angular)
 
-With **Standalone Components**, you no longer need heavy modules.
+With **Standalone Components**, you no longer need heavy modules. In Angular v20+, standalone is the **default**, so you no longer set `standalone: true` — it is implied.
 
 Example:
-ts
+
+```ts
 @Component({
-standalone: true,
-selector: 'app-login',
-templateUrl: './login.component.html',
+    selector: 'app-login',
+    templateUrl: './login.component.html',
 })
 export class LoginComponent {}
+```
 
 ➡️ This works perfectly with feature-based structure.
 
@@ -136,3 +139,23 @@ export class LoginComponent {}
 | Directive | `auto-focus.directive.ts` |
 
 Consistency = professionalism.
+
+---
+
+## Frequently asked questions
+
+### What is the best Angular folder structure in 2026?
+
+A feature-based structure: a `core/` folder for app-wide singletons used once (services, interceptors, guards), a `shared/` folder for reusable UI, pipes, and directives, and a `features/` folder where each feature is self-contained with its own pages, components, routes, and services.
+
+### What goes in the core folder in Angular?
+
+Things used once across the entire app: global services such as `AuthService` and `ThemeService`, HTTP interceptors, and route guards. Avoid putting components in `core/`.
+
+### What is the difference between core and shared folders?
+
+`core/` holds app-wide singletons that are instantiated once, while `shared/` holds reusable building blocks — UI components, pipes, and directives — that are imported by many features.
+
+### Do I still need NgModules for folder structure in modern Angular?
+
+No. With standalone components you no longer need heavy modules. Standalone components pair naturally with a feature-based structure, where each feature owns its pages, routes, and services directly.

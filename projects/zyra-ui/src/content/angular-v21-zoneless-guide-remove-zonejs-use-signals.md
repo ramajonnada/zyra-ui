@@ -23,6 +23,8 @@ slug: "angular-v21-zoneless-guide-remove-zonejs-use-signals"
 
 # Angular v21 Zoneless Guide: Remove ZoneJS and Build Faster Apps with Signals
 
+> **TL;DR:** Zoneless Angular removes the Zone.js dependency and updates views from explicit signals instead of patched async APIs. It became stable in Angular v20.2 and is the default for new apps in v21+. The payoff is better performance, improved Core Web Vitals, and simpler debugging. To migrate, move state to signals, audit `NgZone` usage, test key flows, then remove `zone.js` from your build.
+
 Angular has been moving toward a more explicit and more predictable reactivity model for a while, and zoneless Angular is one of the biggest results of that shift.
 
 As of Angular v21, zoneless is the default experience for new apps. Angular's roadmap also notes that zoneless became stable in v20.2, which means this is no longer a niche experiment. It is now part of the mainstream Angular direction.
@@ -320,6 +322,24 @@ For greenfield Angular v21 apps, zoneless should usually be the default choice.
 For legacy apps, it should be a deliberate migration.
 
 ---
+
+## Frequently asked questions
+
+### What does zoneless mean in Angular?
+
+Zoneless means Angular no longer uses Zone.js to detect changes. Instead, it updates views in response to explicit notifications — a signal read in a template changing, `markForCheck`, setting a component input, or a template event handler firing.
+
+### Is zoneless stable in Angular?
+
+Yes. Zoneless became stable in Angular v20.2, and from Angular v21 onward it is the default for new apps, so no extra setup is needed to enable it.
+
+### How do I migrate an existing app to zoneless?
+
+Move local UI state to signals, prefer the async pipe or explicit signal updates over manual subscriptions, audit any `NgZone` usage, enable zoneless in development, test key flows, and only remove `zone.js` from the build once the app behaves correctly.
+
+### What breaks when going zoneless?
+
+Code that depends on `NgZone.onStable`, `onMicrotaskEmpty`, `onUnstable`, or `isStable`, components that rely on implicit refresh after mutating data Angular can't observe, and older third-party libraries that assume Zone.js is present.
 
 ## Final thoughts
 
