@@ -1,9 +1,8 @@
 <div class="article-page">
     <section class="article-hero">
-        <zyra-button variant="ghost" size="sm" routerLink="/blog">
-            <span slot="prefix" aria-hidden="true">&larr;</span>
-            Back to blog
-        </zyra-button>
+        <a class="back-link" routerLink="/blog">
+            <span aria-hidden="true">←</span> Back to blog
+        </a>
         <div class="article-meta-row">
             <zyra-badge size="md">{{ categoryLabel() }}</zyra-badge>
             @if (postDate()) {
@@ -52,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <markdown [data]="markdownContent()"></markdown>
+                <markdown [data]="markdownContent()" (ready)="onMarkdownLoad()"></markdown>
 
                 @if (postTags().length) {
                     <h5>Topics</h5>

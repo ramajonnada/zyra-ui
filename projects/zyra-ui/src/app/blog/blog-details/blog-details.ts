@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnDestroy, inject, signal } from '@angular/core';
+import { Component, ElementRef, OnDestroy, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
@@ -11,7 +11,7 @@ import { timeout } from 'rxjs';
 @Component({
 	selector: 'app-blog-details',
 	standalone: true,
-	imports: [CommonModule, MarkdownModule, RouterLink, ZyraBadge, ZyraButton, ZyraCard],
+	imports: [CommonModule, MarkdownModule, RouterLink, ZyraBadge, ZyraCard],
 	templateUrl: './blog-details.html',
 	styleUrls: ['./blog-details.scss'],
 })
@@ -32,6 +32,7 @@ export class BlogDetails implements OnDestroy {
 	private blogService = inject(BlogService);
 	private seo = inject(SeoService);
 	private document = inject(DOCUMENT);
+	private el = inject(ElementRef);
 
 	constructor() {
 		this.route.paramMap.subscribe((params) => {
@@ -190,5 +191,40 @@ export class BlogDetails implements OnDestroy {
 		if (!value) return [];
 		const raw = Array.isArray(value) ? value : [value];
 		return raw.map((item) => item.trim()).filter(Boolean);
+	}
+
+	onMarkdownLoad(): void {
+		this.enhanceCodeBlocks();
+	}
+
+	private enhanceCodeBlocks(): void {
+		const container: HTMLElement = this.el.nativeElement;
+		const blocks = container.querySelectorAll<HTMLElement>('pre:not([data-copy-enhanced])');
+
+		blocks.forEach((pre) => {
+			pre.setAttribute('data-copy-enhanced', 'true');
+
+			const code = pre.querySelector('code')?.textContent?.trim() ?? '';
+			if (!code) return;
+
+			const btn = this.document.createElement('button');
+			btn.className = 'code-copy-btn';
+			btn.type = 'button';
+			btn.setAttribute('aria-label', 'Copy code');
+			btn.textContent = 'Copy';
+
+			btn.addEventListener('click', () => {
+				navigator.clipboard?.writeText(code).then(() => {
+					btn.textContent = '✓ Copied!';
+					btn.classList.add('code-copy-btn--copied');
+					setTimeout(() => {
+						btn.textContent = 'Copy';
+						btn.classList.remove('code-copy-btn--copied');
+					}, 2000);
+				});
+			});
+
+			pre.appendChild(btn);
+		});
 	}
 }
