@@ -1,6 +1,51 @@
 [
 	{
 		"imageUrl": "",
+		"readTime": "5 mins",
+		"slug": "fix-ng0908-in-this-configuration-angular-requires-zonejs",
+		"title": "Fix NG0908: In This Configuration Angular Requires Zone.js",
+		"description": "What the Angular error 'NG0908: In this configuration Angular requires Zone.js' means, why it happens, and the two ways to fix it — restore Zone.js or configure zoneless correctly.",
+		"category": [
+			"Angular Errors"
+		],
+		"tags": [
+			"angular error",
+			"ng0908",
+			"zonejs",
+			"angular zoneless",
+			"angular 21",
+			"change detection",
+			"polyfills"
+		],
+		"keywords": [
+			"In this configuration Angular requires Zone.js",
+			"NG0908",
+			"Angular requires Zone.js error",
+			"Angular zoneless error",
+			"Angular zone.js polyfills"
+		],
+		"date": "2026-05-23",
+		"faq": [
+			{
+				"q": "What does NG0908: In this configuration Angular requires Zone.js mean?",
+				"a": "It means your Angular app is configured for zone-based change detection, but zone.js is not loaded at runtime. The configuration and the polyfills disagree, so Angular refuses to start."
+			},
+			{
+				"q": "How do I fix the Angular requires Zone.js error quickly?",
+				"a": "Add zone.js back to the polyfills array in angular.json for both the build and test targets, or import 'zone.js' in your polyfills file, then restart the dev server."
+			},
+			{
+				"q": "How do I fix NG0908 if I want a zoneless app?",
+				"a": "Remove any provideZoneChangeDetection() call and add provideZonelessChangeDetection() (Angular v20.2+). In Angular v21 zoneless is the default, so ensure nothing opts back into zones and that zone.js is removed from polyfills."
+			},
+			{
+				"q": "Why does NG0908 only appear in my tests or Storybook?",
+				"a": "Those tools bootstrap Angular separately from your app config and often expect Zone.js. Ensure the test target's polyfills include zone.js, or configure the tool's bootstrap for zoneless explicitly."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
 		"readTime": "8 mins",
 		"slug": "angular-cli-mcp-server-generate-components-with-ai",
 		"title": "Angular CLI MCP Server: Generate Components with AI",

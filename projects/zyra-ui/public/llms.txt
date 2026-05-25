@@ -4,6 +4,7 @@
 
 ## Blog
 
+- [Fix NG0908: In This Configuration Angular Requires Zone.js](https://www.zyraui.dev/blog/fix-ng0908-in-this-configuration-angular-requires-zonejs): What the NG0908 "Angular requires Zone.js" error means and the two ways to fix it — restore Zone.js in polyfills or configure zoneless correctly.
 - [Angular CLI MCP Server: Generate Components with AI](https://www.zyraui.dev/blog/angular-cli-mcp-server-generate-components-with-ai): How to set up the Angular CLI MCP server (`ng mcp`) and use it to generate accurate, modern Angular components with AI assistants.
 - [Better AI-Generated Angular Code: llms.txt & Codegen Scorer](https://www.zyraui.dev/blog/better-ai-generated-angular-code-llms-txt-web-codegen-scorer): Using llms.txt, the official Angular best-practices rules files, and the Web Codegen Scorer to make AI write modern Angular and measure its quality.
 - [Angular UI Performance in Zoneless, AI-Streaming Apps](https://www.zyraui.dev/blog/angular-ui-library-zoneless-ai-streaming-rerenders): Why your UI library and change detection strategy decide whether a streaming LLM chat UI feels smooth or janky in zoneless Angular 21.

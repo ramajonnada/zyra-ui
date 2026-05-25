@@ -133,6 +133,12 @@
 
   <!-- Blog posts -->
   <url>
+    <loc>https://www.zyraui.dev/blog/fix-ng0908-in-this-configuration-angular-requires-zonejs</loc>
+    <lastmod>2026-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.zyraui.dev/blog/angular-cli-mcp-server-generate-components-with-ai</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
