@@ -2,9 +2,9 @@ import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ToastVariant, ZyraBadge, ZyraToastService } from 'zyra-ng-ui';
+import { ToastVariant, ZyraBadge, ZyraButton, ZyraToastService } from 'zyra-ng-ui';
+import { getUiComponentShowcaseCard, UI_COMPONENT_SHOWCASE } from './ui-components.data';
 import { map } from 'rxjs';
-import { getUiComponentShowcaseCard } from './ui-components.data';
 import { Button } from './comp/button/button';
 import { Badge } from './comp/badge/badge';
 import { CardTest } from './comp/card-test/card-test';
@@ -28,6 +28,7 @@ import { SeoService } from '../../../seo/seo.service';
 		FormsModule,
 		RouterLink,
 		ZyraBadge,
+		ZyraButton,
 		Button,
 		Badge,
 		CardTest,
@@ -65,6 +66,11 @@ export class UiComponentDetail implements OnInit {
 	);
 
 	readonly component = computed(() => getUiComponentShowcaseCard(this.componentSlug()));
+
+	readonly relatedComponents = computed(() => {
+		const slugs = this.component()?.relatedSlugs ?? [];
+		return slugs.map((s) => UI_COMPONENT_SHOWCASE.find((c) => c.slug === s)).filter(Boolean);
+	});
 
 	ngOnInit(): void {
 		const componentName = this.component()?.title || 'Component';

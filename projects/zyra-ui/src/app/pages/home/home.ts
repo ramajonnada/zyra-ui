@@ -48,6 +48,18 @@ export interface InstallStep {
 	code: string;
 }
 
+interface BlockStat {
+	value: string;
+	label: string;
+	tone: 'accent' | 'blue' | 'purple';
+}
+
+interface TokenSwatch {
+	name: string;
+	token: string;
+	tone: 'accent' | 'blue' | 'purple' | 'success' | 'warning';
+}
+
 const COPY_RESET_DELAY = 2200;
 const WAITLIST_PLACEHOLDER = 'your@company.dev';
 const INSTALL_COMMAND = 'npm install zyra-ng-ui';
@@ -181,6 +193,20 @@ const INSTALL_STEPS: readonly InstallStep[] = [
 	},
 ] as const;
 
+const BLOCK_STATS: readonly BlockStat[] = [
+	{ value: '12.4k', label: 'Monthly users', tone: 'accent' },
+	{ value: '99.9%', label: 'Uptime SLA', tone: 'blue' },
+	{ value: '4.8 / 5', label: 'Satisfaction', tone: 'purple' },
+] as const;
+
+const TOKEN_SWATCHES: readonly TokenSwatch[] = [
+	{ name: 'Accent', token: '--zyr-accent', tone: 'accent' },
+	{ name: 'Blue', token: '--zyr-accent-2', tone: 'blue' },
+	{ name: 'Purple', token: '--zyr-accent-3', tone: 'purple' },
+	{ name: 'Success', token: '--zyr-success', tone: 'success' },
+	{ name: 'Warning', token: '--zyr-warning', tone: 'warning' },
+] as const;
+
 const TESTIMONIALS: readonly Testimonial[] = [
 	{
 		quote: "ZyraUI is the first library that doesn't make my designer cry. We rebuilt our entire dashboard in two days.",
@@ -226,6 +252,8 @@ export class Home implements OnInit, OnDestroy {
 	readonly metrics = METRICS;
 	readonly installSteps = INSTALL_STEPS;
 	readonly testimonials = TESTIMONIALS;
+	readonly blockStats = BLOCK_STATS;
+	readonly tokenSwatches = TOKEN_SWATCHES;
 
 	ngOnInit() {
 		this.seo.setSEO({

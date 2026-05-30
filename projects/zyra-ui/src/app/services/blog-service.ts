@@ -1,6 +1,6 @@
-import { inject, Injectable, InjectionToken } from '@angular/core';
+import { inject, Injectable, InjectionToken, PendingTasks } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, from, Observable, of } from 'rxjs';
+import { catchError, finalize, from, Observable, of } from 'rxjs';
 
 export interface PostMeta {
     slug: string;
@@ -26,12 +26,20 @@ export const BLOG_CONTENT_LOADER = new InjectionToken<BlogContentLoader>('BLOG_C
 @Injectable({ providedIn: 'root' })
 export class BlogService {
     private readonly http = inject(HttpClient);
+    private readonly pendingTasks = inject(PendingTasks);
     private readonly postsLoader = inject(BLOG_POSTS_LOADER, { optional: true });
     private readonly contentLoader = inject(BLOG_CONTENT_LOADER, { optional: true });
 
     getAllPosts(): Observable<PostMeta[]> {
         if (this.postsLoader) {
-            return from(this.postsLoader()).pipe(catchError(() => of([])));
+            // Register the async file read as a pending task so zoneless SSR
+            // waits for it before serializing the HTML (otherwise the list
+            // renders empty for crawlers).
+            const removeTask = this.pendingTasks.add();
+            return from(this.postsLoader()).pipe(
+                catchError(() => of([])),
+                finalize(() => removeTask()),
+            );
         }
 
         return this.http.get<PostMeta[]>('/content/index.json');
@@ -39,7 +47,11 @@ export class BlogService {
 
     getPostContent(slug: string): Observable<string> {
         if (this.contentLoader) {
-            return from(this.contentLoader(slug)).pipe(catchError(() => of('')));
+            const removeTask = this.pendingTasks.add();
+            return from(this.contentLoader(slug)).pipe(
+                catchError(() => of('')),
+                finalize(() => removeTask()),
+            );
         }
 
         return this.http.get(`/content/${slug}.md`, { responseType: 'text' });

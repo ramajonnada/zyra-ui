@@ -229,6 +229,129 @@
 </section>
 
 
+<section id="blocks" class="landing-section">
+    <div class="landing-shell">
+        <div class="section-heading">
+            <p class="section-heading__eyebrow">/ Blocks</p>
+            <h2>Ready-made patterns. Zero rework.</h2>
+            <p>
+                Production-ready UI blocks assembled from Zyra primitives.
+                Copy, paste, ship — no custom styling needed.
+            </p>
+        </div>
+
+        <div class="blocks-grid">
+            <div class="block-card">
+                <div class="block-card__header">
+                    <span class="block-card__name">Auth form</span>
+                    <zyra-badge size="sm" variant="info">Auth</zyra-badge>
+                </div>
+                <div class="block-card__canvas">
+                    <div class="mini-form">
+                        <div class="mini-form__head">
+                            <fa-icon [icon]="icons.lock" aria-hidden="true" />
+                            <strong>Sign in</strong>
+                        </div>
+                        <div class="mini-field">your&#64;email.dev</div>
+                        <div class="mini-field">••••••••••</div>
+                        <div class="mini-cta">Continue &rarr;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block-card">
+                <div class="block-card__header">
+                    <span class="block-card__name">Stats row</span>
+                    <zyra-badge size="sm" variant="success">Dashboard</zyra-badge>
+                </div>
+                <div class="block-card__canvas">
+                    <div class="mini-stats">
+                        @for (stat of blockStats; track stat.label) {
+                            <div class="mini-stat">
+                                <div [class]="'mini-stat__val mini-stat__val--' + stat.tone">{{ stat.value }}</div>
+                                <div class="mini-stat__label">{{ stat.label }}</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="block-card">
+                <div class="block-card__header">
+                    <span class="block-card__name">Notifications</span>
+                    <zyra-badge size="sm" variant="warning">Feedback</zyra-badge>
+                </div>
+                <div class="block-card__canvas">
+                    <div class="mini-notif-stack">
+                        <div class="mini-notif mini-notif--success">
+                            <fa-icon [icon]="icons.check" aria-hidden="true" />
+                            <div>
+                                <strong>Deploy complete</strong>
+                                <p>zyra-ui.vercel.app is live</p>
+                            </div>
+                        </div>
+                        <div class="mini-notif mini-notif--info">
+                            <fa-icon [icon]="icons.circleInfo" aria-hidden="true" />
+                            <div>
+                                <strong>Update available</strong>
+                                <p>v{{ version }} is ready</p>
+                            </div>
+                        </div>
+                        <div class="mini-notif mini-notif--warning">
+                            <fa-icon [icon]="icons.triangleExclamation" aria-hidden="true" />
+                            <div>
+                                <strong>Storage at 80%</strong>
+                                <p>Consider upgrading</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="theming" class="landing-section landing-section--theming">
+    <div class="landing-shell">
+        <div class="section-heading section-heading--center">
+            <p class="section-heading__eyebrow">/ Theming</p>
+            <h2>Your brand. Zyra's engine.</h2>
+            <p>
+                Every color, radius, and font is a CSS variable. Swap one token file and
+                the whole library re-skins. No build step, no class overrides.
+            </p>
+        </div>
+
+        <div class="token-palette">
+            @for (swatch of tokenSwatches; track swatch.token) {
+                <div [class]="'token-tile token-tile--' + swatch.tone">
+                    <span class="token-tile__name">{{ swatch.name }}</span>
+                    <span class="token-tile__var">{{ swatch.token }}</span>
+                </div>
+            }
+        </div>
+
+        <div class="editor editor--theming">
+            <div class="editor__bar">
+                <div class="editor__dots"><span></span><span></span><span></span></div>
+                <span>theme.css</span>
+            </div>
+            <div class="editor__body">
+                <pre><span class="kw">:root</span> &#123;
+  <span class="co">/* Brand — swap these three to re-skin everything */</span>
+  <span class="at">--zyr-accent</span>:    <span class="str">#00eaff</span>;  <span class="co">/* primary CTA, focus rings, glows */</span>
+  <span class="at">--zyr-accent-2</span>:  <span class="str">#4f8cff</span>;  <span class="co">/* links, info badges */</span>
+  <span class="at">--zyr-accent-3</span>:  <span class="str">#b57cff</span>;  <span class="co">/* secondary labels */</span>
+
+  <span class="co">/* Shape &amp; type */</span>
+  <span class="at">--zyr-radius-lg</span>: <span class="str">12px</span>;
+  <span class="at">--zyr-font-body</span>: <span class="str">'Inter'</span>, sans-serif;
+&#125;</pre>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="waitlist" class="landing-section landing-section--cta">
     <div class="landing-shell">
         <div class="cta-panel">
@@ -247,6 +370,35 @@
             </div>
 
             <div class="cta-panel__note">&#8226; 2 developers already on the waitlist</div>
+        </div>
+    </div>
+</section>
+
+<section class="landing-section landing-section--duo-cta">
+    <div class="landing-shell">
+        <div class="section-heading section-heading--center">
+            <p class="section-heading__eyebrow">/ Get started</p>
+            <h2>Where do I go next?</h2>
+        </div>
+
+        <div class="duo-cta">
+            <article class="duo-cta__card">
+                <div class="duo-cta__icon duo-cta__icon--accent">
+                    <fa-icon [icon]="icons.alignLeft" aria-hidden="true" />
+                </div>
+                <h3>Read the docs</h3>
+                <p>Installation guide, theming reference, and full API docs for every component.</p>
+                <zyra-button variant="primary" size="lg" routerLink="/docs">Go to docs &rarr;</zyra-button>
+            </article>
+
+            <article class="duo-cta__card duo-cta__card--alt">
+                <div class="duo-cta__icon duo-cta__icon--blue">
+                    <fa-icon [icon]="icons.puzzlePiece" aria-hidden="true" />
+                </div>
+                <h3>Try the playground</h3>
+                <p>Live interactive demos for every component. See it, tweak it, copy the code.</p>
+                <zyra-button variant="outline" size="lg" routerLink="/components">Browse components &rarr;</zyra-button>
+            </article>
         </div>
     </div>
 </section>
