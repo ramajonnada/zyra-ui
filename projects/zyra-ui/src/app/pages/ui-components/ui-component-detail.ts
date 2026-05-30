@@ -7,7 +7,7 @@ import { getUiComponentShowcaseCard, UI_COMPONENT_SHOWCASE } from './ui-componen
 import { map } from 'rxjs';
 import { Button } from './comp/button/button';
 import { Badge } from './comp/badge/badge';
-import { CardTest } from './comp/card-test/card-test';
+import { Card } from './comp/card/card';
 import { Toast } from './comp/toast/toast';
 import { Avatar } from './comp/avatar/avatar';
 import { Input } from './comp/input/input';
@@ -31,7 +31,7 @@ import { SeoService } from '../../../seo/seo.service';
 		ZyraButton,
 		Button,
 		Badge,
-		CardTest,
+		Card,
 		Toast,
 		Avatar,
 		Input,

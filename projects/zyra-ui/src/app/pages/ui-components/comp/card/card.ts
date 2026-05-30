@@ -15,7 +15,7 @@ import { Controls } from '../../shared/controls/controls';
 import { ControlDef } from '../../shared/controls/control-def';
 
 @Component({
-    selector: 'app-card-test',
+    selector: 'app-card',
     imports: [
         ZyraCard,
         ZyraButton,
@@ -25,10 +25,10 @@ import { ControlDef } from '../../shared/controls/control-def';
         TitleCasePipe,
         Controls,
     ],
-    templateUrl: './card-test.html',
-    styleUrl: './card-test.scss',
+    templateUrl: './card.html',
+    styleUrl: './card.scss',
 })
-export class CardTest {
+export class Card {
     themeService = inject(ZyraThemeService);
     toastService = inject(ZyraToastService);
 

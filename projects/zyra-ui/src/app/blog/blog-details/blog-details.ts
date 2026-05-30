@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 import { BlogService, PostMeta } from '../../services/blog-service';
-import { ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { timeout } from 'rxjs';
 
