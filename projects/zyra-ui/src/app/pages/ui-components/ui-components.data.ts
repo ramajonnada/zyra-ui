@@ -230,7 +230,7 @@ export const UI_COMPONENT_SHOWCASE = [
         ],
         exampleCode: BUTTON_EXAMPLE_CODE,
         variants: [
-            { name: 'primary', description: 'High-emphasis CTA — use once per section' },
+            { name: 'primary', description: 'High-emphasis CTA - use once per section' },
             { name: 'secondary', description: 'Medium-emphasis supporting action' },
             { name: 'outline', description: 'Bordered variant for neutral actions' },
             { name: 'ghost', description: 'Text-only for low-emphasis or toolbar actions' },
@@ -241,11 +241,11 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Height and padding scale' },
             { name: 'disabled', type: 'boolean', default: 'false', description: 'Prevents interaction; adds muted styling' },
             { name: 'loading', type: 'boolean', default: 'false', description: 'Shows spinner; blocks double-submit' },
-            { name: 'leftIcon', type: 'IconDefinition', default: '—', description: 'Icon rendered before the label' },
-            { name: 'rightIcon', type: 'IconDefinition', default: '—', description: 'Icon rendered after the label' },
+            { name: 'leftIcon', type: 'IconDefinition', default: '-', description: 'Icon rendered before the label' },
+            { name: 'rightIcon', type: 'IconDefinition', default: '-', description: 'Icon rendered after the label' },
         ],
         a11yNotes: [
-            'Renders as a native <button> — keyboard accessible via Tab, Enter, and Space',
+            'Renders as a native <button> - keyboard accessible via Tab, Enter, and Space',
             'loading state sets aria-busy="true" to communicate pending status to screen readers',
             'disabled state communicates unavailability without removing focusability',
             'All variants maintain a visible 2px focus ring for keyboard navigation',
@@ -281,7 +281,7 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'dot', type: 'boolean', default: 'false', description: 'Shows a live-indicator dot before the label' },
         ],
         a11yNotes: [
-            'Presentational by default — no role is needed unless used as a live indicator',
+            'Presentational by default - no role is needed unless used as a live indicator',
             'When used for live counts (e.g. notifications), add aria-live="polite" to the parent',
             'Dot mode does not convey meaning through color alone; pair with visible text',
         ],
@@ -316,7 +316,7 @@ export const UI_COMPONENT_SHOWCASE = [
         a11yNotes: [
             'When clickable, wrap content in a <button> or <a> rather than relying on the card click alone',
             'Use semantic headings inside the header slot for proper document outline',
-            'Avoid placing interactive elements inside a clickable card — creates nested interactives',
+            'Avoid placing interactive elements inside a clickable card - creates nested interactives',
         ],
         relatedSlugs: ['divider', 'accordion', 'avatar'],
     },
@@ -340,8 +340,8 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'neutral', description: 'Neutral grey initials background' },
         ],
         apiProps: [
-            { name: 'name', type: 'string', default: '—', description: 'Full name used to generate initials and aria-label' },
-            { name: 'src', type: 'string', default: '—', description: 'Image URL; falls back to initials when not provided or broken' },
+            { name: 'name', type: 'string', default: '-', description: 'Full name used to generate initials and aria-label' },
+            { name: 'src', type: 'string', default: '-', description: 'Image URL; falls back to initials when not provided or broken' },
             { name: 'size', type: "'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Diameter of the avatar' },
             { name: 'variant', type: "'teal' | 'blue' | 'purple' | 'warm' | 'neutral'", default: "'teal'", description: 'Background color for initials fallback' },
             { name: 'online', type: 'boolean', default: 'false', description: 'Shows a green presence indicator dot' },
@@ -372,16 +372,16 @@ export const UI_COMPONENT_SHOWCASE = [
         variants: [
             { name: 'default', description: 'Standard text/email/password field' },
             { name: 'with prefix icon', description: 'Icon inside the leading edge of the field' },
-            { name: 'with clear button', description: 'Shows × button to clear the value' },
+            { name: 'with clear button', description: 'Shows x button to clear the value' },
             { name: 'disabled', description: 'Non-interactive state with muted styling' },
             { name: 'error', description: 'Red border and error icon for invalid state' },
         ],
         apiProps: [
             { name: 'type', type: "'text' | 'email' | 'password' | 'search' | 'url' | 'number'", default: "'text'", description: 'Native input type' },
             { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Height and font scale' },
-            { name: 'placeholder', type: 'string', default: '—', description: 'Placeholder text shown when empty' },
+            { name: 'placeholder', type: 'string', default: '-', description: 'Placeholder text shown when empty' },
             { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the input' },
-            { name: 'value', type: 'string', default: '—', description: 'Two-way bound value via ngModel' },
+            { name: 'value', type: 'string', default: '-', description: 'Two-way bound value via ngModel' },
         ],
         a11yNotes: [
             'Always associate an input with a visible <label> or use aria-label',
@@ -413,12 +413,12 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'with prefix icon', description: 'Icon decorating the start of the wrapped input' },
         ],
         apiProps: [
-            { name: 'label', type: 'string', default: '—', description: 'Visible label text linked to the child input' },
-            { name: 'hint', type: 'string', default: '—', description: 'Helper text shown below the input' },
-            { name: 'error', type: 'string', default: '—', description: 'Error text; replaces hint when set' },
+            { name: 'label', type: 'string', default: '-', description: 'Visible label text linked to the child input' },
+            { name: 'hint', type: 'string', default: '-', description: 'Helper text shown below the input' },
+            { name: 'error', type: 'string', default: '-', description: 'Error text; replaces hint when set' },
             { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Passes size down to child input' },
-            { name: 'prefixIcon', type: 'IconDefinition', default: '—', description: 'Icon shown inside the field leading edge' },
-            { name: 'clearButton', type: 'boolean', default: 'false', description: 'Shows a clear × button in the field' },
+            { name: 'prefixIcon', type: 'IconDefinition', default: '-', description: 'Icon shown inside the field leading edge' },
+            { name: 'clearButton', type: 'boolean', default: 'false', description: 'Shows a clear x button in the field' },
         ],
         a11yNotes: [
             'label is automatically linked to the child input via htmlFor/id pairing',
@@ -483,11 +483,11 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'error', description: 'Failed action or critical issue (red)' },
         ],
         apiProps: [
-            { name: 'toast.success()', type: '(title, options?) => void', default: '—', description: 'Show a success toast via ZyraToastService' },
-            { name: 'toast.info()', type: '(title, options?) => void', default: '—', description: 'Show an info toast' },
-            { name: 'toast.warning()', type: '(title, options?) => void', default: '—', description: 'Show a warning toast' },
-            { name: 'toast.error()', type: '(title, options?) => void', default: '—', description: 'Show an error toast' },
-            { name: 'options.description', type: 'string', default: '—', description: 'Secondary body text below the title' },
+            { name: 'toast.success()', type: '(title, options?) => void', default: '-', description: 'Show a success toast via ZyraToastService' },
+            { name: 'toast.info()', type: '(title, options?) => void', default: '-', description: 'Show an info toast' },
+            { name: 'toast.warning()', type: '(title, options?) => void', default: '-', description: 'Show a warning toast' },
+            { name: 'toast.error()', type: '(title, options?) => void', default: '-', description: 'Show an error toast' },
+            { name: 'options.description', type: 'string', default: '-', description: 'Secondary body text below the title' },
             { name: 'options.duration', type: 'number', default: '4000', description: 'Auto-dismiss delay in milliseconds' },
         ],
         a11yNotes: [
@@ -521,12 +521,12 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'right', description: 'Tooltip appears to the right' },
         ],
         apiProps: [
-            { name: 'text', type: 'string', default: '—', description: 'Tooltip label text' },
+            { name: 'text', type: 'string', default: '-', description: 'Tooltip label text' },
             { name: 'position', type: "'top' | 'bottom' | 'left' | 'right'", default: "'top'", description: 'Preferred placement relative to the trigger' },
         ],
         a11yNotes: [
             'Tooltip is linked to its trigger via aria-describedby for screen reader announcement',
-            'Tooltip renders with role="tooltip" — the trigger element must be focusable',
+            'Tooltip renders with role="tooltip" - the trigger element must be focusable',
             'Tooltip is shown on both hover and focus so keyboard users get the same information',
             'Never put interactive content inside a tooltip',
         ],
@@ -556,9 +556,9 @@ export const UI_COMPONENT_SHOWCASE = [
         ],
         apiProps: [
             { name: 'open', type: 'boolean', default: 'false', description: 'Two-way bound visibility state via [(open)]' },
-            { name: 'title', type: 'string', default: '—', description: 'Dialog heading displayed in the header' },
+            { name: 'title', type: 'string', default: '-', description: 'Dialog heading displayed in the header' },
             { name: 'size', type: "'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Maximum width of the dialog panel' },
-            { name: 'closeable', type: 'boolean', default: 'true', description: 'Shows a close × button in the header' },
+            { name: 'closeable', type: 'boolean', default: 'true', description: 'Shows a close x button in the header' },
         ],
         a11yNotes: [
             'Renders with role="dialog" and aria-modal="true" to isolate screen-reader focus',
@@ -592,8 +592,8 @@ export const UI_COMPONENT_SHOWCASE = [
         ],
         apiProps: [
             { name: 'variant', type: "'success' | 'info' | 'warning' | 'danger'", default: "'info'", description: 'Semantic color and icon' },
-            { name: 'title', type: 'string', default: '—', description: 'Bold heading above the message body' },
-            { name: 'dismissible', type: 'boolean', default: 'false', description: 'Shows a close × button' },
+            { name: 'title', type: 'string', default: '-', description: 'Bold heading above the message body' },
+            { name: 'dismissible', type: 'boolean', default: 'false', description: 'Shows a close x button' },
         ],
         a11yNotes: [
             'Renders with role="alert" so the message is announced immediately by screen readers',
@@ -609,11 +609,11 @@ export const UI_COMPONENT_SHOWCASE = [
         importName: 'ZyraChip',
         category: 'Actions',
         description:
-            'Compact interactive labels for filters, tags, and selections — supports dismissible and selectable modes.',
+            'Compact interactive labels for filters, tags, and selections - supports dismissible and selectable modes.',
         icon: appIcons.certificate,
         accent: 'purple',
         highlights: [
-            'Dismissible with × button',
+            'Dismissible with x button',
             'Selectable with toggle state',
             'All semantic variants',
         ],
@@ -627,12 +627,12 @@ export const UI_COMPONENT_SHOWCASE = [
         ],
         apiProps: [
             { name: 'variant', type: "'default' | 'info' | 'success' | 'warning' | 'danger'", default: "'default'", description: 'Color and semantic meaning' },
-            { name: 'dismissible', type: 'boolean', default: 'false', description: 'Shows a × button to remove the chip' },
+            { name: 'dismissible', type: 'boolean', default: 'false', description: 'Shows a x button to remove the chip' },
             { name: 'selectable', type: 'boolean', default: 'false', description: 'Enables toggle-selection state' },
             { name: 'selected', type: 'boolean', default: 'false', description: 'Current selected state (two-way bindable)' },
         ],
         a11yNotes: [
-            'Dismissible chips include a visually-hidden "Remove" label on the × button',
+            'Dismissible chips include a visually-hidden "Remove" label on the x button',
             'Selectable chips use aria-pressed to communicate toggle state',
             'Use a group element with role="group" and an aria-label when listing multiple chips',
         ],
@@ -661,14 +661,14 @@ export const UI_COMPONENT_SHOWCASE = [
         ],
         apiProps: [
             { name: 'checked', type: 'boolean', default: 'false', description: 'Current on/off state; two-way bindable via [(checked)]' },
-            { name: 'label', type: 'string', default: '—', description: 'Visible text label associated with the switch' },
+            { name: 'label', type: 'string', default: '-', description: 'Visible text label associated with the switch' },
             { name: 'labelPosition', type: "'left' | 'right'", default: "'right'", description: 'Side the label renders relative to the pill' },
             { name: 'size', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Physical size of the pill' },
             { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables interaction' },
         ],
         a11yNotes: [
             'Renders with role="switch" and aria-checked to communicate on/off state',
-            'label is linked via aria-labelledby — always provide a label for screen readers',
+            'label is linked via aria-labelledby - always provide a label for screen readers',
             'Keyboard-operable via Space to toggle and Tab to focus',
         ],
         relatedSlugs: ['input', 'form-field', 'button'],
@@ -697,7 +697,7 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'indeterminate', description: 'Animated bar for unknown duration loading' },
         ],
         apiProps: [
-            { name: 'value', type: 'number', default: '0', description: 'Current progress value (0–max)' },
+            { name: 'value', type: 'number', default: '0', description: 'Current progress value (0-max)' },
             { name: 'max', type: 'number', default: '100', description: 'Maximum value' },
             { name: 'variant', type: "'default' | 'success' | 'warning' | 'danger'", default: "'default'", description: 'Track fill color' },
             { name: 'showLabel', type: 'boolean', default: 'false', description: 'Shows the percentage above the bar' },
@@ -733,7 +733,7 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'vertical', description: 'Vertical orientation for inline layouts' },
         ],
         apiProps: [
-            { name: 'label', type: 'string', default: '—', description: 'Optional centered text label (e.g. "or")' },
+            { name: 'label', type: 'string', default: '-', description: 'Optional centered text label (e.g. "or")' },
             { name: 'orientation', type: "'horizontal' | 'vertical'", default: "'horizontal'", description: 'Line direction' },
             { name: 'style', type: "'solid' | 'dashed' | 'dotted'", default: "'solid'", description: 'Line stroke style' },
         ],
@@ -766,7 +766,7 @@ export const UI_COMPONENT_SHOWCASE = [
         ],
         apiProps: [
             { name: 'multiple', type: 'boolean', default: 'false', description: 'Allow multiple items open simultaneously' },
-            { name: 'title (on item)', type: 'string', default: '—', description: 'Trigger text for each accordion item' },
+            { name: 'title (on item)', type: 'string', default: '-', description: 'Trigger text for each accordion item' },
             { name: 'expanded (on item)', type: 'boolean', default: 'false', description: 'Initial open state of an item' },
             { name: 'disabled (on item)', type: 'boolean', default: 'false', description: 'Prevents an item from being opened' },
         ],
@@ -774,7 +774,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Accordion headers use role="button" with aria-expanded for open/closed state',
             'Content panels are linked to their headers via aria-controls / aria-labelledby',
             'Keyboard: Enter/Space toggles item; Tab moves to next focusable element',
-            'Animation uses CSS grid — respects prefers-reduced-motion',
+            'Animation uses CSS grid - respects prefers-reduced-motion',
         ],
         relatedSlugs: ['card', 'divider', 'modal'],
     },

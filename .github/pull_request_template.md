@@ -15,5 +15,5 @@ Closes #
 ## Checklist
 - [ ] Build passes (`npm run build` or `ng build zyra-ng-ui && ng build zyra-ui`)
 - [ ] No console errors in the playground
-- [ ] If library change — version bumped in `projects/zyra-ng-ui/package.json`
+- [ ] If library change - version bumped in `projects/zyra-ng-ui/package.json`
 - [ ] Tested in both light and dark mode
