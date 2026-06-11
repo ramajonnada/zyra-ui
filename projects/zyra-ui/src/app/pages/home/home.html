@@ -307,6 +307,67 @@
                     </div>
                 </div>
             </div>
+
+            <div class="block-card block-card--wide">
+                <div class="block-card__header">
+                    <span class="block-card__name">Empty State</span>
+                    <div class="block-card__header-actions">
+                        <zyra-badge size="sm" variant="info">Support</zyra-badge>
+                        <zyra-button size="sm" variant="ghost" (clicked)="copyEmptyStateCode()">
+                            {{ copiedEmptyStateCode() ? 'Copied!' : 'Copy code' }}
+                        </zyra-button>
+                    </div>
+                </div>
+
+                <div class="block-card__showcase">
+                    <div class="block-card__preview">
+                        <zyra-card class="empty-state-preview" variant="outlined" padding="lg">
+                            <section
+                                class="empty-state-preview__body"
+                                aria-labelledby="empty-state-preview-title"
+                            >
+                                <div class="empty-state-preview__icon" aria-hidden="true">
+                                    <fa-icon [icon]="icons.boxOpen" />
+                                </div>
+                                <p class="empty-state-preview__eyebrow">Nothing to review</p>
+                                <h3 id="empty-state-preview-title">No reports yet</h3>
+                                <p>
+                                    Create your first report or import existing data to start
+                                    tracking activity.
+                                </p>
+                                <div class="empty-state-preview__actions">
+                                    <zyra-button size="sm">Create report</zyra-button>
+                                    <zyra-button size="sm" variant="outline"
+                                        >Import CSV</zyra-button
+                                    >
+                                </div>
+                            </section>
+                        </zyra-card>
+                    </div>
+
+                    <div class="block-card__meta-panel">
+                        <div class="components-used">
+                            <p>Components used</p>
+                            <div class="components-used__list">
+                                @for (
+                                    componentName of emptyStateComponentsUsed;
+                                    track componentName
+                                ) {
+                                    <span>{{ componentName }}</span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="block-code">
+                            <div class="block-code__bar">
+                                <span>empty-state-block.ts</span>
+                                <span>{{ copiedEmptyStateCode() ? 'Copied' : 'Copy-ready' }}</span>
+                            </div>
+                            <pre><code>{{ emptyStateBlockCode }}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

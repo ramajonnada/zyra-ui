@@ -63,6 +63,85 @@ interface TokenSwatch {
 const COPY_RESET_DELAY = 2200;
 const WAITLIST_PLACEHOLDER = 'your@company.dev';
 const INSTALL_COMMAND = 'npm install zyra-ng-ui';
+const EMPTY_STATE_BLOCK_CODE = `import { Component } from '@angular/core';
+import { ZyraButton, ZyraCard } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-empty-state-block',
+  standalone: true,
+  imports: [ZyraButton, ZyraCard],
+  template: \`
+    <zyra-card variant="outlined" padding="lg">
+      <section class="empty-state" aria-labelledby="empty-state-title">
+        <div class="empty-state__icon" aria-hidden="true">BOX</div>
+        <p class="empty-state__eyebrow">Nothing to review</p>
+        <h2 id="empty-state-title">No reports yet</h2>
+        <p class="empty-state__copy">
+          Create your first report or import existing data to start tracking activity.
+        </p>
+        <div class="empty-state__actions">
+          <zyra-button size="sm">Create report</zyra-button>
+          <zyra-button size="sm" variant="outline">Import CSV</zyra-button>
+        </div>
+      </section>
+    </zyra-card>
+  \`,
+  styles: [\`
+    .empty-state {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      padding: clamp(32px, 8vw, 64px) 20px;
+      text-align: center;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at top, var(--zyr-accent-muted), transparent 42%),
+        var(--zyr-bg);
+    }
+
+    .empty-state__icon {
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: var(--zyr-accent-muted);
+      color: var(--zyr-accent);
+      font: 700 0.7rem/1 var(--zyr-font-mono);
+    }
+
+    .empty-state__eyebrow {
+      margin: 0;
+      color: var(--zyr-accent);
+      font: 700 0.72rem/1 var(--zyr-font-mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .empty-state h2 {
+      margin: 0;
+      color: var(--zyr-text);
+      font-size: clamp(1.35rem, 4vw, 2rem);
+    }
+
+    .empty-state__copy {
+      max-width: 34rem;
+      margin: 0;
+      color: var(--zyr-text-muted);
+    }
+
+    .empty-state__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+  \`],
+})
+export class EmptyStateBlockComponent {}
+`;
+const EMPTY_STATE_COMPONENTS_USED = ['ZyraCard', 'ZyraButton'] as const;
 const RATING_MARKS = [1, 2, 3, 4, 5] as const;
 
 const HERO_META = [
@@ -71,7 +150,6 @@ const HERO_META = [
 	'TypeScript ready',
 	'Angular 21+',
 ] as const;
-
 
 const DEVELOPER_CHECKS = [
 	'Framework-agnostic: Next.js, Remix, Vite, Astro',
@@ -237,10 +315,14 @@ export class Home implements OnInit, OnDestroy {
 	private readonly toast = inject(ZyraToastService);
 	private readonly seo = inject(SeoService);
 	private copyResetTimer?: ReturnType<typeof setTimeout>;
+	private emptyStateCopyResetTimer?: ReturnType<typeof setTimeout>;
 
 	readonly installCommand = INSTALL_COMMAND;
+	readonly emptyStateBlockCode = EMPTY_STATE_BLOCK_CODE;
+	readonly emptyStateComponentsUsed = EMPTY_STATE_COMPONENTS_USED;
 	readonly version = LIBRARY_VERSION;
 	readonly copied = signal(false);
+	readonly copiedEmptyStateCode = signal(false);
 	readonly icons = appIcons;
 	readonly ratingMarks = RATING_MARKS;
 	readonly waitlistEmail = WAITLIST_PLACEHOLDER;
@@ -297,6 +379,7 @@ export class Home implements OnInit, OnDestroy {
 		this.seo.removeJsonLd('home-software');
 		this.seo.removeJsonLd('home-website');
 		this.clearCopyResetTimer();
+		this.clearEmptyStateCopyResetTimer();
 	}
 
 	async copyInstallCommand() {
@@ -322,6 +405,32 @@ export class Home implements OnInit, OnDestroy {
 		}
 	}
 
+	async copyEmptyStateCode() {
+		try {
+			if (typeof navigator === 'undefined' || !navigator.clipboard?.writeText) {
+				throw new Error('Clipboard API is unavailable');
+			}
+
+			await navigator.clipboard.writeText(this.emptyStateBlockCode);
+			this.copiedEmptyStateCode.set(true);
+			this.toast.success('Empty state block copied', {
+				description: 'Paste it into any standalone Angular component.',
+				duration: COPY_RESET_DELAY,
+			});
+
+			this.clearEmptyStateCopyResetTimer();
+			this.emptyStateCopyResetTimer = setTimeout(
+				() => this.copiedEmptyStateCode.set(false),
+				COPY_RESET_DELAY,
+			);
+		} catch {
+			this.toast.info('Copy is unavailable in this browser', {
+				description: 'Select the Empty State code sample manually.',
+				duration: 2600,
+			});
+		}
+	}
+
 	private clearCopyResetTimer() {
 		if (!this.copyResetTimer) {
 			return;
@@ -329,5 +438,14 @@ export class Home implements OnInit, OnDestroy {
 
 		clearTimeout(this.copyResetTimer);
 		this.copyResetTimer = undefined;
+	}
+
+	private clearEmptyStateCopyResetTimer() {
+		if (!this.emptyStateCopyResetTimer) {
+			return;
+		}
+
+		clearTimeout(this.emptyStateCopyResetTimer);
+		this.emptyStateCopyResetTimer = undefined;
 	}
 }

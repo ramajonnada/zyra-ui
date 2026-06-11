@@ -934,12 +934,24 @@ pre {
 	}
 }
 
+.block-card--wide {
+	grid-column: 1 / -1;
+}
+
 .block-card__header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 12px 16px;
 	border-bottom: 1px solid var(--landing-border);
+}
+
+.block-card__header-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+	justify-content: flex-end;
 }
 
 .block-card__name {
@@ -956,6 +968,151 @@ pre {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.block-card__showcase {
+	display: grid;
+	grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.15fr);
+	gap: 16px;
+	padding: 16px;
+	align-items: stretch;
+}
+
+.block-card__preview {
+	display: flex;
+	min-width: 0;
+}
+
+.empty-state-preview {
+	display: block;
+	width: 100%;
+}
+
+.empty-state-preview__body {
+	min-height: 298px;
+	display: grid;
+	justify-items: center;
+	align-content: center;
+	gap: 10px;
+	padding: clamp(22px, 5vw, 44px) 16px;
+	text-align: center;
+	border-radius: 14px;
+	background:
+		radial-gradient(circle at top, var(--zyr-accent-muted), transparent 42%), var(--zyr-bg);
+
+	h3 {
+		margin: 0;
+		font-size: clamp(1.25rem, 3vw, 1.75rem);
+		letter-spacing: -0.03em;
+	}
+
+	p {
+		max-width: 30rem;
+		margin: 0;
+		color: var(--zyr-text-muted);
+		font-size: 0.92rem;
+		line-height: 1.6;
+	}
+}
+
+.empty-state-preview__icon {
+	display: grid;
+	place-items: center;
+	width: 54px;
+	height: 54px;
+	border-radius: 16px;
+	background: var(--zyr-accent-muted);
+	color: var(--zyr-accent);
+	box-shadow: inset 0 0 0 1px var(--zyr-glow-border);
+}
+
+.empty-state-preview__eyebrow {
+	color: var(--zyr-accent) !important;
+	font-family: var(--zyr-font-mono);
+	font-size: 0.68rem !important;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.empty-state-preview__actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 6px;
+}
+
+.block-card__meta-panel {
+	min-width: 0;
+	display: grid;
+	gap: 12px;
+}
+
+.components-used {
+	padding: 14px;
+	border: 1px solid var(--landing-border);
+	border-radius: 10px;
+	background: var(--zyr-bg);
+
+	p {
+		margin: 0 0 10px;
+		color: var(--zyr-text-dim);
+		font-family: var(--zyr-font-mono);
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+}
+
+.components-used__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+
+	span {
+		padding: 6px 9px;
+		border: 1px solid var(--zyr-glow-border);
+		border-radius: 999px;
+		background: var(--zyr-accent-muted);
+		color: var(--zyr-accent);
+		font-family: var(--zyr-font-mono);
+		font-size: 0.7rem;
+		font-weight: 700;
+	}
+}
+
+.block-code {
+	min-width: 0;
+	overflow: hidden;
+	border: 1px solid var(--landing-border);
+	border-radius: 10px;
+	background: var(--zyr-bg);
+}
+
+.block-code__bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 10px 12px;
+	border-bottom: 1px solid var(--landing-border);
+	color: var(--zyr-text-dim);
+	font-family: var(--zyr-font-mono);
+	font-size: 0.68rem;
+}
+
+.block-code pre {
+	max-height: 218px;
+	margin: 0;
+	padding: 14px;
+	overflow: auto;
+	color: var(--zyr-text-muted);
+	font-family: var(--zyr-font-mono);
+	font-size: 0.72rem;
+	line-height: 1.55;
+	white-space: pre;
 }
 
 .mini-form {
@@ -1249,6 +1406,9 @@ pre {
 	}
 
 	.blocks-grid   { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.block-card__showcase {
+		grid-template-columns: 1fr;
+	}
 	.token-palette { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
@@ -1266,6 +1426,12 @@ pre {
 	}
 
 	.blocks-grid { grid-template-columns: 1fr; }
+	.block-card__header {
+		align-items: flex-start;
+	}
+	.block-card__showcase {
+		padding: 12px;
+	}
 	.duo-cta     { grid-template-columns: 1fr; }
 }
 
@@ -1301,6 +1467,15 @@ pre {
 		&:nth-child(n+5) { border-bottom: 1px solid var(--zyr-border); }
 		border-right: none;
 		&:last-child { border-bottom: none; }
+	}
+
+	.block-card__header {
+		flex-direction: column;
+	}
+
+	.block-card__header-actions {
+		width: 100%;
+		justify-content: space-between;
 	}
 
 	.mosaic-btn,
