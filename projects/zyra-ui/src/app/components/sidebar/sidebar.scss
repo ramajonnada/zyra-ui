@@ -183,7 +183,6 @@
 
             .sidebar__icon {
                 color: var(--zyr-accent);
-                filter: drop-shadow(0 0 6px color-mix(in srgb, var(--zyr-accent) 50%, transparent));
             }
 
             .sidebar__badge {
@@ -201,7 +200,7 @@
         font-size: 0.85rem;
         color: var(--zyr-text-dim);
         flex-shrink: 0;
-        transition: color var(--zyr-transition-fast), filter var(--zyr-transition-fast);
+        transition: color var(--zyr-transition-fast);
     }
 
     &__label {

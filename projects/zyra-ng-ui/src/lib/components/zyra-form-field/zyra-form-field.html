@@ -3,7 +3,7 @@
 <div [class]="wrapClass">
 	<!-- ── Label ──────────────────────────────────────────────── -->
 	@if (label()) {
-	<label class="zyra-form-field__label" [for]="zyraInput.resolvedId()">
+	<label class="zyra-form-field__label" [for]="childResolvedId">
 		{{ label() }}
 		@if (isRequired) {
 		<span class="zyra-form-field__required" aria-hidden="true">*</span>
@@ -28,9 +28,10 @@
 		</span>
 		}
 
-		<!-- Projected zyra-input -->
+		<!-- Projected zyra-input or zyra-textarea -->
 		<div class="zyra-form-field__input-wrap">
 			<ng-content select="zyra-input" />
+			<ng-content select="zyra-textarea" />
 		</div>
 
 		<!-- Suffix area — only one shown at a time in priority order -->

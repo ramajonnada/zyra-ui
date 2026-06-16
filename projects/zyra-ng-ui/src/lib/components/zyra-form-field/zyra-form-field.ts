@@ -21,6 +21,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { ZyraSpinner } from '../zyra-spinner/zyra-spinner';
 import { ZyraInput } from '../zyra-input/zyra-input';
+import { ZyraTextarea } from '../zyra-textarea/zyra-textarea';
 import {
 	asIconDefinition,
 	asIconText,
@@ -52,39 +53,47 @@ export class ZyraFormField implements AfterContentInit {
 	clearButton = input<boolean>(false);
 	loading = input<boolean>(false);
 
-	// ── Get projected zyra-input child ────────────────────────
-	@ContentChild(ZyraInput) zyraInput!: ZyraInput;
+	// ── Get projected child (input or textarea) ──────────────
+	@ContentChild(ZyraInput)    zyraInput!: ZyraInput;
+	@ContentChild(ZyraTextarea) zyraTextarea!: ZyraTextarea;
 	@ContentChild(ZyraPrefix) _customPrefix: ZyraPrefix | null = null;
 	@ContentChild(ZyraSuffix) _customSuffix: ZyraSuffix | null = null;
 
 	private cdr = inject(ChangeDetectorRef);
 	readonly icons = zyraIcons;
 
-	ngAfterContentInit(): void {
-		if (!this.zyraInput) return;
+	// ── Unified child accessor ────────────────────────────────
+	private get _child(): ZyraInput | ZyraTextarea | null {
+		return this.zyraInput ?? this.zyraTextarea ?? null;
+	}
 
-		// Pass size down to child input
-		// Subscribe to child events to trigger change detection
-		this.zyraInput.focused.subscribe(() => this.cdr.markForCheck());
-		this.zyraInput.blurred.subscribe(() => this.cdr.markForCheck());
-		this.zyraInput.valueChange.subscribe(() => this.cdr.markForCheck());
+	get childResolvedId(): string {
+		return this._child?.resolvedId() ?? '';
+	}
+
+	ngAfterContentInit(): void {
+		const child = this._child;
+		if (!child) return;
+		child.focused.subscribe(() => this.cdr.markForCheck());
+		child.blurred.subscribe(() => this.cdr.markForCheck());
+		child.valueChange.subscribe(() => this.cdr.markForCheck());
 	}
 
 	// ── Helpers to read child state ───────────────────────────
 	private get ctrl(): AbstractControl | null {
-		return this.zyraInput?.ngControl?.control ?? null;
+		return this._child?.ngControl?.control ?? null;
 	}
 
 	get isFocused(): boolean {
-		return this.zyraInput?.isFocused() ?? false;
+		return this._child?.isFocused() ?? false;
 	}
 
 	get isTouched(): boolean {
-		return this.zyraInput?.isTouched() ?? false;
+		return this._child?.isTouched() ?? false;
 	}
 
 	get isDisabled(): boolean {
-		return this.zyraInput?.isDisabled() ?? false;
+		return this._child?.isDisabled() ?? false;
 	}
 
 	get isPassword(): boolean {
@@ -100,11 +109,11 @@ export class ZyraFormField implements AfterContentInit {
 	}
 
 	get currentLength(): number {
-		return this.zyraInput?.innerValue()?.length ?? 0;
+		return this._child?.innerValue()?.length ?? 0;
 	}
 
 	get hasValue(): boolean {
-		return !!this.zyraInput?.innerValue();
+		return !!this._child?.innerValue();
 	}
 
 	get prefixIconDefinition(): IconDefinition | null {
@@ -204,7 +213,7 @@ export class ZyraFormField implements AfterContentInit {
 
 	// ── Actions ───────────────────────────────────────────────
 	onClear(): void {
-		this.zyraInput?.clear();
+		this._child?.clear();
 		this.cdr.markForCheck();
 	}
 

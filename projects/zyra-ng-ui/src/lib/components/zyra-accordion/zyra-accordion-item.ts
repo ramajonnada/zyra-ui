@@ -1,4 +1,5 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, inject, input, model } from '@angular/core';
+import { ZyraAccordion } from './zyra-accordion';
 
 let accordionItemCounter = 0;
 
@@ -10,6 +11,8 @@ let accordionItemCounter = 0;
     styleUrl: './zyra-accordion-item.scss',
 })
 export class ZyraAccordionItem {
+    private readonly _accordion = inject(ZyraAccordion, { optional: true });
+
     // ── Inputs ────────────────────────────────────────────────
     title = input<string>('');
     disabled = input(false, { transform: booleanAttribute });
@@ -28,7 +31,9 @@ export class ZyraAccordionItem {
     // ── Methods ───────────────────────────────────────────────
     toggle(): void {
         if (this.disabled()) return;
-        this.open.set(!this.open());
+        const next = !this.open();
+        this.open.set(next);
+        if (next) this._accordion?.onItemOpened(this);
     }
 
     focus(): void {

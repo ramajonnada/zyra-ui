@@ -42,9 +42,9 @@ describe('Zyra theme tokens', () => {
         fixture.detectChanges();
 
         const styles = probeStyles();
-        expect(styles.backgroundColor).toBe('rgb(246, 247, 249)');
-        expect(styles.color).toBe('rgb(0, 153, 168)');
-        expect(styles.borderTopColor).toBe('rgba(11, 12, 14, 0.08)');
+        expect(styles.backgroundColor).toBe('rgb(248, 251, 253)');
+        expect(styles.color).toBe('rgb(24, 213, 234)');
+        expect(styles.borderTopColor).toBe('rgba(9, 19, 31, 0.08)');
         expect(styles.transitionDuration).toContain('0.3s');
     });
 
@@ -54,8 +54,8 @@ describe('Zyra theme tokens', () => {
         fixture.detectChanges();
 
         const styles = probeStyles();
-        expect(styles.backgroundColor).toBe('rgb(8, 11, 16)');
-        expect(styles.color).toBe('rgb(0, 234, 255)');
+        expect(styles.backgroundColor).toBe('rgb(9, 11, 16)');
+        expect(styles.color).toBe('rgb(24, 213, 234)');
         expect(styles.borderTopColor).toBe('rgba(255, 255, 255, 0.07)');
         expect(styles.transitionDuration).toContain('0.3s');
     });

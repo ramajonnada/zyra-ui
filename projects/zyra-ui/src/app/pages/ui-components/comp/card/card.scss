@@ -133,37 +133,6 @@
     }
 }
 
-// Code box
-.code-box {
-    border-bottom: 1px solid var(--zyr-border);
-    background: var(--zyr-code-bg);
-    transition: background var(--zyr-transition-slow);
-
-    &__header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 20px;
-        border-bottom: 1px solid var(--zyr-border);
-        font-family: var(--zyr-font-mono);
-        font-size: 11px;
-        color: var(--zyr-text-dim);
-        background: var(--zyr-bg-3);
-        transition: background var(--zyr-transition-slow);
-    }
-
-    &__pre {
-        padding: 16px 20px;
-        margin: 0;
-        overflow-x: auto;
-        font-family: var(--zyr-font-mono);
-        font-size: 12.5px;
-        color: var(--zyr-accent);
-        line-height: 1.8;
-        white-space: pre;
-    }
-}
-
 // Log (zyra-card slot content)
 .log-header {
     display: flex;

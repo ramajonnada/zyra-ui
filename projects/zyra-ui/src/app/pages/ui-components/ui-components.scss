@@ -7,7 +7,7 @@
 }
 
 .components-page {
-    width: min(1120px, calc(100% - 32px));
+    width: min(1080px, calc(100% - 32px));
     margin: 0 auto;
     display: grid;
     gap: 28px;
@@ -40,9 +40,13 @@
 .components-page__header h1 {
     margin: 0;
     font-family: var(--zyr-font-display);
-    font-size: 3.2rem;
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
     line-height: 1.02;
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--zyr-text) 45%, var(--zyr-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .components-page__intro {
@@ -64,10 +68,23 @@
     gap: 20px;
 }
 
+@keyframes card-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .component-card {
     display: block;
     color: inherit;
     text-decoration: none;
+    animation: card-fade-up 0.45s var(--zyr-ease-standard) both;
 }
 
 .component-card zyra-card {
@@ -81,8 +98,7 @@
 
 .component-card:hover zyra-card,
 .component-card:focus-visible zyra-card {
-    transform: translateY(-4px);
-    box-shadow: var(--zyr-shadow-md);
+    transform: translateY(-6px);
 }
 
 .component-card__body {
@@ -95,7 +111,7 @@
     display: flex;
     justify-content: space-between;
     gap: 12px;
-    align-items: center;
+    // align-items: center;
 }
 
 .component-card__icon {
@@ -107,6 +123,11 @@
     border-radius: var(--zyr-radius-lg);
     border: 1px solid transparent;
     font-size: 1.1rem;
+    transition: transform var(--zyr-transition-spring);
+}
+
+.component-card:hover .component-card__icon {
+    transform: scale(1.12);
 }
 
 .component-card__icon--teal {
@@ -188,7 +209,7 @@
     }
 
     .components-page {
-        width: min(1120px, calc(100% - 24px));
+        width: min(1080px, calc(100% - 24px));
     }
 
     .components-page__grid {
@@ -202,5 +223,11 @@
     .component-card__footer {
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .component-card {
+        animation: none;
     }
 }

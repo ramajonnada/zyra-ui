@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ZyraTooltip } from './zyra-tooltip';
 
@@ -6,47 +6,129 @@ import { ZyraTooltip } from './zyra-tooltip';
     standalone: true,
     imports: [ZyraTooltip],
     template: `
-        <zyra-tooltip text="Helpful tip" position="right">
+        <zyra-tooltip [text]="text()" [position]="position()">
             <button type="button">Trigger</button>
         </zyra-tooltip>
     `,
 })
-class TooltipHostComponent {}
+class TooltipHostComponent {
+    text     = signal('Helpful tip');
+    position = signal<'top' | 'bottom' | 'left' | 'right'>('top');
+}
 
 describe('ZyraTooltip', () => {
     let fixture: ComponentFixture<TooltipHostComponent>;
+    let host: TooltipHostComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            imports: [TooltipHostComponent],
-        }).compileComponents();
-
+        await TestBed.configureTestingModule({ imports: [TooltipHostComponent] }).compileComponents();
         fixture = TestBed.createComponent(TooltipHostComponent);
+        host = fixture.componentInstance;
         fixture.detectChanges();
     });
 
-    it('shows and hides the tooltip on pointer interaction', () => {
-        const wrap: HTMLElement = fixture.nativeElement.querySelector('.zyr-tooltip-wrap');
-        wrap.dispatchEvent(new Event('mouseenter'));
-        fixture.detectChanges();
-
-        let tooltip: HTMLElement | null = fixture.nativeElement.querySelector('.zyr-tooltip');
-        expect(tooltip).not.toBeNull();
-        expect(tooltip?.className).toContain('zyr-tooltip--right');
-        expect(tooltip?.textContent).toContain('Helpful tip');
-
-        wrap.dispatchEvent(new Event('mouseleave'));
-        fixture.detectChanges();
-
-        tooltip = fixture.nativeElement.querySelector('.zyr-tooltip');
-        expect(tooltip).toBeNull();
+    // ── Visibility ────────────────────────────────────────────────────────
+    it('is hidden by default', () => {
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip')).toBeNull();
     });
 
-    it('shows the tooltip on focus for keyboard users', () => {
-        const wrap: HTMLElement = fixture.nativeElement.querySelector('.zyr-tooltip-wrap');
-        wrap.dispatchEvent(new Event('focusin'));
+    it('shows tooltip on mouseenter', () => {
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
         fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip')).not.toBeNull();
+    });
 
+    it('hides tooltip on mouseleave', () => {
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        wrap(fixture).dispatchEvent(new Event('mouseleave'));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip')).toBeNull();
+    });
+
+    it('shows tooltip on focusin for keyboard users', () => {
+        wrap(fixture).dispatchEvent(new Event('focusin'));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip')).not.toBeNull();
+    });
+
+    it('hides tooltip on focusout', () => {
+        wrap(fixture).dispatchEvent(new Event('focusin'));
+        fixture.detectChanges();
+        wrap(fixture).dispatchEvent(new Event('focusout'));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip')).toBeNull();
+    });
+
+    // ── Content ───────────────────────────────────────────────────────────
+    it('renders the tooltip text', () => {
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        const tooltip: HTMLElement = fixture.nativeElement.querySelector('.zyr-tooltip');
+        expect(tooltip.textContent).toContain('Helpful tip');
+    });
+
+    // ── Position ──────────────────────────────────────────────────────────
+    it('applies top position class by default', () => {
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip--top')).not.toBeNull();
+    });
+
+    it('applies right position class', () => {
+        host.position.set('right');
+        fixture.detectChanges();
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip--right')).not.toBeNull();
+    });
+
+    it('applies bottom position class', () => {
+        host.position.set('bottom');
+        fixture.detectChanges();
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip--bottom')).not.toBeNull();
+    });
+
+    it('applies left position class', () => {
+        host.position.set('left');
+        fixture.detectChanges();
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip--left')).not.toBeNull();
+    });
+
+    // ── No text ───────────────────────────────────────────────────────────
+    it('does not show when text is empty', () => {
+        host.text.set('');
+        fixture.detectChanges();
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip')).toBeNull();
+    });
+
+    // ── Accessibility ─────────────────────────────────────────────────────
+    it('has role="tooltip"', () => {
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
         expect(fixture.nativeElement.querySelector('[role="tooltip"]')).not.toBeNull();
     });
+
+    it('renders the arrow element inside tooltip', () => {
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        expect(fixture.nativeElement.querySelector('.zyr-tooltip__arrow')).not.toBeNull();
+    });
+
+    // ── Projected content ─────────────────────────────────────────────────
+    it('renders projected trigger content', () => {
+        const btn: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+        expect(btn).not.toBeNull();
+        expect(btn.textContent?.trim()).toBe('Trigger');
+    });
 });
+
+function wrap(f: ComponentFixture<TooltipHostComponent>): HTMLElement {
+    return f.nativeElement.querySelector('.zyr-tooltip-wrap');
+}

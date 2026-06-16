@@ -16,7 +16,10 @@
         "importHelpers": true,
         "target": "ES2022",
         "module": "ES2022",
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "zyra-ng-ui": ["./dist/zyra-ng-ui"]
+        }
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,

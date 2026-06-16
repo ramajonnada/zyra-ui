@@ -1,4 +1,5 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 export type AlertVariant = 'success' | 'warning' | 'danger' | 'info';
 
@@ -17,6 +18,8 @@ const ICONS: Record<AlertVariant, string> = {
     styleUrl: './zyra-alert.scss',
 })
 export class ZyraAlert {
+    private readonly _sanitizer = inject(DomSanitizer);
+
     // ── Inputs ────────────────────────────────────────────────
     variant = input<AlertVariant>('info');
     title = input<string>('');
@@ -32,7 +35,7 @@ export class ZyraAlert {
     hostClass = computed(() =>
         `zyr-alert zyr-alert--${this.variant()}${this.dismissing() ? ' zyr-alert--dismissing' : ''}`
     );
-    icon = computed(() => ICONS[this.variant()]);
+    icon = computed<SafeHtml>(() => this._sanitizer.bypassSecurityTrustHtml(ICONS[this.variant()]));
 
     // ── Methods ───────────────────────────────────────────────
     dismiss(): void {
