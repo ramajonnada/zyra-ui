@@ -1,0 +1,18 @@
+:host { display: block; }
+
+.zyr-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &--horizontal {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    &--disabled {
+        opacity: 0.45;
+        pointer-events: none;
+    }
+}

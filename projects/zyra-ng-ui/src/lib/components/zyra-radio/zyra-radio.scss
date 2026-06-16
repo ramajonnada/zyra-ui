@@ -1,0 +1,72 @@
+:host { display: block; }
+
+.zyr-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+
+    // ── Circle ───────────────────────────────────────────────
+    &__circle {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--zyr-radius-full);
+        border: 1.5px solid var(--zyr-input-border);
+        background: var(--zyr-input-bg);
+        cursor: pointer;
+        transition:
+            border-color var(--zyr-transition-fast),
+            box-shadow var(--zyr-transition-fast);
+
+        &:focus         { outline: none; }
+        &:focus-visible { box-shadow: var(--zyr-input-shadow-focus); }
+    }
+
+    // ── Inner dot ────────────────────────────────────────────
+    &__dot {
+        display: block;
+        border-radius: var(--zyr-radius-full);
+        background: var(--zyr-accent);
+    }
+
+    // ── Label ────────────────────────────────────────────────
+    &__label {
+        font-family: var(--zyr-font-body);
+        color: var(--zyr-foreground);
+        line-height: 1.4;
+    }
+
+    // ── Sizes ────────────────────────────────────────────────
+    &--sm &__circle { width: 14px; height: 14px; }
+    &--sm &__dot    { width: 6px;  height: 6px; }
+    &--sm &__label  { font-size: 12.5px; }
+
+    &--md &__circle { width: 17px; height: 17px; }
+    &--md &__dot    { width: 7px;  height: 7px; }
+    &--md &__label  { font-size: 13.5px; }
+
+    &--lg &__circle { width: 20px; height: 20px; }
+    &--lg &__dot    { width: 9px;  height: 9px; }
+    &--lg &__label  { font-size: 15px; }
+
+    // ── Checked ──────────────────────────────────────────────
+    &--checked &__circle {
+        border-color: var(--zyr-accent);
+        background: var(--zyr-accent-muted);
+    }
+
+    // ── Hover ────────────────────────────────────────────────
+    &:not(.zyr-radio--disabled):hover &__circle {
+        border-color: var(--zyr-accent);
+    }
+
+    // ── Disabled ─────────────────────────────────────────────
+    &--disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}

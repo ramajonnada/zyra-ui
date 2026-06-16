@@ -1,0 +1,76 @@
+:host { display: inline-block; }
+
+.zyr-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+
+    // ── Box ──────────────────────────────────────────────────
+    &__box {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--zyr-radius-xs);
+        border: 1.5px solid var(--zyr-input-border);
+        background: var(--zyr-input-bg);
+        color: var(--zyr-text-inverse);
+        transition:
+            background var(--zyr-transition-fast),
+            border-color var(--zyr-transition-fast),
+            box-shadow var(--zyr-transition-fast);
+        cursor: pointer;
+
+        &:focus { outline: none; }
+        &:focus-visible { box-shadow: var(--zyr-input-shadow-focus); }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        :where(svg) { display: block; }
+    }
+
+    // ── Label ────────────────────────────────────────────────
+    &__label {
+        font-family: var(--zyr-font-body);
+        color: var(--zyr-foreground);
+        line-height: 1.4;
+        transition: color var(--zyr-transition-fast);
+    }
+
+    // ── Sizes ────────────────────────────────────────────────
+    &--sm &__box   { width: 14px; height: 14px; }
+    &--sm &__icon  { font-size: 8px; }
+    &--sm &__label { font-size: 12.5px; }
+
+    &--md &__box   { width: 17px; height: 17px; }
+    &--md &__icon  { font-size: 10px; }
+    &--md &__label { font-size: 13.5px; }
+
+    &--lg &__box   { width: 20px; height: 20px; }
+    &--lg &__icon  { font-size: 12px; }
+    &--lg &__label { font-size: 15px; }
+
+    // ── Checked state ────────────────────────────────────────
+    &--checked &__box,
+    &--indeterminate &__box {
+        background: var(--zyr-accent);
+        border-color: var(--zyr-accent);
+    }
+
+    // ── Disabled ─────────────────────────────────────────────
+    &--disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // ── Hover ────────────────────────────────────────────────
+    &:not(.zyr-checkbox--disabled):hover &__box {
+        border-color: var(--zyr-accent);
+    }
+}

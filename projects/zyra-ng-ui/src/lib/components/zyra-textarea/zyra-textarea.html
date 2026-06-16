@@ -1,0 +1,14 @@
+<textarea
+    #textareaEl
+    [class]="'zyr-textarea zyr-textarea--' + size() + ' zyr-textarea--resize-' + resize()"
+    [id]="resolvedId()"
+    [placeholder]="placeholder()"
+    [disabled]="isDisabled()"
+    [readonly]="readonly()"
+    [rows]="rows()"
+    [attr.maxlength]="maxlength()"
+    [ngModel]="innerValue()"
+    (ngModelChange)="onModelChange($event)"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+></textarea>

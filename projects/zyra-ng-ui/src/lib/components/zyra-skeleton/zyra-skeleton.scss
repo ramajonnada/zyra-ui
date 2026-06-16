@@ -1,0 +1,55 @@
+:host {
+    display: block;
+}
+
+@keyframes zyr-shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+
+.zyr-skeleton {
+    background: var(--zyr-bg-3);
+    background-image: linear-gradient(
+        90deg,
+        var(--zyr-bg-3) 0%,
+        var(--zyr-bg-4) 40%,
+        var(--zyr-bg-3) 80%
+    );
+    background-size: 800px 100%;
+    animation: zyr-shimmer 1.4s infinite linear;
+    border-radius: var(--zyr-radius-sm);
+
+    &--static {
+        animation: none;
+        background-image: none;
+    }
+
+    // ── Variants ─────────────────────────────────────────────
+    &--text {
+        height: 14px;
+        width: 100%;
+        border-radius: var(--zyr-radius-xs);
+        display: block;
+
+        & + & {
+            margin-top: 8px;
+        }
+
+        &.zyr-skeleton--last-line {
+            width: 60%;
+        }
+    }
+
+    &--circle {
+        border-radius: var(--zyr-radius-full);
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+    }
+
+    &--rect {
+        width: 100%;
+        height: 120px;
+        border-radius: var(--zyr-radius-md);
+    }
+}

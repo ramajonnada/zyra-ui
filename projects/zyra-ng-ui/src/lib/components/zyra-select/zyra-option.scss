@@ -1,0 +1,38 @@
+:host {
+    display: block;
+}
+
+.zyr-option {
+    padding: 7px 10px;
+    font-family: var(--zyr-font-body);
+    font-size: 13.5px;
+    color: var(--zyr-foreground);
+    cursor: pointer;
+    border-radius: var(--zyr-radius-sm);
+    transition: background var(--zyr-transition-fast);
+    user-select: none;
+
+    &:hover:not(&--disabled) {
+        background: var(--zyr-bg-4);
+    }
+
+    &--active {
+        background: var(--zyr-bg-4);
+    }
+
+    &--selected {
+        background: var(--zyr-primary-subtle);
+        color: var(--zyr-primary);
+        font-weight: 500;
+    }
+
+    &--selected#{&}--active {
+        background: var(--zyr-primary-subtle);
+    }
+
+    &--disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}

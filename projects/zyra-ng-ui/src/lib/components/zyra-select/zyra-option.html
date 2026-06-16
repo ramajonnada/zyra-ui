@@ -1,0 +1,14 @@
+<div
+    class="zyr-option"
+    [class.zyr-option--selected]="selected()"
+    [class.zyr-option--active]="active()"
+    [class.zyr-option--disabled]="disabled()"
+    role="option"
+    [id]="optionId"
+    [attr.aria-selected]="selected()"
+    [attr.aria-disabled]="disabled() || null"
+    (mousedown)="$event.preventDefault()"
+    (click)="handleClick()"
+>
+    <ng-content />
+</div>

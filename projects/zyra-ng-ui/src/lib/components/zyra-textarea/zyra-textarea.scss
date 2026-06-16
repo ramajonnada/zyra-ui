@@ -1,0 +1,44 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.zyr-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--zyr-font-body);
+    color: var(--zyr-text);
+    line-height: 1.6;
+    transition: color var(--zyr-transition-slow);
+
+    &::placeholder {
+        color: var(--zyr-text-dim);
+    }
+
+    // ── Sizes ────────────────────────────────────────────────
+    &--sm { font-size: 12.5px; padding: 0; }
+    &--md { font-size: 13.5px; padding: 0; }
+    &--lg { font-size: 15px;   padding: 0; }
+
+    // ── Resize modes ─────────────────────────────────────────
+    &--resize-none     { resize: none; }
+    &--resize-vertical { resize: vertical; }
+    &--resize-auto     { resize: none; overflow: hidden; }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &[readonly] {
+        cursor: default;
+    }
+
+    &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px transparent inset;
+        -webkit-text-fill-color: var(--zyr-text);
+        transition: background-color 5000s ease-in-out 0s;
+    }
+}

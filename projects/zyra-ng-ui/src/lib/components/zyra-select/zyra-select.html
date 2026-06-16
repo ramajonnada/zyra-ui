@@ -1,0 +1,38 @@
+<!-- projects/zyra-ng-ui/src/lib/components/zyra-select/zyra-select.html -->
+
+<div [class]="wrapClass()">
+    <!-- ── Trigger ─────────────────────────────────────────── -->
+    <button
+        class="zyr-select__trigger"
+        type="button"
+        [id]="resolvedId()"
+        [disabled]="isDisabled()"
+        [attr.aria-expanded]="isOpen()"
+        aria-haspopup="listbox"
+        [attr.aria-controls]="listboxId"
+        [attr.aria-activedescendant]="activeOptionId()"
+        (click)="toggle()"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+    >
+        <span
+            class="zyr-select__value"
+            [class.zyr-select__value--placeholder]="!selectedLabel()"
+        >
+            {{ selectedLabel() || placeholder() }}
+        </span>
+        <fa-icon class="zyr-select__chevron" [icon]="icons.chevronDown" />
+    </button>
+
+    <!-- ── Panel — always in DOM so contentChildren works ──── -->
+    <div
+        class="zyr-select__panel"
+        [class.zyr-select__panel--open]="isOpen()"
+        [id]="listboxId"
+        role="listbox"
+        [attr.inert]="isOpen() ? null : ''"
+        [attr.aria-hidden]="!isOpen()"
+    >
+        <ng-content />
+    </div>
+</div>

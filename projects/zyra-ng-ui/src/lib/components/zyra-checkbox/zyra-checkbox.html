@@ -1,0 +1,29 @@
+<label [class]="hostClass()" [for]="checkboxId">
+
+    @if (label() && labelPosition() === 'left') {
+    <span class="zyr-checkbox__label">{{ label() }}</span>
+    }
+
+    <button
+        [id]="checkboxId"
+        type="button"
+        role="checkbox"
+        class="zyr-checkbox__box"
+        [attr.aria-checked]="indeterminate() ? 'mixed' : checked()"
+        [attr.aria-label]="label() || 'Checkbox'"
+        [disabled]="isDisabled() || null"
+        (click)="toggle()"
+        (keydown.space)="$event.preventDefault(); toggle()"
+    >
+        @if (indeterminate()) {
+        <fa-icon class="zyr-checkbox__icon" [icon]="icons.minus" />
+        } @else if (checked()) {
+        <fa-icon class="zyr-checkbox__icon" [icon]="icons.check" />
+        }
+    </button>
+
+    @if (label() && labelPosition() === 'right') {
+    <span class="zyr-checkbox__label">{{ label() }}</span>
+    }
+
+</label>

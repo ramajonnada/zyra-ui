@@ -1,0 +1,86 @@
+:host { display: block; width: 100%; }
+
+.zyr-tabs {
+    display: flex;
+    flex-direction: column;
+
+    // ── Trigger list ─────────────────────────────────────────
+    &__list {
+        display: flex;
+        border-bottom: 1px solid var(--zyr-border);
+        gap: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+        &::-webkit-scrollbar { display: none; }
+    }
+
+    // ── Single trigger ───────────────────────────────────────
+    &__trigger {
+        position: relative;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--zyr-font-body);
+        color: var(--zyr-foreground-muted);
+        white-space: nowrap;
+        transition: color var(--zyr-transition-fast);
+        flex-shrink: 0;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--zyr-accent);
+            transform: scaleX(0);
+            transition: transform var(--zyr-transition-base);
+        }
+
+        &:hover:not(&--disabled) {
+            color: var(--zyr-foreground);
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: inset var(--zyr-input-shadow-focus);
+            border-radius: var(--zyr-radius-xs) var(--zyr-radius-xs) 0 0;
+        }
+
+        &--active {
+            color: var(--zyr-accent);
+            font-weight: 500;
+
+            &::after { transform: scaleX(1); }
+        }
+
+        &--disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    }
+
+    // ── Panels ───────────────────────────────────────────────
+    &__panels {
+        padding-top: 16px;
+    }
+
+    // ── Sizes ────────────────────────────────────────────────
+    &--sm &__trigger {
+        padding: 8px 12px;
+        font-size: 12.5px;
+    }
+
+    &--md &__trigger {
+        padding: 10px 16px;
+        font-size: 13.5px;
+    }
+}
+
+// Panel hidden/visible
+.zyr-tab__panel {
+    display: none;
+
+    &--active { display: block; }
+}

@@ -1,0 +1,9 @@
+<div
+    class="zyr-radio-group"
+    [class.zyr-radio-group--horizontal]="orientation() === 'horizontal'"
+    [class.zyr-radio-group--disabled]="disabled()"
+    role="radiogroup"
+    [attr.aria-label]="label() || null"
+>
+    <ng-content />
+</div>

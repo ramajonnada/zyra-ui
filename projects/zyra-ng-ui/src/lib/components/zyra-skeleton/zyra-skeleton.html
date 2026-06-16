@@ -1,0 +1,15 @@
+@if (variant() === 'text' && lines() > 1) {
+    @for (idx of _lineIndices(); track idx) {
+        <div
+            class="zyr-skeleton zyr-skeleton--text"
+            [class.zyr-skeleton--last-line]="isLastLine(idx)"
+            [class.zyr-skeleton--static]="!animated()"
+        ></div>
+    }
+} @else {
+    <div
+        [class]="baseClass()"
+        [style.width]="width() || null"
+        [style.height]="height() || null"
+    ></div>
+}

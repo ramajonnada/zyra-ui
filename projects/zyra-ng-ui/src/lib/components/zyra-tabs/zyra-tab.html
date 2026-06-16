@@ -1,0 +1,11 @@
+<div
+    class="zyr-tab__panel"
+    [id]="panelId"
+    role="tabpanel"
+    [attr.aria-labelledby]="triggerId"
+    [class.zyr-tab__panel--active]="active()"
+>
+    @if (active() || _loaded()) {
+    <ng-content />
+    }
+</div>

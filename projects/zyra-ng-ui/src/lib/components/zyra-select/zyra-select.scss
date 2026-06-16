@@ -1,0 +1,174 @@
+// projects/zyra-ng-ui/src/lib/components/zyra-select/zyra-select.scss
+
+:host {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+.zyr-select {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+
+    // ── Trigger ─────────────────────────────────────────────
+    &__trigger {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        cursor: pointer;
+        font-family: var(--zyr-font-body);
+        color: var(--zyr-foreground);
+        text-align: left;
+        border-radius: var(--zyr-radius-md);
+        transition:
+            border-color var(--zyr-transition-base),
+            box-shadow var(--zyr-transition-base),
+            background var(--zyr-transition-slow);
+
+        &:focus {
+            outline: none;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    // ── Value / placeholder ──────────────────────────────────
+    &__value {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &--placeholder {
+            color: var(--zyr-foreground-subtle);
+        }
+    }
+
+    // ── Chevron ──────────────────────────────────────────────
+    &__chevron {
+        flex-shrink: 0;
+        color: var(--zyr-foreground-subtle);
+        transition: transform var(--zyr-transition-base);
+
+        :where(svg) {
+            width: 1em;
+            height: 1em;
+            display: block;
+        }
+    }
+
+    &--open &__chevron {
+        transform: rotate(180deg);
+    }
+
+    // ── Panel ────────────────────────────────────────────────
+    &__panel {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        background: var(--zyr-card-bg);
+        border: 1px solid var(--zyr-border-color);
+        border-radius: var(--zyr-radius-md);
+        box-shadow: var(--zyr-shadow-md);
+        z-index: var(--zyr-z-dropdown);
+        overflow-y: auto;
+        max-height: 240px;
+        padding: 4px;
+
+        // Hidden by default — CSS show/hide keeps options in DOM
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-6px) scale(0.98);
+        transform-origin: top center;
+        transition:
+            opacity var(--zyr-transition-fast),
+            visibility var(--zyr-transition-fast),
+            transform var(--zyr-transition-fast);
+
+        &--open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    // ════════════════════════════════════════════════════════
+    // ── APPEARANCES ─────────────────────────────────────────
+    // ════════════════════════════════════════════════════════
+
+    &--outline &__trigger {
+        background: var(--zyr-input-bg);
+        border: 1px solid var(--zyr-input-border);
+    }
+
+    &--filled &__trigger {
+        background: var(--zyr-bg-3);
+        border: 1px solid transparent;
+        border-bottom: 1px solid var(--zyr-input-border);
+        border-radius: var(--zyr-radius-md) var(--zyr-radius-md) 0 0;
+    }
+
+    &--underline &__trigger {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--zyr-input-border);
+        border-radius: 0;
+    }
+
+    // ════════════════════════════════════════════════════════
+    // ── SIZES ────────────────────────────────────────────────
+    // ════════════════════════════════════════════════════════
+
+    &--sm &__trigger {
+        padding: 5px 10px;
+        gap: 6px;
+        font-size: 12.5px;
+    }
+
+    &--md &__trigger {
+        padding: 8px 14px;
+        gap: 8px;
+        font-size: 13.5px;
+    }
+
+    &--lg &__trigger {
+        padding: 11px 16px;
+        gap: 10px;
+        font-size: 15px;
+    }
+
+    &--sm &__chevron { font-size: 11px; }
+    &--md &__chevron { font-size: 13px; }
+    &--lg &__chevron { font-size: 15px; }
+
+    // ════════════════════════════════════════════════════════
+    // ── STATES ───────────────────────────────────────────────
+    // ════════════════════════════════════════════════════════
+
+    &--focused,
+    &--open {
+        &.zyr-select--outline .zyr-select__trigger,
+        &.zyr-select--filled .zyr-select__trigger {
+            border-color: var(--zyr-accent);
+            box-shadow: var(--zyr-input-shadow-focus);
+        }
+
+        &.zyr-select--underline .zyr-select__trigger {
+            border-bottom-color: var(--zyr-accent);
+            box-shadow: 0 1px 0 0 var(--zyr-accent);
+        }
+    }
+
+    &--disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
