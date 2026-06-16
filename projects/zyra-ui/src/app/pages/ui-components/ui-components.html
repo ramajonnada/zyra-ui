@@ -16,8 +16,8 @@
     </header>
 
     <div class="components-page__grid">
-        @for (card of showcaseCards; track card.slug) {
-            <a class="component-card" [routerLink]="['/components', card.slug]">
+        @for (card of showcaseCards; track card.slug; let i = $index) {
+            <a class="component-card" [routerLink]="['/components', card.slug]" [style.animation-delay]="(i * 55) + 'ms'">
                 <zyra-card variant="outlined" [clickable]="true" padding="lg">
                     <div class="component-card__body">
                         <div class="component-card__header">

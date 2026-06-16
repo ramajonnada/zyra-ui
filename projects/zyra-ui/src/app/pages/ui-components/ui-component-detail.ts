@@ -20,6 +20,13 @@ import { Chip } from './comp/chip/chip';
 import { Alert } from './comp/alert/alert';
 import { Modal } from './comp/modal/modal';
 import { Accordion } from './comp/accordion/accordion';
+import { Checkbox } from './comp/checkbox/checkbox';
+import { Radio } from './comp/radio/radio';
+import { Select } from './comp/select/select';
+import { Skeleton } from './comp/skeleton/skeleton';
+import { Tabs } from './comp/tabs/tabs';
+import { Textarea } from './comp/textarea/textarea';
+import { FormField } from './comp/form-field/form-field';
 import { SeoService } from '../../../seo/seo.service';
 
 @Component({
@@ -44,6 +51,13 @@ import { SeoService } from '../../../seo/seo.service';
 		Alert,
 		Modal,
 		Accordion,
+		Checkbox,
+		Radio,
+		Select,
+		Skeleton,
+		Tabs,
+		Textarea,
+		FormField,
 	],
 	templateUrl: './ui-component-detail.html',
 	styleUrl: './ui-component-detail.scss',

@@ -1,0 +1,115 @@
+<div class="pg">
+    <div class="pg__header">
+        <div>
+            <h1>zyra-form-field <span>Playground</span></h1>
+            <p>Label, hint, validation, icons, counter — wraps any input or textarea</p>
+        </div>
+    </div>
+
+    <!-- ── APPEARANCES ───────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Appearances</div>
+        <div class="appear-grid">
+            <zyra-form-field label="Outline (default)" hint="Standard bordered appearance" appearance="outline">
+                <zyra-input placeholder="Enter text..." />
+            </zyra-form-field>
+            <zyra-form-field label="Filled" hint="Filled background, bottom border only" appearance="filled">
+                <zyra-input placeholder="Enter text..." />
+            </zyra-form-field>
+            <zyra-form-field label="Underline" hint="Minimal line-only style" appearance="underline">
+                <zyra-input placeholder="Enter text..." />
+            </zyra-form-field>
+        </div>
+    </div>
+
+    <!-- ── SIZES ─────────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Sizes</div>
+        <div class="size-stack">
+            <div class="size-row">
+                <span class="size-label">sm</span>
+                <zyra-form-field label="Small field" size="sm">
+                    <zyra-input size="sm" placeholder="Small input..." />
+                </zyra-form-field>
+            </div>
+            <div class="size-row">
+                <span class="size-label">md</span>
+                <zyra-form-field label="Medium field" size="md">
+                    <zyra-input size="md" placeholder="Medium input..." />
+                </zyra-form-field>
+            </div>
+            <div class="size-row">
+                <span class="size-label">lg</span>
+                <zyra-form-field label="Large field" size="lg">
+                    <zyra-input size="lg" placeholder="Large input..." />
+                </zyra-form-field>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── WITH TEXTAREA ─────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">With ZyraTextarea</div>
+        <div class="appear-grid">
+            <zyra-form-field label="Bio" hint="Tell us about yourself" [maxLength]="160">
+                <zyra-textarea [formControl]="bioCtrl" [rows]="4" placeholder="I'm a developer who..." />
+            </zyra-form-field>
+            <zyra-form-field label="Notes" appearance="filled">
+                <zyra-textarea [rows]="4" placeholder="Add your notes here..." resize="auto" />
+            </zyra-form-field>
+        </div>
+    </div>
+
+    <!-- ── VALIDATION STATES ─────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Validation states</div>
+        <div class="val-grid">
+            <zyra-form-field label="Required" hint="Click away without typing">
+                <zyra-input [formControl]="requiredCtrl" placeholder="Required field" />
+            </zyra-form-field>
+            <zyra-form-field label="Email" hint="Try an invalid email">
+                <zyra-input [formControl]="emailCtrl" type="email" placeholder="you@example.com" />
+            </zyra-form-field>
+            <zyra-form-field label="Min length 6" hint="Type fewer than 6 characters">
+                <zyra-input [formControl]="minLenCtrl" placeholder="At least 6 chars" />
+            </zyra-form-field>
+            <zyra-form-field label="Max length 20" [maxLength]="20">
+                <zyra-input [formControl]="maxLenCtrl" placeholder="Max 20 characters" />
+            </zyra-form-field>
+        </div>
+    </div>
+
+    <!-- ── REAL WORLD — CONTACT FORM ─────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Real World — Contact form</div>
+        <div class="rw-wrap">
+            <zyra-card [hasHeader]="true" [hasFooter]="true" padding="md">
+                <span slot="header">Send us a message</span>
+
+                <form [formGroup]="contactForm" class="rw-form">
+                    <div class="rw-row-2">
+                        <zyra-form-field label="Name" hint="Your full name">
+                            <zyra-input formControlName="name" placeholder="Jane Smith" />
+                        </zyra-form-field>
+                        <zyra-form-field label="Email">
+                            <zyra-input formControlName="email" type="email" placeholder="jane@company.com" />
+                        </zyra-form-field>
+                    </div>
+                    <zyra-form-field label="Subject">
+                        <zyra-input formControlName="subject" placeholder="How can we help?" />
+                    </zyra-form-field>
+                    <zyra-form-field label="Message" hint="Minimum 20 characters">
+                        <zyra-textarea formControlName="message" [rows]="5" placeholder="Describe your question in detail..." />
+                    </zyra-form-field>
+                </form>
+
+                <div slot="footer" class="rw-footer">
+                    <zyra-button variant="ghost" size="sm" (clicked)="contactForm.reset()">Clear</zyra-button>
+                    <zyra-button variant="primary" [loading]="loading()" (clicked)="submit()">Send message</zyra-button>
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+
+    <zyra-toast-container />
+</div>

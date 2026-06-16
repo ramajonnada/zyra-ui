@@ -1,0 +1,92 @@
+<div class="pg">
+    <div class="pg__header">
+        <div>
+            <h1>zyra-skeleton <span>Playground</span></h1>
+            <p>Loading placeholder with shimmer animation</p>
+        </div>
+    </div>
+
+    <!-- ── TEXT ──────────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Text lines</div>
+        <div class="sk-examples">
+            <zyra-card padding="md">
+                <div class="sk-stack">
+                    <zyra-skeleton variant="text" [lines]="1" />
+                    <zyra-skeleton variant="text" [lines]="3" />
+                    <zyra-skeleton variant="text" [lines]="5" />
+                </div>
+            </zyra-card>
+        </div>
+    </div>
+
+    <!-- ── SHAPES ────────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Shapes</div>
+        <div class="sk-row">
+            <div class="sk-item">
+                <span class="sk-label">circle</span>
+                <zyra-skeleton variant="circle" width="48px" height="48px" />
+            </div>
+            <div class="sk-item">
+                <span class="sk-label">rect (default)</span>
+                <zyra-skeleton variant="rect" width="180px" height="100px" />
+            </div>
+            <div class="sk-item">
+                <span class="sk-label">custom size</span>
+                <zyra-skeleton variant="rect" width="120px" height="40px" />
+            </div>
+        </div>
+    </div>
+
+    <!-- ── REAL WORLD ────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Real World — Content cards loading</div>
+        <div class="rw-grid">
+            <!-- Profile card skeleton -->
+            <zyra-card padding="md">
+                <div class="rw-profile">
+                    <zyra-skeleton variant="circle" width="44px" height="44px" />
+                    <div class="rw-profile__info">
+                        <zyra-skeleton variant="text" width="120px" height="13px" />
+                        <zyra-skeleton variant="text" width="80px" height="11px" />
+                    </div>
+                </div>
+                <zyra-skeleton variant="rect" height="160px" style="margin-top:12px" />
+                <div style="margin-top:12px">
+                    <zyra-skeleton variant="text" [lines]="2" />
+                </div>
+            </zyra-card>
+
+            <!-- Article skeleton -->
+            <zyra-card padding="md">
+                <zyra-skeleton variant="rect" height="140px" />
+                <div style="margin-top:12px">
+                    <zyra-skeleton variant="text" width="60%" height="18px" />
+                    <div style="margin-top:10px">
+                        <zyra-skeleton variant="text" [lines]="3" />
+                    </div>
+                </div>
+                <div class="rw-profile" style="margin-top:16px">
+                    <zyra-skeleton variant="circle" width="28px" height="28px" />
+                    <zyra-skeleton variant="text" width="100px" height="11px" />
+                </div>
+            </zyra-card>
+
+            <!-- Stat card skeleton -->
+            <zyra-card padding="md">
+                <zyra-skeleton variant="text" width="80px" height="11px" />
+                <zyra-skeleton variant="text" width="120px" height="28px" style="margin-top:8px" />
+                <zyra-skeleton variant="rect" height="60px" style="margin-top:12px" />
+            </zyra-card>
+        </div>
+    </div>
+
+    <!-- ── STATIC ────────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Static (no animation)</div>
+        <zyra-card padding="md">
+            <zyra-skeleton variant="text" [lines]="3" [animated]="false" />
+        </zyra-card>
+    </div>
+</div>

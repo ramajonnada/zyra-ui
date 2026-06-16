@@ -1,0 +1,46 @@
+@use '../../shared/pg_shared.scss' as *;
+
+.sk-examples { display: flex; flex-direction: column; gap: 16px; }
+
+.sk-stack { display: flex; flex-direction: column; gap: 20px; }
+
+.sk-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-end;
+}
+
+.sk-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.sk-label {
+    font-family: var(--zyr-font-mono);
+    font-size: 11px;
+    color: var(--zyr-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.rw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.rw-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rw-profile__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}

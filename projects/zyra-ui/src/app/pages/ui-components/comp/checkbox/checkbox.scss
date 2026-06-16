@@ -1,0 +1,22 @@
+@use '../../shared/pg_shared.scss' as *;
+
+.size-stack { display: flex; flex-direction: column; gap: 14px; }
+
+.size-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.size-label {
+    font-family: var(--zyr-font-mono);
+    font-size: 11px;
+    color: var(--zyr-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.rw-wrap { max-width: 420px; }
+
+.rw-stack { display: flex; flex-direction: column; gap: 14px; }

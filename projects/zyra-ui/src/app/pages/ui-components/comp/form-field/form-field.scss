@@ -1,0 +1,48 @@
+@use '../../shared/pg_shared.scss' as *;
+
+.appear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.val-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.size-stack { display: flex; flex-direction: column; gap: 16px; }
+
+.size-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.size-label {
+    font-family: var(--zyr-font-mono);
+    font-size: 11px;
+    color: var(--zyr-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-top: 26px;
+}
+
+.rw-wrap { max-width: 600px; }
+
+.rw-form { display: flex; flex-direction: column; gap: 16px; }
+
+.rw-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.rw-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+}

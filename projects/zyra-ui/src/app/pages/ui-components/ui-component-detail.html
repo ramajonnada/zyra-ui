@@ -9,19 +9,11 @@
 		</div>
 
 		@if (selected.description) {
-			<p class="component-detail-page__desc">{{ selected.description }}</p>
+		<p class="component-detail-page__desc">{{ selected.description }}</p>
 		}
 	</div>
 
 	<section class="component-detail">
-		<div class="component-detail__copy">
-			<h2>Component preview</h2>
-			<p>
-				Explore the available states and the real library behavior for this
-				component.
-			</p>
-		</div>
-
 		<div class="component-detail__preview">
 			@switch (selected.slug) {
 			@case ('button') {
@@ -45,7 +37,7 @@
 			}
 
 			@case ('form-field') {
-			<app-input></app-input>
+			<app-form-field></app-form-field>
 			}
 
 			@case ('spinner') {
@@ -87,6 +79,30 @@
 			@case ('accordion') {
 			<app-accordion></app-accordion>
 			}
+
+			@case ('select') {
+			<app-select></app-select>
+			}
+
+			@case ('skeleton') {
+			<app-skeleton></app-skeleton>
+			}
+
+			@case ('textarea') {
+			<app-textarea></app-textarea>
+			}
+
+			@case ('checkbox') {
+			<app-checkbox></app-checkbox>
+			}
+
+			@case ('radio') {
+			<app-radio></app-radio>
+			}
+
+			@case ('tabs') {
+			<app-tabs></app-tabs>
+			}
 			}
 		</div>
 	</section>
@@ -103,11 +119,8 @@
 		<div class="code-block">
 			<div class="code-block__bar">
 				<span class="code-block__filename">{{ selected.slug }}.demo.ts</span>
-				<zyra-button
-					variant="ghost"
-					size="sm"
-					(clicked)="copyExampleCode(selected.slug, selected.exampleCode!)"
-				>
+				<zyra-button variant="ghost" size="sm"
+					(clicked)="copyExampleCode(selected.slug, selected.exampleCode!)">
 					{{ copiedExampleSlug() === selected.slug ? 'Copied!' : 'Copy code' }}
 				</zyra-button>
 			</div>
@@ -125,10 +138,10 @@
 
 		<div class="variant-grid">
 			@for (variant of selected.variants; track variant.name) {
-				<div class="variant-card">
-					<code class="variant-card__name">{{ variant.name }}</code>
-					<p class="variant-card__desc">{{ variant.description }}</p>
-				</div>
+			<div class="variant-card">
+				<code class="variant-card__name">{{ variant.name }}</code>
+				<p class="variant-card__desc">{{ variant.description }}</p>
+			</div>
 			}
 		</div>
 	</section>
@@ -153,12 +166,12 @@
 				</thead>
 				<tbody>
 					@for (prop of selected.apiProps; track prop.name) {
-						<tr>
-							<td><code class="api-table__prop">{{ prop.name }}</code></td>
-							<td><code class="api-table__type">{{ prop.type }}</code></td>
-							<td><code class="api-table__default">{{ prop.default }}</code></td>
-							<td class="api-table__desc">{{ prop.description }}</td>
-						</tr>
+					<tr>
+						<td><code class="api-table__prop">{{ prop.name }}</code></td>
+						<td><code class="api-table__type">{{ prop.type }}</code></td>
+						<td><code class="api-table__default">{{ prop.default }}</code></td>
+						<td class="api-table__desc">{{ prop.description }}</td>
+					</tr>
 					}
 				</tbody>
 			</table>
@@ -178,7 +191,7 @@
 
 		<ul class="a11y-list">
 			@for (note of selected.a11yNotes; track note) {
-				<li class="a11y-list__item">{{ note }}</li>
+			<li class="a11y-list__item">{{ note }}</li>
 			}
 		</ul>
 	</section>
@@ -193,11 +206,11 @@
 
 		<div class="related-grid">
 			@for (rel of relatedComponents(); track rel!.slug) {
-				<a class="related-card" [routerLink]="['/components', rel!.slug]">
-					<span class="related-card__title">{{ rel!.title }}</span>
-					<span class="related-card__category">{{ rel!.category }}</span>
-					<span class="related-card__arrow">&rarr;</span>
-				</a>
+			<a class="related-card" [routerLink]="['/components', rel!.slug]">
+				<span class="related-card__title">{{ rel!.title }}</span>
+				<span class="related-card__category">{{ rel!.category }}</span>
+				<span class="related-card__arrow">&rarr;</span>
+			</a>
 			}
 		</div>
 	</section>

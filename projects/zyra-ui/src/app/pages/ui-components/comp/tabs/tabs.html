@@ -1,0 +1,94 @@
+<div class="pg">
+    <div class="pg__header">
+        <div>
+            <h1>zyra-tabs <span>Playground</span></h1>
+            <p>Accessible tab navigation with keyboard support and animated indicator</p>
+        </div>
+    </div>
+
+    <!-- ── BASIC ─────────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Basic tabs</div>
+        <zyra-tabs>
+            <zyra-tab label="Overview">
+                <div class="tab-content">
+                    <h3>Overview</h3>
+                    <p>This is the overview tab. Use arrow keys ← → to navigate between tabs, press Tab to move to the content.</p>
+                </div>
+            </zyra-tab>
+            <zyra-tab label="Details">
+                <div class="tab-content">
+                    <h3>Details</h3>
+                    <p>Detailed information lives here. Tab content is lazily rendered — not shown until first activated.</p>
+                </div>
+            </zyra-tab>
+            <zyra-tab label="Activity">
+                <div class="tab-content">
+                    <h3>Activity</h3>
+                    <p>Recent activity log and history would appear in this panel.</p>
+                </div>
+            </zyra-tab>
+            <zyra-tab label="Disabled" [disabled]="true">
+                <div class="tab-content">This won't show.</div>
+            </zyra-tab>
+        </zyra-tabs>
+    </div>
+
+    <!-- ── SIZES ─────────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Sizes</div>
+        <div class="size-stack">
+            <div>
+                <div class="size-label">sm</div>
+                <zyra-tabs size="sm">
+                    <zyra-tab label="Files"><div class="tab-content">Files content</div></zyra-tab>
+                    <zyra-tab label="Commits"><div class="tab-content">Commits content</div></zyra-tab>
+                    <zyra-tab label="Branches"><div class="tab-content">Branches content</div></zyra-tab>
+                </zyra-tabs>
+            </div>
+            <div>
+                <div class="size-label">md (default)</div>
+                <zyra-tabs size="md">
+                    <zyra-tab label="Files"><div class="tab-content">Files content</div></zyra-tab>
+                    <zyra-tab label="Commits"><div class="tab-content">Commits content</div></zyra-tab>
+                    <zyra-tab label="Branches"><div class="tab-content">Branches content</div></zyra-tab>
+                </zyra-tabs>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── REAL WORLD ────────────────────────────────────────── -->
+    <div class="grid-section">
+        <div class="grid-section__title">Real World — Repository view</div>
+        <zyra-card padding="none">
+            <zyra-tabs>
+                <zyra-tab label="Code">
+                    <div class="tab-content rw-content">
+                        <div class="rw-file-row"><span class="rw-icon">📁</span> src</div>
+                        <div class="rw-file-row"><span class="rw-icon">📁</span> tests</div>
+                        <div class="rw-file-row"><span class="rw-icon">📄</span> README.md</div>
+                        <div class="rw-file-row"><span class="rw-icon">📄</span> package.json</div>
+                    </div>
+                </zyra-tab>
+                <zyra-tab label="Issues">
+                    <div class="tab-content rw-content">
+                        <div class="rw-issue"><zyra-badge variant="success">open</zyra-badge> Add dark mode support</div>
+                        <div class="rw-issue"><zyra-badge variant="success">open</zyra-badge> Keyboard navigation bug in modal</div>
+                        <div class="rw-issue"><zyra-badge variant="default">closed</zyra-badge> Missing aria-label on icon buttons</div>
+                    </div>
+                </zyra-tab>
+                <zyra-tab label="Pull Requests">
+                    <div class="tab-content rw-content">
+                        <div class="rw-issue"><zyra-badge variant="info">open</zyra-badge> feat: add ZyraSelect component</div>
+                        <div class="rw-issue"><zyra-badge variant="info">open</zyra-badge> fix: tooltip z-index on mobile</div>
+                    </div>
+                </zyra-tab>
+                <zyra-tab label="Settings">
+                    <div class="tab-content rw-content">
+                        <p style="color: var(--zyr-foreground-muted)">Repository settings and collaborators.</p>
+                    </div>
+                </zyra-tab>
+            </zyra-tabs>
+        </zyra-card>
+    </div>
+</div>
