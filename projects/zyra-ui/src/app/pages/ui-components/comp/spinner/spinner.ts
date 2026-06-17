@@ -14,6 +14,9 @@ export class Spinner {
     themeService = inject(ZyraThemeService);
     toastService = inject(ZyraToastService);
 
+    codeCopied = signal(false);
+    private copyResetTimer?: ReturnType<typeof setTimeout>;
+
     size = signal<SpinnerSize>('md');
     color = signal<SpinnerColor>('accent');
     label = signal('Loading...');
@@ -73,6 +76,9 @@ export class Spinner {
     copyCode(): void {
         navigator.clipboard.writeText(this.generatedCode());
         this.toastService.success('Code copied to clipboard!');
+        this.codeCopied.set(true);
+        clearTimeout(this.copyResetTimer);
+        this.copyResetTimer = setTimeout(() => this.codeCopied.set(false), 2000);
     }
 
     generatedCode = computed(() => {

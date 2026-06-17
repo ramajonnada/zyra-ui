@@ -25,6 +25,9 @@ export class Toast {
 	themeService = inject(ZyraThemeService);
 	toastService = inject(ZyraToastService);
 
+	codeCopied = signal(false);
+	private copyResetTimer?: ReturnType<typeof setTimeout>;
+
 	variant = signal<ToastVariant>('success');
 	title = signal('Operation completed');
 	description = signal('Your changes have been saved.');
@@ -144,6 +147,9 @@ export class Toast {
 		const code = this.generatedCode();
 		navigator.clipboard.writeText(code);
 		this.toastService.success('Code copied to clipboard!');
+		this.codeCopied.set(true);
+		clearTimeout(this.copyResetTimer);
+		this.copyResetTimer = setTimeout(() => this.codeCopied.set(false), 2000);
 	}
 
 	generatedCode = computed(() => {

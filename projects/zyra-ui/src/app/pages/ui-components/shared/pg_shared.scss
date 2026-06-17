@@ -260,10 +260,11 @@
 .preview-area {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    min-height: calc(100vh - 82px);
 }
 
 .preview-box {
+    flex: 1;
     padding: 40px 32px;
     border-bottom: 1px solid var(--zyr-border);
     background:
@@ -291,6 +292,7 @@
     &__stage {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 24px;
         flex-wrap: wrap;
         flex: 1;
@@ -342,11 +344,16 @@
 
 // ── Code box ──────────────────────────────────────────────────
 .code-box {
-    border-bottom: 1px solid var(--zyr-border);
+    flex-shrink: 0;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--zyr-border);
     background: var(--zyr-code-bg, var(--zyr-bg-3));
     transition: background var(--zyr-transition-slow);
 
     &__header {
+        flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -359,9 +366,10 @@
     }
 
     &__pre {
-        padding: 16px 20px;
+        flex: 1;
+        padding: 14px 20px;
         margin: 0;
-        overflow-x: auto;
+        overflow: auto;
         font-family: var(--zyr-font-mono);
         font-size: 12.5px;
         color: var(--zyr-accent);

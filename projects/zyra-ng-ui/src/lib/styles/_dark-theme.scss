@@ -54,11 +54,12 @@
     --zyr-input-border: var(--zyr-border);
     --zyr-input-shadow-focus: 0 0 0 3px rgba(24, 213, 234, 0.14);
 
-    --zyr-card-bg: #0f141b;
-    --zyr-card-section-bg: rgba(255, 255, 255, 0.02);
-    --zyr-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
-    --zyr-card-elevated-shadow: 0 20px 42px rgba(0, 0, 0, 0.36);
-    --zyr-card-focus-ring: rgba(24, 213, 234, 0.16);
+    --zyr-card-bg: #111827;
+    --zyr-card-border: rgba(255, 255, 255, 0.10);
+    --zyr-card-section-bg: rgba(255, 255, 255, 0.03);
+    --zyr-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.12);
+    --zyr-card-elevated-shadow: 0 8px 24px rgba(0, 0, 0, 0.32), 0 24px 48px rgba(0, 0, 0, 0.2);
+    --zyr-card-focus-ring: rgba(24, 213, 234, 0.18);
 
     --zyr-code-bg: #0a0f15;
     --zyr-overlay-bg: rgba(4, 8, 12, 0.72);

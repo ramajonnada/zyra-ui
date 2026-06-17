@@ -6,6 +6,7 @@ import { ZyraBadge, ZyraButton, ZyraCard, ZyraFormField, ZyraInput, ZyraToastSer
 import { SeoService } from '../../../seo/seo.service';
 import { appIcons } from '../../shared/fontawesome-icons';
 import { LIBRARY_VERSION } from '../../shared/version';
+import { UI_COMPONENT_SHOWCASE } from '../ui-components/ui-components.data';
 
 type AvatarVariant = 'teal' | 'blue' | 'purple' | 'warm' | 'neutral';
 type FeatureTone = 'accent' | 'blue' | 'purple' | 'green' | 'warning' | 'neutral';
@@ -245,6 +246,7 @@ export class Home implements OnInit, OnDestroy {
 	readonly ratingMarks = RATING_MARKS;
 	readonly waitlistEmail = WAITLIST_PLACEHOLDER;
 
+	readonly componentCount = UI_COMPONENT_SHOWCASE.length;
 	readonly heroMeta = HERO_META;
 	readonly developerChecks = DEVELOPER_CHECKS;
 	readonly systemCards = SYSTEM_CARDS;

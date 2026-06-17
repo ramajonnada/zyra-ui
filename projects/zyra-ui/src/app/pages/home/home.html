@@ -10,7 +10,7 @@
                     <span class="hero-pill__divider"></span>
                     <span class="hero-pill__item">
                         <span class="hero-pill__spark">+</span>
-                        <span>9 components</span>
+                        <span>{{ componentCount }} components</span>
                     </span>
                 </div>
             </div>
@@ -190,7 +190,7 @@
       &lt;/<span class="ty">h2</span>&gt;
       &lt;<span class="ty">Input</span> <span class="at">placeholder</span>=<span class="str">"you@company.dev"</span> /&gt;
       &lt;<span class="ty">Button</span> <span class="at">variant</span>=<span class="str">"ghost"</span>&gt;
-        Reserve your spot &#10230;
+        Reserve your spot
       &lt;/<span class="ty">Button</span>&gt;
     &lt;/<span class="ty">Card</span>&gt;
   )
@@ -241,8 +241,8 @@
         </div>
 
         <div class="blocks-grid">
-            <div class="block-card">
-                <div class="block-card__header">
+            <zyra-card [hasHeader]="true" padding="none">
+                <div slot="header" class="block-card__header-inner">
                     <span class="block-card__name">Auth form</span>
                     <zyra-badge size="sm" variant="info">Auth</zyra-badge>
                 </div>
@@ -254,13 +254,13 @@
                         </div>
                         <div class="mini-field">your&#64;email.dev</div>
                         <div class="mini-field">••••••••••</div>
-                        <div class="mini-cta">Continue &rarr;</div>
+                        <div class="mini-cta">Continue</div>
                     </div>
                 </div>
-            </div>
+            </zyra-card>
 
-            <div class="block-card">
-                <div class="block-card__header">
+            <zyra-card [hasHeader]="true" padding="none">
+                <div slot="header" class="block-card__header-inner">
                     <span class="block-card__name">Stats row</span>
                     <zyra-badge size="sm" variant="success">Dashboard</zyra-badge>
                 </div>
@@ -274,10 +274,10 @@
                         }
                     </div>
                 </div>
-            </div>
+            </zyra-card>
 
-            <div class="block-card">
-                <div class="block-card__header">
+            <zyra-card [hasHeader]="true" padding="none">
+                <div slot="header" class="block-card__header-inner">
                     <span class="block-card__name">Notifications</span>
                     <zyra-badge size="sm" variant="warning">Feedback</zyra-badge>
                 </div>
@@ -306,7 +306,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </zyra-card>
         </div>
     </div>
 </section>
@@ -366,10 +366,10 @@
                 <zyra-form-field size="lg" [prefixIcon]="icons.envelope" [clearButton]="true">
                     <zyra-input type="email" [placeholder]="waitlistEmail" size="lg"></zyra-input>
                 </zyra-form-field>
-                <zyra-button size="lg">Reserve spot &#8594;</zyra-button>
+                <zyra-button size="lg">Reserve spot</zyra-button>
             </div>
 
-            <div class="cta-panel__note">&#8226; 2 developers already on the waitlist</div>
+            <div class="cta-panel__note">&#8226; No spam. Unsubscribe any time.</div>
         </div>
     </div>
 </section>
@@ -382,23 +382,27 @@
         </div>
 
         <div class="duo-cta">
-            <article class="duo-cta__card">
-                <div class="duo-cta__icon duo-cta__icon--accent">
-                    <fa-icon [icon]="icons.alignLeft" aria-hidden="true" />
+            <zyra-card padding="none">
+                <div class="duo-cta__body">
+                    <div class="duo-cta__icon duo-cta__icon--accent">
+                        <fa-icon [icon]="icons.alignLeft" aria-hidden="true" />
+                    </div>
+                    <h3>Read the docs</h3>
+                    <p>Installation guide, theming reference, and full API docs for every component.</p>
+                    <zyra-button variant="primary" size="lg" routerLink="/docs">Go to docs</zyra-button>
                 </div>
-                <h3>Read the docs</h3>
-                <p>Installation guide, theming reference, and full API docs for every component.</p>
-                <zyra-button variant="primary" size="lg" routerLink="/docs">Go to docs &rarr;</zyra-button>
-            </article>
+            </zyra-card>
 
-            <article class="duo-cta__card duo-cta__card--alt">
-                <div class="duo-cta__icon duo-cta__icon--blue">
-                    <fa-icon [icon]="icons.puzzlePiece" aria-hidden="true" />
+            <zyra-card padding="none" style="--zyr-card-border: color-mix(in srgb, var(--zyr-accent-2) 30%, var(--zyr-border))">
+                <div class="duo-cta__body">
+                    <div class="duo-cta__icon duo-cta__icon--blue">
+                        <fa-icon [icon]="icons.puzzlePiece" aria-hidden="true" />
+                    </div>
+                    <h3>Try the playground</h3>
+                    <p>Live interactive demos for every component. See it, tweak it, copy the code.</p>
+                    <zyra-button variant="outline" size="lg" routerLink="/components">Browse components</zyra-button>
                 </div>
-                <h3>Try the playground</h3>
-                <p>Live interactive demos for every component. See it, tweak it, copy the code.</p>
-                <zyra-button variant="outline" size="lg" routerLink="/components">Browse components &rarr;</zyra-button>
-            </article>
+            </zyra-card>
         </div>
     </div>
 </section>

@@ -19,6 +19,7 @@
 		"format:check": "prettier --check .",
 		"commit": "cz",
 		"check-all": "npm run format:check && npm run lint",
+		"audit:components": "node scripts/audit-components.js",
 		"publish:lib": "ng build zyra-ng-ui && npm publish dist/zyra-ng-ui --access public"
 	},
 	"prettier": {

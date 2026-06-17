@@ -37,6 +37,9 @@ export class Button {
     leftPreviewIcon = computed(() => this.iconOrNull(this.iconLeft()));
     rightPreviewIcon = computed(() => this.iconOrNull(this.iconRight()));
 
+    codeCopied = signal(false);
+    private copyResetTimer?: ReturnType<typeof setTimeout>;
+
     readonly controlDefs: ControlDef[] = [
         {
             type: 'button-group',
@@ -89,6 +92,9 @@ export class Button {
     copyCode(): void {
         navigator.clipboard.writeText(this.generatedCode());
         this.toastService.success('Code copied to clipboard!');
+        this.codeCopied.set(true);
+        clearTimeout(this.copyResetTimer);
+        this.copyResetTimer = setTimeout(() => this.codeCopied.set(false), 2000);
     }
 
     generatedCode = computed(() => {

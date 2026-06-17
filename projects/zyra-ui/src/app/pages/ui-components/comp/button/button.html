@@ -70,7 +70,7 @@
             <div class="code-box">
                 <div class="code-box__header">
                     <span>Generated Code</span>
-                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()">Copy</zyra-button>
+                    <zyra-button variant="outline" class="copy-btn" (clicked)="copyCode()">{{ codeCopied() ? 'Copied!' : 'Copy' }}</zyra-button>
                 </div>
                 <pre class="code-box__pre">{{ generatedCode() }}</pre>
             </div>

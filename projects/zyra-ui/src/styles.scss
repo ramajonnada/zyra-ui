@@ -2,6 +2,17 @@
 @use './markdown-style.scss';
 @use './responsive.scss';
 
+// RGB triplet for rgba() usage — matches --zyr-accent (#18d5ea)
+:root,
+[data-theme='dark'] {
+	--zyra-glow: 24, 213, 234;
+	--zyra-grid: 215 20% 50%;
+}
+
+[data-theme='light'] {
+	--zyra-grid: 215 20% 28%;
+}
+
 .zyra-grid-bg {
 	background-image:
 		linear-gradient(hsl(var(--zyra-grid) / 0.6) 1px, transparent 1px),
@@ -12,14 +23,26 @@
 }
 
 .zyra-gradient-text {
-	background: linear-gradient(135deg, #00EAFF 0%, #4DF0F6 40%, #80F3F8 70%, #FFFFFF 100%);
+	background: linear-gradient(
+		135deg,
+		var(--zyr-cyan-500) 0%,
+		var(--zyr-cyan-300) 40%,
+		var(--zyr-cyan-200) 70%,
+		#fff 100%
+	);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
 }
 
 [data-theme="light"] .zyra-gradient-text {
-	background: linear-gradient(135deg, #00737E 0%, #0099A8 40%, #00D2E6 75%, #00EAFF 100%);
+	background: linear-gradient(
+		135deg,
+		var(--zyr-cyan-800) 0%,
+		var(--zyr-cyan-700) 40%,
+		var(--zyr-cyan-600) 75%,
+		var(--zyr-cyan-500) 100%
+	);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
