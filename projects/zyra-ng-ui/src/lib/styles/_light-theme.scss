@@ -1,79 +1,102 @@
 [data-theme='light'] {
-    --zyr-bg: #f8fbfd;
-    --zyr-bg-2: #ffffff;
-    --zyr-bg-3: #f1f6fa;
-    --zyr-bg-4: #e7eef5;
+    // ── Surfaces ─────────────────────────────────────────────
+    // Pure white page like Emergent — removes the old blue tint
+    --zyr-bg:   #ffffff;
+    --zyr-bg-2: #f7f8fc;
+    --zyr-bg-3: #f0f2f7;
+    --zyr-bg-4: #e1e4ec;
 
-    --zyr-border: rgba(9, 19, 31, 0.08);
-    --zyr-border-hover: rgba(24, 213, 234, 0.24);
+    // ── Borders ──────────────────────────────────────────────
+    --zyr-border:        rgba(9, 19, 31, 0.08);
+    --zyr-border-hover:  rgba(0, 198, 220, 0.24);
     --zyr-border-strong: rgba(9, 19, 31, 0.14);
 
-    --zyr-text: #09131f;
-    --zyr-text-muted: #5e6d82;
-    --zyr-text-dim: #98a6b8;
+    // ── Text ─────────────────────────────────────────────────
+    // Closer to Emergent's hsl(220 10% 5%) = #0b0c0e
+    --zyr-text:         #0b0c0e;
+    --zyr-text-muted:   #545e6e;
+    --zyr-text-dim:     #98a6b8;
     --zyr-text-inverse: #ffffff;
     --zyr-surface-inverse: #0f151c;
 
-    --zyr-accent: #18d5ea;
-    --zyr-accent-hover: #10bfd4;
-    --zyr-accent-muted: rgba(24, 213, 234, 0.12);
-    --zyr-accent-border: rgba(24, 213, 234, 0.24);
+    // ── Glow RGB channels ────────────────────────────────────
+    // Used as: rgba(var(--zyr-glow), 0.35) → rgba(0, 198, 220, 0.35)
+    --zyr-glow: 0, 198, 220;
 
-    --zyr-accent-2: #2491e8;
-    --zyr-accent-2-muted: rgba(36, 145, 232, 0.1);
+    // ── Accent ───────────────────────────────────────────────
+    // Kept bright for light-mode buttons (dark text on bright cyan)
+    // More vivid than before but still works with --zyr-btn-primary-text: black
+    --zyr-accent:        #00C6DC;
+    --zyr-accent-hover:  #00B4C9;
+    --zyr-accent-muted:  rgba(0, 198, 220, 0.12);
+    --zyr-accent-border: rgba(0, 198, 220, 0.24);
+
+    // ── Secondary accents (unchanged) ────────────────────────
+    --zyr-accent-2:        #2491e8;
+    --zyr-accent-2-muted:  rgba(36, 145, 232, 0.10);
     --zyr-accent-2-border: rgba(36, 145, 232, 0.22);
 
-    --zyr-accent-3: #8b6ef5;
-    --zyr-accent-3-muted: rgba(139, 110, 245, 0.1);
+    --zyr-accent-3:        #8b6ef5;
+    --zyr-accent-3-muted:  rgba(139, 110, 245, 0.10);
     --zyr-accent-3-border: rgba(139, 110, 245, 0.22);
 
-    --zyr-success: #2ea85b;
-    --zyr-success-muted: rgba(46, 168, 91, 0.1);
-    --zyr-success-border: rgba(46, 168, 91, 0.22);
+    // ── Semantic — updated to Emergent's vivid palette ────────
+    --zyr-success:        #10B981;
+    --zyr-success-muted:  rgba(16, 185, 129, 0.10);
+    --zyr-success-border: rgba(16, 185, 129, 0.22);
 
-    --zyr-warning: #e8aa3a;
-    --zyr-warning-muted: rgba(232, 170, 58, 0.12);
-    --zyr-warning-border: rgba(232, 170, 58, 0.24);
+    --zyr-warning:        #F59E0B;
+    --zyr-warning-muted:  rgba(245, 158, 11, 0.12);
+    --zyr-warning-border: rgba(245, 158, 11, 0.24);
 
-    --zyr-danger: #e03e3e;
-    --zyr-danger-muted: rgba(224, 62, 62, 0.09);
-    --zyr-danger-border: rgba(224, 62, 62, 0.22);
+    --zyr-danger:        #EF4444;
+    --zyr-danger-muted:  rgba(239, 68, 68, 0.09);
+    --zyr-danger-border: rgba(239, 68, 68, 0.22);
 
-    --zyr-info: #2491e8;
-    --zyr-info-muted: rgba(36, 145, 232, 0.1);
-    --zyr-info-border: rgba(36, 145, 232, 0.22);
+    --zyr-info:        #3B82F6;
+    --zyr-info-muted:  rgba(59, 130, 246, 0.10);
+    --zyr-info-border: rgba(59, 130, 246, 0.22);
 
-    --zyr-shadow-sm: 0 2px 10px rgba(7, 18, 30, 0.06);
-    --zyr-shadow-md: 0 14px 36px rgba(7, 18, 30, 0.08);
-    --zyr-shadow-accent: 0 14px 32px rgba(24, 213, 234, 0.18);
+    // ── Shadows ───────────────────────────────────────────────
+    --zyr-shadow-sm:     0 2px 10px rgba(7, 18, 30, 0.06);
+    --zyr-shadow-md:     0 14px 36px rgba(7, 18, 30, 0.08);
+    --zyr-shadow-accent: 0 14px 32px rgba(0, 198, 220, 0.18);
 
-    --zyr-btn-primary-text: #000000;
+    // ── Buttons ───────────────────────────────────────────────
+    --zyr-btn-primary-text:   #000000;
     --zyr-btn-ghost-hover-bg: rgba(9, 19, 31, 0.045);
 
-    --zyr-input-bg: rgba(255, 255, 255, 0.92);
-    --zyr-input-border: var(--zyr-border-strong);
-    --zyr-input-shadow-focus: 0 0 0 3px rgba(24, 213, 234, 0.16);
+    // ── Inputs ────────────────────────────────────────────────
+    --zyr-input-bg:           rgba(255, 255, 255, 0.92);
+    --zyr-input-border:       var(--zyr-border-strong);
+    --zyr-input-shadow-focus: 0 0 0 3px rgba(0, 198, 220, 0.16);
 
-    --zyr-card-bg: #ffffff;
-    --zyr-card-border: rgba(9, 19, 31, 0.10);
-    --zyr-card-section-bg: rgba(9, 19, 31, 0.03);
-    --zyr-card-shadow: 0 1px 3px rgba(9, 19, 31, 0.08), 0 4px 16px rgba(9, 19, 31, 0.05);
+    // ── Cards ─────────────────────────────────────────────────
+    // Card is off-white on the pure white page — creates visible elevation
+    --zyr-card-bg:              #f7f8fc;
+    --zyr-card-border:          rgba(9, 19, 31, 0.10);
+    --zyr-card-section-bg:      rgba(9, 19, 31, 0.03);
+    --zyr-card-shadow:          0 1px 3px rgba(9, 19, 31, 0.08), 0 4px 16px rgba(9, 19, 31, 0.05);
     --zyr-card-elevated-shadow: 0 8px 24px rgba(9, 19, 31, 0.10), 0 20px 48px rgba(9, 19, 31, 0.07);
-    --zyr-card-focus-ring: rgba(24, 213, 234, 0.18);
+    --zyr-card-focus-ring:      rgba(0, 198, 220, 0.18);
 
-    --zyr-code-bg: #eef4f8;
+    // ── Misc ──────────────────────────────────────────────────
+    --zyr-code-bg: #eef1f7;
 
     --zyr-scrollbar-thumb: rgba(9, 19, 31, 0.14);
     --zyr-scrollbar-track: transparent;
 
-    --zyr-tooltip-bg: #0f151c;
-    --zyr-tooltip-text: #f6f7f9;
-    --zyr-tooltip-border: rgba(0, 234, 255, 0.16);
+    --zyr-tooltip-bg:     #0f151c;
+    --zyr-tooltip-text:   #f6f7f9;
+    --zyr-tooltip-border: rgba(0, 198, 220, 0.16);
     --zyr-tooltip-shadow: 0 16px 38px rgba(11, 12, 14, 0.14);
 
-    --zyr-toast-bg: rgba(255, 255, 255, 0.96);
+    --zyr-toast-bg:     rgba(255, 255, 255, 0.96);
     --zyr-toast-border: rgba(11, 12, 14, 0.08);
 
     --zyr-spinner-inverse-track: rgba(11, 12, 14, 0.18);
-    --zyr-spinner-inverse-head: #0b0c0e;
+    --zyr-spinner-inverse-head:  #0b0c0e;
+
+    --zyr-pill-active-bg:     var(--zyr-bg);
+    --zyr-pill-active-shadow: 0 2px 6px var(--zyr-border-strong), 0 1px 2px var(--zyr-border);
 }

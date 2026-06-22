@@ -1,86 +1,127 @@
-:host { display: block; width: 100%; }
-
-.zyr-tabs {
+// ── Host = the tabs wrapper ───────────────────────────────────
+:host {
     display: flex;
     flex-direction: column;
+    width: 100%;
+	gap:16px;
+}
 
-    // ── Trigger list ─────────────────────────────────────────
-    &__list {
-        display: flex;
-        border-bottom: 1px solid var(--zyr-border);
-        gap: 0;
-        overflow-x: auto;
-        scrollbar-width: none;
-        &::-webkit-scrollbar { display: none; }
+// ── Trigger list ─────────────────────────────────────────────
+.zyr-tabs__list {
+    display: flex;
+    border-bottom: 1px solid var(--zyr-border);
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+}
+
+// ── Single trigger ────────────────────────────────────────────
+.zyr-tabs__trigger {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--zyr-font-body);
+    color: var(--zyr-foreground-muted);
+    white-space: nowrap;
+    transition: color var(--zyr-transition-fast);
+    flex-shrink: 0;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--zyr-accent);
+        transform: scaleX(0);
+        transition: transform var(--zyr-transition-base);
     }
 
-    // ── Single trigger ───────────────────────────────────────
-    &__trigger {
-        position: relative;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-family: var(--zyr-font-body);
-        color: var(--zyr-foreground-muted);
-        white-space: nowrap;
-        transition: color var(--zyr-transition-fast);
-        flex-shrink: 0;
-
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--zyr-accent);
-            transform: scaleX(0);
-            transition: transform var(--zyr-transition-base);
-        }
-
-        &:hover:not(&--disabled) {
-            color: var(--zyr-foreground);
-        }
-
-        &:focus-visible {
-            outline: none;
-            box-shadow: inset var(--zyr-input-shadow-focus);
-            border-radius: var(--zyr-radius-xs) var(--zyr-radius-xs) 0 0;
-        }
-
-        &--active {
-            color: var(--zyr-accent);
-            font-weight: 500;
-
-            &::after { transform: scaleX(1); }
-        }
-
-        &--disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
+    &:hover:not(.zyr-tabs__trigger--disabled) {
+        color: var(--zyr-foreground);
     }
 
-    // ── Panels ───────────────────────────────────────────────
-    &__panels {
-        padding-top: 16px;
+    &:focus-visible {
+        outline: none;
+        box-shadow: inset var(--zyr-input-shadow-focus);
+        border-radius: var(--zyr-radius-xs) var(--zyr-radius-xs) 0 0;
     }
 
-    // ── Sizes ────────────────────────────────────────────────
-    &--sm &__trigger {
-        padding: 8px 12px;
-        font-size: 12.5px;
+    &--active {
+        color: var(--zyr-accent);
+        font-weight: 500;
+
+        &::after { transform: scaleX(1); }
     }
 
-    &--md &__trigger {
-        padding: 10px 16px;
-        font-size: 13.5px;
+    &--disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
     }
 }
 
-// Panel hidden/visible
-.zyr-tab__panel {
-    display: none;
+// ── Panels ────────────────────────────────────────────────────
+// .zyr-tabs__panels {
+//     padding-top: 16px;
+// }
 
-    &--active { display: block; }
+// ── Sizes ─────────────────────────────────────────────────────
+:host(.zyr-tabs--sm) .zyr-tabs__trigger {
+    padding: 8px 12px;
+    font-size: 12.5px;
 }
+
+:host(.zyr-tabs--md) .zyr-tabs__trigger {
+    padding: 10px 16px;
+    font-size: 13.5px;
+}
+
+// ── Pill variant ──────────────────────────────────────────────
+:host(.zyr-tabs--pill) .zyr-tabs__list {
+    display: inline-flex;
+    align-self: flex-start;
+    background: var(--zyr-bg-2);
+    border: 1px solid var(--zyr-border);
+    border-bottom-color: var(--zyr-border); // keep all sides equal
+    border-radius: 9px;
+    padding: 3px;
+    gap: 2px;
+}
+
+:host(.zyr-tabs--pill) .zyr-tabs__trigger {
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--zyr-text-muted);
+    transition:
+        color var(--zyr-transition-fast),
+        background var(--zyr-transition-spring),
+        box-shadow var(--zyr-transition-spring);
+
+    &::after { display: none; }
+
+    &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--zyr-accent);
+        border-radius: 6px;
+    }
+
+    &:hover:not(.zyr-tabs__trigger--disabled) {
+        color: var(--zyr-text);
+    }
+
+    &.zyr-tabs__trigger--active {
+        background: var(--zyr-pill-active-bg);
+        color: var(--zyr-text);
+        font-weight: 600;
+        box-shadow: var(--zyr-pill-active-shadow);
+    }
+}
+
+// :host(.zyr-tabs--pill) .zyr-tabs__panels {
+//     padding-top: 0;
+// }

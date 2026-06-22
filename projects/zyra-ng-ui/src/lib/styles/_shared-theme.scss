@@ -30,14 +30,17 @@
     --zyr-radius-full: 9999px;
 
     // ── Motion ───────────────────────────────────────────────
+    // --zyr-ease-standard: smooth deceleration (page loads, modals, dropdowns)
+    // --zyr-ease-spring:   overshoot bounce (buttons, badges, toggles, tooltips)
     --zyr-ease-standard:    cubic-bezier(0.22, 1, 0.36, 1);
+    --zyr-ease-spring:      cubic-bezier(0.34, 1.56, 0.64, 1);
     --zyr-duration-fast:    150ms;
     --zyr-duration-base:    300ms;
     --zyr-duration-slow:    600ms;
     --zyr-transition-fast:   150ms cubic-bezier(0.22, 1, 0.36, 1);
     --zyr-transition-base:   300ms cubic-bezier(0.22, 1, 0.36, 1);
     --zyr-transition-slow:   600ms cubic-bezier(0.22, 1, 0.36, 1);
-    --zyr-transition-spring: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    --zyr-transition-spring: 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
     // ── Spacing ──────────────────────────────────────────────
     --zyr-space-1:  4px;
@@ -115,12 +118,14 @@
     --zyr-btn-disabled-opacity:     0.42;
 
     // ── Card & Glow ──────────────────────────────────────────
+    // --zyr-glow is defined per-theme as RGB channels (e.g. "0, 234, 255")
+    // so rgba(var(--zyr-glow), 0.4) expands to rgba(0, 234, 255, 0.4)
     --zyr-card-border:        var(--zyr-border);
     --zyr-card-hover-border:  var(--zyr-border-hover);
-    --zyr-glow-border:        rgba(24, 213, 234, 0.46);
-    --zyr-glow-shadow:        0 24px 70px rgba(24, 213, 234, 0.18);
-    --zyr-glow-shadow-strong: 0 18px 46px rgba(24, 213, 234, 0.26);
-    --zyr-glow-surface:       rgba(24, 213, 234, 0.1);
+    --zyr-glow-border:        rgba(var(--zyr-glow), 0.46);
+    --zyr-glow-shadow:        0 24px 70px rgba(var(--zyr-glow), 0.18);
+    --zyr-glow-shadow-strong: 0 18px 46px rgba(var(--zyr-glow), 0.26);
+    --zyr-glow-surface:       rgba(var(--zyr-glow), 0.10);
 
     // ── Avatar ───────────────────────────────────────────────
     --zyr-avatar-primary-end: var(--zyr-accent-2);

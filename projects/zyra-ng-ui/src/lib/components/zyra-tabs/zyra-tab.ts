@@ -1,4 +1,5 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import type { SlideDir } from './zyra-tabs-token';
 
 let tabCounter = 0;
 
@@ -7,6 +8,7 @@ let tabCounter = 0;
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './zyra-tab.html',
+    styleUrl: './zyra-tab.scss',
 })
 export class ZyraTab {
     // ── Inputs ────────────────────────────────────────────────
@@ -20,6 +22,9 @@ export class ZyraTab {
     readonly panelId     = `zyr-tab-panel-${tabCounter}`;
 
     // ── State set by ZyraTabs ─────────────────────────────────
-    readonly active  = signal(false);
-    readonly _loaded = signal(false);
+    readonly active    = signal(false);
+    readonly _loaded   = signal(false);
+    readonly _slideDir = signal<SlideDir>(null);
+
+    _onAnimEnd(): void { this._slideDir.set(null); }
 }

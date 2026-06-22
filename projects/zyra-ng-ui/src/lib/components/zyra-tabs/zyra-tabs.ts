@@ -24,12 +24,16 @@ export type TabsSize = 'sm' | 'md';
             useExisting: forwardRef(() => ZyraTabs),
         },
     ],
+    host: {
+        '[class]': '"zyr-tabs zyr-tabs--" + size() + " zyr-tabs--" + variant()',
+    },
     templateUrl: './zyra-tabs.html',
     styleUrl:    './zyra-tabs.scss',
 })
 export class ZyraTabs implements ZyraTabsRef, AfterContentInit {
     // ── Inputs ────────────────────────────────────────────────
-    size = input<TabsSize>('md');
+    size    = input<TabsSize>('md');
+    variant = input<'underline' | 'pill'>('underline');
 
     // ── Outputs ───────────────────────────────────────────────
     tabChange = output<string>();
@@ -47,9 +51,17 @@ export class ZyraTabs implements ZyraTabsRef, AfterContentInit {
     // ── ZyraTabsRef ───────────────────────────────────────────
     activateTab(tab: ZyraTab): void {
         if (tab.disabled()) return;
-        this._tabs().forEach(t => t.active.set(false));
+        const tabs = this._tabs();
+        const oldIdx = tabs.findIndex(t => t.active());
+        const newIdx = tabs.indexOf(tab);
+        const dir = (oldIdx !== -1 && newIdx !== oldIdx)
+            ? (newIdx > oldIdx ? 'right' : 'left')
+            : null;
+
+        tabs.forEach(t => t.active.set(false));
         tab.active.set(true);
         tab._loaded.set(true);
+        tab._slideDir.set(dir);
         this.activeTabId.set(tab._uid);
         this.tabChange.emit(tab.tabId() || tab._uid);
     }

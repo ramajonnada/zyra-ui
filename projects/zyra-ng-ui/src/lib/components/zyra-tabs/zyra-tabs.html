@@ -1,29 +1,25 @@
-<!-- projects/zyra-ng-ui/src/lib/components/zyra-tabs/zyra-tabs.html -->
+<!-- ── Tab trigger list ───────────────────────────────── -->
+<div class="zyr-tabs__list" role="tablist">
+    @for (tab of _tabs(); track tab._uid) {
+    <button
+        [id]="tab.triggerId"
+        type="button"
+        role="tab"
+        class="zyr-tabs__trigger"
+        [class.zyr-tabs__trigger--active]="tab.active()"
+        [class.zyr-tabs__trigger--disabled]="tab.disabled()"
+        [attr.aria-selected]="tab.active()"
+        [attr.aria-controls]="tab.panelId"
+        [attr.aria-disabled]="tab.disabled() || null"
+        [attr.tabindex]="tab.active() ? 0 : -1"
+        (click)="activateTab(tab)"
+    >
+        {{ tab.label() }}
+    </button>
+    }
+</div>
 
-<div class="zyr-tabs" [class]="'zyr-tabs--' + size()">
-    <!-- ── Tab trigger list ───────────────────────────────── -->
-    <div class="zyr-tabs__list" role="tablist">
-        @for (tab of _tabs(); track tab._uid) {
-        <button
-            [id]="tab.triggerId"
-            type="button"
-            role="tab"
-            class="zyr-tabs__trigger"
-            [class.zyr-tabs__trigger--active]="tab.active()"
-            [class.zyr-tabs__trigger--disabled]="tab.disabled()"
-            [attr.aria-selected]="tab.active()"
-            [attr.aria-controls]="tab.panelId"
-            [attr.aria-disabled]="tab.disabled() || null"
-            [attr.tabindex]="tab.active() ? 0 : -1"
-            (click)="activateTab(tab)"
-        >
-            {{ tab.label() }}
-        </button>
-        }
-    </div>
-
-    <!-- ── Tab panels ────────────────────────────────────── -->
-    <div class="zyr-tabs__panels">
-        <ng-content />
-    </div>
+<!-- ── Tab panels ────────────────────────────────────── -->
+<div class="zyr-tabs__panels">
+    <ng-content />
 </div>

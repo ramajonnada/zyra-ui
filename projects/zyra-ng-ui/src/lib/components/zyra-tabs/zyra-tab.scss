@@ -1,0 +1,27 @@
+:host { display: block; }
+
+.zyr-tab__panel {
+    display: none;
+
+    &--active {
+        display: block;
+    }
+
+    &--active.zyr-tab__panel--from-right {
+        animation: zyr-tab-from-right 280ms var(--zyr-ease-standard) both;
+    }
+
+    &--active.zyr-tab__panel--from-left {
+        animation: zyr-tab-from-left 280ms var(--zyr-ease-standard) both;
+    }
+}
+
+@keyframes zyr-tab-from-right {
+    from { opacity: 0; transform: translateX(24px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zyr-tab-from-left {
+    from { opacity: 0; transform: translateX(-24px); }
+    to   { opacity: 1; transform: translateX(0); }
+}

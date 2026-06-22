@@ -4,6 +4,9 @@
     role="tabpanel"
     [attr.aria-labelledby]="triggerId"
     [class.zyr-tab__panel--active]="active()"
+    [class.zyr-tab__panel--from-right]="_slideDir() === 'right'"
+    [class.zyr-tab__panel--from-left]="_slideDir() === 'left'"
+    (animationend)="_onAnimEnd()"
 >
     @if (active() || _loaded()) {
     <ng-content />

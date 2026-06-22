@@ -1,34 +1,131 @@
 // ============================================================
-// ZYRA NG UI - Animations (_animations.scss)
-// Centralized @keyframes for all library components.
+// ZYRA NG UI — Animations (_animations.scss)
 // ============================================================
 
+// ── Component keyframes (used internally by components) ──────
+
 @keyframes zyr-spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 @keyframes zyr-toast-in {
-    from {
-        opacity: 0;
-        transform: translateX(24px) scale(0.97);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
+    from { opacity: 0; transform: translateX(24px) scale(0.97); }
+    to   { opacity: 1; transform: translateX(0)    scale(1); }
 }
 
 @keyframes zyr-tooltip-in {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(4px);
-    }
+    from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
 
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
+@keyframes zyr-skeleton-shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+}
+
+// ── Entrance keyframes ────────────────────────────────────────
+
+@keyframes zyr-fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zyr-fade-down {
+    from { opacity: 0; transform: translateY(-24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zyr-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes zyr-scale-in {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes zyr-scale-in-spring {
+    from { opacity: 0; transform: scale(0.88); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes zyr-slide-right {
+    from { opacity: 0; transform: translateX(-16px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zyr-slide-left {
+    from { opacity: 0; transform: translateX(16px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+// ── Continuous keyframes ──────────────────────────────────────
+
+@keyframes zyr-pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(var(--zyr-glow), 0.30); }
+    50%      { box-shadow: 0 0 40px rgba(var(--zyr-glow), 0.60); }
+}
+
+@keyframes zyr-float {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-6px); }
+}
+
+@keyframes zyr-shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+}
+
+@keyframes zyr-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes zyr-bounce-in {
+    0%   { opacity: 0; transform: scale(0.3); }
+    50%  { opacity: 1; transform: scale(1.05); }
+    70%  { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+// ── Utility classes ───────────────────────────────────────────
+// Apply directly in templates: <div class="zyr-fade-up">
+
+.zyr-fade-up {
+    animation: zyr-fade-up 0.7s var(--zyr-ease-standard) both;
+}
+
+.zyr-fade-in {
+    animation: zyr-fade-in 0.6s ease-out both;
+}
+
+.zyr-scale-in {
+    animation: zyr-scale-in 0.4s var(--zyr-ease-spring) both;
+}
+
+.zyr-slide-right {
+    animation: zyr-slide-right 0.5s var(--zyr-ease-standard) both;
+}
+
+.zyr-slide-left {
+    animation: zyr-slide-left 0.5s var(--zyr-ease-standard) both;
+}
+
+.zyr-pulse-glow {
+    animation: zyr-pulse-glow 3s ease-in-out infinite;
+}
+
+.zyr-float {
+    animation: zyr-float 6s ease-in-out infinite;
+}
+
+.zyr-marquee {
+    animation: zyr-marquee 40s linear infinite;
+}
+
+// Stagger children — set --i: 1, 2, 3... on each child
+// <ul class="zyr-stagger"> <li style="--i:1"> <li style="--i:2"> </ul>
+.zyr-stagger > * {
+    animation-delay: calc(var(--i, 0) * 80ms);
 }

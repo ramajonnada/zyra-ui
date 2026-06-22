@@ -7,3 +7,5 @@ export interface ZyraTabsRef {
 }
 
 export const ZYRA_TABS = new InjectionToken<ZyraTabsRef>('ZyraTabs');
+
+export type SlideDir = 'left' | 'right' | null;
