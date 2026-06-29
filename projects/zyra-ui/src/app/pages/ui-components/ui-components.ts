@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ZyraBadge, ZyraCard } from 'zyra-ng-ui';
@@ -7,6 +7,7 @@ import { UI_COMPONENT_SHOWCASE } from './ui-components.data';
 
 @Component({
     selector: 'app-ui-components',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, ZyraBadge, ZyraCard, FaIconComponent],
     templateUrl: './ui-components.html',
     styleUrl: './ui-components.scss',
@@ -14,9 +15,22 @@ import { UI_COMPONENT_SHOWCASE } from './ui-components.data';
 export class UiComponents implements OnInit {
     private readonly seo = inject(SeoService);
 
-    readonly showcaseCards = UI_COMPONENT_SHOWCASE;
     readonly componentCount = UI_COMPONENT_SHOWCASE.length;
-    readonly categoryCount = new Set(UI_COMPONENT_SHOWCASE.map((card) => card.category)).size;
+    readonly categoryCount = new Set(UI_COMPONENT_SHOWCASE.map((c) => c.category)).size;
+
+    readonly searchQuery = signal('');
+
+    readonly filteredCards = computed(() => {
+        const q = this.searchQuery().toLowerCase().trim();
+        if (!q) return UI_COMPONENT_SHOWCASE;
+        return UI_COMPONENT_SHOWCASE.filter(
+            (c) =>
+                c.title.toLowerCase().includes(q) ||
+                c.selector.toLowerCase().includes(q) ||
+                c.category.toLowerCase().includes(q) ||
+                (c.description ?? '').toLowerCase().includes(q),
+        );
+    });
 
     ngOnInit(): void {
         this.seo.setSEO({

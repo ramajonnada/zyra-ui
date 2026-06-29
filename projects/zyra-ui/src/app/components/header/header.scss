@@ -17,10 +17,11 @@
 }
 
 :host(.is-scrolled) {
-	background: color-mix(in srgb, var(--zyr-bg) 55%, transparent);
-	border-bottom: 1px solid color-mix(in srgb, var(--zyr-border) 70%, transparent);
-	-webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.05);
-	backdrop-filter: blur(24px) saturate(180%) brightness(1.05);
+	background: var(--zyr-header-glass-bg);
+	-webkit-backdrop-filter: var(--zyr-header-backdrop);
+	backdrop-filter: var(--zyr-header-backdrop);
+	border-bottom: 1px solid color-mix(in srgb, var(--zyr-accent) 14%, var(--zyr-border));
+	box-shadow: var(--zyr-header-shadow);
 }
 
 .site-header {
@@ -299,10 +300,11 @@
 		max-width: 1280px;
 		margin: 0 auto;
 		padding: 0 28px 18px;
-		border-top: 1px solid var(--zyr-border);
-		background: var(--zyr-bg);
-		-webkit-backdrop-filter: blur(18px);
-		backdrop-filter: blur(18px);
+		border-top: 1px solid color-mix(in srgb, var(--zyr-accent) 16%, var(--zyr-border));
+		background: var(--zyr-header-glass-bg);
+		-webkit-backdrop-filter: var(--zyr-header-backdrop);
+		backdrop-filter: var(--zyr-header-backdrop);
+		box-shadow: var(--zyr-header-shadow);
 	}
 }
 

@@ -1,0 +1,28 @@
+<div class="pv">
+    <!-- pill tabs — list floats top-left, copy button sits top-right via absolute -->
+    <zyra-tabs variant="pill" (tabChange)="onTabChange($event)">
+
+        <zyra-tab label="Preview" tabId="preview">
+            <div class="pv__stage"
+                 [class.pv__stage--column]="stageClass() === 'column'"
+                 [class.pv__stage--vertical]="stageClass() === 'vertical'">
+                <ng-content />
+            </div>
+            <ng-content select="[preview-footer]" />
+        </zyra-tab>
+
+        <zyra-tab label="Code" tabId="code">
+            <div class="pv__code">
+                <pre class="pv__pre">{{ code() }}</pre>
+            </div>
+        </zyra-tab>
+
+    </zyra-tabs>
+
+    <!-- copy button — positioned absolute top-right, aligned with the pill row -->
+    @if (activeTab() === 'code') {
+        <button class="pv__copy" (click)="copyCode()">
+            {{ codeCopied() ? '✓ Copied' : 'Copy' }}
+        </button>
+    }
+</div>

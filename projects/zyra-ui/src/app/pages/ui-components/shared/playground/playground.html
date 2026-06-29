@@ -1,0 +1,14 @@
+<div class="pg-layout">
+    <aside class="pg-layout__controls">
+        <app-controls [controls]="controlDefs()" />
+    </aside>
+
+    <div class="pg-layout__preview">
+        <app-preview class="pv--fill" [code]="code()" [stageClass]="config().stageClass ?? ''">
+            <ng-container
+                [ngComponentOutlet]="config().renderer"
+                [ngComponentOutletInputs]="state()"
+            />
+        </app-preview>
+    </div>
+</div>

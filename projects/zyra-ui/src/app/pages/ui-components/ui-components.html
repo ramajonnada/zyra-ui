@@ -13,36 +13,63 @@
             <zyra-badge variant="info" size="md">{{ componentCount }} components</zyra-badge>
             <zyra-badge variant="default" size="md">{{ categoryCount }} categories</zyra-badge>
         </div>
+
+        <div class="components-page__search">
+            <div class="search-bar">
+                <svg class="search-bar__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input
+                    class="search-bar__input"
+                    type="search"
+                    placeholder="Search components…"
+                    autocomplete="off"
+                    [value]="searchQuery()"
+                    (input)="searchQuery.set($any($event.target).value)"
+                />
+                @if (searchQuery()) {
+                    <button class="search-bar__clear" (click)="searchQuery.set('')" aria-label="Clear search">✕</button>
+                }
+            </div>
+        </div>
     </header>
 
-    <div class="components-page__grid">
-        @for (card of showcaseCards; track card.slug; let i = $index) {
-            <a class="component-card" [routerLink]="['/components', card.slug]" [style.animation-delay]="(i * 55) + 'ms'">
-                <zyra-card variant="outlined" [clickable]="true" padding="lg">
-                    <div class="component-card__body">
-                        <div class="component-card__header">
-                            <div
-                                [class]="
-                                    'component-card__icon component-card__icon--' + card.accent
-                                "
-                            >
-                                <fa-icon [icon]="card.icon" aria-hidden="true" />
+    @if (filteredCards().length) {
+        <div class="components-page__grid">
+            @for (card of filteredCards(); track card.slug; let i = $index) {
+                <a class="component-card" [routerLink]="['/components', card.slug]" [style.animation-delay]="(i * 55) + 'ms'">
+                    <zyra-card variant="outlined" [clickable]="true" padding="lg">
+                        <div class="component-card__body">
+                            <div class="component-card__header">
+                                <div
+                                    [class]="
+                                        'component-card__icon component-card__icon--' + card.accent
+                                    "
+                                >
+                                    <fa-icon [icon]="card.icon" aria-hidden="true" />
+                                </div>
+
+                                <zyra-badge variant="default" size="md">{{ card.category }}</zyra-badge>
                             </div>
 
-                            <zyra-badge variant="default" size="md">{{ card.category }}</zyra-badge>
-                        </div>
+                            <div class="component-card__copy">
+                                <h2>{{ card.title }}</h2>
+                                <p>{{ card.description }}</p>
+                            </div>
 
-                        <div class="component-card__copy">
-                            <h2>{{ card.title }}</h2>
-                            <p>{{ card.description }}</p>
+                            <div class="component-card__footer">
+                                <span>{{ card.selector }}</span>
+                            </div>
                         </div>
-
-                        <div class="component-card__footer">
-                            <span>{{ card.selector }}</span>
-                        </div>
-                    </div>
-                </zyra-card>
-            </a>
-        }
-    </div>
+                    </zyra-card>
+                </a>
+            }
+        </div>
+    } @else {
+        <div class="components-page__empty">
+            <p class="components-page__empty-text">No components match <strong>"{{ searchQuery() }}"</strong></p>
+            <button class="components-page__empty-clear" (click)="searchQuery.set('')">Clear search</button>
+        </div>
+    }
 </section>

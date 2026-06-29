@@ -3,10 +3,10 @@
 
 // ── Page shell ────────────────────────────────────────────────
 .pg {
-    min-height: 100vh;
+    // min-height: 100vh;
     background: var(--zyr-bg);
     font-family: var(--zyr-font-body);
-    transition: background var(--zyr-transition-slow);
+    // transition: background var(--zyr-transition-slow);
 
     &__header {
         display: flex;
@@ -53,21 +53,29 @@
     &__body {
         display: grid;
         grid-template-columns: 300px 1fr;
-        min-height: calc(100vh - 82px);
+        align-items: start;
+        background: linear-gradient(
+            to right,
+            var(--zyr-bg-2) 299px,
+            var(--zyr-border) 299px,
+            var(--zyr-border) 300px,
+            transparent 300px
+        );
 
         @media (max-width: 900px) {
             grid-template-columns: 1fr;
+            background: none;
         }
     }
 }
 
 // ── Controls panel ────────────────────────────────────────────
 .controls {
-    border-right: 1px solid var(--zyr-border);
+    position: sticky;
+    top: 0;
+    height: 100dvh;
     padding: 24px 20px;
-    background: var(--zyr-bg-2);
     overflow-y: auto;
-    max-height: calc(100vh - 82px);
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -260,11 +268,9 @@
 .preview-area {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 82px);
 }
 
 .preview-box {
-    flex: 1;
     padding: 40px 32px;
     border-bottom: 1px solid var(--zyr-border);
     background:
@@ -272,7 +278,7 @@
         linear-gradient(90deg, var(--zyr-border) 1px, transparent 1px);
     background-size: 28px 28px;
     background-color: var(--zyr-bg);
-    min-height: 200px;
+    min-height: clamp(300px, 50vh, 520px);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -379,6 +385,14 @@
 }
 
 // ── Responsive ────────────────────────────────────────────────
+@media (max-width: 900px) {
+    .controls {
+        position: static;
+        height: auto;
+        border-bottom: 1px solid var(--zyr-border);
+    }
+}
+
 @media (max-width: 640px) {
     .pg__header {
         padding: 16px 20px;
@@ -390,11 +404,6 @@
 
     .preview-box {
         padding: 24px 20px;
-    }
-
-    .controls {
-        max-height: none;
-        border-right: none;
-        border-bottom: 1px solid var(--zyr-border);
+        min-height: clamp(260px, 40vh, 400px);
     }
 }

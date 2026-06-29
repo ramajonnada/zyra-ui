@@ -16,8 +16,8 @@ import { ZyraToastContainer } from 'zyra-ng-ui';
     styleUrl: './app.scss',
 })
 export class App {
-    private readonly expandedSidebarWidth = '260px';
-    private readonly collapsedSidebarWidth = '84px';
+    private readonly expandedSidebarWidth = '240px';
+    private readonly collapsedSidebarWidth = '72px';
     private readonly canonicalBaseUrl = 'https://www.zyraui.dev';
     private readonly document = inject(DOCUMENT);
     private readonly router = inject(Router);

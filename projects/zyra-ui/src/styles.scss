@@ -2,6 +2,10 @@
 @use './markdown-style.scss';
 @use './responsive.scss';
 
+html {
+    scrollbar-gutter: stable;
+}
+
 // RGB triplet for rgba() usage — matches --zyr-accent (#18d5ea)
 :root,
 [data-theme='dark'] {

@@ -1,5 +1,6 @@
 :host {
-    display: contents;
+    display: block;
+    height: 100%;
 }
 
 .controls {
@@ -7,7 +8,8 @@
     padding: 24px 20px;
     background: var(--zyr-bg-2);
     overflow-y: auto;
-    max-height: calc(100vh - 82px);
+    height: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -121,8 +123,6 @@
 
 @media (max-width: 640px) {
     .controls {
-        max-height: none;
         border-right: none;
-        border-bottom: 1px solid var(--zyr-border);
     }
 }
