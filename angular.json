@@ -73,7 +73,7 @@
 							}
 						],
 						"styles": [
-							"projects/zyra-ng-ui/src/lib/styles/fonts.css",
+							"dist/zyra-ng-ui/styles/fonts.css",
 							"projects/zyra-ui/src/styles.scss"
 						],
 						"server": "projects/zyra-ui/src/main.server.ts",
@@ -84,6 +84,30 @@
 					},
 					"configurations": {
 						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "525kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "24kB",
+									"maximumError": "32kB"
+								}
+							],
+							"outputHashing": "all",
+							"optimization": true,
+							"sourceMap": false,
+							"extractLicenses": true,
+							"namedChunks": false
+						},
+						"production-published": {
+							"tsConfig": "projects/zyra-ui/tsconfig.app.published.json",
+							"styles": [
+								"node_modules/zyra-ng-ui/styles/fonts.css",
+								"projects/zyra-ui/src/styles.scss"
+							],
 							"budgets": [
 								{
 									"type": "initial",
@@ -137,7 +161,7 @@
 							}
 						],
 						"styles": [
-							"projects/zyra-ng-ui/src/lib/styles/fonts.css",
+							"dist/zyra-ng-ui/styles/fonts.css",
 							"projects/zyra-ui/src/styles.scss"
 						]
 					}
