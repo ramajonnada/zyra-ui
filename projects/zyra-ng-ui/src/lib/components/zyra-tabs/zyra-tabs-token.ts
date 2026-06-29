@@ -3,6 +3,7 @@ import type { ZyraTab } from './zyra-tab';
 
 export interface ZyraTabsRef {
     activateTab(tab: ZyraTab): void;
+    closeTab(tab: ZyraTab): void;
     activeTabId(): string | null;
 }
 

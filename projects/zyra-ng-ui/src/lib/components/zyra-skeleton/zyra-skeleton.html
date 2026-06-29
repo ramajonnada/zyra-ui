@@ -1,15 +1,239 @@
-@if (variant() === 'text' && lines() > 1) {
-    @for (idx of _lineIndices(); track idx) {
-        <div
-            class="zyr-skeleton zyr-skeleton--text"
-            [class.zyr-skeleton--last-line]="isLastLine(idx)"
-            [class.zyr-skeleton--static]="!animated()"
-        ></div>
+@switch (variant()) {
+
+    @case ('text') {
+        @for (idx of _lineIndices(); track idx) {
+            <div class="zyr-skeleton zyr-skeleton--text"
+                 [class.zyr-skeleton--last-line]="isLastLine(idx)"></div>
+        }
     }
-} @else {
-    <div
-        [class]="baseClass()"
-        [style.width]="width() || null"
-        [style.height]="height() || null"
-    ></div>
+
+    @case ('circle') {
+        <div class="zyr-skeleton zyr-skeleton--circle"
+             [style.width]="width() || null"
+             [style.height]="height() || null"></div>
+    }
+
+    @case ('rect') {
+        <div class="zyr-skeleton zyr-skeleton--rect"
+             [style.width]="width() || null"
+             [style.height]="height() || null"></div>
+    }
+
+    @case ('rounded') {
+        <div class="zyr-skeleton zyr-skeleton--rounded"
+             [style.width]="width() || null"
+             [style.height]="height() || null"></div>
+    }
+
+    @case ('avatar') {
+        <div class="zyr-sk-layout zyr-sk-avatar">
+            <div class="zyr-skeleton zyr-skeleton--circle"></div>
+            <div class="zyr-sk-avatar__content">
+                <div class="zyr-skeleton zyr-skeleton--text"></div>
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--short"></div>
+            </div>
+        </div>
+    }
+
+    @case ('image') {
+        <div class="zyr-skeleton zyr-skeleton--image"
+             [style.width]="width() || null"
+             [style.height]="height() || null">
+            <svg class="zyr-sk-img-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor" opacity="0.15"/>
+                <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" opacity="0.3"/>
+                <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.25"/>
+            </svg>
+        </div>
+    }
+
+    @case ('button') {
+        <div class="zyr-skeleton zyr-skeleton--button"
+             [style.width]="width() || null"></div>
+    }
+
+    @case ('input') {
+        <div class="zyr-sk-layout zyr-sk-input">
+            <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--label"></div>
+            <div class="zyr-skeleton zyr-skeleton--input-box"
+                 [style.width]="width() || null"></div>
+        </div>
+    }
+
+    @case ('card') {
+        <div class="zyr-sk-layout zyr-sk-card">
+            <div class="zyr-skeleton zyr-skeleton--card-img"></div>
+            <div class="zyr-sk-card__body">
+                <div class="zyr-skeleton zyr-skeleton--text"></div>
+                <div class="zyr-skeleton zyr-skeleton--text"></div>
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--short"></div>
+            </div>
+        </div>
+    }
+
+    @case ('list') {
+        <div class="zyr-sk-layout zyr-sk-list">
+            @for (idx of _rowIndices(); track idx) {
+                <div class="zyr-sk-list__item">
+                    <div class="zyr-skeleton zyr-skeleton--circle zyr-skeleton--sm"></div>
+                    <div class="zyr-sk-list__content">
+                        <div class="zyr-skeleton zyr-skeleton--text"></div>
+                        <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--short"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    @case ('article') {
+        <div class="zyr-sk-layout zyr-sk-article">
+            <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--title"></div>
+            <div class="zyr-sk-article__meta">
+                <div class="zyr-skeleton zyr-skeleton--circle zyr-skeleton--xs"></div>
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--meta"></div>
+            </div>
+            <div class="zyr-skeleton zyr-skeleton--image"></div>
+            @for (idx of _lineIndices(); track idx) {
+                <div class="zyr-skeleton zyr-skeleton--text"
+                     [class.zyr-skeleton--short]="isLastLine(idx)"></div>
+            }
+        </div>
+    }
+
+    @case ('table') {
+        <div class="zyr-sk-layout zyr-sk-table">
+            <div class="zyr-sk-table__header">
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--col"></div>
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--col"></div>
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--col"></div>
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--col"></div>
+            </div>
+            @for (idx of _rowIndices(); track idx) {
+                <div class="zyr-sk-table__row">
+                    <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--col"></div>
+                    <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--col"></div>
+                    <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--col"></div>
+                    <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--col"></div>
+                </div>
+            }
+        </div>
+    }
+
+    @case ('chat') {
+        <div class="zyr-sk-layout zyr-sk-chat">
+            <div class="zyr-sk-chat__msg">
+                <div class="zyr-skeleton zyr-skeleton--circle zyr-skeleton--sm"></div>
+                <div class="zyr-skeleton zyr-skeleton--bubble"></div>
+            </div>
+            <div class="zyr-sk-chat__msg zyr-sk-chat__msg--right">
+                <div class="zyr-skeleton zyr-skeleton--bubble zyr-skeleton--bubble-short"></div>
+                <div class="zyr-skeleton zyr-skeleton--circle zyr-skeleton--sm"></div>
+            </div>
+            <div class="zyr-sk-chat__msg">
+                <div class="zyr-skeleton zyr-skeleton--circle zyr-skeleton--sm"></div>
+                <div class="zyr-skeleton zyr-skeleton--bubble zyr-skeleton--bubble-md"></div>
+            </div>
+        </div>
+    }
+
+    @case ('dashboard') {
+        <div class="zyr-sk-layout zyr-sk-dashboard">
+            <div class="zyr-sk-dashboard__stats">
+                @for (idx of [0,1,2,3]; track idx) {
+                    <div class="zyr-sk-stat">
+                        <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--short"></div>
+                        <div class="zyr-skeleton zyr-skeleton--stat-value"></div>
+                    </div>
+                }
+            </div>
+            <div class="zyr-sk-dashboard__chart">
+                <div class="zyr-sk-chart__area">
+                    @for (h of _chartHeights; track h) {
+                        <div class="zyr-skeleton zyr-sk-chart__bar" [style.height.%]="h"></div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    @case ('video') {
+        <div class="zyr-sk-layout zyr-sk-video">
+            <div class="zyr-skeleton zyr-skeleton--video-frame"></div>
+            <div class="zyr-sk-video__controls">
+                <div class="zyr-skeleton zyr-skeleton--play-btn"></div>
+                <div class="zyr-skeleton zyr-skeleton--progress"></div>
+                <div class="zyr-skeleton zyr-skeleton--vol-btn"></div>
+            </div>
+            <div class="zyr-skeleton zyr-skeleton--text"></div>
+            <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--short"></div>
+        </div>
+    }
+
+    @case ('chart') {
+        <div class="zyr-sk-layout zyr-sk-chart">
+            <div class="zyr-sk-chart__area">
+                @for (h of _chartHeights; track h) {
+                    <div class="zyr-skeleton zyr-sk-chart__bar" [style.height.%]="h"></div>
+                }
+            </div>
+            <div class="zyr-sk-chart__labels">
+                @for (idx of _chartHeights; track idx) {
+                    <div class="zyr-skeleton zyr-sk-chart__label"></div>
+                }
+            </div>
+        </div>
+    }
+
+    @case ('product') {
+        <div class="zyr-sk-layout zyr-sk-product">
+            <div class="zyr-skeleton zyr-skeleton--product-img"></div>
+            <div class="zyr-sk-product__body">
+                <div class="zyr-skeleton zyr-skeleton--text"></div>
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--short"></div>
+                <div class="zyr-skeleton zyr-skeleton--price"></div>
+                <div class="zyr-skeleton zyr-skeleton--button"></div>
+            </div>
+        </div>
+    }
+
+    @case ('profile') {
+        <div class="zyr-sk-layout zyr-sk-profile">
+            <div class="zyr-sk-profile__header">
+                <div class="zyr-skeleton zyr-skeleton--circle zyr-skeleton--lg"></div>
+                <div class="zyr-sk-profile__info">
+                    <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--name"></div>
+                    <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--short"></div>
+                </div>
+            </div>
+            <div class="zyr-sk-profile__bio">
+                <div class="zyr-skeleton zyr-skeleton--text"></div>
+                <div class="zyr-skeleton zyr-skeleton--text"></div>
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--short"></div>
+            </div>
+            <div class="zyr-sk-profile__stats">
+                @for (idx of [0,1,2]; track idx) {
+                    <div class="zyr-sk-stat">
+                        <div class="zyr-skeleton zyr-skeleton--stat-value"></div>
+                        <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--short"></div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    @case ('calendar') {
+        <div class="zyr-sk-layout zyr-sk-calendar">
+            <div class="zyr-sk-calendar__header">
+                <div class="zyr-skeleton zyr-skeleton--rounded zyr-sk-calendar__nav"></div>
+                <div class="zyr-skeleton zyr-skeleton--text zyr-skeleton--name"></div>
+                <div class="zyr-skeleton zyr-skeleton--rounded zyr-sk-calendar__nav"></div>
+            </div>
+            <div class="zyr-sk-calendar__grid">
+                @for (cell of _calendarCells(); track cell) {
+                    <div class="zyr-skeleton zyr-sk-calendar__cell"></div>
+                }
+            </div>
+        </div>
+    }
+
 }

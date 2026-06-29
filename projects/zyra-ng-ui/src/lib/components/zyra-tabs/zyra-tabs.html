@@ -1,6 +1,6 @@
-<!-- ── Tab trigger list ───────────────────────────────── -->
-<div class="zyr-tabs__list" role="tablist">
-    @for (tab of _tabs(); track tab._uid) {
+<!-- ── Tab trigger list ────────────────────────────────── -->
+<div class="zyr-tabs__list" role="tablist" [attr.aria-orientation]="orientation()" #tabList>
+    @for (tab of _visibleTabs(); track tab._uid) {
     <button
         [id]="tab.triggerId"
         type="button"
@@ -14,12 +14,28 @@
         [attr.tabindex]="tab.active() ? 0 : -1"
         (click)="activateTab(tab)"
     >
-        {{ tab.label() }}
+        @if (tab.icon()) {
+        <span class="zyr-tabs__trigger-icon" aria-hidden="true">{{ tab.icon() }}</span>
+        }
+        <span class="zyr-tabs__trigger-label">{{ tab.label() }}</span>
+        @if (tab.badge() !== '' && tab.badge() != null) {
+        <span class="zyr-tabs__trigger-badge">{{ tab.badge() }}</span>
+        }
+        @if (tab.closeable() && _visibleTabs().length > 1) {
+        <span
+            class="zyr-tabs__trigger-close"
+            [attr.aria-label]="'Close ' + tab.label()"
+            (click)="$event.stopPropagation(); closeTab(tab)"
+        >×</span>
+        }
     </button>
+    }
+    @if (variant() === 'underline') {
+    <div class="zyr-tabs__indicator" aria-hidden="true"></div>
     }
 </div>
 
-<!-- ── Tab panels ────────────────────────────────────── -->
+<!-- ── Tab panels ─────────────────────────────────────── -->
 <div class="zyr-tabs__panels">
     <ng-content />
 </div>

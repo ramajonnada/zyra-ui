@@ -1,127 +1,377 @@
-// ── Host = the tabs wrapper ───────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+// HOST
+// ══════════════════════════════════════════════════════════════
+
 :host {
     display: flex;
     flex-direction: column;
     width: 100%;
-	gap:16px;
 }
 
-// ── Trigger list ─────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+// TRIGGER LIST  (shared base)
+// ══════════════════════════════════════════════════════════════
+
 .zyr-tabs__list {
     display: flex;
-    border-bottom: 1px solid var(--zyr-border);
-    gap: 0;
+    align-items: stretch;
     overflow-x: auto;
     scrollbar-width: none;
+    flex-shrink: 0;
+
     &::-webkit-scrollbar { display: none; }
 }
 
-// ── Single trigger ────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+// TRIGGER  (shared base — no variant-specific rules here)
+// ══════════════════════════════════════════════════════════════
+
 .zyr-tabs__trigger {
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     background: none;
     border: none;
+    outline: none;
     cursor: pointer;
     font-family: var(--zyr-font-body);
-    color: var(--zyr-foreground-muted);
+    color: var(--zyr-text-muted);
     white-space: nowrap;
-    transition: color var(--zyr-transition-fast);
+    transition: color var(--zyr-transition-fast), background var(--zyr-transition-fast);
     flex-shrink: 0;
 
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: -1px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--zyr-accent);
-        transform: scaleX(0);
-        transition: transform var(--zyr-transition-base);
-    }
-
-    &:hover:not(.zyr-tabs__trigger--disabled) {
-        color: var(--zyr-foreground);
-    }
+    &:hover:not(.zyr-tabs__trigger--disabled) { color: var(--zyr-text); }
 
     &:focus-visible {
-        outline: none;
-        box-shadow: inset var(--zyr-input-shadow-focus);
-        border-radius: var(--zyr-radius-xs) var(--zyr-radius-xs) 0 0;
+        outline: 2px solid var(--zyr-accent);
+        outline-offset: -2px;
     }
 
     &--active {
         color: var(--zyr-accent);
         font-weight: 500;
-
-        &::after { transform: scaleX(1); }
     }
 
     &--disabled {
-        opacity: 0.4;
+        opacity: 0.38;
         cursor: not-allowed;
     }
 }
 
-// ── Panels ────────────────────────────────────────────────────
-// .zyr-tabs__panels {
-//     padding-top: 16px;
-// }
+// ── Trigger inner elements ────────────────────────────────────
 
-// ── Sizes ─────────────────────────────────────────────────────
-:host(.zyr-tabs--sm) .zyr-tabs__trigger {
-    padding: 8px 12px;
-    font-size: 12.5px;
-}
+.zyr-tabs__trigger-icon  { font-size: 1em; line-height: 1; flex-shrink: 0; }
+.zyr-tabs__trigger-label { line-height: 1; }
 
-:host(.zyr-tabs--md) .zyr-tabs__trigger {
-    padding: 10px 16px;
-    font-size: 13.5px;
-}
-
-// ── Pill variant ──────────────────────────────────────────────
-:host(.zyr-tabs--pill) .zyr-tabs__list {
+.zyr-tabs__trigger-badge {
     display: inline-flex;
-    align-self: flex-start;
-    background: var(--zyr-bg-2);
-    border: 1px solid var(--zyr-border);
-    border-bottom-color: var(--zyr-border); // keep all sides equal
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
     border-radius: 9px;
-    padding: 3px;
-    gap: 2px;
+    background: var(--zyr-accent-muted);
+    color: var(--zyr-accent);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    transition: background var(--zyr-transition-fast), color var(--zyr-transition-fast);
+
+    .zyr-tabs__trigger--active & {
+        background: var(--zyr-accent);
+        color: var(--zyr-btn-primary-text);
+    }
 }
 
-:host(.zyr-tabs--pill) .zyr-tabs__trigger {
-    border-radius: 6px;
-    padding: 5px 14px;
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--zyr-text-muted);
-    transition:
-        color var(--zyr-transition-fast),
-        background var(--zyr-transition-spring),
-        box-shadow var(--zyr-transition-spring);
+.zyr-tabs__trigger-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+    border-radius: 4px;
+    font-size: 15px;
+    line-height: 1;
+    color: var(--zyr-text-dim);
+    flex-shrink: 0;
+    transition: background var(--zyr-transition-fast), color var(--zyr-transition-fast);
 
-    &::after { display: none; }
+    &:hover {
+        background: color-mix(in srgb, var(--zyr-danger) 14%, transparent);
+        color: var(--zyr-danger);
+    }
+}
 
-    &:focus-visible {
-        outline: none;
-        box-shadow: 0 0 0 2px var(--zyr-accent);
+// ══════════════════════════════════════════════════════════════
+// PANELS  (shared base)
+// ══════════════════════════════════════════════════════════════
+
+.zyr-tabs__panels {
+    // Sizes to content by default.
+    // Fill-height behaviour is injected by preview.scss via ::ng-deep in fill mode.
+}
+
+// ══════════════════════════════════════════════════════════════
+// SIZES  — use > so styles don't leak into nested zyra-tabs
+// ══════════════════════════════════════════════════════════════
+
+:host(.zyr-tabs--sm) > .zyr-tabs__list > .zyr-tabs__trigger {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+:host(.zyr-tabs--md) > .zyr-tabs__list > .zyr-tabs__trigger {
+    padding: 10px 16px;
+    font-size: 14px;
+}
+
+:host(.zyr-tabs--lg) > .zyr-tabs__list > .zyr-tabs__trigger {
+    padding: 14px 22px;
+    font-size: 16px;
+}
+
+// ══════════════════════════════════════════════════════════════
+// VARIANT: UNDERLINE
+// Frameless — gray divider line, sliding 2px accent indicator
+// ══════════════════════════════════════════════════════════════
+
+:host(.zyr-tabs--underline) {
+    > .zyr-tabs__list {
+        position: relative;           // anchor the indicator
+        border-bottom: 1px solid var(--zyr-border);
+    }
+
+    > .zyr-tabs__panels {
+        padding-top: 16px;
+    }
+
+    // Sliding indicator — JS sets --ind-left / --ind-width on the list
+    .zyr-tabs__indicator {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: var(--zyr-accent);
+        border-radius: 2px 2px 0 0;
+        width: var(--ind-width, 0px);
+        transform: translateX(var(--ind-left, 0px));
+        transition: transform 220ms var(--zyr-ease-standard), width 220ms var(--zyr-ease-standard);
+        pointer-events: none;
+    }
+}
+
+// ══════════════════════════════════════════════════════════════
+// VARIANT: PILL
+// Rounded pills in a tinted bar, no separator line
+// ══════════════════════════════════════════════════════════════
+
+:host(.zyr-tabs--pill) {
+    border: 1px solid var(--zyr-border);
+    border-radius: var(--zyr-radius-md);
+    background: var(--zyr-bg);
+    overflow: hidden;
+
+    > .zyr-tabs__list {
+        background: var(--zyr-bg-2);
+        padding: 6px 8px;
+        gap: 2px;
+    }
+
+    > .zyr-tabs__list > .zyr-tabs__trigger {
         border-radius: 6px;
+        transition:
+            color      var(--zyr-transition-fast),
+            background var(--zyr-transition-spring),
+            box-shadow var(--zyr-transition-spring);
+
+        &:hover:not(.zyr-tabs__trigger--disabled) {
+            background: color-mix(in srgb, var(--zyr-text) 7%, transparent);
+        }
+
+        &.zyr-tabs__trigger--active {
+            background: var(--zyr-pill-active-bg);
+            color: var(--zyr-text);
+            font-weight: 600;
+            box-shadow: var(--zyr-pill-active-shadow);
+        }
     }
 
-    &:hover:not(.zyr-tabs__trigger--disabled) {
-        color: var(--zyr-text);
+    > .zyr-tabs__panels { border-top: 1px solid var(--zyr-border); }
+}
+
+// ══════════════════════════════════════════════════════════════
+// VARIANT: FILLED
+// Active trigger fills with solid accent background
+// ══════════════════════════════════════════════════════════════
+
+:host(.zyr-tabs--filled) {
+    border: 1px solid var(--zyr-border);
+    border-radius: var(--zyr-radius-md);
+    background: var(--zyr-bg);
+    overflow: hidden;
+
+    > .zyr-tabs__list {
+        background: var(--zyr-bg-2);
+        gap: 0;
     }
 
-    &.zyr-tabs__trigger--active {
-        background: var(--zyr-pill-active-bg);
-        color: var(--zyr-text);
-        font-weight: 600;
-        box-shadow: var(--zyr-pill-active-shadow);
+    > .zyr-tabs__list > .zyr-tabs__trigger {
+        flex: 1;
+        justify-content: center;
+        border-radius: 0;
+        border-right: 1px solid var(--zyr-border);
+        transition: color var(--zyr-transition-fast), background var(--zyr-transition-fast);
+
+        &:last-child { border-right: none; }
+
+        &:hover:not(.zyr-tabs__trigger--disabled):not(.zyr-tabs__trigger--active) {
+            background: color-mix(in srgb, var(--zyr-accent) 8%, transparent);
+        }
+
+        &.zyr-tabs__trigger--active {
+            background: var(--zyr-accent);
+            color: var(--zyr-btn-primary-text);
+            font-weight: 600;
+        }
+    }
+
+    > .zyr-tabs__panels { border-top: 1px solid var(--zyr-border); }
+}
+
+// ══════════════════════════════════════════════════════════════
+// VARIANT: OUTLINED
+// Each tab has a visible border; active tab "opens" into the panel
+// ══════════════════════════════════════════════════════════════
+
+:host(.zyr-tabs--outlined) {
+    background: transparent;
+
+    > .zyr-tabs__list {
+        background: transparent;
+        border-bottom: 2px solid var(--zyr-border);
+        padding: 0 2px;
+        gap: 2px;
+    }
+
+    > .zyr-tabs__list > .zyr-tabs__trigger {
+        border: 1px solid transparent;
+        border-bottom: none;
+        margin-bottom: -2px;
+        border-radius: var(--zyr-radius-sm) var(--zyr-radius-sm) 0 0;
+        background: transparent;
+        transition:
+            color        var(--zyr-transition-fast),
+            border-color var(--zyr-transition-base),
+            background   var(--zyr-transition-fast);
+
+        &:hover:not(.zyr-tabs__trigger--disabled):not(.zyr-tabs__trigger--active) {
+            color: var(--zyr-text);
+            border-color: var(--zyr-border) var(--zyr-border) transparent;
+            background: var(--zyr-bg-2);
+        }
+
+        &.zyr-tabs__trigger--active {
+            color: var(--zyr-accent);
+            font-weight: 500;
+            border-color: var(--zyr-border) var(--zyr-border) var(--zyr-bg);
+            background: var(--zyr-bg);
+        }
     }
 }
 
-// :host(.zyr-tabs--pill) .zyr-tabs__panels {
-//     padding-top: 0;
-// }
+// ══════════════════════════════════════════════════════════════
+// VERTICAL ORIENTATION
+// ══════════════════════════════════════════════════════════════
+
+:host(.zyr-tabs--vertical) {
+    flex-direction: row;
+
+    > .zyr-tabs__list {
+        flex-direction: column;
+        align-items: stretch;
+        border-bottom: none;
+        border-right: 1px solid var(--zyr-border);
+        overflow-x: visible;
+        overflow-y: auto;
+        flex-shrink: 0;
+        min-width: 140px;
+    }
+
+    > .zyr-tabs__panels {
+        flex: 1;
+        min-width: 0;
+    }
+
+    // Underline in vertical = right-edge indicator via box-shadow
+    &.zyr-tabs--underline > .zyr-tabs__list > .zyr-tabs__trigger {
+        width: 100%;
+        justify-content: flex-start;
+
+        &.zyr-tabs__trigger--active {
+            box-shadow: inset -2px 0 0 var(--zyr-accent);
+        }
+    }
+
+    // Vertical + Pill
+    &.zyr-tabs--pill {
+        > .zyr-tabs__list {
+            border-right: none;
+            padding: 8px 6px;
+        }
+
+        > .zyr-tabs__panels {
+            border-left: 1px solid var(--zyr-border);
+        }
+    }
+
+    // Vertical + Filled
+    &.zyr-tabs--filled {
+        > .zyr-tabs__list {
+            border-right: none;
+            gap: 0;
+            padding: 0;
+        }
+
+        > .zyr-tabs__panels {
+            border-left: 1px solid var(--zyr-border);
+        }
+
+        > .zyr-tabs__list > .zyr-tabs__trigger {
+            flex: unset;
+            border-right: none;
+            border-bottom: 1px solid var(--zyr-border);
+            justify-content: flex-start;
+
+            &:last-child { border-bottom: none; }
+        }
+    }
+
+    // Vertical + Outlined
+    &.zyr-tabs--outlined {
+        > .zyr-tabs__list {
+            border-bottom: none;
+            border-right: 2px solid var(--zyr-border);
+            background: transparent;
+            padding: 2px 0;
+            gap: 2px;
+        }
+
+        > .zyr-tabs__list > .zyr-tabs__trigger {
+            border: 1px solid transparent;
+            border-right: none;
+            border-bottom: none;
+            margin-right: -2px;
+            border-radius: var(--zyr-radius-sm) 0 0 var(--zyr-radius-sm);
+            background: transparent;
+
+            &.zyr-tabs__trigger--active {
+                border-color: var(--zyr-border);
+                border-right-color: var(--zyr-bg);
+                background: var(--zyr-bg);
+            }
+        }
+    }
+}

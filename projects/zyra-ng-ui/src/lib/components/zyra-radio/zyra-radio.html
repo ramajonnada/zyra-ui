@@ -10,9 +10,7 @@
         [disabled]="isDisabled() || null"
         (click)="select()"
     >
-        @if (checked()) {
         <span class="zyr-radio__dot"></span>
-        }
     </button>
 
     @if (label()) {

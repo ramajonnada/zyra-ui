@@ -1,37 +1,37 @@
-[data-theme='dark'],
+﻿[data-theme='dark'],
 :root {
-    // ── Surfaces ─────────────────────────────────────────────
+    // â”€â”€ Surfaces â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // bg stays very dark; bg-2/3/4 shift warmer to match Emergent's blue-navy elevation
     --zyr-bg:   #090b10;
     --zyr-bg-2: #14171e;
     --zyr-bg-3: #1c2030;
     --zyr-bg-4: #252d3a;
 
-    // ── Borders ──────────────────────────────────────────────
+    // â”€â”€ Borders â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     --zyr-border:        rgba(255, 255, 255, 0.07);
     --zyr-border-hover:  rgba(0, 234, 255, 0.28);
     --zyr-border-strong: rgba(255, 255, 255, 0.14);
 
-    // ── Text ─────────────────────────────────────────────────
-    // Emergent uses pure #ffffff foreground in dark — crisper against the dark navy surfaces
+    // â”€â”€ Text â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Emergent uses pure #ffffff foreground in dark â€” crisper against the dark navy surfaces
     --zyr-text:         #ffffff;
     --zyr-text-muted:   #98a8bb;
     --zyr-text-dim:     #5a6778;
     --zyr-text-inverse: #060a10;
 
-    // ── Glow RGB channels ────────────────────────────────────
-    // Used as: rgba(var(--zyr-glow), 0.35) → rgba(0, 234, 255, 0.35)
+    // â”€â”€ Glow RGB channels â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Used as: rgba(var(--zyr-glow), 0.35) â†’ rgba(0, 234, 255, 0.35)
     --zyr-glow: 0, 234, 255;
 
-    // ── Accent (Neon Cyan) ────────────────────────────────────
-    // Core change: 80% → 100% saturation makes it neon like Emergent
-    // #18d5ea (old) → #00EAFF (Emergent primary-500, HSL 186° 100% 50%)
+    // â”€â”€ Accent (Neon Cyan) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Core change: 80% â†’ 100% saturation makes it neon like Emergent
+    // #18d5ea (old) â†’ #00EAFF (Emergent primary-500, HSL 186Â° 100% 50%)
     --zyr-accent:        #00EAFF;
     --zyr-accent-hover:  #26EDF4;
     --zyr-accent-muted:  rgba(0, 234, 255, 0.12);
     --zyr-accent-border: rgba(0, 234, 255, 0.24);
 
-    // ── Secondary accents (unchanged) ────────────────────────
+    // â”€â”€ Secondary accents (unchanged) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     --zyr-accent-2:        #2491e8;
     --zyr-accent-2-muted:  rgba(36, 145, 232, 0.12);
     --zyr-accent-2-border: rgba(36, 145, 232, 0.24);
@@ -40,8 +40,8 @@
     --zyr-accent-3-muted:  rgba(139, 110, 245, 0.12);
     --zyr-accent-3-border: rgba(139, 110, 245, 0.24);
 
-    // ── Semantic — updated to Emergent's vivid palette ────────
-    // These are just hex values, not Tailwind — you own these numbers
+    // â”€â”€ Semantic â€” updated to Emergent's vivid palette â”€â”€â”€â”€â”€â”€â”€â”€
+    // These are just hex values, not Tailwind â€” you own these numbers
     --zyr-success:        #10B981;
     --zyr-success-muted:  rgba(16, 185, 129, 0.10);
     --zyr-success-border: rgba(16, 185, 129, 0.22);
@@ -58,22 +58,22 @@
     --zyr-info-muted:  rgba(59, 130, 246, 0.10);
     --zyr-info-border: rgba(59, 130, 246, 0.22);
 
-    // ── Shadows ───────────────────────────────────────────────
+    // â”€â”€ Shadows â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     --zyr-shadow-sm:     0 2px 8px rgba(0, 0, 0, 0.45);
     --zyr-shadow-md:     0 6px 20px rgba(0, 0, 0, 0.50);
     --zyr-shadow-accent: 0 10px 26px rgba(0, 234, 255, 0.22);
 
-    // ── Buttons ───────────────────────────────────────────────
-    // Neon #00EAFF needs very dark text — #000c10 reads black but keeps the teal warmth
+    // â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Neon #00EAFF needs very dark text â€” #000c10 reads black but keeps the teal warmth
     --zyr-btn-primary-text:   #000c10;
     --zyr-btn-ghost-hover-bg: rgba(255, 255, 255, 0.04);
 
-    // ── Inputs ────────────────────────────────────────────────
+    // â”€â”€ Inputs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     --zyr-input-bg:           var(--zyr-bg-3);
     --zyr-input-border:       var(--zyr-border);
     --zyr-input-shadow-focus: 0 0 0 3px rgba(0, 234, 255, 0.15);
 
-    // ── Cards ─────────────────────────────────────────────────
+    // â”€â”€ Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     --zyr-card-bg:              #14171e;
     --zyr-card-border:          rgba(255, 255, 255, 0.10);
     --zyr-card-section-bg:      rgba(255, 255, 255, 0.03);
@@ -81,7 +81,7 @@
     --zyr-card-elevated-shadow: 0 8px 24px rgba(0, 0, 0, 0.32), 0 24px 48px rgba(0, 0, 0, 0.20);
     --zyr-card-focus-ring:      rgba(0, 234, 255, 0.18);
 
-    // ── Misc ──────────────────────────────────────────────────
+    // â”€â”€ Misc â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     --zyr-code-bg:     #0a0f15;
     --zyr-overlay-bg:  rgba(4, 8, 12, 0.72);
 
@@ -101,4 +101,13 @@
 
     --zyr-pill-active-bg:     var(--zyr-bg-3);
     --zyr-pill-active-shadow: 0 2px 5px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--zyr-border-strong);
+
+    --zyr-preview-stage-bg:   var(--zyr-bg);
+
+    --zyr-header-glass-bg:    rgba(9, 11, 16, 0.58);
+    --zyr-header-backdrop:    blur(28px) saturate(200%) brightness(1.08);
+    --zyr-header-shadow:
+        0 1px 0 rgba(var(--zyr-glow), 0.08) inset,
+        0 2px 8px rgba(0, 0, 0, 0.10),
+        0 8px 28px rgba(0, 0, 0, 0.14);
 }

@@ -31,6 +31,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transform: scale(0);
+        transition: transform 140ms var(--zyr-ease-standard);
         :where(svg) { display: block; }
     }
 
@@ -60,6 +62,11 @@
     &--indeterminate &__box {
         background: var(--zyr-accent);
         border-color: var(--zyr-accent);
+    }
+
+    &--checked &__icon,
+    &--indeterminate &__icon {
+        transform: scale(1);
     }
 
     // ── Disabled ─────────────────────────────────────────────
