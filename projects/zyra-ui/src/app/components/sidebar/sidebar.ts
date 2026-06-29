@@ -27,7 +27,7 @@ export class Sidebar {
 
     readonly navItems: readonly NavItem[] = [
         { label: 'Docs', icon: appIcons.folder, route: '/docs' },
-        { label: 'Components', icon: appIcons.cubes, route: '/components', badge: '9' },
+        { label: 'Components', icon: appIcons.cubes, route: '/components', badge: '22' },
         { label: 'Blog', icon: appIcons.message, route: '/blog' },
         { label: 'Contact', icon: appIcons.envelope, route: '/contact' },
     ];

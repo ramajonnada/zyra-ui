@@ -1,5 +1,5 @@
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faGithub, faNpm } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faInstagram, faNpm } from '@fortawesome/free-brands-svg-icons';
 import { faMoon as faMoonRegular, faSquare, faSun as faSunRegular } from '@fortawesome/free-regular-svg-icons';
 import {
     faAlignLeft,
@@ -60,6 +60,7 @@ export const appIcons = {
     envelope: faEnvelope,
     folder: faFolder,
     github: faGithub,
+    instagram: faInstagram,
     globe: faGlobe,
     hammer: faHammer,
     handPointer: faHandPointer,

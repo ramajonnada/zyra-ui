@@ -27,10 +27,13 @@
 		"commit": "cz",
 		"check-all": "npm run format:check && npm run lint",
 		"audit:components": "node scripts/audit-components.js",
+		"count:check": "node scripts/check-component-count.js",
+		"count:fix": "node scripts/check-component-count.js --fix",
 		"new:component": "powershell -ExecutionPolicy Bypass -File scripts/new-component.ps1 -Name",
 		"new:playground": "powershell -ExecutionPolicy Bypass -File scripts/new-playground.ps1 -Name",
 		"publish:lib": "npm run build:lib && npm publish dist/zyra-ng-ui --access public",
-		"update:published-lib": "npm install zyra-ng-ui@latest"
+		"update:published-lib": "npm install zyra-ng-ui@latest",
+		"version:bump": "node scripts/bump-version.js"
 	},
 	"prettier": {
 		"printWidth": 100,
@@ -63,7 +66,7 @@
 		"prettier": "^3.6.2",
 		"rxjs": "~7.8.0",
 		"tslib": "^2.3.0",
-		"zyra-ng-ui": "^1.6.0"
+		"zyra-ng-ui": "^1.7.0"
 	},
 	"devDependencies": {
 		"@angular/build": "^21.0.4",

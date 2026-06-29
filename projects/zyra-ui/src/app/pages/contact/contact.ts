@@ -26,9 +26,15 @@ export class Contact implements OnInit {
     readonly contactMethods: readonly ContactMethod[] = [
         {
             label: 'Email',
-            value: 'zyraui.contact@gmail.com',
-            href: 'mailto:zyraui.contact@gmail.com',
+            value: 'zyrangui.contact@gmail.com',
+            href: 'mailto:zyrangui.contact@gmail.com',
             icon: appIcons.envelope,
+        },
+        {
+            label: 'Instagram',
+            value: '@zyrangui',
+            href: 'https://www.instagram.com/zyrangui/',
+            icon: appIcons.instagram,
         },
         {
             label: 'GitHub',
@@ -48,12 +54,12 @@ export class Contact implements OnInit {
         this.seo.setSEO({
             title: 'Contact Zyra UI - Support, feedback, and collaboration',
             description:
-                'Contact the Zyra UI team for component library questions, documentation feedback, collaboration, or support.',
+                'Contact the Zyra UI team via email or Instagram for component library questions, documentation feedback, or collaboration.',
             url: 'https://www.zyraui.dev/contact',
         });
     }
 
     openEmail(): void {
-        this.document.location.href = 'mailto:zyraui.contact@gmail.com';
+        this.document.location.href = 'mailto:zyrangui.contact@gmail.com';
     }
 }

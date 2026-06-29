@@ -1,4 +1,4 @@
-@use 'zyra-ng-ui';
+﻿@use 'zyra-ng-ui';
 @use './markdown-style.scss';
 @use './responsive.scss';
 
@@ -14,6 +14,7 @@ html {
 }
 
 [data-theme='light'] {
+	--zyra-glow: 0, 122, 138;
 	--zyra-grid: 215 20% 28%;
 }
 

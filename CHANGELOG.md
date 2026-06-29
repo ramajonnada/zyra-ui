@@ -7,6 +7,39 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [1.7.0] — 2026-06-29
+
+### Added
+- `zyra-checkbox`: New form checkbox component with `ControlValueAccessor` support, indeterminate state, and label slot
+- `zyra-radio` / `zyra-radio-group`: New radio button and group components with `ControlValueAccessor` support
+- `zyra-select` / `zyra-option`: New select dropdown with custom options, multi-select, and form integration
+- `zyra-skeleton`: New skeleton loader with shape presets (text, avatar, card, list, table, form) and animation modes
+- `zyra-tabs` / `zyra-tab`: New tabs component with pill variant, directional slide transitions, and lazy content
+- `zyra-textarea`: New textarea component with auto-resize, character count, and validation states
+
+### Changed
+- `zyra-tabs`: Added pill variant, directional slide transition, updated indicator and layout styles
+- `zyra-skeleton`: Extended with rich preset shapes and configurable animation
+- `zyra-checkbox`: Refined focus ring and disabled state styles
+- `zyra-radio`: Refined layout and disabled state styles
+- Theme tokens: Refined light and dark theme color scales and animation keyframes
+- `zyra-form-field`, `zyra-modal`, `zyra-toggle`: Internal refactor for cleaner signal usage
+
+---
+
+## [1.6.0] — 2026-05-25
+
+### Added
+- `zyra-accordion` / `zyra-accordion-item`: New collapsible accordion component with animated expand/collapse
+- `zyra-chip`: New chip component with toggle selection and `selectedChange` output
+
+### Changed
+- `zyra-form-field`: Refactored to cleaner signal-based implementation
+- `zyra-modal`: Refactored lifecycle and event handling for simplicity
+- `zyra-toggle`: Refactored `ControlValueAccessor` implementation
+
+---
+
 ## [1.5.32] — 2026-05-21
 
 ### Added

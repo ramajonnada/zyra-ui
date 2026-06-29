@@ -200,6 +200,15 @@ export class DemoComponent {}``,
     Ok "ui-components.data.ts  (+card)"
 }
 
+# ── Auto-sync component count ─────────────────────────────────────────────────
+
+Write-Host ""
+Write-Host "Syncing component count..." -ForegroundColor Cyan
+node "$root\scripts\check-component-count.js" --fix
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "  WARN: count sync had issues — run 'npm run count:check' to inspect." -ForegroundColor Yellow
+}
+
 # ── Summary ───────────────────────────────────────────────────────────────────
 
 Write-Host ""
