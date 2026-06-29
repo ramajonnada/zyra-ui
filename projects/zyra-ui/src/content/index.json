@@ -1,6 +1,96 @@
 [
 	{
 		"imageUrl": "",
+		"readTime": "8 mins",
+		"slug": "angular-resource-api-httpresouce-signals-2026",
+		"title": "Angular resource() and httpResource(): Reactive HTTP with Signals",
+		"description": "A complete guide to Angular's resource() and httpResource() APIs — how to fetch data reactively with signals, handle loading and error states, refresh on demand, and replace RxJS-heavy data fetching patterns in Angular 21.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular resource",
+			"angular httpresource",
+			"angular signals",
+			"angular http",
+			"angular 21",
+			"reactive data fetching",
+			"angular zoneless"
+		],
+		"keywords": [
+			"Angular resource API",
+			"Angular httpResource",
+			"Angular reactive HTTP signals",
+			"Angular resource() tutorial",
+			"Angular fetch data with signals"
+		],
+		"date": "2026-06-29",
+		"faq": [
+			{
+				"q": "What is Angular's httpResource()?",
+				"a": "httpResource() is an Angular API that fetches HTTP data reactively using signals. You pass a function that returns a URL (reading any signals inside), and it gives back an object with value(), isLoading(), error(), and status() signals. It re-fetches automatically whenever the signals it reads change."
+			},
+			{
+				"q": "What is the difference between resource() and httpResource() in Angular?",
+				"a": "httpResource() uses Angular's HttpClient under the hood, so it runs through your interceptors, auth headers, and XSRF tokens. resource() accepts any async function — fetch, IndexedDB, or custom logic — giving you full control. Use httpResource() for standard HTTP and resource() when you need custom async behaviour."
+			},
+			{
+				"q": "How do I skip a fetch when the input is not ready in Angular resource?",
+				"a": "Return undefined from the URL function. When the URL function returns undefined, the resource stays in the Idle state and makes no request. As soon as the signal becomes a valid value, the resource fetches automatically."
+			},
+			{
+				"q": "Does httpResource() work with Angular SSR?",
+				"a": "Yes. httpResource() fetches data on the server before the HTML is serialized, so crawlers and users receive fully-rendered content. Add withHttpTransferCache() to your HttpClient providers so the server result is transferred to the browser, avoiding a second request on hydration."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "9 mins",
+		"slug": "angular-defer-blocks-lazy-loading-2026",
+		"title": "Angular @defer Blocks: Lazy Load Any Component Instantly",
+		"description": "A practical guide to Angular's @defer template syntax — how to lazy load components, use triggers like on viewport and on interaction, handle loading/error states, and combine defer with signals for maximum performance in 2026.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular defer",
+			"angular lazy loading",
+			"angular 21",
+			"angular performance",
+			"defer blocks",
+			"angular templates",
+			"code splitting"
+		],
+		"keywords": [
+			"Angular defer blocks",
+			"Angular lazy loading components",
+			"Angular @defer tutorial",
+			"@defer on viewport",
+			"Angular deferred loading 2026"
+		],
+		"date": "2026-06-29",
+		"faq": [
+			{
+				"q": "What is the Angular @defer block?",
+				"a": "The @defer block is a built-in Angular template syntax that lazily loads any standalone component, directive, or pipe as a separate JS chunk. Angular only downloads and renders the deferred content when a trigger fires — such as the element scrolling into view, the user clicking, or a signal becoming true."
+			},
+			{
+				"q": "What triggers are available for Angular @defer?",
+				"a": "Angular @defer supports on viewport (when the placeholder enters the viewport), on interaction (on first click, focus, or touch), on idle (during browser idle time), on timer (after a fixed delay), on immediate (as soon as possible after initial render), and when (a custom boolean expression, including signals)."
+			},
+			{
+				"q": "What is the difference between @defer @placeholder and @loading?",
+				"a": "@placeholder is shown immediately before the trigger fires — it represents the space before the user requests the content. @loading is shown while the JS chunk is actively being fetched from the network. Once the chunk arrives and renders, both are replaced by the main @defer block content."
+			},
+			{
+				"q": "Can I use @defer with non-standalone Angular components?",
+				"a": "No. Only standalone components, directives, and pipes are deferrable. Non-standalone (module-based) dependencies stay in the main bundle even if wrapped in a @defer block. This is a strong reason to migrate to standalone components in modern Angular."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
 		"readTime": "5 mins",
 		"slug": "fix-ng0908-in-this-configuration-angular-requires-zonejs",
 		"title": "Fix NG0908: In This Configuration Angular Requires Zone.js",
