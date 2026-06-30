@@ -1,4 +1,5 @@
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     ElementRef,
@@ -41,7 +42,7 @@ export class ZyraModal implements OnDestroy {
     open = model<boolean>(false);
     size = input<ModalSize>('md');
     title = input<string>('');
-    dismissible = input<boolean>(true);
+    dismissible = input(true, { transform: booleanAttribute });
 
     // ── Outputs ───────────────────────────────────────────────
     closed = output<void>();

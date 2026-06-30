@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 export type BadgeVariant = 'success' | 'warning' | 'danger' | 'info' | 'purple' | 'default';
 export type BadgeSize = 'sm' | 'md' | 'lg';
@@ -14,7 +14,7 @@ export class ZyraBadge {
     // ── Inputs ────────────────────────────────────────────────
     variant = input<BadgeVariant>('default');
     size = input<BadgeSize>('md');
-    dot = input<boolean>(false);
+    dot = input(false, { transform: booleanAttribute });
     ariaLabel = input<string>('');
 
     // ── Computed ──────────────────────────────────────────────

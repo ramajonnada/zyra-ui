@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 
 export type ChipVariant = 'default' | 'success' | 'warning' | 'danger' | 'info' | 'purple';
 export type ChipSize = 'sm' | 'md' | 'lg';
@@ -14,10 +14,10 @@ export class ZyraChip {
     // ── Inputs ────────────────────────────────────────────────
     variant = input<ChipVariant>('default');
     size = input<ChipSize>('md');
-    dismissible = input<boolean>(false);
-    selectable = input<boolean>(false);
+    dismissible = input(false, { transform: booleanAttribute });
+    selectable = input(false, { transform: booleanAttribute });
     selected = model<boolean>(false);
-    disabled = input<boolean>(false);
+    disabled = input(false, { transform: booleanAttribute });
 
     // ── Outputs ───────────────────────────────────────────────
     dismissed = output<void>();

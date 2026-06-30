@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 export type ProgressVariant = 'default' | 'success' | 'warning' | 'danger' | 'info';
 export type ProgressSize = 'sm' | 'md' | 'lg';
@@ -16,8 +16,8 @@ export class ZyraProgress {
     max = input<number>(100);
     variant = input<ProgressVariant>('default');
     size = input<ProgressSize>('md');
-    indeterminate = input<boolean>(false);
-    showLabel = input<boolean>(false);
+    indeterminate = input(false, { transform: booleanAttribute });
+    showLabel = input(false, { transform: booleanAttribute });
     label = input<string>('');
 
     // ── Computed ──────────────────────────────────────────────

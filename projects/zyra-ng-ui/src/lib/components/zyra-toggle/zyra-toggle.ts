@@ -1,4 +1,5 @@
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     computed,
@@ -30,7 +31,7 @@ export class ZyraToggle implements ControlValueAccessor {
     // ── Inputs ────────────────────────────────────────────────
     checked = model<boolean>(false);
     size = input<ToggleSize>('md');
-    disabled = input<boolean>(false);
+    disabled = input(false, { transform: booleanAttribute });
     label = input<string>('');
     labelPosition = input<'left' | 'right'>('right');
 

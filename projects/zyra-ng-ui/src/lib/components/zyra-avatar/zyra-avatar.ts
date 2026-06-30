@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type AvatarVariant = 'teal' | 'blue' | 'purple' | 'warm' | 'neutral';
@@ -17,7 +17,7 @@ export class ZyraAvatar {
     size = input<AvatarSize>('md');
     variant = input<AvatarVariant>('teal');
     online = input<boolean | null>(null);
-    square = input<boolean>(false);
+    square = input(false, { transform: booleanAttribute });
 
     // ── Internal ──────────────────────────────────────────────
     imgError = signal(false);

@@ -1,6 +1,7 @@
 // projects/zyra-ng-ui/src/lib/input/zyra-input.ts
 
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     computed,
@@ -39,7 +40,7 @@ export class ZyraInput implements ControlValueAccessor, OnInit {
     type = input<InputType>('text');
     size = input<InputSize>('md');
     placeholder = input<string>('');
-    readonly = input<boolean>(false);
+    readonly = input(false, { transform: booleanAttribute });
     id = input<string>('');
     maxlength = input<number | null>(null);
     min = input<number | null>(null);

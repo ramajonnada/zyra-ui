@@ -2,6 +2,7 @@
 
 import {
     AfterContentInit,
+    booleanAttribute,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
@@ -50,8 +51,8 @@ export class ZyraFormField implements AfterContentInit {
     appearance = input<FormFieldAppearance>('outline');
     size = input<FormFieldSize>('md');
     maxLength = input<number | null>(null);
-    clearButton = input<boolean>(false);
-    loading = input<boolean>(false);
+    clearButton = input(false, { transform: booleanAttribute });
+    loading = input(false, { transform: booleanAttribute });
 
     // ── Get projected child (input or textarea) ──────────────
     @ContentChild(ZyraInput) zyraInput!: ZyraInput;
