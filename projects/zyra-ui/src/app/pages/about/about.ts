@@ -28,9 +28,9 @@ export class About implements OnInit {
     readonly icons = appIcons;
 
     readonly stats: readonly AboutStat[] = [
-        { value: '16', label: 'Components' },
+        { value: '22', label: 'Components' },
         { value: 'MIT', label: 'License' },
-        { value: 'v17+', label: 'Angular' },
+        { value: 'v21', label: 'Angular' },
         { value: '100%', label: 'Signals-first' },
     ];
 
@@ -71,7 +71,7 @@ export class About implements OnInit {
         this.seo.setSEO({
             title: 'About Zyra UI - Angular components built with design tokens',
             description:
-                'Learn about Zyra UI — a signals-first Angular component library with 16 accessible, token-driven components for real apps and public websites.',
+                'Learn about Zyra UI — a signals-first Angular component library with 22 accessible, token-driven components for real apps and public websites.',
             url: 'https://www.zyraui.dev/about',
         });
     }

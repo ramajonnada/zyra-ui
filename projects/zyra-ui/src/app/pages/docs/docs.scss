@@ -32,12 +32,48 @@
     }
 }
 
+.docs-hero__badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    margin-top: 20px;
+
+    img {
+        display: block;
+        border-radius: 3px;
+    }
+}
+
+.docs-hero__badge-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+
+    &:hover img {
+        opacity: 0.85;
+    }
+}
+
+.docs-hero__ext-link {
+    color: var(--zyr-text-muted);
+    font-family: var(--zyr-font-mono);
+    font-size: 0.72rem;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+        color: var(--zyr-accent);
+    }
+}
+
 .docs-hero__actions {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
-    margin-top: 26px;
+    margin-top: 20px;
 }
 
 // ── Install steps ─────────────────────────────────────────────

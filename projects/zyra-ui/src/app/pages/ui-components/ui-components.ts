@@ -43,7 +43,7 @@ export class UiComponents implements OnInit {
         this.seo.setSEO({
             title: 'Angular UI Components - Zyra UI',
             description:
-                'Explore Zyra UI Angular components including buttons, cards, inputs, badges, avatars, toasts, and tooltips.',
+                'Explore all 22 Zyra UI Angular components — buttons, cards, inputs, forms, modals, toasts, tooltips, tabs, accordion, skeleton, and more. Interactive playgrounds with copy-paste Angular code.',
             url: 'https://www.zyraui.dev/components',
         });
     }

@@ -40,7 +40,7 @@ export class UiComponentDetail implements OnInit {
 
         this.seo.setSEO({
             title: `${componentName} Component - Zyra UI`,
-            description: `Learn how to use the ${componentName} component in Angular with examples and API.`,
+            description: `Interactive playground, copy-paste examples, and full API reference for the Angular ${componentName} component from Zyra UI.`,
             url: `https://www.zyraui.dev/components/${slug}`,
         });
     }
