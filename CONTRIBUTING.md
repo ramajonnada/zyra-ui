@@ -11,11 +11,13 @@ npm install
 ```
 
 Run the playground:
+
 ```bash
 npx ng serve zyra-ui
 ```
 
 Build the library:
+
 ```bash
 npx ng build zyra-ng-ui
 ```
@@ -38,25 +40,21 @@ Open a PR from your feature branch → `dev`, then `dev` → `main` for releases
 
 We use [Conventional Commits](https://www.conventionalcommits.org/):
 
-| Prefix | When to use |
-|--------|-------------|
-| `feat:` | New component or feature |
-| `fix:` | Bug fix |
-| `chore:` | Build scripts, deps, config |
+| Prefix      | When to use                         |
+| ----------- | ----------------------------------- |
+| `feat:`     | New component or feature            |
+| `fix:`      | Bug fix                             |
+| `chore:`    | Build scripts, deps, config         |
 | `refactor:` | Code change with no behavior change |
-| `style:` | CSS/SCSS only changes |
-| `perf:` | Performance improvement |
-| `docs:` | Documentation only |
+| `style:`    | CSS/SCSS only changes               |
+| `perf:`     | Performance improvement             |
+| `docs:`     | Documentation only                  |
 
 Example: `feat(zyra-select): add multi-select support`
 
 ## Library changes
 
-If you modify anything in `projects/zyra-ng-ui/`:
-1. Bump the version in `projects/zyra-ng-ui/package.json`
-2. Update `projects/zyra-ui/src/app/shared/version.ts` to match
-3. Add an entry to `CHANGELOG.md` with what changed
-4. The maintainer will publish to npm after merging
+If you modify anything in `projects/zyra-ng-ui/`, add an entry to `CHANGELOG.md` describing what changed. The maintainer will handle versioning and publishing using the release process described in [RELEASING.md](docs/RELEASING.md).
 
 ## Code style
 
@@ -70,26 +68,26 @@ If you modify anything in `projects/zyra-ng-ui/`:
 
 ## Current components
 
-| Component | Selector | Notes |
-|-----------|----------|-------|
-| ZyraButton | `zyra-button` | CVA-free, event-based |
-| ZyraCard | `zyra-card` | Header/footer slots |
-| ZyraBadge | `zyra-badge` | Status variants |
-| ZyraAvatar | `zyra-avatar` | Online indicator |
-| ZyraInput | `zyra-input` | Full CVA, password toggle |
-| ZyraFormField | `zyra-form-field` | Wraps ZyraInput with label, hints, icons |
-| ZyrPrefix | `[zyrPrefix]` | Directive — custom prefix slot in ZyraFormField |
-| ZyrSuffix | `[zyrSuffix]` | Directive — custom suffix slot in ZyraFormField |
-| ZyraSpinner | `zyra-spinner` | Size + color variants |
-| ZyraToast | `zyra-toast` | Auto-dismiss notifications |
-| ZyraTooltip | `zyra-tooltip` | Position-aware tooltip |
-| ZyraToggle | `zyra-toggle` | Full CVA |
-| ZyraChip | `zyra-chip` | Selectable + dismissible |
-| ZyraAlert | `zyra-alert` | Dismiss animation, aria-live |
-| ZyraModal | `zyra-modal` | Focus trap, SSR-safe |
-| ZyraAccordion | `zyra-accordion` | Single/multi open |
-| ZyraProgress | `zyra-progress` | Linear, indeterminate |
-| ZyraDivider | `zyra-divider` | Horizontal + vertical |
+| Component     | Selector          | Notes                                           |
+| ------------- | ----------------- | ----------------------------------------------- |
+| ZyraButton    | `zyra-button`     | CVA-free, event-based                           |
+| ZyraCard      | `zyra-card`       | Header/footer slots                             |
+| ZyraBadge     | `zyra-badge`      | Status variants                                 |
+| ZyraAvatar    | `zyra-avatar`     | Online indicator                                |
+| ZyraInput     | `zyra-input`      | Full CVA, password toggle                       |
+| ZyraFormField | `zyra-form-field` | Wraps ZyraInput with label, hints, icons        |
+| ZyrPrefix     | `[zyrPrefix]`     | Directive — custom prefix slot in ZyraFormField |
+| ZyrSuffix     | `[zyrSuffix]`     | Directive — custom suffix slot in ZyraFormField |
+| ZyraSpinner   | `zyra-spinner`    | Size + color variants                           |
+| ZyraToast     | `zyra-toast`      | Auto-dismiss notifications                      |
+| ZyraTooltip   | `zyra-tooltip`    | Position-aware tooltip                          |
+| ZyraToggle    | `zyra-toggle`     | Full CVA                                        |
+| ZyraChip      | `zyra-chip`       | Selectable + dismissible                        |
+| ZyraAlert     | `zyra-alert`      | Dismiss animation, aria-live                    |
+| ZyraModal     | `zyra-modal`      | Focus trap, SSR-safe                            |
+| ZyraAccordion | `zyra-accordion`  | Single/multi open                               |
+| ZyraProgress  | `zyra-progress`   | Linear, indeterminate                           |
+| ZyraDivider   | `zyra-divider`    | Horizontal + vertical                           |
 
 ## Reporting bugs
 

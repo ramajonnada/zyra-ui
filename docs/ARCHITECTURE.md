@@ -31,10 +31,12 @@ graph TD
     THEME --> PZ["provideZyra()\nprovide-zyra.ts"]
 
     LIB --> SCSS["🖌️ SCSS Tokens\n(--zyr-* CSS custom properties)"]
-    SCSS --> V["_variables.scss"]
-    SCSS --> B["_base.scss"]
+    SCSS --> SH["_shared-theme.scss\n(palette, radius, spacing, motion)"]
     SCSS --> LT["_light-theme.scss"]
     SCSS --> DT["_dark-theme.scss"]
+    SCSS --> AN["_animations.scss"]
+    SCSS --> MX["_mixins.scss"]
+    SCSS --> B["_base.scss"]
 
     LIB --> COMP["🧩 Components (22)"]
 
@@ -161,13 +163,13 @@ flowchart LR
 
 ## 7. Key Technology Decisions
 
-| Concern | Choice | Why |
-|---|---|---|
-| Framework | Angular 21 | Signals-first, zoneless, SSR-native |
-| Change detection | OnPush + signals | No zone.js, explicit reactivity |
-| Styling | SCSS + CSS custom properties | Runtime theme switching without JS |
-| SSR | `@angular/ssr` + Express | SEO, fast initial paint |
-| Deployment | Vercel | Zero-config SSR, edge CDN |
-| Library packaging | `ng-packagr` | Produces proper Angular Package Format |
-| Blog | Markdown + `ngx-markdown` | Content editable without rebuilds |
-| Fonts | Syne / Instrument Sans / DM Mono | Display / body / mono roles |
+| Concern           | Choice                           | Why                                    |
+| ----------------- | -------------------------------- | -------------------------------------- |
+| Framework         | Angular 21                       | Signals-first, zoneless, SSR-native    |
+| Change detection  | OnPush + signals                 | No zone.js, explicit reactivity        |
+| Styling           | SCSS + CSS custom properties     | Runtime theme switching without JS     |
+| SSR               | `@angular/ssr` + Express         | SEO, fast initial paint                |
+| Deployment        | Vercel                           | Zero-config SSR, edge CDN              |
+| Library packaging | `ng-packagr`                     | Produces proper Angular Package Format |
+| Blog              | Markdown + `ngx-markdown`        | Content editable without rebuilds      |
+| Fonts             | Outfit / IBM Plex Sans / JetBrains Mono | Display / body / mono roles         |
