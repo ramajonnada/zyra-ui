@@ -1,102 +1,103 @@
 {
-	"name": "zyra-workspace",
-	"version": "1.3.23",
-	"private": true,
-	"license": "MIT",
-	"scripts": {
-		"ng": "ng",
-		"prerender": "npm run build:prod",
-		"start": "npm run start:local",
-		"build:lib": "ng build zyra-ng-ui",
-		"start:local": "npm run build:lib && ng serve zyra-ui",
-		"build": "npm run build:prod",
-		"build:local": "npm run build:lib && ng build zyra-ui --configuration=production",
-		"build:prod": "ng build zyra-ui --configuration=production-published",
-		"build:app": "npm run build:local",
-		"watch": "ng build --watch --configuration development",
-		"test": "ng test",
-		"build:ssr": "npm run build:prod",
-		"serve:ssr:zyra-ui": "node dist/zyra-ui/server/server.mjs",
-		"blog:list": "node scripts/new-blog.js",
-		"blog:new": "node scripts/new-blog.js",
-		"lint": "ng lint zyra-ui && ng lint zyra-ng-ui",
-		"lint:app": "ng lint zyra-ui",
-		"lint:lib": "ng lint zyra-ng-ui",
-		"format": "prettier --write .",
-		"format:check": "prettier --check .",
-		"commit": "cz",
-		"check-all": "npm run format:check && npm run lint",
-		"audit:components": "node scripts/audit-components.js",
-		"count:check": "node scripts/check-component-count.js",
-		"count:fix": "node scripts/check-component-count.js --fix",
-		"new:component": "powershell -ExecutionPolicy Bypass -File scripts/new-component.ps1 -Name",
-		"new:playground": "powershell -ExecutionPolicy Bypass -File scripts/new-playground.ps1 -Name",
-		"publish:lib": "npm run build:lib && npm publish dist/zyra-ng-ui --access public",
-		"update:published-lib": "npm install zyra-ng-ui@latest",
-		"version:bump": "node scripts/bump-version.js"
-	},
-	"prettier": {
-		"printWidth": 100,
-		"singleQuote": true,
-		"overrides": [
-			{
-				"files": "*.html",
-				"options": {
-					"parser": "angular"
-				}
-			}
-		]
-	},
-	"dependencies": {
-		"@angular/cdk": "^21.0.6",
-		"@angular/common": "^21.0.6",
-		"@angular/compiler": "^21.0.6",
-		"@angular/core": "^21.0.6",
-		"@angular/forms": "^21.0.6",
-		"@angular/platform-browser": "^21.0.6",
-		"@angular/platform-server": "^21.0.6",
-		"@angular/router": "^21.0.6",
-		"@angular/ssr": "^21.0.4",
-		"@fortawesome/angular-fontawesome": "^4.0.0",
-		"@fortawesome/fontawesome-svg-core": "^7.1.0",
-		"@fortawesome/free-brands-svg-icons": "^7.1.0",
-		"@fortawesome/free-regular-svg-icons": "^7.1.0",
-		"@fortawesome/free-solid-svg-icons": "^7.1.0",
-		"express": "^5.1.0",
-		"prettier": "^3.6.2",
-		"rxjs": "~7.8.0",
-		"tslib": "^2.3.0",
-		"zyra-ng-ui": "^1.7.0"
-	},
-	"devDependencies": {
-		"@angular/build": "^21.0.4",
-		"@angular/cli": "^21.0.4",
-		"@angular/compiler-cli": "^21.0.6",
-		"@commitlint/cli": "^20.1.0",
-		"@commitlint/config-conventional": "^20.0.0",
-		"@types/express": "^5.0.1",
-		"@types/jasmine": "~5.1.0",
-		"@types/node": "^20.17.19",
-		"angular-eslint": "21.1.0",
-		"commitizen": "^4.3.1",
-		"cz-conventional-changelog": "^3.3.0",
-		"eslint": "^9.39.1",
-		"jasmine-core": "~5.9.0",
-		"jsdom": "^27.1.0",
-		"karma": "~6.4.0",
-		"karma-chrome-launcher": "~3.2.0",
-		"karma-coverage": "~2.2.0",
-		"karma-jasmine": "~5.1.0",
-		"karma-jasmine-html-reporter": "~2.1.0",
-		"ng-packagr": "^21.0.0",
-		"ngx-markdown": "^21.0.0",
-		"typescript": "~5.9.2",
-		"typescript-eslint": "8.47.0",
-		"vitest": "^4.0.8"
-	},
-	"config": {
-		"commitizen": {
-			"path": "./node_modules/cz-conventional-changelog"
-		}
-	}
+    "name": "zyra-workspace",
+    "version": "1.3.23",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "ng": "ng",
+        "prerender": "npm run build:prod",
+        "start": "npm run start:local",
+        "build:lib": "ng build zyra-ng-ui",
+        "start:local": "npm run build:lib && ng serve zyra-ui",
+        "build": "npm run build:prod",
+        "build:local": "npm run build:lib && ng build zyra-ui --configuration=production",
+        "build:prod": "ng build zyra-ui --configuration=production-published",
+        "build:app": "npm run build:local",
+        "watch": "ng build --watch --configuration development",
+        "test": "ng test",
+        "build:ssr": "npm run build:prod",
+        "serve:ssr:zyra-ui": "node dist/zyra-ui/server/server.mjs",
+        "blog:list": "node scripts/new-blog.js",
+        "blog:new": "node scripts/new-blog.js",
+        "lint": "ng lint zyra-ui && ng lint zyra-ng-ui",
+        "lint:app": "ng lint zyra-ui",
+        "lint:lib": "ng lint zyra-ng-ui",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "commit": "cz",
+        "check-all": "npm run format:check && npm run lint",
+        "audit:components": "node scripts/audit-components.js",
+        "count:check": "node scripts/check-component-count.js",
+        "count:fix": "node scripts/check-component-count.js --fix",
+        "new:component": "powershell -ExecutionPolicy Bypass -File scripts/new-component.ps1 -Name",
+        "new:playground": "powershell -ExecutionPolicy Bypass -File scripts/new-playground.ps1 -Name",
+        "publish:lib": "npm run build:lib && npm publish dist/zyra-ng-ui --access public",
+        "update:published-lib": "npm install zyra-ng-ui@latest",
+        "version:bump": "node scripts/bump-version.js",
+        "release": "node scripts/release.js"
+    },
+    "prettier": {
+        "printWidth": 100,
+        "singleQuote": true,
+        "overrides": [
+            {
+                "files": "*.html",
+                "options": {
+                    "parser": "angular"
+                }
+            }
+        ]
+    },
+    "dependencies": {
+        "@angular/cdk": "^21.0.6",
+        "@angular/common": "^21.0.6",
+        "@angular/compiler": "^21.0.6",
+        "@angular/core": "^21.0.6",
+        "@angular/forms": "^21.0.6",
+        "@angular/platform-browser": "^21.0.6",
+        "@angular/platform-server": "^21.0.6",
+        "@angular/router": "^21.0.6",
+        "@angular/ssr": "^21.0.4",
+        "@fortawesome/angular-fontawesome": "^4.0.0",
+        "@fortawesome/fontawesome-svg-core": "^7.1.0",
+        "@fortawesome/free-brands-svg-icons": "^7.1.0",
+        "@fortawesome/free-regular-svg-icons": "^7.1.0",
+        "@fortawesome/free-solid-svg-icons": "^7.1.0",
+        "express": "^5.1.0",
+        "prettier": "^3.6.2",
+        "rxjs": "~7.8.0",
+        "tslib": "^2.3.0",
+        "zyra-ng-ui": "^1.7.0"
+    },
+    "devDependencies": {
+        "@angular/build": "^21.0.4",
+        "@angular/cli": "^21.0.4",
+        "@angular/compiler-cli": "^21.0.6",
+        "@commitlint/cli": "^20.1.0",
+        "@commitlint/config-conventional": "^20.0.0",
+        "@types/express": "^5.0.1",
+        "@types/jasmine": "~5.1.0",
+        "@types/node": "^20.17.19",
+        "angular-eslint": "21.1.0",
+        "commitizen": "^4.3.1",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^9.39.1",
+        "jasmine-core": "~5.9.0",
+        "jsdom": "^27.1.0",
+        "karma": "~6.4.0",
+        "karma-chrome-launcher": "~3.2.0",
+        "karma-coverage": "~2.2.0",
+        "karma-jasmine": "~5.1.0",
+        "karma-jasmine-html-reporter": "~2.1.0",
+        "ng-packagr": "^21.0.0",
+        "ngx-markdown": "^21.0.0",
+        "typescript": "~5.9.2",
+        "typescript-eslint": "8.47.0",
+        "vitest": "^4.0.8"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
 }
