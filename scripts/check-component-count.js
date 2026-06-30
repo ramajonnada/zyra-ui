@@ -129,10 +129,14 @@ function run() {
     console.log('─'.repeat(64));
 
     if (issues === 0) {
-        console.log(`All ${CHECKS.length} checks passed. Component count is ${expected} everywhere.\n`);
+        console.log(
+            `All ${CHECKS.length} checks passed. Component count is ${expected} everywhere.\n`,
+        );
         process.exitCode = 0;
     } else if (FIX) {
-        console.log(`Fixed ${issues} out-of-sync reference(s). Component count is now ${expected} everywhere.\n`);
+        console.log(
+            `Fixed ${issues} out-of-sync reference(s). Component count is now ${expected} everywhere.\n`,
+        );
         process.exitCode = 0;
     } else {
         console.log(`${issues} out-of-sync reference(s) found. Run with --fix to update them.\n`);
