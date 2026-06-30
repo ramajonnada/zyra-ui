@@ -31,11 +31,23 @@ export class Docs implements OnInit {
         {
             step: '01',
             title: 'Install the package',
-            description: 'Add Zyra NG UI to your Angular workspace.',
-            code: 'npm install zyra-ng-ui',
+            description:
+                'Add zyra-ng-ui and its peer dependencies to your Angular workspace. Requires Angular 21+, @angular/forms, and FontAwesome.',
+            code: `npm install zyra-ng-ui
+
+# peer dependencies (if not already installed)
+npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons`,
         },
         {
             step: '02',
+            title: 'Import global styles',
+            description:
+                'Add one line to your global stylesheet. This loads all design tokens, theme variables, animations, and base resets.',
+            code: `// styles.scss (or styles.css)
+@use 'zyra-ng-ui';`,
+        },
+        {
+            step: '03',
             title: 'Register the provider',
             description: 'Enable the token-driven theme service once during app bootstrap.',
             code: `// app.config.ts
@@ -49,9 +61,9 @@ export const appConfig: ApplicationConfig = {
 };`,
         },
         {
-            step: '03',
+            step: '04',
             title: 'Import and use',
-            description: 'Drop any component directly into your standalone imports array.',
+            description: 'Drop any component directly into your standalone imports array — tree-shake the rest.',
             code: `import { ZyraButton, ZyraCard } from 'zyra-ng-ui';
 
 @Component({
@@ -201,6 +213,41 @@ theme.toggle();           // switch between both`;
             category: 'Forms',
         },
         {
+            name: 'Select',
+            slug: 'select',
+            selector: 'zyra-select',
+            importName: 'ZyraSelect',
+            category: 'Forms',
+        },
+        {
+            name: 'Textarea',
+            slug: 'textarea',
+            selector: 'zyra-textarea',
+            importName: 'ZyraTextarea',
+            category: 'Forms',
+        },
+        {
+            name: 'Checkbox',
+            slug: 'checkbox',
+            selector: 'zyra-checkbox',
+            importName: 'ZyraCheckbox',
+            category: 'Forms',
+        },
+        {
+            name: 'Radio',
+            slug: 'radio',
+            selector: 'zyra-radio-group',
+            importName: 'ZyraRadioGroup',
+            category: 'Forms',
+        },
+        {
+            name: 'Tabs',
+            slug: 'tabs',
+            selector: 'zyra-tabs',
+            importName: 'ZyraTabs',
+            category: 'Navigation',
+        },
+        {
             name: 'Spinner',
             slug: 'spinner',
             selector: 'zyra-spinner',
@@ -219,6 +266,13 @@ theme.toggle();           // switch between both`;
             slug: 'alert',
             selector: 'zyra-alert',
             importName: 'ZyraAlert',
+            category: 'Feedback',
+        },
+        {
+            name: 'Skeleton',
+            slug: 'skeleton',
+            selector: 'zyra-skeleton',
+            importName: 'ZyraSkeleton',
             category: 'Feedback',
         },
         {

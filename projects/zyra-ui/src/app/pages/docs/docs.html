@@ -190,6 +190,53 @@
                     Open an issue on the GitHub repository. Include your Angular version, the
                     component selector, and a minimal reproduction — a StackBlitz link is ideal.
                 </zyra-accordion-item>
+
+                <zyra-accordion-item
+                    title="Components render but have no styles — what's wrong?"
+                >
+                    You're likely missing the global stylesheet import. Add
+                    <code>&#64;use 'zyra-ng-ui';</code> to your root <code>styles.scss</code> (or
+                    <code>styles.css</code>). This one line loads all design tokens, theme
+                    variables, animations, and base resets.
+                </zyra-accordion-item>
+
+                <zyra-accordion-item
+                    title="I get NG0908: 'Angular requires Zone.js' — how do I fix it?"
+                >
+                    This happens when your app is configured for zoneless change detection but
+                    <code>zone.js</code> is still listed in <code>polyfills</code>. Either remove
+                    <code>zone.js</code> from polyfills and add
+                    <code>provideExperimentalZonelessChangeDetection()</code> to your providers, or
+                    restore <code>zone.js</code> and remove the zoneless provider. See the
+                    <a routerLink="/blog/fix-ng0908-in-this-configuration-angular-requires-zonejs"
+                        >full fix guide</a
+                    >.
+                </zyra-accordion-item>
+
+                <zyra-accordion-item title="Icons are missing — FontAwesome isn't showing up.">
+                    Zyra UI uses FontAwesome internally. Make sure you have the three peer
+                    dependencies installed:
+                    <code>&#64;fortawesome/angular-fontawesome</code>,
+                    <code>&#64;fortawesome/fontawesome-svg-core</code>, and
+                    <code>&#64;fortawesome/free-solid-svg-icons</code>. Run
+                    <code
+                        >npm install &#64;fortawesome/angular-fontawesome
+                        &#64;fortawesome/fontawesome-svg-core
+                        &#64;fortawesome/free-solid-svg-icons</code
+                    >.
+                </zyra-accordion-item>
+
+                <zyra-accordion-item
+                    title="Form validation errors aren't showing — what's missing?"
+                >
+                    Wrap your <code>zyra-input</code> or <code>zyra-textarea</code> in a
+                    <code>zyra-form-field</code> with a <code>[label]</code> and make sure the
+                    input is bound with <code>ngModel</code> or a reactive
+                    <code>formControl</code>. ZyraFormField reads the control's
+                    <code>NgControl</code> automatically and derives error messages from standard
+                    Angular validators (required, email, minlength, maxlength, min, max, pattern) —
+                    no extra error prop needed.
+                </zyra-accordion-item>
             </zyra-accordion>
         </div>
     </section>
