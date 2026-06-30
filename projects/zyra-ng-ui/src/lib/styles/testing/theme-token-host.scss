@@ -1,9 +1,8 @@
 @use '../index.scss';
 
 .token-probe {
-    background: var(--zyr-background);
-    color: var(--zyr-primary);
-    border: 1px solid var(--zyr-border-color);
-    box-shadow: 0 0 0 1px var(--zyr-ring);
+    background: var(--zyr-bg);
+    color: var(--zyr-accent);
+    border: 1px solid var(--zyr-border);
     transition-duration: var(--zyr-duration-base);
 }

@@ -65,10 +65,10 @@ describe('ZyraSkeleton', () => {
     });
 
     // ── Animation ─────────────────────────────────────────────────────────
-    it('adds --static class when animated is false', () => {
+    it('adds zyr-sk-no-anim class to host when animated is false', () => {
         fixture.componentRef.setInput('animated', false);
         fixture.detectChanges();
-        expect(fixture.nativeElement.querySelector('.zyr-skeleton--static')).not.toBeNull();
+        expect(fixture.nativeElement.classList).toContain('zyr-sk-no-anim');
     });
 
     it('does not add --static class when animated is true', () => {
@@ -103,9 +103,10 @@ describe('ZyraSkeleton', () => {
         expect(component.isLastLine(1)).toBeFalse();
     });
 
-    it('isLastLine returns false for rect variant', () => {
+    it('isLastLine returns false for indices that are not the last', () => {
         fixture.componentRef.setInput('lines', 3);
         fixture.detectChanges();
-        expect(component.isLastLine(2)).toBeFalse();
+        expect(component.isLastLine(0)).toBeFalse();
+        expect(component.isLastLine(1)).toBeFalse();
     });
 });

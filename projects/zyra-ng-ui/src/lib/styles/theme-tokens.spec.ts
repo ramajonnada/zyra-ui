@@ -42,10 +42,10 @@ describe('Zyra theme tokens', () => {
         fixture.detectChanges();
 
         const styles = probeStyles();
-        expect(styles.backgroundColor).toBe('rgb(248, 251, 253)');
-        expect(styles.color).toBe('rgb(24, 213, 234)');
-        expect(styles.borderTopColor).toBe('rgba(9, 19, 31, 0.08)');
-        expect(styles.transitionDuration).toContain('0.3s');
+        expect(styles.backgroundColor).toBe('rgb(255, 255, 255)');   // --zyr-bg: #ffffff
+        expect(styles.color).toBe('rgb(0, 122, 138)');               // --zyr-accent: #007a8a
+        expect(styles.borderTopColor).toBe('rgba(9, 19, 31, 0.08)'); // --zyr-border
+        expect(styles.transitionDuration).toContain('0.3s');         // --zyr-duration-base: 300ms
     });
 
     it('resolves the new semantic tokens in dark theme', () => {
@@ -54,9 +54,9 @@ describe('Zyra theme tokens', () => {
         fixture.detectChanges();
 
         const styles = probeStyles();
-        expect(styles.backgroundColor).toBe('rgb(9, 11, 16)');
-        expect(styles.color).toBe('rgb(24, 213, 234)');
-        expect(styles.borderTopColor).toBe('rgba(255, 255, 255, 0.07)');
-        expect(styles.transitionDuration).toContain('0.3s');
+        expect(styles.backgroundColor).toBe('rgb(9, 11, 16)');        // --zyr-bg: #090b10
+        expect(styles.color).toBe('rgb(0, 234, 255)');                // --zyr-accent: #00eaff
+        expect(styles.borderTopColor).toBe('rgba(255, 255, 255, 0.07)'); // --zyr-border
+        expect(styles.transitionDuration).toContain('0.3s');          // --zyr-duration-base: 300ms
     });
 });

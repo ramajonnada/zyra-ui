@@ -68,26 +68,37 @@ If you modify anything in `projects/zyra-ng-ui/`, add an entry to `CHANGELOG.md`
 
 ## Current components
 
-| Component     | Selector          | Notes                                           |
-| ------------- | ----------------- | ----------------------------------------------- |
-| ZyraButton    | `zyra-button`     | CVA-free, event-based                           |
-| ZyraCard      | `zyra-card`       | Header/footer slots                             |
-| ZyraBadge     | `zyra-badge`      | Status variants                                 |
-| ZyraAvatar    | `zyra-avatar`     | Online indicator                                |
-| ZyraInput     | `zyra-input`      | Full CVA, password toggle                       |
-| ZyraFormField | `zyra-form-field` | Wraps ZyraInput with label, hints, icons        |
-| ZyrPrefix     | `[zyrPrefix]`     | Directive — custom prefix slot in ZyraFormField |
-| ZyrSuffix     | `[zyrSuffix]`     | Directive — custom suffix slot in ZyraFormField |
-| ZyraSpinner   | `zyra-spinner`    | Size + color variants                           |
-| ZyraToast     | `zyra-toast`      | Auto-dismiss notifications                      |
-| ZyraTooltip   | `zyra-tooltip`    | Position-aware tooltip                          |
-| ZyraToggle    | `zyra-toggle`     | Full CVA                                        |
-| ZyraChip      | `zyra-chip`       | Selectable + dismissible                        |
-| ZyraAlert     | `zyra-alert`      | Dismiss animation, aria-live                    |
-| ZyraModal     | `zyra-modal`      | Focus trap, SSR-safe                            |
-| ZyraAccordion | `zyra-accordion`  | Single/multi open                               |
-| ZyraProgress  | `zyra-progress`   | Linear, indeterminate                           |
-| ZyraDivider   | `zyra-divider`    | Horizontal + vertical                           |
+| Component           | Selector                | Notes                                               |
+| ------------------- | ----------------------- | --------------------------------------------------- |
+| ZyraButton          | `zyra-button`           | CVA-free, event-based; 5 variants, 3 sizes          |
+| ZyraCard            | `zyra-card`             | Header/footer slots, 4 variants, clickable mode     |
+| ZyraBadge           | `zyra-badge`            | Status labels, dot indicator, 5 variants            |
+| ZyraAvatar          | `zyra-avatar`           | Image + initials fallback, presence dot             |
+| ZyraInput           | `zyra-input`            | Full CVA, password toggle, prefix icon, clear btn   |
+| ZyraFormField       | `zyra-form-field`       | Wraps Input/Textarea; auto error from validators    |
+| ZyrPrefix           | `[zyrPrefix]`           | Directive — custom prefix slot in ZyraFormField     |
+| ZyrSuffix           | `[zyrSuffix]`           | Directive — custom suffix slot in ZyraFormField     |
+| ZyraTextarea        | `zyra-textarea`         | Full CVA, auto-resize, ZyraFormField integration    |
+| ZyraSelect          | `zyra-select`           | Full CVA, keyboard nav, 3 appearances               |
+| ZyraOption          | `zyra-option`           | Option item for ZyraSelect                          |
+| ZyraCheckbox        | `zyra-checkbox`         | Indeterminate state, 3 sizes, two-way [(checked)]   |
+| ZyraRadioGroup      | `zyra-radio-group`      | Arrow key navigation, vertical/horizontal           |
+| ZyraRadio           | `zyra-radio`            | Radio item for ZyraRadioGroup                       |
+| ZyraToggle          | `zyra-toggle`           | role="switch", 3 sizes, two-way [(checked)]         |
+| ZyraSpinner         | `zyra-spinner`          | 4 color variants, 4 sizes, role="status"            |
+| ZyraProgress        | `zyra-progress`         | Linear bar, indeterminate mode, 5 variants          |
+| ZyraAlert           | `zyra-alert`            | Dismissible, role="alert", aria-live                |
+| ZyraToast           | `zyra-toast`            | Auto-dismiss; use via ZyraToastService              |
+| ZyraToastContainer  | `zyra-toast-container`  | Mount once in app root                              |
+| ZyraTooltip         | `zyra-tooltip`          | 4 positions, hover + focus                          |
+| ZyraModal           | `zyra-modal`            | Focus trap, ESC to close, 4 sizes, [(open)]         |
+| ZyraChip            | `zyra-chip`             | Dismissible + selectable, 6 variants                |
+| ZyraDivider         | `zyra-divider`          | Horizontal/vertical, solid/dashed/dotted            |
+| ZyraSkeleton        | `zyra-skeleton`         | 20+ preset layouts (card, list, dashboard…)         |
+| ZyraAccordion       | `zyra-accordion`        | Single/multi open, CSS grid animation               |
+| ZyraAccordionItem   | `zyra-accordion-item`   | Item for ZyraAccordion                              |
+| ZyraTabs            | `zyra-tabs`             | 4 variants, icons, badges, closeable, vertical      |
+| ZyraTab             | `zyra-tab`              | Tab item for ZyraTabs                               |
 
 ## Reporting bugs
 

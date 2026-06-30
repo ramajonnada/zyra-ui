@@ -132,6 +132,8 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { $className } from './$fullName';
 
+// ── Host fixtures ─────────────────────────────────────────────────────────────
+
 @Component({
     standalone: true,
     imports: [$className],
@@ -139,8 +141,18 @@ import { $className } from './$fullName';
 })
 class ${hostName}Component {}
 
+@Component({
+    standalone: true,
+    imports: [$className],
+    template: ``<$fullName />``,
+})
+class ${hostName}EmptyComponent {}
+
+// ── Tests ─────────────────────────────────────────────────────────────────────
+
 describe('$className', () => {
     let fixture: ComponentFixture<${hostName}Component>;
+    let component: $className;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -148,20 +160,61 @@ describe('$className', () => {
         }).compileComponents();
 
         fixture = TestBed.createComponent(${hostName}Component);
+        // Grab the first $className instance inside the host
+        component = fixture.debugElement.children[0].componentInstance as $className;
         fixture.detectChanges();
     });
+
+    // ── Render ────────────────────────────────────────────────────────────────
 
     it('renders the host element', () => {
         expect(fixture.nativeElement.querySelector('$fullName')).not.toBeNull();
     });
 
-    it('applies the host class', () => {
+    it('applies the BEM root class "$bemBase"', () => {
         expect(fixture.nativeElement.querySelector('.$bemBase')).not.toBeNull();
     });
 
-    it('projects content', () => {
+    it('projects slotted content inside the host', () => {
         const host: HTMLElement = fixture.nativeElement.querySelector('.$bemBase');
         expect(host?.textContent?.trim()).toBe('content');
+    });
+
+    // ── hostClass computed ─────────────────────────────────────────────────────
+
+    it('hostClass() returns "$bemBase" by default', () => {
+        expect(component.hostClass()).toBe('$bemBase');
+    });
+
+    // ── Inputs (add tests here as you define inputs) ───────────────────────────
+    //
+    // Example pattern:
+    //   it('myInput defaults to false', () => {
+    //       expect(component.myInput()).toBeFalse();
+    //   });
+    //
+    //   it('myInput changes are reflected in the DOM', () => {
+    //       fixture.componentRef.setInput('myInput', true);
+    //       fixture.detectChanges();
+    //       // assert DOM change
+    //   });
+
+    // ── Accessibility ──────────────────────────────────────────────────────────
+
+    it('root element is in the document', () => {
+        const el: HTMLElement = fixture.nativeElement.querySelector('$fullName');
+        expect(el.isConnected).toBeTrue();
+    });
+});
+
+describe('$className — empty slot', () => {
+    it('renders without projected content without throwing', async () => {
+        await TestBed.configureTestingModule({
+            imports: [${hostName}EmptyComponent],
+        }).compileComponents();
+
+        const f = TestBed.createComponent(${hostName}EmptyComponent);
+        expect(() => f.detectChanges()).not.toThrow();
     });
 });
 "@
@@ -231,4 +284,7 @@ Write-Host "  2. Build the template in                     $fullName.html"
 Write-Host "  3. Style with real token values in           $fullName.scss"
 Write-Host "  4. Replace --$bemBase-* stubs with real values in both theme files"
 Write-Host "  5. Run:  ng build zyra-ng-ui"
+Write-Host ""
+Write-Host "Tip: after adding inputs/signals, regenerate the spec:" -ForegroundColor DarkCyan
+Write-Host "  node scripts/gen-spec.js projects/zyra-ng-ui/src/lib/components/$fullName/$fullName.ts --force"
 Write-Host ""

@@ -172,6 +172,7 @@ describe('ZyraFormField', () => {
 
 describe('ZyraFormField — reactive validation', () => {
     let fixture: ComponentFixture<ReactiveFormFieldHostComponent>;
+    let host: ReactiveFormFieldHostComponent;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({

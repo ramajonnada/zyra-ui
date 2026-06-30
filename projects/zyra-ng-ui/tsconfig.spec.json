@@ -5,6 +5,7 @@
     "compilerOptions": {
         "outDir": "../../out-tsc/spec",
         "rootDir": "./src/lib",
+        "lib": ["ES2022", "DOM", "DOM.Iterable"],
         "types": ["jasmine"]
     },
     "include": ["src/**/*.d.ts", "src/**/*.spec.ts"]
