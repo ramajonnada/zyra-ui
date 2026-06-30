@@ -1,37 +1,42 @@
 <!-- ── Tab trigger list ────────────────────────────────── -->
 <div class="zyr-tabs__list" role="tablist" [attr.aria-orientation]="orientation()" #tabList>
     @for (tab of _visibleTabs(); track tab._uid) {
-    <button
-        [id]="tab.triggerId"
-        type="button"
-        role="tab"
-        class="zyr-tabs__trigger"
-        [class.zyr-tabs__trigger--active]="tab.active()"
-        [class.zyr-tabs__trigger--disabled]="tab.disabled()"
-        [attr.aria-selected]="tab.active()"
-        [attr.aria-controls]="tab.panelId"
-        [attr.aria-disabled]="tab.disabled() || null"
-        [attr.tabindex]="tab.active() ? 0 : -1"
-        (click)="activateTab(tab)"
-    >
-        @if (tab.icon()) {
-        <span class="zyr-tabs__trigger-icon" aria-hidden="true">{{ tab.icon() }}</span>
-        }
-        <span class="zyr-tabs__trigger-label">{{ tab.label() }}</span>
-        @if (tab.badge() !== '' && tab.badge() != null) {
-        <span class="zyr-tabs__trigger-badge">{{ tab.badge() }}</span>
-        }
-        @if (tab.closeable() && _visibleTabs().length > 1) {
-        <span
-            class="zyr-tabs__trigger-close"
-            [attr.aria-label]="'Close ' + tab.label()"
-            (click)="$event.stopPropagation(); closeTab(tab)"
-        >×</span>
-        }
-    </button>
+        <button
+            [id]="tab.triggerId"
+            type="button"
+            role="tab"
+            class="zyr-tabs__trigger"
+            [class.zyr-tabs__trigger--active]="tab.active()"
+            [class.zyr-tabs__trigger--disabled]="tab.disabled()"
+            [attr.aria-selected]="tab.active()"
+            [attr.aria-controls]="tab.panelId"
+            [attr.aria-disabled]="tab.disabled() || null"
+            [attr.tabindex]="tab.active() ? 0 : -1"
+            (click)="activateTab(tab)"
+        >
+            @if (tab.icon()) {
+                <span class="zyr-tabs__trigger-icon" aria-hidden="true">{{ tab.icon() }}</span>
+            }
+            <span class="zyr-tabs__trigger-label">{{ tab.label() }}</span>
+            @if (tab.badge() !== '' && tab.badge() !== null) {
+                <span class="zyr-tabs__trigger-badge">{{ tab.badge() }}</span>
+            }
+            @if (tab.closeable() && _visibleTabs().length > 1) {
+                <span
+                    class="zyr-tabs__trigger-close"
+                    role="button"
+                    tabindex="0"
+                    [attr.aria-label]="'Close ' + tab.label()"
+                    (click)="$event.stopPropagation(); closeTab(tab)"
+                    (keydown.enter)="$event.stopPropagation(); closeTab(tab)"
+                    (keydown.space)="$event.stopPropagation(); $event.preventDefault(); closeTab(tab)"
+                    >×</span
+                >
+            }
+        </button>
     }
     @if (variant() === 'underline') {
-    <div class="zyr-tabs__indicator" aria-hidden="true"></div>
+        <div class="zyr-tabs__indicator" aria-hidden="true"></div>
     }
 </div>
 

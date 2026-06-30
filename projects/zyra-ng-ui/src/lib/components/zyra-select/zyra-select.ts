@@ -73,13 +73,11 @@ export class ZyraSelect implements ControlValueAccessor, ZyraSelectRef, OnInit, 
     readonly _options = contentChildren(ZyraOption);
 
     // ── Computed ──────────────────────────────────────────────
-    readonly selectedOption = computed(() =>
-        this._options().find(o => o.value() === this.innerValue()) ?? null
+    readonly selectedOption = computed(
+        () => this._options().find((o) => o.value() === this.innerValue()) ?? null,
     );
 
-    readonly selectedLabel = computed(() =>
-        this.selectedOption()?.getLabel() ?? ''
-    );
+    readonly selectedLabel = computed(() => this.selectedOption()?.getLabel() ?? '');
 
     readonly activeOptionId = computed(() => {
         const idx = this.activeIndex();
@@ -155,13 +153,17 @@ export class ZyraSelect implements ControlValueAccessor, ZyraSelectRef, OnInit, 
     // ── Open / close ──────────────────────────────────────────
     toggle(): void {
         if (this.isDisabled()) return;
-        this.isOpen() ? this.close() : this.open();
+        if (this.isOpen()) {
+            this.close();
+        } else {
+            this.open();
+        }
     }
 
     open(): void {
         if (this.isDisabled() || this.isOpen()) return;
         this.isOpen.set(true);
-        const selectedIdx = this._options().findIndex(o => o.value() === this.innerValue());
+        const selectedIdx = this._options().findIndex((o) => o.value() === this.innerValue());
         this.activeIndex.set(selectedIdx >= 0 ? selectedIdx : 0);
         this._syncOptions();
         this.opened.emit();

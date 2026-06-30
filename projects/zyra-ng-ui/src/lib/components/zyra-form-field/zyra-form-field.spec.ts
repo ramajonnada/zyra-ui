@@ -1,6 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule, Validators, FormControl, FormGroup } from '@angular/forms';
+import {
+    FormsModule,
+    ReactiveFormsModule,
+    Validators,
+    FormControl,
+    FormGroup,
+} from '@angular/forms';
 import { ZyraFormField } from './zyra-form-field';
 import { ZyraInput, InputType } from '../zyra-input/zyra-input';
 
@@ -20,13 +26,13 @@ import { ZyraInput, InputType } from '../zyra-input/zyra-input';
     `,
 })
 class FormFieldHostComponent {
-    label       = signal('Password');
-    hint        = signal('Use a strong password');
+    label = signal('Password');
+    hint = signal('Use a strong password');
     successHint = signal('Looks good');
     clearButton = signal(false);
-    maxLength   = signal<number | null>(10);
-    value       = 'secret';
-    type        = signal<InputType>('password');
+    maxLength = signal<number | null>(10);
+    value = 'secret';
+    type = signal<InputType>('password');
 }
 
 @Component({
@@ -42,8 +48,8 @@ class FormFieldHostComponent {
 })
 class ReactiveFormFieldHostComponent {
     label = signal('Email');
-    hint  = signal('We will never share your email');
-    form  = new FormGroup({
+    hint = signal('We will never share your email');
+    form = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
     });
 }
@@ -53,7 +59,9 @@ describe('ZyraFormField', () => {
     let host: FormFieldHostComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({ imports: [FormFieldHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [FormFieldHostComponent],
+        }).compileComponents();
         fixture = TestBed.createComponent(FormFieldHostComponent);
         host = fixture.componentInstance;
         fixture.detectChanges();
@@ -63,12 +71,14 @@ describe('ZyraFormField', () => {
 
     // ── Label ─────────────────────────────────────────────────────────────
     it('renders the label text', () => {
-        const label: HTMLLabelElement = fixture.nativeElement.querySelector('.zyra-form-field__label');
+        const label: HTMLLabelElement =
+            fixture.nativeElement.querySelector('.zyra-form-field__label');
         expect(label.textContent).toContain('Password');
     });
 
     it('shows required marker (*) when input has required validator', () => {
-        const label: HTMLLabelElement = fixture.nativeElement.querySelector('.zyra-form-field__label');
+        const label: HTMLLabelElement =
+            fixture.nativeElement.querySelector('.zyra-form-field__label');
         expect(label.textContent).toContain('*');
     });
 
@@ -78,7 +88,8 @@ describe('ZyraFormField', () => {
         await fixture.whenStable();
         fixture.detectChanges();
         // Still has required on the input in this template — marker should still be there
-        const label: HTMLLabelElement = fixture.nativeElement.querySelector('.zyra-form-field__label');
+        const label: HTMLLabelElement =
+            fixture.nativeElement.querySelector('.zyra-form-field__label');
         expect(label).not.toBeNull();
     });
 
@@ -90,7 +101,9 @@ describe('ZyraFormField', () => {
 
     // ── Character counter ─────────────────────────────────────────────────
     it('renders character counter with current/max', () => {
-        const counter: HTMLElement = fixture.nativeElement.querySelector('.zyra-form-field__counter');
+        const counter: HTMLElement = fixture.nativeElement.querySelector(
+            '.zyra-form-field__counter',
+        );
         expect(counter.textContent?.trim()).toBe('6 / 10');
     });
 
@@ -108,7 +121,9 @@ describe('ZyraFormField', () => {
     });
 
     it('toggles password visibility when toggle button is clicked', () => {
-        const toggle: HTMLButtonElement = fixture.nativeElement.querySelector('.zyra-form-field__icon-btn');
+        const toggle: HTMLButtonElement = fixture.nativeElement.querySelector(
+            '.zyra-form-field__icon-btn',
+        );
         toggle.click();
         fixture.detectChanges();
         const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
@@ -116,7 +131,9 @@ describe('ZyraFormField', () => {
     });
 
     it('toggle aria-label changes between Show/Hide password', () => {
-        const toggle: HTMLButtonElement = fixture.nativeElement.querySelector('.zyra-form-field__icon-btn');
+        const toggle: HTMLButtonElement = fixture.nativeElement.querySelector(
+            '.zyra-form-field__icon-btn',
+        );
         expect(toggle.getAttribute('aria-label')).toBe('Show password');
         toggle.click();
         fixture.detectChanges();
@@ -140,7 +157,9 @@ describe('ZyraFormField', () => {
         await fixture.whenStable();
         fixture.detectChanges();
 
-        const clearBtn: HTMLButtonElement = fixture.nativeElement.querySelector('.zyra-form-field__clear-btn');
+        const clearBtn: HTMLButtonElement = fixture.nativeElement.querySelector(
+            '.zyra-form-field__clear-btn',
+        );
         clearBtn.click();
         fixture.detectChanges();
         await fixture.whenStable();
@@ -153,10 +172,11 @@ describe('ZyraFormField', () => {
 
 describe('ZyraFormField — reactive validation', () => {
     let fixture: ComponentFixture<ReactiveFormFieldHostComponent>;
-    let host: ReactiveFormFieldHostComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({ imports: [ReactiveFormFieldHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [ReactiveFormFieldHostComponent],
+        }).compileComponents();
         fixture = TestBed.createComponent(ReactiveFormFieldHostComponent);
         host = fixture.componentInstance;
         fixture.detectChanges();
@@ -177,7 +197,9 @@ describe('ZyraFormField — reactive validation', () => {
         await fixture.whenStable();
         fixture.detectChanges();
 
-        const errorHint: HTMLElement = fixture.nativeElement.querySelector('.zyra-form-field__hint--error');
+        const errorHint: HTMLElement = fixture.nativeElement.querySelector(
+            '.zyra-form-field__hint--error',
+        );
         expect(errorHint).not.toBeNull();
         expect(errorHint.textContent).toContain('This field is required');
     });
@@ -191,7 +213,9 @@ describe('ZyraFormField — reactive validation', () => {
         await fixture.whenStable();
         fixture.detectChanges();
 
-        const errorHint: HTMLElement = fixture.nativeElement.querySelector('.zyra-form-field__hint--error');
+        const errorHint: HTMLElement = fixture.nativeElement.querySelector(
+            '.zyra-form-field__hint--error',
+        );
         expect(errorHint).not.toBeNull();
         expect(errorHint.textContent).toContain('valid email');
     });
