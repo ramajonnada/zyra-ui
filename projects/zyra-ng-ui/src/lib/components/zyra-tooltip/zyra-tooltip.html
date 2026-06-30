@@ -1,5 +1,6 @@
 <span
     class="zyr-tooltip-wrap"
+    [attr.aria-describedby]="visible() && text() ? tooltipId : null"
     (mouseenter)="visible.set(true)"
     (mouseleave)="visible.set(false)"
     (focusin)="visible.set(true)"
@@ -8,7 +9,7 @@
     <ng-content />
 
     @if (visible() && text()) {
-        <span [class]="tooltipClass()" role="tooltip">
+        <span [id]="tooltipId" [class]="tooltipClass()" role="tooltip">
             {{ text() }}
             <span class="zyr-tooltip__arrow"></span>
         </span>

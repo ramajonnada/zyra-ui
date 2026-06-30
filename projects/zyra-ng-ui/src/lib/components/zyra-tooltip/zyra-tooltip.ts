@@ -18,6 +18,9 @@ export class ZyraTooltip {
     // ── State ─────────────────────────────────────────────────
     visible = signal(false);
 
+    // ── IDs ───────────────────────────────────────────────────
+    readonly tooltipId = `zyr-tooltip-${Math.random().toString(36).slice(2, 9)}`;
+
     // ── Computed ──────────────────────────────────────────────
     tooltipClass = computed(() => `zyr-tooltip zyr-tooltip--${this.position()}`);
 }

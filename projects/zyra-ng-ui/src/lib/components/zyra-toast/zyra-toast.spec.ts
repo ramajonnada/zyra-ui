@@ -160,12 +160,13 @@ describe('ZyraToastContainer', () => {
         expect(container.getAttribute('aria-live')).toBe('polite');
     });
 
-    it('each toast item has role="alert"', () => {
+    it('toast item does not carry a redundant role or aria-live (container handles announcements)', () => {
         service.error('Something broke', { duration: 0 });
         fixture.detectChanges();
 
         const toast: HTMLElement = fixture.nativeElement.querySelector('.zyr-toast');
-        expect(toast.getAttribute('role')).toBe('alert');
+        expect(toast.getAttribute('role')).toBeNull();
+        expect(toast.getAttribute('aria-live')).toBeNull();
     });
 
     it('close button has aria-label="Dismiss"', () => {

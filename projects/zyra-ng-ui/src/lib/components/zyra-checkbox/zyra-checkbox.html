@@ -9,7 +9,7 @@
         role="checkbox"
         class="zyr-checkbox__box"
         [attr.aria-checked]="indeterminate() ? 'mixed' : checked()"
-        [attr.aria-label]="label() || 'Checkbox'"
+        [attr.aria-label]="label() ? null : 'Checkbox'"
         [disabled]="isDisabled() || null"
         (click)="toggle()"
         (keydown.space)="$event.preventDefault(); toggle()"

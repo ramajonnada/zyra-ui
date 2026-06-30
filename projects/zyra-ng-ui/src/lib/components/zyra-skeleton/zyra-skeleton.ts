@@ -33,7 +33,7 @@ export type SkeletonVariant =
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './zyra-skeleton.html',
     styleUrl: './zyra-skeleton.scss',
-    host: { '[class.zyr-sk-no-anim]': '!animated()' },
+    host: { '[class.zyr-sk-no-anim]': '!animated()', 'aria-hidden': 'true' },
 })
 export class ZyraSkeleton {
     // ── Inputs ────────────────────────────────────────────────

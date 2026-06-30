@@ -9,7 +9,7 @@
         type="button"
         role="switch"
         [attr.aria-checked]="checked()"
-        [attr.aria-label]="label() || 'Toggle'"
+        [attr.aria-label]="label() ? null : 'Toggle'"
         [disabled]="isDisabled() || null"
         (click)="toggle()"
     >

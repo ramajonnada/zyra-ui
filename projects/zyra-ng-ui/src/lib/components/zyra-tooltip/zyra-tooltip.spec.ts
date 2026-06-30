@@ -117,6 +117,29 @@ describe('ZyraTooltip', () => {
         expect(fixture.nativeElement.querySelector('[role="tooltip"]')).not.toBeNull();
     });
 
+    it('tooltip span has an id when visible', () => {
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        const tooltip: HTMLElement = fixture.nativeElement.querySelector('[role="tooltip"]');
+        expect(tooltip.id).toBeTruthy();
+    });
+
+    it('wrapper sets aria-describedby pointing to the tooltip id when visible', () => {
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        const tooltip: HTMLElement = fixture.nativeElement.querySelector('[role="tooltip"]');
+        const w = wrap(fixture);
+        expect(w.getAttribute('aria-describedby')).toBe(tooltip.id);
+    });
+
+    it('wrapper clears aria-describedby when tooltip is hidden', () => {
+        wrap(fixture).dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        wrap(fixture).dispatchEvent(new Event('mouseleave'));
+        fixture.detectChanges();
+        expect(wrap(fixture).getAttribute('aria-describedby')).toBeNull();
+    });
+
     it('renders the arrow element inside tooltip', () => {
         wrap(fixture).dispatchEvent(new Event('mouseenter'));
         fixture.detectChanges();
