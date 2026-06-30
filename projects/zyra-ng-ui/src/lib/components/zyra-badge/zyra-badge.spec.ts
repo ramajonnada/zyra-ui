@@ -6,20 +6,17 @@ import { ZyraBadge } from './zyra-badge';
     standalone: true,
     imports: [ZyraBadge],
     template: `
-        <zyra-badge
-            [variant]="variant()"
-            [size]="size()"
-            [dot]="dot()"
-            [ariaLabel]="ariaLabel()"
-        >{{ label() }}</zyra-badge>
+        <zyra-badge [variant]="variant()" [size]="size()" [dot]="dot()" [ariaLabel]="ariaLabel()">{{
+            label()
+        }}</zyra-badge>
     `,
 })
 class BadgeHostComponent {
-    variant   = signal<'success' | 'warning' | 'danger' | 'info' | 'purple' | 'default'>('default');
-    size      = signal<'sm' | 'md' | 'lg'>('md');
-    dot       = signal(false);
+    variant = signal<'success' | 'warning' | 'danger' | 'info' | 'purple' | 'default'>('default');
+    size = signal<'sm' | 'md' | 'lg'>('md');
+    dot = signal(false);
     ariaLabel = signal('');
-    label     = signal('Stable');
+    label = signal('Stable');
 }
 
 describe('ZyraBadge', () => {

@@ -26,8 +26,8 @@ import { ZyraCard } from 'zyra-ng-ui';
     `,
 })
 export class CardRenderer {
-    variant   = input<string>('default');
-    padding   = input<string>('md');
+    variant = input<string>('default');
+    padding = input<string>('md');
     clickable = input<boolean>(false);
     hasHeader = input<boolean>(false);
     hasFooter = input<boolean>(false);

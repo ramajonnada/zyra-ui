@@ -1,497 +1,475 @@
 [
-	{
-		"imageUrl": "",
-		"readTime": "8 mins",
-		"slug": "angular-resource-api-httpresouce-signals-2026",
-		"title": "Angular resource() and httpResource(): Reactive HTTP with Signals",
-		"description": "A complete guide to Angular's resource() and httpResource() APIs — how to fetch data reactively with signals, handle loading and error states, refresh on demand, and replace RxJS-heavy data fetching patterns in Angular 21.",
-		"category": [
-			"Angular 21"
-		],
-		"tags": [
-			"angular resource",
-			"angular httpresource",
-			"angular signals",
-			"angular http",
-			"angular 21",
-			"reactive data fetching",
-			"angular zoneless"
-		],
-		"keywords": [
-			"Angular resource API",
-			"Angular httpResource",
-			"Angular reactive HTTP signals",
-			"Angular resource() tutorial",
-			"Angular fetch data with signals"
-		],
-		"date": "2026-06-29",
-		"faq": [
-			{
-				"q": "What is Angular's httpResource()?",
-				"a": "httpResource() is an Angular API that fetches HTTP data reactively using signals. You pass a function that returns a URL (reading any signals inside), and it gives back an object with value(), isLoading(), error(), and status() signals. It re-fetches automatically whenever the signals it reads change."
-			},
-			{
-				"q": "What is the difference between resource() and httpResource() in Angular?",
-				"a": "httpResource() uses Angular's HttpClient under the hood, so it runs through your interceptors, auth headers, and XSRF tokens. resource() accepts any async function — fetch, IndexedDB, or custom logic — giving you full control. Use httpResource() for standard HTTP and resource() when you need custom async behaviour."
-			},
-			{
-				"q": "How do I skip a fetch when the input is not ready in Angular resource?",
-				"a": "Return undefined from the URL function. When the URL function returns undefined, the resource stays in the Idle state and makes no request. As soon as the signal becomes a valid value, the resource fetches automatically."
-			},
-			{
-				"q": "Does httpResource() work with Angular SSR?",
-				"a": "Yes. httpResource() fetches data on the server before the HTML is serialized, so crawlers and users receive fully-rendered content. Add withHttpTransferCache() to your HttpClient providers so the server result is transferred to the browser, avoiding a second request on hydration."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "9 mins",
-		"slug": "angular-defer-blocks-lazy-loading-2026",
-		"title": "Angular @defer Blocks: Lazy Load Any Component Instantly",
-		"description": "A practical guide to Angular's @defer template syntax — how to lazy load components, use triggers like on viewport and on interaction, handle loading/error states, and combine defer with signals for maximum performance in 2026.",
-		"category": [
-			"Angular 21"
-		],
-		"tags": [
-			"angular defer",
-			"angular lazy loading",
-			"angular 21",
-			"angular performance",
-			"defer blocks",
-			"angular templates",
-			"code splitting"
-		],
-		"keywords": [
-			"Angular defer blocks",
-			"Angular lazy loading components",
-			"Angular @defer tutorial",
-			"@defer on viewport",
-			"Angular deferred loading 2026"
-		],
-		"date": "2026-06-29",
-		"faq": [
-			{
-				"q": "What is the Angular @defer block?",
-				"a": "The @defer block is a built-in Angular template syntax that lazily loads any standalone component, directive, or pipe as a separate JS chunk. Angular only downloads and renders the deferred content when a trigger fires — such as the element scrolling into view, the user clicking, or a signal becoming true."
-			},
-			{
-				"q": "What triggers are available for Angular @defer?",
-				"a": "Angular @defer supports on viewport (when the placeholder enters the viewport), on interaction (on first click, focus, or touch), on idle (during browser idle time), on timer (after a fixed delay), on immediate (as soon as possible after initial render), and when (a custom boolean expression, including signals)."
-			},
-			{
-				"q": "What is the difference between @defer @placeholder and @loading?",
-				"a": "@placeholder is shown immediately before the trigger fires — it represents the space before the user requests the content. @loading is shown while the JS chunk is actively being fetched from the network. Once the chunk arrives and renders, both are replaced by the main @defer block content."
-			},
-			{
-				"q": "Can I use @defer with non-standalone Angular components?",
-				"a": "No. Only standalone components, directives, and pipes are deferrable. Non-standalone (module-based) dependencies stay in the main bundle even if wrapped in a @defer block. This is a strong reason to migrate to standalone components in modern Angular."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "5 mins",
-		"slug": "fix-ng0908-in-this-configuration-angular-requires-zonejs",
-		"title": "Fix NG0908: In This Configuration Angular Requires Zone.js",
-		"description": "What the Angular error 'NG0908: In this configuration Angular requires Zone.js' means, why it happens, and the two ways to fix it — restore Zone.js or configure zoneless correctly.",
-		"category": [
-			"Angular Errors"
-		],
-		"tags": [
-			"angular error",
-			"ng0908",
-			"zonejs",
-			"angular zoneless",
-			"angular 21",
-			"change detection",
-			"polyfills"
-		],
-		"keywords": [
-			"In this configuration Angular requires Zone.js",
-			"NG0908",
-			"Angular requires Zone.js error",
-			"Angular zoneless error",
-			"Angular zone.js polyfills"
-		],
-		"date": "2026-05-23",
-		"faq": [
-			{
-				"q": "What does NG0908: In this configuration Angular requires Zone.js mean?",
-				"a": "It means your Angular app is configured for zone-based change detection, but zone.js is not loaded at runtime. The configuration and the polyfills disagree, so Angular refuses to start."
-			},
-			{
-				"q": "How do I fix the Angular requires Zone.js error quickly?",
-				"a": "Add zone.js back to the polyfills array in angular.json for both the build and test targets, or import 'zone.js' in your polyfills file, then restart the dev server."
-			},
-			{
-				"q": "How do I fix NG0908 if I want a zoneless app?",
-				"a": "Remove any provideZoneChangeDetection() call and add provideZonelessChangeDetection() (Angular v20.2+). In Angular v21 zoneless is the default, so ensure nothing opts back into zones and that zone.js is removed from polyfills."
-			},
-			{
-				"q": "Why does NG0908 only appear in my tests or Storybook?",
-				"a": "Those tools bootstrap Angular separately from your app config and often expect Zone.js. Ensure the test target's polyfills include zone.js, or configure the tool's bootstrap for zoneless explicitly."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "8 mins",
-		"slug": "angular-cli-mcp-server-generate-components-with-ai",
-		"title": "Angular CLI MCP Server: Generate Components with AI",
-		"description": "Learn how to set up the Angular CLI MCP server, what tools it gives your AI assistant, and how to generate accurate, modern Angular components with AI in 2026.",
-		"category": [
-			"Angular AI"
-		],
-		"tags": [
-			"angular mcp server",
-			"angular cli mcp",
-			"ai component generation",
-			"angular 21",
-			"angular ai",
-			"ng mcp",
-			"vibe coding angular"
-		],
-		"keywords": [
-			"Angular MCP server",
-			"Angular CLI MCP",
-			"AI component generation Angular",
-			"ng mcp",
-			"generate Angular components with AI"
-		],
-		"date": "2026-05-21",
-		"faq": [
-			{
-				"q": "What is the Angular CLI MCP server?",
-				"a": "It is an experimental Model Context Protocol server built into the Angular CLI that lets AI assistants in your editor interact with the CLI, find official code examples, retrieve best practices, list workspace projects, and run CLI-powered code generation."
-			},
-			{
-				"q": "How do I set up the Angular MCP server?",
-				"a": "Run `ng mcp` in your project root for setup instructions, then add a config file for your editor that points to `npx -y @angular/cli mcp`. VS Code uses .vscode/mcp.json with a servers property; Cursor uses .cursor/mcp.json with mcpServers."
-			},
-			{
-				"q": "Does the MCP server require a recent Angular version?",
-				"a": "Yes. It ships with the Angular CLI and is available in Angular v20.2 and later, and is included by default in Angular v21 projects."
-			},
-			{
-				"q": "Is AI-generated Angular code from the MCP server production-ready?",
-				"a": "It is higher quality because the model reads Angular's own best-practice examples, but it still needs human review, especially for logic, security, and accessibility."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "8 mins",
-		"slug": "better-ai-generated-angular-code-llms-txt-web-codegen-scorer",
-		"title": "Better AI-Generated Angular Code: llms.txt & Codegen Scorer",
-		"description": "How to make AI assistants write modern Angular: use llms.txt, the official best-practices rules files, and the Web Codegen Scorer to measure and improve generated code.",
-		"category": [
-			"Angular AI"
-		],
-		"tags": [
-			"ai generated angular code",
-			"angular llms.txt",
-			"web codegen scorer",
-			"angular ai prompts",
-			"angular 21",
-			"angular best practices",
-			"vibe coding"
-		],
-		"keywords": [
-			"Angular llms.txt",
-			"AI generated Angular code",
-			"Web Codegen Scorer",
-			"Angular AI prompts",
-			"Angular best practices AI"
-		],
-		"date": "2026-05-19",
-		"faq": [
-			{
-				"q": "What is llms.txt in Angular?",
-				"a": "llms.txt is a proposed standard file that helps large language models understand a website's content. Angular publishes llms.txt (an index of key resources) and llms-full.txt (a larger compiled context file) that you attach when prompting so the model generates current Angular code."
-			},
-			{
-				"q": "How do I make AI write modern Angular code?",
-				"a": "Install Angular's official best-practices.md in your editor's rules location, such as .github/copilot-instructions.md for Copilot. It instructs the model to use standalone components, signals, input()/output(), OnPush, native control flow, and inject()."
-			},
-			{
-				"q": "What is the Web Codegen Scorer?",
-				"a": "It is an open-source tool from the Angular team that evaluates and scores the quality of AI-generated web code, so you can compare models, tune prompts, and monitor code quality over time."
-			},
-			{
-				"q": "Why does AI generate outdated Angular code?",
-				"a": "Models are trained on years of public code, so they have seen far more old Angular (NgModules, structural directives, decorators) than the newer signal-first, standalone style. Providing best-practices context at generation time corrects that bias."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "7 mins",
-		"slug": "angular-ui-library-zoneless-ai-streaming-rerenders",
-		"title": "Angular UI Performance in Zoneless, AI-Streaming Apps",
-		"description": "Streaming LLM responses update state dozens of times a second. Learn why your Angular UI library and change detection strategy decide whether that feels smooth or janky in zoneless v21.",
-		"category": [
-			"Angular 21"
-		],
-		"tags": [
-			"angular zoneless",
-			"angular performance",
-			"angular signals",
-			"llm streaming ui",
-			"angular ui library",
-			"change detection",
-			"angular 21"
-		],
-		"keywords": [
-			"Angular zoneless UI performance",
-			"Angular LLM streaming UI",
-			"Angular signals change detection",
-			"Angular UI library performance",
-			"Angular streaming re-renders"
-		],
-		"date": "2026-05-15",
-		"faq": [
-			{
-				"q": "Why is streaming LLM output hard on Angular change detection?",
-				"a": "Streaming appends text many times per second, so the UI updates constantly. Under the old Zone.js model each async chunk could trigger change detection across the whole component tree, wasting work and dropping frames even though only one message changed."
-			},
-			{
-				"q": "How do I keep a chat UI smooth in zoneless Angular?",
-				"a": "Hold each message's text in its own signal, use OnPush change detection, track @for by a stable id, and batch incoming tokens to flush once per animation frame. Defer expensive work like markdown parsing until the message completes."
-			},
-			{
-				"q": "Does going zoneless automatically improve performance?",
-				"a": "No. Zoneless removes Zone.js overhead, but if your components use default change detection, subscribe to broad observables, or do heavy work in templates, a streaming UI will still feel slow. The gains come from the whole chain being signal-aware."
-			},
-			{
-				"q": "What makes a UI component streaming-safe?",
-				"a": "It uses OnPush, avoids hidden global work in lifecycle hooks, reacts to inputs through signals or markForCheck, and keeps templates cheap. These traits matter more than how many components a library ships."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "8 mins",
-		"slug": "modern-angular-ui-animations-2026",
-		"title": "7 Modern Angular UI Animations You Can Build in 2026",
-		"description": "Seven practical Angular UI animations for 2026 — from view transitions and staggered lists to scroll reveals and micro-interactions — built the modern, performant way.",
-		"category": [
-			"Angular UI"
-		],
-		"tags": [
-			"angular animations",
-			"angular ui",
-			"angular 21",
-			"css animations",
-			"micro-interactions",
-			"frontend ui",
-			"view transitions"
-		],
-		"keywords": [
-			"Angular animations 2026",
-			"Angular UI animations",
-			"Angular micro-interactions",
-			"Angular view transitions",
-			"Angular scroll animations"
-		],
-		"date": "2026-05-12",
-		"faq": [
-			{
-				"q": "How do I animate route transitions in Angular?",
-				"a": "Enable the browser's View Transitions API in your router config with withViewTransitions(). The browser cross-fades between routes automatically, and you refine the timing with ::view-transition-old and ::view-transition-new CSS rules."
-			},
-			{
-				"q": "Do I still need the @angular/animations package in 2026?",
-				"a": "Often not. Most common animations are cleaner with CSS, the View Transitions API, IntersectionObserver, and signals. The animations package is still available but is no longer the default reach for everyday UI motion."
-			},
-			{
-				"q": "Which CSS properties are safe to animate for performance?",
-				"a": "Animate transform and opacity, which are GPU-composited and cheap. Avoid animating width, height, top, and left, which trigger layout and paint on every frame."
-			},
-			{
-				"q": "How do I make Angular animations accessible?",
-				"a": "Respect the prefers-reduced-motion media query and disable non-essential animation for users who request reduced motion. Skipping this is the most common animation mistake and is an accessibility issue."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "9 mins",
-		"slug": "angular-ssr-seo-2026-core-web-vitals-component-library",
-		"title": "Angular SSR & SEO in 2026: Core Web Vitals Done Right",
-		"description": "A practical guide to Angular 21 SSR for SEO in 2026: hydration, dynamic meta tags, structured data, and keeping Core Web Vitals green when you use a component library.",
-		"category": [
-			"Angular SEO"
-		],
-		"tags": [
-			"angular ssr",
-			"angular seo",
-			"core web vitals",
-			"angular 21",
-			"server side rendering",
-			"angular hydration",
-			"structured data"
-		],
-		"keywords": [
-			"Angular SSR SEO",
-			"Angular Core Web Vitals",
-			"Angular 21 SSR",
-			"Angular SEO 2026",
-			"Angular meta tags SSR"
-		],
-		"date": "2026-05-08",
-		"faq": [
-			{
-				"q": "Is Angular good for SEO in 2026?",
-				"a": "Yes, when you use SSR. Since Angular 17, server-side rendering and prerendering are built into the CLI through @angular/ssr, so crawlers receive fully-rendered HTML. Angular 21 adds hydration by default."
-			},
-			{
-				"q": "How do I add server-side rendering to an Angular app?",
-				"a": "Run `ng add @angular/ssr`. It sets up a server entry point and build targets, and in Angular 21 hydration is enabled by default. Verify by viewing page source and confirming real content is present."
-			},
-			{
-				"q": "How do I set per-page meta tags in Angular?",
-				"a": "Use Angular's Title and Meta services, driven from route data or a resolver. Because they run during SSR, the correct title, description, and Open Graph tags are present in the HTML the crawler receives."
-			},
-			{
-				"q": "Can a component library hurt my Angular SEO?",
-				"a": "Yes. A heavy library inflates your bundle and hurts LCP and INP, and a browser-only library that touches window or document at construction can crash SSR. Choose a tree-shakeable, SSR-safe library."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "9 mins",
-		"slug": "angular-v21-zoneless-guide-remove-zonejs-use-signals",
-		"title": "Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals",
-		"description": "Learn what zoneless Angular means in v21, why ZoneJS is no longer the default, how signals fit in, and how to migrate safely.",
-		"category": [
-			"Angular 21"
-		],
-		"tags": [
-			"angular v21",
-			"zoneless angular",
-			"zonejs",
-			"angular signals",
-			"angular performance",
-			"angular migration",
-			"standalone angular"
-		],
-		"keywords": [
-			"Angular v21 zoneless",
-			"remove ZoneJS Angular",
-			"Angular signals performance",
-			"zoneless Angular migration"
-		],
-		"date": "2026-04-27",
-		"faq": [
-			{
-				"q": "What does zoneless mean in Angular?",
-				"a": "Zoneless means Angular no longer uses Zone.js to detect changes. Instead it updates views in response to explicit notifications such as a signal read in a template changing, markForCheck, setting a component input, or a template event handler firing."
-			},
-			{
-				"q": "Is zoneless stable in Angular?",
-				"a": "Yes. Zoneless became stable in Angular v20.2, and from Angular v21 onward it is the default for new apps, so no extra setup is needed to enable it."
-			},
-			{
-				"q": "How do I migrate an existing app to zoneless?",
-				"a": "Move local UI state to signals, prefer the async pipe or explicit signal updates over manual subscriptions, audit any NgZone usage, enable zoneless in development, test key flows, and only remove zone.js from the build once the app behaves correctly."
-			},
-			{
-				"q": "What breaks when going zoneless?",
-				"a": "Code that depends on NgZone.onStable, onMicrotaskEmpty, onUnstable, or isStable, components that rely on implicit refresh after mutating unobserved data, and older third-party libraries that assume Zone.js is present."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "8 mins",
-		"slug": "angular-21-signals-explained-signals-signal-forms",
-		"title": "Angular 21 Signals Explained: Signals, Signal Forms",
-		"description": "In-depth Angular 21 Signals guide for 2026: learn signals, Signal Forms, zoneless change detection, and how to use Angular Signals with RxJS and HttpClient.",
-		"category": [
-			"Angular 21 signals"
-		],
-		"tags": [
-			"angular 21",
-			"angular signals",
-			"signal forms",
-			"zoneless change detection",
-			"angular 2026",
-			"angular reactivity",
-			"rxjs interop",
-			"angular seo"
-		],
-		"keywords": [
-			"Angular 21 signals",
-			"Angular 21 new features",
-			"Angular signals tutorial",
-			"Signal Forms in Angular 21",
-			"Zoneless Angular change detection",
-			"Angular signals vs RxJS",
-			"Angular reactive programming 2026"
-		],
-		"date": " 2026-01-03",
-		"faq": [
-			{
-				"q": "What is a signal in Angular 21?",
-				"a": "A signal is a reactive value that wraps state. You read it by calling it like a function (count()) and change it with .set() or .update(). Angular tracks where each signal is read, so only those parts of the UI update when the value changes."
-			},
-			{
-				"q": "What are Signal Forms in Angular 21?",
-				"a": "Signal Forms are a forms approach built on signals. They avoid heavy FormBuilder setup and manual subscriptions, give instant UI updates, and keep validation logic clear, which works especially well in large applications."
-			},
-			{
-				"q": "Do signals replace RxJS in Angular?",
-				"a": "No. Angular 21 focuses on RxJS interoperability, not replacement. Use signals for UI and component state and RxJS for streams, WebSockets, and complex async flows, bridging them with toSignal() and toObservable()."
-			},
-			{
-				"q": "Should I use signals for a new Angular project?",
-				"a": "Yes. For new Angular projects in 2026, signals are the recommended default for most state, combined with RxJS where needed and zoneless change detection for performance."
-			}
-		]
-	},
-	{
-		"imageUrl": "",
-		"readTime": "10 mins",
-		"slug": "angular-folder-structure-practices-2026-guide",
-		"title": "Angular Folder Structure Best Practices (2026 Guide)",
-		"description": "Learn the best Angular folder structure for scalable, maintainable applications in 2026 with real-world examples.",
-		"category": [
-			"Angular"
-		],
-		"tags": [
-			"angular",
-			"angular best practices",
-			"angular folder structure",
-			"frontend architecture",
-			"scalable angular apps"
-		],
-		"keywords": [
-			"Angular folder structure",
-			"Angular best practices",
-			"Frontend architecture",
-			"Scalable Angular apps",
-			"Angular 2026 guide"
-		],
-		"date": "2026-03-06",
-		"faq": [
-			{
-				"q": "What is the best Angular folder structure in 2026?",
-				"a": "A feature-based structure: a core/ folder for app-wide singletons used once (services, interceptors, guards), a shared/ folder for reusable UI, pipes, and directives, and a features/ folder where each feature is self-contained with its own pages, components, routes, and services."
-			},
-			{
-				"q": "What goes in the core folder in Angular?",
-				"a": "Things used once across the entire app: global services such as AuthService and ThemeService, HTTP interceptors, and route guards. Avoid putting components in core/."
-			},
-			{
-				"q": "What is the difference between core and shared folders?",
-				"a": "core/ holds app-wide singletons instantiated once, while shared/ holds reusable building blocks (UI components, pipes, directives) imported by many features."
-			},
-			{
-				"q": "Do I still need NgModules for folder structure in modern Angular?",
-				"a": "No. With standalone components you no longer need heavy modules. Standalone components pair naturally with a feature-based structure where each feature owns its pages, routes, and services."
-			}
-		]
-	}
+    {
+        "imageUrl": "",
+        "readTime": "8 mins",
+        "slug": "angular-resource-api-httpresouce-signals-2026",
+        "title": "Angular resource() and httpResource(): Reactive HTTP with Signals",
+        "description": "A complete guide to Angular's resource() and httpResource() APIs — how to fetch data reactively with signals, handle loading and error states, refresh on demand, and replace RxJS-heavy data fetching patterns in Angular 21.",
+        "category": ["Angular 21"],
+        "tags": [
+            "angular resource",
+            "angular httpresource",
+            "angular signals",
+            "angular http",
+            "angular 21",
+            "reactive data fetching",
+            "angular zoneless"
+        ],
+        "keywords": [
+            "Angular resource API",
+            "Angular httpResource",
+            "Angular reactive HTTP signals",
+            "Angular resource() tutorial",
+            "Angular fetch data with signals"
+        ],
+        "date": "2026-06-29",
+        "faq": [
+            {
+                "q": "What is Angular's httpResource()?",
+                "a": "httpResource() is an Angular API that fetches HTTP data reactively using signals. You pass a function that returns a URL (reading any signals inside), and it gives back an object with value(), isLoading(), error(), and status() signals. It re-fetches automatically whenever the signals it reads change."
+            },
+            {
+                "q": "What is the difference between resource() and httpResource() in Angular?",
+                "a": "httpResource() uses Angular's HttpClient under the hood, so it runs through your interceptors, auth headers, and XSRF tokens. resource() accepts any async function — fetch, IndexedDB, or custom logic — giving you full control. Use httpResource() for standard HTTP and resource() when you need custom async behaviour."
+            },
+            {
+                "q": "How do I skip a fetch when the input is not ready in Angular resource?",
+                "a": "Return undefined from the URL function. When the URL function returns undefined, the resource stays in the Idle state and makes no request. As soon as the signal becomes a valid value, the resource fetches automatically."
+            },
+            {
+                "q": "Does httpResource() work with Angular SSR?",
+                "a": "Yes. httpResource() fetches data on the server before the HTML is serialized, so crawlers and users receive fully-rendered content. Add withHttpTransferCache() to your HttpClient providers so the server result is transferred to the browser, avoiding a second request on hydration."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "9 mins",
+        "slug": "angular-defer-blocks-lazy-loading-2026",
+        "title": "Angular @defer Blocks: Lazy Load Any Component Instantly",
+        "description": "A practical guide to Angular's @defer template syntax — how to lazy load components, use triggers like on viewport and on interaction, handle loading/error states, and combine defer with signals for maximum performance in 2026.",
+        "category": ["Angular 21"],
+        "tags": [
+            "angular defer",
+            "angular lazy loading",
+            "angular 21",
+            "angular performance",
+            "defer blocks",
+            "angular templates",
+            "code splitting"
+        ],
+        "keywords": [
+            "Angular defer blocks",
+            "Angular lazy loading components",
+            "Angular @defer tutorial",
+            "@defer on viewport",
+            "Angular deferred loading 2026"
+        ],
+        "date": "2026-06-29",
+        "faq": [
+            {
+                "q": "What is the Angular @defer block?",
+                "a": "The @defer block is a built-in Angular template syntax that lazily loads any standalone component, directive, or pipe as a separate JS chunk. Angular only downloads and renders the deferred content when a trigger fires — such as the element scrolling into view, the user clicking, or a signal becoming true."
+            },
+            {
+                "q": "What triggers are available for Angular @defer?",
+                "a": "Angular @defer supports on viewport (when the placeholder enters the viewport), on interaction (on first click, focus, or touch), on idle (during browser idle time), on timer (after a fixed delay), on immediate (as soon as possible after initial render), and when (a custom boolean expression, including signals)."
+            },
+            {
+                "q": "What is the difference between @defer @placeholder and @loading?",
+                "a": "@placeholder is shown immediately before the trigger fires — it represents the space before the user requests the content. @loading is shown while the JS chunk is actively being fetched from the network. Once the chunk arrives and renders, both are replaced by the main @defer block content."
+            },
+            {
+                "q": "Can I use @defer with non-standalone Angular components?",
+                "a": "No. Only standalone components, directives, and pipes are deferrable. Non-standalone (module-based) dependencies stay in the main bundle even if wrapped in a @defer block. This is a strong reason to migrate to standalone components in modern Angular."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "5 mins",
+        "slug": "fix-ng0908-in-this-configuration-angular-requires-zonejs",
+        "title": "Fix NG0908: In This Configuration Angular Requires Zone.js",
+        "description": "What the Angular error 'NG0908: In this configuration Angular requires Zone.js' means, why it happens, and the two ways to fix it — restore Zone.js or configure zoneless correctly.",
+        "category": ["Angular Errors"],
+        "tags": [
+            "angular error",
+            "ng0908",
+            "zonejs",
+            "angular zoneless",
+            "angular 21",
+            "change detection",
+            "polyfills"
+        ],
+        "keywords": [
+            "In this configuration Angular requires Zone.js",
+            "NG0908",
+            "Angular requires Zone.js error",
+            "Angular zoneless error",
+            "Angular zone.js polyfills"
+        ],
+        "date": "2026-05-23",
+        "faq": [
+            {
+                "q": "What does NG0908: In this configuration Angular requires Zone.js mean?",
+                "a": "It means your Angular app is configured for zone-based change detection, but zone.js is not loaded at runtime. The configuration and the polyfills disagree, so Angular refuses to start."
+            },
+            {
+                "q": "How do I fix the Angular requires Zone.js error quickly?",
+                "a": "Add zone.js back to the polyfills array in angular.json for both the build and test targets, or import 'zone.js' in your polyfills file, then restart the dev server."
+            },
+            {
+                "q": "How do I fix NG0908 if I want a zoneless app?",
+                "a": "Remove any provideZoneChangeDetection() call and add provideZonelessChangeDetection() (Angular v20.2+). In Angular v21 zoneless is the default, so ensure nothing opts back into zones and that zone.js is removed from polyfills."
+            },
+            {
+                "q": "Why does NG0908 only appear in my tests or Storybook?",
+                "a": "Those tools bootstrap Angular separately from your app config and often expect Zone.js. Ensure the test target's polyfills include zone.js, or configure the tool's bootstrap for zoneless explicitly."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "8 mins",
+        "slug": "angular-cli-mcp-server-generate-components-with-ai",
+        "title": "Angular CLI MCP Server: Generate Components with AI",
+        "description": "Learn how to set up the Angular CLI MCP server, what tools it gives your AI assistant, and how to generate accurate, modern Angular components with AI in 2026.",
+        "category": ["Angular AI"],
+        "tags": [
+            "angular mcp server",
+            "angular cli mcp",
+            "ai component generation",
+            "angular 21",
+            "angular ai",
+            "ng mcp",
+            "vibe coding angular"
+        ],
+        "keywords": [
+            "Angular MCP server",
+            "Angular CLI MCP",
+            "AI component generation Angular",
+            "ng mcp",
+            "generate Angular components with AI"
+        ],
+        "date": "2026-05-21",
+        "faq": [
+            {
+                "q": "What is the Angular CLI MCP server?",
+                "a": "It is an experimental Model Context Protocol server built into the Angular CLI that lets AI assistants in your editor interact with the CLI, find official code examples, retrieve best practices, list workspace projects, and run CLI-powered code generation."
+            },
+            {
+                "q": "How do I set up the Angular MCP server?",
+                "a": "Run `ng mcp` in your project root for setup instructions, then add a config file for your editor that points to `npx -y @angular/cli mcp`. VS Code uses .vscode/mcp.json with a servers property; Cursor uses .cursor/mcp.json with mcpServers."
+            },
+            {
+                "q": "Does the MCP server require a recent Angular version?",
+                "a": "Yes. It ships with the Angular CLI and is available in Angular v20.2 and later, and is included by default in Angular v21 projects."
+            },
+            {
+                "q": "Is AI-generated Angular code from the MCP server production-ready?",
+                "a": "It is higher quality because the model reads Angular's own best-practice examples, but it still needs human review, especially for logic, security, and accessibility."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "8 mins",
+        "slug": "better-ai-generated-angular-code-llms-txt-web-codegen-scorer",
+        "title": "Better AI-Generated Angular Code: llms.txt & Codegen Scorer",
+        "description": "How to make AI assistants write modern Angular: use llms.txt, the official best-practices rules files, and the Web Codegen Scorer to measure and improve generated code.",
+        "category": ["Angular AI"],
+        "tags": [
+            "ai generated angular code",
+            "angular llms.txt",
+            "web codegen scorer",
+            "angular ai prompts",
+            "angular 21",
+            "angular best practices",
+            "vibe coding"
+        ],
+        "keywords": [
+            "Angular llms.txt",
+            "AI generated Angular code",
+            "Web Codegen Scorer",
+            "Angular AI prompts",
+            "Angular best practices AI"
+        ],
+        "date": "2026-05-19",
+        "faq": [
+            {
+                "q": "What is llms.txt in Angular?",
+                "a": "llms.txt is a proposed standard file that helps large language models understand a website's content. Angular publishes llms.txt (an index of key resources) and llms-full.txt (a larger compiled context file) that you attach when prompting so the model generates current Angular code."
+            },
+            {
+                "q": "How do I make AI write modern Angular code?",
+                "a": "Install Angular's official best-practices.md in your editor's rules location, such as .github/copilot-instructions.md for Copilot. It instructs the model to use standalone components, signals, input()/output(), OnPush, native control flow, and inject()."
+            },
+            {
+                "q": "What is the Web Codegen Scorer?",
+                "a": "It is an open-source tool from the Angular team that evaluates and scores the quality of AI-generated web code, so you can compare models, tune prompts, and monitor code quality over time."
+            },
+            {
+                "q": "Why does AI generate outdated Angular code?",
+                "a": "Models are trained on years of public code, so they have seen far more old Angular (NgModules, structural directives, decorators) than the newer signal-first, standalone style. Providing best-practices context at generation time corrects that bias."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "7 mins",
+        "slug": "angular-ui-library-zoneless-ai-streaming-rerenders",
+        "title": "Angular UI Performance in Zoneless, AI-Streaming Apps",
+        "description": "Streaming LLM responses update state dozens of times a second. Learn why your Angular UI library and change detection strategy decide whether that feels smooth or janky in zoneless v21.",
+        "category": ["Angular 21"],
+        "tags": [
+            "angular zoneless",
+            "angular performance",
+            "angular signals",
+            "llm streaming ui",
+            "angular ui library",
+            "change detection",
+            "angular 21"
+        ],
+        "keywords": [
+            "Angular zoneless UI performance",
+            "Angular LLM streaming UI",
+            "Angular signals change detection",
+            "Angular UI library performance",
+            "Angular streaming re-renders"
+        ],
+        "date": "2026-05-15",
+        "faq": [
+            {
+                "q": "Why is streaming LLM output hard on Angular change detection?",
+                "a": "Streaming appends text many times per second, so the UI updates constantly. Under the old Zone.js model each async chunk could trigger change detection across the whole component tree, wasting work and dropping frames even though only one message changed."
+            },
+            {
+                "q": "How do I keep a chat UI smooth in zoneless Angular?",
+                "a": "Hold each message's text in its own signal, use OnPush change detection, track @for by a stable id, and batch incoming tokens to flush once per animation frame. Defer expensive work like markdown parsing until the message completes."
+            },
+            {
+                "q": "Does going zoneless automatically improve performance?",
+                "a": "No. Zoneless removes Zone.js overhead, but if your components use default change detection, subscribe to broad observables, or do heavy work in templates, a streaming UI will still feel slow. The gains come from the whole chain being signal-aware."
+            },
+            {
+                "q": "What makes a UI component streaming-safe?",
+                "a": "It uses OnPush, avoids hidden global work in lifecycle hooks, reacts to inputs through signals or markForCheck, and keeps templates cheap. These traits matter more than how many components a library ships."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "8 mins",
+        "slug": "modern-angular-ui-animations-2026",
+        "title": "7 Modern Angular UI Animations You Can Build in 2026",
+        "description": "Seven practical Angular UI animations for 2026 — from view transitions and staggered lists to scroll reveals and micro-interactions — built the modern, performant way.",
+        "category": ["Angular UI"],
+        "tags": [
+            "angular animations",
+            "angular ui",
+            "angular 21",
+            "css animations",
+            "micro-interactions",
+            "frontend ui",
+            "view transitions"
+        ],
+        "keywords": [
+            "Angular animations 2026",
+            "Angular UI animations",
+            "Angular micro-interactions",
+            "Angular view transitions",
+            "Angular scroll animations"
+        ],
+        "date": "2026-05-12",
+        "faq": [
+            {
+                "q": "How do I animate route transitions in Angular?",
+                "a": "Enable the browser's View Transitions API in your router config with withViewTransitions(). The browser cross-fades between routes automatically, and you refine the timing with ::view-transition-old and ::view-transition-new CSS rules."
+            },
+            {
+                "q": "Do I still need the @angular/animations package in 2026?",
+                "a": "Often not. Most common animations are cleaner with CSS, the View Transitions API, IntersectionObserver, and signals. The animations package is still available but is no longer the default reach for everyday UI motion."
+            },
+            {
+                "q": "Which CSS properties are safe to animate for performance?",
+                "a": "Animate transform and opacity, which are GPU-composited and cheap. Avoid animating width, height, top, and left, which trigger layout and paint on every frame."
+            },
+            {
+                "q": "How do I make Angular animations accessible?",
+                "a": "Respect the prefers-reduced-motion media query and disable non-essential animation for users who request reduced motion. Skipping this is the most common animation mistake and is an accessibility issue."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "9 mins",
+        "slug": "angular-ssr-seo-2026-core-web-vitals-component-library",
+        "title": "Angular SSR & SEO in 2026: Core Web Vitals Done Right",
+        "description": "A practical guide to Angular 21 SSR for SEO in 2026: hydration, dynamic meta tags, structured data, and keeping Core Web Vitals green when you use a component library.",
+        "category": ["Angular SEO"],
+        "tags": [
+            "angular ssr",
+            "angular seo",
+            "core web vitals",
+            "angular 21",
+            "server side rendering",
+            "angular hydration",
+            "structured data"
+        ],
+        "keywords": [
+            "Angular SSR SEO",
+            "Angular Core Web Vitals",
+            "Angular 21 SSR",
+            "Angular SEO 2026",
+            "Angular meta tags SSR"
+        ],
+        "date": "2026-05-08",
+        "faq": [
+            {
+                "q": "Is Angular good for SEO in 2026?",
+                "a": "Yes, when you use SSR. Since Angular 17, server-side rendering and prerendering are built into the CLI through @angular/ssr, so crawlers receive fully-rendered HTML. Angular 21 adds hydration by default."
+            },
+            {
+                "q": "How do I add server-side rendering to an Angular app?",
+                "a": "Run `ng add @angular/ssr`. It sets up a server entry point and build targets, and in Angular 21 hydration is enabled by default. Verify by viewing page source and confirming real content is present."
+            },
+            {
+                "q": "How do I set per-page meta tags in Angular?",
+                "a": "Use Angular's Title and Meta services, driven from route data or a resolver. Because they run during SSR, the correct title, description, and Open Graph tags are present in the HTML the crawler receives."
+            },
+            {
+                "q": "Can a component library hurt my Angular SEO?",
+                "a": "Yes. A heavy library inflates your bundle and hurts LCP and INP, and a browser-only library that touches window or document at construction can crash SSR. Choose a tree-shakeable, SSR-safe library."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "9 mins",
+        "slug": "angular-v21-zoneless-guide-remove-zonejs-use-signals",
+        "title": "Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals",
+        "description": "Learn what zoneless Angular means in v21, why ZoneJS is no longer the default, how signals fit in, and how to migrate safely.",
+        "category": ["Angular 21"],
+        "tags": [
+            "angular v21",
+            "zoneless angular",
+            "zonejs",
+            "angular signals",
+            "angular performance",
+            "angular migration",
+            "standalone angular"
+        ],
+        "keywords": [
+            "Angular v21 zoneless",
+            "remove ZoneJS Angular",
+            "Angular signals performance",
+            "zoneless Angular migration"
+        ],
+        "date": "2026-04-27",
+        "faq": [
+            {
+                "q": "What does zoneless mean in Angular?",
+                "a": "Zoneless means Angular no longer uses Zone.js to detect changes. Instead it updates views in response to explicit notifications such as a signal read in a template changing, markForCheck, setting a component input, or a template event handler firing."
+            },
+            {
+                "q": "Is zoneless stable in Angular?",
+                "a": "Yes. Zoneless became stable in Angular v20.2, and from Angular v21 onward it is the default for new apps, so no extra setup is needed to enable it."
+            },
+            {
+                "q": "How do I migrate an existing app to zoneless?",
+                "a": "Move local UI state to signals, prefer the async pipe or explicit signal updates over manual subscriptions, audit any NgZone usage, enable zoneless in development, test key flows, and only remove zone.js from the build once the app behaves correctly."
+            },
+            {
+                "q": "What breaks when going zoneless?",
+                "a": "Code that depends on NgZone.onStable, onMicrotaskEmpty, onUnstable, or isStable, components that rely on implicit refresh after mutating unobserved data, and older third-party libraries that assume Zone.js is present."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "8 mins",
+        "slug": "angular-21-signals-explained-signals-signal-forms",
+        "title": "Angular 21 Signals Explained: Signals, Signal Forms",
+        "description": "In-depth Angular 21 Signals guide for 2026: learn signals, Signal Forms, zoneless change detection, and how to use Angular Signals with RxJS and HttpClient.",
+        "category": ["Angular 21 signals"],
+        "tags": [
+            "angular 21",
+            "angular signals",
+            "signal forms",
+            "zoneless change detection",
+            "angular 2026",
+            "angular reactivity",
+            "rxjs interop",
+            "angular seo"
+        ],
+        "keywords": [
+            "Angular 21 signals",
+            "Angular 21 new features",
+            "Angular signals tutorial",
+            "Signal Forms in Angular 21",
+            "Zoneless Angular change detection",
+            "Angular signals vs RxJS",
+            "Angular reactive programming 2026"
+        ],
+        "date": " 2026-01-03",
+        "faq": [
+            {
+                "q": "What is a signal in Angular 21?",
+                "a": "A signal is a reactive value that wraps state. You read it by calling it like a function (count()) and change it with .set() or .update(). Angular tracks where each signal is read, so only those parts of the UI update when the value changes."
+            },
+            {
+                "q": "What are Signal Forms in Angular 21?",
+                "a": "Signal Forms are a forms approach built on signals. They avoid heavy FormBuilder setup and manual subscriptions, give instant UI updates, and keep validation logic clear, which works especially well in large applications."
+            },
+            {
+                "q": "Do signals replace RxJS in Angular?",
+                "a": "No. Angular 21 focuses on RxJS interoperability, not replacement. Use signals for UI and component state and RxJS for streams, WebSockets, and complex async flows, bridging them with toSignal() and toObservable()."
+            },
+            {
+                "q": "Should I use signals for a new Angular project?",
+                "a": "Yes. For new Angular projects in 2026, signals are the recommended default for most state, combined with RxJS where needed and zoneless change detection for performance."
+            }
+        ]
+    },
+    {
+        "imageUrl": "",
+        "readTime": "10 mins",
+        "slug": "angular-folder-structure-practices-2026-guide",
+        "title": "Angular Folder Structure Best Practices (2026 Guide)",
+        "description": "Learn the best Angular folder structure for scalable, maintainable applications in 2026 with real-world examples.",
+        "category": ["Angular"],
+        "tags": [
+            "angular",
+            "angular best practices",
+            "angular folder structure",
+            "frontend architecture",
+            "scalable angular apps"
+        ],
+        "keywords": [
+            "Angular folder structure",
+            "Angular best practices",
+            "Frontend architecture",
+            "Scalable Angular apps",
+            "Angular 2026 guide"
+        ],
+        "date": "2026-03-06",
+        "faq": [
+            {
+                "q": "What is the best Angular folder structure in 2026?",
+                "a": "A feature-based structure: a core/ folder for app-wide singletons used once (services, interceptors, guards), a shared/ folder for reusable UI, pipes, and directives, and a features/ folder where each feature is self-contained with its own pages, components, routes, and services."
+            },
+            {
+                "q": "What goes in the core folder in Angular?",
+                "a": "Things used once across the entire app: global services such as AuthService and ThemeService, HTTP interceptors, and route guards. Avoid putting components in core/."
+            },
+            {
+                "q": "What is the difference between core and shared folders?",
+                "a": "core/ holds app-wide singletons instantiated once, while shared/ holds reusable building blocks (UI components, pipes, directives) imported by many features."
+            },
+            {
+                "q": "Do I still need NgModules for folder structure in modern Angular?",
+                "a": "No. With standalone components you no longer need heavy modules. Standalone components pair naturally with a feature-based structure where each feature owns its pages, routes, and services."
+            }
+        ]
+    }
 ]

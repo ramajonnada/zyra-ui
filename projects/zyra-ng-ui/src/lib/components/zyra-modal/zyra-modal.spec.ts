@@ -94,7 +94,8 @@ describe('ZyraModal', () => {
         host.open.set(true);
         fixture.detectChanges();
 
-        const closeBtn: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-modal__close');
+        const closeBtn: HTMLButtonElement =
+            fixture.nativeElement.querySelector('.zyr-modal__close');
         closeBtn.click();
         fixture.detectChanges();
 

@@ -21,8 +21,9 @@ export class ZyraProgress {
     label = input<string>('');
 
     // ── Computed ──────────────────────────────────────────────
-    hostClass = computed(() =>
-        `zyr-progress zyr-progress--${this.variant()} zyr-progress--${this.size()}${this.indeterminate() ? ' zyr-progress--indeterminate' : ''}`
+    hostClass = computed(
+        () =>
+            `zyr-progress zyr-progress--${this.variant()} zyr-progress--${this.size()}${this.indeterminate() ? ' zyr-progress--indeterminate' : ''}`,
     );
 
     clampedValue = computed(() => Math.min(Math.max(this.value(), 0), this.max()));

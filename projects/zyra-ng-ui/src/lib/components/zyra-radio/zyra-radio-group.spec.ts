@@ -10,14 +10,14 @@ import { ZyraRadioGroup } from './zyra-radio-group';
     template: `
         <zyra-radio-group [(ngModel)]="value" [disabled]="disabled()" [orientation]="orientation()">
             <zyra-radio value="angular" label="Angular" />
-            <zyra-radio value="react"   label="React" />
-            <zyra-radio value="vue"     label="Vue" [disabled]="true" />
+            <zyra-radio value="react" label="React" />
+            <zyra-radio value="vue" label="Vue" [disabled]="true" />
         </zyra-radio-group>
     `,
 })
 class RadioGroupHostComponent {
-    value       = signal<string | null>(null);
-    disabled    = signal(false);
+    value = signal<string | null>(null);
+    disabled = signal(false);
     orientation = signal<'vertical' | 'horizontal'>('vertical');
 }
 
@@ -26,7 +26,9 @@ describe('ZyraRadioGroup', () => {
     let host: RadioGroupHostComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({ imports: [RadioGroupHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [RadioGroupHostComponent],
+        }).compileComponents();
         fixture = TestBed.createComponent(RadioGroupHostComponent);
         host = fixture.componentInstance;
         fixture.detectChanges();
@@ -51,7 +53,8 @@ describe('ZyraRadioGroup', () => {
         fixture.detectChanges();
         await fixture.whenStable();
         fixture.detectChanges();
-        const radios: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-radio');
+        const radios: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-radio');
         expect(radios[1].classList).toContain('zyr-radio--checked');
         expect(radios[0].classList).not.toContain('zyr-radio--checked');
     });
@@ -63,7 +66,8 @@ describe('ZyraRadioGroup', () => {
         fixture.detectChanges();
         await fixture.whenStable();
         fixture.detectChanges();
-        const radios: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-radio');
+        const radios: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-radio');
         expect(radios[0].classList).not.toContain('zyr-radio--checked');
         expect(radios[1].classList).toContain('zyr-radio--checked');
     });
@@ -76,7 +80,8 @@ describe('ZyraRadioGroup', () => {
     });
 
     it('applies --disabled class to the disabled radio', () => {
-        const radios: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-radio');
+        const radios: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-radio');
         expect(radios[2].classList).toContain('zyr-radio--disabled');
     });
 
@@ -92,8 +97,9 @@ describe('ZyraRadioGroup', () => {
     it('applies --disabled class to all radios when group is disabled', () => {
         host.disabled.set(true);
         fixture.detectChanges();
-        const radios: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-radio');
-        radios.forEach(r => expect(r.classList).toContain('zyr-radio--disabled'));
+        const radios: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-radio');
+        radios.forEach((r) => expect(r.classList).toContain('zyr-radio--disabled'));
     });
 
     // ── Keyboard navigation ───────────────────────────────────────────────
@@ -103,7 +109,9 @@ describe('ZyraRadioGroup', () => {
         await fixture.whenStable();
         fixture.detectChanges();
 
-        groupEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        groupEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }),
+        );
         fixture.detectChanges();
         await fixture.whenStable();
         fixture.detectChanges();
@@ -117,7 +125,9 @@ describe('ZyraRadioGroup', () => {
         await fixture.whenStable();
         fixture.detectChanges();
 
-        groupEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
+        groupEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }),
+        );
         fixture.detectChanges();
         await fixture.whenStable();
         fixture.detectChanges();
@@ -133,7 +143,9 @@ describe('ZyraRadioGroup', () => {
         await fixture.whenStable();
         fixture.detectChanges();
 
-        groupEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+        groupEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }),
+        );
         fixture.detectChanges();
         await fixture.whenStable();
         fixture.detectChanges();
@@ -147,7 +159,9 @@ describe('ZyraRadioGroup', () => {
         await fixture.whenStable();
         fixture.detectChanges();
 
-        groupEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        groupEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }),
+        );
         fixture.detectChanges();
         await fixture.whenStable();
         fixture.detectChanges();
@@ -170,7 +184,8 @@ describe('ZyraRadioGroup', () => {
         fixture.detectChanges();
         await fixture.whenStable();
         fixture.detectChanges();
-        const roleRadios: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('[role="radio"]');
+        const roleRadios: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('[role="radio"]');
         expect(roleRadios[0].getAttribute('aria-checked')).toBe('true');
         expect(roleRadios[1].getAttribute('aria-checked')).toBe('false');
     });

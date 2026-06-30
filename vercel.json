@@ -1,15 +1,15 @@
 {
-	"version": 2,
-	"buildCommand": "ng build zyra-ng-ui && npm run build:ssr",
-	"outputDirectory": "dist/zyra-ui/browser",
-	"framework": null,
-	"routes": [
-		{
-			"handle": "filesystem"
-		},
-		{
-			"src": "/(.*)",
-			"dest": "/server/server.mjs"
-		}
-	]
+    "version": 2,
+    "buildCommand": "ng build zyra-ng-ui && npm run build:ssr",
+    "outputDirectory": "dist/zyra-ui/browser",
+    "framework": null,
+    "routes": [
+        {
+            "handle": "filesystem"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/server/server.mjs"
+        }
+    ]
 }

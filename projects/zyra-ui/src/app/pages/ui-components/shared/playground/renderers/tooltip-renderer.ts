@@ -7,17 +7,13 @@ import { ZyraButton, ZyraTooltip } from 'zyra-ng-ui';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ZyraTooltip, ZyraButton],
     template: `
-        <zyra-tooltip
-            [text]="tooltipText()"
-            [position]="$any(position())"
-            [maxWidth]="maxWidth()"
-        >
+        <zyra-tooltip [text]="tooltipText()" [position]="$any(position())" [maxWidth]="maxWidth()">
             <zyra-button variant="outline">Hover me</zyra-button>
         </zyra-tooltip>
     `,
 })
 export class TooltipRenderer {
-    position    = input<string>('top');
-    maxWidth    = input<string>('200px');
+    position = input<string>('top');
+    maxWidth = input<string>('200px');
     tooltipText = input<string>('This is a tooltip!');
 }

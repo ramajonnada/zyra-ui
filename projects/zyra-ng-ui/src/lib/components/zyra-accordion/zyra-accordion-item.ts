@@ -1,4 +1,12 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, inject, input, model } from '@angular/core';
+import {
+    booleanAttribute,
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    inject,
+    input,
+    model,
+} from '@angular/core';
 import { ZyraAccordion } from './zyra-accordion';
 
 let accordionItemCounter = 0;
@@ -20,7 +28,7 @@ export class ZyraAccordionItem {
 
     // ── Unique IDs for aria-controls / aria-labelledby ────────
     readonly triggerId = `zyr-accordion-trigger-${++accordionItemCounter}`;
-    readonly panelId   = `zyr-accordion-panel-${accordionItemCounter}`;
+    readonly panelId = `zyr-accordion-panel-${accordionItemCounter}`;
 
     // ── Computed ──────────────────────────────────────────────
     triggerClass = computed(() => {

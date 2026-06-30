@@ -16,9 +16,21 @@
 
         <div class="components-page__search">
             <div class="search-bar">
-                <svg class="search-bar__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="m21 21-4.35-4.35"/>
+                <svg
+                    class="search-bar__icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
                 </svg>
                 <input
                     class="search-bar__input"
@@ -29,7 +41,13 @@
                     (input)="searchQuery.set($any($event.target).value)"
                 />
                 @if (searchQuery()) {
-                    <button class="search-bar__clear" (click)="searchQuery.set('')" aria-label="Clear search">✕</button>
+                    <button
+                        class="search-bar__clear"
+                        (click)="searchQuery.set('')"
+                        aria-label="Clear search"
+                    >
+                        ✕
+                    </button>
                 }
             </div>
         </div>
@@ -38,7 +56,11 @@
     @if (filteredCards().length) {
         <div class="components-page__grid">
             @for (card of filteredCards(); track card.slug; let i = $index) {
-                <a class="component-card" [routerLink]="['/components', card.slug]" [style.animation-delay]="(i * 55) + 'ms'">
+                <a
+                    class="component-card"
+                    [routerLink]="['/components', card.slug]"
+                    [style.animation-delay]="i * 55 + 'ms'"
+                >
                     <zyra-card variant="outlined" [clickable]="true" padding="lg">
                         <div class="component-card__body">
                             <div class="component-card__header">
@@ -50,7 +72,9 @@
                                     <fa-icon [icon]="card.icon" aria-hidden="true" />
                                 </div>
 
-                                <zyra-badge variant="default" size="md">{{ card.category }}</zyra-badge>
+                                <zyra-badge variant="default" size="md">{{
+                                    card.category
+                                }}</zyra-badge>
                             </div>
 
                             <div class="component-card__copy">
@@ -68,8 +92,12 @@
         </div>
     } @else {
         <div class="components-page__empty">
-            <p class="components-page__empty-text">No components match <strong>"{{ searchQuery() }}"</strong></p>
-            <button class="components-page__empty-clear" (click)="searchQuery.set('')">Clear search</button>
+            <p class="components-page__empty-text">
+                No components match <strong>"{{ searchQuery() }}"</strong>
+            </p>
+            <button class="components-page__empty-clear" (click)="searchQuery.set('')">
+                Clear search
+            </button>
         </div>
     }
 </section>

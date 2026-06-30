@@ -14,17 +14,18 @@ import { ZyraButton } from './zyra-button';
             [fullWidth]="fullWidth()"
             [type]="btnType()"
             (clicked)="clicks = clicks + 1"
-        >Save</zyra-button>
+            >Save</zyra-button
+        >
     `,
 })
 class ButtonHostComponent {
-    variant   = signal<'primary' | 'secondary' | 'ghost' | 'danger' | 'outline'>('primary');
-    size      = signal<'sm' | 'md' | 'lg'>('md');
-    loading   = signal(false);
-    disabled  = signal(false);
+    variant = signal<'primary' | 'secondary' | 'ghost' | 'danger' | 'outline'>('primary');
+    size = signal<'sm' | 'md' | 'lg'>('md');
+    loading = signal(false);
+    disabled = signal(false);
     fullWidth = signal(false);
-    btnType   = signal<'button' | 'submit' | 'reset'>('button');
-    clicks    = 0;
+    btnType = signal<'button' | 'submit' | 'reset'>('button');
+    clicks = 0;
 }
 
 describe('ZyraButton', () => {
@@ -32,7 +33,9 @@ describe('ZyraButton', () => {
     let host: ButtonHostComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({ imports: [ButtonHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [ButtonHostComponent],
+        }).compileComponents();
         fixture = TestBed.createComponent(ButtonHostComponent);
         host = fixture.componentInstance;
         fixture.detectChanges();

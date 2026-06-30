@@ -30,16 +30,16 @@ let checkboxIdCounter = 0;
         },
     ],
     templateUrl: './zyra-checkbox.html',
-    styleUrl:    './zyra-checkbox.scss',
+    styleUrl: './zyra-checkbox.scss',
 })
 export class ZyraCheckbox implements ControlValueAccessor {
     // ── Inputs ────────────────────────────────────────────────
-    checked       = model<boolean>(false);
-    disabled      = input(false, { transform: booleanAttribute });
+    checked = model<boolean>(false);
+    disabled = input(false, { transform: booleanAttribute });
     indeterminate = input(false, { transform: booleanAttribute });
-    label         = input<string>('');
+    label = input<string>('');
     labelPosition = input<'left' | 'right'>('right');
-    size          = input<CheckboxSize>('md');
+    size = input<CheckboxSize>('md');
 
     // ── Outputs ───────────────────────────────────────────────
     changed = output<boolean>();
@@ -49,26 +49,34 @@ export class ZyraCheckbox implements ControlValueAccessor {
 
     // ── CVA disabled state ────────────────────────────────────
     private _cvaDisabled = signal(false);
-    readonly isDisabled  = computed(() => this.disabled() || this._cvaDisabled());
+    readonly isDisabled = computed(() => this.disabled() || this._cvaDisabled());
 
     readonly icons = zyraIcons;
 
     readonly hostClass = computed(() => {
         const parts = ['zyr-checkbox', `zyr-checkbox--${this.size()}`];
-        if (this.isDisabled())   parts.push('zyr-checkbox--disabled');
-        if (this.checked())      parts.push('zyr-checkbox--checked');
+        if (this.isDisabled()) parts.push('zyr-checkbox--disabled');
+        if (this.checked()) parts.push('zyr-checkbox--checked');
         if (this.indeterminate()) parts.push('zyr-checkbox--indeterminate');
         return parts.join(' ');
     });
 
     // ── CVA callbacks ─────────────────────────────────────────
     private _onChange: (val: boolean) => void = () => undefined;
-    private _onTouched: () => void            = () => undefined;
+    private _onTouched: () => void = () => undefined;
 
-    writeValue(val: boolean): void              { this.checked.set(!!val); }
-    registerOnChange(fn: (v: boolean) => void): void { this._onChange = fn; }
-    registerOnTouched(fn: () => void): void          { this._onTouched = fn; }
-    setDisabledState(disabled: boolean): void        { this._cvaDisabled.set(disabled); }
+    writeValue(val: boolean): void {
+        this.checked.set(!!val);
+    }
+    registerOnChange(fn: (v: boolean) => void): void {
+        this._onChange = fn;
+    }
+    registerOnTouched(fn: () => void): void {
+        this._onTouched = fn;
+    }
+    setDisabledState(disabled: boolean): void {
+        this._cvaDisabled.set(disabled);
+    }
 
     // ── Toggle ────────────────────────────────────────────────
     toggle(): void {

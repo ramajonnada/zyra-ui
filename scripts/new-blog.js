@@ -16,13 +16,13 @@ const index = JSON.parse(readFileSync(INDEX, 'utf8'));
 
 // ── List mode ────────────────────────────────────────────────────────────────
 if (process.argv.length < 4) {
-  console.log('\nExisting blog topics:\n');
-  index.forEach((p, i) => {
-    console.log(`  ${String(i + 1).padStart(2, ' ')}. [${p.date}] ${p.title}`);
-    console.log(`      slug: ${p.slug}\n`);
-  });
-  console.log('Usage to scaffold: node scripts/new-blog.js <slug> "<Title>"\n');
-  process.exit(0);
+    console.log('\nExisting blog topics:\n');
+    index.forEach((p, i) => {
+        console.log(`  ${String(i + 1).padStart(2, ' ')}. [${p.date}] ${p.title}`);
+        console.log(`      slug: ${p.slug}\n`);
+    });
+    console.log('Usage to scaffold: node scripts/new-blog.js <slug> "<Title>"\n');
+    process.exit(0);
 }
 
 // ── Scaffold mode ────────────────────────────────────────────────────────────
@@ -31,15 +31,15 @@ const title = process.argv[3].trim();
 const today = new Date().toISOString().split('T')[0];
 
 // Guard: duplicate slug
-if (index.some(p => p.slug === slug)) {
-  console.error(`\n✗ Slug "${slug}" already exists in index.json\n`);
-  process.exit(1);
+if (index.some((p) => p.slug === slug)) {
+    console.error(`\n✗ Slug "${slug}" already exists in index.json\n`);
+    process.exit(1);
 }
 
 const mdPath = resolve(CONTENT, `${slug}.md`);
 if (existsSync(mdPath)) {
-  console.error(`\n✗ File already exists: ${mdPath}\n`);
-  process.exit(1);
+    console.error(`\n✗ File already exists: ${mdPath}\n`);
+    process.exit(1);
 }
 
 // ── Write markdown file ───────────────────────────────────────────────────────
@@ -72,21 +72,21 @@ writeFileSync(mdPath, mdContent, 'utf8');
 
 // ── Prepend to index.json ─────────────────────────────────────────────────────
 const newEntry = {
-  imageUrl: '',
-  readTime: '',
-  slug,
-  title,
-  description: '',
-  category: ['Angular 21'],
-  tags: ['angular'],
-  keywords: [title],
-  date: today,
-  faq: [
-    { q: '', a: '' },
-    { q: '', a: '' },
-    { q: '', a: '' },
-    { q: '', a: '' },
-  ],
+    imageUrl: '',
+    readTime: '',
+    slug,
+    title,
+    description: '',
+    category: ['Angular 21'],
+    tags: ['angular'],
+    keywords: [title],
+    date: today,
+    faq: [
+        { q: '', a: '' },
+        { q: '', a: '' },
+        { q: '', a: '' },
+        { q: '', a: '' },
+    ],
 };
 
 index.unshift(newEntry);

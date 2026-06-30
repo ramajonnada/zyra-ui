@@ -18,6 +18,6 @@ import { ZyraFormField, ZyraTextarea } from 'zyra-ng-ui';
     `,
 })
 export class TextareaRenderer {
-    size   = input<string>('md');
+    size = input<string>('md');
     resize = input<string>('vertical');
 }

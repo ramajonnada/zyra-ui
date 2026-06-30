@@ -25,11 +25,7 @@ export class ZyraChip {
 
     // ── Computed ──────────────────────────────────────────────
     hostClass = computed(() => {
-        const classes = [
-            'zyr-chip',
-            `zyr-chip--${this.variant()}`,
-            `zyr-chip--${this.size()}`,
-        ];
+        const classes = ['zyr-chip', `zyr-chip--${this.variant()}`, `zyr-chip--${this.size()}`];
         if (this.selectable()) classes.push('zyr-chip--selectable');
         if (this.selected()) classes.push('zyr-chip--selected');
         if (this.disabled()) classes.push('zyr-chip--disabled');

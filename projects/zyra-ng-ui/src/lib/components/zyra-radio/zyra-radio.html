@@ -1,5 +1,4 @@
 <label [class]="hostClass()" [for]="radioId">
-
     <button
         [id]="radioId"
         type="button"
@@ -14,7 +13,6 @@
     </button>
 
     @if (label()) {
-    <span class="zyr-radio__label">{{ label() }}</span>
+        <span class="zyr-radio__label">{{ label() }}</span>
     }
-
 </label>

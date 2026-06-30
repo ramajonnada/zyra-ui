@@ -10,8 +10,12 @@
 }
 
 @keyframes zyr-backdrop-in {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .zyr-modal {
@@ -41,10 +45,18 @@
         animation: zyr-modal-in var(--zyr-transition-base) var(--zyr-ease-standard);
         outline: none;
 
-        &--sm  { max-width: 400px; }
-        &--md  { max-width: 560px; }
-        &--lg  { max-width: 720px; }
-        &--xl  { max-width: 960px; }
+        &--sm {
+            max-width: 400px;
+        }
+        &--md {
+            max-width: 560px;
+        }
+        &--lg {
+            max-width: 720px;
+        }
+        &--xl {
+            max-width: 960px;
+        }
     }
 
     // ── Header ────────────────────────────────────────────────
@@ -114,7 +126,9 @@
         flex-shrink: 0;
 
         // Makes the projected wrapper div transparent to flex so buttons are direct flex items
-        > * { display: contents; }
+        > * {
+            display: contents;
+        }
 
         &:not(:has(*)) {
             display: none;

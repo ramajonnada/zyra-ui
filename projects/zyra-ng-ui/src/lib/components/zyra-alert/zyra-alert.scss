@@ -1,12 +1,31 @@
 @keyframes zyr-alert-in {
-    from { opacity: 0; transform: translateY(-4px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes zyr-alert-out {
-    0%   { opacity: 1; max-height: 200px; padding: var(--zyr-space-4); margin-bottom: 0; }
-    40%  { opacity: 0; }
-    100% { opacity: 0; max-height: 0; padding: 0; margin-bottom: 0; border-width: 0; }
+    0% {
+        opacity: 1;
+        max-height: 200px;
+        padding: var(--zyr-space-4);
+        margin-bottom: 0;
+    }
+    40% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        max-height: 0;
+        padding: 0;
+        margin-bottom: 0;
+        border-width: 0;
+    }
 }
 
 .zyr-alert {
@@ -79,7 +98,9 @@
         margin-top: -2px;
         transition: opacity var(--zyr-transition-fast);
 
-        &:hover { opacity: 1; }
+        &:hover {
+            opacity: 1;
+        }
     }
 
     // ── Variants ──────────────────────────────────────────────

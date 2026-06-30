@@ -3,13 +3,14 @@
 
     <div class="app-body" [class.app-body--landing]="!showSidebar()">
         @if (showSidebar()) {
-            <app-sidebar
-                [isOpen]="sidebarOpen()"
-                (toggleSidebar)="toggleSidebar()"
-            ></app-sidebar>
+            <app-sidebar [isOpen]="sidebarOpen()" (toggleSidebar)="toggleSidebar()"></app-sidebar>
         }
 
-        <div class="app-page" [class.app-page--landing]="!showSidebar()" [style.margin-left]="pageMargin()">
+        <div
+            class="app-page"
+            [class.app-page--landing]="!showSidebar()"
+            [style.margin-left]="pageMargin()"
+        >
             <app-main></app-main>
             <app-footer></app-footer>
         </div>

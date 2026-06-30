@@ -15,10 +15,7 @@
         (focus)="onFocus()"
         (blur)="onBlur()"
     >
-        <span
-            class="zyr-select__value"
-            [class.zyr-select__value--placeholder]="!selectedLabel()"
-        >
+        <span class="zyr-select__value" [class.zyr-select__value--placeholder]="!selectedLabel()">
             {{ selectedLabel() || placeholder() }}
         </span>
         <fa-icon class="zyr-select__chevron" [icon]="icons.chevronDown" />

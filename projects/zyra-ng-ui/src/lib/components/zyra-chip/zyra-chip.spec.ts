@@ -14,7 +14,8 @@ import { ZyraChip } from './zyra-chip';
             [(selected)]="selected"
             [disabled]="disabled()"
             (dismissed)="onDismissed()"
-        >Angular</zyra-chip>
+            >Angular</zyra-chip
+        >
     `,
 })
 class ChipHostComponent {

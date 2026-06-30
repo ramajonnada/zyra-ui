@@ -19,12 +19,12 @@ import { ZyraSkeleton } from 'zyra-ng-ui';
     `,
 })
 export class SkeletonRenderer {
-    variant  = input<string>('card');
-    lines    = input<string>('3');
-    rows     = input<string>('5');
+    variant = input<string>('card');
+    lines = input<string>('3');
+    rows = input<string>('5');
     animated = input<boolean>(true);
 
-    readonly linesNum  = computed(() => +this.lines());
-    readonly rowsNum   = computed(() => +this.rows());
-    readonly circleSize = computed(() => this.variant() === 'circle' ? '56px' : '');
+    readonly linesNum = computed(() => +this.lines());
+    readonly rowsNum = computed(() => +this.rows());
+    readonly circleSize = computed(() => (this.variant() === 'circle' ? '56px' : ''));
 }

@@ -1,8 +1,14 @@
-:host { display: block; }
+:host {
+    display: block;
+}
 
 @keyframes zyr-shimmer {
-    0%   { background-position: -400px 0; }
-    100% { background-position:  400px 0; }
+    0% {
+        background-position: -400px 0;
+    }
+    100% {
+        background-position: 400px 0;
+    }
 }
 
 // ── Shimmer bone ──────────────────────────────────────────────
@@ -25,7 +31,9 @@
 }
 
 // Text-variant: gap only between top-level bones (not inside compound variants)
-:host > .zyr-skeleton--text + .zyr-skeleton--text { margin-top: 8px; }
+:host > .zyr-skeleton--text + .zyr-skeleton--text {
+    margin-top: 8px;
+}
 
 // ── Layout wrapper (no shimmer) ───────────────────────────────
 .zyr-sk-layout {
@@ -36,7 +44,9 @@
 }
 
 // ── Global modifiers ──────────────────────────────────────────
-.zyr-skeleton--short { width: 60%; }
+.zyr-skeleton--short {
+    width: 60%;
+}
 
 // ── Text ─────────────────────────────────────────────────────
 .zyr-skeleton--text {
@@ -45,13 +55,32 @@
     border-radius: var(--zyr-radius-xs);
     display: block;
 
-    &.zyr-skeleton--last-line { width: 60%; }
-    &.zyr-skeleton--title     { height: 22px; width: 55%; }
-    &.zyr-skeleton--name      { height: 18px; width: 70%; }
-    &.zyr-skeleton--meta      { height: 12px; width: 40%; }
-    &.zyr-skeleton--label     { height: 12px; width: 100px; }
-    &.zyr-skeleton--col       { flex: 1; min-width: 0; }
-    &.zyr-skeleton--short     { width: 60%; }
+    &.zyr-skeleton--last-line {
+        width: 60%;
+    }
+    &.zyr-skeleton--title {
+        height: 22px;
+        width: 55%;
+    }
+    &.zyr-skeleton--name {
+        height: 18px;
+        width: 70%;
+    }
+    &.zyr-skeleton--meta {
+        height: 12px;
+        width: 40%;
+    }
+    &.zyr-skeleton--label {
+        height: 12px;
+        width: 100px;
+    }
+    &.zyr-skeleton--col {
+        flex: 1;
+        min-width: 0;
+    }
+    &.zyr-skeleton--short {
+        width: 60%;
+    }
 }
 
 // ── Circle ────────────────────────────────────────────────────
@@ -61,9 +90,18 @@
     width: 40px;
     height: 40px;
 
-    &.zyr-skeleton--xs { width: 24px; height: 24px; }
-    &.zyr-skeleton--sm { width: 32px; height: 32px; }
-    &.zyr-skeleton--lg { width: 72px; height: 72px; }
+    &.zyr-skeleton--xs {
+        width: 24px;
+        height: 24px;
+    }
+    &.zyr-skeleton--sm {
+        width: 32px;
+        height: 32px;
+    }
+    &.zyr-skeleton--lg {
+        width: 72px;
+        height: 72px;
+    }
 }
 
 // ── Rect ──────────────────────────────────────────────────────
@@ -196,7 +234,9 @@
     gap: 16px;
     padding: 13px 16px;
 
-    & + & { border-top: 1px solid var(--zyr-border); }
+    & + & {
+        border-top: 1px solid var(--zyr-border);
+    }
 }
 
 // ── Chat layout ───────────────────────────────────────────────
@@ -209,7 +249,9 @@
     align-items: flex-end;
     gap: 8px;
 
-    &--right { flex-direction: row-reverse; }
+    &--right {
+        flex-direction: row-reverse;
+    }
 }
 
 .zyr-skeleton--bubble {
@@ -383,7 +425,9 @@
         padding: 12px 16px;
         align-items: center;
 
-        & + .zyr-sk-stat { border-left: 1px solid var(--zyr-border); }
+        & + .zyr-sk-stat {
+            border-left: 1px solid var(--zyr-border);
+        }
     }
 }
 

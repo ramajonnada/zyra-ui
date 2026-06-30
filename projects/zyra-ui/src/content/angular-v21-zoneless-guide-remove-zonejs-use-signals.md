@@ -1,24 +1,24 @@
 ---
-title: "Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals"
-description: "Learn what zoneless Angular means in v21, why ZoneJS is no longer the default, how signals fit in, and how to migrate safely."
+title: 'Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals'
+description: 'Learn what zoneless Angular means in v21, why ZoneJS is no longer the default, how signals fit in, and how to migrate safely.'
 category:
-    - "Angular 21"
-    - "zoneless angular"
+    - 'Angular 21'
+    - 'zoneless angular'
 tags:
-    - "angular 21"
-    - "zoneless change detection"
-    - "angular signals"
-    - "angular best practices"
-    - "scalable angular apps"
-    - "angular"
+    - 'angular 21'
+    - 'zoneless change detection'
+    - 'angular signals'
+    - 'angular best practices'
+    - 'scalable angular apps'
+    - 'angular'
 keywords:
-    - "Angular"
-    - "angular signals"
-    - "Angular zoneless"
-    - "zoneless angular "
-    - "zoneless Angular migration"
-date: "2026-04-27T13:48:15.259Z"
-slug: "angular-v21-zoneless-guide-remove-zonejs-use-signals"
+    - 'Angular'
+    - 'angular signals'
+    - 'Angular zoneless'
+    - 'zoneless angular '
+    - 'zoneless Angular migration'
+date: '2026-04-27T13:48:15.259Z'
+slug: 'angular-v21-zoneless-guide-remove-zonejs-use-signals'
 ---
 
 # Angular v21 Zoneless Guide: Remove ZoneJS and Build Faster Apps with Signals
@@ -43,7 +43,7 @@ In this guide, you will learn:
 
 ## What does zoneless mean in Angular?
 
-Traditionally, Angular used ZoneJS to patch browser APIs and detect when something *might* have changed.
+Traditionally, Angular used ZoneJS to patch browser APIs and detect when something _might_ have changed.
 
 That worked well for a long time, but it also meant Angular often had to run synchronization work more broadly than necessary. ZoneJS could tell that some async work happened, but it could not always tell whether your UI really needed to update.
 
@@ -183,7 +183,7 @@ That usually means:
 npm uninstall zone.js
 ```
 
-This is important because the goal is not only to *act* zoneless. The goal is to remove the extra dependency and overhead as well.
+This is important because the goal is not only to _act_ zoneless. The goal is to remove the extra dependency and overhead as well.
 
 ---
 

@@ -42,5 +42,4 @@ export class ZyraAvatar {
         if (this.square()) classes.push('zyr-avatar--square');
         return classes.join(' ');
     });
-
 }

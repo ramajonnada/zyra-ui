@@ -137,7 +137,9 @@
             font-size: 0.95rem;
             margin: 0 0 14px;
 
-            &:last-child { margin-bottom: 0; }
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -158,7 +160,9 @@
     padding: 14px 16px;
     border-bottom: 1px solid var(--zyr-border);
 
-    &:last-child { border-bottom: none; }
+    &:last-child {
+        border-bottom: none;
+    }
 
     &__label {
         font-family: var(--zyr-font-mono);
@@ -204,8 +208,12 @@
         flex: 1 1 calc(50% - 1px);
         border-right: 1px solid var(--zyr-border);
 
-        &:nth-child(even) { border-right: none; }
-        &:last-child { border-bottom: none; }
+        &:nth-child(even) {
+            border-right: none;
+        }
+        &:last-child {
+            border-bottom: none;
+        }
     }
 
     .public-hero h1 {

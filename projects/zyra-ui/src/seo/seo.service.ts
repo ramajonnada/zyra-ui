@@ -55,13 +55,17 @@ export class SeoService {
             }
             this.meta.updateTag({ property: 'article:author', content: 'Rama Jonnada' });
             if (tags?.length) {
-                this.meta.getTags('property="article:tag"').forEach(el => this.meta.removeTagElement(el));
-                tags.forEach(tag => this.meta.addTag({ property: 'article:tag', content: tag }));
+                this.meta
+                    .getTags('property="article:tag"')
+                    .forEach((el) => this.meta.removeTagElement(el));
+                tags.forEach((tag) => this.meta.addTag({ property: 'article:tag', content: tag }));
             }
         } else {
             this.meta.removeTag('property="article:published_time"');
             this.meta.removeTag('property="article:author"');
-            this.meta.getTags('property="article:tag"').forEach(el => this.meta.removeTagElement(el));
+            this.meta
+                .getTags('property="article:tag"')
+                .forEach((el) => this.meta.removeTagElement(el));
         }
 
         this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });

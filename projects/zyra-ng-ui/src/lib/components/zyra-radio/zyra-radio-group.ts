@@ -31,13 +31,13 @@ export type RadioGroupOrientation = 'vertical' | 'horizontal';
         },
     ],
     templateUrl: './zyra-radio-group.html',
-    styleUrl:    './zyra-radio-group.scss',
+    styleUrl: './zyra-radio-group.scss',
 })
 export class ZyraRadioGroup implements ControlValueAccessor, ZyraRadioGroupRef {
     // ── Inputs ────────────────────────────────────────────────
-    label       = input<string>('');
+    label = input<string>('');
     orientation = input<RadioGroupOrientation>('vertical');
-    disabled    = input(false, { transform: booleanAttribute });
+    disabled = input(false, { transform: booleanAttribute });
 
     // ── Outputs ───────────────────────────────────────────────
     valueChange = output<string | number | null>();
@@ -53,10 +53,18 @@ export class ZyraRadioGroup implements ControlValueAccessor, ZyraRadioGroupRef {
     private _onChange: (val: string | number | null) => void = () => undefined;
     private _onTouched: () => void = () => undefined;
 
-    writeValue(val: string | number | null): void { this.value.set(val ?? null); }
-    registerOnChange(fn: (v: string | number | null) => void): void { this._onChange = fn; }
-    registerOnTouched(fn: () => void): void { this._onTouched = fn; }
-    setDisabledState(d: boolean): void { this._cvaDisabled.set(d); }
+    writeValue(val: string | number | null): void {
+        this.value.set(val ?? null);
+    }
+    registerOnChange(fn: (v: string | number | null) => void): void {
+        this._onChange = fn;
+    }
+    registerOnTouched(fn: () => void): void {
+        this._onTouched = fn;
+    }
+    setDisabledState(d: boolean): void {
+        this._cvaDisabled.set(d);
+    }
 
     // ── ZyraRadioGroupRef ─────────────────────────────────────
     selectRadio(radio: ZyraRadio): void {
@@ -70,17 +78,17 @@ export class ZyraRadioGroup implements ControlValueAccessor, ZyraRadioGroupRef {
     @HostListener('keydown', ['$event'])
     onKeydown(event: KeyboardEvent): void {
         const isVertical = this.orientation() === 'vertical';
-        const fwd  = isVertical ? 'ArrowDown'  : 'ArrowRight';
-        const back = isVertical ? 'ArrowUp'    : 'ArrowLeft';
+        const fwd = isVertical ? 'ArrowDown' : 'ArrowRight';
+        const back = isVertical ? 'ArrowUp' : 'ArrowLeft';
         if (event.key !== fwd && event.key !== back) return;
 
         event.preventDefault();
-        const radios = this._radios().filter(r => !r.isDisabled());
+        const radios = this._radios().filter((r) => !r.isDisabled());
         if (radios.length === 0) return;
 
-        const currentIdx = radios.findIndex(r => r.checked());
+        const currentIdx = radios.findIndex((r) => r.checked());
         const delta = event.key === fwd ? 1 : -1;
-        const next  = (currentIdx + delta + radios.length) % radios.length;
+        const next = (currentIdx + delta + radios.length) % radios.length;
         this.selectRadio(radios[next]);
         document.getElementById(radios[next].radioId)?.focus();
     }

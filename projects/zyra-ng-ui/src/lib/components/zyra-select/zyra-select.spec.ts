@@ -16,9 +16,9 @@ import { ZyraSelect } from './zyra-select';
     `,
 })
 class SelectHostComponent {
-    value       = signal<string | null>(null);
+    value = signal<string | null>(null);
     placeholder = signal('Pick one');
-    size        = signal<'sm' | 'md' | 'lg'>('md');
+    size = signal<'sm' | 'md' | 'lg'>('md');
 }
 
 describe('ZyraSelect', () => {
@@ -26,7 +26,9 @@ describe('ZyraSelect', () => {
     let host: SelectHostComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({ imports: [SelectHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [SelectHostComponent],
+        }).compileComponents();
         fixture = TestBed.createComponent(SelectHostComponent);
         host = fixture.componentInstance;
         fixture.detectChanges();
@@ -104,7 +106,9 @@ describe('ZyraSelect', () => {
 
     // ── Keyboard navigation ───────────────────────────────────────────────
     it('opens panel on ArrowDown and navigates to first option', () => {
-        selectEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        selectEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }),
+        );
         fixture.detectChanges();
         expect(fixture.nativeElement.querySelector('.zyr-select__panel--open')).not.toBeNull();
         expect(fixture.nativeElement.querySelector('.zyr-option--active')).not.toBeNull();
@@ -113,24 +117,35 @@ describe('ZyraSelect', () => {
     it('closes the panel on Escape key', () => {
         trigger(fixture).click();
         fixture.detectChanges();
-        selectEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        selectEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
+        );
         fixture.detectChanges();
         expect(fixture.nativeElement.querySelector('.zyr-select__panel--open')).toBeNull();
     });
 
     it('navigates down through options with ArrowDown', () => {
-        selectEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        selectEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }),
+        );
         fixture.detectChanges();
-        selectEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        selectEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }),
+        );
         fixture.detectChanges();
-        const activeOpts: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-option--active');
+        const activeOpts: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-option--active');
         expect(activeOpts.length).toBe(1);
     });
 
     it('selects the active option on Enter', async () => {
-        selectEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        selectEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }),
+        );
         fixture.detectChanges();
-        selectEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        selectEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }),
+        );
         fixture.detectChanges();
         await fixture.whenStable();
         fixture.detectChanges();
@@ -141,7 +156,9 @@ describe('ZyraSelect', () => {
     it('closes panel on Tab key', () => {
         trigger(fixture).click();
         fixture.detectChanges();
-        selectEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
+        selectEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }),
+        );
         fixture.detectChanges();
         expect(fixture.nativeElement.querySelector('.zyr-select__panel--open')).toBeNull();
     });

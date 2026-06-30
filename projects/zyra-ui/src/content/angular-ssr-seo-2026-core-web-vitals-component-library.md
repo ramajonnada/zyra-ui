@@ -1,25 +1,25 @@
 ---
-title: "Angular SSR & SEO in 2026: Core Web Vitals Done Right"
-description: "A practical guide to Angular 21 SSR for SEO in 2026: hydration, dynamic meta tags, structured data, and keeping Core Web Vitals green when you use a component library."
+title: 'Angular SSR & SEO in 2026: Core Web Vitals Done Right'
+description: 'A practical guide to Angular 21 SSR for SEO in 2026: hydration, dynamic meta tags, structured data, and keeping Core Web Vitals green when you use a component library.'
 category:
-    - "Angular 21"
-    - "Angular SEO"
+    - 'Angular 21'
+    - 'Angular SEO'
 tags:
-    - "angular ssr"
-    - "angular seo"
-    - "core web vitals"
-    - "angular 21"
-    - "server side rendering"
-    - "angular hydration"
-    - "structured data"
+    - 'angular ssr'
+    - 'angular seo'
+    - 'core web vitals'
+    - 'angular 21'
+    - 'server side rendering'
+    - 'angular hydration'
+    - 'structured data'
 keywords:
-    - "Angular SSR SEO"
-    - "Angular Core Web Vitals"
-    - "Angular 21 SSR"
-    - "Angular SEO 2026"
-    - "Angular meta tags SSR"
-date: "2026-05-08T10:00:00.000Z"
-slug: "angular-ssr-seo-2026-core-web-vitals-component-library"
+    - 'Angular SSR SEO'
+    - 'Angular Core Web Vitals'
+    - 'Angular 21 SSR'
+    - 'Angular SEO 2026'
+    - 'Angular meta tags SSR'
+date: '2026-05-08T10:00:00.000Z'
+slug: 'angular-ssr-seo-2026-core-web-vitals-component-library'
 ---
 
 # Angular SSR & SEO in 2026: Core Web Vitals Done Right
@@ -41,7 +41,7 @@ You will learn:
 
 ## SSR and hydration in modern Angular
 
-Server-side rendering means the server returns fully-formed HTML. The crawler gets real content immediately, the user sees a painted page faster, and the app then *hydrates* — Angular attaches behavior to the already-rendered DOM instead of throwing it away and re-rendering.
+Server-side rendering means the server returns fully-formed HTML. The crawler gets real content immediately, the user sees a painted page faster, and the app then _hydrates_ — Angular attaches behavior to the already-rendered DOM instead of throwing it away and re-rendering.
 
 To add SSR to an existing app:
 
@@ -51,7 +51,7 @@ ng add @angular/ssr
 
 That wires up a server entry point and the build targets. In Angular 21, hydration is on by default, and incremental hydration lets you defer hydrating parts of the page until they are needed, which keeps the main thread free early on.
 
-The result is the best of both worlds: crawlable HTML and an interactive app. But SSR alone does not make you rank. Search engines also need to understand *what each page is*, and that is about metadata.
+The result is the best of both worlds: crawlable HTML and an interactive app. But SSR alone does not make you rank. Search engines also need to understand _what each page is_, and that is about metadata.
 
 ---
 
@@ -140,7 +140,7 @@ The `priority` flag preloads the hero image, and the explicit dimensions reserve
 
 ## The part most guides skip: your component library
 
-Here is the honest catch. SSR makes Angular *capable* of good SEO, but a heavy or careless UI library can quietly undo it. The failure modes are real:
+Here is the honest catch. SSR makes Angular _capable_ of good SEO, but a heavy or careless UI library can quietly undo it. The failure modes are real:
 
 - **Bundle bloat** pushes out LCP and INP. A library that ships everything whether you use it or not inflates your JavaScript.
 - **SSR incompatibility** crashes rendering. Components that touch `window`, `document`, or `localStorage` at construction time throw on the server unless guarded, sending you back to a blank page.

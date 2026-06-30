@@ -20,7 +20,7 @@ import { ZyraFormField, ZyraInput } from 'zyra-ng-ui';
 })
 export class FormFieldRenderer {
     appearance = input<string>('outline');
-    size       = input<string>('md');
-    label      = input<string>('Label');
-    hint       = input<string>('');
+    size = input<string>('md');
+    label = input<string>('Label');
+    hint = input<string>('');
 }

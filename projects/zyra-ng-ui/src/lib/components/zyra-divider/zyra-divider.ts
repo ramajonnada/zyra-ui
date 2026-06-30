@@ -20,8 +20,9 @@ export class ZyraDivider {
     width = input<string>('1px');
 
     // ── Computed ──────────────────────────────────────────────
-    hostClass = computed(() =>
-        `zyr-divider zyr-divider--${this.orientation()} zyr-divider--${this.variant()} zyr-divider--${this.align()}`
+    hostClass = computed(
+        () =>
+            `zyr-divider zyr-divider--${this.orientation()} zyr-divider--${this.variant()} zyr-divider--${this.align()}`,
     );
 
     hostStyle = computed(() => ({ '--zyr-divider-width': this.width() }));

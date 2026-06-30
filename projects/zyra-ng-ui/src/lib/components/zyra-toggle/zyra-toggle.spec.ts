@@ -88,7 +88,9 @@ describe('ZyraToggle', () => {
     it('renders label on the right by default', () => {
         const label: HTMLElement = fixture.nativeElement.querySelector('.zyr-toggle__label');
         const track: HTMLElement = fixture.nativeElement.querySelector('.zyr-toggle__track');
-        expect(label.compareDocumentPosition(track) & Node.DOCUMENT_POSITION_PRECEDING).toBeTruthy();
+        expect(
+            label.compareDocumentPosition(track) & Node.DOCUMENT_POSITION_PRECEDING,
+        ).toBeTruthy();
     });
 
     it('renders label on the left when labelPosition is left', () => {
@@ -97,7 +99,9 @@ describe('ZyraToggle', () => {
 
         const label: HTMLElement = fixture.nativeElement.querySelector('.zyr-toggle__label');
         const track: HTMLElement = fixture.nativeElement.querySelector('.zyr-toggle__track');
-        expect(label.compareDocumentPosition(track) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        expect(
+            label.compareDocumentPosition(track) & Node.DOCUMENT_POSITION_FOLLOWING,
+        ).toBeTruthy();
     });
 
     it('supports CVA writeValue', () => {

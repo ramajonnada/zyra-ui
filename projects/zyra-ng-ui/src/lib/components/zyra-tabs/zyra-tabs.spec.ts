@@ -39,7 +39,8 @@ describe('ZyraTabs', () => {
 
     // ── Default state ─────────────────────────────────────────────────────
     it('activates the first non-disabled tab by default', () => {
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         expect(triggers[0].classList).toContain('zyr-tabs__trigger--active');
         expect(triggers[1].classList).not.toContain('zyr-tabs__trigger--active');
     });
@@ -51,7 +52,8 @@ describe('ZyraTabs', () => {
 
     // ── Click activation ──────────────────────────────────────────────────
     it('activates a tab on click', () => {
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         triggers[1].click();
         fixture.detectChanges();
         expect(triggers[1].classList).toContain('zyr-tabs__trigger--active');
@@ -59,7 +61,8 @@ describe('ZyraTabs', () => {
     });
 
     it('shows correct panel content after switching tabs', () => {
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         triggers[1].click();
         fixture.detectChanges();
         const panel: HTMLElement = fixture.nativeElement.querySelector('.zyr-tab__panel--active');
@@ -68,7 +71,8 @@ describe('ZyraTabs', () => {
 
     // ── Disabled tab ──────────────────────────────────────────────────────
     it('does not activate a disabled tab on click', () => {
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         triggers[2].click();
         fixture.detectChanges();
         expect(triggers[2].classList).not.toContain('zyr-tabs__trigger--active');
@@ -76,7 +80,8 @@ describe('ZyraTabs', () => {
     });
 
     it('applies --disabled class to the disabled tab trigger', () => {
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         expect(triggers[2].classList).toContain('zyr-tabs__trigger--disabled');
     });
 
@@ -109,40 +114,50 @@ describe('ZyraTabs', () => {
         const tabsEl: HTMLElement = fixture.nativeElement.querySelector('zyra-tabs');
         tabsEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
         fixture.detectChanges();
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         expect(triggers[1].classList).toContain('zyr-tabs__trigger--active');
     });
 
     it('navigates to the previous tab on ArrowLeft', () => {
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         triggers[1].click();
         fixture.detectChanges();
-        fixture.nativeElement.querySelector('zyra-tabs')
+        fixture.nativeElement
+            .querySelector('zyra-tabs')
             .dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
         fixture.detectChanges();
-        const updated = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const updated =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         expect(updated[0].classList).toContain('zyr-tabs__trigger--active');
     });
 
     it('skips disabled tabs during keyboard navigation', () => {
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         triggers[1].click();
         fixture.detectChanges();
-        fixture.nativeElement.querySelector('zyra-tabs')
+        fixture.nativeElement
+            .querySelector('zyra-tabs')
             .dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
         fixture.detectChanges();
-        const updated = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const updated =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         expect(updated[2].classList).not.toContain('zyr-tabs__trigger--active');
     });
 
     it('wraps from last enabled tab back to first on ArrowRight', () => {
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         triggers[1].click();
         fixture.detectChanges();
-        fixture.nativeElement.querySelector('zyra-tabs')
+        fixture.nativeElement
+            .querySelector('zyra-tabs')
             .dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
         fixture.detectChanges();
-        const updated = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const updated =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         expect(updated[0].classList).toContain('zyr-tabs__trigger--active');
     });
 });
@@ -151,7 +166,9 @@ describe('ZyraTabs — closeable', () => {
     let fixture: ComponentFixture<CloseableTabsHostComponent>;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({ imports: [CloseableTabsHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [CloseableTabsHostComponent],
+        }).compileComponents();
         fixture = TestBed.createComponent(CloseableTabsHostComponent);
         fixture.detectChanges();
     });
@@ -168,18 +185,24 @@ describe('ZyraTabs — closeable', () => {
     });
 
     it('removes a tab from the list when its close button is clicked', () => {
-        const closes = fixture.nativeElement.querySelectorAll<HTMLElement>('.zyr-tabs__trigger-close');
+        const closes = fixture.nativeElement.querySelectorAll<HTMLElement>(
+            '.zyr-tabs__trigger-close',
+        );
         closes[0].click();
         fixture.detectChanges();
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         expect(triggers.length).toBe(1);
     });
 
     it('activates the next tab when the active tab is closed', () => {
-        const closes = fixture.nativeElement.querySelectorAll<HTMLElement>('.zyr-tabs__trigger-close');
+        const closes = fixture.nativeElement.querySelectorAll<HTMLElement>(
+            '.zyr-tabs__trigger-close',
+        );
         closes[0].click();
         fixture.detectChanges();
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         expect(triggers[0].classList).toContain('zyr-tabs__trigger--active');
     });
 
@@ -187,7 +210,8 @@ describe('ZyraTabs — closeable', () => {
         const tabsEl: HTMLElement = fixture.nativeElement.querySelector('zyra-tabs');
         tabsEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'Delete', bubbles: true }));
         fixture.detectChanges();
-        const triggers = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
+        const triggers =
+            fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.zyr-tabs__trigger');
         expect(triggers.length).toBe(1);
     });
 });

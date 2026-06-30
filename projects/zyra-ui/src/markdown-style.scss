@@ -86,7 +86,9 @@
     }
 
     // ── Headings ──────────────────────────────────────────────
-    h2, h3, h4 {
+    h2,
+    h3,
+    h4 {
         margin: 40px 0 16px;
         font-family: var(--zyr-font-display);
         line-height: 1.08;
@@ -94,30 +96,57 @@
         color: var(--zyr-text);
     }
 
-    h2 { font-size: 2.05rem; }
-    h3 { font-size: 1.55rem; }
-    h5 { margin: 24px 0 12px; font-size: 0.9rem; color: var(--zyr-text-muted); }
+    h2 {
+        font-size: 2.05rem;
+    }
+    h3 {
+        font-size: 1.55rem;
+    }
+    h5 {
+        margin: 24px 0 12px;
+        font-size: 0.9rem;
+        color: var(--zyr-text-muted);
+    }
 
     // ── Body text ─────────────────────────────────────────────
-    p, li {
+    p,
+    li {
         color: var(--zyr-text-muted);
         font-size: 1rem;
         line-height: 1.9;
     }
 
-    p, ul, ol, pre, blockquote { margin: 0 0 18px; }
+    p,
+    ul,
+    ol,
+    pre,
+    blockquote {
+        margin: 0 0 18px;
+    }
 
-    ul, ol { padding-left: 1.3rem; }
-    li + li { margin-top: 8px; }
+    ul,
+    ol {
+        padding-left: 1.3rem;
+    }
+    li + li {
+        margin-top: 8px;
+    }
 
-    ul li::marker, ol li::marker { color: var(--zyr-text-dim); }
+    ul li::marker,
+    ol li::marker {
+        color: var(--zyr-text-dim);
+    }
 
-    strong { color: var(--zyr-text); }
+    strong {
+        color: var(--zyr-text);
+    }
 
     a {
         color: var(--zyr-accent);
         text-decoration: none;
-        &:hover { text-decoration: underline; }
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     // ── Divider ───────────────────────────────────────────────
@@ -136,7 +165,8 @@
     }
 
     // Inline code inside prose — styled pill
-    p code, li code {
+    p code,
+    li code {
         display: inline;
         padding: 2px 6px;
         border-radius: 6px;
@@ -205,7 +235,9 @@
         border-radius: 0 var(--zyr-radius-md) var(--zyr-radius-md) 0;
         background: color-mix(in srgb, var(--zyr-accent) 6%, var(--zyr-bg-2));
 
-        p:last-child { margin-bottom: 0; }
+        p:last-child {
+            margin-bottom: 0;
+        }
 
         // Inline code inside blockquotes — accent styled, always inline
         code {

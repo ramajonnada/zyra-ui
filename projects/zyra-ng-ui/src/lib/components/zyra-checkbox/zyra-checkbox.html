@@ -1,7 +1,6 @@
 <label [class]="hostClass()" [for]="checkboxId">
-
     @if (label() && labelPosition() === 'left') {
-    <span class="zyr-checkbox__label">{{ label() }}</span>
+        <span class="zyr-checkbox__label">{{ label() }}</span>
     }
 
     <button
@@ -15,14 +14,10 @@
         (click)="toggle()"
         (keydown.space)="$event.preventDefault(); toggle()"
     >
-        <fa-icon
-            class="zyr-checkbox__icon"
-            [icon]="indeterminate() ? icons.minus : icons.check"
-        />
+        <fa-icon class="zyr-checkbox__icon" [icon]="indeterminate() ? icons.minus : icons.check" />
     </button>
 
     @if (label() && labelPosition() === 'right') {
-    <span class="zyr-checkbox__label">{{ label() }}</span>
+        <span class="zyr-checkbox__label">{{ label() }}</span>
     }
-
 </label>

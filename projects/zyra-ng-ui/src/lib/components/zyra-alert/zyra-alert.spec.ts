@@ -11,7 +11,8 @@ import { ZyraAlert } from './zyra-alert';
             [title]="title()"
             [dismissible]="dismissible()"
             (dismissed)="onDismissed()"
-        >Alert body text</zyra-alert>
+            >Alert body text</zyra-alert
+        >
     `,
 })
 class AlertHostComponent {

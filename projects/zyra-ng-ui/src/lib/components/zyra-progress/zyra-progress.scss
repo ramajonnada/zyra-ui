@@ -1,7 +1,13 @@
 @keyframes zyr-progress-indeterminate {
-    0%   { transform: translateX(-100%) scaleX(0.4); }
-    50%  { transform: translateX(50%)  scaleX(0.6); }
-    100% { transform: translateX(200%) scaleX(0.4); }
+    0% {
+        transform: translateX(-100%) scaleX(0.4);
+    }
+    50% {
+        transform: translateX(50%) scaleX(0.6);
+    }
+    100% {
+        transform: translateX(200%) scaleX(0.4);
+    }
 }
 
 .zyr-progress {
@@ -38,9 +44,15 @@
     }
 
     // ── Sizes ─────────────────────────────────────────────────
-    &--sm .zyr-progress__track { height: 4px; }
-    &--md .zyr-progress__track { height: 8px; }
-    &--lg .zyr-progress__track { height: 12px; }
+    &--sm .zyr-progress__track {
+        height: 4px;
+    }
+    &--md .zyr-progress__track {
+        height: 8px;
+    }
+    &--lg .zyr-progress__track {
+        height: 12px;
+    }
 
     // ── Variants ──────────────────────────────────────────────
     &--default {

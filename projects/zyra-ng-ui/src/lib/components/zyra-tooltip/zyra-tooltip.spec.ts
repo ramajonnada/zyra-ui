@@ -12,7 +12,7 @@ import { ZyraTooltip } from './zyra-tooltip';
     `,
 })
 class TooltipHostComponent {
-    text     = signal('Helpful tip');
+    text = signal('Helpful tip');
     position = signal<'top' | 'bottom' | 'left' | 'right'>('top');
 }
 
@@ -21,7 +21,9 @@ describe('ZyraTooltip', () => {
     let host: TooltipHostComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({ imports: [TooltipHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [TooltipHostComponent],
+        }).compileComponents();
         fixture = TestBed.createComponent(TooltipHostComponent);
         host = fixture.componentInstance;
         fixture.detectChanges();

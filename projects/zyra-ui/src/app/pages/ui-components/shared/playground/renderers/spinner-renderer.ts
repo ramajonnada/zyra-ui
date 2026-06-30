@@ -6,16 +6,10 @@ import { ZyraSpinner } from 'zyra-ng-ui';
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ZyraSpinner],
-    template: `
-        <zyra-spinner
-            [size]="$any(size())"
-            [color]="$any(color())"
-            [label]="label()"
-        />
-    `,
+    template: ` <zyra-spinner [size]="$any(size())" [color]="$any(color())" [label]="label()" /> `,
 })
 export class SpinnerRenderer {
-    size  = input<string>('md');
+    size = input<string>('md');
     color = input<string>('accent');
     label = input<string>('Loading…');
 }

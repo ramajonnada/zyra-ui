@@ -17,12 +17,12 @@ import { ZyraAvatar } from './zyra-avatar';
     `,
 })
 class AvatarHostComponent {
-    name    = signal('Jane Doe');
-    src     = signal('');
-    size    = signal<'xs' | 'sm' | 'md' | 'lg' | 'xl'>('md');
+    name = signal('Jane Doe');
+    src = signal('');
+    size = signal<'xs' | 'sm' | 'md' | 'lg' | 'xl'>('md');
     variant = signal<'teal' | 'blue' | 'purple' | 'warm' | 'neutral'>('teal');
-    online  = signal<boolean | null>(null);
-    square  = signal(false);
+    online = signal<boolean | null>(null);
+    square = signal(false);
 }
 
 describe('ZyraAvatar', () => {
@@ -30,7 +30,9 @@ describe('ZyraAvatar', () => {
     let host: AvatarHostComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({ imports: [AvatarHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [AvatarHostComponent],
+        }).compileComponents();
         fixture = TestBed.createComponent(AvatarHostComponent);
         host = fixture.componentInstance;
         fixture.detectChanges();
@@ -38,25 +40,33 @@ describe('ZyraAvatar', () => {
 
     // ── Initials ──────────────────────────────────────────────────────────
     it('renders two-letter initials from first and last name', () => {
-        expect(fixture.nativeElement.querySelector('.zyr-avatar__initials').textContent.trim()).toBe('JD');
+        expect(
+            fixture.nativeElement.querySelector('.zyr-avatar__initials').textContent.trim(),
+        ).toBe('JD');
     });
 
     it('renders first two chars for a single-word name', () => {
         host.name.set('Alice');
         fixture.detectChanges();
-        expect(fixture.nativeElement.querySelector('.zyr-avatar__initials').textContent.trim()).toBe('AL');
+        expect(
+            fixture.nativeElement.querySelector('.zyr-avatar__initials').textContent.trim(),
+        ).toBe('AL');
     });
 
     it('renders ? when name is empty', () => {
         host.name.set('');
         fixture.detectChanges();
-        expect(fixture.nativeElement.querySelector('.zyr-avatar__initials').textContent.trim()).toBe('?');
+        expect(
+            fixture.nativeElement.querySelector('.zyr-avatar__initials').textContent.trim(),
+        ).toBe('?');
     });
 
     it('uses first and last parts for multi-word names', () => {
         host.name.set('John Paul Smith');
         fixture.detectChanges();
-        expect(fixture.nativeElement.querySelector('.zyr-avatar__initials').textContent.trim()).toBe('JS');
+        expect(
+            fixture.nativeElement.querySelector('.zyr-avatar__initials').textContent.trim(),
+        ).toBe('JS');
     });
 
     // ── Image ─────────────────────────────────────────────────────────────

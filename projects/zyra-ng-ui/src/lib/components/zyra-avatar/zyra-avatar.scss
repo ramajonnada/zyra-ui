@@ -53,11 +53,7 @@
     }
 
     &--purple {
-        background: linear-gradient(
-            135deg,
-            var(--zyr-accent-3),
-            var(--zyr-avatar-purple-end)
-        );
+        background: linear-gradient(135deg, var(--zyr-accent-3), var(--zyr-avatar-purple-end));
         color: var(--zyr-avatar-contrast);
     }
 

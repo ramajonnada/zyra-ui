@@ -21,6 +21,6 @@ import { ZyraSelect, ZyraOption } from 'zyra-ng-ui';
     `,
 })
 export class SelectRenderer {
-    size       = input<string>('md');
+    size = input<string>('md');
     appearance = input<string>('outline');
 }

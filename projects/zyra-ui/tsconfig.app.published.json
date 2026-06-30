@@ -1,6 +1,6 @@
 {
-	"extends": "./tsconfig.app.json",
-	"compilerOptions": {
-		"paths": {}
-	}
+    "extends": "./tsconfig.app.json",
+    "compilerOptions": {
+        "paths": {}
+    }
 }

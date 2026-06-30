@@ -33,9 +33,8 @@ describe('ZyraToastContainer', () => {
         service.info('Heads up', { description: 'Notice text', duration: 0 });
         fixture.detectChanges();
 
-        const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector(
-            '.zyr-toast__close',
-        );
+        const closeButton: HTMLButtonElement =
+            fixture.nativeElement.querySelector('.zyr-toast__close');
         closeButton.click();
         fixture.detectChanges();
 

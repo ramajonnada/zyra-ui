@@ -1,32 +1,32 @@
 ---
-title: "Angular CLI MCP Server: Generate Components with AI"
-description: "Learn how to set up the Angular CLI MCP server, what tools it gives your AI assistant, and how to generate accurate, modern Angular components with AI in 2026."
+title: 'Angular CLI MCP Server: Generate Components with AI'
+description: 'Learn how to set up the Angular CLI MCP server, what tools it gives your AI assistant, and how to generate accurate, modern Angular components with AI in 2026.'
 category:
-    - "Angular AI"
-    - "Angular 21"
+    - 'Angular AI'
+    - 'Angular 21'
 tags:
-    - "angular mcp server"
-    - "angular cli mcp"
-    - "ai component generation"
-    - "angular 21"
-    - "angular ai"
-    - "ng mcp"
-    - "vibe coding angular"
+    - 'angular mcp server'
+    - 'angular cli mcp'
+    - 'ai component generation'
+    - 'angular 21'
+    - 'angular ai'
+    - 'ng mcp'
+    - 'vibe coding angular'
 keywords:
-    - "Angular MCP server"
-    - "Angular CLI MCP"
-    - "AI component generation Angular"
-    - "ng mcp"
-    - "generate Angular components with AI"
-date: "2026-05-21T10:00:00.000Z"
-slug: "angular-cli-mcp-server-generate-components-with-ai"
+    - 'Angular MCP server'
+    - 'Angular CLI MCP'
+    - 'AI component generation Angular'
+    - 'ng mcp'
+    - 'generate Angular components with AI'
+date: '2026-05-21T10:00:00.000Z'
+slug: 'angular-cli-mcp-server-generate-components-with-ai'
 ---
 
 # Angular CLI MCP Server: Generate Components with AI
 
 > **TL;DR:** The Angular CLI MCP server is an experimental tool, built into the Angular CLI, that lets AI assistants talk directly to the CLI and Angular's own best-practice examples. You start it with `ng mcp` and configure it in your editor (VS Code, Cursor, etc.) by pointing to `npx @angular/cli mcp`. It gives your AI tools like `find_examples` and `get_best_practices` so generated components use modern Angular — standalone, signals, `OnPush`, and native control flow — instead of outdated patterns.
 
-AI assistants are good at writing code, but they are not always good at writing *modern Angular* code. Ask a generic model for a component and you often get `NgModule` boilerplate, `*ngIf`, constructor injection, and other patterns that Angular has been moving away from for years.
+AI assistants are good at writing code, but they are not always good at writing _modern Angular_ code. Ask a generic model for a component and you often get `NgModule` boilerplate, `*ngIf`, constructor injection, and other patterns that Angular has been moving away from for years.
 
 The Angular CLI MCP server fixes this at the source. Instead of hoping the model remembers current conventions, you give it a direct line into the Angular CLI and a curated set of best-practice examples.
 
@@ -181,7 +181,7 @@ Notice what the best-practices context produces: no `standalone: true` (it is th
 
 ## Where a component library fits in
 
-The MCP server makes your AI assistant fluent in Angular's *patterns*. It does not give you a consistent *visual language*. Those are two different problems.
+The MCP server makes your AI assistant fluent in Angular's _patterns_. It does not give you a consistent _visual language_. Those are two different problems.
 
 If every AI-generated screen invents its own button, spacing, and color tokens, you trade slow hand-coding for fast inconsistency. This is where a design system earns its place in the workflow.
 
@@ -223,7 +223,7 @@ The assistant focuses on logic and composition. The visual layer stays under you
 The MCP server is labelled experimental, and that label is fair. A few things worth knowing before you lean on it:
 
 - AI-generated code still needs review. Grounding the model in best practices raises the floor; it does not remove the need for a human to read the output.
-- The experimental tools that *change* files (`build`, `modernize`, and the dev server tools) deserve extra caution. Start with read-only mode while you build trust.
+- The experimental tools that _change_ files (`build`, `modernize`, and the dev server tools) deserve extra caution. Start with read-only mode while you build trust.
 - Tool support varies between editors. The configuration is standard, but how aggressively each assistant uses the tools differs.
 
 None of this is a reason to avoid it. It is a reason to treat it as a strong assistant, not an autopilot.
@@ -252,7 +252,7 @@ It is higher quality because the model reads Angular's own best-practice example
 
 The Angular CLI MCP server is one of the most practical pieces of Angular's AI story in 2026. It is a small amount of configuration that meaningfully improves the quality of AI-generated Angular code, because the model is now reading from Angular's own examples and best practices instead of guessing.
 
-Pair it with a consistent component library and you get a workflow that is both fast and coherent: the MCP server keeps the *code* modern, and your design system keeps the *UI* consistent.
+Pair it with a consistent component library and you get a workflow that is both fast and coherent: the MCP server keeps the _code_ modern, and your design system keeps the _UI_ consistent.
 
 To go deeper, start with the official docs:
 

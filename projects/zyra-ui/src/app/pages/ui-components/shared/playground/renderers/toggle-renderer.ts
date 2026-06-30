@@ -16,8 +16,8 @@ import { ZyraToggle } from 'zyra-ng-ui';
     `,
 })
 export class ToggleRenderer {
-    size          = input<string>('md');
-    label         = input<string>('Enable notifications');
+    size = input<string>('md');
+    label = input<string>('Enable notifications');
     labelPosition = input<string>('right');
-    disabled      = input<boolean>(false);
+    disabled = input<boolean>(false);
 }

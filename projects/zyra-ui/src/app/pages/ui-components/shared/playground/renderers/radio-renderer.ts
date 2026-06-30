@@ -8,10 +8,7 @@ import { ZyraRadio, ZyraRadioGroup } from 'zyra-ng-ui';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule, ZyraRadioGroup, ZyraRadio],
     template: `
-        <zyra-radio-group
-            [orientation]="$any(orientation())"
-            [disabled]="disabled()"
-        >
+        <zyra-radio-group [orientation]="$any(orientation())" [disabled]="disabled()">
             <zyra-radio value="angular">Angular</zyra-radio>
             <zyra-radio value="react">React</zyra-radio>
             <zyra-radio value="vue">Vue</zyra-radio>
@@ -20,5 +17,5 @@ import { ZyraRadio, ZyraRadioGroup } from 'zyra-ng-ui';
 })
 export class RadioRenderer {
     orientation = input<string>('vertical');
-    disabled    = input<boolean>(false);
+    disabled = input<boolean>(false);
 }

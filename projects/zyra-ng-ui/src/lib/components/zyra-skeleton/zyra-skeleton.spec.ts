@@ -49,7 +49,8 @@ describe('ZyraSkeleton', () => {
         fixture.componentRef.setInput('variant', 'text');
         fixture.componentRef.setInput('lines', 3);
         fixture.detectChanges();
-        const lines: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-skeleton--text');
+        const lines: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-skeleton--text');
         expect(lines[2].classList).toContain('zyr-skeleton--last-line');
         expect(lines[0].classList).not.toContain('zyr-skeleton--last-line');
         expect(lines[1].classList).not.toContain('zyr-skeleton--last-line');

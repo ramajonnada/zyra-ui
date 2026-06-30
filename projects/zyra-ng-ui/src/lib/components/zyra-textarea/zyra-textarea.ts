@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
-export type TextareaSize   = 'sm' | 'md' | 'lg';
+export type TextareaSize = 'sm' | 'md' | 'lg';
 export type TextareaResize = 'none' | 'vertical' | 'auto';
 
 let textareaIdCounter = 0;
@@ -33,27 +33,27 @@ let textareaIdCounter = 0;
         },
     ],
     templateUrl: './zyra-textarea.html',
-    styleUrl:    './zyra-textarea.scss',
+    styleUrl: './zyra-textarea.scss',
 })
 export class ZyraTextarea implements ControlValueAccessor, OnInit {
     // ── Inputs ────────────────────────────────────────────────
-    size       = input<TextareaSize>('md');
+    size = input<TextareaSize>('md');
     placeholder = input<string>('');
-    rows       = input<number>(3);
-    readonly   = input(false, { transform: booleanAttribute });
-    id         = input<string>('');
-    maxlength  = input<number | null>(null);
-    resize     = input<TextareaResize>('vertical');
+    rows = input<number>(3);
+    readonly = input(false, { transform: booleanAttribute });
+    id = input<string>('');
+    maxlength = input<number | null>(null);
+    resize = input<TextareaResize>('vertical');
 
     // ── Outputs ───────────────────────────────────────────────
     valueChange = output<string>();
-    focused     = output<void>();
-    blurred     = output<void>();
+    focused = output<void>();
+    blurred = output<void>();
 
     // ── Internal state ────────────────────────────────────────
     innerValue = signal('');
-    isFocused  = signal(false);
-    isTouched  = signal(false);
+    isFocused = signal(false);
+    isTouched = signal(false);
     isDisabled = signal(false);
 
     // ── Unique ID ─────────────────────────────────────────────
@@ -64,7 +64,7 @@ export class ZyraTextarea implements ControlValueAccessor, OnInit {
 
     // ── CVA callbacks ─────────────────────────────────────────
     private _onChange: (val: string) => void = () => undefined;
-    private _onTouched: () => void           = () => undefined;
+    private _onTouched: () => void = () => undefined;
 
     private _injector = inject(Injector);
     private _ngControl: NgControl | null = null;
@@ -73,12 +73,22 @@ export class ZyraTextarea implements ControlValueAccessor, OnInit {
         this._ngControl = this._injector.get(NgControl, null, { self: true, optional: true });
     }
 
-    get ngControl(): NgControl | null { return this._ngControl; }
+    get ngControl(): NgControl | null {
+        return this._ngControl;
+    }
 
-    writeValue(val: string): void       { this.innerValue.set(val ?? ''); }
-    registerOnChange(fn: (v: string) => void): void { this._onChange = fn; }
-    registerOnTouched(fn: () => void): void         { this._onTouched = fn; }
-    setDisabledState(disabled: boolean): void       { this.isDisabled.set(disabled); }
+    writeValue(val: string): void {
+        this.innerValue.set(val ?? '');
+    }
+    registerOnChange(fn: (v: string) => void): void {
+        this._onChange = fn;
+    }
+    registerOnTouched(fn: () => void): void {
+        this._onTouched = fn;
+    }
+    setDisabledState(disabled: boolean): void {
+        this.isDisabled.set(disabled);
+    }
 
     // ── Event handlers ────────────────────────────────────────
     onModelChange(val: string): void {
@@ -88,8 +98,16 @@ export class ZyraTextarea implements ControlValueAccessor, OnInit {
         if (this.resize() === 'auto') this._autoResize();
     }
 
-    onFocus(): void  { this.isFocused.set(true);  this.focused.emit(); }
-    onBlur(): void   { this.isFocused.set(false); this.isTouched.set(true); this._onTouched(); this.blurred.emit(); }
+    onFocus(): void {
+        this.isFocused.set(true);
+        this.focused.emit();
+    }
+    onBlur(): void {
+        this.isFocused.set(false);
+        this.isTouched.set(true);
+        this._onTouched();
+        this.blurred.emit();
+    }
 
     clear(): void {
         this.innerValue.set('');

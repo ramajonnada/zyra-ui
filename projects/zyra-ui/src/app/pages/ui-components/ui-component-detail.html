@@ -1,99 +1,109 @@
 @if (component(); as selected) {
-<section class="component-detail-page">
-	<div class="component-detail-page__hero">
-		<a class="component-detail-page__back" routerLink="/components">Back to components</a>
+    <section class="component-detail-page">
+        <div class="component-detail-page__hero">
+            <a class="component-detail-page__back" routerLink="/components">Back to components</a>
 
-		<div class="component-detail-page__title-row">
-			<h1>{{ selected.title }}</h1>
-			<zyra-badge variant="success" size="md">{{ selected.selector }}</zyra-badge>
-		</div>
+            <div class="component-detail-page__title-row">
+                <h1>{{ selected.title }}</h1>
+                <zyra-badge variant="success" size="md">{{ selected.selector }}</zyra-badge>
+            </div>
 
-		@if (selected.description) {
-		<p class="component-detail-page__desc">{{ selected.description }}</p>
-		}
-	</div>
+            @if (selected.description) {
+                <p class="component-detail-page__desc">{{ selected.description }}</p>
+            }
+        </div>
 
-	<section class="component-detail component-detail--playground">
-		@if (playgroundConfig(); as config) {
-			<app-playground [config]="config" />
-		}
-	</section>
+        <section class="component-detail component-detail--playground">
+            @if (playgroundConfig(); as config) {
+                <app-playground [config]="config" />
+            }
+        </section>
 
-	@if (selected.apiProps && selected.apiProps.length) {
-	<section class="component-detail component-detail--api">
-		<div class="component-detail__copy">
-			<h2>API</h2>
-			<p>All inputs and configuration options for <code class="inline-code">{{ selected.selector }}</code>.</p>
-		</div>
+        @if (selected.apiProps && selected.apiProps.length) {
+            <section class="component-detail component-detail--api">
+                <div class="component-detail__copy">
+                    <h2>API</h2>
+                    <p>
+                        All inputs and configuration options for
+                        <code class="inline-code">{{ selected.selector }}</code
+                        >.
+                    </p>
+                </div>
 
-		<div class="api-table-wrap">
-			<table class="api-table">
-				<thead>
-					<tr>
-						<th>Prop</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					@for (prop of selected.apiProps; track prop.name) {
-					<tr>
-						<td><code class="api-table__prop">{{ prop.name }}</code></td>
-						<td><code class="api-table__type">{{ prop.type }}</code></td>
-						<td><code class="api-table__default">{{ prop.default }}</code></td>
-						<td class="api-table__desc">{{ prop.description }}</td>
-					</tr>
-					}
-				</tbody>
-			</table>
-		</div>
-	</section>
-	}
+                <div class="api-table-wrap">
+                    <table class="api-table">
+                        <thead>
+                            <tr>
+                                <th>Prop</th>
+                                <th>Type</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (prop of selected.apiProps; track prop.name) {
+                                <tr>
+                                    <td>
+                                        <code class="api-table__prop">{{ prop.name }}</code>
+                                    </td>
+                                    <td>
+                                        <code class="api-table__type">{{ prop.type }}</code>
+                                    </td>
+                                    <td>
+                                        <code class="api-table__default">{{ prop.default }}</code>
+                                    </td>
+                                    <td class="api-table__desc">{{ prop.description }}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        }
 
-	@if (selected.a11yNotes && selected.a11yNotes.length) {
-	<section class="component-detail component-detail--a11y">
-		<div class="component-detail__copy">
-			<h2>Accessibility</h2>
-			<p>
-				Built to meet WCAG 2.0 AA. These notes cover the key ARIA, keyboard, and
-				interaction behaviours.
-			</p>
-		</div>
+        @if (selected.a11yNotes && selected.a11yNotes.length) {
+            <section class="component-detail component-detail--a11y">
+                <div class="component-detail__copy">
+                    <h2>Accessibility</h2>
+                    <p>
+                        Built to meet WCAG 2.0 AA. These notes cover the key ARIA, keyboard, and
+                        interaction behaviours.
+                    </p>
+                </div>
 
-		<ul class="a11y-list">
-			@for (note of selected.a11yNotes; track note) {
-			<li class="a11y-list__item">{{ note }}</li>
-			}
-		</ul>
-	</section>
-	}
+                <ul class="a11y-list">
+                    @for (note of selected.a11yNotes; track note) {
+                        <li class="a11y-list__item">{{ note }}</li>
+                    }
+                </ul>
+            </section>
+        }
 
-	@if (relatedComponents().length) {
-	<section class="component-detail component-detail--related">
-		<div class="component-detail__copy">
-			<h2>Related components</h2>
-			<p>Components that pair well with {{ selected.title }} in real UI patterns.</p>
-		</div>
+        @if (relatedComponents().length) {
+            <section class="component-detail component-detail--related">
+                <div class="component-detail__copy">
+                    <h2>Related components</h2>
+                    <p>Components that pair well with {{ selected.title }} in real UI patterns.</p>
+                </div>
 
-		<div class="related-grid">
-			@for (rel of relatedComponents(); track rel!.slug) {
-			<a class="related-card" [routerLink]="['/components', rel!.slug]">
-				<span class="related-card__title">{{ rel!.title }}</span>
-				<span class="related-card__category">{{ rel!.category }}</span>
-				<span class="related-card__arrow">&rarr;</span>
-			</a>
-			}
-		</div>
-	</section>
-	}
-</section>
+                <div class="related-grid">
+                    @for (rel of relatedComponents(); track rel!.slug) {
+                        <a class="related-card" [routerLink]="['/components', rel!.slug]">
+                            <span class="related-card__title">{{ rel!.title }}</span>
+                            <span class="related-card__category">{{ rel!.category }}</span>
+                            <span class="related-card__arrow">&rarr;</span>
+                        </a>
+                    }
+                </div>
+            </section>
+        }
+    </section>
 } @else {
-<section class="component-detail-page">
-	<section class="component-detail component-detail--missing">
-		<h2>Component not found</h2>
-		<p>The requested component showcase is not available in the current library catalog.</p>
-		<a class="component-detail-page__back" routerLink="/components">Return to components</a>
-	</section>
-</section>
+    <section class="component-detail-page">
+        <section class="component-detail component-detail--missing">
+            <h2>Component not found</h2>
+            <p>The requested component showcase is not available in the current library catalog.</p>
+            <a class="component-detail-page__back" routerLink="/components">Return to components</a>
+        </section>
+    </section>
 }

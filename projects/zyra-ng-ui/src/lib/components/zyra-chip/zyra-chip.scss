@@ -18,21 +18,27 @@
         padding: 2px 8px;
         font-size: 11px;
 
-        .zyr-chip__dismiss { font-size: 14px; }
+        .zyr-chip__dismiss {
+            font-size: 14px;
+        }
     }
 
     &--md {
         padding: 4px 10px;
         font-size: 13px;
 
-        .zyr-chip__dismiss { font-size: 16px; }
+        .zyr-chip__dismiss {
+            font-size: 16px;
+        }
     }
 
     &--lg {
         padding: 6px 14px;
         font-size: 14px;
 
-        .zyr-chip__dismiss { font-size: 18px; }
+        .zyr-chip__dismiss {
+            font-size: 18px;
+        }
     }
 
     // ── Variants ──────────────────────────────────────────────
@@ -120,6 +126,8 @@
         line-height: 1;
         transition: opacity var(--zyr-transition-fast);
 
-        &:hover { opacity: 1; }
+        &:hover {
+            opacity: 1;
+        }
     }
 }

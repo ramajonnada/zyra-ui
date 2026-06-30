@@ -20,7 +20,9 @@ export class Preview {
     codeCopied = signal(false);
     private copyResetTimer?: ReturnType<typeof setTimeout>;
 
-    onTabChange(id: string): void { this.activeTab.set(id); }
+    onTabChange(id: string): void {
+        this.activeTab.set(id);
+    }
 
     copyCode(): void {
         navigator.clipboard.writeText(this.code());

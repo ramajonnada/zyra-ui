@@ -164,8 +164,12 @@ pre {
         border-bottom: 1px solid var(--zyr-border);
         transition: background var(--zyr-transition-fast);
 
-        &:last-child { border-bottom: none; }
-        &:hover { background: var(--zyr-bg-2); }
+        &:last-child {
+            border-bottom: none;
+        }
+        &:hover {
+            background: var(--zyr-bg-2);
+        }
     }
 
     td {
@@ -189,7 +193,9 @@ pre {
         text-decoration: none;
         transition: color var(--zyr-transition-base);
 
-        &:hover { color: var(--zyr-accent); }
+        &:hover {
+            color: var(--zyr-accent);
+        }
     }
 
     &__cat {

@@ -15,7 +15,7 @@ describe('ZyraTextarea', () => {
     // ── Value binding ─────────────────────────────────────────────────────
     it('emits valueChange on user input', async () => {
         const emitted: string[] = [];
-        component.valueChange.subscribe(v => emitted.push(v));
+        component.valueChange.subscribe((v) => emitted.push(v));
 
         const ta: HTMLTextAreaElement = fixture.nativeElement.querySelector('textarea');
         ta.value = 'hello world';
@@ -75,36 +75,48 @@ describe('ZyraTextarea', () => {
 
     // ── Size ──────────────────────────────────────────────────────────────
     it('applies md size class by default', () => {
-        expect(fixture.nativeElement.querySelector('textarea').className).toContain('zyr-textarea--md');
+        expect(fixture.nativeElement.querySelector('textarea').className).toContain(
+            'zyr-textarea--md',
+        );
     });
 
     it('applies sm size class', () => {
         fixture.componentRef.setInput('size', 'sm');
         fixture.detectChanges();
-        expect(fixture.nativeElement.querySelector('textarea').className).toContain('zyr-textarea--sm');
+        expect(fixture.nativeElement.querySelector('textarea').className).toContain(
+            'zyr-textarea--sm',
+        );
     });
 
     it('applies lg size class', () => {
         fixture.componentRef.setInput('size', 'lg');
         fixture.detectChanges();
-        expect(fixture.nativeElement.querySelector('textarea').className).toContain('zyr-textarea--lg');
+        expect(fixture.nativeElement.querySelector('textarea').className).toContain(
+            'zyr-textarea--lg',
+        );
     });
 
     // ── Resize ────────────────────────────────────────────────────────────
     it('applies vertical resize class by default', () => {
-        expect(fixture.nativeElement.querySelector('textarea').className).toContain('zyr-textarea--resize-vertical');
+        expect(fixture.nativeElement.querySelector('textarea').className).toContain(
+            'zyr-textarea--resize-vertical',
+        );
     });
 
     it('applies none resize class', () => {
         fixture.componentRef.setInput('resize', 'none');
         fixture.detectChanges();
-        expect(fixture.nativeElement.querySelector('textarea').className).toContain('zyr-textarea--resize-none');
+        expect(fixture.nativeElement.querySelector('textarea').className).toContain(
+            'zyr-textarea--resize-none',
+        );
     });
 
     it('applies auto resize class', () => {
         fixture.componentRef.setInput('resize', 'auto');
         fixture.detectChanges();
-        expect(fixture.nativeElement.querySelector('textarea').className).toContain('zyr-textarea--resize-auto');
+        expect(fixture.nativeElement.querySelector('textarea').className).toContain(
+            'zyr-textarea--resize-auto',
+        );
     });
 
     // ── Rows ──────────────────────────────────────────────────────────────
@@ -122,7 +134,9 @@ describe('ZyraTextarea', () => {
     it('sets placeholder attribute', () => {
         fixture.componentRef.setInput('placeholder', 'Write a comment…');
         fixture.detectChanges();
-        expect(fixture.nativeElement.querySelector('textarea').placeholder).toBe('Write a comment…');
+        expect(fixture.nativeElement.querySelector('textarea').placeholder).toBe(
+            'Write a comment…',
+        );
     });
 
     // ── Maxlength ─────────────────────────────────────────────────────────

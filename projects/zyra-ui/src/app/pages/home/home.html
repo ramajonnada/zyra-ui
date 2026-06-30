@@ -42,7 +42,6 @@
             </div>
         </div>
     </div>
-
 </section>
 
 <section id="components" class="landing-section">
@@ -70,7 +69,6 @@
 
                 <p class="surface__foot">5 variants / 4 sizes</p>
             </zyra-card>
-
 
             <zyra-card class="mosaic-switch">
                 <span class="surface__label">Switch</span>
@@ -228,15 +226,14 @@
     </div>
 </section>
 
-
 <section id="blocks" class="landing-section">
     <div class="landing-shell">
         <div class="section-heading">
             <p class="section-heading__eyebrow">/ Blocks</p>
             <h2>Ready-made patterns. Zero rework.</h2>
             <p>
-                Production-ready UI blocks assembled from Zyra primitives.
-                Copy, paste, ship — no custom styling needed.
+                Production-ready UI blocks assembled from Zyra primitives. Copy, paste, ship — no
+                custom styling needed.
             </p>
         </div>
 
@@ -268,7 +265,9 @@
                     <div class="mini-stats">
                         @for (stat of blockStats; track stat.label) {
                             <div class="mini-stat">
-                                <div [class]="'mini-stat__val mini-stat__val--' + stat.tone">{{ stat.value }}</div>
+                                <div [class]="'mini-stat__val mini-stat__val--' + stat.tone">
+                                    {{ stat.value }}
+                                </div>
                                 <div class="mini-stat__label">{{ stat.label }}</div>
                             </div>
                         }
@@ -317,8 +316,8 @@
             <p class="section-heading__eyebrow">/ Theming</p>
             <h2>Your brand. Zyra's engine.</h2>
             <p>
-                Every color, radius, and font is a CSS variable. Swap one token file and
-                the whole library re-skins. No build step, no class overrides.
+                Every color, radius, and font is a CSS variable. Swap one token file and the whole
+                library re-skins. No build step, no class overrides.
             </p>
         </div>
 
@@ -388,19 +387,37 @@
                         <fa-icon [icon]="icons.alignLeft" aria-hidden="true" />
                     </div>
                     <h3>Read the docs</h3>
-                    <p>Installation guide, theming reference, and full API docs for every component.</p>
-                    <zyra-button variant="primary" size="lg" routerLink="/docs">Go to docs</zyra-button>
+                    <p>
+                        Installation guide, theming reference, and full API docs for every
+                        component.
+                    </p>
+                    <zyra-button variant="primary" size="lg" routerLink="/docs"
+                        >Go to docs</zyra-button
+                    >
                 </div>
             </zyra-card>
 
-            <zyra-card padding="none" style="--zyr-card-border: color-mix(in srgb, var(--zyr-accent-2) 30%, var(--zyr-border))">
+            <zyra-card
+                padding="none"
+                style="
+                    --zyr-card-border: color-mix(
+                        in srgb,
+                        var(--zyr-accent-2) 30%,
+                        var(--zyr-border)
+                    );
+                "
+            >
                 <div class="duo-cta__body">
                     <div class="duo-cta__icon duo-cta__icon--blue">
                         <fa-icon [icon]="icons.puzzlePiece" aria-hidden="true" />
                     </div>
                     <h3>Try the playground</h3>
-                    <p>Live interactive demos for every component. See it, tweak it, copy the code.</p>
-                    <zyra-button variant="outline" size="lg" routerLink="/components">Browse components</zyra-button>
+                    <p>
+                        Live interactive demos for every component. See it, tweak it, copy the code.
+                    </p>
+                    <zyra-button variant="outline" size="lg" routerLink="/components"
+                        >Browse components</zyra-button
+                    >
                 </div>
             </zyra-card>
         </div>

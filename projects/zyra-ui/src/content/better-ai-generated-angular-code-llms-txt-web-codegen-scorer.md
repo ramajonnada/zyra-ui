@@ -1,32 +1,32 @@
 ---
-title: "Better AI-Generated Angular Code: llms.txt & Codegen Scorer"
-description: "How to make AI assistants write modern Angular: use llms.txt, the official best-practices rules files, and the Web Codegen Scorer to measure and improve generated code."
+title: 'Better AI-Generated Angular Code: llms.txt & Codegen Scorer'
+description: 'How to make AI assistants write modern Angular: use llms.txt, the official best-practices rules files, and the Web Codegen Scorer to measure and improve generated code.'
 category:
-    - "Angular AI"
-    - "Angular 21"
+    - 'Angular AI'
+    - 'Angular 21'
 tags:
-    - "ai generated angular code"
-    - "angular llms.txt"
-    - "web codegen scorer"
-    - "angular ai prompts"
-    - "angular 21"
-    - "angular best practices"
-    - "vibe coding"
+    - 'ai generated angular code'
+    - 'angular llms.txt'
+    - 'web codegen scorer'
+    - 'angular ai prompts'
+    - 'angular 21'
+    - 'angular best practices'
+    - 'vibe coding'
 keywords:
-    - "Angular llms.txt"
-    - "AI generated Angular code"
-    - "Web Codegen Scorer"
-    - "Angular AI prompts"
-    - "Angular best practices AI"
-date: "2026-05-19T10:00:00.000Z"
-slug: "better-ai-generated-angular-code-llms-txt-web-codegen-scorer"
+    - 'Angular llms.txt'
+    - 'AI generated Angular code'
+    - 'Web Codegen Scorer'
+    - 'Angular AI prompts'
+    - 'Angular best practices AI'
+date: '2026-05-19T10:00:00.000Z'
+slug: 'better-ai-generated-angular-code-llms-txt-web-codegen-scorer'
 ---
 
 # Better AI-Generated Angular Code: llms.txt & Codegen Scorer
 
 > **TL;DR:** To make AI assistants write modern Angular, give them current context and measure the output. Install Angular's official `best-practices.md` as your editor's rules file, attach `llms.txt` or `llms-full.txt` for grounding, and use the open-source Web Codegen Scorer to score generations so you can tune prompts with evidence instead of guesswork. Together these stop models from defaulting to outdated patterns like `NgModule`, `*ngIf`, and `@Input()`.
 
-Most teams ship AI-generated code now. The question is no longer *whether* to use it, but how to stop it from producing Angular that is subtly out of date.
+Most teams ship AI-generated code now. The question is no longer _whether_ to use it, but how to stop it from producing Angular that is subtly out of date.
 
 Left alone, a general-purpose model tends to reach for the patterns it saw most often in training: `NgModule`, `*ngIf`, `@Input()`, constructor injection. Those still work, but they are not how modern Angular is written, and they age your codebase the moment the AI writes them.
 
@@ -154,7 +154,7 @@ Run this loop occasionally — not on every commit — and your AI-assisted outp
 
 ## Where consistency comes from
 
-There is one thing none of these tools give you: a consistent *look*. They make generated Angular technically modern, but two screens generated from two prompts will still differ visually unless they build from shared components.
+There is one thing none of these tools give you: a consistent _look_. They make generated Angular technically modern, but two screens generated from two prompts will still differ visually unless they build from shared components.
 
 That is the role of a design system in an AI workflow. When your assistant composes screens from a fixed component library like [ZyraUI](https://www.zyraui.dev) instead of hand-rolling buttons and inputs each time, the visual layer stays consistent no matter how the code was generated. The rules keep the code clean; the library keeps the UI coherent. You need both.
 
@@ -162,7 +162,7 @@ That is the role of a design system in an AI workflow. When your assistant compo
 
 ## A realistic note on quality
 
-None of this makes AI-generated code automatically correct. It makes it *modern* and *measurable*, which is a real improvement, but review still matters. Treat scores as a trend line, not a guarantee, and keep a human in the loop for anything that touches business logic, security, or accessibility.
+None of this makes AI-generated code automatically correct. It makes it _modern_ and _measurable_, which is a real improvement, but review still matters. Treat scores as a trend line, not a guarantee, and keep a human in the loop for anything that touches business logic, security, or accessibility.
 
 The teams getting the most out of AI in 2026 are not the ones generating the most code. They are the ones who invested an afternoon in rules, context, and measurement so that everything generated afterward is worth keeping.
 

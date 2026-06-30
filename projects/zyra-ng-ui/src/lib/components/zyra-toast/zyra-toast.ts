@@ -117,7 +117,12 @@ export class ZyraToastItem {
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CommonModule, ZyraToastItem],
     template: `
-        <div class="zyr-toast-container" role="region" aria-label="Notifications" aria-live="polite">
+        <div
+            class="zyr-toast-container"
+            role="region"
+            aria-label="Notifications"
+            aria-live="polite"
+        >
             @for (t of toastService.toasts(); track t.id) {
                 <zyra-toast-item [toast]="t" />
             }

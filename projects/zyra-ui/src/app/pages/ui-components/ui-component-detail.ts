@@ -9,37 +9,39 @@ import { Playground } from './shared/playground/playground';
 import { PLAYGROUND_REGISTRY } from './shared/playground/playground-registry';
 
 @Component({
-	selector: 'app-ui-component-detail',
-	imports: [RouterLink, ZyraBadge, Playground],
-	templateUrl: './ui-component-detail.html',
-	styleUrl: './ui-component-detail.scss',
+    selector: 'app-ui-component-detail',
+    imports: [RouterLink, ZyraBadge, Playground],
+    templateUrl: './ui-component-detail.html',
+    styleUrl: './ui-component-detail.scss',
 })
 export class UiComponentDetail implements OnInit {
-	private readonly route = inject(ActivatedRoute);
-	private readonly seo = inject(SeoService);
+    private readonly route = inject(ActivatedRoute);
+    private readonly seo = inject(SeoService);
 
-	private readonly componentSlug = toSignal(
-		this.route.paramMap.pipe(map((params) => params.get('component'))),
-		{ initialValue: this.route.snapshot.paramMap.get('component') },
-	);
+    private readonly componentSlug = toSignal(
+        this.route.paramMap.pipe(map((params) => params.get('component'))),
+        { initialValue: this.route.snapshot.paramMap.get('component') },
+    );
 
-	readonly component = computed(() => getUiComponentShowcaseCard(this.componentSlug()));
+    readonly component = computed(() => getUiComponentShowcaseCard(this.componentSlug()));
 
-	readonly playgroundConfig = computed(() => PLAYGROUND_REGISTRY[this.componentSlug() ?? ''] ?? null);
+    readonly playgroundConfig = computed(
+        () => PLAYGROUND_REGISTRY[this.componentSlug() ?? ''] ?? null,
+    );
 
-	readonly relatedComponents = computed(() => {
-		const slugs = this.component()?.relatedSlugs ?? [];
-		return slugs.map((s) => UI_COMPONENT_SHOWCASE.find((c) => c.slug === s)).filter(Boolean);
-	});
+    readonly relatedComponents = computed(() => {
+        const slugs = this.component()?.relatedSlugs ?? [];
+        return slugs.map((s) => UI_COMPONENT_SHOWCASE.find((c) => c.slug === s)).filter(Boolean);
+    });
 
-	ngOnInit(): void {
-		const componentName = this.component()?.title || 'Component';
-		const slug = this.component()?.slug || '';
+    ngOnInit(): void {
+        const componentName = this.component()?.title || 'Component';
+        const slug = this.component()?.slug || '';
 
-		this.seo.setSEO({
-			title: `${componentName} Component - Zyra UI`,
-			description: `Learn how to use the ${componentName} component in Angular with examples and API.`,
-			url: `https://www.zyraui.dev/components/${slug}`,
-		});
-	}
+        this.seo.setSEO({
+            title: `${componentName} Component - Zyra UI`,
+            description: `Learn how to use the ${componentName} component in Angular with examples and API.`,
+            url: `https://www.zyraui.dev/components/${slug}`,
+        });
+    }
 }

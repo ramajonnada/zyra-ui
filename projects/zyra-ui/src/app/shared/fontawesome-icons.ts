@@ -1,6 +1,10 @@
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faInstagram, faNpm } from '@fortawesome/free-brands-svg-icons';
-import { faMoon as faMoonRegular, faSquare, faSun as faSunRegular } from '@fortawesome/free-regular-svg-icons';
+import {
+    faMoon as faMoonRegular,
+    faSquare,
+    faSun as faSunRegular,
+} from '@fortawesome/free-regular-svg-icons';
 import {
     faAlignLeft,
     faArrowLeft,

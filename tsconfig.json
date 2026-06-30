@@ -17,7 +17,9 @@
         "target": "ES2022",
         "module": "ES2022",
         "forceConsistentCasingInFileNames": true,
-        "paths": {}
+        "paths": {
+            "zyra-ng-ui": ["./dist/zyra-ng-ui"]
+        }
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
@@ -42,4 +44,3 @@
         }
     ]
 }
-

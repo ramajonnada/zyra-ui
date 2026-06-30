@@ -1,5 +1,4 @@
 <main class="docs-page">
-
     <!-- ── Hero ──────────────────────────────────────────────── -->
     <section class="docs-hero">
         <zyra-badge size="md">Documentation</zyra-badge>
@@ -32,8 +31,8 @@
             <p class="docs-eyebrow">/ Components</p>
             <h2>All 22 components</h2>
             <p>
-                Every component is a standalone import — add only what your feature needs.
-                Click any name to open its interactive playground.
+                Every component is a standalone import — add only what your feature needs. Click any
+                name to open its interactive playground.
             </p>
         </div>
 
@@ -51,12 +50,19 @@
                     @for (comp of componentList; track comp.slug) {
                         <tr>
                             <td>
-                                <a [routerLink]="['/components', comp.slug]" class="docs-table__link">
+                                <a
+                                    [routerLink]="['/components', comp.slug]"
+                                    class="docs-table__link"
+                                >
                                     {{ comp.name }}
                                 </a>
                             </td>
-                            <td><code>{{ comp.selector }}</code></td>
-                            <td><code>{{ comp.importName }}</code></td>
+                            <td>
+                                <code>{{ comp.selector }}</code>
+                            </td>
+                            <td>
+                                <code>{{ comp.importName }}</code>
+                            </td>
                             <td>
                                 <span class="docs-table__cat">{{ comp.category }}</span>
                             </td>
@@ -115,44 +121,47 @@
             <zyra-accordion>
                 <zyra-accordion-item title="What Angular version does Zyra UI require?">
                     Angular 17 or later. Zyra UI is built entirely with the new signals API —
-                    <code>input()</code>, <code>model()</code>, <code>output()</code>, and <code>computed()</code>
+                    <code>input()</code>, <code>model()</code>, <code>output()</code>, and
+                    <code>computed()</code>
                     — which requires Angular 17+. Angular 21 is recommended for the best experience.
                 </zyra-accordion-item>
 
                 <zyra-accordion-item title="Does Zyra UI support SSR?">
                     Yes. All components are compatible with Angular Universal and the built-in SSR
-                    support introduced in Angular 17. The library avoids direct DOM access at render time,
-                    so hydration works without any special configuration.
+                    support introduced in Angular 17. The library avoids direct DOM access at render
+                    time, so hydration works without any special configuration.
                 </zyra-accordion-item>
 
                 <zyra-accordion-item title="Are there any peer dependencies?">
-                    None beyond Angular itself. Zyra UI ships zero runtime peer dependencies —
-                    no additional CSS frameworks, icon libraries, or animation packages required.
-                    Just install <code>zyra-ng-ui</code> and you're set.
+                    None beyond Angular itself. Zyra UI ships zero runtime peer dependencies — no
+                    additional CSS frameworks, icon libraries, or animation packages required. Just
+                    install <code>zyra-ng-ui</code> and you're set.
                 </zyra-accordion-item>
 
                 <zyra-accordion-item title="Can I use it without standalone components?">
                     All components are standalone by design, but you can still import them into an
-                    NgModule via the <code>imports</code> array of any module. The standalone architecture
-                    does not prevent module-based usage.
+                    NgModule via the <code>imports</code> array of any module. The standalone
+                    architecture does not prevent module-based usage.
                 </zyra-accordion-item>
 
-                <zyra-accordion-item title="How do I change the accent color across all components?">
+                <zyra-accordion-item
+                    title="How do I change the accent color across all components?"
+                >
                     Override <code>--zyr-accent</code> in your global styles. Zyra UI derives every
-                    accent-tinted surface — muted backgrounds, borders, focus rings — from that single
-                    variable, so one change cascades through the entire system.
+                    accent-tinted surface — muted backgrounds, borders, focus rings — from that
+                    single variable, so one change cascades through the entire system.
                 </zyra-accordion-item>
 
                 <zyra-accordion-item title="Is dark mode supported out of the box?">
                     Yes. Call <code>theme.setTheme('dark')</code> via the injected
-                    <code>ZyraThemeService</code> and every component switches immediately.
-                    The theme service also exposes a <code>toggle()</code> method for a one-line
+                    <code>ZyraThemeService</code> and every component switches immediately. The
+                    theme service also exposes a <code>toggle()</code> method for a one-line
                     light/dark toggle.
                 </zyra-accordion-item>
 
                 <zyra-accordion-item title="How do I report a bug or request a feature?">
-                    Open an issue on the GitHub repository. Include your Angular version, the component
-                    selector, and a minimal reproduction — a StackBlitz link is ideal.
+                    Open an issue on the GitHub repository. Include your Angular version, the
+                    component selector, and a minimal reproduction — a StackBlitz link is ideal.
                 </zyra-accordion-item>
             </zyra-accordion>
         </div>
@@ -169,5 +178,4 @@
             </div>
         </div>
     </section>
-
 </main>

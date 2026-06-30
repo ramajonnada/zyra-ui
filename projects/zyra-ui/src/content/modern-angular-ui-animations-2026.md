@@ -1,32 +1,32 @@
 ---
-title: "7 Modern Angular UI Animations You Can Build in 2026"
-description: "Seven practical Angular UI animations for 2026 — from view transitions and staggered lists to scroll reveals and micro-interactions — built the modern, performant way."
+title: '7 Modern Angular UI Animations You Can Build in 2026'
+description: 'Seven practical Angular UI animations for 2026 — from view transitions and staggered lists to scroll reveals and micro-interactions — built the modern, performant way.'
 category:
-    - "Angular"
-    - "Angular UI"
+    - 'Angular'
+    - 'Angular UI'
 tags:
-    - "angular animations"
-    - "angular ui"
-    - "angular 21"
-    - "css animations"
-    - "micro-interactions"
-    - "frontend ui"
-    - "view transitions"
+    - 'angular animations'
+    - 'angular ui'
+    - 'angular 21'
+    - 'css animations'
+    - 'micro-interactions'
+    - 'frontend ui'
+    - 'view transitions'
 keywords:
-    - "Angular animations 2026"
-    - "Angular UI animations"
-    - "Angular micro-interactions"
-    - "Angular view transitions"
-    - "Angular scroll animations"
-date: "2026-05-12T10:00:00.000Z"
-slug: "modern-angular-ui-animations-2026"
+    - 'Angular animations 2026'
+    - 'Angular UI animations'
+    - 'Angular micro-interactions'
+    - 'Angular view transitions'
+    - 'Angular scroll animations'
+date: '2026-05-12T10:00:00.000Z'
+slug: 'modern-angular-ui-animations-2026'
 ---
 
 # 7 Modern Angular UI Animations You Can Build in 2026
 
 > **TL;DR:** Modern Angular animation in 2026 leans on the platform rather than the old `@angular/animations` DSL: the View Transitions API for page transitions, CSS keyframes for staggered list reveals, `IntersectionObserver` for scroll reveals, CSS transitions for micro-interactions, signal-driven values for number counters, and shimmer skeletons for loading. Animate only `transform` and `opacity` for performance, and always respect `prefers-reduced-motion`.
 
-Animation is where a competent Angular app starts to feel premium. The gap between a screen that snaps and a screen that *moves* is small in code and large in perception.
+Animation is where a competent Angular app starts to feel premium. The gap between a screen that snaps and a screen that _moves_ is small in code and large in perception.
 
 The way Angular teams build animations in 2026 has shifted, though. The old `@angular/animations` package, with its `trigger`/`state`/`transition` DSL, is no longer the default reach. Modern apps lean on CSS, native browser APIs, and a few Angular features that play nicely with signals and zoneless change detection.
 
@@ -258,7 +258,7 @@ Skipping the reduced-motion check is the most common animation mistake, and it i
 
 ## Where a component library saves you time
 
-Every animation here is a few lines, but doing them *consistently* across an app — same timing curves, same durations, same reduced-motion handling — is the actual work. That consistency is what a design system gives you for free.
+Every animation here is a few lines, but doing them _consistently_ across an app — same timing curves, same durations, same reduced-motion handling — is the actual work. That consistency is what a design system gives you for free.
 
 A library like [ZyraUI](https://www.zyraui.dev) ships these micro-interactions and loaders with motion built in and accessibility handled, so you compose animated components instead of re-tuning easing curves on every screen. Build the bespoke ones yourself; let the library cover the repeatable ones.
 

@@ -375,25 +375,25 @@ Large Desktop: 1536px+
 // --------------------------------------------------------------------------------------------------------------------------
 
 html {
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-	font-family: 'IBM Plex Sans', system-ui, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-feature-settings: "ss01", "cv01";
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'ss01', 'cv01';
 }
 
 code,
 pre,
 .font-mono {
-	font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 ::selection {
-	background: rgba(var(--zyra-glow), 0.3);
-	color: hsl(var(--foreground));
+    background: rgba(var(--zyra-glow), 0.3);
+    color: hsl(var(--foreground));
 }
 
 h1,
@@ -402,80 +402,80 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 600;
-	font-family: 'Outfit', 'IBM Plex Sans', sans-serif;
-	letter-spacing: -0.02em;
+    font-weight: 600;
+    font-family: 'Outfit', 'IBM Plex Sans', sans-serif;
+    letter-spacing: -0.02em;
 }
 
 h1 {
-	font-size: var(--fs-h1);
+    font-size: var(--fs-h1);
 }
 
 h2 {
-	font-size: var(--fs-h2);
+    font-size: var(--fs-h2);
 }
 
 h3 {
-	font-size: var(--fs-h3);
+    font-size: var(--fs-h3);
 }
 
 h4 {
-	font-size: var(--fs-h4);
+    font-size: var(--fs-h4);
 }
 
 h5 {
-	font-size: var(--fs-h5);
+    font-size: var(--fs-h5);
 }
 
 h6 {
-	font-size: var(--fs-h6);
+    font-size: var(--fs-h6);
 }
 
 p {
-	font-size: var(--fs-p);
-	line-height: var(--line-height-p);
+    font-size: var(--fs-p);
+    line-height: var(--line-height-p);
 }
 
 :root {
-	--fs-p: 14px;
-	--line-height-p: 22px;
-	--fs-h1: 32px;
-	--fs-h2: 28px;
-	--fs-h3: 24px;
-	--fs-h4: 20px;
-	--fs-h5: 18px;
-	--fs-h6: 16px;
+    --fs-p: 14px;
+    --line-height-p: 22px;
+    --fs-h1: 32px;
+    --fs-h2: 28px;
+    --fs-h3: 24px;
+    --fs-h4: 20px;
+    --fs-h5: 18px;
+    --fs-h6: 16px;
 }
 
 /* tablets */
 @media (min-width: 768px) {
-	:root {
-		--fs-p: 15px;
-		--line-height-p: 24px;
-		--fs-h1: 32px;
-		--fs-h2: 28px;
-		--fs-h3: 24px;
-		--fs-h4: 20px;
-		--fs-h5: 18px;
-		--fs-h6: 16px;
-	}
+    :root {
+        --fs-p: 15px;
+        --line-height-p: 24px;
+        --fs-h1: 32px;
+        --fs-h2: 28px;
+        --fs-h3: 24px;
+        --fs-h4: 20px;
+        --fs-h5: 18px;
+        --fs-h6: 16px;
+    }
 }
 
 a {
-	color: var(--zyra-secondary);
-	text-decoration: none;
+    color: var(--zyra-secondary);
+    text-decoration: none;
 }
 
 /* small laptops */
 @media (min-width: 1024px) {
-	:root {
-		--fs-p: 16px;
-		--line-height-p: 28px;
-		--fs-h1: 72px;
-		--fs-h2: 48px;
-		--fs-h3: 56px;
-		--fs-h4: 48px;
-		--fs-h5: 32px;
-		--fs-h6: 28px;
-	}
+    :root {
+        --fs-p: 16px;
+        --line-height-p: 28px;
+        --fs-h1: 72px;
+        --fs-h2: 48px;
+        --fs-h3: 56px;
+        --fs-h4: 48px;
+        --fs-h5: 32px;
+        --fs-h6: 28px;
+    }
 }

@@ -19,7 +19,9 @@
     scrollbar-width: none;
     flex-shrink: 0;
 
-    &::-webkit-scrollbar { display: none; }
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -38,10 +40,14 @@
     font-family: var(--zyr-font-body);
     color: var(--zyr-text-muted);
     white-space: nowrap;
-    transition: color var(--zyr-transition-fast), background var(--zyr-transition-fast);
+    transition:
+        color var(--zyr-transition-fast),
+        background var(--zyr-transition-fast);
     flex-shrink: 0;
 
-    &:hover:not(.zyr-tabs__trigger--disabled) { color: var(--zyr-text); }
+    &:hover:not(.zyr-tabs__trigger--disabled) {
+        color: var(--zyr-text);
+    }
 
     &:focus-visible {
         outline: 2px solid var(--zyr-accent);
@@ -61,8 +67,14 @@
 
 // ── Trigger inner elements ────────────────────────────────────
 
-.zyr-tabs__trigger-icon  { font-size: 1em; line-height: 1; flex-shrink: 0; }
-.zyr-tabs__trigger-label { line-height: 1; }
+.zyr-tabs__trigger-icon {
+    font-size: 1em;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.zyr-tabs__trigger-label {
+    line-height: 1;
+}
 
 .zyr-tabs__trigger-badge {
     display: inline-flex;
@@ -77,7 +89,9 @@
     font-size: 10px;
     font-weight: 700;
     line-height: 1;
-    transition: background var(--zyr-transition-fast), color var(--zyr-transition-fast);
+    transition:
+        background var(--zyr-transition-fast),
+        color var(--zyr-transition-fast);
 
     .zyr-tabs__trigger--active & {
         background: var(--zyr-accent);
@@ -97,7 +111,9 @@
     line-height: 1;
     color: var(--zyr-text-dim);
     flex-shrink: 0;
-    transition: background var(--zyr-transition-fast), color var(--zyr-transition-fast);
+    transition:
+        background var(--zyr-transition-fast),
+        color var(--zyr-transition-fast);
 
     &:hover {
         background: color-mix(in srgb, var(--zyr-danger) 14%, transparent);
@@ -140,7 +156,7 @@
 
 :host(.zyr-tabs--underline) {
     > .zyr-tabs__list {
-        position: relative;           // anchor the indicator
+        position: relative; // anchor the indicator
         border-bottom: 1px solid var(--zyr-border);
     }
 
@@ -158,7 +174,9 @@
         border-radius: 2px 2px 0 0;
         width: var(--ind-width, 0px);
         transform: translateX(var(--ind-left, 0px));
-        transition: transform 220ms var(--zyr-ease-standard), width 220ms var(--zyr-ease-standard);
+        transition:
+            transform 220ms var(--zyr-ease-standard),
+            width 220ms var(--zyr-ease-standard);
         pointer-events: none;
     }
 }
@@ -183,7 +201,7 @@
     > .zyr-tabs__list > .zyr-tabs__trigger {
         border-radius: 6px;
         transition:
-            color      var(--zyr-transition-fast),
+            color var(--zyr-transition-fast),
             background var(--zyr-transition-spring),
             box-shadow var(--zyr-transition-spring);
 
@@ -199,7 +217,9 @@
         }
     }
 
-    > .zyr-tabs__panels { border-top: 1px solid var(--zyr-border); }
+    > .zyr-tabs__panels {
+        border-top: 1px solid var(--zyr-border);
+    }
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -223,9 +243,13 @@
         justify-content: center;
         border-radius: 0;
         border-right: 1px solid var(--zyr-border);
-        transition: color var(--zyr-transition-fast), background var(--zyr-transition-fast);
+        transition:
+            color var(--zyr-transition-fast),
+            background var(--zyr-transition-fast);
 
-        &:last-child { border-right: none; }
+        &:last-child {
+            border-right: none;
+        }
 
         &:hover:not(.zyr-tabs__trigger--disabled):not(.zyr-tabs__trigger--active) {
             background: color-mix(in srgb, var(--zyr-accent) 8%, transparent);
@@ -238,7 +262,9 @@
         }
     }
 
-    > .zyr-tabs__panels { border-top: 1px solid var(--zyr-border); }
+    > .zyr-tabs__panels {
+        border-top: 1px solid var(--zyr-border);
+    }
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -263,9 +289,9 @@
         border-radius: var(--zyr-radius-sm) var(--zyr-radius-sm) 0 0;
         background: transparent;
         transition:
-            color        var(--zyr-transition-fast),
+            color var(--zyr-transition-fast),
             border-color var(--zyr-transition-base),
-            background   var(--zyr-transition-fast);
+            background var(--zyr-transition-fast);
 
         &:hover:not(.zyr-tabs__trigger--disabled):not(.zyr-tabs__trigger--active) {
             color: var(--zyr-text);
@@ -345,7 +371,9 @@
             border-bottom: 1px solid var(--zyr-border);
             justify-content: flex-start;
 
-            &:last-child { border-bottom: none; }
+            &:last-child {
+                border-bottom: none;
+            }
         }
     }
 

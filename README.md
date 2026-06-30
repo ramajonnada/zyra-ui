@@ -23,17 +23,17 @@ A dark-mode-first Angular component library built with design tokens, signals, a
 
 ## Components
 
-| Component | Selector | Description |
-|-----------|----------|-------------|
-| Button | `zyra-button` | Variants, sizes, loading, icons |
-| Badge | `zyra-badge` | Status labels with dot indicator |
-| Card | `zyra-card` | Content containers with slots |
-| Input | `zyra-input` | Text input with validation states |
-| Spinner | `zyra-spinner` | Loading indicator |
-| Toast | `zyra-toast` | Notification toasts |
-| Tooltip | `zyra-tooltip` | Hover tooltips with positioning |
-| Avatar | `zyra-avatar` | Profile avatars with online indicator |
-| Form Field | `zyra-form-field` | Label + input + hint wrapper |
+| Component  | Selector          | Description                           |
+| ---------- | ----------------- | ------------------------------------- |
+| Button     | `zyra-button`     | Variants, sizes, loading, icons       |
+| Badge      | `zyra-badge`      | Status labels with dot indicator      |
+| Card       | `zyra-card`       | Content containers with slots         |
+| Input      | `zyra-input`      | Text input with validation states     |
+| Spinner    | `zyra-spinner`    | Loading indicator                     |
+| Toast      | `zyra-toast`      | Notification toasts                   |
+| Tooltip    | `zyra-tooltip`    | Hover tooltips with positioning       |
+| Avatar     | `zyra-avatar`     | Profile avatars with online indicator |
+| Form Field | `zyra-form-field` | Label + input + hint wrapper          |
 
 ---
 
@@ -65,17 +65,15 @@ In your `styles.scss`:
 import { ZyraButton, ZyraBadge } from 'zyra-ng-ui';
 
 @Component({
-  imports: [ZyraButton, ZyraBadge],
-  template: `
-    <zyra-button variant="primary" (clicked)="onClick()">
-      Get Started
-    </zyra-button>
+    imports: [ZyraButton, ZyraBadge],
+    template: `
+        <zyra-button variant="primary" (clicked)="onClick()"> Get Started </zyra-button>
 
-    <zyra-badge variant="success" [dot]="true">Online</zyra-badge>
-  `
+        <zyra-badge variant="success" [dot]="true">Online</zyra-badge>
+    `,
 })
 export class AppComponent {
-  onClick() {}
+    onClick() {}
 }
 ```
 
@@ -87,8 +85,8 @@ All colors, spacing, and radii are CSS variables. Override them in your global s
 
 ```scss
 :root {
-  --zyr-accent: #your-brand-color;
-  --zyr-radius-md: 8px;
+    --zyr-accent: #your-brand-color;
+    --zyr-radius-md: 8px;
 }
 ```
 

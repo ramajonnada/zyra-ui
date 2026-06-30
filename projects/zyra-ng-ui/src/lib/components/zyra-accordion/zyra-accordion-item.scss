@@ -29,13 +29,17 @@
         text-align: left;
         transition: color var(--zyr-transition-base);
 
-        &:hover { color: var(--zyr-accent); }
+        &:hover {
+            color: var(--zyr-accent);
+        }
 
         &--disabled {
             opacity: 0.45;
             cursor: not-allowed;
 
-            &:hover { color: var(--zyr-text); }
+            &:hover {
+                color: var(--zyr-text);
+            }
         }
 
         &:focus-visible {
@@ -45,7 +49,9 @@
         }
     }
 
-    &__title { flex: 1; }
+    &__title {
+        flex: 1;
+    }
 
     &__chevron {
         flex-shrink: 0;

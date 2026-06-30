@@ -14,10 +14,10 @@ import { ZyraButton, ZyraToastContainer, ZyraToastService } from 'zyra-ng-ui';
 export class ToastRenderer {
     private toast = inject(ZyraToastService);
 
-    variant     = input<string>('success');
-    title       = input<string>('Operation completed');
+    variant = input<string>('success');
+    title = input<string>('Operation completed');
     description = input<string>('Your changes have been saved.');
-    persistent  = input<boolean>(false);
+    persistent = input<boolean>(false);
 
     fire(): void {
         const opts = {

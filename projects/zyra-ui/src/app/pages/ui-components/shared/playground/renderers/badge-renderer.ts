@@ -14,7 +14,7 @@ import { ZyraBadge } from 'zyra-ng-ui';
 })
 export class BadgeRenderer {
     variant = input<string>('success');
-    size    = input<string>('md');
-    dot     = input<boolean>(false);
-    label   = input<string>('Badge');
+    size = input<string>('md');
+    dot = input<boolean>(false);
+    label = input<string>('Badge');
 }

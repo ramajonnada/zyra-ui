@@ -18,11 +18,11 @@ import { ZyraProgress } from 'zyra-ng-ui';
     `,
 })
 export class ProgressRenderer {
-    size          = input<string>('md');
-    variant       = input<string>('default');
-    value         = input<string>('65');
+    size = input<string>('md');
+    variant = input<string>('default');
+    value = input<string>('65');
     indeterminate = input<boolean>(false);
-    showLabel     = input<boolean>(true);
+    showLabel = input<boolean>(true);
 
     readonly valueNum = computed(() => +this.value());
 }

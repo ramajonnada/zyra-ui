@@ -16,18 +16,15 @@ import { ZyraFormField, ZyraInput } from 'zyra-ng-ui';
             [clearButton]="clearButton()"
             [loading]="loading()"
         >
-            <zyra-input
-                [type]="$any(type())"
-                placeholder="Enter text…"
-            />
+            <zyra-input [type]="$any(type())" placeholder="Enter text…" />
         </zyra-form-field>
     `,
 })
 export class InputRenderer {
-    type        = input<string>('text');
-    appearance  = input<string>('outline');
-    size        = input<string>('md');
-    hint        = input<string>('This is a hint');
+    type = input<string>('text');
+    appearance = input<string>('outline');
+    size = input<string>('md');
+    hint = input<string>('This is a hint');
     clearButton = input<boolean>(false);
-    loading     = input<boolean>(false);
+    loading = input<boolean>(false);
 }

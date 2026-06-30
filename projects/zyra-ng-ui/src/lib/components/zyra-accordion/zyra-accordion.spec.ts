@@ -41,52 +41,68 @@ describe('ZyraAccordionItem', () => {
     });
 
     it('renders item titles', () => {
-        const titles: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__title');
+        const titles: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__title',
+        );
         expect(titles[0].textContent?.trim()).toBe('Section 1');
         expect(titles[1].textContent?.trim()).toBe('Section 2');
     });
 
     it('items are closed by default', () => {
-        const items: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
-        items.forEach(item => expect(item.classList).not.toContain('zyr-accordion-item--open'));
+        const items: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
+        items.forEach((item) => expect(item.classList).not.toContain('zyr-accordion-item--open'));
     });
 
     it('opens an item on trigger click', () => {
-        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__trigger');
+        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__trigger',
+        );
         triggers[0].click();
         fixture.detectChanges();
 
-        const items: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
+        const items: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
         expect(items[0].classList).toContain('zyr-accordion-item--open');
     });
 
     it('closes an open item on second trigger click', () => {
-        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__trigger');
+        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__trigger',
+        );
         triggers[0].click();
         fixture.detectChanges();
         triggers[0].click();
         fixture.detectChanges();
 
-        const items: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
+        const items: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
         expect(items[0].classList).not.toContain('zyr-accordion-item--open');
     });
 
     it('does not open a disabled item on click', () => {
-        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__trigger');
+        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__trigger',
+        );
         triggers[2].click();
         fixture.detectChanges();
 
-        const items: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
+        const items: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
         expect(items[2].classList).not.toContain('zyr-accordion-item--open');
     });
 
     it('applies --disabled class to disabled item trigger', () => {
-        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__trigger');
+        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__trigger',
+        );
         expect(triggers[2].classList).toContain('zyr-accordion-item__trigger--disabled');
     });
 
     it('sets aria-expanded on the trigger', () => {
-        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__trigger');
+        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__trigger',
+        );
         expect(triggers[0].getAttribute('aria-expanded')).toBe('false');
 
         triggers[0].click();
@@ -114,13 +130,16 @@ describe('ZyraAccordion — single open (default)', () => {
     });
 
     it('closes other items when one is opened', () => {
-        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__trigger');
+        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__trigger',
+        );
         triggers[0].click();
         fixture.detectChanges();
         triggers[1].click();
         fixture.detectChanges();
 
-        const items: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
+        const items: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
         expect(items[0].classList).not.toContain('zyr-accordion-item--open');
         expect(items[1].classList).toContain('zyr-accordion-item--open');
     });
@@ -139,13 +158,16 @@ describe('ZyraAccordion — allowMultiple', () => {
     });
 
     it('keeps multiple items open simultaneously', () => {
-        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__trigger');
+        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__trigger',
+        );
         triggers[0].click();
         fixture.detectChanges();
         triggers[1].click();
         fixture.detectChanges();
 
-        const items: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
+        const items: NodeListOf<HTMLElement> =
+            fixture.nativeElement.querySelectorAll('.zyr-accordion-item');
         expect(items[0].classList).toContain('zyr-accordion-item--open');
         expect(items[1].classList).toContain('zyr-accordion-item--open');
     });
@@ -165,10 +187,14 @@ describe('ZyraAccordion — keyboard navigation', () => {
 
     it('moves focus to the next item on ArrowDown', () => {
         const accordionEl: HTMLElement = fixture.nativeElement.querySelector('zyra-accordion');
-        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__trigger');
+        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__trigger',
+        );
         triggers[0].focus();
 
-        accordionEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        accordionEl.dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }),
+        );
         fixture.detectChanges();
 
         expect(document.activeElement).toBe(triggers[1]);
@@ -176,7 +202,9 @@ describe('ZyraAccordion — keyboard navigation', () => {
 
     it('moves focus to the previous item on ArrowUp', () => {
         const accordionEl: HTMLElement = fixture.nativeElement.querySelector('zyra-accordion');
-        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll('.zyr-accordion-item__trigger');
+        const triggers: NodeListOf<HTMLButtonElement> = fixture.nativeElement.querySelectorAll(
+            '.zyr-accordion-item__trigger',
+        );
         triggers[1].focus();
 
         accordionEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));

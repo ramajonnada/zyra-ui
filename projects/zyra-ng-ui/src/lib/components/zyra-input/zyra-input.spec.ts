@@ -15,7 +15,7 @@ describe('ZyraInput', () => {
     // ── Value binding ─────────────────────────────────────────────────────
     it('emits valueChange on user input', async () => {
         const emitted: string[] = [];
-        component.valueChange.subscribe(v => emitted.push(v));
+        component.valueChange.subscribe((v) => emitted.push(v));
 
         const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
         input.value = 'hello';

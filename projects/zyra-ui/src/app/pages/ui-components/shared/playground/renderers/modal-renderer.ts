@@ -27,8 +27,8 @@ import { ZyraModal, ZyraButton } from 'zyra-ng-ui';
     `,
 })
 export class ModalRenderer {
-    size        = input<string>('md');
-    title       = input<string>('Confirm action');
+    size = input<string>('md');
+    title = input<string>('Confirm action');
     dismissible = input<boolean>(true);
 
     readonly open = signal(false);

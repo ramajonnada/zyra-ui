@@ -1,25 +1,25 @@
 ---
-title: "Angular resource() and httpResource(): Reactive HTTP with Signals"
+title: 'Angular resource() and httpResource(): Reactive HTTP with Signals'
 description: "A complete guide to Angular's resource() and httpResource() APIs — how to fetch data reactively with signals, handle loading and error states, refresh on demand, and replace RxJS-heavy data fetching patterns in Angular 21."
 category:
-    - "Angular"
-    - "Angular 21"
+    - 'Angular'
+    - 'Angular 21'
 tags:
-    - "angular resource"
-    - "angular httpresource"
-    - "angular signals"
-    - "angular http"
-    - "angular 21"
-    - "reactive data fetching"
-    - "angular zoneless"
+    - 'angular resource'
+    - 'angular httpresource'
+    - 'angular signals'
+    - 'angular http'
+    - 'angular 21'
+    - 'reactive data fetching'
+    - 'angular zoneless'
 keywords:
-    - "Angular resource API"
-    - "Angular httpResource"
-    - "Angular reactive HTTP signals"
-    - "Angular resource() tutorial"
-    - "Angular fetch data with signals"
-date: "2026-06-29T10:00:00.000Z"
-slug: "angular-resource-api-httpresouce-signals-2026"
+    - 'Angular resource API'
+    - 'Angular httpResource'
+    - 'Angular reactive HTTP signals'
+    - 'Angular resource() tutorial'
+    - 'Angular fetch data with signals'
+date: '2026-06-29T10:00:00.000Z'
+slug: 'angular-resource-api-httpresouce-signals-2026'
 ---
 
 # Angular resource() and httpResource(): Reactive HTTP with Signals
@@ -51,30 +51,28 @@ import { httpResource } from '@angular/common/http';
 import { signal, Component } from '@angular/core';
 
 interface Post {
-  id: number;
-  title: string;
-  body: string;
+    id: number;
+    title: string;
+    body: string;
 }
 
 @Component({
-  standalone: true,
-  template: `
-    @if (post.isLoading()) {
-      <app-skeleton />
-    } @else if (post.error()) {
-      <p class="error">Failed to load post.</p>
-    } @else {
-      <h1>{{ post.value()?.title }}</h1>
-      <p>{{ post.value()?.body }}</p>
-    }
-  `
+    standalone: true,
+    template: `
+        @if (post.isLoading()) {
+            <app-skeleton />
+        } @else if (post.error()) {
+            <p class="error">Failed to load post.</p>
+        } @else {
+            <h1>{{ post.value()?.title }}</h1>
+            <p>{{ post.value()?.body }}</p>
+        }
+    `,
 })
 export class PostDetailComponent {
-  postId = signal(1);
+    postId = signal(1);
 
-  post = httpResource<Post>(() =>
-    `/api/posts/${this.postId()}`
-  );
+    post = httpResource<Post>(() => `/api/posts/${this.postId()}`);
 }
 ```
 
@@ -85,10 +83,10 @@ That's it. No `inject(HttpClient)`, no `subscribe()`, no teardown. When `postId`
 Every resource exposes four signals:
 
 ```ts
-post.value()      // Post | undefined — the fetched data
-post.status()     // ResourceStatus enum
-post.isLoading()  // boolean — true while fetching
-post.error()      // unknown — the error if fetch failed
+post.value(); // Post | undefined — the fetched data
+post.status(); // ResourceStatus enum
+post.isLoading(); // boolean — true while fetching
+post.error(); // unknown — the error if fetch failed
 ```
 
 `ResourceStatus` values:
@@ -96,12 +94,12 @@ post.error()      // unknown — the error if fetch failed
 ```ts
 import { ResourceStatus } from '@angular/core';
 
-ResourceStatus.Idle       // 0 — no request made yet
-ResourceStatus.Loading    // 1 — request in flight
-ResourceStatus.Refreshing // 2 — re-fetching with existing value
-ResourceStatus.Resolved   // 3 — data available
-ResourceStatus.Error      // 4 — fetch failed
-ResourceStatus.Local      // 5 — value set manually via .set()
+ResourceStatus.Idle; // 0 — no request made yet
+ResourceStatus.Loading; // 1 — request in flight
+ResourceStatus.Refreshing; // 2 — re-fetching with existing value
+ResourceStatus.Resolved; // 3 — data available
+ResourceStatus.Error; // 4 — fetch failed
+ResourceStatus.Local; // 5 — value set manually via .set()
 ```
 
 ---
@@ -112,20 +110,18 @@ The key feature: the URL function is a signal expression. Any signal read inside
 
 ```ts
 @Component({
-  template: `
-    <input [value]="search()" (input)="search.set($any($event.target).value)" />
+    template: `
+        <input [value]="search()" (input)="search.set($any($event.target).value)" />
 
-    @for (user of users.value() ?? []; track user.id) {
-      <app-user-card [user]="user" />
-    }
-  `
+        @for (user of users.value() ?? []; track user.id) {
+            <app-user-card [user]="user" />
+        }
+    `,
 })
 export class UserSearchComponent {
-  search = signal('');
+    search = signal('');
 
-  users = httpResource<User[]>(() =>
-    `/api/users?q=${this.search()}`
-  );
+    users = httpResource<User[]>(() => `/api/users?q=${this.search()}`);
 }
 ```
 
@@ -141,14 +137,11 @@ import { debounceTime } from 'rxjs';
 
 rawSearch = signal('');
 
-debouncedSearch = toSignal(
-  toObservable(this.rawSearch).pipe(debounceTime(300)),
-  { initialValue: '' }
-);
+debouncedSearch = toSignal(toObservable(this.rawSearch).pipe(debounceTime(300)), {
+    initialValue: '',
+});
 
-users = httpResource<User[]>(() =>
-  `/api/users?q=${this.debouncedSearch()}`
-);
+users = httpResource<User[]>(() => `/api/users?q=${this.debouncedSearch()}`);
 ```
 
 ---
@@ -176,6 +169,7 @@ export class ProductComponent {
 ```
 
 Key points:
+
 - `request` is a signal expression that produces the loader's input. When it changes, `loader` re-runs.
 - `loader` receives `{ request, abortSignal }` — cancelled automatically when the request changes mid-flight, preventing stale responses.
 - Throw an error in `loader` to put the resource into the `Error` state.
@@ -189,9 +183,7 @@ Skip fetching when the input isn't ready by returning `undefined` from the URL f
 ```ts
 userId = signal<number | null>(null);
 
-profile = httpResource<Profile>(() =>
-  this.userId() ? `/api/users/${this.userId()}` : undefined
-);
+profile = httpResource<Profile>(() => (this.userId() ? `/api/users/${this.userId()}` : undefined));
 ```
 
 When the URL function returns `undefined`, the resource stays `Idle` and makes no request. As soon as `userId` becomes a number, it fetches automatically.
@@ -235,10 +227,10 @@ Pass a full request config object instead of just a URL string:
 
 ```ts
 posts = httpResource<Post[]>(() => ({
-  url: '/api/posts',
-  method: 'GET',
-  params: { page: this.page(), limit: 20 },
-  headers: { 'X-Custom': 'value' }
+    url: '/api/posts',
+    method: 'GET',
+    params: { page: this.page(), limit: 20 },
+    headers: { 'X-Custom': 'value' },
 }));
 ```
 
@@ -296,11 +288,11 @@ Same result. No lifecycle hooks, no subscriptions, no teardown.
 
 ```html
 @if (data.isLoading()) {
-  <app-skeleton [rows]="5" />
+<app-skeleton [rows]="5" />
 } @else if (data.error()) {
-  <app-error-state (retry)="data.reload()" />
+<app-error-state (retry)="data.reload()" />
 } @else {
-  <app-data-table [rows]="data.value() ?? []" />
+<app-data-table [rows]="data.value() ?? []" />
 }
 ```
 
@@ -310,17 +302,17 @@ Use `status()` to distinguish the first load from a re-fetch so the list stays v
 
 ```html
 <div class="list-wrapper" [class.refreshing]="data.status() === 2">
-  @for (item of data.value() ?? []; track item.id) {
+    @for (item of data.value() ?? []; track item.id) {
     <app-item [item]="item" />
-  }
+    }
 </div>
 ```
 
 ```scss
 .refreshing {
-  opacity: 0.6;
-  pointer-events: none;
-  transition: opacity 150ms;
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity 150ms;
 }
 ```
 
@@ -335,9 +327,7 @@ Pair it with `withHttpTransferCache()` so the server's fetched data is transferr
 ```ts
 // app.config.ts
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideHttpClient(withFetch(), withHttpTransferCache())
-  ]
+    providers: [provideHttpClient(withFetch(), withHttpTransferCache())],
 };
 ```
 
@@ -369,34 +359,32 @@ const data = httpResource<T>(() => '/api/endpoint');
 const item = httpResource<T>(() => `/api/items/${this.id()}`);
 
 // Conditional — skips fetch when null
-const item = httpResource<T>(() =>
-  this.id() ? `/api/items/${this.id()}` : undefined
-);
+const item = httpResource<T>(() => (this.id() ? `/api/items/${this.id()}` : undefined));
 
 // With params
 const list = httpResource<T[]>(() => ({
-  url: '/api/items',
-  params: { page: this.page(), q: this.search() }
+    url: '/api/items',
+    params: { page: this.page(), q: this.search() },
 }));
 
 // Custom async (resource)
 const item = resource({
-  request: () => ({ id: this.id() }),
-  loader: async ({ request, abortSignal }) => {
-    const res = await fetch(`/api/items/${request.id}`, { signal: abortSignal });
-    return res.json() as Promise<T>;
-  }
+    request: () => ({ id: this.id() }),
+    loader: async ({ request, abortSignal }) => {
+        const res = await fetch(`/api/items/${request.id}`, { signal: abortSignal });
+        return res.json() as Promise<T>;
+    },
 });
 
 // Reading state
-data.value()      // T | undefined
-data.isLoading()  // boolean
-data.error()      // unknown
-data.status()     // ResourceStatus (0–5)
+data.value(); // T | undefined
+data.isLoading(); // boolean
+data.error(); // unknown
+data.status(); // ResourceStatus (0–5)
 
 // Actions
-data.reload();       // re-fetch
-data.set(newValue);  // set local value (optimistic update)
+data.reload(); // re-fetch
+data.set(newValue); // set local value (optimistic update)
 ```
 
 ---

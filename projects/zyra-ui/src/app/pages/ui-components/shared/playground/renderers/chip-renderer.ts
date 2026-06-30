@@ -12,13 +12,14 @@ import { ZyraChip } from 'zyra-ng-ui';
             [variant]="$any(variant())"
             [dismissible]="dismissible()"
             [disabled]="disabled()"
-        >{{ label() }}</zyra-chip>
+            >{{ label() }}</zyra-chip
+        >
     `,
 })
 export class ChipRenderer {
-    size        = input<string>('md');
-    variant     = input<string>('default');
-    label       = input<string>('Frontend');
+    size = input<string>('md');
+    variant = input<string>('default');
+    label = input<string>('Frontend');
     dismissible = input<boolean>(false);
-    disabled    = input<boolean>(false);
+    disabled = input<boolean>(false);
 }

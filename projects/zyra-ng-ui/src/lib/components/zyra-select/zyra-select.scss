@@ -145,9 +145,15 @@
         font-size: 15px;
     }
 
-    &--sm &__chevron { font-size: 11px; }
-    &--md &__chevron { font-size: 13px; }
-    &--lg &__chevron { font-size: 15px; }
+    &--sm &__chevron {
+        font-size: 11px;
+    }
+    &--md &__chevron {
+        font-size: 13px;
+    }
+    &--lg &__chevron {
+        font-size: 15px;
+    }
 
     // ════════════════════════════════════════════════════════
     // ── STATES ───────────────────────────────────────────────

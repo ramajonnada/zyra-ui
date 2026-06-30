@@ -16,10 +16,7 @@
             (click)="onToggleSidebar()"
             [attr.aria-label]="isOpen() ? 'Collapse sidebar' : 'Expand sidebar'"
         >
-            <fa-icon
-                [icon]="isOpen() ? icons.caretLeft : icons.caretRight"
-                aria-hidden="true"
-            />
+            <fa-icon [icon]="isOpen() ? icons.caretLeft : icons.caretRight" aria-hidden="true" />
         </button>
     </div>
 

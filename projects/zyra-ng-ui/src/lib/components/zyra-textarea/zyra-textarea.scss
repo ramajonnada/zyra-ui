@@ -18,14 +18,30 @@
     }
 
     // ── Sizes ────────────────────────────────────────────────
-    &--sm { font-size: 12.5px; padding: 0; }
-    &--md { font-size: 13.5px; padding: 0; }
-    &--lg { font-size: 15px;   padding: 0; }
+    &--sm {
+        font-size: 12.5px;
+        padding: 0;
+    }
+    &--md {
+        font-size: 13.5px;
+        padding: 0;
+    }
+    &--lg {
+        font-size: 15px;
+        padding: 0;
+    }
 
     // ── Resize modes ─────────────────────────────────────────
-    &--resize-none     { resize: none; }
-    &--resize-vertical { resize: vertical; }
-    &--resize-auto     { resize: none; overflow: hidden; }
+    &--resize-none {
+        resize: none;
+    }
+    &--resize-vertical {
+        resize: vertical;
+    }
+    &--resize-auto {
+        resize: none;
+        overflow: hidden;
+    }
 
     &:disabled {
         cursor: not-allowed;

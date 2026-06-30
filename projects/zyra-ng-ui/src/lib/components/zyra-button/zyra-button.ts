@@ -1,4 +1,11 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import {
+    booleanAttribute,
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    input,
+    output,
+} from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ZyraSpinner, SpinnerColor } from '../zyra-spinner/zyra-spinner';
 import { asIconDefinition, asIconText, type ZyraIcon } from '../../shared/fontawesome-icons';

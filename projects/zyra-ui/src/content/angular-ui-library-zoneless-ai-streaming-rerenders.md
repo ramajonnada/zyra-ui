@@ -1,25 +1,25 @@
 ---
-title: "Angular UI Performance in Zoneless, AI-Streaming Apps"
-description: "Streaming LLM responses update state dozens of times a second. Learn why your Angular UI library and change detection strategy decide whether that feels smooth or janky in zoneless v21."
+title: 'Angular UI Performance in Zoneless, AI-Streaming Apps'
+description: 'Streaming LLM responses update state dozens of times a second. Learn why your Angular UI library and change detection strategy decide whether that feels smooth or janky in zoneless v21.'
 category:
-    - "Angular 21"
-    - "Angular AI"
+    - 'Angular 21'
+    - 'Angular AI'
 tags:
-    - "angular zoneless"
-    - "angular performance"
-    - "angular signals"
-    - "llm streaming ui"
-    - "angular ui library"
-    - "change detection"
-    - "angular 21"
+    - 'angular zoneless'
+    - 'angular performance'
+    - 'angular signals'
+    - 'llm streaming ui'
+    - 'angular ui library'
+    - 'change detection'
+    - 'angular 21'
 keywords:
-    - "Angular zoneless UI performance"
-    - "Angular LLM streaming UI"
-    - "Angular signals change detection"
-    - "Angular UI library performance"
-    - "Angular streaming re-renders"
-date: "2026-05-15T10:00:00.000Z"
-slug: "angular-ui-library-zoneless-ai-streaming-rerenders"
+    - 'Angular zoneless UI performance'
+    - 'Angular LLM streaming UI'
+    - 'Angular signals change detection'
+    - 'Angular UI library performance'
+    - 'Angular streaming re-renders'
+date: '2026-05-15T10:00:00.000Z'
+slug: 'angular-ui-library-zoneless-ai-streaming-rerenders'
 ---
 
 # Angular UI Performance in Zoneless, AI-Streaming Apps
@@ -53,7 +53,7 @@ This is precisely the scenario zoneless Angular and signals were built to handle
 
 As of Angular v21, [zoneless is the default](https://angular.dev/guide/zoneless). Instead of Zone.js patching async APIs and broadly triggering checks, Angular updates views in response to explicit signals: a signal read in a template changes, an input is set, an event handler fires.
 
-For streaming, that is exactly the behavior you want. If each message holds its content in a signal, then appending a token updates only the bindings that read *that* signal. The other messages, the sidebar, and the composer do not get re-checked.
+For streaming, that is exactly the behavior you want. If each message holds its content in a signal, then appending a token updates only the bindings that read _that_ signal. The other messages, the sidebar, and the composer do not get re-checked.
 
 ```ts
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';

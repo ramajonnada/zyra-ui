@@ -1,4 +1,6 @@
-:host { display: block; }
+:host {
+    display: block;
+}
 
 .zyr-radio {
     display: inline-flex;
@@ -21,8 +23,12 @@
             border-color var(--zyr-transition-fast),
             box-shadow var(--zyr-transition-fast);
 
-        &:focus         { outline: none; }
-        &:focus-visible { box-shadow: var(--zyr-input-shadow-focus); }
+        &:focus {
+            outline: none;
+        }
+        &:focus-visible {
+            box-shadow: var(--zyr-input-shadow-focus);
+        }
     }
 
     // ── Inner dot ────────────────────────────────────────────
@@ -42,17 +48,41 @@
     }
 
     // ── Sizes ────────────────────────────────────────────────
-    &--sm &__circle { width: 14px; height: 14px; }
-    &--sm &__dot    { width: 6px;  height: 6px; }
-    &--sm &__label  { font-size: 12.5px; }
+    &--sm &__circle {
+        width: 14px;
+        height: 14px;
+    }
+    &--sm &__dot {
+        width: 6px;
+        height: 6px;
+    }
+    &--sm &__label {
+        font-size: 12.5px;
+    }
 
-    &--md &__circle { width: 17px; height: 17px; }
-    &--md &__dot    { width: 7px;  height: 7px; }
-    &--md &__label  { font-size: 13.5px; }
+    &--md &__circle {
+        width: 17px;
+        height: 17px;
+    }
+    &--md &__dot {
+        width: 7px;
+        height: 7px;
+    }
+    &--md &__label {
+        font-size: 13.5px;
+    }
 
-    &--lg &__circle { width: 20px; height: 20px; }
-    &--lg &__dot    { width: 9px;  height: 9px; }
-    &--lg &__label  { font-size: 15px; }
+    &--lg &__circle {
+        width: 20px;
+        height: 20px;
+    }
+    &--lg &__dot {
+        width: 9px;
+        height: 9px;
+    }
+    &--lg &__label {
+        font-size: 15px;
+    }
 
     // ── Checked ──────────────────────────────────────────────
     &--checked &__circle {

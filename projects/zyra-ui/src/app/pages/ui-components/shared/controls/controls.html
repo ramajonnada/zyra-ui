@@ -10,9 +10,12 @@
                     @for (opt of asBtnGroup(control).options; track opt) {
                         <zyra-button
                             size="sm"
-                            [variant]="asBtnGroup(control).signal() === opt ? 'primary' : 'secondary'"
+                            [variant]="
+                                asBtnGroup(control).signal() === opt ? 'primary' : 'secondary'
+                            "
                             (clicked)="asBtnGroup(control).signal.set(opt)"
-                        >{{ opt }}</zyra-button>
+                            >{{ opt }}</zyra-button
+                        >
                     }
                 </div>
             }

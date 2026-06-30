@@ -21,12 +21,12 @@ import { ZyraCard } from './zyra-card';
     `,
 })
 class CardHostComponent {
-    variant   = signal<'default' | 'outlined' | 'elevated' | 'ghost'>('default');
-    padding   = signal<'none' | 'sm' | 'md' | 'lg'>('md');
+    variant = signal<'default' | 'outlined' | 'elevated' | 'ghost'>('default');
+    padding = signal<'none' | 'sm' | 'md' | 'lg'>('md');
     clickable = signal(false);
     hasHeader = signal(false);
     hasFooter = signal(false);
-    clicks    = 0;
+    clicks = 0;
 }
 
 describe('ZyraCard', () => {
@@ -134,7 +134,8 @@ describe('ZyraCard', () => {
     it('emits cardClick on Enter key', () => {
         host.clickable.set(true);
         fixture.detectChanges();
-        fixture.nativeElement.querySelector('.zyr-card')
+        fixture.nativeElement
+            .querySelector('.zyr-card')
             .dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
         expect(host.clicks).toBe(1);
     });
@@ -142,7 +143,8 @@ describe('ZyraCard', () => {
     it('emits cardClick on Space key', () => {
         host.clickable.set(true);
         fixture.detectChanges();
-        fixture.nativeElement.querySelector('.zyr-card')
+        fixture.nativeElement
+            .querySelector('.zyr-card')
             .dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
         expect(host.clicks).toBe(1);
     });

@@ -1,12 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ZyraButton, ZyraFormField, ZyraInput } from 'zyra-ng-ui';
-import {
-    ButtonGroupControl,
-    ControlDef,
-    TextControl,
-    ToggleControl,
-} from './control-def';
+import { ButtonGroupControl, ControlDef, TextControl, ToggleControl } from './control-def';
 
 @Component({
     selector: 'app-controls',

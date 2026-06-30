@@ -1,25 +1,25 @@
 ---
-title: "Angular @defer Blocks: Lazy Load Any Component Instantly"
+title: 'Angular @defer Blocks: Lazy Load Any Component Instantly'
 description: "A practical guide to Angular's @defer template syntax — how to lazy load components, use triggers like on viewport and on interaction, handle loading/error states, and combine defer with signals for maximum performance in 2026."
 category:
-    - "Angular"
-    - "Angular 21"
+    - 'Angular'
+    - 'Angular 21'
 tags:
-    - "angular defer"
-    - "angular lazy loading"
-    - "angular 21"
-    - "angular performance"
-    - "defer blocks"
-    - "angular templates"
-    - "code splitting"
+    - 'angular defer'
+    - 'angular lazy loading'
+    - 'angular 21'
+    - 'angular performance'
+    - 'defer blocks'
+    - 'angular templates'
+    - 'code splitting'
 keywords:
-    - "Angular defer blocks"
-    - "Angular lazy loading components"
-    - "Angular @defer tutorial"
-    - "@defer on viewport"
-    - "Angular deferred loading 2026"
-date: "2026-06-29T10:00:00.000Z"
-slug: "angular-defer-blocks-lazy-loading-2026"
+    - 'Angular defer blocks'
+    - 'Angular lazy loading components'
+    - 'Angular @defer tutorial'
+    - '@defer on viewport'
+    - 'Angular deferred loading 2026'
+date: '2026-06-29T10:00:00.000Z'
+slug: 'angular-defer-blocks-lazy-loading-2026'
 ---
 
 # Angular @defer Blocks: Lazy Load Any Component Instantly
@@ -38,7 +38,7 @@ Angular's `@defer` blocks solve this at the template level. No manual `import()`
 
 ```html
 @defer {
-  <app-comments />
+<app-comments />
 }
 ```
 
@@ -52,26 +52,26 @@ A full `@defer` group has four optional blocks:
 
 ```html
 @defer (on viewport) {
-  <!-- rendered when deps are loaded and trigger fires -->
-  <app-heavy-chart />
+<!-- rendered when deps are loaded and trigger fires -->
+<app-heavy-chart />
 } @loading (minimum 200ms) {
-  <!-- shown while the chunk is downloading -->
-  <app-skeleton height="300px" />
+<!-- shown while the chunk is downloading -->
+<app-skeleton height="300px" />
 } @placeholder (minimum 100ms) {
-  <!-- shown immediately before the trigger fires -->
-  <div class="chart-placeholder"></div>
+<!-- shown immediately before the trigger fires -->
+<div class="chart-placeholder"></div>
 } @error {
-  <!-- shown if the chunk fails to load -->
-  <p>Failed to load chart. <button (click)="retry()">Retry</button></p>
+<!-- shown if the chunk fails to load -->
+<p>Failed to load chart. <button (click)="retry()">Retry</button></p>
 }
 ```
 
-| Block | When it shows |
-|---|---|
+| Block          | When it shows                                |
+| -------------- | -------------------------------------------- |
 | `@placeholder` | Before the trigger fires — shown immediately |
-| `@loading` | While the JS chunk is being fetched |
-| `@defer` | After the chunk loads and renders |
-| `@error` | If the chunk fetch fails |
+| `@loading`     | While the JS chunk is being fetched          |
+| `@defer`       | After the chunk loads and renders            |
+| `@error`       | If the chunk fetch fails                     |
 
 The `minimum` parameter prevents flash-of-loading-state: the loading/placeholder blocks stay visible for at least that many milliseconds even if the chunk arrives faster.
 
@@ -79,7 +79,7 @@ The `minimum` parameter prevents flash-of-loading-state: the loading/placeholder
 
 ## Triggers
 
-Triggers control *when* Angular fetches the deferred chunk. You can have multiple triggers on one block using `on`.
+Triggers control _when_ Angular fetches the deferred chunk. You can have multiple triggers on one block using `on`.
 
 ### on viewport
 
@@ -87,9 +87,9 @@ Downloads and renders when the placeholder scrolls into the viewport. Ideal for 
 
 ```html
 @defer (on viewport) {
-  <app-testimonials />
+<app-testimonials />
 } @placeholder {
-  <div style="height: 400px"></div>
+<div style="height: 400px"></div>
 }
 ```
 
@@ -101,9 +101,9 @@ Loads on the first click, focus, or touch of the placeholder. Use this for compo
 
 ```html
 @defer (on interaction) {
-  <app-comment-editor />
+<app-comment-editor />
 } @placeholder {
-  <button class="comment-trigger">Write a comment…</button>
+<button class="comment-trigger">Write a comment…</button>
 }
 ```
 
@@ -113,7 +113,7 @@ Loads during the browser's next idle period (via `requestIdleCallback`). Good fo
 
 ```html
 @defer (on idle) {
-  <app-recommendation-carousel />
+<app-recommendation-carousel />
 }
 ```
 
@@ -123,7 +123,7 @@ Loads after a fixed delay. Use sparingly — prefer `on idle` unless you need pr
 
 ```html
 @defer (on timer(3s)) {
-  <app-cookie-banner />
+<app-cookie-banner />
 }
 ```
 
@@ -133,7 +133,7 @@ Loads as soon as possible after the critical content renders. Effectively the ne
 
 ```html
 @defer (on immediate) {
-  <app-secondary-sidebar />
+<app-secondary-sidebar />
 }
 ```
 
@@ -143,9 +143,9 @@ A `when` expression triggers loading when a boolean expression becomes truthy. C
 
 ```html
 @defer (when showEditor()) {
-  <app-rich-editor />
+<app-rich-editor />
 } @placeholder {
-  <div class="editor-placeholder">Click to edit</div>
+<div class="editor-placeholder">Click to edit</div>
 }
 ```
 
@@ -165,9 +165,9 @@ Defer by default waits for the trigger to fire before even starting the network 
 
 ```html
 @defer (on interaction; prefetch on idle) {
-  <app-modal-content />
+<app-modal-content />
 } @placeholder {
-  <button (click)="openModal()">Open</button>
+<button (click)="openModal()">Open</button>
 }
 ```
 
@@ -191,27 +191,27 @@ Common combos:
 
 ```ts
 @Component({
-  template: `
-    <button (click)="loadChart.set(true)">Show Chart</button>
+    template: `
+        <button (click)="loadChart.set(true)">Show Chart</button>
 
-    @defer (when loadChart()) {
-      <app-analytics-chart [data]="chartData()" />
-    } @loading {
-      <app-skeleton />
-    }
-  `
+        @defer (when loadChart()) {
+            <app-analytics-chart [data]="chartData()" />
+        } @loading {
+            <app-skeleton />
+        }
+    `,
 })
 export class DashboardComponent {
-  loadChart = signal(false);
-  chartData = signal<ChartData | null>(null);
+    loadChart = signal(false);
+    chartData = signal<ChartData | null>(null);
 
-  constructor(private analytics: AnalyticsService) {
-    effect(() => {
-      if (this.loadChart()) {
-        this.analytics.getData().then(d => this.chartData.set(d));
-      }
-    });
-  }
+    constructor(private analytics: AnalyticsService) {
+        effect(() => {
+            if (this.loadChart()) {
+                this.analytics.getData().then((d) => this.chartData.set(d));
+            }
+        });
+    }
 }
 ```
 
@@ -232,19 +232,15 @@ Split your landing page into above-fold (shipped with the initial bundle) and be
 
 <!-- Deferred — not needed until user scrolls -->
 @defer (on viewport; prefetch on idle) {
-  <app-pricing-table />
+<app-pricing-table />
 } @placeholder {
-  <div class="section-placeholder" style="min-height: 600px"></div>
-}
-
-@defer (on viewport; prefetch on idle) {
-  <app-testimonials />
+<div class="section-placeholder" style="min-height: 600px"></div>
+} @defer (on viewport; prefetch on idle) {
+<app-testimonials />
 } @placeholder {
-  <div class="section-placeholder" style="min-height: 400px"></div>
-}
-
-@defer (on viewport) {
-  <app-footer />
+<div class="section-placeholder" style="min-height: 400px"></div>
+} @defer (on viewport) {
+<app-footer />
 }
 ```
 
@@ -254,11 +250,11 @@ If you wrap a chart library, PDF viewer, or map component, defer it so the vendo
 
 ```html
 @defer (on viewport) {
-  <app-map [location]="location()" />
+<app-map [location]="location()" />
 } @loading {
-  <app-skeleton variant="map" />
+<app-skeleton variant="map" />
 } @error {
-  <p class="error-text">Map failed to load.</p>
+<p class="error-text">Map failed to load.</p>
 }
 ```
 
@@ -268,7 +264,7 @@ Combine `when` with a feature flag signal to ship UI that only loads for users w
 
 ```html
 @defer (when featureFlags.advancedEditor()) {
-  <app-advanced-editor />
+<app-advanced-editor />
 }
 ```
 
@@ -334,13 +330,13 @@ In Lighthouse, you'll typically see improvement in:
 
 <!-- With all four blocks -->
 @defer (on interaction) {
-  <app-editor />
+<app-editor />
 } @loading (minimum 300ms) {
-  <app-skeleton />
+<app-skeleton />
 } @placeholder {
-  <button>Open editor</button>
+<button>Open editor</button>
 } @error {
-  <p>Failed to load.</p>
+<p>Failed to load.</p>
 }
 
 <!-- Signal-driven -->

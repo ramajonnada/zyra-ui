@@ -16,11 +16,11 @@ import { ZyraCheckbox } from './zyra-checkbox';
     `,
 })
 class CheckboxHostComponent {
-    checked       = false;
-    label         = signal('Accept terms');
-    disabled      = signal(false);
+    checked = false;
+    label = signal('Accept terms');
+    disabled = signal(false);
     indeterminate = signal(false);
-    size          = signal<'sm' | 'md' | 'lg'>('md');
+    size = signal<'sm' | 'md' | 'lg'>('md');
 }
 
 @Component({
@@ -42,7 +42,9 @@ describe('ZyraCheckbox', () => {
     let host: CheckboxHostComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({ imports: [CheckboxHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [CheckboxHostComponent],
+        }).compileComponents();
         fixture = TestBed.createComponent(CheckboxHostComponent);
         host = fixture.componentInstance;
         fixture.detectChanges();
@@ -159,7 +161,9 @@ describe('ZyraCheckbox', () => {
 
     it('applies lg size class', async () => {
         await TestBed.resetTestingModule();
-        await TestBed.configureTestingModule({ imports: [CheckboxLgHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [CheckboxLgHostComponent],
+        }).compileComponents();
         const lgFixture = TestBed.createComponent(CheckboxLgHostComponent);
         lgFixture.detectChanges();
         expect(lgFixture.nativeElement.querySelector('.zyr-checkbox--lg')).not.toBeNull();
@@ -167,7 +171,9 @@ describe('ZyraCheckbox', () => {
 
     it('applies sm size class', async () => {
         await TestBed.resetTestingModule();
-        await TestBed.configureTestingModule({ imports: [CheckboxSmHostComponent] }).compileComponents();
+        await TestBed.configureTestingModule({
+            imports: [CheckboxSmHostComponent],
+        }).compileComponents();
         const smFixture = TestBed.createComponent(CheckboxSmHostComponent);
         smFixture.detectChanges();
         expect(smFixture.nativeElement.querySelector('.zyr-checkbox--sm')).not.toBeNull();

@@ -17,9 +17,9 @@ import { ZyraCheckbox } from 'zyra-ng-ui';
     `,
 })
 export class CheckboxRenderer {
-    size          = input<string>('md');
-    label         = input<string>('Accept terms and conditions');
+    size = input<string>('md');
+    label = input<string>('Accept terms and conditions');
     labelPosition = input<string>('right');
-    disabled      = input<boolean>(false);
+    disabled = input<boolean>(false);
     indeterminate = input<boolean>(false);
 }

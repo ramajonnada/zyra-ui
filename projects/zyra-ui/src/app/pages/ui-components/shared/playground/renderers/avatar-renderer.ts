@@ -16,8 +16,8 @@ import { ZyraAvatar } from 'zyra-ng-ui';
     `,
 })
 export class AvatarRenderer {
-    name    = input<string>('Dev Zyra');
-    size    = input<string>('md');
+    name = input<string>('Dev Zyra');
+    size = input<string>('md');
     variant = input<string>('teal');
-    square  = input<boolean>(false);
+    square = input<boolean>(false);
 }

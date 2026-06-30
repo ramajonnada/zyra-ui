@@ -1,51 +1,51 @@
 :host {
-	display: block;
+    display: block;
 }
 
 // When the preview fills a fixed-height column (playground layout), the host
 // gets a "fill" class applied from outside so the flex chain flows through.
 :host.pv--fill {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 // ── Outer wrapper ─────────────────────────────────────────────
 .pv {
-	position: relative;
-	padding: 16px 20px 20px;
+    position: relative;
+    padding: 16px 20px 20px;
 }
 
 :host.pv--fill .pv {
-	flex: 1;
-	min-height: 0;
-	display: flex;
-	flex-direction: column;
-	box-sizing: border-box;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 // ── Copy button — floats top-right, aligned with the pill row ─
 .pv__copy {
-	position: absolute;
-	top: 39px;
-	transform: translateY(-50%);
-	right: 20px;
-	padding: 6px 20px;
-	border-radius: var(--zyr-radius-sm);
-	border: 1px solid var(--zyr-border);
-	background: transparent;
-	color: var(--zyr-text-muted);
-	font-family: var(--zyr-font-mono);
-	font-size: 11px;
-	cursor: pointer;
-	transition:
-		color var(--zyr-transition-fast),
-		border-color var(--zyr-transition-fast);
+    position: absolute;
+    top: 39px;
+    transform: translateY(-50%);
+    right: 20px;
+    padding: 6px 20px;
+    border-radius: var(--zyr-radius-sm);
+    border: 1px solid var(--zyr-border);
+    background: transparent;
+    color: var(--zyr-text-muted);
+    font-family: var(--zyr-font-mono);
+    font-size: 11px;
+    cursor: pointer;
+    transition:
+        color var(--zyr-transition-fast),
+        border-color var(--zyr-transition-fast);
 
-	&:hover {
-		border-color: var(--zyr-accent);
-		color: var(--zyr-accent);
-	}
+    &:hover {
+        border-color: var(--zyr-accent);
+        color: var(--zyr-accent);
+    }
 }
 
 // Pierce into zyra-tabs/zyra-tab only in fill mode so the panel fills the
@@ -53,97 +53,97 @@
 // that happen to be rendered inside the demo stage.
 /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
 :host.pv--fill ::ng-deep {
-	.pv>zyra-tabs {
-		flex: 1;
-		min-height: 0;
-	}
+    .pv > zyra-tabs {
+        flex: 1;
+        min-height: 0;
+    }
 
-	.pv>zyra-tabs .zyr-tabs__panels {
-		position: relative;
-		flex: 1;
-		min-height: 100px;
-		overflow: hidden;
-	}
+    .pv > zyra-tabs .zyr-tabs__panels {
+        position: relative;
+        flex: 1;
+        min-height: 100px;
+        overflow: hidden;
+    }
 
-	.pv>zyra-tabs .zyr-tab__panel--active {
-		position: absolute;
-		inset: 0;
-		overflow-y: auto;
-		display: flex;
-		flex-direction: column;
-	}
+    .pv > zyra-tabs .zyr-tab__panel--active {
+        position: absolute;
+        inset: 0;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 // ── Preview stage ─────────────────────────────────────────────
 .pv__stage {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 24px;
-	flex-wrap: wrap;
-	min-height: clamp(260px, 45vh, 480px);
-	padding: 32px;
-	margin-top: 12px;
-	border: 1px solid var(--zyr-border);
-	border-radius: var(--zyr-radius-md);
-	background:
-		linear-gradient(var(--zyr-border) 1px, transparent 1px),
-		linear-gradient(90deg, var(--zyr-border) 1px, transparent 1px);
-	background-size: 28px 28px;
-	background-color: var(--zyr-preview-stage-bg);
-	transition: background-color var(--zyr-transition-slow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    min-height: clamp(260px, 45vh, 480px);
+    padding: 32px;
+    margin-top: 12px;
+    border: 1px solid var(--zyr-border);
+    border-radius: var(--zyr-radius-md);
+    background:
+        linear-gradient(var(--zyr-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--zyr-border) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-color: var(--zyr-preview-stage-bg);
+    transition: background-color var(--zyr-transition-slow);
 
-	&--column {
-		flex-direction: column;
-		align-items: stretch;
-	}
+    &--column {
+        flex-direction: column;
+        align-items: stretch;
+    }
 
-	&--vertical {
-		flex-direction: row;
-		align-items: center;
-		gap: 16px;
-		min-height: 80px;
-	}
+    &--vertical {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        min-height: 80px;
+    }
 }
 
 // In fill mode the stage grows to fill the tab panel instead of using clamp.
 :host.pv--fill .pv__stage {
-	flex: 1;
-	min-height: 120px;
+    flex: 1;
+    min-height: 120px;
 }
 
 // In fill mode the code panel also stretches to the same height.
 :host.pv--fill .pv__code {
-	flex: 1;
-	min-height: 0;
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 12px;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
 }
 
 :host.pv--fill .pv__pre {
-	flex: 1;
-	max-height: unset;
-	overflow: auto;
+    flex: 1;
+    max-height: unset;
+    overflow: auto;
 }
 
 // ── Code panel ────────────────────────────────────────────────
 .pv__code {
-	margin-top: 12px;
-	border: 1px solid var(--zyr-border);
-	border-radius: var(--zyr-radius-md);
-	overflow: hidden;
-	background: var(--zyr-bg-2);
+    margin-top: 12px;
+    border: 1px solid var(--zyr-border);
+    border-radius: var(--zyr-radius-md);
+    overflow: hidden;
+    background: var(--zyr-bg-2);
 }
 
 .pv__pre {
-	margin: 0;
-	padding: 20px;
-	overflow: auto;
-	font-family: var(--zyr-font-mono);
-	font-size: 12.5px;
-	color: var(--zyr-accent);
-	line-height: 1.8;
-	white-space: pre;
-	max-height: 340px;
+    margin: 0;
+    padding: 20px;
+    overflow: auto;
+    font-family: var(--zyr-font-mono);
+    font-size: 12.5px;
+    color: var(--zyr-accent);
+    line-height: 1.8;
+    white-space: pre;
+    max-height: 340px;
 }

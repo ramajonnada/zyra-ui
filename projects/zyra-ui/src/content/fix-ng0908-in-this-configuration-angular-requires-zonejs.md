@@ -1,25 +1,25 @@
 ---
-title: "Fix NG0908: In This Configuration Angular Requires Zone.js"
+title: 'Fix NG0908: In This Configuration Angular Requires Zone.js'
 description: "What the Angular error 'NG0908: In this configuration Angular requires Zone.js' means, why it happens, and the two ways to fix it — restore Zone.js or configure zoneless correctly."
 category:
-    - "Angular Errors"
-    - "Angular 21"
+    - 'Angular Errors'
+    - 'Angular 21'
 tags:
-    - "angular error"
-    - "ng0908"
-    - "zonejs"
-    - "angular zoneless"
-    - "angular 21"
-    - "change detection"
-    - "polyfills"
+    - 'angular error'
+    - 'ng0908'
+    - 'zonejs'
+    - 'angular zoneless'
+    - 'angular 21'
+    - 'change detection'
+    - 'polyfills'
 keywords:
-    - "In this configuration Angular requires Zone.js"
-    - "NG0908"
-    - "Angular requires Zone.js error"
-    - "Angular zoneless error"
-    - "Angular zone.js polyfills"
-date: "2026-05-23T10:00:00.000Z"
-slug: "fix-ng0908-in-this-configuration-angular-requires-zonejs"
+    - 'In this configuration Angular requires Zone.js'
+    - 'NG0908'
+    - 'Angular requires Zone.js error'
+    - 'Angular zoneless error'
+    - 'Angular zone.js polyfills'
+date: '2026-05-23T10:00:00.000Z'
+slug: 'fix-ng0908-in-this-configuration-angular-requires-zonejs'
 ---
 
 # Fix NG0908: In This Configuration Angular Requires Zone.js
@@ -43,7 +43,7 @@ Angular has two change detection modes:
 - **Zone-based** — the traditional mode that relies on `zone.js` to know when something might have changed.
 - **Zoneless** — the modern mode where Angular updates from explicit signals instead of `zone.js`.
 
-`NG0908` is Angular telling you there is a mismatch: your configuration expects Zone.js to be present, but it could not find it at runtime. In other words, you are *half* zoneless — zones were removed from the build, but the app was never told to run without them (or something re-enabled zone change detection).
+`NG0908` is Angular telling you there is a mismatch: your configuration expects Zone.js to be present, but it could not find it at runtime. In other words, you are _half_ zoneless — zones were removed from the build, but the app was never told to run without them (or something re-enabled zone change detection).
 
 ---
 
@@ -99,10 +99,7 @@ import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core
 import { provideRouter } from '@angular/router';
 
 export const appConfig: ApplicationConfig = {
-    providers: [
-        provideZonelessChangeDetection(),
-        provideRouter(routes),
-    ],
+    providers: [provideZonelessChangeDetection(), provideRouter(routes)],
 };
 ```
 
