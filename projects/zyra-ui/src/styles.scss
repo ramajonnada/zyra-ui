@@ -9,146 +9,153 @@ html {
 // RGB triplet for rgba() usage — matches --zyr-accent (#18d5ea)
 :root,
 [data-theme='dark'] {
-	--zyra-glow: 24, 213, 234;
-	--zyra-grid: 215 20% 50%;
+    --zyra-glow: 0, 234, 255;
+    --zyra-grid: 220 13% 18%;
 }
 
 [data-theme='light'] {
-	--zyra-glow: 0, 122, 138;
-	--zyra-grid: 215 20% 28%;
+    --zyra-glow: 0, 122, 138;
+    --zyra-grid: 220 13% 78%;
 }
 
 .zyra-grid-bg {
-	background-image:
-		linear-gradient(hsl(var(--zyra-grid) / 0.6) 1px, transparent 1px),
-		linear-gradient(90deg, hsl(var(--zyra-grid) / 0.6) 1px, transparent 1px);
-	background-size: 48px 48px;
-	-webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 75%);
-	mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 75%);
+    background-image:
+        linear-gradient(hsl(var(--zyra-grid) / 0.6) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(var(--zyra-grid) / 0.6) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 75%);
 }
 
 .zyra-gradient-text {
-	background: linear-gradient(
-		135deg,
-		var(--zyr-cyan-500) 0%,
-		var(--zyr-cyan-300) 40%,
-		var(--zyr-cyan-200) 70%,
-		#fff 100%
-	);
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
+    background: linear-gradient(
+        135deg,
+        var(--zyr-cyan-500) 0%,
+        var(--zyr-cyan-300) 40%,
+        var(--zyr-cyan-200) 70%,
+        #fff 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-[data-theme="light"] .zyra-gradient-text {
-	background: linear-gradient(
-		135deg,
-		var(--zyr-cyan-800) 0%,
-		var(--zyr-cyan-700) 40%,
-		var(--zyr-cyan-600) 75%,
-		var(--zyr-cyan-500) 100%
-	);
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
+[data-theme='light'] .zyra-gradient-text {
+    background: linear-gradient(
+        135deg,
+        var(--zyr-cyan-800) 0%,
+        var(--zyr-cyan-700) 40%,
+        var(--zyr-cyan-600) 75%,
+        var(--zyr-cyan-500) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .zyra-glow {
-	box-shadow: 0 0 24px rgba(var(--zyra-glow), 0.35), 0 0 48px rgba(var(--zyra-glow), 0.15);
+    box-shadow:
+        0 0 24px rgba(var(--zyra-glow), 0.35),
+        0 0 48px rgba(var(--zyra-glow), 0.15);
 }
 
 .zyra-glow-hover:hover {
-	box-shadow: 0 0 32px rgba(var(--zyra-glow), 0.55), 0 0 64px rgba(var(--zyra-glow), 0.25);
+    box-shadow:
+        0 0 32px rgba(var(--zyra-glow), 0.55),
+        0 0 64px rgba(var(--zyra-glow), 0.25);
 }
 
 .zyra-glass {
-	background: hsl(var(--card) / 0.5);
-	-webkit-backdrop-filter: blur(20px) saturate(1.2);
-	backdrop-filter: blur(20px) saturate(1.2);
+    background: var(--zyr-glass-bg);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    backdrop-filter: blur(20px) saturate(1.2);
 }
 
 .zyra-noise {
-	position: relative;
+    position: relative;
 }
 
 .zyra-noise::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
-	opacity: 0.04;
-	mix-blend-mode: overlay;
-	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .marquee {
-	animation: zyra-marquee 40s linear infinite;
+    animation: zyra-marquee 40s linear infinite;
 }
 
 @keyframes zyra-marquee {
-	from {
-		transform: translateX(0);
-	}
+    from {
+        transform: translateX(0);
+    }
 
-	to {
-		transform: translateX(-50%);
-	}
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 @keyframes zyra-pulse-glow {
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(var(--zyra-glow), 0.3);
+    }
 
-	0%,
-	100% {
-		box-shadow: 0 0 20px rgba(var(--zyra-glow), 0.3);
-	}
-
-	50% {
-		box-shadow: 0 0 40px rgba(var(--zyra-glow), 0.6);
-	}
+    50% {
+        box-shadow: 0 0 40px rgba(var(--zyra-glow), 0.6);
+    }
 }
 
 .zyra-pulse {
-	animation: zyra-pulse-glow 3s ease-in-out infinite;
+    animation: zyra-pulse-glow 3s ease-in-out infinite;
 }
 
 @keyframes zyra-float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
 
-	0%,
-	100% {
-		transform: translateY(0px);
-	}
-
-	50% {
-		transform: translateY(-6px);
-	}
+    50% {
+        transform: translateY(-6px);
+    }
 }
 
 .zyra-float {
-	animation: zyra-float 6s ease-in-out infinite;
+    animation: zyra-float 6s ease-in-out infinite;
 }
 
 @keyframes zyra-shimmer {
-	0% {
-		background-position: -200% 0;
-	}
+    0% {
+        background-position: -200% 0;
+    }
 
-	100% {
-		background-position: 200% 0;
-	}
+    100% {
+        background-position: 200% 0;
+    }
 }
 
 .zyra-shimmer {
-	background: linear-gradient(90deg, transparent 0%, rgba(var(--zyra-glow), 0.15) 50%, transparent 100%);
-	background-size: 200% 100%;
-	animation: zyra-shimmer 2.5s linear infinite;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(var(--zyra-glow), 0.15) 50%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: zyra-shimmer 2.5s linear infinite;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
+    width: 6px;
+    height: 6px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-	background: hsl(var(--border));
-	border-radius: 3px;
+    background: var(--zyr-border-strong);
+    border-radius: 3px;
 }
