@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 
 export type CardVariant = 'default' | 'outlined' | 'elevated' | 'ghost';
 export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
@@ -14,12 +14,12 @@ export class ZyraCard {
     // ── Inputs ────────────────────────────────────────────────
     variant = input<CardVariant>('default');
     padding = input<CardPadding>('md');
-    clickable = input<boolean>(false);
-    hasHeader = input<boolean>(false);
-    hasFooter = input<boolean>(false);
+    clickable = input(false, { transform: booleanAttribute });
+    hasHeader = input(false, { transform: booleanAttribute });
+    hasFooter = input(false, { transform: booleanAttribute });
 
     // ── Outputs ───────────────────────────────────────────────
-    cardClick = output<void>();
+    clicked = output<void>();
 
     // ── Computed ──────────────────────────────────────────────
     hostClass = computed(() => {
@@ -32,6 +32,6 @@ export class ZyraCard {
 
     // ── Methods ───────────────────────────────────────────────
     handleClick(): void {
-        if (this.clickable()) this.cardClick.emit();
+        if (this.clickable()) this.clicked.emit();
     }
 }

@@ -12,7 +12,7 @@ import { ZyraCard } from './zyra-card';
             [clickable]="clickable()"
             [hasHeader]="hasHeader()"
             [hasFooter]="hasFooter()"
-            (cardClick)="clicks = clicks + 1"
+            (clicked)="clicks = clicks + 1"
         >
             <div slot="header">Header</div>
             <p>Body</p>
@@ -109,7 +109,7 @@ describe('ZyraCard', () => {
         expect(card.getAttribute('tabindex')).toBeNull();
     });
 
-    it('does not emit cardClick when not clickable', () => {
+    it('does not emit clicked when not clickable', () => {
         fixture.nativeElement.querySelector('.zyr-card').click();
         expect(host.clicks).toBe(0);
     });
@@ -124,14 +124,14 @@ describe('ZyraCard', () => {
         expect(card.getAttribute('tabindex')).toBe('0');
     });
 
-    it('emits cardClick on mouse click', () => {
+    it('emits clicked on mouse click', () => {
         host.clickable.set(true);
         fixture.detectChanges();
         fixture.nativeElement.querySelector('.zyr-card').click();
         expect(host.clicks).toBe(1);
     });
 
-    it('emits cardClick on Enter key', () => {
+    it('emits clicked on Enter key', () => {
         host.clickable.set(true);
         fixture.detectChanges();
         fixture.nativeElement
@@ -140,7 +140,7 @@ describe('ZyraCard', () => {
         expect(host.clicks).toBe(1);
     });
 
-    it('emits cardClick on Space key', () => {
+    it('emits clicked on Space key', () => {
         host.clickable.set(true);
         fixture.detectChanges();
         fixture.nativeElement
