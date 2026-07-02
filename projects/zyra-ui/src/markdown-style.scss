@@ -178,12 +178,14 @@
     // ── Block code ────────────────────────────────────────────
     pre {
         position: relative;
-        padding: 18px 20px;
+        padding: 20px 22px 20px 20px;
         border: 1px solid var(--zyr-border);
+        border-left: 3px solid var(--zyr-accent);
         border-radius: var(--zyr-radius-xl);
         background: var(--zyr-bg-3);
         color: var(--zyr-text);
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
 
         code {
             display: block;
@@ -192,7 +194,9 @@
             border: none;
             border-radius: 0;
             color: inherit;
-            font-size: 0.9em;
+            font-size: 0.875em;
+            line-height: 1.75;
+            tab-size: 4;
         }
 
         // Copy button — injected by blog-details.ts after markdown renders
@@ -226,6 +230,136 @@
         &:hover .code-copy-btn {
             opacity: 1;
         }
+    }
+
+    // ── Tables ────────────────────────────────────────────────
+    // Wrapper div injected around every table for horizontal scroll on mobile
+    // without breaking table column layout (display:block on table kills column widths)
+    .table-scroll {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 0 24px;
+        border: 1px solid var(--zyr-border);
+        border-radius: var(--zyr-radius-xl);
+    }
+
+    table {
+        width: 100%;
+        min-width: 480px; // forces scroll on mobile before columns get crushed
+        border-collapse: collapse;
+        border-radius: var(--zyr-radius-xl);
+        font-size: 0.93rem;
+        table-layout: fixed; // equal column widths — works for 2, 3, or 4 columns
+    }
+
+    thead {
+        background: var(--zyr-bg-3);
+        border-bottom: 2px solid var(--zyr-border-strong);
+    }
+
+    th {
+        padding: 13px 18px;
+        text-align: left;
+        font-family: var(--zyr-font-mono);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--zyr-text-muted);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-right: 1px solid var(--zyr-border-strong);
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    td {
+        padding: 13px 18px;
+        color: var(--zyr-text-muted);
+        line-height: 1.65;
+        border-top: 1px solid var(--zyr-border);
+        border-right: 1px solid var(--zyr-border);
+        vertical-align: top;
+        word-break: break-word;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    tbody tr:nth-child(even) td {
+        background: color-mix(in srgb, var(--zyr-bg-3) 50%, transparent);
+    }
+
+    tbody tr:hover td {
+        background: color-mix(in srgb, var(--zyr-accent) 5%, transparent);
+        transition: background 0.15s ease;
+    }
+
+    td code,
+    th code {
+        padding: 2px 7px;
+        border-radius: 5px;
+        background: color-mix(in srgb, var(--zyr-accent) 10%, transparent);
+        border: 1px solid var(--zyr-accent-border);
+        color: var(--zyr-accent);
+        font-size: 0.85em;
+        white-space: nowrap;
+    }
+
+    // ── Syntax highlighting (highlight.js → zyra tokens) ─────
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-built_in,
+    .hljs-tag .hljs-name {
+        color: var(--zyr-accent);
+    }
+
+    .hljs-string,
+    .hljs-template-variable,
+    .hljs-template-tag {
+        color: var(--zyr-success);
+    }
+
+    .hljs-number,
+    .hljs-literal {
+        color: var(--zyr-warning);
+    }
+
+    .hljs-comment,
+    .hljs-quote {
+        color: var(--zyr-text-dim);
+        font-style: italic;
+    }
+
+    .hljs-type,
+    .hljs-title.class_,
+    .hljs-title.class_.inherited__ {
+        color: var(--zyr-accent-2);
+    }
+
+    .hljs-function .hljs-title,
+    .hljs-title.function_ {
+        color: var(--zyr-accent-3);
+    }
+
+    .hljs-attr,
+    .hljs-attribute,
+    .hljs-meta,
+    .hljs-selector-attr {
+        color: var(--zyr-accent-2);
+    }
+
+    .hljs-tag {
+        color: var(--zyr-danger);
+    }
+
+    .hljs-variable,
+    .hljs-params {
+        color: var(--zyr-text);
     }
 
     // ── Blockquote (TL;DR, callouts) ──────────────────────────
