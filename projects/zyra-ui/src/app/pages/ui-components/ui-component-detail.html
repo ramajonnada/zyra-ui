@@ -1,7 +1,7 @@
 @if (component(); as selected) {
     <section class="component-detail-page">
         <div class="component-detail-page__hero">
-            <a class="component-detail-page__back" routerLink="/components">Back to components</a>
+            <app-breadcrumb [items]="breadcrumbItems()" />
 
             <div class="component-detail-page__title-row">
                 <h1>{{ selected.title }}</h1>

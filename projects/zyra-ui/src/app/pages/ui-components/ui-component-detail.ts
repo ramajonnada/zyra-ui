@@ -7,10 +7,11 @@ import { map } from 'rxjs';
 import { SeoService } from '../../../seo/seo.service';
 import { Playground } from './shared/playground/playground';
 import { PLAYGROUND_REGISTRY } from './shared/playground/playground-registry';
+import { Breadcrumb, BreadcrumbItem } from '../../shared/breadcrumb/breadcrumb';
 
 @Component({
     selector: 'app-ui-component-detail',
-    imports: [RouterLink, ZyraBadge, Playground],
+    imports: [RouterLink, ZyraBadge, Playground, Breadcrumb],
     templateUrl: './ui-component-detail.html',
     styleUrl: './ui-component-detail.scss',
 })
@@ -33,6 +34,12 @@ export class UiComponentDetail implements OnInit, OnDestroy {
         const slugs = this.component()?.relatedSlugs ?? [];
         return slugs.map((s) => UI_COMPONENT_SHOWCASE.find((c) => c.slug === s)).filter(Boolean);
     });
+
+    readonly breadcrumbItems = computed<BreadcrumbItem[]>(() => [
+        { label: 'Home', url: 'https://www.zyraui.dev/' },
+        { label: 'Components', url: 'https://www.zyraui.dev/components' },
+        { label: this.component()?.title ?? 'Component', url: `https://www.zyraui.dev/components/${this.component()?.slug ?? ''}` },
+    ]);
 
     ngOnInit(): void {
         const component = this.component();
