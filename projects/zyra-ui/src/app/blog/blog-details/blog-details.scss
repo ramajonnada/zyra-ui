@@ -42,21 +42,6 @@
     margin: 0 auto 22px;
 }
 
-.back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
-    color: var(--article-muted);
-    text-decoration: none;
-    font-family: var(--zyr-font-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-
-    &:hover {
-        color: var(--zyr-accent);
-    }
-}
 
 .eyebrow,
 .article-meta,

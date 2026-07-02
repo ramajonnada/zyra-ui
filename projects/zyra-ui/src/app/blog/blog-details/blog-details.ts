@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ElementRef, OnDestroy, inject, signal } from '@angular/core';
+import { Component, ElementRef, OnDestroy, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
@@ -7,11 +7,12 @@ import { BlogService, PostMeta } from '../../services/blog-service';
 import { ZyraBadge, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { timeout } from 'rxjs';
+import { Breadcrumb, BreadcrumbItem } from '../../shared/breadcrumb/breadcrumb';
 
 @Component({
     selector: 'app-blog-details',
     standalone: true,
-    imports: [CommonModule, MarkdownModule, RouterLink, ZyraBadge, ZyraCard],
+    imports: [CommonModule, MarkdownModule, ZyraBadge, ZyraCard, Breadcrumb],
     templateUrl: './blog-details.html',
     styleUrls: ['./blog-details.scss'],
 })
@@ -27,6 +28,12 @@ export class BlogDetails implements OnDestroy {
     postFaq = signal<{ q: string; a: string }[]>([]);
     loading = signal(true);
     error = signal('');
+
+    readonly breadcrumbItems = computed<BreadcrumbItem[]>(() => [
+        { label: 'Home', url: 'https://www.zyraui.dev/' },
+        { label: 'Blog', url: 'https://www.zyraui.dev/blog' },
+        { label: this.postTitle() || this.slug(), url: `https://www.zyraui.dev/blog/${this.slug()}` },
+    ]);
 
     private route = inject(ActivatedRoute);
     private blogService = inject(BlogService);
@@ -198,6 +205,20 @@ export class BlogDetails implements OnDestroy {
 
     onMarkdownLoad(): void {
         this.enhanceCodeBlocks();
+        this.wrapTables();
+    }
+
+    private wrapTables(): void {
+        const container: HTMLElement = this.el.nativeElement;
+        const tables = container.querySelectorAll<HTMLElement>('table:not([data-wrapped])');
+
+        tables.forEach((table) => {
+            table.setAttribute('data-wrapped', 'true');
+            const wrapper = this.document.createElement('div');
+            wrapper.className = 'table-scroll';
+            table.parentNode!.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+        });
     }
 
     private enhanceCodeBlocks(): void {
