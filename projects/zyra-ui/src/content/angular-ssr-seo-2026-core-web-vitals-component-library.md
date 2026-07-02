@@ -33,9 +33,193 @@ Since Angular 17, server-side rendering and prerendering are built into the CLI 
 You will learn:
 
 - how SSR and hydration work in modern Angular
+- real-world examples: e-commerce, blog, SaaS dashboard
+- what a crawler actually sees with and without SSR
 - how to set per-route meta tags and Open Graph data
 - how to add structured data for rich results
 - how to keep Core Web Vitals green, including with a component library
+- how to add your own API routes alongside SSR
+
+---
+
+## What the crawler actually sees
+
+This is the most important thing to understand. Open any non-SSR Angular app, right-click → View Page Source (not DevTools — actual source). You will see this:
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>My App</title>
+  </head>
+  <body>
+    <app-root></app-root>  <!-- completely empty -->
+    <script src="main.js"></script>
+  </body>
+</html>
+```
+
+Google's crawler visits your product page. It sees nothing. No product name, no price, no description. It has to wait for JavaScript to execute — and even then, crawlers do not always wait.
+
+With SSR, the same URL returns:
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Nike Air Max 2026 – Running Shoes | YourStore</title>
+    <meta name="description" content="Lightweight running shoe with React foam. Free shipping over ₹999.">
+    <meta property="og:title" content="Nike Air Max 2026">
+    <meta property="og:image" content="https://yourstore.com/shoes/air-max.webp">
+  </head>
+  <body>
+    <app-root>
+      <h1>Nike Air Max 2026</h1>
+      <p>₹8,499</p>
+      <p>In stock — ships in 2 days</p>
+      ...
+    </app-root>
+  </body>
+</html>
+```
+
+Real content, real metadata, present before a single line of JavaScript runs. That is what SSR gives you.
+
+---
+
+## Real-world examples
+
+### 1. E-commerce product page
+
+Without SSR, sharing a product link on WhatsApp shows a blank preview. The Open Graph tags are never in the source HTML.
+
+With SSR:
+
+```ts
+@Component({
+    selector: 'app-product',
+    template: `
+        <h1>{{ product().name }}</h1>
+        <p>{{ product().price | currency:'INR' }}</p>
+        <img [ngSrc]="product().image" width="600" height="600" priority alt="{{ product().name }}" />
+    `,
+})
+export class ProductPage {
+    private readonly meta = inject(Meta);
+    private readonly title = inject(Title);
+    product = input.required<Product>();
+
+    constructor() {
+        effect(() => {
+            const p = this.product();
+            this.title.setTitle(`${p.name} | YourStore`);
+            this.meta.updateTag({ name: 'description', content: p.description });
+            this.meta.updateTag({ property: 'og:title', content: p.name });
+            this.meta.updateTag({ property: 'og:image', content: p.image });
+            this.meta.updateTag({ property: 'og:price:amount', content: String(p.price) });
+        });
+    }
+}
+```
+
+Now when someone shares your product link, WhatsApp, Twitter, and LinkedIn all pull the correct image, name, and description directly from the SSR-rendered HTML.
+
+---
+
+### 2. Blog or news article
+
+A news site lives or dies by SEO. Every article needs unique metadata and structured data so Google can show it as a rich result (article card with date, author, thumbnail).
+
+```ts
+// In your article page component
+effect(() => {
+    const article = this.article();
+
+    this.title.setTitle(`${article.title} | TechBlog`);
+    this.meta.updateTag({ name: 'description', content: article.summary });
+    this.meta.updateTag({ property: 'og:type', content: 'article' });
+    this.meta.updateTag({ property: 'article:published_time', content: article.date });
+
+    // JSON-LD structured data for Google rich results
+    this.jsonLd.set({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: article.title,
+        datePublished: article.date,
+        author: { '@type': 'Person', name: article.author },
+        image: article.coverImage,
+        description: article.summary,
+    });
+});
+```
+
+This is exactly how this blog you are reading right now works. Every post on this site sets its own metadata during SSR so Google indexes each article independently.
+
+---
+
+### 3. SaaS dashboard (when NOT to use SSR)
+
+Not every page needs SSR. A logged-in user dashboard — analytics charts, private data — does not need to be crawled by Google. SSR there adds complexity with no SEO benefit.
+
+The right approach: use Angular's **prerendering** for public pages and skip SSR for authenticated pages.
+
+```ts
+// app.routes.ts
+export const routes: Routes = [
+    // Public pages — prerendered at build time
+    { path: '', component: Home },
+    { path: 'blog/:slug', component: BlogPost },
+    { path: 'components', component: Components },
+
+    // Private pages — skip SSR, render in browser only
+    {
+        path: 'dashboard',
+        component: Dashboard,
+        data: { renderMode: RenderMode.Client }, // no SSR
+    },
+];
+```
+
+This gives you the best of both worlds: crawlable public pages, fast private dashboards.
+
+---
+
+### 4. Waitlist / landing page with a backend API
+
+A real pattern you will use: SSR for the public-facing page, plus an Express API route for form submissions — both in the same project.
+
+Your Angular project already runs on Express (`server.ts`). You can add API endpoints right next to it:
+
+```ts
+// server.ts — your Express server that Angular SSR already uses
+
+// Parse JSON request bodies
+app.use(express.json());
+
+// POST /api/waitlist — save an email
+app.post('/api/waitlist', (req, res) => {
+    const { email } = req.body;
+    // save to database here
+    res.status(201).json({ success: true });
+});
+
+// GET /api/waitlist — read all emails
+app.get('/api/waitlist', (_req, res) => {
+    // read from database here
+    res.json({ emails: [] });
+});
+
+// Angular SSR handles all other routes below this
+app.use((req, res, next) => {
+    angularApp.handle(req).then(response =>
+        response ? writeResponseToNodeResponse(response, res) : next()
+    );
+});
+```
+
+The key insight: **your SSR server IS your backend**. Express handles API routes first (`/api/*`), then Angular SSR handles everything else. One server, two jobs.
+
+---
 
 ---
 

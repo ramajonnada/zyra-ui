@@ -1,6 +1,6 @@
 ---
 title: 'Fix NG0908: In This Configuration Angular Requires Zone.js'
-description: "What the Angular error 'NG0908: In this configuration Angular requires Zone.js' means, why it happens, and the two ways to fix it — restore Zone.js or configure zoneless correctly."
+description: "What NG0908 means, why Angular requires Zone.js, and the two ways to fix it: restore Zone.js in polyfills or configure zoneless change detection correctly."
 category:
     - 'Angular Errors'
     - 'Angular 21'

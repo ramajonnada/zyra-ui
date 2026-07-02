@@ -1,6 +1,6 @@
 ---
 title: 'Angular resource() and httpResource(): Reactive HTTP with Signals'
-description: "A complete guide to Angular's resource() and httpResource() APIs — how to fetch data reactively with signals, handle loading and error states, refresh on demand, and replace RxJS-heavy data fetching patterns in Angular 21."
+description: "Learn Angular's resource() and httpResource() APIs: reactive HTTP with signals, auto re-fetch, optimistic updates, and SSR support in Angular 21."
 category:
     - 'Angular'
     - 'Angular 21'
@@ -390,3 +390,23 @@ data.set(newValue); // set local value (optimistic update)
 ---
 
 `resource()` and `httpResource()` are the clearest sign yet that Angular's signal story is complete. Data fetching — historically one of the most boilerplate-heavy parts of an Angular component — is now a one-liner that stays reactive, handles request cancellation, and plugs into SSR out of the box.
+
+---
+
+## Frequently asked questions
+
+### What is Angular's httpResource()?
+
+`httpResource()` is an Angular API that fetches HTTP data reactively using signals. You pass a function that returns a URL (reading any signals inside), and it gives back an object with `value()`, `isLoading()`, `error()`, and `status()` signals. It re-fetches automatically whenever the signals it reads change.
+
+### What is the difference between resource() and httpResource() in Angular?
+
+`httpResource()` uses Angular's `HttpClient` under the hood, so it runs through your interceptors, auth headers, and XSRF tokens. `resource()` accepts any async function — `fetch`, IndexedDB, or custom logic — giving you full control. Use `httpResource()` for standard HTTP and `resource()` when you need custom async behaviour.
+
+### How do I skip a fetch when the input is not ready in Angular resource?
+
+Return `undefined` from the URL function. When the URL function returns `undefined`, the resource stays in the `Idle` state and makes no request. As soon as the signal becomes a valid value, the resource fetches automatically.
+
+### Does httpResource() work with Angular SSR?
+
+Yes. `httpResource()` fetches data on the server before the HTML is serialized, so crawlers and users receive fully-rendered content. Add `withHttpTransferCache()` to your `HttpClient` providers so the server result is transferred to the browser, avoiding a second request on hydration.

@@ -1,10 +1,10 @@
 [
     {
         "imageUrl": "",
-        "readTime": "8 mins",
+        "readTime": "5 mins",
         "slug": "angular-resource-api-httpresouce-signals-2026",
         "title": "Angular resource() and httpResource(): Reactive HTTP with Signals",
-        "description": "A complete guide to Angular's resource() and httpResource() APIs — how to fetch data reactively with signals, handle loading and error states, refresh on demand, and replace RxJS-heavy data fetching patterns in Angular 21.",
+        "description": "Learn Angular's resource() and httpResource() APIs: reactive HTTP with signals, auto re-fetch, optimistic updates, and SSR support in Angular 21.",
         "category": ["Angular 21"],
         "tags": [
             "angular resource",
@@ -44,10 +44,10 @@
     },
     {
         "imageUrl": "",
-        "readTime": "9 mins",
+        "readTime": "5 mins",
         "slug": "angular-defer-blocks-lazy-loading-2026",
         "title": "Angular @defer Blocks: Lazy Load Any Component Instantly",
-        "description": "A practical guide to Angular's @defer template syntax — how to lazy load components, use triggers like on viewport and on interaction, handle loading/error states, and combine defer with signals for maximum performance in 2026.",
+        "description": "Learn Angular's @defer block: lazy load components with on viewport, on interaction, and signal-driven when triggers to ship lighter bundles in 2026.",
         "category": ["Angular 21"],
         "tags": [
             "angular defer",
@@ -90,7 +90,7 @@
         "readTime": "5 mins",
         "slug": "fix-ng0908-in-this-configuration-angular-requires-zonejs",
         "title": "Fix NG0908: In This Configuration Angular Requires Zone.js",
-        "description": "What the Angular error 'NG0908: In this configuration Angular requires Zone.js' means, why it happens, and the two ways to fix it — restore Zone.js or configure zoneless correctly.",
+        "description": "What NG0908 means, why Angular requires Zone.js, and the two ways to fix it: restore Zone.js in polyfills or configure zoneless change detection correctly.",
         "category": ["Angular Errors"],
         "tags": [
             "angular error",
@@ -219,7 +219,7 @@
         "readTime": "7 mins",
         "slug": "angular-ui-library-zoneless-ai-streaming-rerenders",
         "title": "Angular UI Performance in Zoneless, AI-Streaming Apps",
-        "description": "Streaming LLM responses update state dozens of times a second. Learn why your Angular UI library and change detection strategy decide whether that feels smooth or janky in zoneless v21.",
+        "description": "Learn why your Angular UI library and change detection strategy determine smooth vs janky rendering when streaming LLM responses in zoneless Angular 21.",
         "category": ["Angular 21"],
         "tags": [
             "angular zoneless",
@@ -305,7 +305,7 @@
         "readTime": "9 mins",
         "slug": "angular-ssr-seo-2026-core-web-vitals-component-library",
         "title": "Angular SSR & SEO in 2026: Core Web Vitals Done Right",
-        "description": "A practical guide to Angular 21 SSR for SEO in 2026: hydration, dynamic meta tags, structured data, and keeping Core Web Vitals green when you use a component library.",
+        "description": "A practical guide to Angular 21 SSR with real-world examples — e-commerce, blogs, dashboards, and adding your own API routes. Covers hydration, meta tags, structured data, and Core Web Vitals.",
         "category": ["Angular SEO"],
         "tags": [
             "angular ssr",
@@ -340,6 +340,14 @@
             {
                 "q": "Can a component library hurt my Angular SEO?",
                 "a": "Yes. A heavy library inflates your bundle and hurts LCP and INP, and a browser-only library that touches window or document at construction can crash SSR. Choose a tree-shakeable, SSR-safe library."
+            },
+            {
+                "q": "Should every Angular page use SSR?",
+                "a": "No. Public pages like landing pages, blog posts, and product pages benefit most from SSR because they need to be crawled. Private pages like logged-in dashboards do not need SSR — use RenderMode.Client to skip server rendering for those routes."
+            },
+            {
+                "q": "Can I add my own API endpoints to an Angular SSR project?",
+                "a": "Yes. Angular SSR uses Express under the hood. You can define app.post() and app.get() routes in server.ts before the Angular catch-all handler. These run on the same server, so no separate backend is needed for simple use cases like a waitlist or contact form."
             }
         ]
     },
@@ -390,7 +398,7 @@
         "readTime": "8 mins",
         "slug": "angular-21-signals-explained-signals-signal-forms",
         "title": "Angular 21 Signals Explained: Signals, Signal Forms",
-        "description": "In-depth Angular 21 Signals guide for 2026: learn signals, Signal Forms, zoneless change detection, and how to use Angular Signals with RxJS and HttpClient.",
+        "description": "In-depth Angular 21 Signals guide for 2026: learn signals, reactive forms with toSignal(), zoneless change detection, and how to use Angular Signals with RxJS and HttpClient.",
         "category": ["Angular 21 signals"],
         "tags": [
             "angular 21",
@@ -418,8 +426,8 @@
                 "a": "A signal is a reactive value that wraps state. You read it by calling it like a function (count()) and change it with .set() or .update(). Angular tracks where each signal is read, so only those parts of the UI update when the value changes."
             },
             {
-                "q": "What are Signal Forms in Angular 21?",
-                "a": "Signal Forms are a forms approach built on signals. They avoid heavy FormBuilder setup and manual subscriptions, give instant UI updates, and keep validation logic clear, which works especially well in large applications."
+                "q": "How do forms work with signals in Angular 21?",
+                "a": "Angular 21 uses FormGroup and FormControl with toSignal() from @angular/core/rxjs-interop to bridge form values into signals. This converts FormControl.valueChanges into a readable signal for use in effects and computed signals, giving reactive form state without manual subscriptions."
             },
             {
                 "q": "Do signals replace RxJS in Angular?",
@@ -433,7 +441,7 @@
     },
     {
         "imageUrl": "",
-        "readTime": "10 mins",
+        "readTime": "3 mins",
         "slug": "angular-folder-structure-practices-2026-guide",
         "title": "Angular Folder Structure Best Practices (2026 Guide)",
         "description": "Learn the best Angular folder structure for scalable, maintainable applications in 2026 with real-world examples.",

@@ -173,43 +173,52 @@ Good use cases for effects:
 
 ---
 
-## Signal Forms in Angular 21
+## Forms in Angular 21: Reactive Forms with Signals
 
-Angular 21 introduces Signal Forms, which make forms easier and cleaner.
+Angular 21 uses `FormGroup` and `FormControl` from `ReactiveFormsModule` for form handling. You bridge them to signals with `toSignal()` from `@angular/core/rxjs-interop`, which converts `FormControl.valueChanges` into a readable signal.
 
 **Example: Login Form**
 
 ```ts
-import { signalForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 
-loginForm = signalForm({
-    email: '',
-    password: '',
-});
+@Component({
+    imports: [ReactiveFormsModule],
+    template: `
+        <form [formGroup]="loginForm" (ngSubmit)="submit()">
+            <input formControlName="email" type="email" placeholder="Email" />
+            <input formControlName="password" type="password" placeholder="Password" />
+            <button type="submit" [disabled]="loginForm.invalid">Log in</button>
+        </form>
+    `,
+})
+export class LoginComponent {
+    loginForm = new FormGroup({
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', Validators.required),
+    });
+
+    // Bridge form value to a signal for reactive read access
+    formValue = toSignal(this.loginForm.valueChanges, {
+        initialValue: this.loginForm.value,
+    });
+}
 ```
 
 **Read values**:
 
 ```ts
-this.loginForm.value().email;
+this.formValue()?.email;
 ```
 
-**Update values**:
+### Why Reactive Forms work well with signals
 
-```ts
-this.loginForm.patchValue({
-    email: 'user@example.com',
-});
-```
+- `FormGroup` handles validation, touched/dirty tracking, and nested structure
+- `toSignal()` bridges the Observable form value into a signal for use in computed signals or effects
+- No manual subscriptions needed — `takeUntilDestroyed()` handles cleanup automatically
 
-### Why Signal Forms Are Better
-
-- No heavy FormBuilder setup
-- No manual subscriptions
-- Instant UI updates
-- Clear and readable validation logic
-
-Signal Forms work especially well in large applications.
+Reactive Forms with signals work especially well in large applications with complex validation requirements.
 
 ---
 
@@ -258,7 +267,9 @@ users = toSignal(this.users$, { initialValue: [] });
 Template usage:
 
 ```html
-<li *ngFor="let user of users()">{{ user.name }}</li>
+@for (user of users(); track user) {
+  <li>{{ user.name }}</li>
+}
 ```
 
 **Convert Signal to Observable**
@@ -294,10 +305,14 @@ loadUsers() {
 **Template**:
 
 ```html
-<p *ngIf="loading()">Loading...</p>
+@if (loading()) {
+  <p>Loading...</p>
+}
 
 <ul>
-    <li *ngFor="let user of users()">{{ user.name }}</li>
+  @for (user of users(); track user) {
+    <li>{{ user.name }}</li>
+  }
 </ul>
 ```
 
@@ -338,9 +353,9 @@ Search engines reward fast and stable pages.
 
 A signal is a reactive value that wraps state. You read it by calling it like a function (`count()`) and change it with `.set()` or `.update()`. Angular tracks exactly where each signal is read, so only those parts of the UI update when the value changes.
 
-### What are Signal Forms in Angular 21?
+### How do forms work with signals in Angular 21?
 
-Signal Forms are a forms approach built on signals. They avoid heavy FormBuilder setup and manual subscriptions, give instant UI updates, and keep validation logic clear and readable, which works especially well in large applications.
+Angular 21 uses `FormGroup` and `FormControl` with `toSignal()` from `@angular/core/rxjs-interop` to bridge form values into signals. This converts `FormControl.valueChanges` into a readable signal for use in effects and computed signals, giving reactive form state without manual subscriptions.
 
 ### Do signals replace RxJS in Angular?
 
@@ -361,8 +376,4 @@ In 2026, modern Angular applications:
 - Avoid Zone.js unless required
 - Keep components simple and readable
 
-If you are starting a new Angular project today, Angular Signals should be your default choice.
-
-They are faster, easier to understand, and built for the future.
-
-Thank you
+If you are starting a new Angular project today, Angular Signals should be your default choice. They are faster, easier to understand, and built for the future.

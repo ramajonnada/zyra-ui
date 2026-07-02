@@ -1,6 +1,6 @@
 ---
 title: 'Angular @defer Blocks: Lazy Load Any Component Instantly'
-description: "A practical guide to Angular's @defer template syntax — how to lazy load components, use triggers like on viewport and on interaction, handle loading/error states, and combine defer with signals for maximum performance in 2026."
+description: "Learn Angular's @defer block: lazy load components with on viewport, on interaction, and signal-driven when triggers to ship lighter bundles in 2026."
 category:
     - 'Angular'
     - 'Angular 21'
@@ -279,11 +279,11 @@ Angular defers any **standalone** component, directive, or pipe inside the `@def
 This is one more reason to use standalone everywhere in modern Angular: non-standalone dependencies opt you out of defer's bundle-splitting benefits silently.
 
 ```ts
-// ✅ Deferrable — standalone
+// Deferrable — standalone
 @Component({ standalone: true, ... })
 export class HeavyChartComponent {}
 
-// ❌ Not deferrable — module-based
+// Not deferrable — module-based
 @NgModule({ declarations: [LegacyComponent] })
 export class LegacyModule {}
 ```
@@ -352,3 +352,23 @@ In Lighthouse, you'll typically see improvement in:
 ---
 
 Angular's `@defer` blocks are the most impactful performance tool the framework has shipped in years. They require no architectural changes, no route restructuring, and no manual dynamic import wiring. Add them progressively to any template and watch your initial bundle shrink while your user experience gets sharper.
+
+---
+
+## Frequently asked questions
+
+### What is the Angular @defer block?
+
+The `@defer` block is a built-in Angular template syntax that lazily loads any standalone component, directive, or pipe as a separate JS chunk. Angular only downloads and renders the deferred content when a trigger fires — such as the element scrolling into view, the user clicking, or a signal becoming true.
+
+### What triggers are available for Angular @defer?
+
+Angular `@defer` supports `on viewport` (when the placeholder enters the viewport), `on interaction` (on first click, focus, or touch), `on idle` (during browser idle time), `on timer` (after a fixed delay), `on immediate` (as soon as possible after initial render), and `when` (a custom boolean expression, including signals).
+
+### What is the difference between @placeholder and @loading?
+
+`@placeholder` is shown immediately before the trigger fires — it represents the space before the user requests the content. `@loading` is shown while the JS chunk is actively being fetched from the network. Once the chunk arrives and renders, both are replaced by the main `@defer` block content.
+
+### Can I use @defer with non-standalone Angular components?
+
+No. Only standalone components, directives, and pipes are deferrable. Non-standalone (module-based) dependencies stay in the main bundle even if wrapped in a `@defer` block. This is a strong reason to migrate to standalone components in modern Angular.

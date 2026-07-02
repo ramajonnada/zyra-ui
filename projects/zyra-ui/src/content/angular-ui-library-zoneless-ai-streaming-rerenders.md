@@ -1,6 +1,6 @@
 ---
 title: 'Angular UI Performance in Zoneless, AI-Streaming Apps'
-description: 'Streaming LLM responses update state dozens of times a second. Learn why your Angular UI library and change detection strategy decide whether that feels smooth or janky in zoneless v21.'
+description: 'Learn why your Angular UI library and change detection strategy determine smooth vs janky rendering when streaming LLM responses in zoneless Angular 21.'
 category:
     - 'Angular 21'
     - 'Angular AI'

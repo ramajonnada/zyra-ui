@@ -12,8 +12,6 @@ date: '2026-01-03'
 slug: 'angular-folder-structure-practices-2026-guide'
 ---
 
-![folder-structure](/laptap-working.jpg)
-
 ## Building Modern Angular Applications with ZyraUI
 
 > **TL;DR:** A scalable Angular folder structure in 2026 is feature-based: a `core/` folder for app-wide singletons (services, interceptors, guards), a `shared/` folder for reusable UI, pipes, and directives, and a `features/` folder where each feature is self-contained with its own pages, components, routes, and services. Combined with standalone components and consistent naming, this keeps large apps easy to navigate, refactor, and onboard into.
@@ -58,11 +56,20 @@ Before learning the right way, avoid these mistakes:
 
 ### Feature-based structure (BEST PRACTICE)
 
-![folder-structure](image.png)
+```
+src/
+  app/
+    core/           ← singletons: services, guards, interceptors
+    shared/         ← reusable UI, pipes, directives
+    features/
+      auth/         ← self-contained: pages, routes, services
+      blog/
+      profile/
+```
 
 ---
 
-## 📂 Folder Responsibilities Explained
+## Folder Responsibilities Explained
 
 ### `core/`
 
@@ -74,7 +81,7 @@ Contains:
 - HTTP interceptors
 - Route guards
 
-🚫 Never put components here.
+Never put components here.
 
 ---
 
@@ -113,7 +120,7 @@ Each feature handles:
 
 ---
 
-## 🧠 Standalone Components (Modern Angular)
+## Standalone Components (Modern Angular)
 
 With **Standalone Components**, you no longer need heavy modules. In Angular v20+, standalone is the **default**, so you no longer set `standalone: true` — it is implied.
 
@@ -127,9 +134,9 @@ Example:
 export class LoginComponent {}
 ```
 
-➡️ This works perfectly with feature-based structure.
+This works perfectly with feature-based structure.
 
-🧩 Naming Conventions (IMPORTANT)
+### Naming Conventions
 
 | Type      | Example                   |
 | --------- | ------------------------- |
