@@ -1,5 +1,5 @@
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, OnDestroy, computed, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ZyraBadge } from 'zyra-ng-ui';
 import { getUiComponentShowcaseCard, UI_COMPONENT_SHOWCASE } from './ui-components.data';
@@ -14,7 +14,7 @@ import { PLAYGROUND_REGISTRY } from './shared/playground/playground-registry';
     templateUrl: './ui-component-detail.html',
     styleUrl: './ui-component-detail.scss',
 })
-export class UiComponentDetail implements OnInit {
+export class UiComponentDetail implements OnInit, OnDestroy {
     private readonly route = inject(ActivatedRoute);
     private readonly seo = inject(SeoService);
 
@@ -35,13 +35,31 @@ export class UiComponentDetail implements OnInit {
     });
 
     ngOnInit(): void {
-        const componentName = this.component()?.title || 'Component';
-        const slug = this.component()?.slug || '';
+        const component = this.component();
+        const componentName = component?.title || 'Component';
+        const slug = component?.slug || '';
+        const url = `https://www.zyraui.dev/components/${slug}`;
+        const description = component?.description
+            ? `${component.description} Interactive playground and full API reference for the Angular ${componentName} component from Zyra UI.`
+            : `Interactive playground and full API reference for the Angular ${componentName} component from Zyra UI.`;
 
         this.seo.setSEO({
             title: `${componentName} Component - Zyra UI`,
-            description: `Interactive playground, copy-paste examples, and full API reference for the Angular ${componentName} component from Zyra UI.`,
-            url: `https://www.zyraui.dev/components/${slug}`,
+            description,
+            url,
         });
+
+        this.seo.injectJsonLd('component-page-jsonld', {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: `${componentName} Component - Zyra UI`,
+            description: component?.description,
+            url,
+            isPartOf: { '@type': 'WebSite', url: 'https://www.zyraui.dev/' },
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.seo.removeJsonLd('component-page-jsonld');
     }
 }
