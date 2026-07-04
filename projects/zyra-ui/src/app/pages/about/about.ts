@@ -1,15 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { ZyraIcon, type ZyraIconData } from 'zyra-ng-ui';
 import { ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
-import { appIcons } from '../../shared/fontawesome-icons';
+import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
 
 interface AboutValue {
     title: string;
     description: string;
-    icon: IconDefinition;
+    icon: ZyraIconData;
 }
 
 interface AboutStat {
@@ -19,13 +18,13 @@ interface AboutStat {
 
 @Component({
     selector: 'app-about',
-    imports: [RouterLink, FaIconComponent, ZyraBadge, ZyraButton, ZyraCard],
+    imports: [RouterLink, ZyraIcon, ZyraBadge, ZyraButton, ZyraCard],
     templateUrl: './about.html',
     styleUrl: './about.scss',
 })
 export class About implements OnInit {
     private readonly seo = inject(SeoService);
-    readonly icons = appIcons;
+    readonly icons = { github, sun, moon, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, caretLeft, caretRight };
 
     readonly stats: readonly AboutStat[] = [
         { value: '22', label: 'Components' },
@@ -39,31 +38,31 @@ export class About implements OnInit {
             title: 'Token-first design',
             description:
                 'Colors, spacing, radius, elevation, and motion all live in the Zyra token layer — override one variable, update the entire system.',
-            icon: appIcons.palette,
+            icon: palette,
         },
         {
             title: 'Signals-first DX',
             description:
                 'Built for Angular 17+ with model(), input(), and output() — reactive by default, no RxJS required for component inputs.',
-            icon: appIcons.bolt,
+            icon: bolt,
         },
         {
             title: 'Angular-native',
             description:
                 'Standalone components, typed APIs, OnPush change detection, and modern Angular patterns guide every public example.',
-            icon: appIcons.codeBranch,
+            icon: codeBranch,
         },
         {
             title: 'Accessibility built in',
             description:
                 'ARIA roles, keyboard navigation, focus management, and visible focus rings — every component ships accessible out of the box.',
-            icon: appIcons.universalAccess,
+            icon: universalAccess,
         },
         {
             title: 'Public-site ready',
             description:
                 'SSR-compatible, SEO-considered, and fast. Zyra UI powers the docs, blog, and landing pages it documents.',
-            icon: appIcons.rocket,
+            icon: rocket,
         },
     ];
 

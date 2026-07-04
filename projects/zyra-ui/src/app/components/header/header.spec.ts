@@ -66,34 +66,12 @@ describe('Header', () => {
         expect(spy).toHaveBeenCalledOnceWith();
     });
 
-    // ── isWorkspacePage ───────────────────────────────────────────────────────
-    it('isWorkspacePage is true when path is /docs', async () => {
-        await router.navigate(['/docs']);
-        fixture.detectChanges();
-        await fixture.whenStable();
-        expect(component.isWorkspacePage()).toBeTrue();
-    });
-
-    it('isWorkspacePage is true when path starts with /components', async () => {
-        await router.navigate(['/components']);
-        fixture.detectChanges();
-        await fixture.whenStable();
-        expect(component.isWorkspacePage()).toBeTrue();
-    });
-
-    it('isWorkspacePage is false for other paths', async () => {
-        await router.navigate(['/about']);
-        fixture.detectChanges();
-        await fixture.whenStable();
-        expect(component.isWorkspacePage()).toBeFalse();
-    });
-
-    // ── mobile nav (public page) ──────────────────────────────────────────────
+    // ── mobile nav ────────────────────────────────────────────────────────────
     it('mobileNavOpen is false by default', () => {
         expect(component.mobileNavOpen()).toBeFalse();
     });
 
-    it('onToggle() toggles mobileNavOpen on a public page', async () => {
+    it('onToggle() toggles mobileNavOpen', async () => {
         await router.navigate(['/about']);
         fixture.detectChanges();
         await fixture.whenStable();
@@ -112,37 +90,12 @@ describe('Header', () => {
         expect(component.mobileNavOpen()).toBeFalse();
     });
 
-    // ── toggleSidebar output (workspace page) ─────────────────────────────────
-    it('onToggle() emits toggleSidebar on a workspace page instead of toggling nav', async () => {
-        await router.navigate(['/docs']);
-        fixture.detectChanges();
-        await fixture.whenStable();
-        let emitted = false;
-        component.toggleSidebar.subscribe(() => (emitted = true));
-        component.onToggle();
-        expect(emitted).toBeTrue();
-        expect(component.mobileNavOpen()).toBeFalse();
-    });
-
     // ── menuLabel computed ────────────────────────────────────────────────────
-    it('menuLabel says "Toggle sidebar" on workspace pages', async () => {
-        await router.navigate(['/docs']);
-        fixture.detectChanges();
-        await fixture.whenStable();
-        expect(component.menuLabel()).toBe('Toggle sidebar');
-    });
-
-    it('menuLabel says "Open navigation menu" when nav is closed on public pages', async () => {
-        await router.navigate(['/home']);
-        fixture.detectChanges();
-        await fixture.whenStable();
+    it('menuLabel says "Open navigation menu" when nav is closed', () => {
         expect(component.menuLabel()).toBe('Open navigation menu');
     });
 
-    it('menuLabel says "Close navigation menu" when nav is open on public pages', async () => {
-        await router.navigate(['/home']);
-        fixture.detectChanges();
-        await fixture.whenStable();
+    it('menuLabel says "Close navigation menu" when nav is open', () => {
         component.onToggle();
         expect(component.menuLabel()).toBe('Close navigation menu');
     });

@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ZyraAccordion, ZyraAccordionItem, ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
+import { ZyraAccordion, ZyraAccordionItem, ZyraBadge, ZyraButton } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 
 interface DocsStep {
@@ -20,7 +20,7 @@ interface ComponentRef {
 
 @Component({
     selector: 'app-docs',
-    imports: [RouterLink, ZyraBadge, ZyraButton, ZyraCard, ZyraAccordion, ZyraAccordionItem],
+    imports: [RouterLink, ZyraButton, ZyraAccordion, ZyraAccordionItem],
     templateUrl: './docs.html',
     styleUrl: './docs.scss',
 })
@@ -32,11 +32,8 @@ export class Docs implements OnInit {
             step: '01',
             title: 'Install the package',
             description:
-                'Add zyra-ng-ui and its peer dependencies to your Angular workspace. Requires Angular 21+, @angular/forms, and FontAwesome.',
-            code: `npm install zyra-ng-ui
-
-# peer dependencies (if not already installed)
-npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons`,
+                'Add zyra-ng-ui and its peer dependencies to your Angular workspace. Requires Angular 21+ and @angular/forms.',
+            code: `npm install zyra-ng-ui`,
         },
         {
             step: '02',
@@ -203,6 +200,13 @@ theme.toggle();           // switch between both`;
             slug: 'form-field',
             selector: 'zyra-form-field',
             importName: 'ZyraFormField',
+            category: 'Forms',
+        },
+        {
+            name: 'Switch',
+            slug: 'switch',
+            selector: 'zyra-switch',
+            importName: 'ZyraSwitch',
             category: 'Forms',
         },
         {

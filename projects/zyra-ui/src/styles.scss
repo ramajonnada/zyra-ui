@@ -1,4 +1,4 @@
-﻿@use 'zyra-ng-ui';
+﻿@use '../../../dist/zyra-ng-ui/styles/index';
 @use './markdown-style.scss';
 @use './responsive.scss';
 
@@ -6,15 +6,18 @@ html {
     scrollbar-gutter: stable;
 }
 
-// RGB triplet for rgba() usage — matches --zyr-accent (#18d5ea)
+// App-only tokens not in the library
 :root,
 [data-theme='dark'] {
-    --zyra-glow: 0, 234, 255;
-    --zyra-grid: 220 13% 18%;
+    --zyra-grid: 220 13% 18%; // HSL triplet for grid-bg utility — no library equivalent
+
+    // Original hero "alive" gradient stops — dark theme only, independent of --zyra-accent
+    --zyr-cyan-200: #80f3f8;
+    --zyr-cyan-300: #4df0f6;
+    --zyr-cyan-500: #00eaff;
 }
 
 [data-theme='light'] {
-    --zyra-glow: 0, 122, 138;
     --zyra-grid: 220 13% 78%;
 }
 
@@ -27,6 +30,7 @@ html {
     mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 75%);
 }
 
+// Dark theme (default :root) — original cyan-to-white "alive" glow.
 .zyra-gradient-text {
     background: linear-gradient(
         135deg,
@@ -40,13 +44,13 @@ html {
     color: transparent;
 }
 
-[data-theme='light'] .zyra-gradient-text {
+// Light-surface themes — accent richens toward its darker hover.
+:is([data-theme='light'], [data-theme='ocean'], [data-theme='amber'], [data-theme='rose']) .zyra-gradient-text {
     background: linear-gradient(
         135deg,
-        var(--zyr-cyan-800) 0%,
-        var(--zyr-cyan-700) 40%,
-        var(--zyr-cyan-600) 75%,
-        var(--zyr-cyan-500) 100%
+        color-mix(in srgb, var(--zyra-accent) 70%, white) 0%,
+        var(--zyra-accent) 45%,
+        var(--zyra-accent-hover) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -66,7 +70,7 @@ html {
 }
 
 .zyra-glass {
-    background: var(--zyr-glass-bg);
+    background: var(--zyra-glass-bg);
     -webkit-backdrop-filter: blur(20px) saturate(1.2);
     backdrop-filter: blur(20px) saturate(1.2);
 }
@@ -156,6 +160,17 @@ html {
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: var(--zyr-border-strong);
+    background: var(--zyra-border-strong);
     border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee { animation: none; }
+    .zyra-pulse { animation: none; }
+    .zyra-float { animation: none; }
+    .zyra-shimmer {
+        animation: none;
+        background: rgba(var(--zyra-glow), 0.08);
+        background-size: unset;
+    }
 }

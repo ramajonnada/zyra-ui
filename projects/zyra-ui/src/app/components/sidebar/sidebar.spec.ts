@@ -1,20 +1,31 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 
 import { Sidebar } from './sidebar';
+
+@Component({ template: '' })
+class FakePage {}
 
 describe('Sidebar', () => {
     let component: Sidebar;
     let fixture: ComponentFixture<Sidebar>;
+    let router: Router;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [Sidebar],
-            providers: [provideRouter([])],
+            providers: [
+                provideRouter([
+                    { path: 'components', component: FakePage },
+                    { path: 'components/:component', component: FakePage },
+                ]),
+            ],
         }).compileComponents();
 
         fixture = TestBed.createComponent(Sidebar);
         component = fixture.componentInstance;
+        router = TestBed.inject(Router);
         fixture.detectChanges();
         await fixture.whenStable();
     });
@@ -36,9 +47,9 @@ describe('Sidebar', () => {
         expect(labels).toContain('Contact');
     });
 
-    it('Components nav item has badge "22"', () => {
+    it('Components nav item badge matches the number of showcased components', () => {
         const components = component.navItems.find((n) => n.label === 'Components');
-        expect(components?.badge).toBe('22');
+        expect(components?.badge).toBe(String(components?.children?.length));
     });
 
     it('only Components has a badge', () => {
@@ -46,29 +57,43 @@ describe('Sidebar', () => {
         expect(badged.length).toBe(1);
     });
 
-    // ── isOpen input ──────────────────────────────────────────────────────────
-    it('isOpen defaults to true', () => {
-        expect(component.isOpen()).toBeTrue();
+    // ── two-level tree ────────────────────────────────────────────────────────
+    it('Components nav item has one child per showcased component', () => {
+        const components = component.navItems.find((n) => n.label === 'Components');
+        expect(components?.children?.length).toBe(Number(components?.badge));
+        expect(components?.children?.[0]).toEqual({ label: 'Button', route: '/components/button' });
     });
 
-    it('overlayVisible reflects the isOpen input', () => {
-        fixture.componentRef.setInput('isOpen', false);
+    it('Docs, Blog and Contact have no children', () => {
+        const leaves = component.navItems.filter((n) => n.label !== 'Components');
+        expect(leaves.every((n) => !n.children)).toBeTrue();
+    });
+
+    it('Components group collapses by default when no child route is active', () => {
+        const components = component.navItems.find((n) => n.label === 'Components')!;
+        expect(component.isExpanded(components)).toBeFalse();
+    });
+
+    it('Components group auto-expands when a child route is active', async () => {
+        await router.navigate(['/components/button']);
         fixture.detectChanges();
-        expect(component.overlayVisible()).toBeFalse();
+        await fixture.whenStable();
+
+        const components = component.navItems.find((n) => n.label === 'Components')!;
+        expect(component.isExpanded(components)).toBeTrue();
     });
 
-    // ── toggleSidebar output ──────────────────────────────────────────────────
-    it('onToggleSidebar() emits the toggleSidebar output', () => {
-        let emitted = false;
-        component.toggleSidebar.subscribe(() => (emitted = true));
-        component.onToggleSidebar();
-        expect(emitted).toBeTrue();
-    });
+    it('toggleGroup() flips the expanded state manually', () => {
+        const components = component.navItems.find((n) => n.label === 'Components')!;
+        const event = new Event('click');
+        spyOn(event, 'preventDefault');
 
-    it('onOverlayClick() emits the toggleSidebar output', () => {
-        let emitted = false;
-        component.toggleSidebar.subscribe(() => (emitted = true));
-        component.onOverlayClick();
-        expect(emitted).toBeTrue();
+        expect(component.isExpanded(components)).toBeFalse();
+        component.toggleGroup(components, event);
+        expect(event.preventDefault).toHaveBeenCalled();
+        expect(component.isExpanded(components)).toBeTrue();
+
+        component.toggleGroup(components, event);
+        expect(component.isExpanded(components)).toBeFalse();
     });
 });

@@ -1,12 +1,12 @@
-:host {
+﻿:host {
     display: block;
     position: relative;
     overflow: hidden;
-    border-top: 1px solid color-mix(in srgb, var(--zyr-border) 92%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--zyra-border) 92%, transparent);
     background: linear-gradient(
         180deg,
-        color-mix(in srgb, var(--zyr-bg-2) 94%, transparent) 0%,
-        color-mix(in srgb, var(--zyr-bg) 100%, transparent) 100%
+        color-mix(in srgb, var(--zyra-bg-panel) 94%, transparent) 0%,
+        color-mix(in srgb, var(--zyra-bg-app) 100%, transparent) 100%
     );
 }
 
@@ -39,23 +39,23 @@
     align-items: center;
     gap: 12px;
     margin-bottom: 20px;
-    color: var(--zyr-text);
+    color: var(--zyra-text);
     text-decoration: none;
 }
 
 .site-footer__wordmark {
-    font-family: var(--zyr-font-display);
+    font-family: var(--zyra-font-display);
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: 0;
 
     span {
-        color: var(--zyr-accent);
+        color: var(--zyra-accent);
     }
 }
 
 .site-footer__brand p {
-    color: var(--zyr-text-muted);
+    color: var(--zyra-text-muted);
     line-height: 1.8;
 }
 
@@ -69,20 +69,20 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--zyr-radius-md);
-        border: 1px solid var(--zyr-border);
-        background: color-mix(in srgb, var(--zyr-bg-3) 94%, transparent);
-        color: var(--zyr-text-muted);
+        border-radius: var(--zyra-radius-md);
+        border: 1px solid var(--zyra-border);
+        background: color-mix(in srgb, var(--zyra-bg-surface) 94%, transparent);
+        color: var(--zyra-text-muted);
         transition:
-            color var(--zyr-transition-fast),
-            border-color var(--zyr-transition-fast),
-            transform var(--zyr-transition-fast),
-            background var(--zyr-transition-fast);
+            color var(--zyra-transition-fast),
+            border-color var(--zyra-transition-fast),
+            transform var(--zyra-transition-fast),
+            background var(--zyra-transition-fast);
 
         &:hover {
-            color: var(--zyr-text);
-            border-color: var(--zyr-border-hover);
-            background: var(--zyr-bg-4);
+            color: var(--zyra-text);
+            border-color: var(--zyra-border-hover);
+            background: var(--zyra-bg-raised);
             transform: translateY(-2px);
             opacity: 1;
         }
@@ -98,8 +98,8 @@
 
 .site-footer__column h2 {
     margin-bottom: 18px;
-    color: var(--zyr-text-muted);
-    font-family: var(--zyr-font-mono);
+    color: var(--zyra-text-muted);
+    font-family: var(--zyra-font-mono);
     font-size: 0.76rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -108,13 +108,13 @@
 .site-footer__column a {
     display: block;
     margin-bottom: 12px;
-    color: var(--zyr-text);
+    color: var(--zyra-text);
     font-size: 0.96rem;
     text-decoration: none;
-    transition: color var(--zyr-transition-fast);
+    transition: color var(--zyra-transition-fast);
 
     &:hover {
-        color: var(--zyr-accent);
+        color: var(--zyra-accent);
         opacity: 1;
     }
 }
@@ -123,13 +123,13 @@
     position: relative;
     z-index: 1;
     padding-top: 24px;
-    border-top: 1px solid var(--zyr-border);
+    border-top: 1px solid var(--zyra-border);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    color: var(--zyr-text-muted);
-    font-family: var(--zyr-font-mono);
+    color: var(--zyra-text-muted);
+    font-family: var(--zyra-font-mono);
     font-size: 0.82rem;
 }
 
@@ -144,8 +144,8 @@
         top: 50%;
         width: 7px;
         height: 7px;
-        border-radius: var(--zyr-radius-full);
-        background: var(--zyr-accent);
+        border-radius: var(--zyra-radius-full);
+        background: var(--zyra-accent);
         transform: translateY(-50%);
     }
 }
@@ -154,8 +154,8 @@
     position: absolute;
     left: 20px;
     bottom: -46px;
-    color: color-mix(in srgb, var(--zyr-text) 4%, transparent);
-    font-family: var(--zyr-font-display);
+    color: color-mix(in srgb, var(--zyra-text) 4%, transparent);
+    font-family: var(--zyra-font-display);
     font-size: 12rem;
     font-weight: 800;
     letter-spacing: 0;

@@ -12,7 +12,7 @@
         @for (method of contactMethods; track method.label) {
             <zyra-card variant="outlined" padding="lg">
                 <div class="contact-card__icon">
-                    <fa-icon [icon]="method.icon" aria-hidden="true" />
+                    <zyra-icon [img]="method.icon" aria-hidden="true" />
                 </div>
                 <h2>{{ method.label }}</h2>
                 <a [href]="method.href" target="_blank" rel="noopener noreferrer">

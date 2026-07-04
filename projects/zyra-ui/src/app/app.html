@@ -1,20 +1,11 @@
 <div class="app-shell">
-    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
-
-    <div class="app-body" [class.app-body--landing]="!showSidebar()">
-        @if (showSidebar()) {
-            <app-sidebar [isOpen]="sidebarOpen()" (toggleSidebar)="toggleSidebar()"></app-sidebar>
-        }
-
-        <div
-            class="app-page"
-            [class.app-page--landing]="!showSidebar()"
-            [style.margin-left]="pageMargin()"
-        >
-            <app-main></app-main>
-            <app-footer></app-footer>
-        </div>
-    </div>
+	<app-header></app-header>
+	<div class="app-body" [class.app-body--landing]="!showSidebar()">
+		@if (showSidebar()) {
+		<app-sidebar></app-sidebar>
+		}
+		<app-main></app-main>
+	</div>
+	<app-footer></app-footer>
 </div>
-
 <zyra-toast-container></zyra-toast-container>

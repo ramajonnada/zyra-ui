@@ -30,7 +30,7 @@
         @for (value of values; track value.title) {
             <zyra-card variant="outlined" padding="lg">
                 <div class="about-card__icon">
-                    <fa-icon [icon]="value.icon" aria-hidden="true" />
+                    <zyra-icon [img]="value.icon" aria-hidden="true" />
                 </div>
                 <h2>{{ value.title }}</h2>
                 <p>{{ value.description }}</p>

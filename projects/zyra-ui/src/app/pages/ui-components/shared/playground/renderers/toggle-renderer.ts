@@ -7,17 +7,10 @@ import { ZyraToggle } from 'zyra-ng-ui';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ZyraToggle],
     template: `
-        <zyra-toggle
-            [size]="$any(size())"
-            [label]="label()"
-            [labelPosition]="$any(labelPosition())"
-            [disabled]="disabled()"
-        />
+        <zyra-toggle [size]="$any(size())" [disabled]="disabled()" aria-label="Bold"> B </zyra-toggle>
     `,
 })
 export class ToggleRenderer {
     size = input<string>('md');
-    label = input<string>('Enable notifications');
-    labelPosition = input<string>('right');
     disabled = input<boolean>(false);
 }

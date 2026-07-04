@@ -1,4 +1,4 @@
-:host {
+﻿:host {
     display: block;
 }
 
@@ -29,22 +29,22 @@
     position: absolute;
     top: 39px;
     transform: translateY(-50%);
-    right: 20px;
+    right: 32px;
     padding: 6px 20px;
-    border-radius: var(--zyr-radius-sm);
-    border: 1px solid var(--zyr-border);
+    border-radius: var(--zyra-radius-sm);
+    border: 1px solid var(--zyra-border);
     background: transparent;
-    color: var(--zyr-text-muted);
-    font-family: var(--zyr-font-mono);
+    color: var(--zyra-text-muted);
+    font-family: var(--zyra-font-mono);
     font-size: 11px;
     cursor: pointer;
     transition:
-        color var(--zyr-transition-fast),
-        border-color var(--zyr-transition-fast);
+        color var(--zyra-transition-fast),
+        border-color var(--zyra-transition-fast);
 
     &:hover {
-        border-color: var(--zyr-accent);
-        color: var(--zyr-accent);
+        border-color: var(--zyra-accent);
+        color: var(--zyra-accent);
     }
 }
 
@@ -84,14 +84,13 @@
     min-height: clamp(260px, 45vh, 480px);
     padding: 32px;
     margin-top: 12px;
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
+    border: 1px solid var(--zyra-border);
+    border-radius: var(--zyra-radius-md);
     background:
-        linear-gradient(var(--zyr-border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--zyr-border) 1px, transparent 1px);
+        linear-gradient(var(--zyra-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--zyra-border) 1px, transparent 1px);
     background-size: 28px 28px;
-    background-color: var(--zyr-preview-stage-bg);
-    transition: background-color var(--zyr-transition-slow);
+    transition: background-color var(--zyra-transition-slow);
 
     &--column {
         flex-direction: column;
@@ -130,19 +129,19 @@
 // ── Code panel ────────────────────────────────────────────────
 .pv__code {
     margin-top: 12px;
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
+    border: 1px solid var(--zyra-border);
+    border-radius: var(--zyra-radius-md);
     overflow: hidden;
-    background: var(--zyr-bg-2);
+    background: var(--zyra-bg-panel);
 }
 
 .pv__pre {
     margin: 0;
     padding: 20px;
     overflow: auto;
-    font-family: var(--zyr-font-mono);
+    font-family: var(--zyra-font-mono);
     font-size: 12.5px;
-    color: var(--zyr-accent);
+    color: var(--zyra-accent);
     line-height: 1.8;
     white-space: pre;
     max-height: 340px;

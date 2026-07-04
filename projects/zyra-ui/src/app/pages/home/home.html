@@ -149,7 +149,7 @@
 
                 <div class="toast-mini">
                     <div class="toast-mini__icon">
-                        <fa-icon [icon]="icons.check" aria-hidden="true" />
+                        <zyra-icon [img]="icons.check" aria-hidden="true" />
                     </div>
 
                     <div>
@@ -178,7 +178,7 @@
             <div class="check-list">
                 @for (item of developerChecks; track item) {
                     <div class="check-list__item">
-                        <fa-icon [icon]="icons.check" aria-hidden="true" />
+                        <zyra-icon [img]="icons.check" aria-hidden="true" />
                         <span>{{ item }}</span>
                     </div>
                 }
@@ -236,7 +236,7 @@
             @for (feature of featureCards; track feature.title) {
                 <article class="feature-card">
                     <div [class]="'feature-card__icon feature-card__icon--' + feature.tone">
-                        <fa-icon [icon]="feature.icon" aria-hidden="true" />
+                        <zyra-icon [img]="feature.icon" aria-hidden="true" />
                     </div>
                     <h3>{{ feature.title }}</h3>
                     <p>{{ feature.description }}</p>
@@ -266,7 +266,7 @@
                 <div class="block-card__canvas">
                     <div class="mini-form">
                         <div class="mini-form__head">
-                            <fa-icon [icon]="icons.lock" aria-hidden="true" />
+                            <zyra-icon [img]="icons.lock" aria-hidden="true" />
                             <strong>Sign in</strong>
                         </div>
                         <div class="mini-field">your&#64;email.dev</div>
@@ -303,21 +303,21 @@
                 <div class="block-card__canvas">
                     <div class="mini-notif-stack">
                         <div class="mini-notif mini-notif--success">
-                            <fa-icon [icon]="icons.check" aria-hidden="true" />
+                            <zyra-icon [img]="icons.check" aria-hidden="true" />
                             <div>
                                 <strong>Deploy complete</strong>
                                 <p>zyra-ui.vercel.app is live</p>
                             </div>
                         </div>
                         <div class="mini-notif mini-notif--info">
-                            <fa-icon [icon]="icons.circleInfo" aria-hidden="true" />
+                            <zyra-icon [img]="icons.circleInfo" aria-hidden="true" />
                             <div>
                                 <strong>Update available</strong>
                                 <p>v{{ version }} is ready</p>
                             </div>
                         </div>
                         <div class="mini-notif mini-notif--warning">
-                            <fa-icon [icon]="icons.triangleExclamation" aria-hidden="true" />
+                            <zyra-icon [img]="icons.triangleExclamation" aria-hidden="true" />
                             <div>
                                 <strong>Storage at 80%</strong>
                                 <p>Consider upgrading</p>
@@ -404,7 +404,7 @@
             <zyra-card padding="none">
                 <div class="duo-cta__body">
                     <div class="duo-cta__icon duo-cta__icon--accent">
-                        <fa-icon [icon]="icons.alignLeft" aria-hidden="true" />
+                        <zyra-icon [img]="icons.alignLeft" aria-hidden="true" />
                     </div>
                     <h3>Read the docs</h3>
                     <p>
@@ -429,7 +429,7 @@
             >
                 <div class="duo-cta__body">
                     <div class="duo-cta__icon duo-cta__icon--blue">
-                        <fa-icon [icon]="icons.puzzlePiece" aria-hidden="true" />
+                        <zyra-icon [img]="icons.puzzlePiece" aria-hidden="true" />
                     </div>
                     <h3>Try the playground</h3>
                     <p>

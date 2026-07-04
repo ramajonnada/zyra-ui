@@ -1,4 +1,4 @@
-﻿import { PlaygroundConfig } from './playground-config';
+import { PlaygroundConfig } from './playground-config';
 import { AccordionRenderer } from './renderers/accordion-renderer';
 import { AlertRenderer } from './renderers/alert-renderer';
 import { AvatarRenderer } from './renderers/avatar-renderer';
@@ -20,10 +20,10 @@ import { TabsRenderer } from './renderers/tabs-renderer';
 import { TextareaRenderer } from './renderers/textarea-renderer';
 import { ToastRenderer } from './renderers/toast-renderer';
 import { ToggleRenderer } from './renderers/toggle-renderer';
+import { SwitchRenderer } from './renderers/switch-renderer';
 import { TooltipRenderer } from './renderers/tooltip-renderer';
 
 export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
-    // â”€â”€ Button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     button: {
         renderer: ButtonRenderer,
         controls: [
@@ -66,7 +66,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'label',
                 label: 'label',
-                placeholder: 'Button textâ€¦',
+                placeholder: 'Button text',
                 defaultValue: 'Button',
             },
         ],
@@ -84,7 +84,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     badge: {
         renderer: BadgeRenderer,
         controls: [
@@ -113,7 +112,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'label',
                 label: 'label',
-                placeholder: 'Badge textâ€¦',
+                placeholder: 'Badge text',
                 defaultValue: 'Badge',
             },
         ],
@@ -129,7 +128,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     card: {
         renderer: CardRenderer,
         controls: [
@@ -183,7 +181,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Avatar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     avatar: {
         renderer: AvatarRenderer,
         controls: [
@@ -212,7 +209,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'name',
                 label: 'name',
-                placeholder: 'Full nameâ€¦',
+                placeholder: 'Full name',
                 defaultValue: 'Dev Zyra',
             },
         ],
@@ -225,7 +222,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Input â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     input: {
         renderer: InputRenderer,
         stageClass: 'column',
@@ -255,7 +251,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'hint',
                 label: 'hint',
-                placeholder: 'Hint textâ€¦',
+                placeholder: 'Hint text',
                 defaultValue: 'This is a hint',
             },
             {
@@ -292,7 +288,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Chip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     chip: {
         renderer: ChipRenderer,
         controls: [
@@ -314,7 +309,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'label',
                 label: 'label',
-                placeholder: 'Chip labelâ€¦',
+                placeholder: 'Chip label',
                 defaultValue: 'Frontend',
             },
             {
@@ -345,7 +340,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Alert â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     alert: {
         renderer: AlertRenderer,
         stageClass: 'column',
@@ -361,7 +355,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'title',
                 label: 'title',
-                placeholder: 'Alert titleâ€¦',
+                placeholder: 'Alert title',
                 defaultValue: 'Heads up',
             },
             {
@@ -384,7 +378,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Progress â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     progress: {
         renderer: ProgressRenderer,
         stageClass: 'column',
@@ -436,7 +429,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Divider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     divider: {
         renderer: DividerRenderer,
         stageClass: 'column',
@@ -466,7 +458,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'label',
                 label: 'label',
-                placeholder: 'Divider labelâ€¦',
+                placeholder: 'Divider label',
                 defaultValue: 'or',
             },
         ],
@@ -480,7 +472,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Accordion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     accordion: {
         renderer: AccordionRenderer,
         stageClass: 'column',
@@ -501,7 +492,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Checkbox â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     checkbox: {
         renderer: CheckboxRenderer,
         controls: [
@@ -523,7 +513,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'label',
                 label: 'label',
-                placeholder: 'Label textâ€¦',
+                placeholder: 'Label text',
                 defaultValue: 'Accept terms and conditions',
             },
             {
@@ -552,7 +542,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Radio â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     radio: {
         renderer: RadioRenderer,
         controls: [
@@ -579,7 +568,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Select â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     select: {
         renderer: SelectRenderer,
         controls: [
@@ -607,7 +595,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Skeleton â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     skeleton: {
         renderer: SkeletonRenderer,
         stageClass: 'column',
@@ -673,7 +660,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     tabs: {
         renderer: TabsRenderer,
         stageClass: 'column',
@@ -736,7 +722,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             const open = a.length ? `<zyra-tabs\n${a.join('\n')}\n>` : `<zyra-tabs>`;
 
             const tabAttrs: string[] = [];
-            if (s['icon']) tabAttrs.push('icon="ðŸ "');
+            if (s['icon']) tabAttrs.push('icon="🏠"');
             if (s['badge']) tabAttrs.push('badge="4"');
             if (s['closeable']) tabAttrs.push('closeable');
             const tabExtra = tabAttrs.length ? ' ' + tabAttrs.join(' ') : '';
@@ -748,7 +734,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Textarea â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     textarea: {
         renderer: TextareaRenderer,
         stageClass: 'column',
@@ -779,7 +764,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     modal: {
         renderer: ModalRenderer,
         controls: [
@@ -794,7 +778,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'title',
                 label: 'title',
-                placeholder: 'Modal titleâ€¦',
+                placeholder: 'Modal title',
                 defaultValue: 'Confirm action',
             },
             {
@@ -814,9 +798,8 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Toggle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    toggle: {
-        renderer: ToggleRenderer,
+    switch: {
+        renderer: SwitchRenderer,
         controls: [
             {
                 type: 'button-group',
@@ -836,7 +819,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'label',
                 label: 'label',
-                placeholder: 'Toggle labelâ€¦',
+                placeholder: 'Switch label',
                 defaultValue: 'Enable notifications',
             },
             {
@@ -853,11 +836,38 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             if (s['label']) a.push(`  label="${s['label']}"`);
             if (s['labelPosition'] !== 'right') a.push(`  labelPosition="${s['labelPosition']}"`);
             if (s['disabled']) a.push(`  [disabled]="true"`);
-            return a.length ? `<zyra-toggle\n${a.join('\n')}\n/>` : `<zyra-toggle />`;
+            return a.length ? `<zyra-switch\n${a.join('\n')}\n/>` : `<zyra-switch />`;
         },
     },
 
-    // â”€â”€ Spinner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    toggle: {
+        renderer: ToggleRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: 'states',
+                toggleLabel: 'disabled',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            if (s['disabled']) a.push(`  [disabled]="true"`);
+            return a.length
+                ? `<zyra-toggle\n${a.join('\n')}\n  aria-label="Bold"\n>\n  B\n</zyra-toggle>`
+                : `<zyra-toggle aria-label="Bold">B</zyra-toggle>`;
+        },
+    },
+
     spinner: {
         renderer: SpinnerRenderer,
         controls: [
@@ -879,8 +889,8 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'label',
                 label: 'label (aria)',
-                placeholder: 'Loadingâ€¦',
-                defaultValue: 'Loadingâ€¦',
+                placeholder: 'Loading',
+                defaultValue: 'Loading',
             },
         ],
         codeTemplate: (s) => {
@@ -892,7 +902,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     toast: {
         renderer: ToastRenderer,
         controls: [
@@ -907,14 +916,14 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'title',
                 label: 'title',
-                placeholder: 'Toast titleâ€¦',
+                placeholder: 'Toast title',
                 defaultValue: 'Operation completed',
             },
             {
                 type: 'text',
                 key: 'description',
                 label: 'description',
-                placeholder: 'Optional descriptionâ€¦',
+                placeholder: 'Optional description',
                 defaultValue: 'Your changes have been saved.',
             },
             {
@@ -933,7 +942,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Tooltip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     tooltip: {
         renderer: TooltipRenderer,
         controls: [
@@ -955,7 +963,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'tooltipText',
                 label: 'text',
-                placeholder: 'Tooltip contentâ€¦',
+                placeholder: 'Tooltip content',
                 defaultValue: 'This is a tooltip!',
             },
         ],
@@ -967,7 +975,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
-    // â”€â”€ Form Field â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     'form-field': {
         renderer: FormFieldRenderer,
         stageClass: 'column',
@@ -990,14 +997,14 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 type: 'text',
                 key: 'label',
                 label: 'label',
-                placeholder: 'Field labelâ€¦',
+                placeholder: 'Field label',
                 defaultValue: 'Label',
             },
             {
                 type: 'text',
                 key: 'hint',
                 label: 'hint',
-                placeholder: 'Helper textâ€¦',
+                placeholder: 'Helper text',
                 defaultValue: '',
             },
         ],
@@ -1008,7 +1015,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             if (s['appearance'] !== 'outline') a.push(`  appearance="${s['appearance']}"`);
             if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
             const open = a.length ? `<zyra-form-field\n${a.join('\n')}\n>` : `<zyra-form-field>`;
-            return `${open}\n  <zyra-input placeholder="Enter textâ€¦" />\n</zyra-form-field>`;
+            return `${open}\n  <zyra-input placeholder="Enter text" />\n</zyra-form-field>`;
         },
     },
 };

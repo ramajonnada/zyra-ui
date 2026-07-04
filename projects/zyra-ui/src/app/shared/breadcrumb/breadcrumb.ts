@@ -17,6 +17,7 @@ export interface BreadcrumbItem {
 })
 export class Breadcrumb implements OnInit, OnDestroy {
     readonly items = input.required<BreadcrumbItem[]>();
+    readonly backTo = input<BreadcrumbItem | null>(null);
 
     private readonly seo = inject(SeoService);
 

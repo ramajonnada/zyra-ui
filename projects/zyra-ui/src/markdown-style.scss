@@ -1,5 +1,5 @@
-// Global markdown content styles — applies to all blog posts automatically.
-// Uses --zyr-* design tokens from zyra-ng-ui.
+﻿// Global markdown content styles — applies to all blog posts automatically.
+// Uses --zyra-* design tokens from zyra-ng-ui.
 
 *,
 *::before,
@@ -8,8 +8,8 @@
 }
 
 .zyra-markdown {
-    color: var(--zyr-text);
-    font-family: var(--zyr-font-body);
+    color: var(--zyra-text);
+    font-family: var(--zyra-font-body);
 
     // ── Author row ────────────────────────────────────────────
     .blog-author-row {
@@ -20,15 +20,15 @@
         gap: 18px;
         margin: 0 0 28px;
         padding: 18px 20px;
-        border: 1px solid var(--zyr-border);
-        border-radius: var(--zyr-radius-xl);
+        border: 1px solid var(--zyra-border);
+        border-radius: var(--zyra-radius-xl);
         background:
             linear-gradient(
                 135deg,
-                color-mix(in srgb, var(--zyr-accent) 8%, transparent),
+                color-mix(in srgb, var(--zyra-accent) 8%, transparent),
                 transparent 60%
             ),
-            color-mix(in srgb, var(--zyr-bg-3) 74%, transparent);
+            color-mix(in srgb, var(--zyra-bg-surface) 74%, transparent);
     }
 
     .blog-author-left {
@@ -44,25 +44,25 @@
         align-items: center;
         justify-content: center;
         border-radius: 999px;
-        background: var(--zyr-accent-muted);
-        border: 1px solid var(--zyr-accent-border);
-        color: var(--zyr-accent);
-        font-family: var(--zyr-font-display);
+        background: var(--zyra-accent-muted);
+        border: 1px solid var(--zyra-accent-border);
+        color: var(--zyra-accent);
+        font-family: var(--zyra-font-display);
         font-size: 1rem;
         letter-spacing: 0.08em;
     }
 
     .blog-author-name {
-        font-family: var(--zyr-font-mono);
+        font-family: var(--zyra-font-mono);
         font-size: 0.76rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--zyr-text);
+        color: var(--zyra-text);
     }
 
     .blog-author-bio {
         margin-top: 4px;
-        color: var(--zyr-text-muted);
+        color: var(--zyra-text-muted);
         font-size: 0.92rem;
         line-height: 1.6;
     }
@@ -79,10 +79,10 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid var(--zyr-border);
+        border: 1px solid var(--zyra-border);
         border-radius: 999px;
-        background: var(--zyr-bg-3);
-        color: var(--zyr-text-muted);
+        background: var(--zyra-bg-surface);
+        color: var(--zyra-text-muted);
     }
 
     // ── Headings ──────────────────────────────────────────────
@@ -90,10 +90,10 @@
     h3,
     h4 {
         margin: 40px 0 16px;
-        font-family: var(--zyr-font-display);
+        font-family: var(--zyra-font-display);
         line-height: 1.08;
         letter-spacing: 0;
-        color: var(--zyr-text);
+        color: var(--zyra-text);
     }
 
     h2 {
@@ -105,13 +105,13 @@
     h5 {
         margin: 24px 0 12px;
         font-size: 0.9rem;
-        color: var(--zyr-text-muted);
+        color: var(--zyra-text-muted);
     }
 
     // ── Body text ─────────────────────────────────────────────
     p,
     li {
-        color: var(--zyr-text-muted);
+        color: var(--zyra-text-muted);
         font-size: 1rem;
         line-height: 1.9;
     }
@@ -134,15 +134,15 @@
 
     ul li::marker,
     ol li::marker {
-        color: var(--zyr-text-dim);
+        color: var(--zyra-text-dim);
     }
 
     strong {
-        color: var(--zyr-text);
+        color: var(--zyra-text);
     }
 
     a {
-        color: var(--zyr-accent);
+        color: var(--zyra-accent);
         text-decoration: none;
         &:hover {
             text-decoration: underline;
@@ -154,13 +154,13 @@
         border: 0;
         height: 1px;
         margin: 28px 0;
-        background: linear-gradient(90deg, transparent, var(--zyr-border-strong), transparent);
+        background: linear-gradient(90deg, transparent, var(--zyra-border-strong), transparent);
     }
 
     // ── Inline code ───────────────────────────────────────────
     // Base: monospace only, display stays inline (browser default)
     code {
-        font-family: var(--zyr-font-mono);
+        font-family: var(--zyra-font-mono);
         font-size: 0.9em;
     }
 
@@ -170,20 +170,20 @@
         display: inline;
         padding: 2px 6px;
         border-radius: 6px;
-        background: var(--zyr-bg-3);
-        border: 1px solid var(--zyr-border);
-        color: var(--zyr-text);
+        background: var(--zyra-bg-surface);
+        border: 1px solid var(--zyra-border);
+        color: var(--zyra-text);
     }
 
     // ── Block code ────────────────────────────────────────────
     pre {
         position: relative;
         padding: 20px 22px 20px 20px;
-        border: 1px solid var(--zyr-border);
-        border-left: 3px solid var(--zyr-accent);
-        border-radius: var(--zyr-radius-xl);
-        background: var(--zyr-bg-3);
-        color: var(--zyr-text);
+        border: 1px solid var(--zyra-border);
+        border-left: 3px solid var(--zyra-accent);
+        border-radius: var(--zyra-radius-xl);
+        background: var(--zyra-bg-surface);
+        color: var(--zyra-text);
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
 
@@ -205,11 +205,11 @@
             top: 10px;
             right: 10px;
             padding: 4px 10px;
-            border: 1px solid var(--zyr-border);
-            border-radius: var(--zyr-radius-sm);
-            background: var(--zyr-bg-2);
-            color: var(--zyr-text-muted);
-            font-family: var(--zyr-font-mono);
+            border: 1px solid var(--zyra-border);
+            border-radius: var(--zyra-radius-sm);
+            background: var(--zyra-bg-panel);
+            color: var(--zyra-text-muted);
+            font-family: var(--zyra-font-mono);
             font-size: 11px;
             cursor: pointer;
             opacity: 0;
@@ -220,9 +220,9 @@
                 background 0.15s ease;
 
             &--copied {
-                color: var(--zyr-success);
-                border-color: var(--zyr-success-border);
-                background: var(--zyr-success-muted);
+                color: var(--zyra-success);
+                border-color: var(--zyra-success-border);
+                background: var(--zyra-success-muted);
                 opacity: 1;
             }
         }
@@ -240,36 +240,36 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         margin: 0 0 24px;
-        border: 1px solid var(--zyr-border);
-        border-radius: var(--zyr-radius-xl);
+        border: 1px solid var(--zyra-border);
+        border-radius: var(--zyra-radius-xl);
     }
 
     table {
         width: 100%;
         min-width: 480px; // forces scroll on mobile before columns get crushed
         border-collapse: collapse;
-        border-radius: var(--zyr-radius-xl);
+        border-radius: var(--zyra-radius-xl);
         font-size: 0.93rem;
         table-layout: fixed; // equal column widths — works for 2, 3, or 4 columns
     }
 
     thead {
-        background: var(--zyr-bg-3);
-        border-bottom: 2px solid var(--zyr-border-strong);
+        background: var(--zyra-bg-surface);
+        border-bottom: 2px solid var(--zyra-border-strong);
     }
 
     th {
         padding: 13px 18px;
         text-align: left;
-        font-family: var(--zyr-font-mono);
+        font-family: var(--zyra-font-mono);
         font-size: 0.72rem;
         font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: var(--zyr-text-muted);
+        color: var(--zyra-text-muted);
         overflow: hidden;
         text-overflow: ellipsis;
-        border-right: 1px solid var(--zyr-border-strong);
+        border-right: 1px solid var(--zyra-border-strong);
 
         &:last-child {
             border-right: none;
@@ -278,10 +278,10 @@
 
     td {
         padding: 13px 18px;
-        color: var(--zyr-text-muted);
+        color: var(--zyra-text-muted);
         line-height: 1.65;
-        border-top: 1px solid var(--zyr-border);
-        border-right: 1px solid var(--zyr-border);
+        border-top: 1px solid var(--zyra-border);
+        border-right: 1px solid var(--zyra-border);
         vertical-align: top;
         word-break: break-word;
 
@@ -291,11 +291,11 @@
     }
 
     tbody tr:nth-child(even) td {
-        background: color-mix(in srgb, var(--zyr-bg-3) 50%, transparent);
+        background: color-mix(in srgb, var(--zyra-bg-surface) 50%, transparent);
     }
 
     tbody tr:hover td {
-        background: color-mix(in srgb, var(--zyr-accent) 5%, transparent);
+        background: color-mix(in srgb, var(--zyra-accent) 5%, transparent);
         transition: background 0.15s ease;
     }
 
@@ -303,9 +303,9 @@
     th code {
         padding: 2px 7px;
         border-radius: 5px;
-        background: color-mix(in srgb, var(--zyr-accent) 10%, transparent);
-        border: 1px solid var(--zyr-accent-border);
-        color: var(--zyr-accent);
+        background: color-mix(in srgb, var(--zyra-accent) 10%, transparent);
+        border: 1px solid var(--zyra-accent-border);
+        color: var(--zyra-accent);
         font-size: 0.85em;
         white-space: nowrap;
     }
@@ -315,59 +315,59 @@
     .hljs-selector-tag,
     .hljs-built_in,
     .hljs-tag .hljs-name {
-        color: var(--zyr-accent);
+        color: var(--zyra-accent);
     }
 
     .hljs-string,
     .hljs-template-variable,
     .hljs-template-tag {
-        color: var(--zyr-success);
+        color: var(--zyra-success);
     }
 
     .hljs-number,
     .hljs-literal {
-        color: var(--zyr-warning);
+        color: var(--zyra-warning);
     }
 
     .hljs-comment,
     .hljs-quote {
-        color: var(--zyr-text-dim);
+        color: var(--zyra-text-dim);
         font-style: italic;
     }
 
     .hljs-type,
     .hljs-title.class_,
     .hljs-title.class_.inherited__ {
-        color: var(--zyr-accent-2);
+        color: var(--zyra-accent-2);
     }
 
     .hljs-function .hljs-title,
     .hljs-title.function_ {
-        color: var(--zyr-accent-3);
+        color: var(--zyra-accent-3);
     }
 
     .hljs-attr,
     .hljs-attribute,
     .hljs-meta,
     .hljs-selector-attr {
-        color: var(--zyr-accent-2);
+        color: var(--zyra-accent-2);
     }
 
     .hljs-tag {
-        color: var(--zyr-danger);
+        color: var(--zyra-danger);
     }
 
     .hljs-variable,
     .hljs-params {
-        color: var(--zyr-text);
+        color: var(--zyra-text);
     }
 
     // ── Blockquote (TL;DR, callouts) ──────────────────────────
     blockquote {
         padding: 16px 22px;
-        border-left: 4px solid var(--zyr-accent);
-        border-radius: 0 var(--zyr-radius-md) var(--zyr-radius-md) 0;
-        background: color-mix(in srgb, var(--zyr-accent) 6%, var(--zyr-bg-2));
+        border-left: 4px solid var(--zyra-accent);
+        border-radius: 0 var(--zyra-radius-md) var(--zyra-radius-md) 0;
+        background: color-mix(in srgb, var(--zyra-accent) 6%, var(--zyra-bg-panel));
 
         p:last-child {
             margin-bottom: 0;
@@ -378,9 +378,9 @@
             display: inline;
             padding: 2px 6px;
             border-radius: 5px;
-            background: color-mix(in srgb, var(--zyr-accent) 14%, transparent);
-            border: 1px solid var(--zyr-accent-border);
-            color: var(--zyr-accent);
+            background: color-mix(in srgb, var(--zyra-accent) 14%, transparent);
+            border: 1px solid var(--zyra-accent-border);
+            color: var(--zyra-accent);
             font-size: 0.88em;
         }
     }

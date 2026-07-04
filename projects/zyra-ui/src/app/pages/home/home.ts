@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { ZyraIcon, type ZyraIconData } from 'zyra-ng-ui';
 import { RouterLink } from '@angular/router';
 import {
     ZyraBadge,
@@ -11,7 +10,7 @@ import {
     ZyraToastService,
 } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
-import { appIcons } from '../../shared/fontawesome-icons';
+import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
 import { LIBRARY_VERSION } from '../../shared/version';
 import { UI_COMPONENT_SHOWCASE } from '../ui-components/ui-components.data';
 
@@ -23,7 +22,7 @@ type SystemTone = 'accent' | 'blue' | 'purple';
 interface IconCard {
     title: string;
     description: string;
-    icon: IconDefinition;
+    icon: ZyraIconData;
     tone: FeatureTone;
 }
 
@@ -37,7 +36,7 @@ interface MetricBar {
 interface SystemCard {
     title: string;
     description: string;
-    icon: IconDefinition;
+    icon: ZyraIconData;
     tone: SystemTone;
     points: readonly string[];
 }
@@ -87,7 +86,7 @@ const SYSTEM_CARDS: readonly SystemCard[] = [
         title: 'Typography from tokens',
         description:
             'Display, body, and mono families stay consistent because the website reads directly from the same library font roles.',
-        icon: appIcons.swatchbook,
+        icon: swatchbook,
         tone: 'accent',
         points: [
             'Hero headlines use the display family',
@@ -99,7 +98,7 @@ const SYSTEM_CARDS: readonly SystemCard[] = [
         title: 'Semantic surfaces',
         description:
             'Backgrounds, borders, glows, and cards are layered from semantic tokens instead of hard-coded colors.',
-        icon: appIcons.palette,
+        icon: palette,
         tone: 'blue',
         points: [
             'Accent glow comes from shared brand tokens',
@@ -111,7 +110,7 @@ const SYSTEM_CARDS: readonly SystemCard[] = [
         title: 'Responsive rhythm',
         description:
             'Spacing, grids, and content density scale down cleanly so the site still feels intentional on phones.',
-        icon: appIcons.cubes,
+        icon: cubes,
         tone: 'purple',
         points: [
             'Hero shifts from two columns to one story flow',
@@ -126,40 +125,40 @@ const FEATURE_CARDS: readonly IconCard[] = [
         title: 'Accessible',
         description:
             'WCAG 2.0 AA compliant. Keyboard nav, focus rings, and screen-reader labels baked in.',
-        icon: appIcons.universalAccess,
+        icon: universalAccess,
         tone: 'accent',
     },
     {
         title: 'Themeable',
         description:
             'CSS variables + token-defined colors. Re-skin the entire library with a single token file.',
-        icon: appIcons.palette,
+        icon: palette,
         tone: 'purple',
     },
     {
         title: 'Framework-agnostic',
         description:
             'Works with Angular standalone, signals, SSR, and Vite. No bundler magic required.',
-        icon: appIcons.codeBranch,
+        icon: codeBranch,
         tone: 'blue',
     },
     {
         title: 'Tree-shakeable',
         description: 'Tiny per-component footprint. Average button ships under 2kb gzip.',
-        icon: appIcons.boxOpen,
+        icon: boxOpen,
         tone: 'green',
     },
     {
         title: 'Dark-mode first',
         description:
             'Designed in the dark, perfected in the light. Auto-switch based on OS preference.',
-        icon: appIcons.moon,
+        icon: moon,
         tone: 'neutral',
     },
     {
         title: 'Smooth animations',
         description: 'Hand-crafted easings for hover, press, enter, and scroll. Never janky.',
-        icon: appIcons.waveSquare,
+        icon: waveSquare,
         tone: 'warning',
     },
 ] as const;
@@ -232,7 +231,7 @@ const TESTIMONIALS: readonly Testimonial[] = [
     selector: 'app-home',
     imports: [
         RouterLink,
-        FaIconComponent,
+        ZyraIcon,
         ZyraBadge,
         ZyraButton,
         ZyraCard,
@@ -250,7 +249,7 @@ export class Home implements OnInit, OnDestroy {
     readonly installCommand = INSTALL_COMMAND;
     readonly version = LIBRARY_VERSION;
     readonly copied = signal(false);
-    readonly icons = appIcons;
+    readonly icons = { github, sun, moon, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, caretLeft, caretRight, envelope };
     readonly ratingMarks = RATING_MARKS;
     readonly waitlistEmail = WAITLIST_PLACEHOLDER;
 

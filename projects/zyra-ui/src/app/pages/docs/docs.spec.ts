@@ -49,8 +49,8 @@ describe('Docs', () => {
     });
 
     // ── componentList ─────────────────────────────────────────────────────────
-    it('componentList has 22 entries', () => {
-        expect(component.componentList.length).toBe(22);
+    it('componentList has 23 entries', () => {
+        expect(component.componentList.length).toBe(23);
     });
 
     it('componentList includes the button component', () => {

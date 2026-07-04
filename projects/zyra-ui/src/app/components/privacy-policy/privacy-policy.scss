@@ -1,7 +1,7 @@
-:host {
+﻿:host {
     display: block;
-    background: var(--zyr-bg);
-    color: var(--zyr-text);
+    background: var(--zyra-bg-app);
+    color: var(--zyra-text);
 }
 
 .legal-page {
@@ -12,12 +12,12 @@
 
 .legal-hero {
     margin-bottom: 24px;
-    text-align: center;
+    text-align: left;
 }
 
 .legal-hero h1 {
     margin: 16px 0 8px;
-    font-family: var(--zyr-font-display);
+    font-family: var(--zyra-font-display);
     font-size: 3rem;
     line-height: 1;
     letter-spacing: 0;
@@ -25,7 +25,7 @@
 
 .legal-hero p,
 .legal-card p {
-    color: var(--zyr-text-muted);
+    color: var(--zyra-text-muted);
     line-height: 1.75;
 }
 
@@ -36,7 +36,7 @@
 .legal-card section + section {
     margin-top: 24px;
     padding-top: 24px;
-    border-top: 1px solid var(--zyr-border);
+    border-top: 1px solid var(--zyra-border);
 }
 
 .legal-card h2 {

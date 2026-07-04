@@ -4,7 +4,7 @@
 
 ## Components
 
-ZyraUI ships 22 standalone, tree-shakeable Angular components:
+ZyraUI ships 23 standalone, tree-shakeable Angular components:
 
 - [Button](https://www.zyraui.dev/components/button): `<zyra-button>` — 5 variants (primary, secondary, outline, ghost, danger), 3 sizes, loading state, icon slots
 - [Badge](https://www.zyraui.dev/components/badge): `<zyra-badge>` — status labels with dot indicator, 5 semantic variants
@@ -18,7 +18,8 @@ ZyraUI ships 22 standalone, tree-shakeable Angular components:
 - [Modal](https://www.zyraui.dev/components/modal): `<zyra-modal>` — focus trap, ESC to close, 4 sizes, two-way [(open)] binding
 - [Alert](https://www.zyraui.dev/components/alert): `<zyra-alert>` — inline status messages, dismissible, role="alert"
 - [Chip](https://www.zyraui.dev/components/chip): `<zyra-chip>` — dismissible and selectable modes, 6 variants
-- [Toggle](https://www.zyraui.dev/components/toggle): `<zyra-toggle>` — role="switch", 3 sizes, two-way [(checked)]
+- [Switch](https://www.zyraui.dev/components/switch): `<zyra-switch>` — role="switch", 3 sizes, two-way [(checked)]
+- [Toggle](https://www.zyraui.dev/components/toggle): `<zyra-toggle>` — button-press style, aria-pressed, two-way [(pressed)]
 - [Progress](https://www.zyraui.dev/components/progress): `<zyra-progress>` — linear bar, indeterminate mode, 5 semantic variants
 - [Divider](https://www.zyraui.dev/components/divider): `<zyra-divider>` — horizontal/vertical, solid/dashed/dotted, optional label
 - [Select](https://www.zyraui.dev/components/select): `<zyra-select>` + `<zyra-option>` — full CVA, keyboard navigation, 3 appearances

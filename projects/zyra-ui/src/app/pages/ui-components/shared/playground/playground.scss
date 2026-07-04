@@ -1,4 +1,4 @@
-:host {
+﻿:host {
     display: block;
 }
 
@@ -7,8 +7,8 @@
     grid-template-columns: 280px 1fr;
     height: calc(100vh - 220px);
     min-height: 480px;
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
+    border: 1px solid var(--zyra-border);
+    border-radius: var(--zyra-radius-md);
     overflow: hidden;
 }
 
@@ -20,7 +20,7 @@
 .pg-layout__preview {
     height: 100%;
     overflow: hidden;
-    border-left: 1px solid var(--zyr-border);
+    border-left: 1px solid var(--zyra-border);
 }
 
 @media (max-width: 768px) {
@@ -31,7 +31,7 @@
 
     .pg-layout__preview {
         border-left: none;
-        border-top: 1px solid var(--zyr-border);
+        border-top: 1px solid var(--zyra-border);
         height: 380px;
     }
 }

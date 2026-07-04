@@ -2,7 +2,7 @@ import { PLAYGROUND_REGISTRY } from './playground-registry';
 
 const EXPECTED_SLUGS = [
     'button', 'badge', 'avatar', 'chip', 'card',
-    'accordion', 'divider', 'input', 'form-field', 'toggle',
+    'accordion', 'divider', 'input', 'form-field', 'toggle', 'switch',
     'select', 'textarea', 'checkbox', 'radio', 'tabs',
     'spinner', 'progress', 'alert', 'skeleton', 'toast',
     'tooltip', 'modal',
@@ -11,8 +11,8 @@ const EXPECTED_SLUGS = [
 describe('PLAYGROUND_REGISTRY', () => {
 
     // ── coverage ──────────────────────────────────────────────────────────────
-    it('has exactly 22 entries', () => {
-        expect(Object.keys(PLAYGROUND_REGISTRY).length).toBe(22);
+    it('has exactly 23 entries', () => {
+        expect(Object.keys(PLAYGROUND_REGISTRY).length).toBe(23);
     });
 
     it('contains every expected component slug', () => {

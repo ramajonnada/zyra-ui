@@ -1,42 +1,66 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, output } from '@angular/core';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { RouterModule } from '@angular/router';
-import { appIcons } from '../../shared/fontawesome-icons';
+import { Component, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { filter, map, startWith } from 'rxjs';
+import { UI_COMPONENT_SHOWCASE } from '../../pages/ui-components/ui-components.data';
+
+export interface NavChild {
+	label: string;
+	route: string;
+}
 
 export interface NavItem {
-    label: string;
-    icon: IconDefinition;
-    route: string;
-    badge?: string;
+	label: string;
+	route: string;
+	badge?: string;
+	children?: readonly NavChild[];
 }
 
 @Component({
-    selector: 'app-sidebar',
-    standalone: true,
-    imports: [CommonModule, RouterModule, FaIconComponent],
-    templateUrl: './sidebar.html',
-    styleUrls: ['./sidebar.scss'],
+	selector: 'app-sidebar',
+	standalone: true,
+	imports: [CommonModule, RouterModule],
+	templateUrl: './sidebar.html',
+	styleUrls: ['./sidebar.scss'],
 })
 export class Sidebar {
-    readonly isOpen = input<boolean>(true);
-    readonly toggleSidebar = output<void>();
-    readonly overlayVisible = computed(() => this.isOpen());
-    readonly icons = appIcons;
+	private readonly router = inject(Router);
 
-    readonly navItems: readonly NavItem[] = [
-        { label: 'Docs', icon: appIcons.folder, route: '/docs' },
-        { label: 'Components', icon: appIcons.cubes, route: '/components', badge: '22' },
-        { label: 'Blog', icon: appIcons.message, route: '/blog' },
-        { label: 'Contact', icon: appIcons.envelope, route: '/contact' },
-    ];
+	private readonly componentChildren: readonly NavChild[] = UI_COMPONENT_SHOWCASE.map(
+		(component) => ({
+			label: component.title,
+			route: `/components/${component.slug}`,
+		}),
+	);
 
-    onToggleSidebar() {
-        this.toggleSidebar.emit();
-    }
+	readonly navItems: readonly NavItem[] = [
+		{ label: 'Docs', route: '/docs' },
+		{
+			label: 'Components',
+			route: '/components',
+			badge: String(this.componentChildren.length),
+			children: this.componentChildren,
+		},
+		{ label: 'Blog', route: '/blog' },
+		{ label: 'Contact', route: '/contact' },
+	];
 
-    onOverlayClick() {
-        this.toggleSidebar.emit();
-    }
+	private readonly currentPath = toSignal(
+		this.router.events.pipe(
+			filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+			map((event) => this.normalizePath(event.urlAfterRedirects)),
+			startWith(this.normalizePath(this.router.url)),
+		),
+		{ initialValue: this.normalizePath(this.router.url) },
+	);
+
+	private hasActiveChild(item: NavItem): boolean {
+		return !!item.children?.some((child) => this.currentPath().startsWith(child.route));
+	}
+
+	private normalizePath(url: string): string {
+		const path = (url.split(/[?#]/, 1)[0] || '/').trim();
+		return path === '' ? '/' : path;
+	}
 }

@@ -1,19 +1,19 @@
-:host {
+﻿:host {
     display: block;
     height: 100%;
 }
 
 .controls {
-    border-right: 1px solid var(--zyr-border);
+    border-right: 1px solid var(--zyra-border);
     padding: 24px 20px;
-    background: var(--zyr-bg-2);
+    background: var(--zyra-bg-panel);
     overflow-y: auto;
     height: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 0;
-    transition: background var(--zyr-transition-slow);
+    transition: background var(--zyra-transition-slow);
 
     &::-webkit-scrollbar {
         width: 4px;
@@ -24,14 +24,14 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background: var(--zyr-border);
+        background: var(--zyra-border);
         border-radius: 4px;
     }
 
     &__title {
-        font-family: var(--zyr-font-mono);
+        font-family: var(--zyra-font-mono);
         font-size: 10px;
-        color: var(--zyr-text-dim);
+        color: var(--zyra-text-dim);
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin-bottom: 20px;
@@ -41,7 +41,7 @@
 .control-group {
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--zyr-border);
+    border-bottom: 1px solid var(--zyra-border);
 
     &:last-of-type {
         border-bottom: none;
@@ -50,10 +50,10 @@
 
 .control-label {
     display: block;
-    font-family: var(--zyr-font-mono);
+    font-family: var(--zyra-font-mono);
     font-size: 11px;
     font-weight: 500;
-    color: var(--zyr-accent);
+    color: var(--zyra-accent);
     margin-bottom: 8px;
 }
 
@@ -82,11 +82,11 @@
     &__track {
         width: 36px;
         height: 20px;
-        border-radius: var(--zyr-radius-full);
-        background: var(--zyr-bg-3);
-        border: 1px solid var(--zyr-border);
+        border-radius: var(--zyra-radius-full);
+        background: var(--zyra-bg-surface);
+        border: 1px solid var(--zyra-border);
         position: relative;
-        transition: all var(--zyr-transition-base);
+        transition: all var(--zyra-transition-base);
         flex-shrink: 0;
 
         &::after {
@@ -97,25 +97,25 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--zyr-text-dim);
-            transition: all var(--zyr-transition-base);
+            background: var(--zyra-text-dim);
+            transition: all var(--zyra-transition-base);
         }
     }
 
     input:checked + &__track {
-        background: var(--zyr-accent-muted);
-        border-color: var(--zyr-accent-border);
+        background: var(--zyra-accent-muted);
+        border-color: var(--zyra-accent-border);
 
         &::after {
             transform: translateX(16px);
-            background: var(--zyr-accent);
+            background: var(--zyra-accent);
         }
     }
 
     &__label {
-        font-family: var(--zyr-font-mono);
+        font-family: var(--zyra-font-mono);
         font-size: 12px;
-        color: var(--zyr-text-muted);
+        color: var(--zyra-text-muted);
     }
 }
 

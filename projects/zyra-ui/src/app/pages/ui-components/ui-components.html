@@ -63,20 +63,6 @@
                 >
                     <zyra-card variant="outlined" [clickable]="true" padding="lg">
                         <div class="component-card__body">
-                            <div class="component-card__header">
-                                <div
-                                    [class]="
-                                        'component-card__icon component-card__icon--' + card.accent
-                                    "
-                                >
-                                    <fa-icon [icon]="card.icon" aria-hidden="true" />
-                                </div>
-
-                                <zyra-badge variant="default" size="md">{{
-                                    card.category
-                                }}</zyra-badge>
-                            </div>
-
                             <div class="component-card__copy">
                                 <h2>{{ card.title }}</h2>
                                 <p>{{ card.description }}</p>
@@ -84,6 +70,9 @@
 
                             <div class="component-card__footer">
                                 <span>{{ card.selector }}</span>
+                                <zyra-badge variant="default" size="sm">{{
+                                    card.category
+                                }}</zyra-badge>
                             </div>
                         </div>
                     </zyra-card>

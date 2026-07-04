@@ -14,6 +14,7 @@ import { ButtonRenderer } from './button-renderer';
 import { BadgeRenderer } from './badge-renderer';
 import { SpinnerRenderer } from './spinner-renderer';
 import { ToggleRenderer } from './toggle-renderer';
+import { SwitchRenderer } from './switch-renderer';
 
 // ── Generic renderer helper ───────────────────────────────────────────────────
 
@@ -145,6 +146,39 @@ describe('SpinnerRenderer', () => {
     });
 });
 
+// ── SwitchRenderer ────────────────────────────────────────────────────────────
+
+describe('SwitchRenderer', () => {
+    let component: SwitchRenderer;
+    let el: HTMLElement;
+
+    beforeEach(async () => {
+        ({ component, el } = await mountRenderer(SwitchRenderer));
+    });
+
+    afterEach(() => TestBed.resetTestingModule());
+
+    it('renders a zyra-switch element', () => {
+        expect(el.querySelector('zyra-switch')).not.toBeNull();
+    });
+
+    it('default size is "md"', () => {
+        expect(component.size()).toBe('md');
+    });
+
+    it('default label is "Enable notifications"', () => {
+        expect(component.label()).toBe('Enable notifications');
+    });
+
+    it('default labelPosition is "right"', () => {
+        expect(component.labelPosition()).toBe('right');
+    });
+
+    it('default disabled is false', () => {
+        expect(component.disabled()).toBeFalse();
+    });
+});
+
 // ── ToggleRenderer ────────────────────────────────────────────────────────────
 
 describe('ToggleRenderer', () => {
@@ -163,14 +197,6 @@ describe('ToggleRenderer', () => {
 
     it('default size is "md"', () => {
         expect(component.size()).toBe('md');
-    });
-
-    it('default label is "Enable notifications"', () => {
-        expect(component.label()).toBe('Enable notifications');
-    });
-
-    it('default labelPosition is "right"', () => {
-        expect(component.labelPosition()).toBe('right');
     });
 
     it('default disabled is false', () => {

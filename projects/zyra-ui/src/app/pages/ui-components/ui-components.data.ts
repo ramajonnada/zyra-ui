@@ -1,5 +1,5 @@
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { appIcons } from '../../shared/fontawesome-icons';
+import type { ZyraIconData } from 'zyra-ng-ui';
+import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced } from 'zyra-ng-ui';
 
 export type UiComponentAccent = 'teal' | 'blue' | 'purple' | 'amber' | 'green';
 
@@ -22,7 +22,7 @@ export interface UiComponentShowcaseCard {
     importName: string;
     category: string;
     description?: string;
-    icon: IconDefinition;
+    icon: ZyraIconData;
     accent: UiComponentAccent;
     highlights: string[];
     exampleCode?: string;
@@ -273,6 +273,25 @@ import { ZyraChip } from 'zyra-ng-ui';
 export class DemoChipComponent {}
 `;
 
+const SWITCH_EXAMPLE_CODE = `import { Component, signal } from '@angular/core';
+import { ZyraSwitch } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-switch',
+  standalone: true,
+  imports: [ZyraSwitch],
+  template: \`
+    <zyra-switch
+      [(checked)]="enabled"
+      label="Enable notifications"
+    />
+  \`,
+})
+export class DemoSwitchComponent {
+  enabled = signal(false);
+}
+`;
+
 const TOGGLE_EXAMPLE_CODE = `import { Component, signal } from '@angular/core';
 import { ZyraToggle } from 'zyra-ng-ui';
 
@@ -281,14 +300,13 @@ import { ZyraToggle } from 'zyra-ng-ui';
   standalone: true,
   imports: [ZyraToggle],
   template: \`
-    <zyra-toggle
-      [(checked)]="enabled"
-      label="Enable notifications"
-    />
+    <zyra-toggle [(pressed)]="bold" aria-label="Bold">
+      B
+    </zyra-toggle>
   \`,
 })
 export class DemoToggleComponent {
-  enabled = signal(false);
+  bold = signal(false);
 }
 `;
 
@@ -476,7 +494,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Actions',
         description:
             'Token-aware action buttons for primary flows, secondary actions, and compact utility triggers.',
-        icon: appIcons.handPointer,
+        icon: handPointer,
         accent: 'blue',
         highlights: [
             'Clear action hierarchy',
@@ -559,7 +577,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'disabled state communicates unavailability without removing focusability',
             'All variants maintain a visible 2px focus ring for keyboard navigation',
         ],
-        relatedSlugs: ['badge', 'chip', 'toggle'],
+        relatedSlugs: ['badge', 'chip', 'switch'],
     },
     {
         slug: 'badge',
@@ -569,7 +587,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Status',
         description:
             'Small status labels for updates, counts, state pills, and quick metadata throughout the interface.',
-        icon: appIcons.certificate,
+        icon: certificate,
         accent: 'teal',
         highlights: [
             'Compact semantic states',
@@ -626,7 +644,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Layout',
         description:
             'Flexible content containers for dashboards, previews, settings panels, and modular content blocks.',
-        icon: appIcons.square,
+        icon: square,
         accent: 'purple',
         highlights: [
             'Header and footer slots',
@@ -697,7 +715,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Identity',
         description:
             'Profile and team visuals that make lists, comments, and user surfaces feel more human and scannable.',
-        icon: appIcons.circleUser,
+        icon: circleUser,
         accent: 'green',
         highlights: ['Great for team UIs', 'Pairs well with badges', 'Readable at smaller sizes'],
         exampleCode: AVATAR_EXAMPLE_CODE,
@@ -761,7 +779,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Forms',
         description:
             'Foundation text inputs for login forms, filters, search flows, and structured data entry experiences.',
-        icon: appIcons.keyboard,
+        icon: keyboard,
         accent: 'amber',
         highlights: [
             'Built for normal form flows',
@@ -856,7 +874,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Pair with ZyraFormField to get proper label and hint associations automatically',
             'Error state sets aria-invalid="true"; pair with an error message element using aria-describedby',
         ],
-        relatedSlugs: ['form-field', 'toggle', 'button'],
+        relatedSlugs: ['form-field', 'switch', 'button'],
     },
     {
         slug: 'form-field',
@@ -866,7 +884,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Forms',
         description:
             'Field wrappers that align labels, hints, and validation copy into a more polished form system.',
-        icon: appIcons.alignLeft,
+        icon: alignLeft,
         accent: 'blue',
         highlights: [
             'Helps compose accessible forms',
@@ -960,7 +978,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'hint and error text are linked via aria-describedby on the input',
             'When error is set, the child input receives aria-invalid="true"',
         ],
-        relatedSlugs: ['input', 'toggle', 'button'],
+        relatedSlugs: ['input', 'switch', 'button'],
     },
     {
         slug: 'spinner',
@@ -970,7 +988,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Feedback',
         description:
             'Loading indicators for async states, background fetches, and actions that need a clear pending signal.',
-        icon: appIcons.spinner,
+        icon: spinner,
         accent: 'purple',
         highlights: [
             'Useful for async states',
@@ -1022,7 +1040,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Feedback',
         description:
             'Transient notifications for confirmations, warnings, and system messages without interrupting the flow.',
-        icon: appIcons.message,
+        icon: message,
         accent: 'teal',
         highlights: [
             'Success, info, warning, error flows',
@@ -1090,7 +1108,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Overlays',
         description:
             'Helpful hover and focus details for dense controls, icon actions, and space-constrained interfaces.',
-        icon: appIcons.circleInfo,
+        icon: circleInfo,
         accent: 'green',
         highlights: [
             'Adds context without clutter',
@@ -1135,7 +1153,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Overlays',
         description:
             'Accessible dialog overlay with focus trap, ESC to close, backdrop dismiss, and flexible header/footer slots.',
-        icon: appIcons.square,
+        icon: square,
         accent: 'purple',
         highlights: [
             'Focus trap and ESC key support',
@@ -1197,7 +1215,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Feedback',
         description:
             'Inline status messages for success, warning, danger, and info states with optional title and dismiss support.',
-        icon: appIcons.triangleExclamation,
+        icon: triangleExclamation,
         accent: 'amber',
         highlights: [
             'Four semantic variants',
@@ -1246,7 +1264,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Actions',
         description:
             'Compact interactive labels for filters, tags, and selections — supports dismissible and selectable modes.',
-        icon: appIcons.certificate,
+        icon: certificate,
         accent: 'purple',
         highlights: [
             'Dismissible with × button',
@@ -1319,21 +1337,21 @@ export const UI_COMPONENT_SHOWCASE = [
         relatedSlugs: ['badge', 'button', 'alert'],
     },
     {
-        slug: 'toggle',
-        title: 'Toggle',
-        selector: 'zyra-toggle',
-        importName: 'ZyraToggle',
+        slug: 'switch',
+        title: 'Switch',
+        selector: 'zyra-switch',
+        importName: 'ZyraSwitch',
         category: 'Forms',
         description:
             'On/off switch control for settings, preferences, and feature flags with full keyboard and accessibility support.',
-        icon: appIcons.bolt,
+        icon: bolt,
         accent: 'teal',
         highlights: [
             'Three sizes with smooth animation',
             'Label on left or right',
             'Accessible role="switch"',
         ],
-        exampleCode: TOGGLE_EXAMPLE_CODE,
+        exampleCode: SWITCH_EXAMPLE_CODE,
         variants: [
             { name: 'sm', description: 'Small switch for dense settings panels' },
             { name: 'md', description: 'Default size for most form layouts' },
@@ -1374,7 +1392,7 @@ export const UI_COMPONENT_SHOWCASE = [
                 name: 'changed (output)',
                 type: 'boolean',
                 default: '-',
-                description: 'Emits the new checked value whenever the toggle changes',
+                description: 'Emits the new checked value whenever the switch changes',
             },
         ],
         a11yNotes: [
@@ -1382,7 +1400,67 @@ export const UI_COMPONENT_SHOWCASE = [
             'label is linked via aria-labelledby — always provide a label for screen readers',
             'Keyboard-operable via Space to toggle and Tab to focus',
         ],
-        relatedSlugs: ['input', 'form-field', 'button'],
+        relatedSlugs: ['toggle', 'input', 'form-field', 'button'],
+    },
+    {
+        slug: 'toggle',
+        title: 'Toggle',
+        selector: 'zyra-toggle',
+        importName: 'ZyraToggle',
+        category: 'Forms',
+        description:
+            'Pressable button that holds a boolean pressed/unpressed state — for toolbar actions, formatting controls, and filter pills.',
+        icon: waveSquare,
+        accent: 'purple',
+        highlights: [
+            'Button-press visual, not a track/thumb switch',
+            'Content-projected — pair with icons or short labels',
+            'Accessible aria-pressed state',
+        ],
+        exampleCode: TOGGLE_EXAMPLE_CODE,
+        variants: [
+            { name: 'sm', description: 'Compact toggle for dense toolbars' },
+            { name: 'md', description: 'Default size for most layouts' },
+            { name: 'lg', description: 'Large toggle for prominent standalone actions' },
+        ],
+        apiProps: [
+            {
+                name: 'pressed',
+                type: 'boolean',
+                default: 'false',
+                description: 'Current pressed state; two-way bindable via [(pressed)]',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Physical size of the button',
+            },
+            {
+                name: 'disabled',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables interaction',
+            },
+            {
+                name: 'aria-label',
+                type: 'string | null',
+                default: 'null',
+                description: 'Accessible name when the projected content is icon-only',
+            },
+            {
+                name: 'changed (output)',
+                type: 'boolean',
+                default: '-',
+                description: 'Emits the new pressed value whenever the toggle changes',
+            },
+        ],
+        a11yNotes: [
+            'Renders as a native <button> with aria-pressed to communicate state',
+            'Provide aria-label when the projected content is icon-only',
+            'Keyboard-operable via Space/Enter and Tab to focus',
+        ],
+        relatedSlugs: ['switch', 'button', 'chip'],
     },
     {
         slug: 'progress',
@@ -1392,7 +1470,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Feedback',
         description:
             'Linear progress bars for uploads, task completion, storage usage, and any measurable loading state.',
-        icon: appIcons.waveSquare,
+        icon: waveSquare,
         accent: 'blue',
         highlights: [
             'Indeterminate loading mode',
@@ -1462,7 +1540,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Layout',
         description:
             'Horizontal and vertical separators for organizing content sections, form layouts, and navigation groups.',
-        icon: appIcons.scaleBalanced,
+        icon: scaleBalanced,
         accent: 'teal',
         highlights: [
             'Horizontal and vertical modes',
@@ -1523,7 +1601,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Forms',
         description:
             'Custom dropdown select for choosing from a list of options — fully keyboard accessible with smooth open/close animation.',
-        icon: appIcons.alignLeft,
+        icon: alignLeft,
         accent: 'teal',
         highlights: [
             'Works with Angular forms (CVA)',
@@ -1578,7 +1656,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Arrow keys navigate options; Enter/Space selects; Escape closes; Tab dismisses',
             'Disabled options are marked aria-disabled and skipped by keyboard navigation',
         ],
-        relatedSlugs: ['input', 'form-field', 'toggle'],
+        relatedSlugs: ['input', 'form-field', 'switch'],
     },
     {
         slug: 'textarea',
@@ -1588,7 +1666,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Forms',
         description:
             'Multi-line text input with auto-resize, size variants, and full ZyraFormField integration for labels and validation.',
-        icon: appIcons.alignLeft,
+        icon: alignLeft,
         accent: 'amber',
         highlights: ['Auto-resize mode', 'Works inside ZyraFormField', 'Character counter support'],
         exampleCode: TEXTAREA_EXAMPLE_CODE,
@@ -1649,7 +1727,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Forms',
         description:
             'Accessible checkbox with indeterminate state, label positioning, three sizes, and full Angular forms support.',
-        icon: appIcons.check,
+        icon: check,
         accent: 'teal',
         highlights: ['Indeterminate state', 'Works with reactive forms', 'Three sizes'],
         exampleCode: CHECKBOX_EXAMPLE_CODE,
@@ -1700,7 +1778,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Indeterminate state sets aria-checked="mixed"',
             'Keyboard: Space or Enter to toggle; Tab to focus',
         ],
-        relatedSlugs: ['toggle', 'radio', 'form-field'],
+        relatedSlugs: ['switch', 'radio', 'form-field'],
     },
     {
         slug: 'radio',
@@ -1710,7 +1788,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Forms',
         description:
             'Accessible radio button group for mutually exclusive choices — vertical or horizontal layout, arrow key navigation.',
-        icon: appIcons.circleInfo,
+        icon: circleInfo,
         accent: 'blue',
         highlights: [
             'Arrow key navigation',
@@ -1761,7 +1839,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Arrow keys navigate between options within the group',
             'Tab moves focus to the selected radio (or first if none selected)',
         ],
-        relatedSlugs: ['checkbox', 'toggle', 'select'],
+        relatedSlugs: ['checkbox', 'switch', 'select'],
     },
     {
         slug: 'tabs',
@@ -1771,7 +1849,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Navigation',
         description:
             'Tab navigation with 4 style variants, 3 sizes, icons, badges, closeable tabs, vertical orientation, and full keyboard support.',
-        icon: appIcons.swatchbook,
+        icon: swatchbook,
         accent: 'purple',
         highlights: [
             '4 style variants (underline, pill, filled, outlined)',
@@ -1897,7 +1975,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Feedback',
         description:
             'Shimmer loading placeholders with 20+ preset layout variants — from simple text lines and shapes to full dashboard, product, calendar, and chat skeletons.',
-        icon: appIcons.spinner,
+        icon: spinner,
         accent: 'green',
         highlights: [
             '20+ preset layout patterns',
@@ -1978,7 +2056,7 @@ export const UI_COMPONENT_SHOWCASE = [
         category: 'Layout',
         description:
             'Collapsible content sections for FAQs, settings panels, and any grouped information that benefits from progressive disclosure.',
-        icon: appIcons.alignLeft,
+        icon: alignLeft,
         accent: 'amber',
         highlights: [
             'Single or multi-open modes',

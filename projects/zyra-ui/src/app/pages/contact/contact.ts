@@ -1,21 +1,20 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { ZyraIcon, type ZyraIconData } from 'zyra-ng-ui';
 import { ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
-import { appIcons } from '../../shared/fontawesome-icons';
+import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
 
 interface ContactMethod {
     label: string;
     value: string;
     href: string;
-    icon: IconDefinition;
+    icon: ZyraIconData;
 }
 
 @Component({
     selector: 'app-contact',
-    imports: [FaIconComponent, ZyraBadge, ZyraButton, ZyraCard],
+    imports: [ZyraIcon, ZyraBadge, ZyraButton, ZyraCard],
     templateUrl: './contact.html',
     styleUrl: './contact.scss',
 })
@@ -28,25 +27,25 @@ export class Contact implements OnInit {
             label: 'Email',
             value: 'zyrangui.contact@gmail.com',
             href: 'mailto:zyrangui.contact@gmail.com',
-            icon: appIcons.envelope,
+            icon: envelope,
         },
         {
             label: 'Instagram',
             value: '@zyrangui',
             href: 'https://www.instagram.com/zyrangui/',
-            icon: appIcons.instagram,
+            icon: instagram,
         },
         {
             label: 'GitHub',
             value: 'github.com/ramajonnada/zyra-ui',
             href: 'https://github.com/ramajonnada/zyra-ui',
-            icon: appIcons.github,
+            icon: github,
         },
         {
             label: 'Website',
             value: 'www.zyraui.dev',
             href: 'https://www.zyraui.dev',
-            icon: appIcons.globe,
+            icon: globe,
         },
     ];
 

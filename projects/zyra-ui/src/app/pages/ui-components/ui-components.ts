@@ -7,7 +7,6 @@ import {
     signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ZyraBadge, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { UI_COMPONENT_SHOWCASE } from './ui-components.data';
@@ -15,7 +14,7 @@ import { UI_COMPONENT_SHOWCASE } from './ui-components.data';
 @Component({
     selector: 'app-ui-components',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, ZyraBadge, ZyraCard, FaIconComponent],
+    imports: [RouterLink, ZyraBadge, ZyraCard],
     templateUrl: './ui-components.html',
     styleUrl: './ui-components.scss',
 })

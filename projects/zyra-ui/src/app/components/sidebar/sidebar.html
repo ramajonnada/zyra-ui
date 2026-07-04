@@ -1,47 +1,30 @@
-<div
-    class="sidebar-overlay"
-    [class.visible]="overlayVisible()"
-    (click)="onOverlayClick()"
-    (keydown.enter)="onOverlayClick()"
-    tabindex="0"
-></div>
+<aside class="sidebar">
+	<nav class="sidebar__nav" aria-label="Secondary">
+		@for (item of navItems; track item.route) {
+		<div class="sidebar__group">
+			<a [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+				class="sidebar__item" [attr.aria-label]="item.label">
+				<span class="sidebar__label">{{ item.label }}</span>
+				@if (item.badge) {
+				<span class="sidebar__badge">{{ item.badge }}</span>
+				}
+			</a>
 
-<aside class="sidebar" [class.open]="isOpen()" [class.collapsed]="!isOpen()">
-    <div class="sidebar__top">
-        <span class="sidebar__section-label">Navigation</span>
+			@if (item.children) {
+			<div class="sidebar__children">
+				@for (child of item.children; track child.route) {
+				<a [routerLink]="child.route" routerLinkActive="active" class="sidebar__child">
+					{{ child.label }}
+				</a>
+				}
+			</div>
+			}
+		</div>
+		}
+	</nav>
 
-        <button
-            type="button"
-            class="sidebar__toggle"
-            (click)="onToggleSidebar()"
-            [attr.aria-label]="isOpen() ? 'Collapse sidebar' : 'Expand sidebar'"
-        >
-            <fa-icon [icon]="isOpen() ? icons.caretLeft : icons.caretRight" aria-hidden="true" />
-        </button>
-    </div>
-
-    <nav class="sidebar__nav" aria-label="Secondary">
-        @for (item of navItems; track item.route) {
-            <a
-                [routerLink]="item.route"
-                routerLinkActive="active"
-                class="sidebar__item"
-                [attr.aria-label]="item.label"
-                [attr.title]="!isOpen() ? item.label : null"
-            >
-                <span class="sidebar__icon">
-                    <fa-icon [icon]="item.icon" />
-                </span>
-                <span class="sidebar__label">{{ item.label }}</span>
-                @if (item.badge) {
-                    <span class="sidebar__badge">{{ item.badge }}</span>
-                }
-            </a>
-        }
-    </nav>
-
-    <div class="sidebar__footer">
-        <span class="sidebar__footer-dot"></span>
-        <span class="sidebar__footer-text">Zyra<span>UI</span></span>
-    </div>
+	<div class="sidebar__footer">
+		<span class="sidebar__footer-dot"></span>
+		<span class="sidebar__footer-text">Zyra<span>UI</span></span>
+	</div>
 </aside>

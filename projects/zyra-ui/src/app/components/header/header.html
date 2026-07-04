@@ -5,7 +5,7 @@
             type="button"
             (click)="onToggle()"
             [attr.aria-label]="menuLabel()"
-            [attr.aria-expanded]="publicPage() ? mobileNavOpen() : null"
+            [attr.aria-expanded]="mobileNavOpen()"
         >
             <span class="site-header__sr-only">{{ menuLabel() }}</span>
             <span></span>
@@ -40,24 +40,69 @@
             rel="noopener noreferrer"
             aria-label="Open Zyra UI on GitHub"
         >
-            <fa-icon [icon]="icons.github" />
+            <zyra-icon [img]="icons.github" [size]="16" />
             <span>Star</span>
             @if (githubStars() !== null) {
                 <span class="site-header__stars">{{ githubStars() }}</span>
             }
         </a>
 
-        <button
-            type="button"
-            class="site-header__theme"
-            (click)="toggleTheme()"
-            [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
-        >
-            <span class="site-header__sr-only">
-                {{ isDark() ? 'Switch to light mode' : 'Switch to dark mode' }}
-            </span>
-            <fa-icon [icon]="isDark() ? icons.sun : icons.moon" />
-        </button>
+        <!-- Theme picker dropdown -->
+        <div class="site-header__theme-picker" (click)="stopProp($event)">
+            <button
+                type="button"
+                class="site-header__theme-btn"
+                (click)="toggleThemeDropdown($event)"
+                [attr.aria-expanded]="themeDropdownOpen()"
+                aria-haspopup="listbox"
+                aria-label="Select theme"
+            >
+                <span
+                    class="site-header__theme-dot"
+                    [style.background]="currentThemeOption().accent"
+                ></span>
+                <span class="site-header__theme-label">{{ currentThemeOption().label }}</span>
+                <zyra-icon
+                    [img]="icons.caretDown"
+                    [size]="11"
+                    class="site-header__theme-caret"
+                    [class.is-open]="themeDropdownOpen()"
+                />
+            </button>
+
+            @if (themeDropdownOpen()) {
+                <div
+                    class="site-header__theme-panel"
+                    role="listbox"
+                    aria-label="Theme"
+                >
+                    @for (t of themes; track t.value) {
+                        <button
+                            type="button"
+                            class="site-header__theme-option"
+                            [class.is-active]="currentTheme() === t.value"
+                            (click)="selectTheme(t.value)"
+                            role="option"
+                            [attr.aria-selected]="currentTheme() === t.value"
+                        >
+                            <span
+                                class="site-header__theme-option-swatch"
+                                [style.background]="t.accent"
+                                [style.box-shadow]="'0 0 0 3px ' + t.surface"
+                            ></span>
+                            <span>{{ t.label }}</span>
+                            @if (currentTheme() === t.value) {
+                                <zyra-icon
+                                    [img]="icons.check"
+                                    [size]="12"
+                                    class="site-header__theme-check"
+                                />
+                            }
+                        </button>
+                    }
+                </div>
+            }
+        </div>
 
         <zyra-button size="sm" routerLink="/components">Get started</zyra-button>
     </div>
@@ -86,7 +131,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <fa-icon [icon]="icons.github" />
+                <zyra-icon [img]="icons.github" />
                 <span>GitHub</span>
             </a>
 

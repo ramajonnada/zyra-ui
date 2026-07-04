@@ -1,72 +1,58 @@
 <section class="blog-page">
-    <header class="blog-page__header">
-        <div class="blog-page__copy">
-            <p class="blog-page__eyebrow">Blog & Insights</p>
-            <h1>Tutorials, tips & deep dives</h1>
-            <p class="blog-page__intro">
-                Angular signals, design tokens, public-site SEO, and component architecture notes
-                for developers building real products.
-            </p>
-        </div>
+	<header class="blog-page__header">
+		<div class="blog-page__copy">
+			<p class="blog-page__eyebrow">Blog & Insights</p>
+			<h1>Tutorials, tips & deep dives</h1>
+			<p class="blog-page__intro">
+				Angular signals, design tokens, public-site SEO, and component architecture notes
+				for developers building real products.
+			</p>
+		</div>
 
-        <div class="blog-page__meta">
-            <zyra-badge variant="default" size="sm">{{ articleCount() }} articles</zyra-badge>
-            <zyra-badge variant="default" size="sm">{{ categoryCount() }} categories</zyra-badge>
-        </div>
-    </header>
+		<div class="blog-page__meta">
+			<zyra-badge variant="default" size="sm">{{ articleCount() }} articles</zyra-badge>
+			<zyra-badge variant="default" size="sm">{{ categoryCount() }} categories</zyra-badge>
+		</div>
+	</header>
 
-    <div class="blog-page__section-head">
-        <h2>Latest articles</h2>
-    </div>
+	<div class="blog-page__section-head">
+		<h2>Latest articles</h2>
+	</div>
 
-    @if (loading()) {
-        <div class="blog-page__state">Loading posts...</div>
-    } @else if (error(); as errorMessage) {
-        <div class="blog-page__state">{{ errorMessage }}</div>
-    } @else if (!posts().length) {
-        <div class="blog-page__state">No posts available yet.</div>
-    } @else {
-        <div class="blog-page__grid">
-            @for (post of posts(); track post.slug) {
-                <a class="blog-card" [routerLink]="['/blog', post.slug]">
-                    <zyra-card
-                        class="blog-card__shell"
-                        variant="outlined"
-                        [hasHeader]="true"
-                        [hasFooter]="true"
-                        [clickable]="true"
-                    >
-                        <div slot="header" class="blog-card__header">
-                            <span class="blog-card__category">{{
-                                categoryLabel(post.category)
-                            }}</span>
-                            <span class="blog-card__date">{{
-                                post.date | date: 'MMM dd, yyyy'
-                            }}</span>
-                        </div>
+	@if (loading()) {
+	<div class="blog-page__state">Loading posts...</div>
+	} @else if (error(); as errorMessage) {
+	<div class="blog-page__state">{{ errorMessage }}</div>
+	} @else if (!posts().length) {
+	<div class="blog-page__state">No posts available yet.</div>
+	} @else {
+	<div class="blog-page__grid">
+		@for (post of posts(); track post.slug) {
+		<a class="blog-card" [routerLink]="['/blog', post.slug]">
+			<zyra-card class="blog-card__shell" variant="outlined" [hasHeader]="false" [hasFooter]="true"
+				[clickable]="true">
+				<div class="blog-card__body">
+					<h3 class="blog-card__title">{{ post.title }}</h3>
+					<p class="blog-card__description">{{ post.description }}</p>
+				</div>
 
-                        <div class="blog-card__body">
-                            <h3 class="blog-card__title">{{ post.title }}</h3>
-                            <p class="blog-card__description">{{ post.description }}</p>
-                        </div>
-
-                        <div slot="footer" class="blog-card__footer">
-                            <div class="blog-card__meta-group">
-                                <span class="blog-card__meta">{{ post.readTime }}</span>
-                                @if (post.tags?.length) {
-                                    <span class="blog-card__meta blog-card__meta--tag">
-                                        {{ post.tags![0] }}
-                                    </span>
-                                }
-                            </div>
-                            <span class="blog-card__cta">
-                                Read article
-                                <span aria-hidden="true">&rarr;</span>
-                            </span>
-                        </div>
-                    </zyra-card>
-                </a>
-            }
-        </div>
-    }
+				<div slot="footer" class="blog-card__footer">
+					<div class="blog-card__meta-group">
+						<span class="blog-card__meta">{{ post.readTime }}</span>
+						@if (post.tags?.length) {
+						<span class="blog-card__meta blog-card__meta--tag">
+							{{ post.tags![0] }}
+						</span>
+						}
+					</div>
+					<span class="blog-card__cta">
+						Read article
+						<span aria-hidden="true">&rarr;</span>
+					</span>
+				</div>
+			</zyra-card>
+		</a>
+		}
+	</div>
+	}
 </section>
