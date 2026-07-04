@@ -659,7 +659,7 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'ghost', description: 'Transparent background, subtle hover fill' },
             {
                 name: 'clickable',
-                description: 'Any variant with [clickable]="true" — emits cardClick on press',
+                description: 'Any variant with [clickable]="true" — emits clicked on press',
             },
         ],
         apiProps: [
@@ -694,7 +694,7 @@ export const UI_COMPONENT_SHOWCASE = [
                 description: 'Enables the named footer slot',
             },
             {
-                name: 'cardClick (output)',
+                name: 'clicked (output)',
                 type: 'void',
                 default: '-',
                 description: 'Emits when a clickable card is pressed',
@@ -2103,6 +2103,8 @@ export const UI_COMPONENT_SHOWCASE = [
         relatedSlugs: ['card', 'divider', 'modal'],
     },
 ] satisfies readonly UiComponentShowcaseCard[];
+
+export const COMPONENT_COUNT = UI_COMPONENT_SHOWCASE.length;
 
 export function getUiComponentShowcaseCard(
     slug: string | null | undefined,

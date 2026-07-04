@@ -302,6 +302,8 @@ theme.toggle();           // switch between both`;
         },
     ];
 
+    readonly componentCount = this.componentList.length;
+
     ngOnInit(): void {
         this.seo.setSEO({
             title: 'Zyra UI Docs - Angular component setup and design tokens',

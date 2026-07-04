@@ -12,7 +12,7 @@ import {
 import { SeoService } from '../../../seo/seo.service';
 import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
 import { LIBRARY_VERSION } from '../../shared/version';
-import { UI_COMPONENT_SHOWCASE } from '../ui-components/ui-components.data';
+import { COMPONENT_COUNT } from '../ui-components/ui-components.data';
 
 type AvatarVariant = 'teal' | 'blue' | 'purple' | 'warm' | 'neutral';
 type FeatureTone = 'accent' | 'blue' | 'purple' | 'green' | 'warning' | 'neutral';
@@ -253,7 +253,7 @@ export class Home implements OnInit, OnDestroy {
     readonly ratingMarks = RATING_MARKS;
     readonly waitlistEmail = WAITLIST_PLACEHOLDER;
 
-    readonly componentCount = UI_COMPONENT_SHOWCASE.length;
+    readonly componentCount = COMPONENT_COUNT;
     readonly heroMeta = HERO_META;
     readonly developerChecks = DEVELOPER_CHECKS;
     readonly systemCards = SYSTEM_CARDS;

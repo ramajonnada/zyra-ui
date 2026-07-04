@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { ZyraIcon, type ZyraIconData } from 'zyra-ng-ui';
 import { ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
+import { COMPONENT_COUNT } from '../ui-components/ui-components.data';
 import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
 
 interface AboutValue {
@@ -25,9 +26,10 @@ interface AboutStat {
 export class About implements OnInit {
     private readonly seo = inject(SeoService);
     readonly icons = { github, sun, moon, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, caretLeft, caretRight };
+    readonly componentCount = COMPONENT_COUNT;
 
     readonly stats: readonly AboutStat[] = [
-        { value: '22', label: 'Components' },
+        { value: String(COMPONENT_COUNT), label: 'Components' },
         { value: 'MIT', label: 'License' },
         { value: 'v21', label: 'Angular' },
         { value: '100%', label: 'Signals-first' },
@@ -70,7 +72,7 @@ export class About implements OnInit {
         this.seo.setSEO({
             title: 'About Zyra UI - Angular components built with design tokens',
             description:
-                'Learn about Zyra UI — a signals-first Angular component library with 22 accessible, token-driven components for real apps and public websites.',
+                `Learn about Zyra UI — a signals-first Angular component library with ${COMPONENT_COUNT} accessible, token-driven components for real apps and public websites.`,
             url: 'https://www.zyraui.dev/about',
         });
     }
