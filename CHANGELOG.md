@@ -7,6 +7,34 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [2.0.0] — 2026-07-05
+
+### Added
+
+- `zyra-switch`: New on/off switch component with `role="switch"`, label/labelPosition, and size variants
+- Internal `ZyraIcon` component and `zyra-icons` icon set, replacing the FontAwesome dependency
+- Three new themes — Ocean, Amber, Rose — alongside dark/light
+- Layered design-token architecture: primitive, dimension, semantic, and component tokens
+
+### Changed
+
+- Theme tokens realigned across all components to the new token layers
+- Accessibility pass across all components
+- Boolean inputs across most components switched to `booleanAttribute`-transformed signals
+
+### Removed
+
+- `@fortawesome/angular-fontawesome`, `@fortawesome/fontawesome-svg-core`, `@fortawesome/free-solid-svg-icons` peer dependencies
+
+### BREAKING CHANGES
+
+- `zyra-card`: output `cardClick` renamed to `clicked`
+- `zyra-toggle`: `checked` input/model renamed to `pressed`; `label` and `labelPosition` inputs removed — use `zyra-switch` for a labeled on/off control
+- `ZyraTheme` type gained `'ocean' | 'amber' | 'rose'` — exhaustive switches over this type without a `default` case will now fail to compile
+- Any consumer passing custom FontAwesome icon inputs will need to migrate to the new icon system
+
+---
+
 ## [1.7.0] — 2026-06-29
 
 ### Added
