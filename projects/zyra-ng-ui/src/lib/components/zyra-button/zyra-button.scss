@@ -1,11 +1,11 @@
-.zyr-btn {
+﻿.zyr-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
     border: none;
-    border-radius: var(--zyr-radius-md);
-    font-family: var(--zyr-font-body);
+    border-radius: var(--zyra-radius-md);
+    font-family: var(--zyra-font-body);
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
@@ -14,12 +14,12 @@
     overflow: hidden;
     isolation: isolate;
     transition:
-        background var(--zyr-transition-base),
-        color var(--zyr-transition-base),
-        border-color var(--zyr-transition-base),
-        box-shadow var(--zyr-transition-base),
-        transform var(--zyr-transition-spring),
-        opacity var(--zyr-transition-fast);
+        background var(--zyra-transition-base),
+        color var(--zyra-transition-base),
+        border-color var(--zyra-transition-base),
+        box-shadow var(--zyra-transition-base),
+        transform var(--zyra-transition-spring),
+        opacity var(--zyra-transition-fast);
 
     &::before {
         content: '';
@@ -27,125 +27,98 @@
         inset: -1px;
         z-index: 0;
         opacity: 0;
-        background: radial-gradient(circle at 50% 100%, var(--zyr-glow-surface), transparent 68%);
-        transition: opacity var(--zyr-transition-base);
+        background: radial-gradient(circle at 50% 100%, var(--zyra-glow-surface), transparent 68%);
+        transition: opacity var(--zyra-transition-base);
         pointer-events: none;
     }
 
     &:hover:not(:disabled) {
-        border-color: var(--zyr-glow-border);
-        box-shadow: var(--zyr-glow-shadow-strong);
+        border-color: var(--zyra-glow-border);
+        box-shadow: var(--zyra-glow-shadow-strong);
 
-        &::before {
-            opacity: 1;
-        }
+        &::before { opacity: 1; }
     }
 
     &:focus-visible {
         outline-offset: 3px;
         box-shadow:
-            0 0 0 3px var(--zyr-card-focus-ring, var(--zyr-accent-muted)),
-            var(--zyr-glow-shadow-strong);
+            0 0 0 3px var(--zyra-btn-focus-ring),
+            var(--zyra-glow-shadow-strong);
     }
 
-    &:active:not(:disabled) {
-        transform: scale(0.97);
-    }
+    &:active:not(:disabled) { transform: scale(0.97); }
 
-    // ── Sizes ─────────────────────────────────────────────────
-    &--sm {
-        padding: 5px 12px;
-        font-size: 12px;
-        line-height: 1.5;
-    }
+    &--sm { padding: 7px 12px; font-size: 12px; line-height: 1.5; } // 32px height — WCAG 2.5.5 touch target
+    &--md { padding: 8px 18px; font-size: 13.5px; line-height: 1.5; }
+    &--lg { padding: 11px 24px; font-size: 15px; line-height: 1.5; }
 
-    &--md {
-        padding: 8px 18px;
-        font-size: 13.5px;
-        line-height: 1.5;
-    }
-
-    &--lg {
-        padding: 11px 24px;
-        font-size: 15px;
-        line-height: 1.5;
-    }
-
-    // ── Variants ──────────────────────────────────────────────
     &--primary {
-        background: var(--zyr-btn-primary-bg);
-        color: var(--zyr-btn-primary-text);
-        border: 1px solid var(--zyr-btn-primary-border);
+        background: var(--zyra-btn-primary-bg);
+        color: var(--zyra-btn-primary-text);
+        border: 1px solid var(--zyra-btn-primary-border);
 
         &:hover:not(:disabled) {
-            background: var(--zyr-btn-primary-hover-bg);
+            background: var(--zyra-btn-primary-hover-bg);
             transform: translateY(-1px);
         }
     }
 
     &--secondary {
-        background: var(--zyr-btn-secondary-bg);
-        color: var(--zyr-btn-secondary-text);
-        border: 1px solid var(--zyr-btn-secondary-border);
+        background: var(--zyra-btn-secondary-bg);
+        color: var(--zyra-btn-secondary-text);
+        border: 1px solid var(--zyra-btn-secondary-border);
 
         &:hover:not(:disabled) {
-            border-color: var(--zyr-btn-secondary-hover-border);
-            background: var(--zyr-btn-secondary-hover-bg);
+            border-color: var(--zyra-btn-secondary-hover-border);
+            background: var(--zyra-btn-secondary-hover-bg);
         }
     }
 
     &--ghost {
         background: transparent;
-        color: var(--zyr-btn-ghost-text);
+        color: var(--zyra-btn-ghost-text);
         border: 1px solid transparent;
 
         &:hover:not(:disabled) {
-            background: var(--zyr-btn-ghost-hover-bg);
-            color: var(--zyr-btn-ghost-hover-text);
+            background: var(--zyra-btn-ghost-hover-bg);
+            color: var(--zyra-btn-ghost-hover-text);
         }
     }
 
     &--outline {
         background: transparent;
-        color: var(--zyr-primary);
-        border: 1px solid var(--zyr-primary-border);
+        color: var(--zyra-primary);
+        border: 1px solid var(--zyra-primary-border);
 
         &:hover:not(:disabled) {
-            background: var(--zyr-btn-outline-hover-bg);
-            border-color: var(--zyr-btn-outline-hover-border);
+            background: var(--zyra-btn-outline-hover-bg);
+            border-color: var(--zyra-btn-outline-hover-border);
         }
     }
 
     &--danger {
-        background: var(--zyr-btn-danger-bg);
-        color: var(--zyr-btn-danger-text);
-        border: 1px solid var(--zyr-btn-danger-border);
+        background: var(--zyra-btn-danger-bg);
+        color: var(--zyra-btn-danger-text);
+        border: 1px solid var(--zyra-btn-danger-border);
 
         &:hover:not(:disabled) {
-            background: var(--zyr-btn-danger-hover-bg);
-            color: var(--zyr-btn-danger-hover-text);
-            border-color: var(--zyr-btn-danger-hover-border);
+            background: var(--zyra-btn-danger-hover-bg);
+            color: var(--zyra-btn-danger-hover-text);
+            border-color: var(--zyra-btn-danger-hover-border);
         }
     }
 
-    // ── States ────────────────────────────────────────────────
-    &--loading {
-        cursor: wait;
-        pointer-events: none;
-    }
+    &--loading { cursor: wait; pointer-events: none; }
 
     &--disabled,
     &:disabled {
-        opacity: var(--zyr-btn-disabled-opacity);
+        opacity: var(--zyra-btn-disabled-opacity);
         cursor: not-allowed;
         pointer-events: none;
     }
 
-    &--full {
-        width: 100%;
-    }
+    &--full { width: 100%; }
 
-    // ── Icon ──────────────────────────────────────────────────
     &__icon {
         position: relative;
         z-index: 1;
@@ -154,9 +127,7 @@
         font-size: 1em;
         line-height: 1;
 
-        &:empty {
-            display: none;
-        }
+        &:empty { display: none; }
 
         :where(svg) {
             width: 1em;
@@ -172,5 +143,15 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zyr-btn {
+        transition: none;
+
+        &::before { transition: none; }
+        &:active:not(:disabled) { transform: none; }
+        &--primary:hover:not(:disabled) { transform: none; }
     }
 }

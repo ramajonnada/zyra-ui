@@ -1,162 +1,155 @@
-:host {
-    display: block;
+﻿:host {
+	display: block;
 }
 
 .zyr-card {
-    position: relative;
-    isolation: isolate;
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--zyr-card-bg) 94%, white) 0%,
-        var(--zyr-card-bg) 100%
-    );
-    color: var(--zyr-text);
-    border: 1px solid transparent;
-    border-radius: 16px;
-    box-shadow:
-        inset 0 1px 0 color-mix(in srgb, white 5%, transparent),
-        var(--zyr-card-shadow, none);
-    overflow: hidden;
-    transition:
-        background var(--zyr-transition-slow),
-        border-color var(--zyr-transition-base),
-        box-shadow var(--zyr-transition-base),
-        transform var(--zyr-transition-spring);
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	background: var(--zyra-card-bg);
+	color: var(--zyra-text);
+	border: 1px solid transparent;
+	border-radius: var(--zyra-card-radius);
+	box-shadow:
+		inset 0 1px 0 color-mix(in srgb, white 5%, transparent),
+		0 2px 8px rgba(0, 0, 0, 0.12);
+	overflow: hidden;
+	transition:
+		background var(--zyra-transition-slow),
+		border-color var(--zyra-transition-base),
+		box-shadow var(--zyra-transition-base),
+		transform var(--zyra-transition-spring);
 
-    &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        opacity: 0;
-        background:
-            radial-gradient(circle at 50% 100%, var(--zyr-glow-surface), transparent 58%),
-            radial-gradient(
-                circle at 80% 0%,
-                color-mix(in srgb, var(--zyr-accent) 8%, transparent),
-                transparent 42%
-            );
-        transition: opacity var(--zyr-transition-slow);
-        pointer-events: none;
-    }
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		opacity: 0;
+		background:
+			radial-gradient(circle at 50% 100%, var(--zyra-glow-surface), transparent 58%),
+			radial-gradient(circle at 80% 0%,
+				color-mix(in srgb, var(--zyra-accent) 8%, transparent),
+				transparent 42%);
+		transition: opacity var(--zyra-transition-slow);
+		pointer-events: none;
+	}
 
-    &:hover {
-        border-color: var(--zyr-glow-border);
-        box-shadow:
-            inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
-            var(--zyr-glow-shadow),
-            var(--zyr-card-elevated-shadow, var(--zyr-shadow-md));
+	&:hover {
+		border-color: var(--zyra-glow-border);
+		box-shadow:
+			inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
+			0 8px 24px rgba(0, 0, 0, 0.32), 0 4px 12px rgba(0, 0, 0, 0.16);
 
-        &::before {
-            opacity: 1;
-        }
-    }
+		&::before {
+			opacity: 1;
+		}
+	}
 
-    &--default {
-        border-color: var(--zyr-card-border);
-    }
+	&--default {
+		border-color: var(--zyra-card-border);
+	}
 
-    &--outlined {
-        background: var(--zyr-card-bg);
-        border-color: var(--zyr-card-border);
-        box-shadow: none;
-    }
+	&--outlined {
+		background: var(--zyra-card-bg);
+		border-color: var(--zyra-card-border);
+		box-shadow: none;
+	}
 
-    &--elevated {
-        border-color: var(--zyr-card-border);
-        box-shadow:
-            inset 0 1px 0 color-mix(in srgb, white 5%, transparent),
-            var(--zyr-card-elevated-shadow, var(--zyr-shadow-md));
-    }
+	&--elevated {
+		border-color: var(--zyra-card-border);
+		box-shadow:
+			inset 0 1px 0 color-mix(in srgb, white 5%, transparent),
+			var(--zyra-card-elevated-shadow, var(--zyra-shadow-md));
+	}
 
-    &--ghost {
-        background: transparent;
-        border-color: transparent;
-        box-shadow: none;
-    }
+	&--ghost {
+		background: transparent;
+		border-color: transparent;
+		box-shadow: none;
+	}
 
-    &--clickable {
-        cursor: pointer;
+	&--clickable {
+		cursor: pointer;
 
-        &:hover {
-            transform: translateY(-2px);
-        }
+		&:hover {
+			transform: translateY(-2px);
+		}
 
-        &:focus-visible {
-            outline: none;
-            border-color: var(--zyr-glow-border);
-            box-shadow:
-                inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
-                0 0 0 3px var(--zyr-card-focus-ring, var(--zyr-accent-muted)),
-                var(--zyr-glow-shadow),
-                var(--zyr-card-elevated-shadow, var(--zyr-shadow-md));
+		&:focus-visible {
+			outline: none;
+			border-color: var(--zyra-glow-border);
+			box-shadow:
+				inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
+				0 0 0 3px var(--zyra-card-focus-ring),
+				var(--zyra-glow-shadow),
+				var(--zyra-card-elevated-shadow, var(--zyra-shadow-md));
 
-            &::before {
-                opacity: 1;
-            }
-        }
+			&::before {
+				opacity: 1;
+			}
+		}
 
-        &:active {
-            transform: translateY(0);
-            box-shadow:
-                inset 0 1px 0 color-mix(in srgb, white 4%, transparent),
-                var(--zyr-card-shadow, none);
-        }
-    }
+		&:active {
+			transform: translateY(0);
+			box-shadow:
+				inset 0 1px 0 color-mix(in srgb, white 4%, transparent),
+				var(--zyra-card-shadow, none);
+		}
+	}
 
-    &__header,
-    &__footer {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        min-width: 0;
-        padding: 16px 20px;
-        background: var(--zyr-card-section-bg, var(--zyr-bg-3));
-        transition:
-            background var(--zyr-transition-slow),
-            border-color var(--zyr-transition-base);
-    }
+	&__header,
+	&__footer {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		min-width: 0;
+		padding: 16px 20px;
+		background: var(--zyra-card-section-bg, var(--zyra-surface-inset));
+		transition:
+			background var(--zyra-transition-slow),
+			border-color var(--zyra-transition-base);
+	}
 
-    &__header {
-        border-bottom: 1px solid var(--zyr-card-border);
-    }
+	&__header {
+		border-bottom: 1px solid var(--zyra-card-border);
+	}
 
-    &__body {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex: 1 1 auto;
-        flex-direction: column;
-        gap: 16px;
-        min-width: 0;
-        min-height: 0;
+	&__body {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		gap: 16px;
+		min-width: 0;
+		min-height: 0;
 
-        &--none {
-            gap: 0;
-            padding: 0;
-        }
+		&--none {
+			gap: 0;
+			padding: 0;
+		}
 
-        &--sm {
-            padding: 16px;
-        }
+		&--sm {
+			padding: 16px;
+		}
 
-        &--md {
-            padding: 20px;
-        }
+		&--md {
+			padding: 20px;
+		}
 
-        &--lg {
-            padding: 28px;
-        }
-    }
+		&--lg {
+			padding: 28px;
+		}
+	}
 
-    &__footer {
-        border-top: 1px solid var(--zyr-card-border);
-        margin-top: auto;
-        justify-content: space-between;
-    }
+	&__footer {
+		border-top: 1px solid var(--zyra-card-border);
+		margin-top: auto;
+		justify-content: space-between;
+	}
 }

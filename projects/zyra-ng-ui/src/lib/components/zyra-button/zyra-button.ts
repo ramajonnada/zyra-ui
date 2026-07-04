@@ -6,9 +6,9 @@ import {
     input,
     output,
 } from '@angular/core';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ZyraSpinner, SpinnerColor } from '../zyra-spinner/zyra-spinner';
-import { asIconDefinition, asIconText, type ZyraIcon } from '../../shared/fontawesome-icons';
+import { ZyraIcon as ZyraIconComponent, type ZyraIconData } from '../../internal/zyra-icon/zyra-icon';
+import { isLucideIcon, asIconText, type ZyraIconInput } from '../../shared/zyra-icons';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -18,7 +18,7 @@ export type ButtonType = 'button' | 'submit' | 'reset';
     selector: 'zyra-button',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ZyraSpinner, FaIconComponent],
+    imports: [ZyraSpinner, ZyraIconComponent],
     templateUrl: './zyra-button.html',
     styleUrl: './zyra-button.scss',
 })
@@ -31,8 +31,8 @@ export class ZyraButton {
     loading = input(false, { transform: booleanAttribute });
     disabled = input(false, { transform: booleanAttribute });
     fullWidth = input(false, { transform: booleanAttribute });
-    iconLeft = input<ZyraIcon>(null);
-    iconRight = input<ZyraIcon>(null);
+    iconLeft = input<ZyraIconInput>(null);
+    iconRight = input<ZyraIconInput>(null);
 
     // ── Outputs ───────────────────────────────────────────────
     clicked = output<MouseEvent>();
@@ -60,9 +60,15 @@ export class ZyraButton {
         return solidVariants.includes(this.variant()) ? 'white' : 'accent';
     });
 
-    leftIconDefinition = computed(() => asIconDefinition(this.iconLeft()));
+    leftIconImg = computed((): ZyraIconData | null => {
+        const v = this.iconLeft();
+        return isLucideIcon(v) ? (v as ZyraIconData) : null;
+    });
     leftIconText = computed(() => asIconText(this.iconLeft()));
-    rightIconDefinition = computed(() => asIconDefinition(this.iconRight()));
+    rightIconImg = computed((): ZyraIconData | null => {
+        const v = this.iconRight();
+        return isLucideIcon(v) ? (v as ZyraIconData) : null;
+    });
     rightIconText = computed(() => asIconText(this.iconRight()));
 
     // ── Methods ───────────────────────────────────────────────

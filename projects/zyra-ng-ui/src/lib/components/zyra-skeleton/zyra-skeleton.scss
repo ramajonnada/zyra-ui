@@ -1,28 +1,23 @@
-:host {
+﻿:host {
     display: block;
 }
 
 @keyframes zyr-shimmer {
-    0% {
-        background-position: -400px 0;
-    }
-    100% {
-        background-position: 400px 0;
-    }
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
 }
 
-// ── Shimmer bone ──────────────────────────────────────────────
 .zyr-skeleton {
-    background: var(--zyr-bg-3);
+    background: var(--zyra-surface-inset);
     background-image: linear-gradient(
         90deg,
-        var(--zyr-bg-3) 0%,
-        var(--zyr-bg-4) 40%,
-        var(--zyr-bg-3) 80%
+        var(--zyra-surface-inset) 0%,
+        var(--zyra-bg-raised) 40%,
+        var(--zyra-surface-inset) 80%
     );
     background-size: 800px 100%;
     animation: zyr-shimmer 1.4s infinite linear;
-    border-radius: var(--zyr-radius-sm);
+    border-radius: var(--zyra-radius-sm);
 }
 
 :host(.zyr-sk-no-anim) .zyr-skeleton {
@@ -30,12 +25,17 @@
     background-image: none;
 }
 
-// Text-variant: gap only between top-level bones (not inside compound variants)
+@media (prefers-reduced-motion: reduce) {
+    .zyr-skeleton {
+        animation: none;
+        background-image: none;
+    }
+}
+
 :host > .zyr-skeleton--text + .zyr-skeleton--text {
     margin-top: 8px;
 }
 
-// ── Layout wrapper (no shimmer) ───────────────────────────────
 .zyr-sk-layout {
     display: flex;
     flex-direction: column;
@@ -43,90 +43,54 @@
     width: 100%;
 }
 
-// ── Global modifiers ──────────────────────────────────────────
-.zyr-skeleton--short {
-    width: 60%;
-}
+.zyr-skeleton--short { width: 60%; }
 
-// ── Text ─────────────────────────────────────────────────────
 .zyr-skeleton--text {
     height: 14px;
     width: 100%;
-    border-radius: var(--zyr-radius-xs);
+    border-radius: var(--zyra-radius-xs);
     display: block;
 
-    &.zyr-skeleton--last-line {
-        width: 60%;
-    }
-    &.zyr-skeleton--title {
-        height: 22px;
-        width: 55%;
-    }
-    &.zyr-skeleton--name {
-        height: 18px;
-        width: 70%;
-    }
-    &.zyr-skeleton--meta {
-        height: 12px;
-        width: 40%;
-    }
-    &.zyr-skeleton--label {
-        height: 12px;
-        width: 100px;
-    }
-    &.zyr-skeleton--col {
-        flex: 1;
-        min-width: 0;
-    }
-    &.zyr-skeleton--short {
-        width: 60%;
-    }
+    &.zyr-skeleton--last-line { width: 60%; }
+    &.zyr-skeleton--title { height: 22px; width: 55%; }
+    &.zyr-skeleton--name { height: 18px; width: 70%; }
+    &.zyr-skeleton--meta { height: 12px; width: 40%; }
+    &.zyr-skeleton--label { height: 12px; width: 100px; }
+    &.zyr-skeleton--col { flex: 1; min-width: 0; }
+    &.zyr-skeleton--short { width: 60%; }
 }
 
-// ── Circle ────────────────────────────────────────────────────
 .zyr-skeleton--circle {
-    border-radius: var(--zyr-radius-full);
+    border-radius: var(--zyra-radius-full);
     flex-shrink: 0;
     width: 40px;
     height: 40px;
 
-    &.zyr-skeleton--xs {
-        width: 24px;
-        height: 24px;
-    }
-    &.zyr-skeleton--sm {
-        width: 32px;
-        height: 32px;
-    }
-    &.zyr-skeleton--lg {
-        width: 72px;
-        height: 72px;
-    }
+    &.zyr-skeleton--xs { width: 24px; height: 24px; }
+    &.zyr-skeleton--sm { width: 32px; height: 32px; }
+    &.zyr-skeleton--lg { width: 72px; height: 72px; }
 }
 
-// ── Rect ──────────────────────────────────────────────────────
 .zyr-skeleton--rect {
     width: 100%;
     height: 120px;
-    border-radius: var(--zyr-radius-md);
+    border-radius: var(--zyra-radius-md);
 }
 
-// ── Rounded ───────────────────────────────────────────────────
 .zyr-skeleton--rounded {
     width: 100%;
     height: 40px;
-    border-radius: var(--zyr-radius-full);
+    border-radius: var(--zyra-radius-full);
 }
 
-// ── Image placeholder ─────────────────────────────────────────
 .zyr-skeleton--image {
     width: 100%;
     height: 200px;
-    border-radius: var(--zyr-radius-md);
+    border-radius: var(--zyra-radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--zyr-text-dim);
+    color: var(--zyra-text-dim);
 }
 
 .zyr-sk-img-icon {
@@ -135,22 +99,19 @@
     opacity: 0.4;
 }
 
-// ── Button ────────────────────────────────────────────────────
 .zyr-skeleton--button {
     width: 120px;
     height: 38px;
-    border-radius: var(--zyr-radius-full);
+    border-radius: var(--zyra-radius-full);
     flex-shrink: 0;
 }
 
-// ── Input box ─────────────────────────────────────────────────
 .zyr-skeleton--input-box {
     width: 100%;
     height: 42px;
-    border-radius: var(--zyr-radius-md);
+    border-radius: var(--zyra-radius-md);
 }
 
-// ── Avatar layout ─────────────────────────────────────────────
 .zyr-sk-avatar {
     flex-direction: row;
     align-items: center;
@@ -164,11 +125,10 @@
     gap: 8px;
 }
 
-// ── Card layout ───────────────────────────────────────────────
 .zyr-skeleton--card-img {
     width: 100%;
     height: 160px;
-    border-radius: var(--zyr-radius-md);
+    border-radius: var(--zyra-radius-md);
 }
 
 .zyr-sk-card__body {
@@ -178,19 +138,16 @@
     padding: 4px 0;
 }
 
-// ── List layout ───────────────────────────────────────────────
-.zyr-sk-list {
-    gap: 10px;
-}
+.zyr-sk-list { gap: 10px; }
 
 .zyr-sk-list__item {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 12px 14px;
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
-    background: var(--zyr-bg-2);
+    border: 1px solid var(--zyra-border);
+    border-radius: var(--zyra-radius-md);
+    background: var(--zyra-bg-panel);
 }
 
 .zyr-sk-list__content {
@@ -200,10 +157,7 @@
     gap: 8px;
 }
 
-// ── Article layout ────────────────────────────────────────────
-.zyr-sk-article {
-    gap: 12px;
-}
+.zyr-sk-article { gap: 12px; }
 
 .zyr-sk-article__meta {
     display: flex;
@@ -212,21 +166,20 @@
     gap: 8px;
 }
 
-// ── Table layout ──────────────────────────────────────────────
 .zyr-sk-table {
     gap: 0;
-    border: 1px solid var(--zyr-border-strong);
-    border-radius: var(--zyr-radius-md);
+    border: 1px solid var(--zyra-border-strong);
+    border-radius: var(--zyra-radius-md);
     overflow: hidden;
-    background: var(--zyr-bg-2);
+    background: var(--zyra-bg-panel);
 }
 
 .zyr-sk-table__header {
     display: flex;
     gap: 16px;
     padding: 12px 16px;
-    background: var(--zyr-bg-3);
-    border-bottom: 1px solid var(--zyr-border-strong);
+    background: var(--zyra-surface-inset);
+    border-bottom: 1px solid var(--zyra-border-strong);
 }
 
 .zyr-sk-table__row {
@@ -234,31 +187,24 @@
     gap: 16px;
     padding: 13px 16px;
 
-    & + & {
-        border-top: 1px solid var(--zyr-border);
-    }
+    & + & { border-top: 1px solid var(--zyra-border); }
 }
 
-// ── Chat layout ───────────────────────────────────────────────
-.zyr-sk-chat {
-    gap: 16px;
-}
+.zyr-sk-chat { gap: 16px; }
 
 .zyr-sk-chat__msg {
     display: flex;
     align-items: flex-end;
     gap: 8px;
 
-    &--right {
-        flex-direction: row-reverse;
-    }
+    &--right { flex-direction: row-reverse; }
 }
 
 .zyr-skeleton--bubble {
     height: 64px;
     flex: 1;
     max-width: 65%;
-    border-radius: var(--zyr-radius-lg);
+    border-radius: var(--zyra-radius-lg);
 }
 
 .zyr-skeleton--bubble-short {
@@ -271,10 +217,7 @@
     max-width: 72%;
 }
 
-// ── Dashboard layout ──────────────────────────────────────────
-.zyr-sk-dashboard {
-    gap: 16px;
-}
+.zyr-sk-dashboard { gap: 16px; }
 
 .zyr-sk-dashboard__stats {
     display: grid;
@@ -287,26 +230,23 @@
     flex-direction: column;
     gap: 8px;
     padding: 16px;
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
+    border: 1px solid var(--zyra-border);
+    border-radius: var(--zyra-radius-md);
 }
 
 .zyr-skeleton--stat-value {
     height: 28px;
     width: 65%;
-    border-radius: var(--zyr-radius-sm);
+    border-radius: var(--zyra-radius-sm);
 }
 
 .zyr-sk-dashboard__chart {
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
+    border: 1px solid var(--zyra-border);
+    border-radius: var(--zyra-radius-md);
     padding: 16px;
 }
 
-// ── Chart layout ──────────────────────────────────────────────
-.zyr-sk-chart {
-    gap: 8px;
-}
+.zyr-sk-chart { gap: 8px; }
 
 .zyr-sk-chart__area {
     display: flex;
@@ -317,7 +257,7 @@
 
 .zyr-sk-chart__bar {
     flex: 1;
-    border-radius: var(--zyr-radius-xs) var(--zyr-radius-xs) 0 0;
+    border-radius: var(--zyra-radius-xs) var(--zyra-radius-xs) 0 0;
 }
 
 .zyr-sk-chart__labels {
@@ -328,14 +268,13 @@
 .zyr-sk-chart__label {
     flex: 1;
     height: 10px;
-    border-radius: var(--zyr-radius-xs);
+    border-radius: var(--zyra-radius-xs);
 }
 
-// ── Video layout ──────────────────────────────────────────────
 .zyr-skeleton--video-frame {
     width: 100%;
     height: 220px;
-    border-radius: var(--zyr-radius-md);
+    border-radius: var(--zyra-radius-md);
 }
 
 .zyr-sk-video__controls {
@@ -347,32 +286,29 @@
 .zyr-skeleton--play-btn {
     width: 36px;
     height: 36px;
-    border-radius: var(--zyr-radius-full);
+    border-radius: var(--zyra-radius-full);
     flex-shrink: 0;
 }
 
 .zyr-skeleton--progress {
     flex: 1;
     height: 6px;
-    border-radius: var(--zyr-radius-full);
+    border-radius: var(--zyra-radius-full);
 }
 
 .zyr-skeleton--vol-btn {
     width: 28px;
     height: 28px;
-    border-radius: var(--zyr-radius-full);
+    border-radius: var(--zyra-radius-full);
     flex-shrink: 0;
 }
 
-// ── Product layout ────────────────────────────────────────────
-.zyr-sk-product {
-    gap: 12px;
-}
+.zyr-sk-product { gap: 12px; }
 
 .zyr-skeleton--product-img {
     width: 100%;
     height: 200px;
-    border-radius: var(--zyr-radius-md);
+    border-radius: var(--zyra-radius-md);
 }
 
 .zyr-sk-product__body {
@@ -384,13 +320,10 @@
 .zyr-skeleton--price {
     height: 24px;
     width: 38%;
-    border-radius: var(--zyr-radius-sm);
+    border-radius: var(--zyra-radius-sm);
 }
 
-// ── Profile layout ────────────────────────────────────────────
-.zyr-sk-profile {
-    gap: 16px;
-}
+.zyr-sk-profile { gap: 16px; }
 
 .zyr-sk-profile__header {
     display: flex;
@@ -414,8 +347,8 @@
 
 .zyr-sk-profile__stats {
     display: flex;
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
+    border: 1px solid var(--zyra-border);
+    border-radius: var(--zyra-radius-md);
     overflow: hidden;
 
     .zyr-sk-stat {
@@ -425,16 +358,11 @@
         padding: 12px 16px;
         align-items: center;
 
-        & + .zyr-sk-stat {
-            border-left: 1px solid var(--zyr-border);
-        }
+        & + .zyr-sk-stat { border-left: 1px solid var(--zyra-border); }
     }
 }
 
-// ── Calendar layout ───────────────────────────────────────────
-.zyr-sk-calendar {
-    gap: 12px;
-}
+.zyr-sk-calendar { gap: 12px; }
 
 .zyr-sk-calendar__header {
     display: flex;
@@ -457,5 +385,5 @@
 
 .zyr-sk-calendar__cell {
     aspect-ratio: 1;
-    border-radius: var(--zyr-radius-sm);
+    border-radius: var(--zyra-radius-sm);
 }

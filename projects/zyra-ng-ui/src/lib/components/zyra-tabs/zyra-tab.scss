@@ -1,4 +1,4 @@
-:host {
+﻿:host {
     display: contents;
 }
 
@@ -12,11 +12,11 @@
     }
 
     &--active.zyr-tab__panel--from-right {
-        animation: zyr-tab-from-right 240ms var(--zyr-ease-standard) both;
+        animation: zyr-tab-from-right 240ms var(--zyra-ease-standard) both;
     }
 
     &--active.zyr-tab__panel--from-left {
-        animation: zyr-tab-from-left 240ms var(--zyr-ease-standard) both;
+        animation: zyr-tab-from-left 240ms var(--zyra-ease-standard) both;
     }
 }
 
@@ -39,5 +39,13 @@
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zyr-tab__panel--active.zyr-tab__panel--from-right,
+    .zyr-tab__panel--active.zyr-tab__panel--from-left {
+        animation-duration: 1ms;
+        animation-delay: 0ms;
     }
 }

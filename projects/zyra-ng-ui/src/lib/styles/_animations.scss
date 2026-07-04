@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // ZYRA NG UI — Animations (_animations.scss)
 // ============================================================
 
@@ -123,10 +123,10 @@
 @keyframes zyr-pulse-glow {
     0%,
     100% {
-        box-shadow: 0 0 20px rgba(var(--zyr-glow), 0.3);
+        box-shadow: 0 0 20px rgba(var(--zyra-glow), 0.3);
     }
     50% {
-        box-shadow: 0 0 40px rgba(var(--zyr-glow), 0.6);
+        box-shadow: 0 0 40px rgba(var(--zyra-glow), 0.6);
     }
 }
 
@@ -179,7 +179,7 @@
 // Apply directly in templates: <div class="zyr-fade-up">
 
 .zyr-fade-up {
-    animation: zyr-fade-up 0.7s var(--zyr-ease-standard) both;
+    animation: zyr-fade-up 0.7s var(--zyra-ease-standard) both;
 }
 
 .zyr-fade-in {
@@ -187,15 +187,15 @@
 }
 
 .zyr-scale-in {
-    animation: zyr-scale-in 0.4s var(--zyr-ease-spring) both;
+    animation: zyr-scale-in 0.4s var(--zyra-ease-spring) both;
 }
 
 .zyr-slide-right {
-    animation: zyr-slide-right 0.5s var(--zyr-ease-standard) both;
+    animation: zyr-slide-right 0.5s var(--zyra-ease-standard) both;
 }
 
 .zyr-slide-left {
-    animation: zyr-slide-left 0.5s var(--zyr-ease-standard) both;
+    animation: zyr-slide-left 0.5s var(--zyra-ease-standard) both;
 }
 
 .zyr-pulse-glow {
@@ -214,4 +214,25 @@
 // <ul class="zyr-stagger"> <li style="--i:1"> <li style="--i:2"> </ul>
 .zyr-stagger > * {
     animation-delay: calc(var(--i, 0) * 80ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    // Entrance/exit animations: complete in 1ms so fill-mode still applies.
+    .zyr-fade-up,
+    .zyr-fade-in,
+    .zyr-scale-in,
+    .zyr-slide-right,
+    .zyr-slide-left {
+        animation-duration: 1ms;
+        animation-delay: 0ms;
+    }
+
+    // Continuous animations: stop entirely.
+    .zyr-pulse-glow,
+    .zyr-float,
+    .zyr-marquee {
+        animation: none;
+    }
+
+    .zyr-stagger > * { animation-delay: 0ms; }
 }

@@ -1,71 +1,57 @@
-.zyr-badge {
+﻿.zyr-badge {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    border-radius: var(--zyr-radius-full);
-    font-family: var(--zyr-font-mono);
+    border-radius: var(--zyra-radius-full);
+    font-family: var(--zyra-font-mono);
     font-weight: 500;
     border: 1px solid;
     white-space: nowrap;
     transition:
-        background var(--zyr-transition-slow),
-        color var(--zyr-transition-slow),
-        border-color var(--zyr-transition-slow);
+        background var(--zyra-transition-slow),
+        color var(--zyra-transition-slow),
+        border-color var(--zyra-transition-slow);
 
-    // ── Sizes ─────────────────────────────────────────────────
-    &--sm {
-        padding: 2px 7px;
-        font-size: 10px;
-    }
+    &--sm { padding: 2px 7px; font-size: 10px; }
+    &--md { padding: 3px 9px; font-size: 11px; }
+    &--lg { padding: 5px 12px; font-size: 13px; }
 
-    &--md {
-        padding: 3px 9px;
-        font-size: 11px;
-    }
-
-    &--lg {
-        padding: 5px 12px;
-        font-size: 13px;
-    }
-
-    // ── Variants ──────────────────────────────────────────────
     &--default {
-        background: var(--zyr-bg-3);
-        color: var(--zyr-text-muted);
-        border-color: var(--zyr-border);
+        background: var(--zyra-surface-inset);
+        color: var(--zyra-text-muted);
+        border-color: var(--zyra-border);
     }
 
     &--success {
-        background: var(--zyr-success-muted);
-        color: var(--zyr-success);
-        border-color: var(--zyr-success-border);
+        background: var(--zyra-success-muted);
+        color: var(--zyra-success);
+        border-color: var(--zyra-success-border);
     }
 
     &--warning {
-        background: var(--zyr-warning-muted);
-        color: var(--zyr-warning);
-        border-color: var(--zyr-warning-border);
+        background: var(--zyra-warning-muted);
+        color: var(--zyra-warning);
+        border-color: var(--zyra-warning-border);
     }
 
     &--danger {
-        background: var(--zyr-danger-muted);
-        color: var(--zyr-danger);
-        border-color: var(--zyr-danger-border);
+        background: var(--zyra-danger-muted);
+        color: var(--zyra-danger);
+        border-color: var(--zyra-danger-border);
     }
 
     &--info {
-        background: var(--zyr-info-muted);
-        color: var(--zyr-info);
-        border-color: var(--zyr-info-border);
+        background: var(--zyra-info-muted);
+        color: var(--zyra-info);
+        border-color: var(--zyra-info-border);
     }
 
     &--purple {
-        background: var(--zyr-accent-3-muted);
-        color: var(--zyr-accent-3);
-        border-color: var(--zyr-accent-3-border);
+        background: var(--zyra-accent-3-muted);
+        color: var(--zyra-accent-3);
+        border-color: var(--zyra-accent-3-border);
     }
 
-    // ── Dot indicator ─────────────────────────────────────────
     &__dot {
         width: 6px;
         height: 6px;

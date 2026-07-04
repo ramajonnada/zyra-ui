@@ -7,20 +7,19 @@ import { ZyraToggle } from './zyra-toggle';
     imports: [ZyraToggle],
     template: `
         <zyra-toggle
-            [(checked)]="checked"
-            [label]="label()"
+            [(pressed)]="pressed"
             [size]="size()"
             [disabled]="disabled()"
-            [labelPosition]="labelPosition()"
-        />
+            aria-label="Bold"
+        >
+            B
+        </zyra-toggle>
     `,
 })
 class ToggleHostComponent {
-    checked = false;
-    label = signal('Enable notifications');
+    pressed = false;
     size = signal<'sm' | 'md' | 'lg'>('md');
     disabled = signal(false);
-    labelPosition = signal<'left' | 'right'>('right');
 }
 
 describe('ZyraToggle', () => {
@@ -37,38 +36,38 @@ describe('ZyraToggle', () => {
         fixture.detectChanges();
     });
 
-    it('renders the label text', () => {
-        const label: HTMLElement = fixture.nativeElement.querySelector('.zyr-toggle__label');
-        expect(label.textContent?.trim()).toBe('Enable notifications');
+    it('renders projected content', () => {
+        const button: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-toggle');
+        expect(button.textContent?.trim()).toBe('B');
     });
 
-    it('toggles checked state on track click', () => {
-        const track: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-toggle__track');
-        track.click();
+    it('toggles pressed state on click', () => {
+        const button: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-toggle');
+        button.click();
         fixture.detectChanges();
 
-        expect(host.checked).toBeTrue();
+        expect(host.pressed).toBeTrue();
     });
 
-    it('reflects aria-checked on the track', () => {
-        const track: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-toggle__track');
-        expect(track.getAttribute('aria-checked')).toBe('false');
+    it('reflects aria-pressed on the button', () => {
+        const button: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-toggle');
+        expect(button.getAttribute('aria-pressed')).toBe('false');
 
-        track.click();
+        button.click();
         fixture.detectChanges();
 
-        expect(track.getAttribute('aria-checked')).toBe('true');
+        expect(button.getAttribute('aria-pressed')).toBe('true');
     });
 
     it('does not toggle when disabled', () => {
         host.disabled.set(true);
         fixture.detectChanges();
 
-        const track: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-toggle__track');
-        track.click();
+        const button: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-toggle');
+        button.click();
         fixture.detectChanges();
 
-        expect(host.checked).toBeFalse();
+        expect(host.pressed).toBeFalse();
     });
 
     it('applies --disabled class when disabled', () => {
@@ -78,6 +77,14 @@ describe('ZyraToggle', () => {
         expect(fixture.nativeElement.querySelector('.zyr-toggle--disabled')).not.toBeNull();
     });
 
+    it('applies --pressed class when pressed', () => {
+        const button: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-toggle');
+        button.click();
+        fixture.detectChanges();
+
+        expect(fixture.nativeElement.querySelector('.zyr-toggle--pressed')).not.toBeNull();
+    });
+
     it('applies the size class', () => {
         host.size.set('lg');
         fixture.detectChanges();
@@ -85,23 +92,9 @@ describe('ZyraToggle', () => {
         expect(fixture.nativeElement.querySelector('.zyr-toggle--lg')).not.toBeNull();
     });
 
-    it('renders label on the right by default', () => {
-        const label: HTMLElement = fixture.nativeElement.querySelector('.zyr-toggle__label');
-        const track: HTMLElement = fixture.nativeElement.querySelector('.zyr-toggle__track');
-        expect(
-            label.compareDocumentPosition(track) & Node.DOCUMENT_POSITION_PRECEDING,
-        ).toBeTruthy();
-    });
-
-    it('renders label on the left when labelPosition is left', () => {
-        host.labelPosition.set('left');
-        fixture.detectChanges();
-
-        const label: HTMLElement = fixture.nativeElement.querySelector('.zyr-toggle__label');
-        const track: HTMLElement = fixture.nativeElement.querySelector('.zyr-toggle__track');
-        expect(
-            label.compareDocumentPosition(track) & Node.DOCUMENT_POSITION_FOLLOWING,
-        ).toBeTruthy();
+    it('applies the aria-label', () => {
+        const button: HTMLButtonElement = fixture.nativeElement.querySelector('.zyr-toggle');
+        expect(button.getAttribute('aria-label')).toBe('Bold');
     });
 
     it('supports CVA writeValue', () => {
@@ -109,7 +102,7 @@ describe('ZyraToggle', () => {
         instance.writeValue(true);
         fixture.detectChanges();
 
-        expect(instance.checked()).toBeTrue();
+        expect(instance.pressed()).toBeTrue();
     });
 
     it('supports CVA setDisabledState', () => {

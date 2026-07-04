@@ -1,41 +1,28 @@
-.zyr-spinner {
+﻿.zyr-spinner {
     display: inline-block;
     border-style: solid;
     border-radius: 50%;
     animation: zyr-spin 0.7s linear infinite;
     flex-shrink: 0;
 
-    /* ── Border widths by size ────────────────────────────────── */
-    &--xs {
-        border-width: 1.5px;
-    }
+    &--xs { border-width: 1.5px; }
+    &--sm { border-width: 2px; }
+    &--md { border-width: 2.5px; }
+    &--lg { border-width: 3px; }
 
-    &--sm {
-        border-width: 2px;
-    }
-
-    &--md {
-        border-width: 2.5px;
-    }
-
-    &--lg {
-        border-width: 3px;
-    }
-
-    /* ── Colors ──────────────────────────────────────────────── */
     &--accent {
-        border-color: var(--zyr-accent-muted);
-        border-top-color: var(--zyr-accent);
+        border-color: var(--zyra-accent-muted);
+        border-top-color: var(--zyra-accent);
     }
 
     &--accent-2 {
-        border-color: var(--zyr-accent-2-muted);
-        border-top-color: var(--zyr-accent-2);
+        border-color: var(--zyra-accent-2-muted);
+        border-top-color: var(--zyra-accent-2);
     }
 
     &--white {
-        border-color: var(--zyr-spinner-inverse-track);
-        border-top-color: var(--zyr-spinner-inverse-head);
+        border-color: var(--zyra-spinner-inverse-track);
+        border-top-color: var(--zyra-spinner-inverse-head);
     }
 
     &--current {
@@ -43,4 +30,8 @@
         border-top-color: currentColor;
         opacity: 0.85;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zyr-spinner { animation: none; }
 }

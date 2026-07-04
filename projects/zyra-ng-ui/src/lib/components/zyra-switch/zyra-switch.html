@@ -1,0 +1,22 @@
+<label [class]="hostClass()" [for]="switchId">
+    @if (label() && labelPosition() === 'left') {
+        <span class="zyr-switch__label">{{ label() }}</span>
+    }
+
+    <button
+        [id]="switchId"
+        class="zyr-switch__track"
+        type="button"
+        role="switch"
+        [attr.aria-checked]="checked()"
+        [attr.aria-label]="label() ? null : 'Switch'"
+        [disabled]="isDisabled() || null"
+        (click)="toggle()"
+    >
+        <span class="zyr-switch__thumb"></span>
+    </button>
+
+    @if (label() && labelPosition() === 'right') {
+        <span class="zyr-switch__label">{{ label() }}</span>
+    }
+</label>

@@ -1,6 +1,6 @@
-:host {
+﻿:host {
     display: block;
-    border-bottom: 1px solid var(--zyr-border);
+    border-bottom: 1px solid var(--zyra-border);
 
     &:last-child {
         border-bottom: none;
@@ -21,16 +21,16 @@
         background: none;
         border: none;
         cursor: pointer;
-        color: var(--zyr-text);
-        font-family: var(--zyr-font-body);
+        color: var(--zyra-text);
+        font-family: var(--zyra-font-body);
         font-size: 14px;
         font-weight: 500;
         line-height: 1.4;
         text-align: left;
-        transition: color var(--zyr-transition-base);
+        transition: color var(--zyra-transition-base);
 
         &:hover {
-            color: var(--zyr-accent);
+            color: var(--zyra-accent);
         }
 
         &--disabled {
@@ -38,14 +38,14 @@
             cursor: not-allowed;
 
             &:hover {
-                color: var(--zyr-text);
+                color: var(--zyra-text);
             }
         }
 
         &:focus-visible {
-            outline: 2px solid var(--zyr-accent);
+            outline: 2px solid var(--zyra-accent);
             outline-offset: 2px;
-            border-radius: var(--zyr-radius-xs);
+            border-radius: var(--zyra-radius-xs);
         }
     }
 
@@ -55,8 +55,8 @@
 
     &__chevron {
         flex-shrink: 0;
-        color: var(--zyr-text-muted);
-        transition: transform var(--zyr-transition-base);
+        color: var(--zyra-text-muted);
+        transition: transform var(--zyra-transition-base);
         display: flex;
         align-items: center;
     }
@@ -65,7 +65,7 @@
     &__panel {
         display: grid;
         grid-template-rows: 0fr;
-        transition: grid-template-rows var(--zyr-transition-base);
+        transition: grid-template-rows var(--zyra-transition-base);
         overflow: hidden;
     }
 
@@ -73,7 +73,7 @@
         overflow: hidden;
         font-size: 14px;
         line-height: 1.7;
-        color: var(--zyr-text-muted);
+        color: var(--zyra-text-muted);
     }
 
     // ── Open state ────────────────────────────────────────────

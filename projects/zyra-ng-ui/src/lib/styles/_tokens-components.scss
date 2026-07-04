@@ -1,0 +1,130 @@
+﻿// Tier 3: Component tokens — per-component namespaced aliases over Tier 1.
+// All values reference semantic tokens (Tier 1), never raw foundation tokens directly.
+:root,
+[data-theme='light'],
+[data-theme='dark'] {
+
+	// ── Button ───────────────────────────────────────────────
+	--zyra-btn-primary-bg: var(--zyra-accent);
+	--zyra-btn-primary-border: var(--zyra-accent-border);
+	--zyra-btn-primary-hover-bg: var(--zyra-accent-hover);
+	--zyra-btn-secondary-bg: var(--zyra-surface-inset);
+	--zyra-btn-secondary-text: var(--zyra-text);
+	--zyra-btn-secondary-border: var(--zyra-border);
+	--zyra-btn-secondary-hover-bg: var(--zyra-bg-raised);
+	--zyra-btn-secondary-hover-border: var(--zyra-border-hover);
+	--zyra-btn-ghost-text: var(--zyra-text-muted);
+	--zyra-btn-ghost-hover-bg: transparent;
+	--zyra-btn-ghost-hover-text: var(--zyra-text);
+	--zyra-btn-danger-bg: var(--zyra-danger-muted);
+	--zyra-btn-danger-text: var(--zyra-danger);
+	--zyra-btn-danger-border: var(--zyra-danger-border);
+	--zyra-btn-danger-hover-bg: var(--zyra-danger);
+	--zyra-btn-danger-hover-text: var(--zyra-text-inverse);
+	--zyra-btn-danger-hover-border: var(--zyra-danger);
+	--zyra-btn-outline-hover-bg: var(--zyra-accent-muted);
+	--zyra-btn-outline-hover-border: var(--zyra-accent);
+	--zyra-btn-disabled-opacity: 0.42;
+	--zyra-btn-focus-ring: var(--zyra-ring);
+
+	// ── Card & Glow ──────────────────────────────────────────
+	// --zyra-glow is defined per-theme as RGB channels ("0, 234, 255")
+	// enabling rgba(var(--zyra-glow), 0.4) composition.
+	--zyra-card-border: var(--zyra-border);
+	--zyra-card-hover-border: var(--zyra-border-hover);
+	--zyra-card-radius: 20px;
+	--zyra-card-focus-ring: var(--zyra-ring);
+	--zyra-glow-border: rgba(var(--zyra-glow), 0.46);
+	--zyra-glow-shadow: 0 24px 70px rgba(var(--zyra-glow), 0.18);
+	--zyra-glow-shadow-strong: 0 18px 46px rgba(var(--zyra-glow), 0.26);
+	--zyra-glow-surface: rgba(var(--zyra-glow), 0.1);
+
+	// ── Avatar ───────────────────────────────────────────────
+	--zyra-avatar-primary-end: var(--zyra-accent-2);
+	--zyra-avatar-blue-end: var(--zyra-accent);
+	--zyra-avatar-purple-end: var(--zyra-accent-2);
+	--zyra-avatar-warm-end: var(--zyra-danger);
+	--zyra-avatar-contrast: var(--zyra-btn-primary-text);
+
+	// ── Checkbox ─────────────────────────────────────────────
+	--zyra-checkbox-bg: var(--zyra-input-bg);
+	--zyra-checkbox-border: var(--zyra-input-border);
+	--zyra-checkbox-focus-shadow: var(--zyra-input-shadow-focus);
+	--zyra-checkbox-checked-bg: var(--zyra-accent);
+	--zyra-checkbox-checked-border: var(--zyra-accent);
+	--zyra-checkbox-mark: var(--zyra-text-inverse);
+
+	// ── Radio ────────────────────────────────────────────────
+	--zyra-radio-bg: var(--zyra-input-bg);
+	--zyra-radio-border: var(--zyra-input-border);
+	--zyra-radio-focus-shadow: var(--zyra-input-shadow-focus);
+	--zyra-radio-checked-border: var(--zyra-accent);
+	--zyra-radio-checked-bg: var(--zyra-accent-muted);
+	--zyra-radio-dot: var(--zyra-accent);
+
+	// ── Switch ───────────────────────────────────────────────
+	--zyra-switch-track-off: var(--zyra-border-strong);
+	--zyra-switch-track-on: var(--zyra-accent);
+	--zyra-switch-ring: var(--zyra-accent-muted);
+
+	// ── Toggle (button-press) ─────────────────────────────────
+	--zyra-toggle-border: var(--zyra-border-strong);
+	--zyra-toggle-bg-on: var(--zyra-accent-muted);
+	--zyra-toggle-fg-on: var(--zyra-accent);
+	--zyra-toggle-ring: var(--zyra-accent-muted);
+
+	// ── Form-field ───────────────────────────────────────────
+	--zyra-field-label-font: var(--zyra-font-mono);
+	--zyra-field-label-color: var(--zyra-foreground-muted);
+	--zyra-field-required-mark: var(--zyra-danger);
+	--zyra-field-icon-color: var(--zyra-foreground-subtle);
+	--zyra-field-bg: var(--zyra-input-bg);
+	--zyra-field-border: var(--zyra-input-border);
+	--zyra-field-filled-bg: var(--zyra-surface-inset);
+	--zyra-field-focus-border: var(--zyra-accent);
+	--zyra-field-focus-shadow: var(--zyra-input-shadow-focus);
+	--zyra-field-hint-color: var(--zyra-foreground-muted);
+	--zyra-field-counter-color: var(--zyra-foreground-subtle);
+	--zyra-field-counter-warn: var(--zyra-warning);
+	--zyra-field-counter-error: var(--zyra-danger);
+	--zyra-field-success-color: var(--zyra-success);
+	--zyra-field-success-shadow: var(--zyra-success-muted);
+	--zyra-field-error-color: var(--zyra-danger);
+	--zyra-field-error-shadow: var(--zyra-danger-muted);
+
+	// ── Select ───────────────────────────────────────────────
+	--zyra-select-text: var(--zyra-foreground);
+	--zyra-select-placeholder: var(--zyra-foreground-subtle);
+	--zyra-select-icon: var(--zyra-foreground-subtle);
+	--zyra-select-bg: var(--zyra-input-bg);
+	--zyra-select-border: var(--zyra-input-border);
+	--zyra-select-filled-bg: var(--zyra-surface-inset);
+	--zyra-select-focus-border: var(--zyra-accent);
+	--zyra-select-focus-shadow: var(--zyra-input-shadow-focus);
+	--zyra-select-panel-bg: var(--zyra-surface-dropdown);
+	--zyra-select-panel-border: var(--zyra-border-color);
+	--zyra-select-panel-shadow: var(--zyra-shadow-md);
+
+	// ── Tabs ─────────────────────────────────────────────────
+	--zyra-tabs-text: var(--zyra-foreground-muted);
+	--zyra-tabs-text-hover: var(--zyra-foreground);
+	--zyra-tabs-text-active: var(--zyra-accent);
+	--zyra-tabs-border: var(--zyra-border-color);
+	--zyra-tabs-indicator: var(--zyra-accent);
+	--zyra-tabs-badge-bg: var(--zyra-accent-muted);
+	--zyra-tabs-badge-text: var(--zyra-accent);
+	--zyra-tabs-badge-active-bg: var(--zyra-accent);
+	--zyra-tabs-badge-active-text: var(--zyra-on-brand);
+	--zyra-tabs-pill-active-bg: var(--zyra-pill-active-bg);
+	--zyra-tabs-pill-active-shadow: var(--zyra-pill-active-shadow);
+
+	// ── Progress ─────────────────────────────────────────────
+	--zyra-progress-track-bg: var(--zyra-surface-inset);
+	--zyra-progress-track-border: var(--zyra-border-color);
+	--zyra-progress-label-color: var(--zyra-foreground-muted);
+	--zyra-progress-default: var(--zyra-accent);
+	--zyra-progress-success: var(--zyra-success);
+	--zyra-progress-warning: var(--zyra-warning);
+	--zyra-progress-danger: var(--zyra-danger);
+	--zyra-progress-info: var(--zyra-info);
+}

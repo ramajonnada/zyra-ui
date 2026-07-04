@@ -10,56 +10,47 @@ import {
     signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ZyraIcon as ZyraIconComponent } from '../../internal/zyra-icon/zyra-icon';
-import { check, minus } from '../../shared/zyra-icons';
 
-export type CheckboxSize = 'sm' | 'md' | 'lg';
-
-let checkboxIdCounter = 0;
+export type SwitchSize = 'sm' | 'md' | 'lg';
 
 @Component({
-    selector: 'zyra-checkbox',
+    selector: 'zyra-switch',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ZyraIconComponent],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ZyraCheckbox),
+            useExisting: forwardRef(() => ZyraSwitch),
             multi: true,
         },
     ],
-    templateUrl: './zyra-checkbox.html',
-    styleUrl: './zyra-checkbox.scss',
+    templateUrl: './zyra-switch.html',
+    styleUrl: './zyra-switch.scss',
 })
-export class ZyraCheckbox implements ControlValueAccessor {
+export class ZyraSwitch implements ControlValueAccessor {
     // ── Inputs ────────────────────────────────────────────────
     checked = model<boolean>(false);
+    size = input<SwitchSize>('md');
     disabled = input(false, { transform: booleanAttribute });
-    indeterminate = input(false, { transform: booleanAttribute });
     label = input<string>('');
     labelPosition = input<'left' | 'right'>('right');
-    size = input<CheckboxSize>('md');
 
     // ── Outputs ───────────────────────────────────────────────
     changed = output<boolean>();
 
-    // ── Unique ID ─────────────────────────────────────────────
-    readonly checkboxId = `zyr-checkbox-${++checkboxIdCounter}`;
+    // ── ID for label association ──────────────────────────────
+    readonly switchId = `zyr-switch-${Math.random().toString(36).slice(2, 9)}`;
 
-    // ── CVA disabled state ────────────────────────────────────
+    // ── CVA state ─────────────────────────────────────────────
     private _cvaDisabled = signal(false);
-    readonly isDisabled = computed(() => this.disabled() || this._cvaDisabled());
 
-    readonly icons = { check, minus };
+    // ── Computed ──────────────────────────────────────────────
+    isDisabled = computed(() => this.disabled() || this._cvaDisabled());
 
-    readonly hostClass = computed(() => {
-        const parts = ['zyr-checkbox', `zyr-checkbox--${this.size()}`];
-        if (this.isDisabled()) parts.push('zyr-checkbox--disabled');
-        if (this.checked()) parts.push('zyr-checkbox--checked');
-        if (this.indeterminate()) parts.push('zyr-checkbox--indeterminate');
-        return parts.join(' ');
-    });
+    hostClass = computed(
+        () =>
+            `zyr-switch zyr-switch--${this.size()}${this.isDisabled() ? ' zyr-switch--disabled' : ''}`,
+    );
 
     // ── CVA callbacks ─────────────────────────────────────────
     private _onChange: (val: boolean) => void = () => undefined;
@@ -68,17 +59,20 @@ export class ZyraCheckbox implements ControlValueAccessor {
     writeValue(val: boolean): void {
         this.checked.set(!!val);
     }
-    registerOnChange(fn: (v: boolean) => void): void {
+
+    registerOnChange(fn: (val: boolean) => void): void {
         this._onChange = fn;
     }
+
     registerOnTouched(fn: () => void): void {
         this._onTouched = fn;
     }
-    setDisabledState(disabled: boolean): void {
-        this._cvaDisabled.set(disabled);
+
+    setDisabledState(isDisabled: boolean): void {
+        this._cvaDisabled.set(isDisabled);
     }
 
-    // ── Toggle ────────────────────────────────────────────────
+    // ── Methods ───────────────────────────────────────────────
     toggle(): void {
         if (this.isDisabled()) return;
         const next = !this.checked();

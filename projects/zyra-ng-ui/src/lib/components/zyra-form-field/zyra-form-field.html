@@ -13,10 +13,10 @@
 
     <!-- ── Field row ──────────────────────────────────────────── -->
     <div class="zyra-form-field__field-row">
-        <!-- Prefix: FontAwesome icon, text, or custom [zyrPrefix] slot -->
-        @if (prefixIconDefinition) {
+        <!-- Prefix: Lucide icon, text, or custom [zyrPrefix] slot -->
+        @if (prefixIconData) {
             <span class="zyra-form-field__prefix" aria-hidden="true">
-                <fa-icon [icon]="prefixIconDefinition" />
+                <zyra-icon [img]="prefixIconData" />
             </span>
         } @else if (prefixIconText) {
             <span class="zyra-form-field__prefix" aria-hidden="true">
@@ -50,7 +50,7 @@
                     [title]="showingPassword ? 'Hide password' : 'Show password'"
                     (click)="onTogglePassword()"
                 >
-                    <fa-icon [icon]="showingPassword ? icons.eyeSlash : icons.eye" />
+                    <zyra-icon [img]="showingPassword ? icons.eyeSlash : icons.eye" />
                 </button>
 
                 <!-- 3. Clear button — shown when field has value -->
@@ -63,7 +63,7 @@
                     title="Clear field"
                     (click)="onClear()"
                 >
-                    <fa-icon [icon]="icons.xmark" />
+                    <zyra-icon [img]="icons.xmark" />
                 </button>
 
                 <!-- 4. Validation status icons — after touched -->
@@ -72,20 +72,20 @@
                     class="zyra-form-field__status-icon zyra-form-field__status-icon--success"
                     aria-hidden="true"
                 >
-                    <fa-icon [icon]="icons.check" />
+                    <zyra-icon [img]="icons.check" />
                 </span>
             } @else if (isTouched && showError) {
                 <span
                     class="zyra-form-field__status-icon zyra-form-field__status-icon--error"
                     aria-hidden="true"
                 >
-                    <fa-icon [icon]="icons.xmark" />
+                    <zyra-icon [img]="icons.xmark" />
                 </span>
 
                 <!-- 5. Static suffix icon -->
-            } @else if (suffixIconDefinition) {
+            } @else if (suffixIconData) {
                 <span class="zyra-form-field__suffix-icon" aria-hidden="true">
-                    <fa-icon [icon]="suffixIconDefinition" />
+                    <zyra-icon [img]="suffixIconData" />
                 </span>
             } @else if (suffixIconText) {
                 <span class="zyra-form-field__suffix-icon" aria-hidden="true">

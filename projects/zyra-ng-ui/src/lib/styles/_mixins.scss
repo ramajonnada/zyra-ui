@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // ZYRA NG UI - Mixins (_mixins.scss)
 // Shared SCSS mixins for common component patterns.
 // Usage in component files: @use '../../styles/mixins' as *;
@@ -9,8 +9,8 @@
     &:focus-visible {
         outline-offset: $offset;
         box-shadow:
-            0 0 0 3px var(--zyr-focus-ring),
-            var(--zyr-glow-shadow-strong);
+            0 0 0 3px var(--zyra-focus-ring),
+            var(--zyra-glow-shadow-strong);
     }
 }
 
@@ -26,8 +26,8 @@
         inset: -1px;
         z-index: 0;
         opacity: 0;
-        background: radial-gradient(circle at 50% 100%, var(--zyr-glow-surface), transparent 68%);
-        transition: opacity var(--zyr-transition-base);
+        background: radial-gradient(circle at 50% 100%, var(--zyra-glow-surface), transparent 68%);
+        transition: opacity var(--zyra-transition-base);
         pointer-events: none;
     }
 
@@ -39,13 +39,13 @@
 // Interactive element base — hover glow border + shadow
 @mixin interactive-hover {
     &:hover:not(:disabled) {
-        border-color: var(--zyr-glow-border);
-        box-shadow: var(--zyr-glow-shadow-strong);
+        border-color: var(--zyra-glow-border);
+        box-shadow: var(--zyra-glow-shadow-strong);
     }
 }
 
 // Disabled state
-@mixin disabled($opacity: var(--zyr-btn-disabled-opacity)) {
+@mixin disabled($opacity: var(--zyra-btn-disabled-opacity)) {
     opacity: $opacity;
     cursor: not-allowed;
     pointer-events: none;

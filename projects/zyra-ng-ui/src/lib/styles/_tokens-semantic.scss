@@ -1,0 +1,62 @@
+﻿// Tier 1: Semantic tokens — role-based aliases over raw theme primitives.
+// References tokens from _dark-theme.scss and _light-theme.scss, which load
+// after this file in index.scss. CSS custom properties resolve lazily at
+// computed-value time, so forward references are safe.
+:root,
+[data-theme='light'],
+[data-theme='dark'] {
+
+    // ── Focus ────────────────────────────────────────────────
+    // --zyra-focus-ring is defined per-theme with WCAG-passing alpha (≥0.45).
+    // Do not set it here — theme overrides in dark/light-theme.scss apply first.
+    --zyra-ring: var(--zyra-focus-ring);
+
+    // ── Canvas / Background ──────────────────────────────────
+    --zyra-background:          var(--zyra-bg-app);
+    --zyra-background-elevated: var(--zyra-bg-panel);
+
+    // ── Surface ──────────────────────────────────────────────
+    --zyra-surface:          var(--zyra-card-bg);
+    --zyra-surface-subtle:   var(--zyra-card-section-bg);
+    --zyra-surface-inset:    var(--zyra-bg-surface);
+    --zyra-surface-dropdown: var(--zyra-card-bg);
+    --zyra-overlay-scrim:    var(--zyra-overlay-bg);
+
+    // ── Foreground / Text ────────────────────────────────────
+    --zyra-foreground:        var(--zyra-text);
+    --zyra-foreground-muted:  var(--zyra-text-muted);
+    --zyra-foreground-subtle: var(--zyra-text-dim);
+
+    // ── Brand / Primary ──────────────────────────────────────
+    --zyra-primary:        var(--zyra-accent);
+    --zyra-primary-hover:  var(--zyra-accent-hover);
+    --zyra-primary-subtle: var(--zyra-accent-muted);
+    --zyra-primary-border: var(--zyra-accent-border);
+
+    // ── Border ───────────────────────────────────────────────
+    --zyra-border-color:        var(--zyra-border);
+    --zyra-border-strong-color: var(--zyra-border-strong);
+
+    // ── Status: foreground / subtle bg / border ───────────────
+    --zyra-success-foreground:   var(--zyra-success);
+    --zyra-success-subtle:       var(--zyra-success-muted);
+    --zyra-success-border-color: var(--zyra-success-border);
+    --zyra-warning-foreground:   var(--zyra-warning);
+    --zyra-warning-subtle:       var(--zyra-warning-muted);
+    --zyra-warning-border-color: var(--zyra-warning-border);
+    --zyra-danger-foreground:    var(--zyra-danger);
+    --zyra-danger-subtle:        var(--zyra-danger-muted);
+    --zyra-danger-border-color:  var(--zyra-danger-border);
+    --zyra-info-foreground:      var(--zyra-info);
+    --zyra-info-subtle:          var(--zyra-info-muted);
+    --zyra-info-border-color:    var(--zyra-info-border);
+
+    // ── "on-*" role tokens ───────────────────────────────────
+    // Text/icon color for content placed ON a filled semantic background.
+    // --zyra-on-brand resolves per-theme via --zyra-btn-primary-text (lazy ref).
+    --zyra-on-brand:   var(--zyra-btn-primary-text);
+    --zyra-on-success: #ffffff;
+    --zyra-on-warning: #1a0e00;
+    --zyra-on-danger:  #ffffff;
+    --zyra-on-info:    #ffffff;
+}

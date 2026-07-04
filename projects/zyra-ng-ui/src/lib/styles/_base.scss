@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // ZYRA NG UI - Base Styles (_base.scss)
 // Global resets and base styles using design tokens
 // ============================================================
@@ -13,26 +13,26 @@
 
 html {
     scroll-behavior: smooth;
-    background-color: var(--zyr-background);
+    background-color: var(--zyra-background);
 }
 
 body {
     min-height: 100vh;
-    background-color: var(--zyr-background);
-    color: var(--zyr-foreground);
-    font-family: var(--zyr-font-body);
+    background-color: var(--zyra-background);
+    color: var(--zyra-foreground);
+    font-family: var(--zyra-font-body);
     font-size: 15px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition:
-        background-color var(--zyr-transition-slow),
-        color var(--zyr-transition-slow);
+        background-color var(--zyra-transition-slow),
+        color var(--zyra-transition-slow);
 }
 
 ::selection {
-    background: var(--zyr-primary-subtle);
-    color: var(--zyr-foreground);
+    background: var(--zyra-primary-subtle);
+    color: var(--zyra-foreground);
 }
 
 *::-webkit-scrollbar {
@@ -41,11 +41,11 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-    background: var(--zyr-scrollbar-track);
+    background: var(--zyra-scrollbar-track);
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--zyr-scrollbar-thumb);
+    background: var(--zyra-scrollbar-thumb);
     border-radius: 3px;
 }
 
@@ -55,21 +55,21 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: var(--zyr-font-display);
-    color: var(--zyr-foreground);
+    font-family: var(--zyra-font-display);
+    color: var(--zyra-foreground);
     line-height: 1.15;
     letter-spacing: -0.01em;
 }
 
 p {
-    color: var(--zyr-foreground-muted);
+    color: var(--zyra-foreground-muted);
     line-height: 1.7;
 }
 
 a {
-    color: var(--zyr-primary);
+    color: var(--zyra-primary);
     text-decoration: none;
-    transition: opacity var(--zyr-transition-fast);
+    transition: opacity var(--zyra-transition-fast);
 
     &:hover {
         opacity: 0.8;
@@ -79,7 +79,7 @@ a {
 code,
 pre,
 kbd {
-    font-family: var(--zyr-font-mono);
+    font-family: var(--zyra-font-mono);
 }
 
 img,
@@ -90,7 +90,7 @@ svg {
 
 button {
     cursor: pointer;
-    font-family: var(--zyr-font-body);
+    font-family: var(--zyra-font-body);
 }
 
 input,
@@ -101,7 +101,7 @@ select {
 }
 
 :focus-visible {
-    outline: 2px solid var(--zyr-primary);
+    outline: 2px solid var(--zyra-primary);
     outline-offset: 2px;
     border-radius: 3px;
 }
@@ -111,9 +111,9 @@ select {
 .zyra-theme-light,
 .zyra-theme-dark {
     transition:
-        background-color var(--zyr-transition-slow),
-        border-color var(--zyr-transition-slow),
-        color var(--zyr-transition-slow);
+        background-color var(--zyra-transition-slow),
+        border-color var(--zyra-transition-slow),
+        color var(--zyra-transition-slow);
 }
 
 .sr-only {

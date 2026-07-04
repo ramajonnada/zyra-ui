@@ -1,117 +1,103 @@
-.zyr-chip {
+﻿.zyr-chip {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    border-radius: var(--zyr-radius-full);
+    border-radius: var(--zyra-radius-full);
     border: 1px solid;
-    font-family: var(--zyr-font-body);
+    font-family: var(--zyra-font-body);
     font-weight: 500;
     white-space: nowrap;
     transition:
-        background var(--zyr-transition-fast),
-        border-color var(--zyr-transition-fast),
-        color var(--zyr-transition-fast),
-        box-shadow var(--zyr-transition-fast);
+        background var(--zyra-transition-fast),
+        border-color var(--zyra-transition-fast),
+        color var(--zyra-transition-fast),
+        box-shadow var(--zyra-transition-fast);
 
-    // ── Sizes ─────────────────────────────────────────────────
     &--sm {
         padding: 2px 8px;
         font-size: 11px;
 
-        .zyr-chip__dismiss {
-            font-size: 14px;
-        }
+        .zyr-chip__dismiss { font-size: 14px; }
     }
 
     &--md {
         padding: 4px 10px;
         font-size: 13px;
 
-        .zyr-chip__dismiss {
-            font-size: 16px;
-        }
+        .zyr-chip__dismiss { font-size: 16px; }
     }
 
     &--lg {
         padding: 6px 14px;
         font-size: 14px;
 
-        .zyr-chip__dismiss {
-            font-size: 18px;
-        }
+        .zyr-chip__dismiss { font-size: 18px; }
     }
 
-    // ── Variants ──────────────────────────────────────────────
     &--default {
-        background: var(--zyr-bg-3);
-        color: var(--zyr-text-muted);
-        border-color: var(--zyr-border);
+        background: var(--zyra-surface-inset);
+        color: var(--zyra-text-muted);
+        border-color: var(--zyra-border);
     }
 
     &--success {
-        background: var(--zyr-success-muted);
-        color: var(--zyr-success);
-        border-color: var(--zyr-success-border);
+        background: var(--zyra-success-muted);
+        color: var(--zyra-success);
+        border-color: var(--zyra-success-border);
     }
 
     &--warning {
-        background: var(--zyr-warning-muted);
-        color: var(--zyr-warning);
-        border-color: var(--zyr-warning-border);
+        background: var(--zyra-warning-muted);
+        color: var(--zyra-warning);
+        border-color: var(--zyra-warning-border);
     }
 
     &--danger {
-        background: var(--zyr-danger-muted);
-        color: var(--zyr-danger);
-        border-color: var(--zyr-danger-border);
+        background: var(--zyra-danger-muted);
+        color: var(--zyra-danger);
+        border-color: var(--zyra-danger-border);
     }
 
     &--info {
-        background: var(--zyr-info-muted);
-        color: var(--zyr-info);
-        border-color: var(--zyr-info-border);
+        background: var(--zyra-info-muted);
+        color: var(--zyra-info);
+        border-color: var(--zyra-info-border);
     }
 
     &--purple {
-        background: var(--zyr-accent-3-muted);
-        color: var(--zyr-accent-3);
-        border-color: var(--zyr-accent-3-border);
+        background: var(--zyra-accent-3-muted);
+        color: var(--zyra-accent-3);
+        border-color: var(--zyra-accent-3-border);
     }
 
-    // ── Selectable ────────────────────────────────────────────
     &--selectable {
         cursor: pointer;
 
         &:hover:not(.zyr-chip--disabled) {
-            border-color: var(--zyr-accent);
-            box-shadow: 0 0 0 2px var(--zyr-accent-muted);
+            border-color: var(--zyra-accent);
+            box-shadow: 0 0 0 2px var(--zyra-accent-muted);
         }
 
         &:focus-visible {
             outline: none;
-            box-shadow: 0 0 0 3px var(--zyr-accent-muted);
+            box-shadow: 0 0 0 3px var(--zyra-accent-muted);
         }
     }
 
     &--selected {
-        background: var(--zyr-accent-muted);
-        color: var(--zyr-accent);
-        border-color: var(--zyr-accent);
+        background: var(--zyra-accent-muted);
+        color: var(--zyra-accent);
+        border-color: var(--zyra-accent);
     }
 
-    // ── Disabled ──────────────────────────────────────────────
     &--disabled {
         opacity: 0.42;
         cursor: not-allowed;
         pointer-events: none;
     }
 
-    // ── Label ─────────────────────────────────────────────────
-    &__label {
-        line-height: 1;
-    }
+    &__label { line-height: 1; }
 
-    // ── Dismiss button ────────────────────────────────────────
     &__dismiss {
         display: inline-flex;
         align-items: center;
@@ -124,10 +110,8 @@
         opacity: 0.6;
         cursor: pointer;
         line-height: 1;
-        transition: opacity var(--zyr-transition-fast);
+        transition: opacity var(--zyra-transition-fast);
 
-        &:hover {
-            opacity: 1;
-        }
+        &:hover { opacity: 1; }
     }
 }

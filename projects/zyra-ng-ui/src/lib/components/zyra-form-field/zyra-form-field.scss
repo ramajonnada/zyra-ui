@@ -1,39 +1,34 @@
-// projects/zyra-ng-ui/src/lib/form-field/zyra-form-field.scss
-
-.zyra-form-field {
+﻿.zyra-form-field {
     display: flex;
     flex-direction: column;
     gap: 6px;
     width: 100%;
 
-    // ── Label ───────────────────────────────────────────────────
     &__label {
-        font-family: var(--zyr-font-mono);
+        font-family: var(--zyra-field-label-font);
         font-size: 12px;
         font-weight: 500;
-        color: var(--zyr-foreground-muted);
-        transition: color var(--zyr-transition-base);
+        color: var(--zyra-field-label-color);
+        transition: color var(--zyra-transition-base);
         line-height: 1;
     }
 
     &__required {
-        color: var(--zyr-danger);
+        color: var(--zyra-field-required-mark);
         margin-left: 3px;
     }
 
-    // ── Field row ────────────────────────────────────────────────
     &__field-row {
         position: relative;
         display: flex;
         align-items: center;
-        border-radius: var(--zyr-radius-md);
+        border-radius: var(--zyra-radius-md);
         transition:
-            border-color var(--zyr-transition-base),
-            box-shadow var(--zyr-transition-base),
-            background var(--zyr-transition-slow);
+            border-color var(--zyra-transition-base),
+            box-shadow var(--zyra-transition-base),
+            background var(--zyra-transition-slow);
     }
 
-    // ── Input wrap ───────────────────────────────────────────────
     &__input-wrap {
         flex: 1;
         min-width: 0;
@@ -41,17 +36,15 @@
         align-items: center;
     }
 
-    // ── Prefix ───────────────────────────────────────────────────
     &__prefix {
         display: flex;
         align-items: center;
         flex-shrink: 0;
-        color: var(--zyr-foreground-subtle);
+        color: var(--zyra-field-icon-color);
         pointer-events: none;
-        transition: color var(--zyr-transition-base);
+        transition: color var(--zyra-transition-base);
     }
 
-    // ── Suffix ───────────────────────────────────────────────────
     &__suffix {
         display: flex;
         align-items: center;
@@ -59,9 +52,9 @@
     }
 
     &__suffix-icon {
-        color: var(--zyr-foreground-subtle);
+        color: var(--zyra-field-icon-color);
         pointer-events: none;
-        transition: color var(--zyr-transition-base);
+        transition: color var(--zyra-transition-base);
     }
 
     &__prefix :where(svg),
@@ -73,7 +66,6 @@
         display: block;
     }
 
-    // ── Icon button (password toggle, clear) ─────────────────────
     &__icon-btn {
         display: flex;
         align-items: center;
@@ -81,32 +73,26 @@
         background: none;
         border: none;
         cursor: pointer;
-        color: var(--zyr-foreground-subtle);
+        color: var(--zyra-field-icon-color);
         padding: 0;
         line-height: 1;
-        transition: color var(--zyr-transition-base);
+        transition: color var(--zyra-transition-base);
 
-        &:hover {
-            color: var(--zyr-foreground);
-        }
+        &:hover { color: var(--zyra-foreground); }
     }
 
     &__clear-btn {
         font-size: 11px;
         font-weight: 700;
 
-        &:hover {
-            color: var(--zyr-danger);
-        }
+        &:hover { color: var(--zyra-field-error-color); }
     }
 
-    // ── Status icons ─────────────────────────────────────────────
     &__status-icon {
         font-weight: 700;
-        color: var(--zyr-foreground-subtle);
+        color: var(--zyra-field-icon-color);
     }
 
-    // ── Bottom row ───────────────────────────────────────────────
     &__bottom {
         display: flex;
         align-items: flex-start;
@@ -115,189 +101,128 @@
         min-height: 16px;
     }
 
-    &__messages {
-        flex: 1;
-    }
+    &__messages { flex: 1; }
 
     &__hint {
-        font-family: var(--zyr-font-mono);
+        font-family: var(--zyra-field-label-font);
         font-size: 11.5px;
-        color: var(--zyr-foreground-muted);
+        color: var(--zyra-field-hint-color);
         line-height: 1.4;
 
-        &--error {
-            color: var(--zyr-danger);
-        }
-
-        &--success {
-            color: var(--zyr-success);
-        }
+        &--error { color: var(--zyra-field-error-color); }
+        &--success { color: var(--zyra-field-success-color); }
     }
 
     &__counter {
-        font-family: var(--zyr-font-mono);
+        font-family: var(--zyra-field-label-font);
         font-size: 11px;
-        color: var(--zyr-foreground-subtle);
+        color: var(--zyra-field-counter-color);
         flex-shrink: 0;
-        transition: color var(--zyr-transition-base);
+        transition: color var(--zyra-transition-base);
 
-        &--warn {
-            color: var(--zyr-warning);
-        }
-
-        &--error {
-            color: var(--zyr-danger);
-            font-weight: 600;
-        }
+        &--warn { color: var(--zyra-field-counter-warn); }
+        &--error { color: var(--zyra-field-counter-error); font-weight: 600; }
     }
 
-    // ════════════════════════════════════════════════════════════
-    // ── APPEARANCES ─────────────────────────────────────────────
-    // ════════════════════════════════════════════════════════════
-
-    // ── Outline (default) ────────────────────────────────────────
     &--outline &__field-row {
-        background: var(--zyr-input-bg);
-        border: 1px solid var(--zyr-input-border);
+        background: var(--zyra-field-bg);
+        border: 1px solid var(--zyra-field-border);
     }
 
-    // ── Filled ───────────────────────────────────────────────────
     &--filled &__field-row {
-        background: var(--zyr-bg-3);
+        background: var(--zyra-field-filled-bg);
         border: 1px solid transparent;
-        border-bottom: 1px solid var(--zyr-input-border);
-        border-radius: var(--zyr-radius-md) var(--zyr-radius-md) 0 0;
+        border-bottom: 1px solid var(--zyra-field-border);
+        border-radius: var(--zyra-radius-md) var(--zyra-radius-md) 0 0;
     }
 
-    // ── Underline ────────────────────────────────────────────────
     &--underline &__field-row {
         background: transparent;
         border: none;
-        border-bottom: 1px solid var(--zyr-input-border);
+        border-bottom: 1px solid var(--zyra-field-border);
         border-radius: 0;
     }
 
-    // ════════════════════════════════════════════════════════════
-    // ── SIZES ────────────────────────────────────────────────────
-    // ════════════════════════════════════════════════════════════
-
     &--sm {
-        .zyra-form-field__field-row {
-            padding: 5px 10px;
-            gap: 6px;
-        }
+        .zyra-form-field__field-row { padding: 5px 10px; gap: 6px; }
 
         .zyra-form-field__prefix,
         .zyra-form-field__suffix-icon,
         .zyra-form-field__icon-btn,
-        .zyra-form-field__status-icon {
-            font-size: 13px;
-        }
+        .zyra-form-field__status-icon { font-size: 13px; }
 
-        .zyra-form-field__label {
-            font-size: 11px;
-        }
+        .zyra-form-field__label { font-size: 11px; }
     }
 
     &--md {
-        .zyra-form-field__field-row {
-            padding: 8px 14px;
-            gap: 8px;
-        }
+        .zyra-form-field__field-row { padding: 8px 14px; gap: 8px; }
 
         .zyra-form-field__prefix,
         .zyra-form-field__suffix-icon,
         .zyra-form-field__icon-btn,
-        .zyra-form-field__status-icon {
-            font-size: 15px;
-        }
+        .zyra-form-field__status-icon { font-size: 15px; }
 
-        .zyra-form-field__label {
-            font-size: 12px;
-        }
+        .zyra-form-field__label { font-size: 12px; }
     }
 
     &--lg {
-        .zyra-form-field__field-row {
-            padding: 11px 16px;
-            gap: 10px;
-        }
+        .zyra-form-field__field-row { padding: 11px 16px; gap: 10px; }
 
         .zyra-form-field__prefix,
         .zyra-form-field__suffix-icon,
         .zyra-form-field__icon-btn,
-        .zyra-form-field__status-icon {
-            font-size: 17px;
-        }
+        .zyra-form-field__status-icon { font-size: 17px; }
 
-        .zyra-form-field__label {
-            font-size: 13px;
-        }
+        .zyra-form-field__label { font-size: 13px; }
     }
 
-    // ════════════════════════════════════════════════════════════
-    // ── STATES ───────────────────────────────────────────────────
-    // ════════════════════════════════════════════════════════════
-
-    // Focused
     &--focused {
         &.zyra-form-field--outline .zyra-form-field__field-row,
         &.zyra-form-field--filled .zyra-form-field__field-row {
-            border-color: var(--zyr-accent);
-            box-shadow: var(--zyr-input-shadow-focus);
+            border-color: var(--zyra-field-focus-border);
+            box-shadow: var(--zyra-field-focus-shadow);
         }
 
         &.zyra-form-field--underline .zyra-form-field__field-row {
-            border-bottom-color: var(--zyr-accent);
-            box-shadow: 0 1px 0 0 var(--zyr-accent);
+            border-bottom-color: var(--zyra-field-focus-border);
+            box-shadow: 0 1px 0 0 var(--zyra-field-focus-border);
         }
 
-        .zyra-form-field__label {
-            color: var(--zyr-accent);
-        }
+        .zyra-form-field__label { color: var(--zyra-field-focus-border); }
     }
 
-    // Success
     &--success {
         &.zyra-form-field--outline .zyra-form-field__field-row,
         &.zyra-form-field--filled .zyra-form-field__field-row {
-            border-color: var(--zyr-success);
-            box-shadow: 0 0 0 3px var(--zyr-success-muted);
+            border-color: var(--zyra-field-success-color);
+            box-shadow: 0 0 0 3px var(--zyra-field-success-shadow);
         }
 
         &.zyra-form-field--underline .zyra-form-field__field-row {
-            border-bottom-color: var(--zyr-success);
+            border-bottom-color: var(--zyra-field-success-color);
         }
 
-        .zyra-form-field__label {
-            color: var(--zyr-success);
-        }
+        .zyra-form-field__label { color: var(--zyra-field-success-color); }
     }
 
-    // Error
     &--error {
         &.zyra-form-field--outline .zyra-form-field__field-row,
         &.zyra-form-field--filled .zyra-form-field__field-row {
-            border-color: var(--zyr-danger);
-            box-shadow: 0 0 0 3px var(--zyr-danger-muted);
+            border-color: var(--zyra-field-error-color);
+            box-shadow: 0 0 0 3px var(--zyra-field-error-shadow);
         }
 
         &.zyra-form-field--underline .zyra-form-field__field-row {
-            border-bottom-color: var(--zyr-danger);
+            border-bottom-color: var(--zyra-field-error-color);
         }
 
-        .zyra-form-field__label {
-            color: var(--zyr-danger);
-        }
+        .zyra-form-field__label { color: var(--zyra-field-error-color); }
     }
 
-    // Disabled
     &--disabled {
         opacity: 0.5;
         pointer-events: none;
 
-        .zyra-form-field__field-row {
-            cursor: not-allowed;
-        }
+        .zyra-form-field__field-row { cursor: not-allowed; }
     }
 }

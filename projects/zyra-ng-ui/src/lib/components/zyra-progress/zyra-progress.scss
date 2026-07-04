@@ -1,84 +1,57 @@
-@keyframes zyr-progress-indeterminate {
-    0% {
-        transform: translateX(-100%) scaleX(0.4);
-    }
-    50% {
-        transform: translateX(50%) scaleX(0.6);
-    }
-    100% {
-        transform: translateX(200%) scaleX(0.4);
-    }
+﻿@keyframes zyr-progress-indeterminate {
+    0% { transform: translateX(-100%) scaleX(0.4); }
+    50% { transform: translateX(50%) scaleX(0.6); }
+    100% { transform: translateX(200%) scaleX(0.4); }
 }
 
 .zyr-progress {
     min-width: 100px;
 
-    // ── Header ────────────────────────────────────────────────
     &__header {
         display: flex;
         justify-content: flex-end;
-        margin-bottom: var(--zyr-space-1);
+        margin-bottom: var(--zyra-space-1);
     }
 
     &__label {
         font-size: 11px;
-        font-family: var(--zyr-font-mono);
-        color: var(--zyr-text-muted);
+        font-family: var(--zyra-font-mono);
+        color: var(--zyra-progress-label-color);
     }
 
-    // ── Track ─────────────────────────────────────────────────
     &__track {
         min-width: 100px;
-        background: var(--zyr-bg-3);
-        border-radius: var(--zyr-radius-full);
+        background: var(--zyra-progress-track-bg);
+        border-radius: var(--zyra-radius-full);
         overflow: hidden;
-        border: 1px solid var(--zyr-border);
+        border: 1px solid var(--zyra-progress-track-border);
     }
 
-    // ── Bar ───────────────────────────────────────────────────
     &__bar {
         height: 100%;
-        border-radius: var(--zyr-radius-full);
-        transition: width var(--zyr-transition-base);
-        background: var(--zyr-progress-bar-bg);
+        border-radius: var(--zyra-radius-full);
+        transition: width var(--zyra-transition-base);
+        background: var(--zyra-progress-bar-bg);
     }
 
-    // ── Sizes ─────────────────────────────────────────────────
-    &--sm .zyr-progress__track {
-        height: 4px;
-    }
-    &--md .zyr-progress__track {
-        height: 8px;
-    }
-    &--lg .zyr-progress__track {
-        height: 12px;
-    }
+    &--sm .zyr-progress__track { height: 4px; }
+    &--md .zyr-progress__track { height: 8px; }
+    &--lg .zyr-progress__track { height: 12px; }
 
-    // ── Variants ──────────────────────────────────────────────
-    &--default {
-        --zyr-progress-bar-bg: var(--zyr-accent);
-    }
+    &--default { --zyra-progress-bar-bg: var(--zyra-progress-default); }
+    &--success { --zyra-progress-bar-bg: var(--zyra-progress-success); }
+    &--warning { --zyra-progress-bar-bg: var(--zyra-progress-warning); }
+    &--danger  { --zyra-progress-bar-bg: var(--zyra-progress-danger); }
+    &--info    { --zyra-progress-bar-bg: var(--zyra-progress-info); }
 
-    &--success {
-        --zyr-progress-bar-bg: var(--zyr-success);
-    }
-
-    &--warning {
-        --zyr-progress-bar-bg: var(--zyr-warning);
-    }
-
-    &--danger {
-        --zyr-progress-bar-bg: var(--zyr-danger);
-    }
-
-    &--info {
-        --zyr-progress-bar-bg: var(--zyr-info);
-    }
-
-    // ── Indeterminate ─────────────────────────────────────────
     &--indeterminate .zyr-progress__bar {
         width: 40%;
         animation: zyr-progress-indeterminate 1.4s ease-in-out infinite;
         transform-origin: left center;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zyr-progress__bar { transition: none; }
+    .zyr-progress--indeterminate .zyr-progress__bar { animation: none; }
 }

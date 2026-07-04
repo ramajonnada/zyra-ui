@@ -15,9 +15,9 @@
             <ng-content select="[slot=prefix]" />
         </span>
     }
-    @if (leftIconDefinition() && !loading()) {
+    @if (leftIconImg() && !loading()) {
         <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
-            <fa-icon [icon]="leftIconDefinition()!" />
+            <zyra-icon [img]="leftIconImg()!" />
         </span>
     } @else if (leftIconText() && !loading()) {
         <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
@@ -32,9 +32,9 @@
             <ng-content select="[slot=suffix]" />
         </span>
     }
-    @if (rightIconDefinition() && !loading()) {
+    @if (rightIconImg() && !loading()) {
         <span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
-            <fa-icon [icon]="rightIconDefinition()!" />
+            <zyra-icon [img]="rightIconImg()!" />
         </span>
     } @else if (rightIconText() && !loading()) {
         <span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">

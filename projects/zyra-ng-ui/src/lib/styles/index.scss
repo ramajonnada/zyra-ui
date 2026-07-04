@@ -2,9 +2,15 @@
 
 @forward 'mixins';
 
-@use 'shared-theme';
+@use 'tokens-primitives';
+@use 'tokens-dimension';
+@use 'tokens-semantic';
+@use 'tokens-components';
 @forward 'dark-theme';
 @forward 'light-theme';
+@forward 'ocean-theme';
+@forward 'amber-theme';
+@forward 'rose-theme';
 
 @use 'base';
 @use 'animations';

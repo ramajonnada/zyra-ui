@@ -1,6 +1,6 @@
 <div [class]="hostClass()">
     <span class="zyr-toast__icon" aria-hidden="true">
-        <fa-icon [icon]="icon()" />
+        <zyra-icon [img]="icon()" />
     </span>
     <div class="zyr-toast__content">
         <p class="zyr-toast__title">{{ toast().title }}</p>
@@ -14,6 +14,6 @@
         aria-label="Dismiss"
         (click)="toastService.dismiss(toast().id)"
     >
-        <fa-icon [icon]="closeIcon" />
+        <zyra-icon [img]="closeIcon" />
     </button>
 </div>

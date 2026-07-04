@@ -1,4 +1,4 @@
-.zyr-avatar {
+﻿.zyr-avatar {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -6,69 +6,44 @@
     border-radius: 50%;
     flex-shrink: 0;
     overflow: hidden;
-    font-family: var(--zyr-font-display);
+    font-family: var(--zyra-font-display);
     font-weight: 700;
-    transition: box-shadow var(--zyr-transition-base);
+    transition: box-shadow var(--zyra-transition-base);
 
-    &--square {
-        border-radius: var(--zyr-radius-md);
-    }
+    &--square { border-radius: var(--zyra-radius-md); }
 
-    // ── Sizes ─────────────────────────────────────────────────
-    &--xs {
-        width: 22px;
-        height: 22px;
-        font-size: 9px;
-    }
-    &--sm {
-        width: 28px;
-        height: 28px;
-        font-size: 11px;
-    }
-    &--md {
-        width: 36px;
-        height: 36px;
-        font-size: 13px;
-    }
-    &--lg {
-        width: 48px;
-        height: 48px;
-        font-size: 17px;
-    }
-    &--xl {
-        width: 64px;
-        height: 64px;
-        font-size: 22px;
-    }
+    &--xs { width: 22px; height: 22px; font-size: 9px; }
+    &--sm { width: 28px; height: 28px; font-size: 11px; }
+    &--md { width: 36px; height: 36px; font-size: 13px; }
+    &--lg { width: 48px; height: 48px; font-size: 17px; }
+    &--xl { width: 64px; height: 64px; font-size: 22px; }
 
-    // ── Variants (gradient backgrounds) ───────────────────────
     &--teal {
-        background: linear-gradient(135deg, var(--zyr-primary), var(--zyr-avatar-primary-end));
-        color: var(--zyr-avatar-contrast);
+        background: linear-gradient(135deg, var(--zyra-primary), var(--zyra-avatar-primary-end));
+        color: var(--zyra-avatar-contrast);
     }
 
     &--blue {
-        background: linear-gradient(135deg, var(--zyr-accent-2), var(--zyr-avatar-blue-end));
-        color: var(--zyr-avatar-contrast);
+        background: linear-gradient(135deg, var(--zyra-accent-2), var(--zyra-avatar-blue-end));
+        color: var(--zyra-avatar-contrast);
     }
 
     &--purple {
-        background: linear-gradient(135deg, var(--zyr-accent-3), var(--zyr-avatar-purple-end));
-        color: var(--zyr-avatar-contrast);
+        background: linear-gradient(135deg, var(--zyra-accent-3), var(--zyra-avatar-purple-end));
+        color: var(--zyra-avatar-contrast);
     }
 
     &--warm {
-        background: linear-gradient(135deg, var(--zyr-warning), var(--zyr-avatar-warm-end));
-        color: var(--zyr-avatar-contrast);
+        background: linear-gradient(135deg, var(--zyra-warning), var(--zyra-avatar-warm-end));
+        color: var(--zyra-avatar-contrast);
     }
 
     &--neutral {
-        background: var(--zyr-surface-inset);
-        color: var(--zyr-foreground-muted);
-        border: 1px solid var(--zyr-border-color);
+        background: var(--zyra-surface-inset);
+        color: var(--zyra-foreground-muted);
+        border: 1px solid var(--zyra-border-color);
     }
 
-    // ── Image ─────────────────────────────────────────────────
     &__img {
         width: 100%;
         height: 100%;
@@ -76,13 +51,11 @@
         border-radius: inherit;
     }
 
-    // ── Initials ──────────────────────────────────────────────
     &__initials {
         line-height: 1;
         letter-spacing: -0.01em;
     }
 
-    // ── Online status dot ─────────────────────────────────────
     &__status {
         position: absolute;
         bottom: 1px;
@@ -92,14 +65,10 @@
         min-width: 7px;
         min-height: 7px;
         border-radius: 50%;
-        border: 2px solid var(--zyr-bg-2);
-        transition: background var(--zyr-transition-slow);
+        border: 2px solid var(--zyra-bg-panel);
+        transition: background var(--zyra-transition-slow);
 
-        &--online {
-            background: var(--zyr-success);
-        }
-        &--offline {
-            background: var(--zyr-text-dim);
-        }
+        &--online { background: var(--zyra-success); }
+        &--offline { background: var(--zyra-text-dim); }
     }
 }

@@ -1,33 +1,33 @@
-:host {
+﻿:host {
     display: block;
 }
 
 .zyr-option {
     padding: 7px 10px;
-    font-family: var(--zyr-font-body);
+    font-family: var(--zyra-font-body);
     font-size: 13.5px;
-    color: var(--zyr-foreground);
+    color: var(--zyra-foreground);
     cursor: pointer;
-    border-radius: var(--zyr-radius-sm);
-    transition: background var(--zyr-transition-fast);
+    border-radius: var(--zyra-radius-sm);
+    transition: background var(--zyra-transition-fast);
     user-select: none;
 
     &:hover:not(&--disabled) {
-        background: var(--zyr-bg-4);
+        background: var(--zyra-bg-raised);
     }
 
     &--active {
-        background: var(--zyr-bg-4);
+        background: var(--zyra-bg-raised);
     }
 
     &--selected {
-        background: var(--zyr-primary-subtle);
-        color: var(--zyr-primary);
+        background: var(--zyra-primary-subtle);
+        color: var(--zyra-primary);
         font-weight: 500;
     }
 
     &--selected#{&}--active {
-        background: var(--zyr-primary-subtle);
+        background: var(--zyra-primary-subtle);
     }
 
     &--disabled {

@@ -18,17 +18,19 @@ export class ZyraPrefix {}
 @Directive({ selector: '[zyraSuffix]', standalone: true })
 export class ZyraSuffix {}
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { ZyraIcon as ZyraIconComponent, type ZyraIconData } from '../../internal/zyra-icon/zyra-icon';
 import { ZyraSpinner } from '../zyra-spinner/zyra-spinner';
 import { ZyraInput } from '../zyra-input/zyra-input';
 import { ZyraTextarea } from '../zyra-textarea/zyra-textarea';
 import {
-    asIconDefinition,
+    isLucideIcon,
     asIconText,
-    zyraIcons,
-    type ZyraIcon,
-} from '../../shared/fontawesome-icons';
+    check,
+    eye,
+    eyeSlash,
+    xmark,
+    type ZyraIconInput,
+} from '../../shared/zyra-icons';
 
 export type FormFieldAppearance = 'outline' | 'filled' | 'underline';
 export type FormFieldSize = 'sm' | 'md' | 'lg';
@@ -37,7 +39,7 @@ export type FormFieldSize = 'sm' | 'md' | 'lg';
     selector: 'zyra-form-field',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ZyraSpinner, FaIconComponent],
+    imports: [ZyraSpinner, ZyraIconComponent],
     templateUrl: './zyra-form-field.html',
     styleUrl: './zyra-form-field.scss',
 })
@@ -46,8 +48,8 @@ export class ZyraFormField implements AfterContentInit {
     label = input<string>('');
     hint = input<string>('');
     successHint = input<string>('');
-    prefixIcon = input<ZyraIcon>('');
-    suffixIcon = input<ZyraIcon>('');
+    prefixIcon = input<ZyraIconInput>('');
+    suffixIcon = input<ZyraIconInput>('');
     appearance = input<FormFieldAppearance>('outline');
     size = input<FormFieldSize>('md');
     maxLength = input<number | null>(null);
@@ -61,7 +63,7 @@ export class ZyraFormField implements AfterContentInit {
     @ContentChild(ZyraSuffix) _customSuffix: ZyraSuffix | null = null;
 
     private cdr = inject(ChangeDetectorRef);
-    readonly icons = zyraIcons;
+    readonly icons = { check, eye, eyeSlash, xmark };
 
     // ── Unified child accessor ────────────────────────────────
     private get _child(): ZyraInput | ZyraTextarea | null {
@@ -117,16 +119,18 @@ export class ZyraFormField implements AfterContentInit {
         return !!this._child?.innerValue();
     }
 
-    get prefixIconDefinition(): IconDefinition | null {
-        return asIconDefinition(this.prefixIcon());
+    get prefixIconData(): ZyraIconData | null {
+        const v = this.prefixIcon();
+        return isLucideIcon(v) ? (v as ZyraIconData) : null;
     }
 
     get prefixIconText(): string | null {
         return asIconText(this.prefixIcon());
     }
 
-    get suffixIconDefinition(): IconDefinition | null {
-        return asIconDefinition(this.suffixIcon());
+    get suffixIconData(): ZyraIconData | null {
+        const v = this.suffixIcon();
+        return isLucideIcon(v) ? (v as ZyraIconData) : null;
     }
 
     get suffixIconText(): string | null {
@@ -134,7 +138,7 @@ export class ZyraFormField implements AfterContentInit {
     }
 
     get hasPrefix(): boolean {
-        return !!(this.prefixIconDefinition || this.prefixIconText || this._customPrefix);
+        return !!(this.prefixIconData || this.prefixIconText || this._customPrefix);
     }
 
     // ── Form state ────────────────────────────────────────────
@@ -202,7 +206,7 @@ export class ZyraFormField implements AfterContentInit {
 
     get hasSuffix(): boolean {
         return !!(
-            this.suffixIconDefinition ||
+            this.suffixIconData ||
             this.suffixIconText ||
             this._customSuffix ||
             this.showPasswordToggle ||

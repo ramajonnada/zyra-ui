@@ -1,0 +1,113 @@
+[data-theme='rose'] {
+    // ── Surfaces ─────────────────────────────────────────────────────────────
+    // Warm blush-tinted light surfaces — a feminine editorial feel.
+    --zyra-bg-app:     #fef6f8;
+    --zyra-bg-panel:   #faedf1;
+    --zyra-bg-surface: #f4dfe6;
+    --zyra-bg-raised:  #ecd0d8;
+
+    // ── Borders ──────────────────────────────────────────────────────────────
+    --zyra-border:        rgba(100, 30, 48, 0.09);
+    --zyra-border-hover:  rgba(208, 48, 80, 0.28);
+    --zyra-border-strong: rgba(100, 30, 48, 0.16);
+
+    // ── Text ─────────────────────────────────────────────────────────────────
+    --zyra-text:         #1a0810;
+    --zyra-text-muted:   #70303e;
+    --zyra-text-dim:     #b87880;
+    --zyra-text-inverse: #ffffff;
+
+    --zyra-surface-inverse: #1a0810;
+
+    // ── Glow RGB channels ─────────────────────────────────────────────────────
+    --zyra-glow: 208, 48, 80;
+
+    // ── Accent (Rose crimson) ─────────────────────────────────────────────────
+    // Hover goes darker in light themes.
+    --zyra-accent:        #d03050;
+    --zyra-accent-hover:  #a82040;
+    --zyra-accent-muted:  rgba(208, 48, 80, 0.12);
+    --zyra-accent-border: rgba(208, 48, 80, 0.24);
+    --zyra-focus-ring:    rgba(208, 48, 80, 0.42);
+
+    // ── Secondary accents ─────────────────────────────────────────────────────
+    --zyra-accent-2:        #9b5de5;
+    --zyra-accent-2-muted:  rgba(155, 93, 229, 0.10);
+    --zyra-accent-2-border: rgba(155, 93, 229, 0.22);
+
+    --zyra-accent-3:        #f4845f;
+    --zyra-accent-3-muted:  rgba(244, 132, 95, 0.10);
+    --zyra-accent-3-border: rgba(244, 132, 95, 0.22);
+
+    // ── Semantic ──────────────────────────────────────────────────────────────
+    --zyra-success:        #10b981;
+    --zyra-success-muted:  rgba(16, 185, 129, 0.10);
+    --zyra-success-border: rgba(16, 185, 129, 0.22);
+
+    --zyra-warning:        #f59e0b;
+    --zyra-warning-muted:  rgba(245, 158, 11, 0.12);
+    --zyra-warning-border: rgba(245, 158, 11, 0.24);
+
+    // Danger shifted from rose accent so alerts stay readable in this theme.
+    --zyra-danger:        #e53e3e;
+    --zyra-danger-muted:  rgba(229, 62, 62, 0.09);
+    --zyra-danger-border: rgba(229, 62, 62, 0.22);
+
+    --zyra-info:        #2b7ec0;
+    --zyra-info-muted:  rgba(43, 126, 192, 0.10);
+    --zyra-info-border: rgba(43, 126, 192, 0.22);
+
+    // ── Shadows ───────────────────────────────────────────────────────────────
+    --zyra-shadow-sm:     0 2px 10px rgba(100, 30, 48, 0.07);
+    --zyra-shadow-md:     0 14px 36px rgba(100, 30, 48, 0.09);
+    --zyra-shadow-accent: 0 14px 32px rgba(208, 48, 80, 0.18);
+
+    // ── Buttons ───────────────────────────────────────────────────────────────
+    // #d03050 at 4.88:1 with white text — passes WCAG AA.
+    --zyra-btn-primary-text:   #ffffff;
+    --zyra-btn-ghost-hover-bg: rgba(100, 30, 48, 0.05);
+
+    // ── Inputs ────────────────────────────────────────────────────────────────
+    --zyra-input-bg:           #fef6f8;
+    --zyra-input-border:       var(--zyra-border-strong);
+    --zyra-input-shadow-focus: 0 0 0 3px rgba(208, 48, 80, 0.38);
+
+    // ── Cards ─────────────────────────────────────────────────────────────────
+    --zyra-card-bg:              #faedf1;
+    --zyra-card-border:          rgba(100, 30, 48, 0.10);
+    --zyra-card-section-bg:      rgba(100, 30, 48, 0.04);
+    --zyra-card-shadow:          0 1px 3px rgba(100, 30, 48, 0.08), 0 4px 16px rgba(100, 30, 48, 0.05);
+    --zyra-card-elevated-shadow: 0 8px 24px rgba(100, 30, 48, 0.10), 0 20px 48px rgba(100, 30, 48, 0.07);
+    --zyra-card-focus-ring:      rgba(208, 48, 80, 0.18);
+
+    // ── Misc ──────────────────────────────────────────────────────────────────
+    --zyra-code-bg: #f4dfe6;
+
+    --zyra-scrollbar-thumb: rgba(100, 30, 48, 0.14);
+    --zyra-scrollbar-track: transparent;
+
+    --zyra-tooltip-bg:     #1a0810;
+    --zyra-tooltip-text:   #faedf1;
+    --zyra-tooltip-border: rgba(208, 48, 80, 0.18);
+    --zyra-tooltip-shadow: 0 16px 38px rgba(100, 30, 48, 0.14);
+
+    --zyra-toast-bg:     rgba(254, 246, 248, 0.97);
+    --zyra-toast-border: rgba(100, 30, 48, 0.10);
+
+    --zyra-spinner-inverse-track: rgba(26, 8, 16, 0.18);
+    --zyra-spinner-inverse-head:  #1a0810;
+
+    --zyra-overlay-bg: rgba(0, 0, 0, 0.65);
+
+    --zyra-pill-active-bg:     var(--zyra-bg-app);
+    --zyra-pill-active-shadow: 0 2px 6px var(--zyra-border-strong), 0 1px 2px var(--zyra-border);
+
+    --zyra-preview-stage-bg: #ecd0d8;
+
+    --zyra-glass-bg:        rgba(250, 237, 241, 0.52);
+    --zyra-header-glass-bg: rgba(254, 246, 248, 0.62);
+    --zyra-header-backdrop: blur(24px) saturate(160%) brightness(1.02);
+    --zyra-header-shadow:
+        0 1px 0 rgba(var(--zyra-glow), 0.10) inset, 0 2px 6px rgba(100, 30, 48, 0.04),
+        0 8px 24px rgba(100, 30, 48, 0.06);
+}

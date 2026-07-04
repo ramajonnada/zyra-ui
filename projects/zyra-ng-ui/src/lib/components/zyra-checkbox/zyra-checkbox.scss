@@ -1,4 +1,4 @@
-:host {
+﻿:host {
     display: inline-block;
 }
 
@@ -9,28 +9,23 @@
     cursor: pointer;
     user-select: none;
 
-    // ── Box ──────────────────────────────────────────────────
     &__box {
         flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--zyr-radius-xs);
-        border: 1.5px solid var(--zyr-input-border);
-        background: var(--zyr-input-bg);
-        color: var(--zyr-text-inverse);
+        border-radius: var(--zyra-radius-xs);
+        border: 1.5px solid var(--zyra-checkbox-border);
+        background: var(--zyra-checkbox-bg);
+        color: var(--zyra-checkbox-mark);
         transition:
-            background var(--zyr-transition-fast),
-            border-color var(--zyr-transition-fast),
-            box-shadow var(--zyr-transition-fast);
+            background var(--zyra-transition-fast),
+            border-color var(--zyra-transition-fast),
+            box-shadow var(--zyra-transition-fast);
         cursor: pointer;
 
-        &:focus {
-            outline: none;
-        }
-        &:focus-visible {
-            box-shadow: var(--zyr-input-shadow-focus);
-        }
+        &:focus { outline: none; }
+        &:focus-visible { box-shadow: var(--zyra-checkbox-focus-shadow); }
     }
 
     &__icon {
@@ -38,59 +33,34 @@
         align-items: center;
         justify-content: center;
         transform: scale(0);
-        transition: transform 140ms var(--zyr-ease-standard);
-        :where(svg) {
-            display: block;
-        }
+        transition: transform 140ms var(--zyra-ease-standard);
+
+        :where(svg) { display: block; }
     }
 
-    // ── Label ────────────────────────────────────────────────
     &__label {
-        font-family: var(--zyr-font-body);
-        color: var(--zyr-foreground);
+        font-family: var(--zyra-font-body);
+        color: var(--zyra-foreground);
         line-height: 1.4;
-        transition: color var(--zyr-transition-fast);
+        transition: color var(--zyra-transition-fast);
     }
 
-    // ── Sizes ────────────────────────────────────────────────
-    &--sm &__box {
-        width: 14px;
-        height: 14px;
-    }
-    &--sm &__icon {
-        font-size: 8px;
-    }
-    &--sm &__label {
-        font-size: 12.5px;
-    }
+    &--sm &__box { width: 14px; height: 14px; }
+    &--sm &__icon { font-size: 8px; }
+    &--sm &__label { font-size: 12.5px; }
 
-    &--md &__box {
-        width: 17px;
-        height: 17px;
-    }
-    &--md &__icon {
-        font-size: 10px;
-    }
-    &--md &__label {
-        font-size: 13.5px;
-    }
+    &--md &__box { width: 17px; height: 17px; }
+    &--md &__icon { font-size: 10px; }
+    &--md &__label { font-size: 13.5px; }
 
-    &--lg &__box {
-        width: 20px;
-        height: 20px;
-    }
-    &--lg &__icon {
-        font-size: 12px;
-    }
-    &--lg &__label {
-        font-size: 15px;
-    }
+    &--lg &__box { width: 20px; height: 20px; }
+    &--lg &__icon { font-size: 12px; }
+    &--lg &__label { font-size: 15px; }
 
-    // ── Checked state ────────────────────────────────────────
     &--checked &__box,
     &--indeterminate &__box {
-        background: var(--zyr-accent);
-        border-color: var(--zyr-accent);
+        background: var(--zyra-checkbox-checked-bg);
+        border-color: var(--zyra-checkbox-checked-border);
     }
 
     &--checked &__icon,
@@ -98,15 +68,13 @@
         transform: scale(1);
     }
 
-    // ── Disabled ─────────────────────────────────────────────
     &--disabled {
         opacity: 0.45;
         cursor: not-allowed;
         pointer-events: none;
     }
 
-    // ── Hover ────────────────────────────────────────────────
     &:not(.zyr-checkbox--disabled):hover &__box {
-        border-color: var(--zyr-accent);
+        border-color: var(--zyra-checkbox-checked-border);
     }
 }

@@ -15,8 +15,8 @@ import {
     signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { zyraIcons } from '../../shared/fontawesome-icons';
+import { ZyraIcon as ZyraIconComponent } from '../../internal/zyra-icon/zyra-icon';
+import { chevronDown } from '../../shared/zyra-icons';
 import { ZyraOption, type SelectValue } from './zyra-option';
 import { ZYRA_SELECT, type ZyraSelectRef } from './zyra-select-token';
 
@@ -29,7 +29,7 @@ let selectIdCounter = 0;
     selector: 'zyra-select',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FaIconComponent],
+    imports: [ZyraIconComponent],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -97,7 +97,7 @@ export class ZyraSelect implements ControlValueAccessor, ZyraSelectRef, OnInit, 
         return parts.join(' ');
     });
 
-    readonly icons = zyraIcons;
+    readonly icons = { chevronDown };
 
     // ── CVA callbacks ─────────────────────────────────────────
     private _onChange: (val: SelectValue) => void = () => undefined;

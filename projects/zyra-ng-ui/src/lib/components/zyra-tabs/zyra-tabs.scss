@@ -1,16 +1,8 @@
-// ══════════════════════════════════════════════════════════════
-// HOST
-// ══════════════════════════════════════════════════════════════
-
-:host {
+﻿:host {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-
-// ══════════════════════════════════════════════════════════════
-// TRIGGER LIST  (shared base)
-// ══════════════════════════════════════════════════════════════
 
 .zyr-tabs__list {
     display: flex;
@@ -19,14 +11,8 @@
     scrollbar-width: none;
     flex-shrink: 0;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    &::-webkit-scrollbar { display: none; }
 }
-
-// ══════════════════════════════════════════════════════════════
-// TRIGGER  (shared base — no variant-specific rules here)
-// ══════════════════════════════════════════════════════════════
 
 .zyr-tabs__trigger {
     position: relative;
@@ -37,44 +23,32 @@
     border: none;
     outline: none;
     cursor: pointer;
-    font-family: var(--zyr-font-body);
-    color: var(--zyr-text-muted);
+    font-family: var(--zyra-font-body);
+    color: var(--zyra-tabs-text);
     white-space: nowrap;
     transition:
-        color var(--zyr-transition-fast),
-        background var(--zyr-transition-fast);
+        color var(--zyra-transition-fast),
+        background var(--zyra-transition-fast);
     flex-shrink: 0;
 
-    &:hover:not(.zyr-tabs__trigger--disabled) {
-        color: var(--zyr-text);
-    }
+    &:hover:not(.zyr-tabs__trigger--disabled) { color: var(--zyra-tabs-text-hover); }
 
     &:focus-visible {
-        outline: 2px solid var(--zyr-accent);
+        outline: 2px solid var(--zyra-accent);
         outline-offset: -2px;
     }
 
-    &--active {
-        color: var(--zyr-accent);
-        font-weight: 500;
-    }
-
-    &--disabled {
-        opacity: 0.38;
-        cursor: not-allowed;
-    }
+    &--active { color: var(--zyra-tabs-text-active); font-weight: 500; }
+    &--disabled { opacity: 0.38; cursor: not-allowed; }
 }
-
-// ── Trigger inner elements ────────────────────────────────────
 
 .zyr-tabs__trigger-icon {
     font-size: 1em;
     line-height: 1;
     flex-shrink: 0;
 }
-.zyr-tabs__trigger-label {
-    line-height: 1;
-}
+
+.zyr-tabs__trigger-label { line-height: 1; }
 
 .zyr-tabs__trigger-badge {
     display: inline-flex;
@@ -84,18 +58,18 @@
     height: 18px;
     padding: 0 5px;
     border-radius: 9px;
-    background: var(--zyr-accent-muted);
-    color: var(--zyr-accent);
+    background: var(--zyra-tabs-badge-bg);
+    color: var(--zyra-tabs-badge-text);
     font-size: 10px;
     font-weight: 700;
     line-height: 1;
     transition:
-        background var(--zyr-transition-fast),
-        color var(--zyr-transition-fast);
+        background var(--zyra-transition-fast),
+        color var(--zyra-transition-fast);
 
     .zyr-tabs__trigger--active & {
-        background: var(--zyr-accent);
-        color: var(--zyr-btn-primary-text);
+        background: var(--zyra-tabs-badge-active-bg);
+        color: var(--zyra-tabs-badge-active-text);
     }
 }
 
@@ -109,91 +83,56 @@
     border-radius: 4px;
     font-size: 15px;
     line-height: 1;
-    color: var(--zyr-text-dim);
+    color: var(--zyra-text-dim);
     flex-shrink: 0;
     transition:
-        background var(--zyr-transition-fast),
-        color var(--zyr-transition-fast);
+        background var(--zyra-transition-fast),
+        color var(--zyra-transition-fast);
 
     &:hover {
-        background: color-mix(in srgb, var(--zyr-danger) 14%, transparent);
-        color: var(--zyr-danger);
+        background: color-mix(in srgb, var(--zyra-danger) 14%, transparent);
+        color: var(--zyra-danger);
     }
 }
 
-// ══════════════════════════════════════════════════════════════
-// PANELS  (shared base)
-// ══════════════════════════════════════════════════════════════
+.zyr-tabs__panels {}
 
-.zyr-tabs__panels {
-    // Sizes to content by default.
-    // Fill-height behaviour is injected by preview.scss via ::ng-deep in fill mode.
-}
-
-// ══════════════════════════════════════════════════════════════
-// SIZES  — use > so styles don't leak into nested zyra-tabs
-// ══════════════════════════════════════════════════════════════
-
-:host(.zyr-tabs--sm) > .zyr-tabs__list > .zyr-tabs__trigger {
-    padding: 5px 10px;
-    font-size: 12px;
-}
-
-:host(.zyr-tabs--md) > .zyr-tabs__list > .zyr-tabs__trigger {
-    padding: 10px 16px;
-    font-size: 14px;
-}
-
-:host(.zyr-tabs--lg) > .zyr-tabs__list > .zyr-tabs__trigger {
-    padding: 14px 22px;
-    font-size: 16px;
-}
-
-// ══════════════════════════════════════════════════════════════
-// VARIANT: UNDERLINE
-// Frameless — gray divider line, sliding 2px accent indicator
-// ══════════════════════════════════════════════════════════════
+:host(.zyr-tabs--sm) > .zyr-tabs__list > .zyr-tabs__trigger { padding: 5px 10px; font-size: 12px; }
+:host(.zyr-tabs--md) > .zyr-tabs__list > .zyr-tabs__trigger { padding: 10px 16px; font-size: 14px; }
+:host(.zyr-tabs--lg) > .zyr-tabs__list > .zyr-tabs__trigger { padding: 14px 22px; font-size: 16px; }
 
 :host(.zyr-tabs--underline) {
     > .zyr-tabs__list {
-        position: relative; // anchor the indicator
-        border-bottom: 1px solid var(--zyr-border);
+        position: relative;
+        border-bottom: 1px solid var(--zyra-tabs-border);
     }
 
-    > .zyr-tabs__panels {
-        padding-top: 16px;
-    }
+    > .zyr-tabs__panels { padding-top: 16px; }
 
-    // Sliding indicator — JS sets --ind-left / --ind-width on the list
     .zyr-tabs__indicator {
         position: absolute;
         bottom: 0;
         left: 0;
         height: 2px;
-        background: var(--zyr-accent);
+        background: var(--zyra-tabs-indicator);
         border-radius: 2px 2px 0 0;
         width: var(--ind-width, 0px);
         transform: translateX(var(--ind-left, 0px));
         transition:
-            transform 220ms var(--zyr-ease-standard),
-            width 220ms var(--zyr-ease-standard);
+            transform 220ms var(--zyra-ease-standard),
+            width 220ms var(--zyra-ease-standard);
         pointer-events: none;
     }
 }
 
-// ══════════════════════════════════════════════════════════════
-// VARIANT: PILL
-// Rounded pills in a tinted bar, no separator line
-// ══════════════════════════════════════════════════════════════
-
 :host(.zyr-tabs--pill) {
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
-    background: var(--zyr-bg);
+    border: 1px solid var(--zyra-tabs-border);
+    border-radius: var(--zyra-radius-md);
+    background: var(--zyra-background);
     overflow: hidden;
 
     > .zyr-tabs__list {
-        background: var(--zyr-bg-2);
+        background: var(--zyra-background-elevated);
         padding: 6px 8px;
         gap: 2px;
     }
@@ -201,40 +140,33 @@
     > .zyr-tabs__list > .zyr-tabs__trigger {
         border-radius: 6px;
         transition:
-            color var(--zyr-transition-fast),
-            background var(--zyr-transition-spring),
-            box-shadow var(--zyr-transition-spring);
+            color var(--zyra-transition-fast),
+            background var(--zyra-transition-spring),
+            box-shadow var(--zyra-transition-spring);
 
         &:hover:not(.zyr-tabs__trigger--disabled) {
-            background: color-mix(in srgb, var(--zyr-text) 7%, transparent);
+            background: color-mix(in srgb, var(--zyra-text) 7%, transparent);
         }
 
         &.zyr-tabs__trigger--active {
-            background: var(--zyr-pill-active-bg);
-            color: var(--zyr-text);
+            background: var(--zyra-tabs-pill-active-bg);
+            color: var(--zyra-text);
             font-weight: 600;
-            box-shadow: var(--zyr-pill-active-shadow);
+            box-shadow: var(--zyra-tabs-pill-active-shadow);
         }
     }
 
-    > .zyr-tabs__panels {
-        border-top: 1px solid var(--zyr-border);
-    }
+    > .zyr-tabs__panels { border-top: 1px solid var(--zyra-tabs-border); }
 }
 
-// ══════════════════════════════════════════════════════════════
-// VARIANT: FILLED
-// Active trigger fills with solid accent background
-// ══════════════════════════════════════════════════════════════
-
 :host(.zyr-tabs--filled) {
-    border: 1px solid var(--zyr-border);
-    border-radius: var(--zyr-radius-md);
-    background: var(--zyr-bg);
+    border: 1px solid var(--zyra-tabs-border);
+    border-radius: var(--zyra-radius-md);
+    background: var(--zyra-background);
     overflow: hidden;
 
     > .zyr-tabs__list {
-        background: var(--zyr-bg-2);
+        background: var(--zyra-background-elevated);
         gap: 0;
     }
 
@@ -242,42 +174,33 @@
         flex: 1;
         justify-content: center;
         border-radius: 0;
-        border-right: 1px solid var(--zyr-border);
+        border-right: 1px solid var(--zyra-tabs-border);
         transition:
-            color var(--zyr-transition-fast),
-            background var(--zyr-transition-fast);
+            color var(--zyra-transition-fast),
+            background var(--zyra-transition-fast);
 
-        &:last-child {
-            border-right: none;
-        }
+        &:last-child { border-right: none; }
 
         &:hover:not(.zyr-tabs__trigger--disabled):not(.zyr-tabs__trigger--active) {
-            background: color-mix(in srgb, var(--zyr-accent) 8%, transparent);
+            background: color-mix(in srgb, var(--zyra-accent) 8%, transparent);
         }
 
         &.zyr-tabs__trigger--active {
-            background: var(--zyr-accent);
-            color: var(--zyr-btn-primary-text);
+            background: var(--zyra-tabs-indicator);
+            color: var(--zyra-tabs-badge-active-text);
             font-weight: 600;
         }
     }
 
-    > .zyr-tabs__panels {
-        border-top: 1px solid var(--zyr-border);
-    }
+    > .zyr-tabs__panels { border-top: 1px solid var(--zyra-tabs-border); }
 }
-
-// ══════════════════════════════════════════════════════════════
-// VARIANT: OUTLINED
-// Each tab has a visible border; active tab "opens" into the panel
-// ══════════════════════════════════════════════════════════════
 
 :host(.zyr-tabs--outlined) {
     background: transparent;
 
     > .zyr-tabs__list {
         background: transparent;
-        border-bottom: 2px solid var(--zyr-border);
+        border-bottom: 2px solid var(--zyra-tabs-border);
         padding: 0 2px;
         gap: 2px;
     }
@@ -286,31 +209,27 @@
         border: 1px solid transparent;
         border-bottom: none;
         margin-bottom: -2px;
-        border-radius: var(--zyr-radius-sm) var(--zyr-radius-sm) 0 0;
+        border-radius: var(--zyra-radius-sm) var(--zyra-radius-sm) 0 0;
         background: transparent;
         transition:
-            color var(--zyr-transition-fast),
-            border-color var(--zyr-transition-base),
-            background var(--zyr-transition-fast);
+            color var(--zyra-transition-fast),
+            border-color var(--zyra-transition-base),
+            background var(--zyra-transition-fast);
 
         &:hover:not(.zyr-tabs__trigger--disabled):not(.zyr-tabs__trigger--active) {
-            color: var(--zyr-text);
-            border-color: var(--zyr-border) var(--zyr-border) transparent;
-            background: var(--zyr-bg-2);
+            color: var(--zyra-tabs-text-hover);
+            border-color: var(--zyra-tabs-border) var(--zyra-tabs-border) transparent;
+            background: var(--zyra-background-elevated);
         }
 
         &.zyr-tabs__trigger--active {
-            color: var(--zyr-accent);
+            color: var(--zyra-tabs-text-active);
             font-weight: 500;
-            border-color: var(--zyr-border) var(--zyr-border) var(--zyr-bg);
-            background: var(--zyr-bg);
+            border-color: var(--zyra-tabs-border) var(--zyra-tabs-border) var(--zyra-background);
+            background: var(--zyra-background);
         }
     }
 }
-
-// ══════════════════════════════════════════════════════════════
-// VERTICAL ORIENTATION
-// ══════════════════════════════════════════════════════════════
 
 :host(.zyr-tabs--vertical) {
     flex-direction: row;
@@ -319,69 +238,47 @@
         flex-direction: column;
         align-items: stretch;
         border-bottom: none;
-        border-right: 1px solid var(--zyr-border);
+        border-right: 1px solid var(--zyra-tabs-border);
         overflow-x: visible;
         overflow-y: auto;
         flex-shrink: 0;
         min-width: 140px;
     }
 
-    > .zyr-tabs__panels {
-        flex: 1;
-        min-width: 0;
-    }
+    > .zyr-tabs__panels { flex: 1; min-width: 0; }
 
-    // Underline in vertical = right-edge indicator via box-shadow
     &.zyr-tabs--underline > .zyr-tabs__list > .zyr-tabs__trigger {
         width: 100%;
         justify-content: flex-start;
 
         &.zyr-tabs__trigger--active {
-            box-shadow: inset -2px 0 0 var(--zyr-accent);
+            box-shadow: inset -2px 0 0 var(--zyra-tabs-indicator);
         }
     }
 
-    // Vertical + Pill
     &.zyr-tabs--pill {
-        > .zyr-tabs__list {
-            border-right: none;
-            padding: 8px 6px;
-        }
-
-        > .zyr-tabs__panels {
-            border-left: 1px solid var(--zyr-border);
-        }
+        > .zyr-tabs__list { border-right: none; padding: 8px 6px; }
+        > .zyr-tabs__panels { border-left: 1px solid var(--zyra-tabs-border); }
     }
 
-    // Vertical + Filled
     &.zyr-tabs--filled {
-        > .zyr-tabs__list {
-            border-right: none;
-            gap: 0;
-            padding: 0;
-        }
-
-        > .zyr-tabs__panels {
-            border-left: 1px solid var(--zyr-border);
-        }
+        > .zyr-tabs__list { border-right: none; gap: 0; padding: 0; }
+        > .zyr-tabs__panels { border-left: 1px solid var(--zyra-tabs-border); }
 
         > .zyr-tabs__list > .zyr-tabs__trigger {
             flex: unset;
             border-right: none;
-            border-bottom: 1px solid var(--zyr-border);
+            border-bottom: 1px solid var(--zyra-tabs-border);
             justify-content: flex-start;
 
-            &:last-child {
-                border-bottom: none;
-            }
+            &:last-child { border-bottom: none; }
         }
     }
 
-    // Vertical + Outlined
     &.zyr-tabs--outlined {
         > .zyr-tabs__list {
             border-bottom: none;
-            border-right: 2px solid var(--zyr-border);
+            border-right: 2px solid var(--zyra-tabs-border);
             background: transparent;
             padding: 2px 0;
             gap: 2px;
@@ -392,14 +289,18 @@
             border-right: none;
             border-bottom: none;
             margin-right: -2px;
-            border-radius: var(--zyr-radius-sm) 0 0 var(--zyr-radius-sm);
+            border-radius: var(--zyra-radius-sm) 0 0 var(--zyra-radius-sm);
             background: transparent;
 
             &.zyr-tabs__trigger--active {
-                border-color: var(--zyr-border);
-                border-right-color: var(--zyr-bg);
-                background: var(--zyr-bg);
+                border-color: var(--zyra-tabs-border);
+                border-right-color: var(--zyra-background);
+                background: var(--zyra-background);
             }
         }
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :host(.zyr-tabs--underline) .zyr-tabs__indicator { transition: none; }
 }

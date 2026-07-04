@@ -29,17 +29,13 @@ export type ToggleSize = 'sm' | 'md' | 'lg';
 })
 export class ZyraToggle implements ControlValueAccessor {
     // ── Inputs ────────────────────────────────────────────────
-    checked = model<boolean>(false);
+    pressed = model<boolean>(false);
     size = input<ToggleSize>('md');
     disabled = input(false, { transform: booleanAttribute });
-    label = input<string>('');
-    labelPosition = input<'left' | 'right'>('right');
+    ariaLabel = input<string | null>(null, { alias: 'aria-label' });
 
     // ── Outputs ───────────────────────────────────────────────
     changed = output<boolean>();
-
-    // ── ID for label association ──────────────────────────────
-    readonly toggleId = `zyr-toggle-${Math.random().toString(36).slice(2, 9)}`;
 
     // ── CVA state ─────────────────────────────────────────────
     private _cvaDisabled = signal(false);
@@ -47,17 +43,19 @@ export class ZyraToggle implements ControlValueAccessor {
     // ── Computed ──────────────────────────────────────────────
     isDisabled = computed(() => this.disabled() || this._cvaDisabled());
 
-    hostClass = computed(
-        () =>
-            `zyr-toggle zyr-toggle--${this.size()}${this.isDisabled() ? ' zyr-toggle--disabled' : ''}`,
-    );
+    hostClass = computed(() => {
+        const classes = ['zyr-toggle', `zyr-toggle--${this.size()}`];
+        if (this.pressed()) classes.push('zyr-toggle--pressed');
+        if (this.isDisabled()) classes.push('zyr-toggle--disabled');
+        return classes.join(' ');
+    });
 
     // ── CVA callbacks ─────────────────────────────────────────
     private _onChange: (val: boolean) => void = () => undefined;
     private _onTouched: () => void = () => undefined;
 
     writeValue(val: boolean): void {
-        this.checked.set(!!val);
+        this.pressed.set(!!val);
     }
 
     registerOnChange(fn: (val: boolean) => void): void {
@@ -75,8 +73,8 @@ export class ZyraToggle implements ControlValueAccessor {
     // ── Methods ───────────────────────────────────────────────
     toggle(): void {
         if (this.isDisabled()) return;
-        const next = !this.checked();
-        this.checked.set(next);
+        const next = !this.pressed();
+        this.pressed.set(next);
         this._onChange(next);
         this._onTouched();
         this.changed.emit(next);

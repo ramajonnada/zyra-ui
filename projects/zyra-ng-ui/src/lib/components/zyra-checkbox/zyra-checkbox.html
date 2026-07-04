@@ -14,7 +14,7 @@
         (click)="toggle()"
         (keydown.space)="$event.preventDefault(); toggle()"
     >
-        <fa-icon class="zyr-checkbox__icon" [icon]="indeterminate() ? icons.minus : icons.check" />
+        <zyra-icon class="zyr-checkbox__icon" [img]="indeterminate() ? icons.minus : icons.check" />
     </button>
 
     @if (label() && labelPosition() === 'right') {

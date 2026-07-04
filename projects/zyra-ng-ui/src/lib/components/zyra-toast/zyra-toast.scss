@@ -1,9 +1,8 @@
-// ── Container ─────────────────────────────────────────────────
-.zyr-toast-container {
+﻿.zyr-toast-container {
     position: fixed;
-    bottom: var(--zyr-space-6);
-    right: var(--zyr-space-6);
-    z-index: var(--zyr-z-toast);
+    bottom: var(--zyra-space-6);
+    right: var(--zyra-space-6);
+    z-index: var(--zyra-z-toast);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -11,73 +10,53 @@
     width: 100%;
     pointer-events: none;
 
-    > * {
-        pointer-events: all;
-    }
+    > * { pointer-events: all; }
 }
 
-// ── Single Toast ───────────────────────────────────────────────
 .zyr-toast {
     display: flex;
     align-items: flex-start;
     gap: 10px;
     padding: 12px 14px;
-    border-radius: var(--zyr-radius-md);
-    border: 1px solid var(--zyr-toast-border);
-    background: var(--zyr-toast-bg);
-    box-shadow: var(--zyr-shadow-md);
-    animation: zyr-toast-in 0.25s var(--zyr-transition-spring) both;
+    border-radius: var(--zyra-radius-md);
+    border: 1px solid var(--zyra-toast-border);
+    background: var(--zyra-toast-bg);
+    box-shadow: var(--zyra-shadow-md);
+    animation: zyr-toast-in 0.25s var(--zyra-transition-spring) both;
     transition:
-        background var(--zyr-transition-slow),
-        border-color var(--zyr-transition-base);
+        background var(--zyra-transition-slow),
+        border-color var(--zyra-transition-base);
 
-    // ── Variants ──────────────────────────────────────────────
     &--success {
-        border-color: var(--zyr-success-border-color);
+        border-color: var(--zyra-success-border-color);
 
-        .zyr-toast__icon {
-            background: var(--zyr-toast-success-icon-bg);
-            color: var(--zyr-success-foreground);
-        }
+        .zyr-toast__icon { background: var(--zyra-toast-success-icon-bg); color: var(--zyra-success-foreground); }
     }
 
     &--error {
-        border-color: var(--zyr-danger-border-color);
+        border-color: var(--zyra-danger-border-color);
 
-        .zyr-toast__icon {
-            background: var(--zyr-toast-danger-icon-bg);
-            color: var(--zyr-danger-foreground);
-        }
+        .zyr-toast__icon { background: var(--zyra-toast-danger-icon-bg); color: var(--zyra-danger-foreground); }
     }
 
     &--warning {
-        border-color: var(--zyr-warning-border-color);
+        border-color: var(--zyra-warning-border-color);
 
-        .zyr-toast__icon {
-            background: var(--zyr-toast-warning-icon-bg);
-            color: var(--zyr-warning-foreground);
-        }
+        .zyr-toast__icon { background: var(--zyra-toast-warning-icon-bg); color: var(--zyra-warning-foreground); }
     }
 
     &--info {
-        border-color: var(--zyr-info-border-color);
+        border-color: var(--zyra-info-border-color);
 
-        .zyr-toast__icon {
-            background: var(--zyr-toast-info-icon-bg);
-            color: var(--zyr-info-foreground);
-        }
+        .zyr-toast__icon { background: var(--zyra-toast-info-icon-bg); color: var(--zyra-info-foreground); }
     }
 
     &--default {
-        border-color: var(--zyr-toast-border);
+        border-color: var(--zyra-toast-border);
 
-        .zyr-toast__icon {
-            background: var(--zyr-toast-icon-bg);
-            color: var(--zyr-text);
-        }
+        .zyr-toast__icon { background: var(--zyra-toast-icon-bg); color: var(--zyra-text); }
     }
 
-    // ── Parts ─────────────────────────────────────────────────
     &__icon {
         width: 20px;
         height: 20px;
@@ -98,22 +77,19 @@
         display: block;
     }
 
-    &__content {
-        flex: 1;
-        min-width: 0;
-    }
+    &__content { flex: 1; min-width: 0; }
 
     &__title {
         font-size: 13px;
         font-weight: 600;
-        color: var(--zyr-foreground);
+        color: var(--zyra-foreground);
         margin: 0 0 2px;
         line-height: 1.4;
     }
 
     &__desc {
         font-size: 12px;
-        color: var(--zyr-foreground-muted);
+        color: var(--zyra-foreground-muted);
         margin: 0;
         line-height: 1.5;
     }
@@ -121,17 +97,23 @@
     &__close {
         background: none;
         border: none;
-        color: var(--zyr-foreground-subtle);
+        color: var(--zyra-foreground-subtle);
         font-size: 11px;
         cursor: pointer;
         padding: 2px;
         line-height: 1;
         flex-shrink: 0;
         margin-top: 1px;
-        transition: color var(--zyr-transition-fast);
+        transition: color var(--zyra-transition-fast);
 
-        &:hover {
-            color: var(--zyr-foreground);
-        }
+        &:hover { color: var(--zyra-foreground); }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zyr-toast {
+        animation-duration: 1ms;
+        animation-delay: 0ms;
+        transition: none;
     }
 }

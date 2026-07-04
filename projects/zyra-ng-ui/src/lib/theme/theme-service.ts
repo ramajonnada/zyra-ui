@@ -1,6 +1,6 @@
 import { Injectable, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ZyraConfig, ZyraTheme, ZYRA_CONFIG } from './theme-type';
+import { ZyraConfig, ZyraTheme, ZYRA_CONFIG, ZYRA_THEME_COLOR_SCHEME, ZYRA_THEME_NAMES } from './theme-type';
 
 @Injectable({ providedIn: 'root' })
 export class ZyraThemeService {
@@ -20,8 +20,8 @@ export class ZyraThemeService {
     private readonly _theme = signal<ZyraTheme>(this.resolveInitialTheme());
 
     readonly theme = this._theme.asReadonly();
-    readonly isDark = computed(() => this._theme() === 'dark');
-    readonly isLight = computed(() => this._theme() === 'light');
+    readonly isDark  = computed(() => ZYRA_THEME_COLOR_SCHEME[this._theme()] === 'dark');
+    readonly isLight = computed(() => ZYRA_THEME_COLOR_SCHEME[this._theme()] === 'light');
 
     constructor() {
         this.bindSystemThemeListener();
@@ -35,6 +35,15 @@ export class ZyraThemeService {
         this.updateTheme(theme, true);
     }
 
+    /** Cycles through all available themes in order. */
+    cycle(): void {
+        const current = this._theme();
+        const idx = ZYRA_THEME_NAMES.indexOf(current);
+        const next = ZYRA_THEME_NAMES[(idx + 1) % ZYRA_THEME_NAMES.length];
+        this.setTheme(next);
+    }
+
+    /** Toggles between dark and light only (ignores extended themes). */
     toggle(): void {
         this.setTheme(this.isDark() ? 'light' : 'dark');
     }
@@ -76,7 +85,9 @@ export class ZyraThemeService {
         }
 
         const stored = localStorage.getItem(this.storageKey);
-        return stored === 'dark' || stored === 'light' ? stored : null;
+        return (ZYRA_THEME_NAMES as readonly string[]).includes(stored ?? '')
+            ? (stored as ZyraTheme)
+            : null;
     }
 
     private updateTheme(theme: ZyraTheme, persist: boolean): void {
@@ -116,11 +127,12 @@ export class ZyraThemeService {
             return;
         }
 
+        const colorScheme = ZYRA_THEME_COLOR_SCHEME[theme];
         const root = document.documentElement;
         root.setAttribute('data-theme', theme);
         root.setAttribute('data-zyra-theme', theme);
-        root.classList.toggle('zyra-theme-dark', theme === 'dark');
-        root.classList.toggle('zyra-theme-light', theme === 'light');
-        root.style.colorScheme = theme;
+        root.classList.toggle('zyra-theme-dark',  colorScheme === 'dark');
+        root.classList.toggle('zyra-theme-light', colorScheme === 'light');
+        root.style.colorScheme = colorScheme;
     }
 }
