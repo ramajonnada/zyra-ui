@@ -1,0 +1,148 @@
+<section class="theming-page">
+    <header class="theming-header">
+        <h1>Theming</h1>
+        <p>
+            Zyra UI ships five themes built on the same token layer — switch below to preview how
+            every component responds instantly, with no per-component changes required.
+        </p>
+    </header>
+
+    <div class="theme-switcher" role="radiogroup" aria-label="Choose a theme">
+        @for (theme of themes; track theme.value) {
+            <button
+                type="button"
+                class="theme-swatch"
+                [class.theme-swatch--active]="currentTheme() === theme.value"
+                role="radio"
+                [attr.aria-checked]="currentTheme() === theme.value"
+                (click)="selectTheme(theme.value)"
+            >
+                <span
+                    class="theme-swatch__preview"
+                    [style.background]="theme.surface"
+                    [style.border-color]="theme.accent"
+                >
+                    <span class="theme-swatch__dot" [style.background]="theme.accent"></span>
+                </span>
+                <span class="theme-swatch__label">{{ theme.label }}</span>
+            </button>
+        }
+    </div>
+
+    <div class="theming-grid">
+        <zyra-card class="preview-card" [hasHeader]="true">
+            <div slot="header">
+                <h2>Live preview</h2>
+            </div>
+
+            <div class="preview-section">
+                <h3>Buttons</h3>
+                <div class="preview-row">
+                    <zyra-button variant="primary">Primary</zyra-button>
+                    <zyra-button variant="secondary">Secondary</zyra-button>
+                    <zyra-button variant="outline">Outline</zyra-button>
+                    <zyra-button variant="ghost">Ghost</zyra-button>
+                    <zyra-button variant="danger">Danger</zyra-button>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h3>Badges</h3>
+                <div class="preview-row">
+                    <zyra-badge variant="default">Default</zyra-badge>
+                    <zyra-badge variant="success">Success</zyra-badge>
+                    <zyra-badge variant="warning">Warning</zyra-badge>
+                    <zyra-badge variant="danger">Danger</zyra-badge>
+                    <zyra-badge variant="info">Info</zyra-badge>
+                    <zyra-badge variant="purple">Purple</zyra-badge>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h3>Alerts</h3>
+                <div class="preview-stack">
+                    <zyra-alert variant="info">Themes persist to localStorage automatically.</zyra-alert>
+                    <zyra-alert variant="success">Every token updates in one repaint — no reload.</zyra-alert>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h3>Form controls</h3>
+                <div class="preview-row preview-row--form">
+                    <zyra-form-field label="Email">
+                        <zyra-input type="email" placeholder="you@example.com" />
+                    </zyra-form-field>
+                    <zyra-switch label="Notifications" labelPosition="right" />
+                </div>
+            </div>
+        </zyra-card>
+
+        <zyra-card class="token-card" [hasHeader]="true">
+            <div slot="header">
+                <h2>Active theme tokens</h2>
+            </div>
+
+            <ul class="token-list">
+                @for (token of tokenSwatches; track token.variable) {
+                    <li class="token-list__item">
+                        <span class="token-list__swatch" [style.background]="'var(' + token.variable + ')'"></span>
+                        <span class="token-list__name">{{ token.name }}</span>
+                        <code class="token-list__var">{{ token.variable }}</code>
+                    </li>
+                }
+            </ul>
+        </zyra-card>
+    </div>
+
+    <!-- ── Setup ─────────────────────────────────────────────────── -->
+    <div class="theming-section">
+        <h2>How to set it up</h2>
+        <div class="setup-steps">
+            @for (step of setupSteps; track step.step) {
+                <article class="setup-step">
+                    <p class="setup-step__eyebrow">Step {{ step.step }}</p>
+                    <h3>{{ step.title }}</h3>
+                    <p class="setup-step__desc">{{ step.description }}</p>
+                    <pre><code>{{ step.code }}</code></pre>
+                </article>
+            }
+        </div>
+    </div>
+
+    <!-- ── What's changeable ─────────────────────────────────────── -->
+    <div class="theming-section">
+        <h2>What can I change?</h2>
+        <p class="theming-section__intro">
+            Not every token is meant to be touched directly. Semantic and dimension tokens are the
+            supported customization surface — override these and everything downstream follows.
+            Primitives and per-component tokens are implementation detail: they already derive
+            from the semantic layer, and their names can change between component updates.
+        </p>
+
+        <div class="token-access-grid">
+            <div class="token-access-col token-access-col--ok">
+                <h3>✅ Safe to override</h3>
+                @for (group of overridableTokens; track group.label) {
+                    <div class="token-access-group">
+                        <span class="token-access-group__label">{{ group.label }}</span>
+                        @for (token of group.tokens; track token) {
+                            <code class="token-access-item">{{ token }}</code>
+                        }
+                    </div>
+                }
+            </div>
+
+            <div class="token-access-col token-access-col--internal">
+                <h3>🚫 Internal — don't override directly</h3>
+                @for (group of internalTokens; track group.label) {
+                    <div class="token-access-group">
+                        <span class="token-access-group__label">{{ group.label }}</span>
+                        @for (token of group.tokens; track token) {
+                            <code class="token-access-item">{{ token }}</code>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

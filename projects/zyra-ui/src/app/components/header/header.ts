@@ -52,8 +52,8 @@ export class Header {
     readonly navLinks: readonly HeaderLink[] = [
         { label: 'Components', route: '/components' },
         { label: 'Docs', route: '/docs' },
+        { label: 'Theming', route: '/theming' },
         { label: 'Blog', route: '/blog' },
-        { label: 'Contact', route: '/contact' },
     ];
 
     readonly themes: readonly ThemeOption[] = [

@@ -47,7 +47,8 @@
 	line-height: 1.9;
 }
 
-.docs-steps pre {
+.docs-steps pre,
+.docs-split__block pre {
 	position: relative;
 	margin: 0;
 	padding: 20px 22px 20px 20px;
@@ -201,6 +202,7 @@
 .docs-split__block {
 	display: flex;
 	flex-direction: column;
+	min-width: 0;
 	gap: 8px;
 }
 

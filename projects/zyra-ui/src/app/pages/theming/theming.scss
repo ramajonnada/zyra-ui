@@ -1,0 +1,319 @@
+:host {
+    display: block;
+    background: var(--zyra-color-bg-app);
+    color: var(--zyra-color-text);
+}
+
+.theming-page {
+    width: min(1080px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 56px 0 80px;
+}
+
+.theming-header {
+    max-width: 640px;
+    margin: 0 0 40px;
+
+    h1 {
+        margin: 0 0 12px;
+        font-family: var(--zyra-font-display);
+        font-size: 2.4rem;
+        line-height: 1.08;
+    }
+
+    p {
+        margin: 0;
+        color: var(--zyra-color-fg-muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+}
+
+// ── Theme switcher ────────────────────────────────────────────
+.theme-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 0 0 48px;
+}
+
+.theme-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.theme-swatch__preview {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    border-radius: var(--zyra-radius-lg);
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.theme-swatch__dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.theme-swatch__label {
+    font-family: var(--zyra-font-mono);
+    font-size: 0.78rem;
+    color: var(--zyra-color-fg-muted);
+}
+
+.theme-swatch:hover .theme-swatch__preview {
+    transform: translateY(-2px);
+}
+
+.theme-swatch--active {
+    .theme-swatch__preview {
+        border-color: var(--zyra-color-accent);
+        box-shadow: 0 0 0 3px var(--zyra-color-accent-muted);
+    }
+
+    .theme-swatch__label {
+        color: var(--zyra-color-text);
+        font-weight: 600;
+    }
+}
+
+// ── Layout ────────────────────────────────────────────────────
+.theming-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+    align-items: start;
+
+    @media (max-width: 860px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.preview-card,
+.token-card {
+    h2 {
+        margin: 0;
+        font-family: var(--zyra-font-display);
+        font-size: 1.3rem;
+    }
+}
+
+.preview-section {
+    margin-bottom: 28px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    h3 {
+        margin: 0 0 14px;
+        font-family: var(--zyra-font-mono);
+        font-size: 0.76rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--zyra-color-fg-muted);
+    }
+}
+
+.preview-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.preview-row--form {
+    // align-items: flex-end;
+}
+
+.preview-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+// ── Token list ────────────────────────────────────────────────
+.token-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.token-list__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.token-list__swatch {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    border-radius: var(--zyra-radius-sm);
+    border: 1px solid var(--zyra-color-border);
+}
+
+.token-list__name {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--zyra-color-text);
+}
+
+.token-list__var {
+    font-family: var(--zyra-font-mono);
+    font-size: 0.76rem;
+    color: var(--zyra-color-fg-muted);
+}
+
+// ── Sections (setup, token access) ─────────────────────────────
+.theming-section {
+    border-top: 1px solid var(--zyra-color-border);
+    padding-top: 48px;
+    margin-top: 48px;
+
+    h2 {
+        margin: 0 0 12px;
+        font-family: var(--zyra-font-display);
+        font-size: 1.7rem;
+    }
+}
+
+.theming-section__intro {
+    max-width: 720px;
+    margin: 0 0 28px;
+    color: var(--zyra-color-fg-muted);
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+// ── Setup steps ─────────────────────────────────────────────────
+.setup-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.setup-step {
+    min-width: 0;
+
+    h3 {
+        margin: 0 0 8px;
+        font-family: var(--zyra-font-display);
+        font-size: 1.1rem;
+    }
+
+    pre {
+        position: relative;
+        margin: 0;
+        padding: 16px 18px;
+        overflow-x: auto;
+        border: 1px solid var(--zyra-color-border);
+        border-left: 3px solid var(--zyra-color-accent);
+        border-radius: var(--zyra-radius-lg);
+        background: var(--zyra-color-bg-surface);
+        color: var(--zyra-color-text);
+
+        code {
+            display: block;
+            padding: 0;
+            background: none;
+            border: none;
+            color: inherit;
+            font-family: var(--zyra-font-mono);
+            font-size: 0.82rem;
+            line-height: 1.6;
+            white-space: pre;
+        }
+    }
+}
+
+.setup-step__eyebrow {
+    margin: 0 0 6px;
+    color: var(--zyra-color-accent);
+    font-family: var(--zyra-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.setup-step__desc {
+    margin: 0 0 14px;
+    color: var(--zyra-color-fg-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+// ── Token access grid ───────────────────────────────────────────
+.token-access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    @media (max-width: 720px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.token-access-col {
+    padding: 20px;
+    border-radius: var(--zyra-radius-lg);
+    border: 1px solid var(--zyra-color-border);
+
+    h3 {
+        margin: 0 0 16px;
+        font-size: 1rem;
+    }
+}
+
+.token-access-col--ok {
+    background: color-mix(in srgb, var(--zyra-color-success) 6%, var(--zyra-color-bg-panel));
+    border-color: var(--zyra-color-success-border);
+}
+
+.token-access-col--internal {
+    background: color-mix(in srgb, var(--zyra-color-fg-muted) 6%, var(--zyra-color-bg-panel));
+}
+
+.token-access-group {
+    margin-bottom: 18px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.token-access-group__label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--zyra-font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zyra-color-fg-muted);
+}
+
+.token-access-item {
+    display: block;
+    margin-bottom: 5px;
+    font-family: var(--zyra-font-mono);
+    font-size: 0.82rem;
+    color: var(--zyra-color-text);
+    word-break: break-word;
+}

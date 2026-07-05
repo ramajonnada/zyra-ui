@@ -36,6 +36,7 @@ export class Sidebar {
 
 	readonly navItems: readonly NavItem[] = [
 		{ label: 'Docs', route: '/docs' },
+		{ label: 'Theming', route: '/theming' },
 		{
 			label: 'Components',
 			route: '/components',
@@ -43,7 +44,6 @@ export class Sidebar {
 			children: this.componentChildren,
 		},
 		{ label: 'Blog', route: '/blog' },
-		{ label: 'Contact', route: '/contact' },
 	];
 
 	private readonly currentPath = toSignal(

@@ -35,6 +35,7 @@ export class Footer {
 			links: [
 				{ label: 'Components', route: '/components' },
 				{ label: 'Docs', route: '/docs' },
+				{ label: 'Theming', route: '/theming' },
 				{ label: 'Blog', route: '/blog' },
 				{ label: 'About', route: '/about' },
 				{ label: 'Contact', route: '/contact' },

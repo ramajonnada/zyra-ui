@@ -90,10 +90,10 @@ export const appConfig: ApplicationConfig = {
 
     readonly themeOverrideCode = `/* global styles.css — override any token */
 :root {
-  --zyr-accent:        #7c3aed;
-  --zyr-accent-muted:  #ede9fe;
-  --zyr-radius-md:     6px;
-  --zyr-font-body:     'Inter', sans-serif;
+  --zyra-color-accent:       #7c3aed;
+  --zyra-color-accent-muted: #ede9fe;
+  --zyra-radius-md:          6px;
+  --zyra-font-body:          'Inter', sans-serif;
 }`;
 
     readonly themeSwitchCode = `import { inject } from '@angular/core';
@@ -101,39 +101,53 @@ import { ZyraThemeService } from 'zyra-ng-ui';
 
 const theme = inject(ZyraThemeService);
 
-theme.setTheme('dark');   // force dark
-theme.setTheme('light');  // force light
-theme.toggle();           // switch between both`;
+// theme: 'dark' | 'light' | 'ocean' | 'amber' | 'rose'
+theme.setTheme('ocean');
+theme.cycle();   // step through all 5 themes
+theme.toggle();  // switch dark <-> light only`;
 
     readonly tokenGroups = [
         {
-            label: 'Color',
+            label: 'Color — semantic',
             tokens: [
-                '--zyr-accent',
-                '--zyr-bg',
-                '--zyr-bg-2',
-                '--zyr-bg-3',
-                '--zyr-text',
-                '--zyr-text-muted',
-                '--zyr-border',
+                '--zyra-color-bg-app',
+                '--zyra-color-surface',
+                '--zyra-color-fg',
+                '--zyra-color-fg-muted',
+                '--zyra-color-border',
+                '--zyra-color-primary',
             ],
         },
         {
-            label: 'Semantic',
-            tokens: ['--zyr-success', '--zyr-warning', '--zyr-danger', '--zyr-info'],
+            label: 'Color — theme layer',
+            tokens: [
+                '--zyra-color-text',
+                '--zyra-color-accent',
+                '--zyra-color-accent-secondary',
+                '--zyra-color-accent-tertiary',
+            ],
+        },
+        {
+            label: 'Semantic status',
+            tokens: [
+                '--zyra-color-success',
+                '--zyra-color-warning',
+                '--zyra-color-danger',
+                '--zyra-color-info',
+            ],
         },
         {
             label: 'Typography',
-            tokens: ['--zyr-font-body', '--zyr-font-display', '--zyr-font-mono'],
+            tokens: ['--zyra-font-body', '--zyra-font-display', '--zyra-font-mono'],
         },
         {
             label: 'Shape & Motion',
             tokens: [
-                '--zyr-radius-sm',
-                '--zyr-radius-md',
-                '--zyr-radius-lg',
-                '--zyr-transition-base',
-                '--zyr-transition-fast',
+                '--zyra-radius-sm',
+                '--zyra-radius-md',
+                '--zyra-radius-lg',
+                '--zyra-transition-base',
+                '--zyra-transition-fast',
             ],
         },
     ];

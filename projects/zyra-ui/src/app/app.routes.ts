@@ -24,6 +24,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/docs/docs').then((m) => m.Docs),
     },
     {
+        path: 'theming',
+        loadComponent: () => import('./pages/theming/theming').then((m) => m.Theming),
+    },
+    {
         path: 'about',
         loadComponent: () => import('./pages/about/about').then((m) => m.About),
     },
