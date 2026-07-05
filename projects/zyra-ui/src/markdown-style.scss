@@ -310,58 +310,6 @@
         white-space: nowrap;
     }
 
-    // ── Syntax highlighting (highlight.js → zyra tokens) ─────
-    .hljs-keyword,
-    .hljs-selector-tag,
-    .hljs-built_in,
-    .hljs-tag .hljs-name {
-        color: var(--zyra-accent);
-    }
-
-    .hljs-string,
-    .hljs-template-variable,
-    .hljs-template-tag {
-        color: var(--zyra-success);
-    }
-
-    .hljs-number,
-    .hljs-literal {
-        color: var(--zyra-warning);
-    }
-
-    .hljs-comment,
-    .hljs-quote {
-        color: var(--zyra-text-dim);
-        font-style: italic;
-    }
-
-    .hljs-type,
-    .hljs-title.class_,
-    .hljs-title.class_.inherited__ {
-        color: var(--zyra-accent-2);
-    }
-
-    .hljs-function .hljs-title,
-    .hljs-title.function_ {
-        color: var(--zyra-accent-3);
-    }
-
-    .hljs-attr,
-    .hljs-attribute,
-    .hljs-meta,
-    .hljs-selector-attr {
-        color: var(--zyra-accent-2);
-    }
-
-    .hljs-tag {
-        color: var(--zyra-danger);
-    }
-
-    .hljs-variable,
-    .hljs-params {
-        color: var(--zyra-text);
-    }
-
     // ── Blockquote (TL;DR, callouts) ──────────────────────────
     blockquote {
         padding: 16px 22px;

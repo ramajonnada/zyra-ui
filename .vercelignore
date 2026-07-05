@@ -1,0 +1,13 @@
+.agents/
+.frontmatter/
+.vscode/
+.github/
+docs/
+scripts/
+coverage/
+AGENTS.md
+CONTRIBUTING.md
+CHANGELOG.md
+README.md
+LICENSE
+frontmatter.json
