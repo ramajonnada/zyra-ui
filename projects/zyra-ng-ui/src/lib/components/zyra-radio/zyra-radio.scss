@@ -15,8 +15,8 @@
         align-items: center;
         justify-content: center;
         border-radius: var(--zyra-radius-full);
-        border: 1.5px solid var(--zyra-radio-border);
-        background: var(--zyra-radio-bg);
+        border: 1.5px solid var(--zyra-color-radio-border);
+        background: var(--zyra-color-radio-bg);
         cursor: pointer;
         transition:
             border-color var(--zyra-transition-fast),
@@ -29,14 +29,14 @@
     &__dot {
         display: block;
         border-radius: var(--zyra-radius-full);
-        background: var(--zyra-radio-dot);
+        background: var(--zyra-color-radio-dot);
         transform: scale(0);
         transition: transform 140ms var(--zyra-ease-standard);
     }
 
     &__label {
         font-family: var(--zyra-font-body);
-        color: var(--zyra-foreground);
+        color: var(--zyra-color-foreground);
         line-height: 1.4;
     }
 
@@ -53,14 +53,14 @@
     &--lg &__label { font-size: 15px; }
 
     &--checked &__circle {
-        border-color: var(--zyra-radio-checked-border);
-        background: var(--zyra-radio-checked-bg);
+        border-color: var(--zyra-color-radio-checked-border);
+        background: var(--zyra-color-radio-checked-bg);
     }
 
     &--checked &__dot { transform: scale(1); }
 
     &:not(.zyr-radio--disabled):hover &__circle {
-        border-color: var(--zyra-radio-checked-border);
+        border-color: var(--zyra-color-radio-checked-border);
     }
 
     &--disabled {

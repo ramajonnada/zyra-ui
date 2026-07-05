@@ -3,10 +3,10 @@
     align-items: center;
     justify-content: center;
     gap: var(--zyra-space-2);
-    border: 1px solid var(--zyra-toggle-border);
+    border: 1px solid var(--zyra-color-toggle-border);
     border-radius: var(--zyra-radius-sm);
     background: transparent;
-    color: var(--zyra-foreground-muted);
+    color: var(--zyra-color-foreground-muted);
     cursor: pointer;
     user-select: none;
     transition:
@@ -16,8 +16,8 @@
         box-shadow var(--zyra-transition-fast);
 
     &:hover:not(:disabled) {
-        border-color: var(--zyra-toggle-fg-on);
-        color: var(--zyra-foreground);
+        border-color: var(--zyra-color-toggle-fg-on);
+        color: var(--zyra-color-foreground);
     }
 
     &:focus-visible {
@@ -26,9 +26,9 @@
     }
 
     &--pressed {
-        background: var(--zyra-toggle-bg-on);
-        border-color: var(--zyra-toggle-fg-on);
-        color: var(--zyra-toggle-fg-on);
+        background: var(--zyra-color-toggle-bg-on);
+        border-color: var(--zyra-color-toggle-fg-on);
+        color: var(--zyra-color-toggle-fg-on);
     }
 
     &--sm {

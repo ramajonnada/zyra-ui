@@ -2,8 +2,8 @@
     display: block;
     min-height: 100vh;
     padding: 40px 0 56px;
-    background: var(--zyra-bg-app);
-    color: var(--zyra-text);
+    background: var(--zyra-color-bg-app);
+    color: var(--zyra-color-text);
 }
 
 .component-detail-page {
@@ -17,7 +17,7 @@
     display: grid;
     gap: 16px;
     padding-bottom: 24px;
-    border-bottom: 1px solid var(--zyra-border);
+    border-bottom: 1px solid var(--zyra-color-border);
 }
 
 
@@ -54,7 +54,7 @@
 
 .component-detail__copy p {
     margin: 0;
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     line-height: 1.75;
 }
 
@@ -86,7 +86,7 @@
 .component-detail-page__desc {
     margin: 0;
     max-width: 640px;
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     font-size: 1.04rem;
     line-height: 1.75;
 }
@@ -98,10 +98,10 @@
 }
 
 .code-block {
-    border: 1px solid var(--zyra-border);
+    border: 1px solid var(--zyra-color-border);
     border-radius: 12px;
     overflow: hidden;
-    background: var(--zyra-bg-panel);
+    background: var(--zyra-color-bg-panel);
 }
 
 .code-block__bar {
@@ -109,12 +109,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 12px 16px;
-    border-bottom: 1px solid var(--zyra-border);
-    background: var(--zyra-bg-surface);
+    border-bottom: 1px solid var(--zyra-color-border);
+    background: var(--zyra-color-bg-surface);
 }
 
 .code-block__filename {
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     font-family: var(--zyra-font-mono);
     font-size: 0.76rem;
 }
@@ -126,7 +126,7 @@
     font-family: var(--zyra-font-mono);
     font-size: 0.82rem;
     line-height: 1.75;
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     white-space: pre;
 }
 
@@ -145,20 +145,20 @@
 
 .variant-card {
     padding: 16px 18px;
-    border: 1px solid var(--zyra-border);
+    border: 1px solid var(--zyra-color-border);
     border-radius: 10px;
-    background: var(--zyra-bg-panel);
+    background: var(--zyra-color-bg-panel);
     transition: border-color var(--zyra-transition-base);
 
     &:hover {
-        border-color: var(--zyra-border-hover);
+        border-color: var(--zyra-color-border-hover);
     }
 }
 
 .variant-card__name {
     display: block;
     margin-bottom: 8px;
-    color: var(--zyra-accent);
+    color: var(--zyra-color-accent);
     font-family: var(--zyra-font-mono);
     font-size: 0.82rem;
     font-weight: 600;
@@ -166,7 +166,7 @@
 
 .variant-card__desc {
     margin: 0;
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     font-size: 0.86rem;
     line-height: 1.6;
 }
@@ -175,7 +175,7 @@
 
 .api-table-wrap {
     overflow-x: auto;
-    border: 1px solid var(--zyra-border);
+    border: 1px solid var(--zyra-color-border);
     border-radius: 12px;
 }
 
@@ -186,9 +186,9 @@
 
     th {
         padding: 12px 18px;
-        border-bottom: 1px solid var(--zyra-border);
-        background: var(--zyra-bg-surface);
-        color: var(--zyra-text-muted);
+        border-bottom: 1px solid var(--zyra-color-border);
+        background: var(--zyra-color-bg-surface);
+        color: var(--zyra-color-text-muted);
         font-family: var(--zyra-font-mono);
         font-size: 0.72rem;
         font-weight: 600;
@@ -200,9 +200,9 @@
 
     td {
         padding: 12px 18px;
-        border-bottom: 1px solid var(--zyra-border);
+        border-bottom: 1px solid var(--zyra-color-border);
         vertical-align: top;
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
         line-height: 1.6;
     }
 
@@ -211,25 +211,25 @@
     }
 
     tr:hover td {
-        background: var(--zyra-bg-panel);
+        background: var(--zyra-color-bg-panel);
     }
 }
 
 .api-table__prop {
-    color: var(--zyra-text);
+    color: var(--zyra-color-text);
     font-family: var(--zyra-font-mono);
     font-size: 0.82rem;
     white-space: nowrap;
 }
 
 .api-table__type {
-    color: var(--zyra-accent-3);
+    color: var(--zyra-color-accent-tertiary);
     font-family: var(--zyra-font-mono);
     font-size: 0.76rem;
 }
 
 .api-table__default {
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     font-family: var(--zyra-font-mono);
     font-size: 0.76rem;
     white-space: nowrap;
@@ -242,8 +242,8 @@
 .inline-code {
     padding: 1px 6px;
     border-radius: 4px;
-    background: var(--zyra-bg-surface);
-    color: var(--zyra-accent);
+    background: var(--zyra-color-bg-surface);
+    color: var(--zyra-color-accent);
     font-family: var(--zyra-font-mono);
     font-size: 0.88em;
 }
@@ -263,11 +263,11 @@
     align-items: flex-start;
     gap: 12px;
     padding: 14px 16px;
-    border: 1px solid var(--zyra-border);
-    border-left: 3px solid var(--zyra-accent);
+    border: 1px solid var(--zyra-color-border);
+    border-left: 3px solid var(--zyra-color-accent);
     border-radius: 8px;
-    background: var(--zyra-bg-panel);
-    color: var(--zyra-text-muted);
+    background: var(--zyra-color-bg-panel);
+    color: var(--zyra-color-text-muted);
     font-size: 0.9rem;
     line-height: 1.7;
 }
@@ -285,10 +285,10 @@
     align-items: center;
     gap: 10px;
     padding: 16px 18px;
-    border: 1px solid var(--zyra-border);
+    border: 1px solid var(--zyra-color-border);
     border-radius: 10px;
-    background: var(--zyra-bg-panel);
-    color: var(--zyra-text);
+    background: var(--zyra-color-bg-panel);
+    color: var(--zyra-color-text);
     text-decoration: none;
     transition:
         border-color var(--zyra-transition-base),
@@ -296,8 +296,8 @@
         transform var(--zyra-transition-spring);
 
     &:hover {
-        border-color: var(--zyra-accent);
-        box-shadow: 0 0 0 1px var(--zyra-accent);
+        border-color: var(--zyra-color-accent);
+        box-shadow: 0 0 0 1px var(--zyra-color-accent);
         transform: translateY(-2px);
     }
 }
@@ -309,14 +309,14 @@
 
 .related-card__category {
     margin-left: 2px;
-    color: var(--zyra-text-dim);
+    color: var(--zyra-color-text-dim);
     font-family: var(--zyra-font-mono);
     font-size: 0.7rem;
     flex: 1;
 }
 
 .related-card__arrow {
-    color: var(--zyra-accent);
+    color: var(--zyra-color-accent);
     font-size: 0.9rem;
     transition: transform var(--zyra-transition-spring);
 

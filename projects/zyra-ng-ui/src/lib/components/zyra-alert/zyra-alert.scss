@@ -88,35 +88,35 @@
     }
 
     &--success {
-        --zyra-alert-color: var(--zyra-success);
-        background: var(--zyra-success-muted);
-        border-color: var(--zyra-success-border);
+        --zyra-alert-color: var(--zyra-color-success);
+        background: var(--zyra-color-success-muted);
+        border-color: var(--zyra-color-success-border);
 
-        .zyr-alert__icon { background: var(--zyra-success); color: #fff; }
+        .zyr-alert__icon { background: var(--zyra-color-success); color: #fff; }
     }
 
     &--warning {
-        --zyra-alert-color: var(--zyra-warning);
-        background: var(--zyra-warning-muted);
-        border-color: var(--zyra-warning-border);
+        --zyra-alert-color: var(--zyra-color-warning);
+        background: var(--zyra-color-warning-muted);
+        border-color: var(--zyra-color-warning-border);
 
-        .zyr-alert__icon { background: var(--zyra-warning); color: #fff; }
+        .zyr-alert__icon { background: var(--zyra-color-warning); color: #fff; }
     }
 
     &--danger {
-        --zyra-alert-color: var(--zyra-danger);
-        background: var(--zyra-danger-muted);
-        border-color: var(--zyra-danger-border);
+        --zyra-alert-color: var(--zyra-color-danger);
+        background: var(--zyra-color-danger-muted);
+        border-color: var(--zyra-color-danger-border);
 
-        .zyr-alert__icon { background: var(--zyra-danger); color: #fff; }
+        .zyr-alert__icon { background: var(--zyra-color-danger); color: #fff; }
     }
 
     &--info {
-        --zyra-alert-color: var(--zyra-info);
-        background: var(--zyra-info-muted);
-        border-color: var(--zyra-info-border);
+        --zyra-alert-color: var(--zyra-color-info);
+        background: var(--zyra-color-info-muted);
+        border-color: var(--zyra-color-info-border);
 
-        .zyr-alert__icon { background: var(--zyra-info); color: #fff; }
+        .zyr-alert__icon { background: var(--zyra-color-info); color: #fff; }
     }
 }
 

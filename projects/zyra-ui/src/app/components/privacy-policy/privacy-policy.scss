@@ -1,7 +1,7 @@
 ﻿:host {
     display: block;
-    background: var(--zyra-bg-app);
-    color: var(--zyra-text);
+    background: var(--zyra-color-bg-app);
+    color: var(--zyra-color-text);
 }
 
 .legal-page {
@@ -25,7 +25,7 @@
 
 .legal-hero p,
 .legal-card p {
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     line-height: 1.75;
 }
 
@@ -36,7 +36,7 @@
 .legal-card section + section {
     margin-top: 24px;
     padding-top: 24px;
-    border-top: 1px solid var(--zyra-border);
+    border-top: 1px solid var(--zyra-color-border);
 }
 
 .legal-card h2 {

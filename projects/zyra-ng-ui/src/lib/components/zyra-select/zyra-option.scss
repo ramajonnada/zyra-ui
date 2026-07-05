@@ -6,28 +6,28 @@
     padding: 7px 10px;
     font-family: var(--zyra-font-body);
     font-size: 13.5px;
-    color: var(--zyra-foreground);
+    color: var(--zyra-color-foreground);
     cursor: pointer;
     border-radius: var(--zyra-radius-sm);
     transition: background var(--zyra-transition-fast);
     user-select: none;
 
     &:hover:not(&--disabled) {
-        background: var(--zyra-bg-raised);
+        background: var(--zyra-color-bg-raised);
     }
 
     &--active {
-        background: var(--zyra-bg-raised);
+        background: var(--zyra-color-bg-raised);
     }
 
     &--selected {
-        background: var(--zyra-primary-subtle);
-        color: var(--zyra-primary);
+        background: var(--zyra-color-primary-subtle);
+        color: var(--zyra-color-primary);
         font-weight: 500;
     }
 
     &--selected#{&}--active {
-        background: var(--zyra-primary-subtle);
+        background: var(--zyra-color-primary-subtle);
     }
 
     &--disabled {

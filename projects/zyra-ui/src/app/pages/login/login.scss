@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     padding: 32px 20px;
-    background: var(--zyra-bg-app);
+    background: var(--zyra-color-bg-app);
 }
 
 .login-shell {
@@ -28,7 +28,7 @@
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: var(--zyra-text);
+    color: var(--zyra-color-text);
 }
 
 .login-logo__mark {
@@ -37,8 +37,8 @@
     border-radius: 50%;
     background: radial-gradient(
         circle at 30% 30%,
-        color-mix(in srgb, var(--zyra-accent) 70%, white) 0%,
-        var(--zyra-accent) 100%
+        color-mix(in srgb, var(--zyra-color-accent) 70%, white) 0%,
+        var(--zyra-color-accent) 100%
     );
 }
 
@@ -48,7 +48,7 @@
     font-weight: 800;
 
     span {
-        color: var(--zyra-accent);
+        color: var(--zyra-color-accent);
     }
 }
 
@@ -67,7 +67,7 @@
 
     p {
         margin: 0;
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
         font-size: 0.9rem;
     }
 }
@@ -81,11 +81,11 @@
 .login-card__footer {
     margin: 20px 0 0;
     text-align: center;
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     font-size: 0.88rem;
 
     a {
-        color: var(--zyra-accent);
+        color: var(--zyra-color-accent);
         text-decoration: none;
 
         &:hover {

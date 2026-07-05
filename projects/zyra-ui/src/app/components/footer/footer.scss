@@ -2,11 +2,11 @@
     display: block;
     position: relative;
     overflow: hidden;
-    border-top: 1px solid color-mix(in srgb, var(--zyra-border) 92%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--zyra-color-border) 92%, transparent);
     background: linear-gradient(
         180deg,
-        color-mix(in srgb, var(--zyra-bg-panel) 94%, transparent) 0%,
-        color-mix(in srgb, var(--zyra-bg-app) 100%, transparent) 100%
+        color-mix(in srgb, var(--zyra-color-bg-panel) 94%, transparent) 0%,
+        color-mix(in srgb, var(--zyra-color-bg-app) 100%, transparent) 100%
     );
 }
 
@@ -39,7 +39,7 @@
     align-items: center;
     gap: 12px;
     margin-bottom: 20px;
-    color: var(--zyra-text);
+    color: var(--zyra-color-text);
     text-decoration: none;
 }
 
@@ -50,12 +50,12 @@
     letter-spacing: 0;
 
     span {
-        color: var(--zyra-accent);
+        color: var(--zyra-color-accent);
     }
 }
 
 .site-footer__brand p {
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     line-height: 1.8;
 }
 
@@ -70,9 +70,9 @@
         align-items: center;
         justify-content: center;
         border-radius: var(--zyra-radius-md);
-        border: 1px solid var(--zyra-border);
-        background: color-mix(in srgb, var(--zyra-bg-surface) 94%, transparent);
-        color: var(--zyra-text-muted);
+        border: 1px solid var(--zyra-color-border);
+        background: color-mix(in srgb, var(--zyra-color-bg-surface) 94%, transparent);
+        color: var(--zyra-color-text-muted);
         transition:
             color var(--zyra-transition-fast),
             border-color var(--zyra-transition-fast),
@@ -80,9 +80,9 @@
             background var(--zyra-transition-fast);
 
         &:hover {
-            color: var(--zyra-text);
-            border-color: var(--zyra-border-hover);
-            background: var(--zyra-bg-raised);
+            color: var(--zyra-color-text);
+            border-color: var(--zyra-color-border-hover);
+            background: var(--zyra-color-bg-raised);
             transform: translateY(-2px);
             opacity: 1;
         }
@@ -98,7 +98,7 @@
 
 .site-footer__column h2 {
     margin-bottom: 18px;
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     font-family: var(--zyra-font-mono);
     font-size: 0.76rem;
     letter-spacing: 0.18em;
@@ -108,13 +108,13 @@
 .site-footer__column a {
     display: block;
     margin-bottom: 12px;
-    color: var(--zyra-text);
+    color: var(--zyra-color-text);
     font-size: 0.96rem;
     text-decoration: none;
     transition: color var(--zyra-transition-fast);
 
     &:hover {
-        color: var(--zyra-accent);
+        color: var(--zyra-color-accent);
         opacity: 1;
     }
 }
@@ -123,12 +123,12 @@
     position: relative;
     z-index: 1;
     padding-top: 24px;
-    border-top: 1px solid var(--zyra-border);
+    border-top: 1px solid var(--zyra-color-border);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    color: var(--zyra-text-muted);
+    color: var(--zyra-color-text-muted);
     font-family: var(--zyra-font-mono);
     font-size: 0.82rem;
 }
@@ -145,7 +145,7 @@
         width: 7px;
         height: 7px;
         border-radius: var(--zyra-radius-full);
-        background: var(--zyra-accent);
+        background: var(--zyra-color-accent);
         transform: translateY(-50%);
     }
 }
@@ -154,7 +154,7 @@
     position: absolute;
     left: 20px;
     bottom: -46px;
-    color: color-mix(in srgb, var(--zyra-text) 4%, transparent);
+    color: color-mix(in srgb, var(--zyra-color-text) 4%, transparent);
     font-family: var(--zyra-font-display);
     font-size: 12rem;
     font-weight: 800;

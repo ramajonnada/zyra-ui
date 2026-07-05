@@ -1,7 +1,7 @@
 ﻿:host {
     display: block;
-    background: var(--zyra-bg-app);
-    color: var(--zyra-text);
+    background: var(--zyra-color-bg-app);
+    color: var(--zyra-color-text);
 }
 
 .public-page {
@@ -28,7 +28,7 @@
         margin: 16px 0 0;
         max-width: 620px;
         font-size: 1rem;
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
         line-height: 1.75;
     }
 }
@@ -56,9 +56,9 @@
     justify-content: center;
     gap: 6px;
     padding: 24px 16px;
-    border: 1px solid var(--zyra-border);
+    border: 1px solid var(--zyra-color-border);
     border-radius: var(--zyra-radius-lg);
-    background: var(--zyra-bg-panel);
+    background: var(--zyra-color-bg-panel);
     text-align: center;
     transition: background var(--zyra-transition-slow);
 
@@ -66,14 +66,14 @@
         font-family: var(--zyra-font-display);
         font-size: 2.4rem;
         font-weight: 800;
-        color: var(--zyra-accent);
+        color: var(--zyra-color-accent);
         line-height: 1;
     }
 
     &__label {
         font-family: var(--zyra-font-mono);
         font-size: 0.7rem;
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
         text-transform: uppercase;
         letter-spacing: 0.1em;
     }
@@ -93,7 +93,7 @@
 
     p {
         margin: 0;
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
         line-height: 1.7;
         font-size: 0.92rem;
     }
@@ -106,8 +106,8 @@
     align-items: center;
     justify-content: center;
     border-radius: var(--zyra-radius-lg);
-    background: var(--zyra-accent-muted);
-    color: var(--zyra-accent);
+    background: var(--zyra-color-accent-muted);
+    color: var(--zyra-color-accent);
 }
 
 // ── Story ─────────────────────────────────────────────────────
@@ -118,9 +118,9 @@
     align-items: start;
     margin-top: 8px;
     padding: 36px;
-    border: 1px solid var(--zyra-border);
+    border: 1px solid var(--zyra-color-border);
     border-radius: var(--zyra-radius-xl);
-    background: var(--zyra-bg-panel);
+    background: var(--zyra-color-bg-panel);
     transition: background var(--zyra-transition-slow);
 
     &__copy {
@@ -132,7 +132,7 @@
         }
 
         p {
-            color: var(--zyra-text-muted);
+            color: var(--zyra-color-text-muted);
             line-height: 1.75;
             font-size: 0.95rem;
             margin: 0 0 14px;
@@ -147,7 +147,7 @@
         display: flex;
         flex-direction: column;
         gap: 0;
-        border: 1px solid var(--zyra-border);
+        border: 1px solid var(--zyra-color-border);
         border-radius: var(--zyra-radius-md);
         overflow: hidden;
     }
@@ -158,7 +158,7 @@
     flex-direction: column;
     gap: 2px;
     padding: 14px 16px;
-    border-bottom: 1px solid var(--zyra-border);
+    border-bottom: 1px solid var(--zyra-color-border);
 
     &:last-child {
         border-bottom: none;
@@ -167,7 +167,7 @@
     &__label {
         font-family: var(--zyra-font-mono);
         font-size: 10px;
-        color: var(--zyra-text-dim);
+        color: var(--zyra-color-text-dim);
         text-transform: uppercase;
         letter-spacing: 0.1em;
     }
@@ -175,13 +175,13 @@
     &__value {
         font-size: 13px;
         font-weight: 500;
-        color: var(--zyra-text);
+        color: var(--zyra-color-text);
     }
 }
 
 .public-eyebrow {
     margin: 0;
-    color: var(--zyra-accent);
+    color: var(--zyra-color-accent);
     font-family: var(--zyra-font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.16em;
@@ -206,7 +206,7 @@
 
     .about-meta-item {
         flex: 1 1 calc(50% - 1px);
-        border-right: 1px solid var(--zyra-border);
+        border-right: 1px solid var(--zyra-color-border);
 
         &:nth-child(even) {
             border-right: none;

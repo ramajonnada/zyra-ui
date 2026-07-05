@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Usage: node scripts/bump-version.js <new-version>
- *    or: npm run version:bump -- 1.8.0
+ * Usage: node scripts/bump-version-lib.js <new-version>
+ *    or: npm run bump:lib -- 1.8.0
  *
  * Updates all version references when releasing a new zyra-ng-ui version:
  *   - projects/zyra-ng-ui/package.json        (library source version)
@@ -28,7 +28,7 @@ function writeJson(filePath, data) {
 
 function bump(version) {
     if (!version || !/^\d+\.\d+\.\d+$/.test(version)) {
-        console.error('Usage: node scripts/bump-version.js <version>  (e.g. 1.8.0)');
+        console.error('Usage: node scripts/bump-version-lib.js <version>  (e.g. 1.8.0)');
         process.exit(1);
     }
 

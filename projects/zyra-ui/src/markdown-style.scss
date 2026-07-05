@@ -8,7 +8,7 @@
 }
 
 .zyra-markdown {
-    color: var(--zyra-text);
+    color: var(--zyra-color-text);
     font-family: var(--zyra-font-body);
 
     // ── Author row ────────────────────────────────────────────
@@ -20,15 +20,15 @@
         gap: 18px;
         margin: 0 0 28px;
         padding: 18px 20px;
-        border: 1px solid var(--zyra-border);
+        border: 1px solid var(--zyra-color-border);
         border-radius: var(--zyra-radius-xl);
         background:
             linear-gradient(
                 135deg,
-                color-mix(in srgb, var(--zyra-accent) 8%, transparent),
+                color-mix(in srgb, var(--zyra-color-accent) 8%, transparent),
                 transparent 60%
             ),
-            color-mix(in srgb, var(--zyra-bg-surface) 74%, transparent);
+            color-mix(in srgb, var(--zyra-color-bg-surface) 74%, transparent);
     }
 
     .blog-author-left {
@@ -44,9 +44,9 @@
         align-items: center;
         justify-content: center;
         border-radius: 999px;
-        background: var(--zyra-accent-muted);
-        border: 1px solid var(--zyra-accent-border);
-        color: var(--zyra-accent);
+        background: var(--zyra-color-accent-muted);
+        border: 1px solid var(--zyra-color-accent-border);
+        color: var(--zyra-color-accent);
         font-family: var(--zyra-font-display);
         font-size: 1rem;
         letter-spacing: 0.08em;
@@ -57,12 +57,12 @@
         font-size: 0.76rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--zyra-text);
+        color: var(--zyra-color-text);
     }
 
     .blog-author-bio {
         margin-top: 4px;
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
         font-size: 0.92rem;
         line-height: 1.6;
     }
@@ -79,10 +79,10 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid var(--zyra-border);
+        border: 1px solid var(--zyra-color-border);
         border-radius: 999px;
-        background: var(--zyra-bg-surface);
-        color: var(--zyra-text-muted);
+        background: var(--zyra-color-bg-surface);
+        color: var(--zyra-color-text-muted);
     }
 
     // ── Headings ──────────────────────────────────────────────
@@ -93,7 +93,7 @@
         font-family: var(--zyra-font-display);
         line-height: 1.08;
         letter-spacing: 0;
-        color: var(--zyra-text);
+        color: var(--zyra-color-text);
     }
 
     h2 {
@@ -105,13 +105,13 @@
     h5 {
         margin: 24px 0 12px;
         font-size: 0.9rem;
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
     }
 
     // ── Body text ─────────────────────────────────────────────
     p,
     li {
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
         font-size: 1rem;
         line-height: 1.9;
     }
@@ -134,15 +134,15 @@
 
     ul li::marker,
     ol li::marker {
-        color: var(--zyra-text-dim);
+        color: var(--zyra-color-text-dim);
     }
 
     strong {
-        color: var(--zyra-text);
+        color: var(--zyra-color-text);
     }
 
     a {
-        color: var(--zyra-accent);
+        color: var(--zyra-color-accent);
         text-decoration: none;
         &:hover {
             text-decoration: underline;
@@ -154,7 +154,7 @@
         border: 0;
         height: 1px;
         margin: 28px 0;
-        background: linear-gradient(90deg, transparent, var(--zyra-border-strong), transparent);
+        background: linear-gradient(90deg, transparent, var(--zyra-color-border-strong), transparent);
     }
 
     // ── Inline code ───────────────────────────────────────────
@@ -170,20 +170,20 @@
         display: inline;
         padding: 2px 6px;
         border-radius: 6px;
-        background: var(--zyra-bg-surface);
-        border: 1px solid var(--zyra-border);
-        color: var(--zyra-text);
+        background: var(--zyra-color-bg-surface);
+        border: 1px solid var(--zyra-color-border);
+        color: var(--zyra-color-text);
     }
 
     // ── Block code ────────────────────────────────────────────
     pre {
         position: relative;
         padding: 20px 22px 20px 20px;
-        border: 1px solid var(--zyra-border);
-        border-left: 3px solid var(--zyra-accent);
+        border: 1px solid var(--zyra-color-border);
+        border-left: 3px solid var(--zyra-color-accent);
         border-radius: var(--zyra-radius-xl);
-        background: var(--zyra-bg-surface);
-        color: var(--zyra-text);
+        background: var(--zyra-color-bg-surface);
+        color: var(--zyra-color-text);
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
 
@@ -205,10 +205,10 @@
             top: 10px;
             right: 10px;
             padding: 4px 10px;
-            border: 1px solid var(--zyra-border);
+            border: 1px solid var(--zyra-color-border);
             border-radius: var(--zyra-radius-sm);
-            background: var(--zyra-bg-panel);
-            color: var(--zyra-text-muted);
+            background: var(--zyra-color-bg-panel);
+            color: var(--zyra-color-text-muted);
             font-family: var(--zyra-font-mono);
             font-size: 11px;
             cursor: pointer;
@@ -220,9 +220,9 @@
                 background 0.15s ease;
 
             &--copied {
-                color: var(--zyra-success);
-                border-color: var(--zyra-success-border);
-                background: var(--zyra-success-muted);
+                color: var(--zyra-color-success);
+                border-color: var(--zyra-color-success-border);
+                background: var(--zyra-color-success-muted);
                 opacity: 1;
             }
         }
@@ -240,7 +240,7 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         margin: 0 0 24px;
-        border: 1px solid var(--zyra-border);
+        border: 1px solid var(--zyra-color-border);
         border-radius: var(--zyra-radius-xl);
     }
 
@@ -254,8 +254,8 @@
     }
 
     thead {
-        background: var(--zyra-bg-surface);
-        border-bottom: 2px solid var(--zyra-border-strong);
+        background: var(--zyra-color-bg-surface);
+        border-bottom: 2px solid var(--zyra-color-border-strong);
     }
 
     th {
@@ -266,10 +266,10 @@
         font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
         overflow: hidden;
         text-overflow: ellipsis;
-        border-right: 1px solid var(--zyra-border-strong);
+        border-right: 1px solid var(--zyra-color-border-strong);
 
         &:last-child {
             border-right: none;
@@ -278,10 +278,10 @@
 
     td {
         padding: 13px 18px;
-        color: var(--zyra-text-muted);
+        color: var(--zyra-color-text-muted);
         line-height: 1.65;
-        border-top: 1px solid var(--zyra-border);
-        border-right: 1px solid var(--zyra-border);
+        border-top: 1px solid var(--zyra-color-border);
+        border-right: 1px solid var(--zyra-color-border);
         vertical-align: top;
         word-break: break-word;
 
@@ -291,11 +291,11 @@
     }
 
     tbody tr:nth-child(even) td {
-        background: color-mix(in srgb, var(--zyra-bg-surface) 50%, transparent);
+        background: color-mix(in srgb, var(--zyra-color-bg-surface) 50%, transparent);
     }
 
     tbody tr:hover td {
-        background: color-mix(in srgb, var(--zyra-accent) 5%, transparent);
+        background: color-mix(in srgb, var(--zyra-color-accent) 5%, transparent);
         transition: background 0.15s ease;
     }
 
@@ -303,19 +303,71 @@
     th code {
         padding: 2px 7px;
         border-radius: 5px;
-        background: color-mix(in srgb, var(--zyra-accent) 10%, transparent);
-        border: 1px solid var(--zyra-accent-border);
-        color: var(--zyra-accent);
+        background: color-mix(in srgb, var(--zyra-color-accent) 10%, transparent);
+        border: 1px solid var(--zyra-color-accent-border);
+        color: var(--zyra-color-accent);
         font-size: 0.85em;
         white-space: nowrap;
+    }
+
+    // ── Syntax highlighting (highlight.js → zyra tokens) ─────
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-built_in,
+    .hljs-tag .hljs-name {
+        color: var(--zyra-color-accent);
+    }
+
+    .hljs-string,
+    .hljs-template-variable,
+    .hljs-template-tag {
+        color: var(--zyra-color-success);
+    }
+
+    .hljs-number,
+    .hljs-literal {
+        color: var(--zyra-color-warning);
+    }
+
+    .hljs-comment,
+    .hljs-quote {
+        color: var(--zyra-color-text-dim);
+        font-style: italic;
+    }
+
+    .hljs-type,
+    .hljs-title.class_,
+    .hljs-title.class_.inherited__ {
+        color: var(--zyra-color-accent-secondary);
+    }
+
+    .hljs-function .hljs-title,
+    .hljs-title.function_ {
+        color: var(--zyra-color-accent-tertiary);
+    }
+
+    .hljs-attr,
+    .hljs-attribute,
+    .hljs-meta,
+    .hljs-selector-attr {
+        color: var(--zyra-color-accent-secondary);
+    }
+
+    .hljs-tag {
+        color: var(--zyra-color-danger);
+    }
+
+    .hljs-variable,
+    .hljs-params {
+        color: var(--zyra-color-text);
     }
 
     // ── Blockquote (TL;DR, callouts) ──────────────────────────
     blockquote {
         padding: 16px 22px;
-        border-left: 4px solid var(--zyra-accent);
+        border-left: 4px solid var(--zyra-color-accent);
         border-radius: 0 var(--zyra-radius-md) var(--zyra-radius-md) 0;
-        background: color-mix(in srgb, var(--zyra-accent) 6%, var(--zyra-bg-panel));
+        background: color-mix(in srgb, var(--zyra-color-accent) 6%, var(--zyra-color-bg-panel));
 
         p:last-child {
             margin-bottom: 0;
@@ -326,9 +378,9 @@
             display: inline;
             padding: 2px 6px;
             border-radius: 5px;
-            background: color-mix(in srgb, var(--zyra-accent) 14%, transparent);
-            border: 1px solid var(--zyra-accent-border);
-            color: var(--zyra-accent);
+            background: color-mix(in srgb, var(--zyra-color-accent) 14%, transparent);
+            border: 1px solid var(--zyra-color-accent-border);
+            color: var(--zyra-color-accent);
             font-size: 0.88em;
         }
     }

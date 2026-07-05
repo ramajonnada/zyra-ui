@@ -123,10 +123,10 @@
 @keyframes zyr-pulse-glow {
     0%,
     100% {
-        box-shadow: 0 0 20px rgba(var(--zyra-glow), 0.3);
+        box-shadow: 0 0 20px rgba(var(--zyra-color-glow), 0.3);
     }
     50% {
-        box-shadow: 0 0 40px rgba(var(--zyra-glow), 0.6);
+        box-shadow: 0 0 40px rgba(var(--zyra-color-glow), 0.6);
     }
 }
 

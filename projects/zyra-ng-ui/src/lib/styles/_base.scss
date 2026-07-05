@@ -13,13 +13,13 @@
 
 html {
     scroll-behavior: smooth;
-    background-color: var(--zyra-background);
+    background-color: var(--zyra-color-background);
 }
 
 body {
     min-height: 100vh;
-    background-color: var(--zyra-background);
-    color: var(--zyra-foreground);
+    background-color: var(--zyra-color-background);
+    color: var(--zyra-color-foreground);
     font-family: var(--zyra-font-body);
     font-size: 15px;
     line-height: 1.65;
@@ -31,8 +31,8 @@ body {
 }
 
 ::selection {
-    background: var(--zyra-primary-subtle);
-    color: var(--zyra-foreground);
+    background: var(--zyra-color-primary-subtle);
+    color: var(--zyra-color-foreground);
 }
 
 *::-webkit-scrollbar {
@@ -41,11 +41,11 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-    background: var(--zyra-scrollbar-track);
+    background: var(--zyra-color-scrollbar-track);
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--zyra-scrollbar-thumb);
+    background: var(--zyra-color-scrollbar-thumb);
     border-radius: 3px;
 }
 
@@ -56,18 +56,18 @@ h4,
 h5,
 h6 {
     font-family: var(--zyra-font-display);
-    color: var(--zyra-foreground);
+    color: var(--zyra-color-foreground);
     line-height: 1.15;
     letter-spacing: -0.01em;
 }
 
 p {
-    color: var(--zyra-foreground-muted);
+    color: var(--zyra-color-foreground-muted);
     line-height: 1.7;
 }
 
 a {
-    color: var(--zyra-primary);
+    color: var(--zyra-color-primary);
     text-decoration: none;
     transition: opacity var(--zyra-transition-fast);
 
@@ -101,7 +101,7 @@ select {
 }
 
 :focus-visible {
-    outline: 2px solid var(--zyra-primary);
+    outline: 2px solid var(--zyra-color-primary);
     outline-offset: 2px;
     border-radius: 3px;
 }

@@ -54,9 +54,9 @@ describe('Zyra theme tokens', () => {
 		fixture.detectChanges();
 
 		const styles = probeStyles();
-		expect(styles.backgroundColor).toBe('rgb(11, 19, 32)');        // --zyra-bg-app: #0b1320
-		expect(styles.color).toBe('rgb(0, 122, 138)');                 // --zyra-accent: #007a8a (same teal as light theme)
-		expect(styles.borderTopColor).toBe('rgba(255, 255, 255, 0.08)'); // --zyra-border
+		expect(styles.backgroundColor).toBe('rgb(11, 19, 32)');        // --zyra-color-bg-app: #0b1320
+		expect(styles.color).toBe('rgb(0, 122, 138)');                 // --zyra-color-accent: #007a8a (same teal as light theme)
+		expect(styles.borderTopColor).toBe('rgba(255, 255, 255, 0.08)'); // --zyra-color-border
 		expect(styles.transitionDuration).toContain('0.3s');          // --zyr-duration-base: 300ms
 	});
 });

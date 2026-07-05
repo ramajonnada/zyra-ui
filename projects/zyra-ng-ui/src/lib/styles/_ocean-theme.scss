@@ -1,60 +1,60 @@
 [data-theme='ocean'] {
     // ── Surfaces ─────────────────────────────────────────────────────────────
     // Cool blue-tinted light surfaces — distinct from the neutral white of the default light theme.
-    --zyra-bg-app:     #f4f7fb;
-    --zyra-bg-panel:   #eaf0f8;
-    --zyra-bg-surface: #dde8f4;
-    --zyra-bg-raised:  #cddaea;
+    --zyra-color-bg-app:     #f4f7fb;
+    --zyra-color-bg-panel:   #eaf0f8;
+    --zyra-color-bg-surface: #dde8f4;
+    --zyra-color-bg-raised:  #cddaea;
 
     // ── Borders ──────────────────────────────────────────────────────────────
-    --zyra-border:        rgba(20, 50, 100, 0.09);
-    --zyra-border-hover:  rgba(26, 110, 200, 0.28);
-    --zyra-border-strong: rgba(20, 50, 100, 0.16);
+    --zyra-color-border:        rgba(20, 50, 100, 0.09);
+    --zyra-color-border-hover:  rgba(26, 110, 200, 0.28);
+    --zyra-color-border-strong: rgba(20, 50, 100, 0.16);
 
     // ── Text ─────────────────────────────────────────────────────────────────
-    --zyra-text:         #0a1220;
-    --zyra-text-muted:   #3a5880;
-    --zyra-text-dim:     #7a9ec8;
-    --zyra-text-inverse: #ffffff;
+    --zyra-color-text:         #0a1220;
+    --zyra-color-text-muted:   #3a5880;
+    --zyra-color-text-dim:     #7a9ec8;
+    --zyra-color-text-inverse: #ffffff;
 
-    --zyra-surface-inverse: #0a1220;
+    --zyra-color-surface-inverse: #0a1220;
 
     // ── Glow RGB channels ─────────────────────────────────────────────────────
-    --zyra-glow: 26, 110, 200;
+    --zyra-color-glow: 26, 110, 200;
 
     // ── Accent (Electric blue) ────────────────────────────────────────────────
     // Hover goes darker in light themes.
-    --zyra-accent:        #1a6ec8;
-    --zyra-accent-hover:  #1258a0;
-    --zyra-accent-muted:  rgba(26, 110, 200, 0.12);
-    --zyra-accent-border: rgba(26, 110, 200, 0.24);
+    --zyra-color-accent:        #1a6ec8;
+    --zyra-color-accent-hover:  #1258a0;
+    --zyra-color-accent-muted:  rgba(26, 110, 200, 0.12);
+    --zyra-color-accent-border: rgba(26, 110, 200, 0.24);
     --zyra-focus-ring:    rgba(26, 110, 200, 0.45);
 
     // ── Secondary accents ─────────────────────────────────────────────────────
-    --zyra-accent-2:        #007a8a;
-    --zyra-accent-2-muted:  rgba(0, 122, 138, 0.10);
-    --zyra-accent-2-border: rgba(0, 122, 138, 0.22);
+    --zyra-color-accent-secondary:        #007a8a;
+    --zyra-color-accent-secondary-muted:  rgba(0, 122, 138, 0.10);
+    --zyra-color-accent-secondary-border: rgba(0, 122, 138, 0.22);
 
-    --zyra-accent-3:        #8b6ef5;
-    --zyra-accent-3-muted:  rgba(139, 110, 245, 0.10);
-    --zyra-accent-3-border: rgba(139, 110, 245, 0.22);
+    --zyra-color-accent-tertiary:        #8b6ef5;
+    --zyra-color-accent-tertiary-muted:  rgba(139, 110, 245, 0.10);
+    --zyra-color-accent-tertiary-border: rgba(139, 110, 245, 0.22);
 
     // ── Semantic ──────────────────────────────────────────────────────────────
-    --zyra-success:        #10b981;
-    --zyra-success-muted:  rgba(16, 185, 129, 0.10);
-    --zyra-success-border: rgba(16, 185, 129, 0.22);
+    --zyra-color-success:        #10b981;
+    --zyra-color-success-muted:  rgba(16, 185, 129, 0.10);
+    --zyra-color-success-border: rgba(16, 185, 129, 0.22);
 
-    --zyra-warning:        #f59e0b;
-    --zyra-warning-muted:  rgba(245, 158, 11, 0.12);
-    --zyra-warning-border: rgba(245, 158, 11, 0.24);
+    --zyra-color-warning:        #f59e0b;
+    --zyra-color-warning-muted:  rgba(245, 158, 11, 0.12);
+    --zyra-color-warning-border: rgba(245, 158, 11, 0.24);
 
-    --zyra-danger:        #ef4444;
-    --zyra-danger-muted:  rgba(239, 68, 68, 0.09);
-    --zyra-danger-border: rgba(239, 68, 68, 0.22);
+    --zyra-color-danger:        #ef4444;
+    --zyra-color-danger-muted:  rgba(239, 68, 68, 0.09);
+    --zyra-color-danger-border: rgba(239, 68, 68, 0.22);
 
-    --zyra-info:        #1a6ec8;
-    --zyra-info-muted:  rgba(26, 110, 200, 0.10);
-    --zyra-info-border: rgba(26, 110, 200, 0.22);
+    --zyra-color-info:        #1a6ec8;
+    --zyra-color-info-muted:  rgba(26, 110, 200, 0.10);
+    --zyra-color-info-border: rgba(26, 110, 200, 0.22);
 
     // ── Shadows ───────────────────────────────────────────────────────────────
     --zyra-shadow-sm:     0 2px 10px rgba(20, 50, 100, 0.07);
@@ -63,50 +63,50 @@
 
     // ── Buttons ───────────────────────────────────────────────────────────────
     // #1a6ec8 at 5.1:1 with white text — passes WCAG AA.
-    --zyra-btn-primary-text:   #ffffff;
-    --zyra-btn-ghost-hover-bg: rgba(20, 50, 100, 0.05);
+    --zyra-color-btn-primary-text:   #ffffff;
+    --zyra-color-btn-ghost-hover-bg: rgba(20, 50, 100, 0.05);
 
     // ── Inputs ────────────────────────────────────────────────────────────────
-    --zyra-input-bg:           #f4f7fb;
-    --zyra-input-border:       var(--zyra-border-strong);
+    --zyra-color-input-bg:           #f4f7fb;
+    --zyra-color-input-border:       var(--zyra-color-border-strong);
     --zyra-input-shadow-focus: 0 0 0 3px rgba(26, 110, 200, 0.40);
 
     // ── Cards ─────────────────────────────────────────────────────────────────
-    --zyra-card-bg:              #eaf0f8;
-    --zyra-card-border:          rgba(20, 50, 100, 0.10);
-    --zyra-card-section-bg:      rgba(20, 50, 100, 0.04);
+    --zyra-color-card-bg:              #eaf0f8;
+    --zyra-color-card-border:          rgba(20, 50, 100, 0.10);
+    --zyra-color-card-section-bg:      rgba(20, 50, 100, 0.04);
     --zyra-card-shadow:          0 1px 3px rgba(20, 50, 100, 0.08), 0 4px 16px rgba(20, 50, 100, 0.05);
     --zyra-card-elevated-shadow: 0 8px 24px rgba(20, 50, 100, 0.10), 0 20px 48px rgba(20, 50, 100, 0.07);
     --zyra-card-focus-ring:      rgba(26, 110, 200, 0.18);
 
     // ── Misc ──────────────────────────────────────────────────────────────────
-    --zyra-code-bg: #dde8f4;
+    --zyra-color-code-bg: #dde8f4;
 
-    --zyra-scrollbar-thumb: rgba(20, 50, 100, 0.14);
-    --zyra-scrollbar-track: transparent;
+    --zyra-color-scrollbar-thumb: rgba(20, 50, 100, 0.14);
+    --zyra-color-scrollbar-track: transparent;
 
-    --zyra-tooltip-bg:     #0a1220;
-    --zyra-tooltip-text:   #eaf0f8;
-    --zyra-tooltip-border: rgba(26, 110, 200, 0.18);
+    --zyra-color-tooltip-bg:     #0a1220;
+    --zyra-color-tooltip-text:   #eaf0f8;
+    --zyra-color-tooltip-border: rgba(26, 110, 200, 0.18);
     --zyra-tooltip-shadow: 0 16px 38px rgba(20, 50, 100, 0.14);
 
-    --zyra-toast-bg:     rgba(244, 247, 251, 0.97);
-    --zyra-toast-border: rgba(20, 50, 100, 0.10);
+    --zyra-color-toast-bg:     rgba(244, 247, 251, 0.97);
+    --zyra-color-toast-border: rgba(20, 50, 100, 0.10);
 
-    --zyra-spinner-inverse-track: rgba(10, 18, 32, 0.18);
-    --zyra-spinner-inverse-head:  #0a1220;
+    --zyra-color-spinner-inverse-track: rgba(10, 18, 32, 0.18);
+    --zyra-color-spinner-inverse-head:  #0a1220;
 
-    --zyra-overlay-bg: rgba(0, 0, 0, 0.65);
+    --zyra-color-overlay-bg: rgba(0, 0, 0, 0.65);
 
-    --zyra-pill-active-bg:     var(--zyra-bg-app);
-    --zyra-pill-active-shadow: 0 2px 6px var(--zyra-border-strong), 0 1px 2px var(--zyra-border);
+    --zyra-color-pill-active-bg:     var(--zyra-color-bg-app);
+    --zyra-pill-active-shadow: 0 2px 6px var(--zyra-color-border-strong), 0 1px 2px var(--zyra-color-border);
 
-    --zyra-preview-stage-bg: #cddaea;
+    --zyra-color-preview-stage-bg: #cddaea;
 
-    --zyra-glass-bg:        rgba(234, 240, 248, 0.52);
-    --zyra-header-glass-bg: rgba(244, 247, 251, 0.62);
+    --zyra-color-glass-bg:        rgba(234, 240, 248, 0.52);
+    --zyra-color-header-glass-bg: rgba(244, 247, 251, 0.62);
     --zyra-header-backdrop: blur(24px) saturate(160%) brightness(1.02);
     --zyra-header-shadow:
-        0 1px 0 rgba(var(--zyra-glow), 0.10) inset, 0 2px 6px rgba(20, 50, 100, 0.04),
+        0 1px 0 rgba(var(--zyra-color-glow), 0.10) inset, 0 2px 6px rgba(20, 50, 100, 0.04),
         0 8px 24px rgba(20, 50, 100, 0.06);
 }

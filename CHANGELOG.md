@@ -7,6 +7,18 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [3.0.0] — 2026-07-05
+
+### Changed
+
+- **BREAKING:** Renamed all color design tokens to a consistent `--zyra-color-*` convention (e.g. `--zyra-text` → `--zyra-color-text`, `--zyra-accent` → `--zyra-color-accent`). Structural tokens (`--zyra-radius-*`, `--zyra-space-*`, `--zyra-shadow-*`, `--zyra-ring`, etc.) are unchanged. `--zyra-accent-2`/`--zyra-accent-3` are renamed to `--zyra-color-accent-secondary`/`--zyra-color-accent-tertiary`. Consumers referencing `--zyra-*` tokens directly in their own CSS must update to the new names — see the token reference in the docs for the full mapping.
+
+### Fixed
+
+- Restored `highlight.js`-powered syntax highlighting in blog code blocks (previously reverted, now reinstated and updated to use the renamed color tokens)
+
+---
+
 ## [2.0.0] — 2026-07-05
 
 ### Added

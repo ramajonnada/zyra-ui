@@ -1,7 +1,7 @@
 ﻿:host {
 	display: block;
-	background: var(--zyra-bg-app);
-	color: var(--zyra-text);
+	background: var(--zyra-color-bg-app);
+	color: var(--zyra-color-text);
 }
 
 .docs-page {
@@ -33,7 +33,7 @@
 
 .docs-step__eyebrow {
 	margin: 0 0 10px;
-	color: var(--zyra-accent);
+	color: var(--zyra-color-accent);
 	font-family: var(--zyra-font-mono);
 	font-size: 0.72rem;
 	letter-spacing: 0.16em;
@@ -42,7 +42,7 @@
 
 .docs-step__desc {
 	margin: 0 0 18px;
-	color: var(--zyra-text-muted);
+	color: var(--zyra-color-text-muted);
 	font-size: 1rem;
 	line-height: 1.9;
 }
@@ -52,11 +52,11 @@
 	margin: 0;
 	padding: 20px 22px 20px 20px;
 	overflow-x: auto;
-	border: 1px solid var(--zyra-border);
-	border-left: 3px solid var(--zyra-accent);
+	border: 1px solid var(--zyra-color-border);
+	border-left: 3px solid var(--zyra-color-accent);
 	border-radius: var(--zyra-radius-xl);
-	background: var(--zyra-bg-surface);
-	color: var(--zyra-text);
+	background: var(--zyra-color-bg-surface);
+	color: var(--zyra-color-text);
 	transition: background var(--zyra-transition-slow);
 
 	code {
@@ -75,7 +75,7 @@
 
 // ── Section wrapper ───────────────────────────────────────────
 .docs-section {
-	border-top: 1px solid var(--zyra-border);
+	border-top: 1px solid var(--zyra-color-border);
 	padding-top: 48px;
 	margin-top: 48px;
 }
@@ -92,7 +92,7 @@
 	}
 
 	p {
-		color: var(--zyra-text-muted);
+		color: var(--zyra-color-text-muted);
 		line-height: 1.75;
 		margin: 0;
 		font-size: 0.95rem;
@@ -100,14 +100,14 @@
 		code {
 			font-family: var(--zyra-font-mono);
 			font-size: 0.85em;
-			color: var(--zyra-accent);
+			color: var(--zyra-color-accent);
 		}
 	}
 }
 
 .docs-eyebrow {
 	margin: 0;
-	color: var(--zyra-accent);
+	color: var(--zyra-color-accent);
 	font-family: var(--zyra-font-mono);
 	font-size: 0.72rem;
 	letter-spacing: 0.16em;
@@ -117,7 +117,7 @@
 // ── Component table ───────────────────────────────────────────
 .docs-table-wrap {
 	overflow-x: auto;
-	border: 1px solid var(--zyra-border);
+	border: 1px solid var(--zyra-color-border);
 	border-radius: var(--zyra-radius-lg);
 }
 
@@ -127,8 +127,8 @@
 	font-size: 13.5px;
 
 	thead tr {
-		background: var(--zyra-bg-panel);
-		border-bottom: 1px solid var(--zyra-border);
+		background: var(--zyra-color-bg-panel);
+		border-bottom: 1px solid var(--zyra-color-border);
 		transition: background var(--zyra-transition-slow);
 	}
 
@@ -138,14 +138,14 @@
 		font-family: var(--zyra-font-mono);
 		font-size: 11px;
 		font-weight: 600;
-		color: var(--zyra-text-dim);
+		color: var(--zyra-color-text-dim);
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 		white-space: nowrap;
 	}
 
 	tbody tr {
-		border-bottom: 1px solid var(--zyra-border);
+		border-bottom: 1px solid var(--zyra-color-border);
 		transition: background var(--zyra-transition-fast);
 
 		&:last-child {
@@ -153,40 +153,40 @@
 		}
 
 		&:hover {
-			background: var(--zyra-bg-panel);
+			background: var(--zyra-color-bg-panel);
 		}
 	}
 
 	td {
 		padding: 12px 16px;
-		color: var(--zyra-text-muted);
+		color: var(--zyra-color-text-muted);
 		vertical-align: middle;
 
 		code {
 			font-family: var(--zyra-font-mono);
 			font-size: 12px;
-			color: var(--zyra-accent);
-			background: var(--zyra-accent-muted);
+			color: var(--zyra-color-accent);
+			background: var(--zyra-color-accent-muted);
 			padding: 2px 7px;
 			border-radius: var(--zyra-radius-xs);
 		}
 	}
 
 	&__link {
-		color: var(--zyra-text);
+		color: var(--zyra-color-text);
 		font-weight: 500;
 		text-decoration: none;
 		transition: color var(--zyra-transition-base);
 
 		&:hover {
-			color: var(--zyra-accent);
+			color: var(--zyra-color-accent);
 		}
 	}
 
 	&__cat {
 		font-family: var(--zyra-font-mono);
 		font-size: 11px;
-		color: var(--zyra-text-dim);
+		color: var(--zyra-color-text-dim);
 	}
 }
 
@@ -208,7 +208,7 @@
 	font-family: var(--zyra-font-mono);
 	font-size: 11px;
 	font-weight: 600;
-	color: var(--zyra-text-dim);
+	color: var(--zyra-color-text-dim);
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
 	margin: 0;
@@ -223,9 +223,9 @@
 
 .docs-token-group {
 	padding: 16px;
-	border: 1px solid var(--zyra-border);
+	border: 1px solid var(--zyra-color-border);
 	border-radius: var(--zyra-radius-md);
-	background: var(--zyra-bg-panel);
+	background: var(--zyra-color-bg-panel);
 	transition: background var(--zyra-transition-slow);
 
 	&__label {
@@ -233,7 +233,7 @@
 		font-family: var(--zyra-font-mono);
 		font-size: 10px;
 		font-weight: 600;
-		color: var(--zyra-accent);
+		color: var(--zyra-color-accent);
 		text-transform: uppercase;
 		letter-spacing: 0.12em;
 		margin-bottom: 10px;
@@ -249,12 +249,12 @@
 .docs-token {
 	font-family: var(--zyra-font-mono);
 	font-size: 12px;
-	color: var(--zyra-text-muted);
+	color: var(--zyra-color-text-muted);
 	display: block;
 
 	&::before {
 		content: '·';
-		color: var(--zyra-accent);
+		color: var(--zyra-color-accent);
 		margin-right: 6px;
 	}
 }
@@ -266,14 +266,14 @@
 	code {
 		font-family: var(--zyra-font-mono);
 		font-size: 0.85em;
-		color: var(--zyra-accent);
+		color: var(--zyra-color-accent);
 	}
 }
 
 // ── CTA ───────────────────────────────────────────────────────
 .docs-cta {
 	margin-top: 56px;
-	border-top: 1px solid var(--zyra-border);
+	border-top: 1px solid var(--zyra-color-border);
 	padding-top: 56px;
 	text-align: center;
 
@@ -288,7 +288,7 @@
 		}
 
 		p {
-			color: var(--zyra-text-muted);
+			color: var(--zyra-color-text-muted);
 			line-height: 1.7;
 			margin: 0 0 24px;
 		}

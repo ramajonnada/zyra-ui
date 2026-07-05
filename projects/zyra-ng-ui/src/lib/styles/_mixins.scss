@@ -10,7 +10,7 @@
         outline-offset: $offset;
         box-shadow:
             0 0 0 3px var(--zyra-focus-ring),
-            var(--zyra-glow-shadow-strong);
+            var(--zyra-color-glow-shadow-strong);
     }
 }
 
@@ -26,7 +26,7 @@
         inset: -1px;
         z-index: 0;
         opacity: 0;
-        background: radial-gradient(circle at 50% 100%, var(--zyra-glow-surface), transparent 68%);
+        background: radial-gradient(circle at 50% 100%, var(--zyra-color-glow-surface), transparent 68%);
         transition: opacity var(--zyra-transition-base);
         pointer-events: none;
     }
@@ -39,8 +39,8 @@
 // Interactive element base — hover glow border + shadow
 @mixin interactive-hover {
     &:hover:not(:disabled) {
-        border-color: var(--zyra-glow-border);
-        box-shadow: var(--zyra-glow-shadow-strong);
+        border-color: var(--zyra-color-glow-border);
+        box-shadow: var(--zyra-color-glow-shadow-strong);
     }
 }
 

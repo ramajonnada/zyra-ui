@@ -29,7 +29,7 @@ Decide the new version following [Semantic Versioning](https://semver.org/):
 Run the bump script — it updates all version references in one command:
 
 ```bash
-npm run version:bump -- 1.8.0
+npm run bump:lib -- 1.8.0
 ```
 
 This updates:
@@ -73,6 +73,7 @@ This runs every checklist item in order and **stops immediately if anything fail
 
 | Step | What it does |
 |---|---|
+| ✅ Pre-publish check | Verifies versions/changelog are consistent, npm auth, dry-run publish |
 | ✅ Format check | Ensures all files match Prettier config |
 | ✅ Lint | Runs ESLint on both projects |
 | ✅ Tests | Runs unit tests headlessly |

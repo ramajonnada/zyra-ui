@@ -11,7 +11,7 @@ html {
 [data-theme='dark'] {
     --zyra-grid: 220 13% 18%; // HSL triplet for grid-bg utility — no library equivalent
 
-    // Original hero "alive" gradient stops — dark theme only, independent of --zyra-accent
+    // Original hero "alive" gradient stops — dark theme only, independent of --zyra-color-accent
     --zyr-cyan-200: #80f3f8;
     --zyr-cyan-300: #4df0f6;
     --zyr-cyan-500: #00eaff;
@@ -48,9 +48,9 @@ html {
 :is([data-theme='light'], [data-theme='ocean'], [data-theme='amber'], [data-theme='rose']) .zyra-gradient-text {
     background: linear-gradient(
         135deg,
-        color-mix(in srgb, var(--zyra-accent) 70%, white) 0%,
-        var(--zyra-accent) 45%,
-        var(--zyra-accent-hover) 100%
+        color-mix(in srgb, var(--zyra-color-accent) 70%, white) 0%,
+        var(--zyra-color-accent) 45%,
+        var(--zyra-color-accent-hover) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -59,18 +59,18 @@ html {
 
 .zyra-glow {
     box-shadow:
-        0 0 24px rgba(var(--zyra-glow), 0.35),
-        0 0 48px rgba(var(--zyra-glow), 0.15);
+        0 0 24px rgba(var(--zyra-color-glow), 0.35),
+        0 0 48px rgba(var(--zyra-color-glow), 0.15);
 }
 
 .zyra-glow-hover:hover {
     box-shadow:
-        0 0 32px rgba(var(--zyra-glow), 0.55),
-        0 0 64px rgba(var(--zyra-glow), 0.25);
+        0 0 32px rgba(var(--zyra-color-glow), 0.55),
+        0 0 64px rgba(var(--zyra-color-glow), 0.25);
 }
 
 .zyra-glass {
-    background: var(--zyra-glass-bg);
+    background: var(--zyra-color-glass-bg);
     -webkit-backdrop-filter: blur(20px) saturate(1.2);
     backdrop-filter: blur(20px) saturate(1.2);
 }
@@ -106,11 +106,11 @@ html {
 @keyframes zyra-pulse-glow {
     0%,
     100% {
-        box-shadow: 0 0 20px rgba(var(--zyra-glow), 0.3);
+        box-shadow: 0 0 20px rgba(var(--zyra-color-glow), 0.3);
     }
 
     50% {
-        box-shadow: 0 0 40px rgba(var(--zyra-glow), 0.6);
+        box-shadow: 0 0 40px rgba(var(--zyra-color-glow), 0.6);
     }
 }
 
@@ -147,7 +147,7 @@ html {
     background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(var(--zyra-glow), 0.15) 50%,
+        rgba(var(--zyra-color-glow), 0.15) 50%,
         transparent 100%
     );
     background-size: 200% 100%;
@@ -160,7 +160,7 @@ html {
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: var(--zyra-border-strong);
+    background: var(--zyra-color-border-strong);
     border-radius: 3px;
 }
 
@@ -170,7 +170,7 @@ html {
     .zyra-float { animation: none; }
     .zyra-shimmer {
         animation: none;
-        background: rgba(var(--zyra-glow), 0.08);
+        background: rgba(var(--zyra-color-glow), 0.08);
         background-size: unset;
     }
 }

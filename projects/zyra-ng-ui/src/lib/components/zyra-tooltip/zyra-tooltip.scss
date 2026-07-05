@@ -7,9 +7,9 @@
 .zyr-tooltip {
     position: absolute;
     z-index: var(--zyra-z-tooltip);
-    background: var(--zyra-tooltip-bg);
-    color: var(--zyra-tooltip-text);
-    border: 1px solid var(--zyra-tooltip-border);
+    background: var(--zyra-color-tooltip-bg);
+    color: var(--zyra-color-tooltip-text);
+    border: 1px solid var(--zyra-color-tooltip-border);
     box-shadow: var(--zyra-tooltip-shadow);
     font-family: var(--zyra-font-mono);
     font-size: 11.5px;
@@ -35,7 +35,7 @@
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border-top-color: var(--zyra-tooltip-bg);
+            border-top-color: var(--zyra-color-tooltip-bg);
         }
     }
 
@@ -48,7 +48,7 @@
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border-bottom-color: var(--zyra-tooltip-bg);
+            border-bottom-color: var(--zyra-color-tooltip-bg);
         }
     }
 
@@ -61,7 +61,7 @@
             left: 100%;
             top: 50%;
             transform: translateY(-50%);
-            border-left-color: var(--zyra-tooltip-bg);
+            border-left-color: var(--zyra-color-tooltip-bg);
         }
     }
 
@@ -74,7 +74,7 @@
             right: 100%;
             top: 50%;
             transform: translateY(-50%);
-            border-right-color: var(--zyra-tooltip-bg);
+            border-right-color: var(--zyra-color-tooltip-bg);
         }
     }
 

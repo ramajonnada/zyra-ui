@@ -15,9 +15,9 @@
         align-items: center;
         justify-content: center;
         border-radius: var(--zyra-radius-xs);
-        border: 1.5px solid var(--zyra-checkbox-border);
-        background: var(--zyra-checkbox-bg);
-        color: var(--zyra-checkbox-mark);
+        border: 1.5px solid var(--zyra-color-checkbox-border);
+        background: var(--zyra-color-checkbox-bg);
+        color: var(--zyra-color-checkbox-mark);
         transition:
             background var(--zyra-transition-fast),
             border-color var(--zyra-transition-fast),
@@ -40,7 +40,7 @@
 
     &__label {
         font-family: var(--zyra-font-body);
-        color: var(--zyra-foreground);
+        color: var(--zyra-color-foreground);
         line-height: 1.4;
         transition: color var(--zyra-transition-fast);
     }
@@ -59,8 +59,8 @@
 
     &--checked &__box,
     &--indeterminate &__box {
-        background: var(--zyra-checkbox-checked-bg);
-        border-color: var(--zyra-checkbox-checked-border);
+        background: var(--zyra-color-checkbox-checked-bg);
+        border-color: var(--zyra-color-checkbox-checked-border);
     }
 
     &--checked &__icon,
@@ -75,6 +75,6 @@
     }
 
     &:not(.zyr-checkbox--disabled):hover &__box {
-        border-color: var(--zyra-checkbox-checked-border);
+        border-color: var(--zyra-color-checkbox-checked-border);
     }
 }

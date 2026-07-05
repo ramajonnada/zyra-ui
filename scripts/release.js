@@ -5,15 +5,16 @@
  *
  * Runs the full release checklist in order. Stops immediately on failure.
  * Steps:
- *   1. Format check
- *   2. Lint
- *   3. Tests
- *   4. Build library
- *   5. Build website (production)
- *   6. Publish zyra-ng-ui to npm
- *   7. Commit + push (triggers Vercel deploy)
- *   8. Create GitHub release with changelog notes
- *   9. Print launch post template
+ *   1. Pre-publish audit (version consistency, changelog, npm auth, dry-run)
+ *   2. Format check
+ *   3. Lint
+ *   4. Tests
+ *   5. Build library
+ *   6. Build website (production)
+ *   7. Publish zyra-ng-ui to npm
+ *   8. Commit + push (triggers Vercel deploy)
+ *   9. Create GitHub release with changelog notes
+ *   10. Print launch post template
  */
 
 const { execSync } = require('child_process');
@@ -63,7 +64,10 @@ console.log('╔═════════════════════�
 console.log(`║   zyra-ng-ui  Release Checklist  —  v${version.padEnd(20)}║`);
 console.log('╚══════════════════════════════════════════════════════════╝');
 
-// 1. Format
+// 1. Pre-publish check
+run('Pre-publish check', 'npm run check:lib');
+
+// 2. Format
 run('Format check', 'npm run format:check');
 
 // 2. Lint

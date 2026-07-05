@@ -11,18 +11,18 @@
     &--lg { border-width: 3px; }
 
     &--accent {
-        border-color: var(--zyra-accent-muted);
-        border-top-color: var(--zyra-accent);
+        border-color: var(--zyra-color-accent-muted);
+        border-top-color: var(--zyra-color-accent);
     }
 
     &--accent-2 {
-        border-color: var(--zyra-accent-2-muted);
-        border-top-color: var(--zyra-accent-2);
+        border-color: var(--zyra-color-accent-secondary-muted);
+        border-top-color: var(--zyra-color-accent-secondary);
     }
 
     &--white {
-        border-color: var(--zyra-spinner-inverse-track);
-        border-top-color: var(--zyra-spinner-inverse-head);
+        border-color: var(--zyra-color-spinner-inverse-track);
+        border-top-color: var(--zyra-color-spinner-inverse-head);
     }
 
     &--current {

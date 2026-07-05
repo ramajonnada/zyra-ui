@@ -10,7 +10,7 @@
         flex-shrink: 0;
         border: none;
         border-radius: var(--zyra-radius-full);
-        background: var(--zyra-switch-track-off);
+        background: var(--zyra-color-switch-track-off);
         cursor: pointer;
         transition:
             background var(--zyra-transition-base),
@@ -18,7 +18,7 @@
         padding: 0;
 
         &[aria-checked='true'] {
-            background: var(--zyra-switch-track-on);
+            background: var(--zyra-color-switch-track-on);
             box-shadow: 0 0 0 3px var(--zyra-switch-ring);
         }
 
@@ -26,7 +26,7 @@
             outline: none;
             box-shadow:
                 0 0 0 3px var(--zyra-switch-ring),
-                var(--zyra-glow-shadow-strong);
+                var(--zyra-color-glow-shadow-strong);
         }
     }
 
@@ -47,7 +47,7 @@
 
     &__label {
         font-size: 14px;
-        color: var(--zyra-text);
+        color: var(--zyra-color-text);
         line-height: 1;
     }
 

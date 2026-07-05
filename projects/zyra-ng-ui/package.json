@@ -1,43 +1,43 @@
 {
-    "name": "zyra-ng-ui",
-    "version": "2.0.0",
-    "description": "ZyraUI – Modern Angular UI Components",
-    "author": "Rama Jonnada",
-    "license": "MIT",
-    "peerDependencies": {
-        "@angular/core": "^21.0.0",
-        "@angular/common": "^21.0.0",
-        "@angular/forms": "^21.0.0"
+  "name": "zyra-ng-ui",
+  "version": "3.0.0",
+  "description": "ZyraUI – Modern Angular UI Components",
+  "author": "Rama Jonnada",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "^21.0.0",
+    "@angular/common": "^21.0.0",
+    "@angular/forms": "^21.0.0"
+  },
+  "exports": {
+    ".": {
+      "sass": "./styles/index.scss"
     },
-    "exports": {
-        ".": {
-            "sass": "./styles/index.scss"
-        },
-        "./styles": {
-            "sass": "./styles/index.scss"
-        },
-        "./fonts.css": "./styles/fonts.css",
-        "./dark-theme": {
-            "style": "./styles/_dark-theme.scss"
-        },
-        "./light-theme": {
-            "style": "./styles/_light-theme.scss"
-        },
-        "./ocean-theme": {
-            "style": "./styles/_ocean-theme.scss"
-        },
-        "./amber-theme": {
-            "style": "./styles/_amber-theme.scss"
-        },
-        "./rose-theme": {
-            "style": "./styles/_rose-theme.scss"
-        }
+    "./styles": {
+      "sass": "./styles/index.scss"
     },
-    "sideEffects": [
-        "*.css"
-    ],
-    "dependencies": {
-        "tslib": "^2.3.0"
+    "./fonts.css": "./styles/fonts.css",
+    "./dark-theme": {
+      "style": "./styles/_dark-theme.scss"
     },
-    "private": false
+    "./light-theme": {
+      "style": "./styles/_light-theme.scss"
+    },
+    "./ocean-theme": {
+      "style": "./styles/_ocean-theme.scss"
+    },
+    "./amber-theme": {
+      "style": "./styles/_amber-theme.scss"
+    },
+    "./rose-theme": {
+      "style": "./styles/_rose-theme.scss"
+    }
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "private": false
 }

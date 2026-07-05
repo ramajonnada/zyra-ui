@@ -19,29 +19,29 @@
     &--xl { width: 64px; height: 64px; font-size: 22px; }
 
     &--teal {
-        background: linear-gradient(135deg, var(--zyra-primary), var(--zyra-avatar-primary-end));
-        color: var(--zyra-avatar-contrast);
+        background: linear-gradient(135deg, var(--zyra-color-primary), var(--zyra-color-avatar-primary-end));
+        color: var(--zyra-color-avatar-contrast);
     }
 
     &--blue {
-        background: linear-gradient(135deg, var(--zyra-accent-2), var(--zyra-avatar-blue-end));
-        color: var(--zyra-avatar-contrast);
+        background: linear-gradient(135deg, var(--zyra-color-accent-secondary), var(--zyra-color-avatar-blue-end));
+        color: var(--zyra-color-avatar-contrast);
     }
 
     &--purple {
-        background: linear-gradient(135deg, var(--zyra-accent-3), var(--zyra-avatar-purple-end));
-        color: var(--zyra-avatar-contrast);
+        background: linear-gradient(135deg, var(--zyra-color-accent-tertiary), var(--zyra-color-avatar-purple-end));
+        color: var(--zyra-color-avatar-contrast);
     }
 
     &--warm {
-        background: linear-gradient(135deg, var(--zyra-warning), var(--zyra-avatar-warm-end));
-        color: var(--zyra-avatar-contrast);
+        background: linear-gradient(135deg, var(--zyra-color-warning), var(--zyra-color-avatar-warm-end));
+        color: var(--zyra-color-avatar-contrast);
     }
 
     &--neutral {
-        background: var(--zyra-surface-inset);
-        color: var(--zyra-foreground-muted);
-        border: 1px solid var(--zyra-border-color);
+        background: var(--zyra-color-surface-inset);
+        color: var(--zyra-color-foreground-muted);
+        border: 1px solid var(--zyra-color-border-color);
     }
 
     &__img {
@@ -65,10 +65,10 @@
         min-width: 7px;
         min-height: 7px;
         border-radius: 50%;
-        border: 2px solid var(--zyra-bg-panel);
+        border: 2px solid var(--zyra-color-bg-panel);
         transition: background var(--zyra-transition-slow);
 
-        &--online { background: var(--zyra-success); }
-        &--offline { background: var(--zyra-text-dim); }
+        &--online { background: var(--zyra-color-success); }
+        &--offline { background: var(--zyra-color-text-dim); }
     }
 }
