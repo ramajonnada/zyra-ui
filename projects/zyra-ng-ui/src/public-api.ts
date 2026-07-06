@@ -34,5 +34,6 @@ export * from './lib/components/zyra-radio/zyra-radio';
 export * from './lib/components/zyra-radio/zyra-radio-group';
 export * from './lib/components/zyra-tabs/zyra-tab';
 export * from './lib/components/zyra-tabs/zyra-tabs';
+export * from './lib/components/zyra-code-block/zyra-code-block';
 export * from './lib/internal/zyra-icon/zyra-icon';
 export * from './lib/shared/zyra-icons';

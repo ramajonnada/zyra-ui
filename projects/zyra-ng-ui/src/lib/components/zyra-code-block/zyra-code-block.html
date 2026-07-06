@@ -1,0 +1,28 @@
+<div class="zyr-code-block">
+    @if (hasHeader()) {
+        <div class="zyr-code-block__header">
+            <div class="zyr-code-block__meta">
+                @if (filename()) {
+                    <span class="zyr-code-block__filename">{{ filename() }}</span>
+                }
+                @if (language()) {
+                    <span class="zyr-code-block__lang">{{ language() }}</span>
+                }
+            </div>
+            @if (copyable()) {
+                <button
+                    type="button"
+                    class="zyr-code-block__copy"
+                    [class.zyr-code-block__copy--copied]="copied()"
+                    [attr.aria-label]="copied() ? 'Copied' : 'Copy code'"
+                    (click)="copyToClipboard()"
+                >
+                    <zyra-icon [img]="copied() ? checkIcon : copyIcon" [size]="14" />
+                    {{ copied() ? 'Copied' : 'Copy' }}
+                </button>
+            }
+        </div>
+    }
+    <pre class="zyr-code-block__pre"><code class="zyr-code-block__code">@for (line of lines(); track $index) {<span class="zyr-code-block__line">@if (lineNumbers()) {<span class="zyr-code-block__line-number">{{ $index + 1 }}</span>}<span class="zyr-code-block__line-content">{{ line }}</span></span>
+}</code></pre>
+</div>

@@ -26,10 +26,14 @@ export class UiComponents implements OnInit {
 
     readonly searchQuery = signal('');
 
+    private readonly sortedCards = [...UI_COMPONENT_SHOWCASE].sort((a, b) =>
+        a.title.localeCompare(b.title),
+    );
+
     readonly filteredCards = computed(() => {
         const q = this.searchQuery().toLowerCase().trim();
-        if (!q) return UI_COMPONENT_SHOWCASE;
-        return UI_COMPONENT_SHOWCASE.filter(
+        if (!q) return this.sortedCards;
+        return this.sortedCards.filter(
             (c) =>
                 c.title.toLowerCase().includes(q) ||
                 c.selector.toLowerCase().includes(q) ||

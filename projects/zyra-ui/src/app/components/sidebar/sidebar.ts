@@ -27,12 +27,12 @@ export interface NavItem {
 export class Sidebar {
 	private readonly router = inject(Router);
 
-	private readonly componentChildren: readonly NavChild[] = UI_COMPONENT_SHOWCASE.map(
-		(component) => ({
+	private readonly componentChildren: readonly NavChild[] = [...UI_COMPONENT_SHOWCASE]
+		.sort((a, b) => a.title.localeCompare(b.title))
+		.map((component) => ({
 			label: component.title,
 			route: `/components/${component.slug}`,
-		}),
-	);
+		}));
 
 	readonly navItems: readonly NavItem[] = [
 		{ label: 'Docs', route: '/docs' },

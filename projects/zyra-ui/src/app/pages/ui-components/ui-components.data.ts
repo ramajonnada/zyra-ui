@@ -1,5 +1,5 @@
 import type { ZyraIconData } from 'zyra-ng-ui';
-import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced } from 'zyra-ng-ui';
+import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, code, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced } from 'zyra-ng-ui';
 
 export type UiComponentAccent = 'teal' | 'blue' | 'purple' | 'amber' | 'green';
 
@@ -85,6 +85,29 @@ import { ZyraButton, ZyraCard } from 'zyra-ng-ui';
   \`,
 })
 export class DemoCardComponent {}
+`;
+
+const CODE_BLOCK_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraCodeBlock } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-code-block',
+  standalone: true,
+  imports: [ZyraCodeBlock],
+  template: \`
+    <zyra-code-block
+      filename="greet.ts"
+      language="typescript"
+      [lineNumbers]="true"
+      [code]="snippet"
+    />
+  \`,
+})
+export class DemoCodeBlockComponent {
+  snippet = \`function greet(name: string): string {
+  return \\\`Hello, \\\${name}!\\\`;
+}\`;
+}
 `;
 
 const AVATAR_EXAMPLE_CODE = `import { Component } from '@angular/core';
@@ -706,6 +729,65 @@ export const UI_COMPONENT_SHOWCASE = [
             'Avoid placing interactive elements inside a clickable card — creates nested interactives',
         ],
         relatedSlugs: ['divider', 'accordion', 'avatar'],
+    },
+    {
+        slug: 'code-block',
+        title: 'Code Block',
+        selector: 'zyra-code-block',
+        importName: 'ZyraCodeBlock',
+        category: 'Data Display',
+        description:
+            'Monospace code snippets with an optional filename/language header, line numbers, and a one-click copy button.',
+        icon: code,
+        accent: 'blue',
+        highlights: [
+            'One-click copy to clipboard',
+            'Optional line numbers',
+            'Filename and language header',
+        ],
+        exampleCode: CODE_BLOCK_EXAMPLE_CODE,
+        variants: [
+            { name: 'default', description: 'Header with copy button, no line numbers' },
+            { name: 'with line numbers', description: 'Numbered gutter for longer snippets' },
+            { name: 'headerless', description: 'copyable, filename, and language all empty — no header row' },
+        ],
+        apiProps: [
+            {
+                name: 'code',
+                type: 'string',
+                default: "''",
+                description: 'The source text to display',
+            },
+            {
+                name: 'language',
+                type: 'string',
+                default: "''",
+                description: 'Label shown in the header (display only, no syntax coloring)',
+            },
+            {
+                name: 'filename',
+                type: 'string',
+                default: "''",
+                description: 'Filename shown in the header',
+            },
+            {
+                name: 'lineNumbers',
+                type: 'boolean',
+                default: 'false',
+                description: 'Shows a numbered gutter beside each line',
+            },
+            {
+                name: 'copyable',
+                type: 'boolean',
+                default: 'true',
+                description: 'Shows the copy-to-clipboard button in the header',
+            },
+        ],
+        a11yNotes: [
+            'The copy button updates its aria-label between "Copy code" and "Copied" as state changes',
+            'Code is rendered in a <pre><code> block so screen readers announce it as preformatted text',
+        ],
+        relatedSlugs: ['card', 'badge'],
     },
     {
         slug: 'avatar',

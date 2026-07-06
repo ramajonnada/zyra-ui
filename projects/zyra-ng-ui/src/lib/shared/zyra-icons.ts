@@ -80,6 +80,16 @@ export const circleUser: ZyraIconData = [
     ['path', { d: 'M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662', key: '154egf' }],
 ];
 
+export const copy: ZyraIconData = [
+    ['rect', { width: '14', height: '14', x: '8', y: '8', rx: '2', ry: '2', key: '17jyea' }],
+    ['path', { d: 'M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2', key: 'zix9uf' }],
+];
+
+export const code: ZyraIconData = [
+    ['path', { d: 'm16 18 6-6-6-6', key: 'eg8j8' }],
+    ['path', { d: 'm8 6-6 6 6 6', key: 'ppft3o' }],
+];
+
 export const codeBranch: ZyraIconData = [
     ['path', { d: 'M15 6a9 9 0 0 0-9 9V3', key: '1cii5b' }],
     ['circle', { cx: '18', cy: '6', r: '3', key: '1h7g24' }],

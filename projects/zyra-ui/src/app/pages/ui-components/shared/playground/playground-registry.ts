@@ -7,6 +7,7 @@ import { ButtonRenderer } from './renderers/button-renderer';
 import { CardRenderer } from './renderers/card-renderer';
 import { CheckboxRenderer } from './renderers/checkbox-renderer';
 import { ChipRenderer } from './renderers/chip-renderer';
+import { CodeBlockRenderer } from './renderers/code-block-renderer';
 import { DividerRenderer } from './renderers/divider-renderer';
 import { FormFieldRenderer } from './renderers/form-field-renderer';
 import { InputRenderer } from './renderers/input-renderer';
@@ -125,6 +126,49 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 (a.length ? `<zyra-badge\n${a.join('\n')}\n>` : `<zyra-badge>`) +
                 `\n  ${s['label'] || 'Badge'}\n</zyra-badge>`
             );
+        },
+    },
+
+    'code-block': {
+        renderer: CodeBlockRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'text',
+                key: 'filename',
+                label: 'filename',
+                placeholder: 'greet.ts',
+                defaultValue: 'greet.ts',
+            },
+            {
+                type: 'text',
+                key: 'language',
+                label: 'language',
+                placeholder: 'typescript',
+                defaultValue: 'typescript',
+            },
+            {
+                type: 'toggle',
+                key: 'lineNumbers',
+                label: 'states',
+                toggleLabel: 'lineNumbers',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'copyable',
+                label: '',
+                toggleLabel: 'copyable',
+                defaultValue: true,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['filename']) a.push(`  filename="${s['filename']}"`);
+            if (s['language']) a.push(`  language="${s['language']}"`);
+            if (s['lineNumbers']) a.push(`  [lineNumbers]="true"`);
+            if (!s['copyable']) a.push(`  [copyable]="false"`);
+            return `<zyra-code-block\n${a.join('\n')}\n  [code]="snippet"\n/>`;
         },
     },
 
