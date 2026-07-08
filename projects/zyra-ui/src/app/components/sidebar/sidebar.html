@@ -1,30 +1,32 @@
-<aside class="sidebar">
-	<nav class="sidebar__nav" aria-label="Secondary">
-		@for (item of navItems; track item.route) {
-		<div class="sidebar__group">
-			<a [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-				class="sidebar__item" [attr.aria-label]="item.label">
-				<span class="sidebar__label">{{ item.label }}</span>
-				@if (item.badge) {
-				<span class="sidebar__badge">{{ item.badge }}</span>
-				}
-			</a>
-
-			@if (item.children) {
-			<div class="sidebar__children">
-				@for (child of item.children; track child.route) {
-				<a [routerLink]="child.route" routerLinkActive="active" class="sidebar__child">
-					{{ child.label }}
+<zyra-sidebar width="240px" (click)="onNavClick($event)">
+	@for (item of navItems; track item.route) {
+		@if (item.heading) {
+			<zyra-sidebar-section [heading]="item.heading">
+				<a
+					zyra-sidebar-item
+					[routerLink]="item.route"
+					routerLinkActive="zyr-sidebar-item--active"
+					[routerLinkActiveOptions]="{ exact: true }"
+					[attr.aria-label]="item.label"
+				>
+					{{ item.label }}
 				</a>
-				}
-			</div>
-			}
-		</div>
+			</zyra-sidebar-section>
+		} @else {
+			<a
+				zyra-sidebar-item
+				[routerLink]="item.route"
+				routerLinkActive="zyr-sidebar-item--active"
+				[routerLinkActiveOptions]="{ exact: true }"
+				[attr.aria-label]="item.label"
+			>
+				{{ item.label }}
+			</a>
 		}
-	</nav>
+	}
 
-	<div class="sidebar__footer">
+	<div sidebar-footer class="sidebar__footer">
 		<span class="sidebar__footer-dot"></span>
 		<span class="sidebar__footer-text">Zyra<span>UI</span></span>
 	</div>
-</aside>
+</zyra-sidebar>

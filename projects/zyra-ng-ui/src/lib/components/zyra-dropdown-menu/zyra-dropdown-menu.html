@@ -1,0 +1,6 @@
+<div #trigger class="zyr-dropdown__trigger" (click)="toggle()">
+    <ng-content select="[slot=trigger]" />
+</div>
+<div #panel class="zyr-dropdown__panel" [class.zyr-dropdown__panel--open]="isOpen()" role="menu">
+    <ng-content />
+</div>

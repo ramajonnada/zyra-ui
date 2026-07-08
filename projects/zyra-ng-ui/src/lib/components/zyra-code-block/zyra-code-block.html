@@ -23,6 +23,6 @@
             }
         </div>
     }
-    <pre class="zyr-code-block__pre"><code class="zyr-code-block__code">@for (line of lines(); track $index) {<span class="zyr-code-block__line">@if (lineNumbers()) {<span class="zyr-code-block__line-number">{{ $index + 1 }}</span>}<span class="zyr-code-block__line-content">{{ line }}</span></span>
+    <pre class="zyr-code-block__pre"><code class="zyr-code-block__code">@for (line of lines(); track $index) {<span class="zyr-code-block__line">@if (lineNumbers()) {<span class="zyr-code-block__line-number">{{ $index + 1 }}</span>}<span class="zyr-code-block__line-content">@for (tok of line; track $index) {<span class="zyr-code-block__tok zyr-code-block__tok--{{ tok.type }}">{{ tok.text }}</span>}</span></span>
 }</code></pre>
 </div>

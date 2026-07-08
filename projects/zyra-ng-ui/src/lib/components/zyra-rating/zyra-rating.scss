@@ -1,0 +1,53 @@
+:host {
+    display: inline-block;
+}
+
+.zyr-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+
+    &__star {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        padding: 2px;
+        cursor: pointer;
+        color: var(--zyra-color-border-strong);
+        transition: color var(--zyra-transition-fast), transform var(--zyra-transition-fast);
+
+        &:focus { outline: none; }
+        &:focus-visible {
+            outline: 2px solid var(--zyra-color-accent);
+            outline-offset: 2px;
+            border-radius: var(--zyra-radius-xs);
+        }
+
+        &--filled {
+            color: var(--zyra-color-warning);
+        }
+    }
+
+    &--sm &__star { font-size: 14px; }
+    &--md &__star { font-size: 18px; }
+    &--lg &__star { font-size: 24px; }
+
+    &--disabled {
+        opacity: 0.45;
+
+        .zyr-rating__star {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    }
+
+    &--readonly .zyr-rating__star {
+        cursor: default;
+    }
+
+    &:not(&--disabled):not(&--readonly) &__star:hover {
+        transform: scale(1.1);
+    }
+}

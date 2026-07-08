@@ -1,0 +1,85 @@
+<main class="docs-page">
+	<zyra-breadcrumb>
+		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+			<zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+		}
+	</zyra-breadcrumb>
+
+	<header class="docs-page__header">
+		<p class="docs-eyebrow">/ Docs</p>
+		<h1>Theme tokens</h1>
+		<p class="docs-page__lead">
+			Every color, radius, font, and transition in Zyra UI is a CSS custom property, organized
+			in three tiers: primitives, semantic tokens, and per-component tokens. Override the
+			semantic layer and everything downstream — including per-component tokens — follows
+			automatically. Prefer to see them applied live?
+			<a routerLink="/docs/theming">Open the theming page →</a>
+		</p>
+	</header>
+
+	<section class="docs-section docs-section--first">
+		<div class="docs-section__header">
+			<h2>Token reference</h2>
+			<p>The semantic tokens most components read from directly.</p>
+		</div>
+
+		<div class="docs-token-grid">
+			@for (group of tokenGroups; track group.label) {
+			<div class="docs-token-group">
+				<span class="docs-token-group__label">{{ group.label }}</span>
+				<div class="docs-token-group__tokens">
+					@for (token of group.tokens; track token) {
+					<code class="docs-token">{{ token }}</code>
+					}
+				</div>
+			</div>
+			}
+		</div>
+	</section>
+
+	<section class="docs-section">
+		<div class="docs-section__header">
+			<h2>What can I change?</h2>
+			<p>
+				Semantic and dimension tokens are the supported customization surface — override these
+				and everything downstream follows. Primitives and per-component tokens are
+				implementation detail: they already derive from the semantic layer, and their names
+				can change between component updates.
+			</p>
+		</div>
+
+		<div class="token-access-grid">
+			<div class="token-access-col token-access-col--ok">
+				<h3>✅ Safe to override</h3>
+				@for (group of overridableTokens; track group.label) {
+					<div class="token-access-group">
+						<span class="token-access-group__label">{{ group.label }}</span>
+						@for (token of group.tokens; track token) {
+							<code class="token-access-item">{{ token }}</code>
+						}
+					</div>
+				}
+			</div>
+
+			<div class="token-access-col token-access-col--internal">
+				<h3>🚫 Internal — don't override directly</h3>
+				@for (group of internalTokens; track group.label) {
+					<div class="token-access-group">
+						<span class="token-access-group__label">{{ group.label }}</span>
+						@for (token of group.tokens; track token) {
+							<code class="token-access-item">{{ token }}</code>
+						}
+					</div>
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="docs-section">
+		<div class="docs-section__header">
+			<h2>Override example</h2>
+			<p>Set any semantic token after the Zyra import — no forking a theme file required.</p>
+		</div>
+		<pre><code>{{ themeOverrideCode }}</code></pre>
+	</section>
+</main>

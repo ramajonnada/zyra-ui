@@ -1,9 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ZyraIcon, type ZyraIconData } from 'zyra-ng-ui';
-import { ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraButton, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { COMPONENT_COUNT } from '../ui-components/ui-components.data';
+import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
 import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
 
 interface AboutValue {
@@ -19,14 +20,27 @@ interface AboutStat {
 
 @Component({
     selector: 'app-about',
-    imports: [RouterLink, ZyraIcon, ZyraBadge, ZyraButton, ZyraCard],
+    imports: [
+        RouterLink,
+        ZyraIcon,
+        ZyraBadge,
+        ZyraButton,
+        ZyraCard,
+        ZyraBreadcrumb,
+        ZyraBreadcrumbItem,
+    ],
     templateUrl: './about.html',
     styleUrl: './about.scss',
 })
-export class About implements OnInit {
+export class About implements OnInit, OnDestroy {
     private readonly seo = inject(SeoService);
     readonly icons = { github, sun, moon, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, caretLeft, caretRight };
     readonly componentCount = COMPONENT_COUNT;
+
+    readonly breadcrumbItems: readonly BreadcrumbLink[] = [
+        { label: 'Home', url: 'https://www.zyraui.dev/' },
+        { label: 'About', url: 'https://www.zyraui.dev/about' },
+    ];
 
     readonly stats: readonly AboutStat[] = [
         { value: String(COMPONENT_COUNT), label: 'Components' },
@@ -75,5 +89,11 @@ export class About implements OnInit {
                 `Learn about Zyra UI — a signals-first Angular component library with ${COMPONENT_COUNT} accessible, token-driven components for real apps and public websites.`,
             url: 'https://www.zyraui.dev/about',
         });
+
+        this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems));
+    }
+
+    ngOnDestroy(): void {
+        this.seo.removeJsonLd('breadcrumb-jsonld');
     }
 }

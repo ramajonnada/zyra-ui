@@ -118,6 +118,27 @@
 	--zyra-color-tabs-pill-active-bg: var(--zyra-color-pill-active-bg);
 	--zyra-tabs-pill-active-shadow: var(--zyra-pill-active-shadow);
 
+	// ── Sidebar ──────────────────────────────────────────────
+	--zyra-color-sidebar-bg: var(--zyra-color-background-elevated);
+	--zyra-color-sidebar-border: var(--zyra-color-border-color);
+	--zyra-color-sidebar-heading: var(--zyra-color-foreground-subtle);
+	--zyra-color-sidebar-text: var(--zyra-color-foreground-muted);
+	--zyra-color-sidebar-text-hover: var(--zyra-color-foreground);
+	--zyra-color-sidebar-text-active: var(--zyra-color-accent);
+	--zyra-color-sidebar-hover-bg: var(--zyra-color-surface-inset);
+	--zyra-color-sidebar-active-bg: var(--zyra-color-accent-muted);
+	--zyra-color-sidebar-badge-bg: var(--zyra-color-accent-muted);
+	--zyra-color-sidebar-badge-text: var(--zyra-color-accent);
+
+	// ── Code block ───────────────────────────────────────────
+	--zyra-color-code-keyword: var(--zyra-color-accent-secondary);
+	--zyra-color-code-tag: var(--zyra-color-accent);
+	--zyra-color-code-attr: var(--zyra-color-accent-tertiary);
+	--zyra-color-code-string: var(--zyra-color-success);
+	--zyra-color-code-number: var(--zyra-color-warning);
+	--zyra-color-code-comment: var(--zyra-color-text-dim);
+	--zyra-color-code-punct: var(--zyra-color-text-muted);
+
 	// ── Progress ─────────────────────────────────────────────
 	--zyra-color-progress-track-bg: var(--zyra-color-surface-inset);
 	--zyra-color-progress-track-border: var(--zyra-color-border-color);

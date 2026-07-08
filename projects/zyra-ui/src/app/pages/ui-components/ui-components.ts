@@ -1,28 +1,35 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    OnDestroy,
     OnInit,
     computed,
     inject,
     signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ZyraBadge, ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { COMPONENT_COUNT, UI_COMPONENT_SHOWCASE } from './ui-components.data';
+import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
 
 @Component({
     selector: 'app-ui-components',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, ZyraBadge, ZyraCard],
+    imports: [RouterLink, ZyraBadge, ZyraCard, ZyraBreadcrumb, ZyraBreadcrumbItem],
     templateUrl: './ui-components.html',
     styleUrl: './ui-components.scss',
 })
-export class UiComponents implements OnInit {
+export class UiComponents implements OnInit, OnDestroy {
     private readonly seo = inject(SeoService);
 
     readonly componentCount = COMPONENT_COUNT;
     readonly categoryCount = new Set(UI_COMPONENT_SHOWCASE.map((c) => c.category)).size;
+
+    readonly breadcrumbItems: readonly BreadcrumbLink[] = [
+        { label: 'Home', url: 'https://www.zyraui.dev/' },
+        { label: 'Components', url: 'https://www.zyraui.dev/docs/components' },
+    ];
 
     readonly searchQuery = signal('');
 
@@ -47,7 +54,13 @@ export class UiComponents implements OnInit {
             title: 'Angular UI Components - Zyra UI',
             description:
                 `Explore all ${COMPONENT_COUNT} Zyra UI Angular components — buttons, cards, inputs, forms, modals, toasts, tooltips, tabs, accordion, skeleton, and more. Interactive playgrounds with copy-paste Angular code.`,
-            url: 'https://www.zyraui.dev/components',
+            url: 'https://www.zyraui.dev/docs/components',
         });
+
+        this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems));
+    }
+
+    ngOnDestroy(): void {
+        this.seo.removeJsonLd('breadcrumb-jsonld');
     }
 }

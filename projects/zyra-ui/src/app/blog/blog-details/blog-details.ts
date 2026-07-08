@@ -4,15 +4,15 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 import { BlogService, PostMeta } from '../../services/blog-service';
-import { ZyraBadge, ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { timeout } from 'rxjs';
-import { Breadcrumb, BreadcrumbItem } from '../../shared/breadcrumb/breadcrumb';
+import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
 
 @Component({
     selector: 'app-blog-details',
     standalone: true,
-    imports: [CommonModule, MarkdownModule, ZyraBadge, ZyraCard, Breadcrumb],
+    imports: [CommonModule, MarkdownModule, ZyraBadge, ZyraCard, ZyraBreadcrumb, ZyraBreadcrumbItem],
     templateUrl: './blog-details.html',
     styleUrls: ['./blog-details.scss'],
 })
@@ -29,7 +29,7 @@ export class BlogDetails implements OnDestroy {
     loading = signal(true);
     error = signal('');
 
-    readonly breadcrumbItems = computed<BreadcrumbItem[]>(() => [
+    readonly breadcrumbItems = computed<BreadcrumbLink[]>(() => [
         { label: 'Home', url: 'https://www.zyraui.dev/' },
         { label: 'Blog', url: 'https://www.zyraui.dev/blog' },
         { label: this.postTitle() || this.slug(), url: `https://www.zyraui.dev/blog/${this.slug()}` },
@@ -51,6 +51,7 @@ export class BlogDetails implements OnDestroy {
     ngOnDestroy() {
         this.seo.removeJsonLd('blog-post-jsonld');
         this.seo.removeJsonLd('blog-faq-jsonld');
+        this.seo.removeJsonLd('breadcrumb-jsonld');
     }
 
     loadPost() {
@@ -163,6 +164,8 @@ export class BlogDetails implements OnDestroy {
             keywords: this.postTags().join(', '),
             articleSection: this.postCategory(),
         });
+
+        this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems()));
 
         const faq = this.postFaq();
         if (faq.length) {

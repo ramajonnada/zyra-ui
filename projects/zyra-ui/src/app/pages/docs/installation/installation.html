@@ -1,0 +1,38 @@
+<main class="docs-page">
+	<zyra-breadcrumb>
+		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+			<zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+		}
+	</zyra-breadcrumb>
+
+	<header class="docs-page__header">
+		<p class="docs-eyebrow">/ Docs</p>
+		<h1>Installation</h1>
+		<p class="docs-page__lead">
+			Get zyra-ng-ui running in an Angular 21 workspace in four steps — package install, global
+			styles, provider registration, and your first component.
+		</p>
+	</header>
+
+	<section class="docs-steps" aria-label="Installation steps">
+		@for (step of installSteps; track step.step) {
+		<article class="docs-step">
+			<p class="docs-step__eyebrow">Step {{ step.step }}</p>
+			<h2>{{ step.title }}</h2>
+			<p class="docs-step__desc">{{ step.description }}</p>
+			<pre><code>{{ step.code }}</code></pre>
+		</article>
+		}
+	</section>
+
+	<section class="docs-cta">
+		<div class="docs-cta__inner">
+			<h2>Next: explore the components</h2>
+			<p>Browse every component with live examples and copy-paste code.</p>
+			<div class="docs-cta__actions">
+				<zyra-button size="lg" routerLink="/docs/components">Explore components</zyra-button>
+				<zyra-button size="lg" variant="outline" routerLink="/docs/theming">Set up theming</zyra-button>
+			</div>
+		</div>
+	</section>
+</main>

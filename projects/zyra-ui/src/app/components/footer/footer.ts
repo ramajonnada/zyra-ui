@@ -33,9 +33,9 @@ export class Footer {
 		{
 			title: 'Product',
 			links: [
-				{ label: 'Components', route: '/components' },
+				{ label: 'Components', route: '/docs/components' },
 				{ label: 'Docs', route: '/docs' },
-				{ label: 'Theming', route: '/theming' },
+				{ label: 'Theming', route: '/docs/theming' },
 				{ label: 'Blog', route: '/blog' },
 				{ label: 'About', route: '/about' },
 				{ label: 'Contact', route: '/contact' },
@@ -47,7 +47,7 @@ export class Footer {
 				{ label: 'Getting started', route: '/docs' },
 				{ label: 'GitHub', href: 'https://github.com/ramajonnada/zyra-ui', icon: github },
 				{ label: 'npm', href: 'https://www.npmjs.com/package/zyra-ng-ui', icon: npmIcon },
-				{ label: 'Examples', route: '/components' },
+				{ label: 'Examples', route: '/docs/components' },
 			],
 		},
 		{

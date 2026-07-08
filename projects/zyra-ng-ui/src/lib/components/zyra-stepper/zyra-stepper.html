@@ -1,0 +1,33 @@
+<div [class]="hostClass()">
+    <div class="zyr-stepper__indicators">
+        @for (step of steps(); track step; let i = $index; let last = $last) {
+            <div class="zyr-stepper__step" [class.zyr-stepper__step--last]="last">
+                <button
+                    type="button"
+                    [class]="indicatorClass(i, step)"
+                    [disabled]="step.disabled()"
+                    [attr.aria-current]="i === activeIndex() ? 'step' : null"
+                    (click)="selectStep(i, step)"
+                >
+                    @if (step.completed()) {
+                        <zyra-icon [img]="icons.check" [size]="14" />
+                    } @else {
+                        {{ i + 1 }}
+                    }
+                </button>
+                <div class="zyr-stepper__labels">
+                    <span class="zyr-stepper__label">{{ step.label() }}</span>
+                    @if (step.description()) {
+                        <span class="zyr-stepper__description">{{ step.description() }}</span>
+                    }
+                </div>
+                @if (!last) {
+                    <div class="zyr-stepper__connector"></div>
+                }
+            </div>
+        }
+    </div>
+    <div class="zyr-stepper__body">
+        <ng-content />
+    </div>
+</div>

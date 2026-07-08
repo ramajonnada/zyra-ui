@@ -1,8 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ZyraIcon, type ZyraIconData } from 'zyra-ng-ui';
-import { ZyraBadge, ZyraButton, ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraButton, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
+import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
 import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
 
 interface ContactMethod {
@@ -14,11 +15,11 @@ interface ContactMethod {
 
 @Component({
     selector: 'app-contact',
-    imports: [ZyraIcon, ZyraBadge, ZyraButton, ZyraCard],
+    imports: [ZyraIcon, ZyraBadge, ZyraButton, ZyraCard, ZyraBreadcrumb, ZyraBreadcrumbItem],
     templateUrl: './contact.html',
     styleUrl: './contact.scss',
 })
-export class Contact implements OnInit {
+export class Contact implements OnInit, OnDestroy {
     private readonly seo = inject(SeoService);
     private readonly document = inject(DOCUMENT);
 
@@ -49,6 +50,11 @@ export class Contact implements OnInit {
         },
     ];
 
+    readonly breadcrumbItems: readonly BreadcrumbLink[] = [
+        { label: 'Home', url: 'https://www.zyraui.dev/' },
+        { label: 'Contact', url: 'https://www.zyraui.dev/contact' },
+    ];
+
     ngOnInit(): void {
         this.seo.setSEO({
             title: 'Contact Zyra UI - Support, feedback, and collaboration',
@@ -56,6 +62,12 @@ export class Contact implements OnInit {
                 'Contact the Zyra UI team via email or Instagram for component library questions, documentation feedback, or collaboration.',
             url: 'https://www.zyraui.dev/contact',
         });
+
+        this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems));
+    }
+
+    ngOnDestroy(): void {
+        this.seo.removeJsonLd('breadcrumb-jsonld');
     }
 
     openEmail(): void {

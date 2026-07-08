@@ -1,0 +1,45 @@
+:host {
+    display: contents;
+}
+
+.zyr-breadcrumb__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.zyr-breadcrumb__link {
+    color: var(--zyra-color-text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color var(--zyra-transition-base);
+
+    &:hover {
+        color: var(--zyra-color-accent);
+        text-decoration: underline;
+    }
+
+    &--current {
+        color: var(--zyra-color-text);
+        font-weight: 500;
+        pointer-events: none;
+
+        &:hover {
+            color: var(--zyra-color-text);
+            text-decoration: none;
+        }
+    }
+}
+
+.zyr-breadcrumb__sep {
+    display: inline-flex;
+    color: var(--zyra-color-text-dim);
+    flex-shrink: 0;
+}
+
+:host(:last-child) .zyr-breadcrumb__sep {
+    display: none;
+}

@@ -135,10 +135,6 @@
     gap: 12px;
 }
 
-.preview-row--form {
-    // align-items: flex-end;
-}
-
 .preview-stack {
     display: flex;
     flex-direction: column;
@@ -181,7 +177,7 @@
     color: var(--zyra-color-fg-muted);
 }
 
-// ── Sections (setup, token access) ─────────────────────────────
+// ── Sections (setup) ───────────────────────────────────────────
 .theming-section {
     border-top: 1px solid var(--zyra-color-border);
     padding-top: 48px;
@@ -192,14 +188,6 @@
         font-family: var(--zyra-font-display);
         font-size: 1.7rem;
     }
-}
-
-.theming-section__intro {
-    max-width: 720px;
-    margin: 0 0 28px;
-    color: var(--zyra-color-fg-muted);
-    font-size: 1rem;
-    line-height: 1.75;
 }
 
 // ── Setup steps ─────────────────────────────────────────────────
@@ -257,63 +245,4 @@
     color: var(--zyra-color-fg-muted);
     font-size: 0.9rem;
     line-height: 1.6;
-}
-
-// ── Token access grid ───────────────────────────────────────────
-.token-access-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-
-    @media (max-width: 720px) {
-        grid-template-columns: 1fr;
-    }
-}
-
-.token-access-col {
-    padding: 20px;
-    border-radius: var(--zyra-radius-lg);
-    border: 1px solid var(--zyra-color-border);
-
-    h3 {
-        margin: 0 0 16px;
-        font-size: 1rem;
-    }
-}
-
-.token-access-col--ok {
-    background: color-mix(in srgb, var(--zyra-color-success) 6%, var(--zyra-color-bg-panel));
-    border-color: var(--zyra-color-success-border);
-}
-
-.token-access-col--internal {
-    background: color-mix(in srgb, var(--zyra-color-fg-muted) 6%, var(--zyra-color-bg-panel));
-}
-
-.token-access-group {
-    margin-bottom: 18px;
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-}
-
-.token-access-group__label {
-    display: block;
-    margin-bottom: 8px;
-    font-family: var(--zyra-font-mono);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--zyra-color-fg-muted);
-}
-
-.token-access-item {
-    display: block;
-    margin-bottom: 5px;
-    font-family: var(--zyra-font-mono);
-    font-size: 0.82rem;
-    color: var(--zyra-color-text);
-    word-break: break-word;
 }

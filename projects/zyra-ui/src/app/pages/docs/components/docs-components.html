@@ -1,0 +1,77 @@
+<main class="docs-page">
+	<zyra-breadcrumb>
+		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+			<zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+		}
+	</zyra-breadcrumb>
+
+	<header class="docs-page__header">
+		<p class="docs-eyebrow">/ Docs</p>
+		<h1>Components</h1>
+		<p class="docs-page__lead">
+			{{ totalCount }} standalone Angular components, each signal-driven and tree-shakeable.
+			Every component follows the same conventions, so learning one teaches you the rest.
+		</p>
+	</header>
+
+	<section class="docs-section docs-section--first">
+		<div class="docs-section__header">
+			<h2>Conventions</h2>
+			<p>What every component in the library has in common.</p>
+		</div>
+
+		<div class="conventions-grid">
+			<div class="convention-card">
+				<h3>Standalone by default</h3>
+				<p>No NgModules required. Import only the components you use directly into your component's <code>imports</code> array.</p>
+			</div>
+			<div class="convention-card">
+				<h3>Signals-first API</h3>
+				<p>Inputs, outputs, and internal state use <code>input()</code>, <code>output()</code>, and <code>computed()</code> — no <code>@Input</code>/<code>@Output</code> decorators.</p>
+			</div>
+			<div class="convention-card">
+				<h3><code>zyra-*</code> selectors</h3>
+				<p>Every element and attribute selector is prefixed <code>zyra-</code>, e.g. <code>zyra-button</code>, <code>zyra-data-table</code>.</p>
+			</div>
+			<div class="convention-card">
+				<h3>Token-driven styling</h3>
+				<p>Components read colors, radii, and motion from <code>--zyra-*</code> custom properties — see <a routerLink="/docs/theme-tokens">Theme tokens</a>.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="docs-section">
+		<div class="docs-section__header">
+			<h2>Catalog by category</h2>
+			<p>Jump straight to a component's detail page, or browse the full interactive catalog.</p>
+		</div>
+
+		<div class="category-grid">
+			@for (group of categoryGroups(); track group.label) {
+			<div class="category-card">
+				<div class="category-card__header">
+					<span class="category-card__label">{{ group.label }}</span>
+					<span class="category-card__count">{{ group.items.length }}</span>
+				</div>
+				<div class="category-card__items">
+					@for (item of group.items; track item.slug) {
+					<a class="category-card__item" [routerLink]="['/docs/components', item.slug]">
+						{{ item.title }}
+					</a>
+					}
+				</div>
+			</div>
+			}
+		</div>
+	</section>
+
+	<section class="docs-cta">
+		<div class="docs-cta__inner">
+			<h2>See them all in action</h2>
+			<p>Every component has a live playground with variants, code, and API reference.</p>
+			<div class="docs-cta__actions">
+				<zyra-button size="lg" routerLink="/docs/components">Explore components</zyra-button>
+			</div>
+		</div>
+	</section>
+</main>

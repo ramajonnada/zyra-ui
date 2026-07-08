@@ -1,36 +1,35 @@
 ﻿[data-theme='dark'],
 :root {
 	// ── Surfaces ─────────────────────────────────────────────────────────────
-	// A cooler navy base with cleaner contrast steps for panels and surfaces.
-	--zyra-color-bg-app: #0b1320;
-	--zyra-color-bg-panel: #131d2d;
-	--zyra-color-bg-surface: #1c2b3f;
-	--zyra-color-bg-raised: #25344f;
+	// A near-black neutral base with tight contrast steps for panels and surfaces.
+	--zyra-color-bg-app: #090b10;
+	--zyra-color-bg-panel: #0d1117;
+	--zyra-color-bg-surface: #12171f;
+	--zyra-color-bg-raised: #1a2130;
 
 	// ── Borders ──────────────────────────────────────────────────────────────
-	--zyra-color-border: rgba(255, 255, 255, 0.08);
-	--zyra-color-border-hover: rgba(93, 173, 187, 0.28);
+	--zyra-color-border: rgba(255, 255, 255, 0.07);
+	--zyra-color-border-hover: rgba(24, 213, 234, 0.28);
 	--zyra-color-border-strong: rgba(255, 255, 255, 0.14);
 
 	// ── Text ─────────────────────────────────────────────────────────────────
-	--zyra-color-text: #e8eef5;
-	--zyra-color-text-muted: #9bb1c8;
-	--zyra-color-text-dim: #6b7b93;
-	--zyra-color-text-inverse: #0b1320;
+	--zyra-color-text: #f3f7fb;
+	--zyra-color-text-muted: #98a8bb;
+	--zyra-color-text-dim: #5a6778;
+	--zyra-color-text-inverse: #060a10;
 
 	--zyra-color-surface-inverse: #f5f7f9;
 
 	// ── Glow RGB channels ─────────────────────────────────────────────────────
-	// Same glow as the light theme for a consistent brand identity.
-	--zyra-color-glow: 0, 122, 138;
+	--zyra-color-glow: 24, 213, 234;
 
-	// ── Accent (Teal) ───────────────────────────────────────────────────────
-	// Use the same professional teal as the light theme for color harmony.
-	--zyra-color-accent: #007a8a;
-	--zyra-color-accent-hover: #009aae;
-	--zyra-color-accent-muted: rgba(0, 122, 138, 0.16);
-	--zyra-color-accent-border: rgba(0, 122, 138, 0.30);
-	--zyra-focus-ring: rgba(0, 122, 138, 0.40);
+	// ── Accent (Cyan) ───────────────────────────────────────────────────────
+	// #18d5ea luminance is high — dark text passes WCAG AA on this accent.
+	--zyra-color-accent: #18d5ea;
+	--zyra-color-accent-hover: #43ddf0;
+	--zyra-color-accent-muted: rgba(24, 213, 234, 0.12);
+	--zyra-color-accent-border: rgba(24, 213, 234, 0.24);
+	--zyra-focus-ring: rgba(24, 213, 234, 0.14);
 
 	// ── Secondary accents ─────────────────────────────────────────────────────
 	--zyra-color-accent-secondary: #2491e8;
@@ -42,58 +41,59 @@
 	--zyra-color-accent-tertiary-border: rgba(139, 110, 245, 0.24);
 
 	// ── Semantic ──────────────────────────────────────────────────────────────
-	--zyra-color-success: #10b981;
-	--zyra-color-success-muted: rgba(16, 185, 129, 0.10);
-	--zyra-color-success-border: rgba(16, 185, 129, 0.22);
+	--zyra-color-success: #2ea85b;
+	--zyra-color-success-muted: rgba(46, 168, 91, 0.10);
+	--zyra-color-success-border: rgba(76, 202, 124, 0.22);
 
-	--zyra-color-warning: #f59e0b;
-	--zyra-color-warning-muted: rgba(245, 158, 11, 0.12);
-	--zyra-color-warning-border: rgba(245, 158, 11, 0.24);
+	--zyra-color-warning: #e8aa3a;
+	--zyra-color-warning-muted: rgba(232, 170, 58, 0.12);
+	--zyra-color-warning-border: rgba(232, 170, 58, 0.24);
 
-	--zyra-color-danger: #ef4444;
-	--zyra-color-danger-muted: rgba(239, 68, 68, 0.10);
-	--zyra-color-danger-border: rgba(239, 68, 68, 0.22);
+	--zyra-color-danger: #e03e3e;
+	--zyra-color-danger-muted: rgba(224, 62, 62, 0.10);
+	--zyra-color-danger-border: rgba(224, 62, 62, 0.22);
+	--zyra-color-danger-text: #ff7d7d;
 
-	--zyra-color-info: #3b82f6;
-	--zyra-color-info-muted: rgba(59, 130, 246, 0.10);
-	--zyra-color-info-border: rgba(59, 130, 246, 0.22);
+	--zyra-color-info: #2491e8;
+	--zyra-color-info-muted: rgba(36, 145, 232, 0.10);
+	--zyra-color-info-border: rgba(36, 145, 232, 0.22);
 
 	// ── Shadows ───────────────────────────────────────────────────────────────
-	// Deeper surfaces need deeper shadows to maintain elevation contrast.
-	--zyra-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.55);
-	--zyra-shadow-md: 0 6px 24px rgba(0, 0, 0, 0.65);
-	--zyra-shadow-accent: 0 10px 30px rgba(0, 122, 138, 0.28);
+	--zyra-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+	--zyra-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.50);
+	--zyra-shadow-accent: 0 10px 26px rgba(24, 213, 234, 0.18);
+	--zyra-shadow-glow: 0 24px 70px rgba(24, 213, 234, 0.18);
 
 	// ── Buttons ───────────────────────────────────────────────────────────────
-	// #007a8a luminance ~0.076 — white text passes WCAG AA at 8.3:1 (same as light theme)
-	--zyra-color-btn-primary-text: #ffffff;
+	// #18d5ea luminance is high — dark text passes WCAG AA (inverse of teal-on-white).
+	--zyra-color-btn-primary-text: #04131a;
 	--zyra-color-btn-ghost-hover-bg: rgba(255, 255, 255, 0.04);
 
 	// ── Inputs ────────────────────────────────────────────────────────────────
 	--zyra-color-input-bg: var(--zyra-color-bg-surface);
 	--zyra-color-input-border: var(--zyra-color-border);
-	--zyra-input-shadow-focus: 0 0 0 3px rgba(0, 122, 138, 0.30);
+	--zyra-input-shadow-focus: 0 0 0 3px rgba(24, 213, 234, 0.14);
 
 	// ── Cards ─────────────────────────────────────────────────────────────────
-	// Lifted a step above --zyra-color-bg-surface so cards read as a distinct, raised
-	// plane instead of blending into whatever surface they sit on.
-	--zyra-color-card-bg: #22314a;
+	// A shade darker than --zyra-color-bg-surface so cards recede into the near-black
+	// canvas instead of standing out as a lighter raised plane.
+	--zyra-color-card-bg: #0f141b;
 	--zyra-color-card-border: rgba(255, 255, 255, 0.12);
 	--zyra-color-card-section-bg: rgba(255, 255, 255, 0.045);
 	--zyra-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.36), 0 8px 24px rgba(0, 0, 0, 0.38);
 	--zyra-card-elevated-shadow: 0 2px 6px rgba(0, 0, 0, 0.40), 0 24px 56px rgba(0, 0, 0, 0.50);
-	--zyra-card-focus-ring: rgba(0, 154, 174, 0.28);
+	--zyra-card-focus-ring: rgba(67, 221, 240, 0.28);
 
 	// ── Misc ──────────────────────────────────────────────────────────────────
-	--zyra-color-code-bg: #05080f;
-	--zyra-color-overlay-bg: rgba(3, 6, 14, 0.80);
+	--zyra-color-code-bg: #0a0f15;
+	--zyra-color-overlay-bg: rgba(4, 8, 12, 0.72);
 
 	--zyra-color-scrollbar-thumb: rgba(255, 255, 255, 0.07);
 	--zyra-color-scrollbar-track: transparent;
 
 	--zyra-color-tooltip-bg: #0f151c;
 	--zyra-color-tooltip-text: #f6f7f9;
-	--zyra-color-tooltip-border: rgba(0, 122, 138, 0.20);
+	--zyra-color-tooltip-border: rgba(24, 213, 234, 0.20);
 	--zyra-tooltip-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 
 	--zyra-color-toast-bg: rgba(7, 12, 22, 0.96);

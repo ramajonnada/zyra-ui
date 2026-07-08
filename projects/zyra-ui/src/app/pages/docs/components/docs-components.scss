@@ -1,0 +1,201 @@
+:host {
+	display: block;
+	background: var(--zyra-color-bg-app);
+	color: var(--zyra-color-text);
+}
+
+.docs-page {
+	width: min(1080px, calc(100% - 32px));
+	margin: 0 auto;
+	padding: 56px 0 80px;
+}
+
+.docs-page__header {
+	max-width: 660px;
+	margin-bottom: 40px;
+
+	h1 {
+		margin: 10px 0 12px;
+		font-family: var(--zyra-font-display);
+		font-size: 2.4rem;
+		line-height: 1.1;
+	}
+}
+
+.docs-page__lead {
+	color: var(--zyra-color-text-muted);
+	line-height: 1.75;
+	margin: 0;
+	font-size: 1rem;
+}
+
+.docs-eyebrow {
+	margin: 0;
+	color: var(--zyra-color-accent);
+	font-family: var(--zyra-font-mono);
+	font-size: 0.72rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+// ── Section wrapper ───────────────────────────────────────────
+.docs-section {
+	border-top: 1px solid var(--zyra-color-border);
+	padding-top: 48px;
+	margin-top: 48px;
+}
+
+.docs-section--first {
+	border-top: none;
+	padding-top: 0;
+	margin-top: 0;
+}
+
+.docs-section__header {
+	max-width: 660px;
+	margin-bottom: 24px;
+
+	h2 {
+		margin: 0 0 12px;
+		font-family: var(--zyra-font-display);
+		font-size: 1.7rem;
+	}
+
+	p {
+		color: var(--zyra-color-text-muted);
+		line-height: 1.75;
+		margin: 0;
+		font-size: 0.95rem;
+
+		a {
+			color: var(--zyra-color-accent);
+		}
+	}
+}
+
+// ── Conventions ───────────────────────────────────────────────
+.conventions-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 16px;
+}
+
+.convention-card {
+	padding: 18px;
+	border: 1px solid var(--zyra-color-border);
+	border-radius: var(--zyra-radius-md);
+	background: var(--zyra-color-bg-panel);
+
+	h3 {
+		margin: 0 0 8px;
+		font-family: var(--zyra-font-display);
+		font-size: 1rem;
+	}
+
+	p {
+		margin: 0;
+		color: var(--zyra-color-text-muted);
+		font-size: 0.88rem;
+		line-height: 1.65;
+	}
+
+	code {
+		font-family: var(--zyra-font-mono);
+		font-size: 0.85em;
+		color: var(--zyra-color-accent);
+	}
+
+	a {
+		color: var(--zyra-color-accent);
+	}
+}
+
+// ── Category catalog ──────────────────────────────────────────
+.category-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 12px;
+}
+
+.category-card {
+	padding: 16px;
+	border: 1px solid var(--zyra-color-border);
+	border-radius: var(--zyra-radius-md);
+	background: var(--zyra-color-bg-panel);
+}
+
+.category-card__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.category-card__label {
+	font-family: var(--zyra-font-mono);
+	font-size: 10px;
+	font-weight: 600;
+	color: var(--zyra-color-accent);
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+}
+
+.category-card__count {
+	font-family: var(--zyra-font-mono);
+	font-size: 11px;
+	color: var(--zyra-color-text-dim);
+}
+
+.category-card__items {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.category-card__item {
+	font-size: 0.88rem;
+	color: var(--zyra-color-text-muted);
+	text-decoration: none;
+
+	&:hover {
+		color: var(--zyra-color-accent);
+	}
+}
+
+// ── CTA ───────────────────────────────────────────────────────
+.docs-cta {
+	margin-top: 56px;
+	border-top: 1px solid var(--zyra-color-border);
+	padding-top: 56px;
+	text-align: center;
+
+	&__inner {
+		max-width: 540px;
+		margin: 0 auto;
+
+		h2 {
+			font-family: var(--zyra-font-display);
+			font-size: 2.2rem;
+			margin: 0 0 12px;
+		}
+
+		p {
+			color: var(--zyra-color-text-muted);
+			line-height: 1.7;
+			margin: 0 0 24px;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 12px;
+	}
+}
+
+@media (max-width: 640px) {
+	.docs-page__header h1 {
+		font-size: 1.9rem;
+	}
+}

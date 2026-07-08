@@ -1,5 +1,5 @@
 import type { ZyraIconData } from 'zyra-ng-ui';
-import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, code, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced } from 'zyra-ng-ui';
+import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, code, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced, menu, copy, star, panelLeft } from 'zyra-ng-ui';
 
 export type UiComponentAccent = 'teal' | 'blue' | 'purple' | 'amber' | 'green';
 
@@ -85,6 +85,47 @@ import { ZyraButton, ZyraCard } from 'zyra-ng-ui';
   \`,
 })
 export class DemoCardComponent {}
+`;
+
+const BREADCRUMB_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraBreadcrumb, ZyraBreadcrumbItem } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-breadcrumb',
+  standalone: true,
+  imports: [ZyraBreadcrumb, ZyraBreadcrumbItem],
+  template: \`
+    <zyra-breadcrumb>
+      <zyra-breadcrumb-item href="/">Home</zyra-breadcrumb-item>
+      <zyra-breadcrumb-item href="/components">Components</zyra-breadcrumb-item>
+      <zyra-breadcrumb-item [current]="true">Code Block</zyra-breadcrumb-item>
+    </zyra-breadcrumb>
+  \`,
+})
+export class DemoBreadcrumbComponent {}
+`;
+
+const DROPDOWN_MENU_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraButton, ZyraDropdownMenu, ZyraMenuItem } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-dropdown-menu',
+  standalone: true,
+  imports: [ZyraButton, ZyraDropdownMenu, ZyraMenuItem],
+  template: \`
+    <zyra-dropdown-menu>
+      <zyra-button slot="trigger" variant="outline">Actions</zyra-button>
+      <zyra-menu-item (itemClick)="edit()">Edit</zyra-menu-item>
+      <zyra-menu-item (itemClick)="duplicate()">Duplicate</zyra-menu-item>
+      <zyra-menu-item variant="danger" (itemClick)="remove()">Delete</zyra-menu-item>
+    </zyra-dropdown-menu>
+  \`,
+})
+export class DemoDropdownMenuComponent {
+  edit() {}
+  duplicate() {}
+  remove() {}
+}
 `;
 
 const CODE_BLOCK_EXAMPLE_CODE = `import { Component } from '@angular/core';
@@ -788,6 +829,107 @@ export const UI_COMPONENT_SHOWCASE = [
             'Code is rendered in a <pre><code> block so screen readers announce it as preformatted text',
         ],
         relatedSlugs: ['card', 'badge'],
+    },
+    {
+        slug: 'breadcrumb',
+        title: 'Breadcrumb',
+        selector: 'zyra-breadcrumb',
+        importName: 'ZyraBreadcrumb',
+        category: 'Navigation',
+        description:
+            'A trail of ancestor links showing the user’s current location within a hierarchy of pages.',
+        icon: caretRight,
+        accent: 'blue',
+        highlights: [
+            'Composable item-based API',
+            'Automatic separators between items',
+            'Current page marked with aria-current',
+        ],
+        exampleCode: BREADCRUMB_EXAMPLE_CODE,
+        variants: [
+            { name: 'link item', description: 'Item with an href — renders as a clickable anchor' },
+            { name: 'current item', description: '[current]="true" — renders without href, marked aria-current="page"' },
+        ],
+        apiProps: [
+            {
+                name: 'ariaLabel (zyra-breadcrumb)',
+                type: 'string',
+                default: "'Breadcrumb'",
+                description: 'Accessible label for the nav landmark',
+            },
+            {
+                name: 'href (zyra-breadcrumb-item)',
+                type: 'string',
+                default: "''",
+                description: 'Destination URL; ignored when current is true',
+            },
+            {
+                name: 'current (zyra-breadcrumb-item)',
+                type: 'boolean',
+                default: 'false',
+                description: 'Marks the item as the current page — renders without a clickable href',
+            },
+        ],
+        a11yNotes: [
+            'Rendered as a <nav> landmark with an ol/li list structure',
+            'The current item gets aria-current="page" and no href, so it is not focusable',
+            'Separator icons are aria-hidden and purely decorative',
+        ],
+        relatedSlugs: ['card', 'divider'],
+    },
+    {
+        slug: 'dropdown-menu',
+        title: 'Dropdown Menu',
+        selector: 'zyra-dropdown-menu',
+        importName: 'ZyraDropdownMenu',
+        category: 'Navigation',
+        description:
+            'A trigger-activated menu panel for grouping secondary actions like edit, duplicate, or delete.',
+        icon: menu,
+        accent: 'purple',
+        highlights: [
+            'Closes on outside click, Escape, or item select',
+            'Start/end alignment relative to the trigger',
+            'Danger variant for destructive actions',
+        ],
+        exampleCode: DROPDOWN_MENU_EXAMPLE_CODE,
+        variants: [
+            { name: 'default item', description: 'Standard menu action' },
+            { name: 'danger item', description: 'variant="danger" — red-tinted for destructive actions' },
+            { name: 'disabled item', description: '[disabled]="true" — non-interactive, skipped on click' },
+        ],
+        apiProps: [
+            {
+                name: 'align (zyra-dropdown-menu)',
+                type: "'start' | 'end'",
+                default: "'start'",
+                description: 'Horizontal alignment of the panel relative to the trigger',
+            },
+            {
+                name: 'variant (zyra-menu-item)',
+                type: "'default' | 'danger'",
+                default: "'default'",
+                description: 'Visual style of the menu item',
+            },
+            {
+                name: 'disabled (zyra-menu-item)',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables the item — clicks are ignored',
+            },
+            {
+                name: 'itemClick (zyra-menu-item, output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits when an enabled item is clicked; the menu also auto-closes',
+            },
+        ],
+        a11yNotes: [
+            'Panel is rendered with role="menu" and items with role="menuitem"',
+            'Closes on outside click and on Escape',
+            'The trigger slot accepts any focusable element, typically a button',
+        ],
+        relatedSlugs: ['button', 'tooltip'],
     },
     {
         slug: 'avatar',
@@ -2183,6 +2325,887 @@ export const UI_COMPONENT_SHOWCASE = [
             'Animation uses CSS grid — respects prefers-reduced-motion',
         ],
         relatedSlugs: ['card', 'divider', 'modal'],
+    },
+    {
+        slug: 'typography',
+        title: 'Typography',
+        selector: 'zyra-typography',
+        importName: 'ZyraTypography',
+        category: 'Layout',
+        description:
+            'Consistent text styles for headings, body copy, and captions — renders the correct semantic HTML tag automatically.',
+        icon: alignLeft,
+        accent: 'blue',
+        highlights: [
+            'Real heading tags for SEO and a11y',
+            'Consistent type scale across the app',
+            'Truncation and muted-color helpers',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraTypography } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-typography',
+  standalone: true,
+  imports: [ZyraTypography],
+  template: \`
+    <zyra-typography variant="h3">
+      Ship consistent UI, faster
+    </zyra-typography>
+  \`,
+})
+export class DemoTypographyComponent {}
+`,
+        variants: [
+            { name: 'h1-h6', description: 'Semantic heading tags with matching type scale' },
+            { name: 'body-lg / body / body-sm', description: 'Paragraph text at three sizes' },
+            { name: 'caption / overline', description: 'Small supporting text, overline is uppercase' },
+        ],
+        apiProps: [
+            {
+                name: 'variant',
+                type: "'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body-lg' | 'body' | 'body-sm' | 'caption' | 'overline'",
+                default: "'body'",
+                description: 'Type scale step and default semantic tag',
+            },
+            {
+                name: 'as',
+                type: 'string',
+                default: "''",
+                description: 'Override the rendered HTML tag while keeping the variant styling',
+            },
+            {
+                name: 'weight',
+                type: "'regular' | 'medium' | 'semibold' | 'bold' | ''",
+                default: "''",
+                description: "Override the variant's default font weight",
+            },
+            {
+                name: 'align',
+                type: "'left' | 'center' | 'right'",
+                default: "'left'",
+                description: 'Text alignment',
+            },
+            {
+                name: 'muted',
+                type: 'boolean',
+                default: 'false',
+                description: 'Uses the muted foreground color token',
+            },
+            {
+                name: 'truncate',
+                type: 'boolean',
+                default: 'false',
+                description: 'Single-line ellipsis overflow',
+            },
+        ],
+        a11yNotes: [
+            'Headings render as real h1-h6 elements — do not skip levels in a page outline',
+            'Use `as` to restyle a heading visually without breaking the document outline',
+        ],
+        relatedSlugs: ['card', 'divider', 'accordion'],
+    },
+    {
+        slug: 'empty-state',
+        title: 'Empty State',
+        selector: 'zyra-empty-state',
+        importName: 'ZyraEmptyState',
+        category: 'Data Display',
+        description:
+            'A friendly placeholder for empty lists, no search results, or first-run screens, with room for an icon and actions.',
+        icon: boxOpen,
+        accent: 'purple',
+        highlights: [
+            'Icon, title, and description slots',
+            'Optional actions row',
+            'Scales with sm / md / lg sizing',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraEmptyState, ZyraButton } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-empty-state',
+  standalone: true,
+  imports: [ZyraEmptyState, ZyraButton],
+  template: \`
+    <zyra-empty-state
+      title="No results found"
+      description="Try adjusting your filters or search terms."
+    >
+      <div slot="actions">
+        <zyra-button variant="primary" size="sm">Reset filters</zyra-button>
+      </div>
+    </zyra-empty-state>
+  \`,
+})
+export class DemoEmptyStateComponent {}
+`,
+        variants: [
+            { name: 'sm', description: 'Compact spacing for inline panels' },
+            { name: 'md', description: 'Default size for most empty views' },
+            { name: 'lg', description: 'Generous spacing for full-page states' },
+        ],
+        apiProps: [
+            {
+                name: 'title',
+                type: 'string',
+                default: "''",
+                description: 'Primary heading text',
+            },
+            {
+                name: 'description',
+                type: 'string',
+                default: "''",
+                description: 'Supporting explanation text',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Overall padding and spacing scale',
+            },
+        ],
+        a11yNotes: [
+            'Presentational — pair with an aria-live region if it appears after an async search',
+            'Action buttons inside the actions slot remain fully keyboard accessible',
+        ],
+        relatedSlugs: ['skeleton', 'card', 'button'],
+    },
+    {
+        slug: 'clipboard',
+        title: 'Clipboard',
+        selector: 'zyra-clipboard',
+        importName: 'ZyraClipboard',
+        category: 'Actions',
+        description:
+            'A one-click copy-to-clipboard trigger with a built-in "copied" confirmation state, for API keys, code snippets, and share links.',
+        icon: copy,
+        accent: 'teal',
+        highlights: [
+            'Button or icon-only variants',
+            'Automatic copied confirmation with icon swap',
+            'Emits a copied event for analytics/toasts',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraClipboard } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-clipboard',
+  standalone: true,
+  imports: [ZyraClipboard],
+  template: \`
+    <zyra-clipboard value="npm install zyra-ng-ui" />
+  \`,
+})
+export class DemoClipboardComponent {}
+`,
+        variants: [
+            { name: 'button', description: 'Icon plus visible label text' },
+            { name: 'icon', description: 'Icon-only, uses an aria-label' },
+        ],
+        apiProps: [
+            {
+                name: 'value',
+                type: 'string',
+                default: "''",
+                description: 'The text copied to the clipboard',
+            },
+            {
+                name: 'label',
+                type: 'string',
+                default: "'Copy'",
+                description: 'Label shown before copying',
+            },
+            {
+                name: 'copiedLabel',
+                type: 'string',
+                default: "'Copied!'",
+                description: 'Label shown briefly after a successful copy',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Physical size of the trigger',
+            },
+            {
+                name: 'variant',
+                type: "'button' | 'icon'",
+                default: "'button'",
+                description: 'Icon-and-label button, or icon-only',
+            },
+        ],
+        a11yNotes: [
+            'Icon-only variant sets aria-label to the current label so the action is announced',
+            'The copied confirmation is visual + textual, not color-only',
+        ],
+        relatedSlugs: ['code-block', 'input', 'toast'],
+    },
+    {
+        slug: 'rating',
+        title: 'Rating',
+        selector: 'zyra-rating',
+        importName: 'ZyraRating',
+        category: 'Forms',
+        description:
+            'A star-rating input for reviews and feedback forms, with hover preview and keyboard support.',
+        icon: star,
+        accent: 'amber',
+        highlights: [
+            'Configurable max stars',
+            'Keyboard arrow-key adjustable',
+            'Read-only display mode',
+        ],
+        exampleCode: `import { Component, signal } from '@angular/core';
+import { ZyraRating } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-rating',
+  standalone: true,
+  imports: [ZyraRating],
+  template: \`
+    <zyra-rating [(value)]="rating" />
+  \`,
+})
+export class DemoRatingComponent {
+  rating = signal(3);
+}
+`,
+        variants: [
+            { name: 'interactive', description: 'Default clickable rating input' },
+            { name: 'readonly', description: 'Display-only, for showing an existing rating' },
+        ],
+        apiProps: [
+            {
+                name: 'value',
+                type: 'number',
+                default: '0',
+                description: 'Current rating value',
+            },
+            {
+                name: 'max',
+                type: 'number',
+                default: '5',
+                description: 'Number of stars to render',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Physical size of the stars',
+            },
+            {
+                name: 'readonly',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables interaction, for display only',
+            },
+            {
+                name: 'disabled',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables interaction and dims the control',
+            },
+        ],
+        a11yNotes: [
+            'Container uses role="radiogroup"; each star is role="radio" with aria-checked',
+            'Arrow Left/Down and Right/Up adjust the value by one star',
+        ],
+        relatedSlugs: ['input', 'chip', 'progress'],
+    },
+    {
+        slug: 'stack',
+        title: 'Stack',
+        selector: 'zyra-stack',
+        importName: 'ZyraStack',
+        category: 'Layout',
+        description:
+            'A flex layout primitive that arranges children in a row or column with consistent gap spacing, alignment, and wrapping.',
+        icon: square,
+        accent: 'green',
+        highlights: [
+            'Row or column direction',
+            'Token-based gap scale',
+            'Alignment and justify shortcuts',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraStack } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-stack',
+  standalone: true,
+  imports: [ZyraStack],
+  template: \`
+    <zyra-stack direction="row" gap="md" align="center">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </zyra-stack>
+  \`,
+})
+export class DemoStackComponent {}
+`,
+        variants: [
+            { name: 'row', description: 'Horizontal layout' },
+            { name: 'column', description: 'Vertical layout (default)' },
+        ],
+        apiProps: [
+            {
+                name: 'direction',
+                type: "'row' | 'column'",
+                default: "'column'",
+                description: 'Flex direction of the children',
+            },
+            {
+                name: 'gap',
+                type: "'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+                default: "'md'",
+                description: 'Spacing between children',
+            },
+            {
+                name: 'align',
+                type: "'start' | 'center' | 'end' | 'stretch'",
+                default: "'stretch'",
+                description: 'Cross-axis alignment (align-items)',
+            },
+            {
+                name: 'justify',
+                type: "'start' | 'center' | 'end' | 'between' | 'around'",
+                default: "'start'",
+                description: 'Main-axis alignment (justify-content)',
+            },
+            {
+                name: 'wrap',
+                type: 'boolean',
+                default: 'false',
+                description: 'Allows children to wrap onto new lines',
+            },
+        ],
+        a11yNotes: ['Purely presentational — no additional ARIA semantics are introduced'],
+        relatedSlugs: ['card', 'divider', 'accordion'],
+    },
+    {
+        slug: 'pagination',
+        title: 'Pagination',
+        selector: 'zyra-pagination',
+        importName: 'ZyraPagination',
+        category: 'Navigation',
+        description:
+            'Page-number navigation for tables and lists, with smart ellipsis collapsing for large page counts.',
+        icon: caretRight,
+        accent: 'blue',
+        highlights: [
+            'Collapses long page ranges with an ellipsis',
+            'Configurable sibling count',
+            'Keyboard and screen-reader friendly',
+        ],
+        exampleCode: `import { Component, signal } from '@angular/core';
+import { ZyraPagination } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-pagination',
+  standalone: true,
+  imports: [ZyraPagination],
+  template: \`
+    <zyra-pagination
+      [totalPages]="10"
+      [currentPage]="page()"
+      (pageChange)="page.set($event)"
+    />
+  \`,
+})
+export class DemoPaginationComponent {
+  page = signal(1);
+}
+`,
+        variants: [
+            { name: 'sm / md / lg', description: 'Three physical sizes for the page buttons' },
+        ],
+        apiProps: [
+            {
+                name: 'totalPages',
+                type: 'number',
+                default: '1',
+                description: 'Total number of pages',
+            },
+            {
+                name: 'currentPage',
+                type: 'number',
+                default: '1',
+                description: 'The currently active page',
+            },
+            {
+                name: 'siblingCount',
+                type: 'number',
+                default: '1',
+                description: 'Page numbers shown on each side of the current page before collapsing',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Physical size of the pagination controls',
+            },
+            {
+                name: 'disabled',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables all navigation controls',
+            },
+        ],
+        a11yNotes: [
+            'Rendered inside a nav element with aria-label="Pagination"',
+            'The active page button has aria-current="page"',
+        ],
+        relatedSlugs: ['tabs', 'breadcrumb', 'button'],
+    },
+    {
+        slug: 'stepper',
+        title: 'Stepper',
+        selector: 'zyra-stepper',
+        importName: 'ZyraStepper',
+        category: 'Navigation',
+        description:
+            'A numbered step indicator for multi-step forms and wizards, with horizontal and vertical layouts.',
+        icon: check,
+        accent: 'purple',
+        highlights: [
+            'Horizontal or vertical orientation',
+            'Completed / active / upcoming step states',
+            'Click a step to jump directly to it',
+        ],
+        exampleCode: `import { Component, signal } from '@angular/core';
+import { ZyraStepper, ZyraStep } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-stepper',
+  standalone: true,
+  imports: [ZyraStepper, ZyraStep],
+  template: \`
+    <zyra-stepper [activeIndex]="activeIndex()" (activeIndexChange)="activeIndex.set($event)">
+      <zyra-step label="Account" description="Create your account">...</zyra-step>
+      <zyra-step label="Profile" description="Tell us about yourself">...</zyra-step>
+      <zyra-step label="Review" description="Confirm and finish">...</zyra-step>
+    </zyra-stepper>
+  \`,
+})
+export class DemoStepperComponent {
+  activeIndex = signal(0);
+}
+`,
+        variants: [
+            { name: 'horizontal', description: 'Steps laid out left to right (default)' },
+            { name: 'vertical', description: 'Steps laid out top to bottom' },
+        ],
+        apiProps: [
+            {
+                name: 'activeIndex',
+                type: 'number',
+                default: '0',
+                description: 'Index of the currently active step',
+            },
+            {
+                name: 'orientation',
+                type: "'horizontal' | 'vertical'",
+                default: "'horizontal'",
+                description: 'Layout direction of the step indicator',
+            },
+            {
+                name: 'label (on step)',
+                type: 'string',
+                default: "''",
+                description: 'Title shown next to the step indicator',
+            },
+            {
+                name: 'description (on step)',
+                type: 'string',
+                default: "''",
+                description: 'Supporting text shown under the label',
+            },
+            {
+                name: 'completed (on step)',
+                type: 'boolean',
+                default: 'false',
+                description: 'Shows a checkmark instead of the step number',
+            },
+            {
+                name: 'disabled (on step)',
+                type: 'boolean',
+                default: 'false',
+                description: 'Prevents the step from being clicked to navigate to',
+            },
+        ],
+        a11yNotes: [
+            'Step indicators are focusable buttons so keyboard users can jump between steps',
+            'Completed steps expose a checkmark icon, not color alone',
+        ],
+        relatedSlugs: ['tabs', 'accordion', 'progress'],
+    },
+    {
+        slug: 'popover',
+        title: 'Popover',
+        selector: 'zyra-popover',
+        importName: 'ZyraPopover',
+        category: 'Overlays',
+        description:
+            'A click- or hover-triggered floating panel for rich contextual content, menus, or previews — richer than a tooltip.',
+        icon: message,
+        accent: 'teal',
+        highlights: [
+            'Click or hover trigger modes',
+            'Projected trigger and content slots',
+            'Closes on outside click by default',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraPopover, ZyraButton } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-popover',
+  standalone: true,
+  imports: [ZyraPopover, ZyraButton],
+  template: \`
+    <zyra-popover position="bottom">
+      <zyra-button slot="trigger" variant="outline">Open popover</zyra-button>
+      <div slot="content">
+        <strong>Notifications</strong>
+        <p>You have 3 unread messages.</p>
+      </div>
+    </zyra-popover>
+  \`,
+})
+export class DemoPopoverComponent {}
+`,
+        variants: [
+            { name: 'click trigger', description: 'Opens and closes on click (default)' },
+            { name: 'hover trigger', description: 'Opens on mouse enter, closes on mouse leave' },
+        ],
+        apiProps: [
+            {
+                name: 'position',
+                type: "'top' | 'bottom' | 'left' | 'right'",
+                default: "'bottom'",
+                description: 'Placement of the panel relative to the trigger',
+            },
+            {
+                name: 'trigger',
+                type: "'click' | 'hover'",
+                default: "'click'",
+                description: 'Interaction that opens the panel',
+            },
+            {
+                name: 'closeOnOutsideClick',
+                type: 'boolean',
+                default: 'true',
+                description: 'Closes the panel when clicking outside of it',
+            },
+        ],
+        a11yNotes: [
+            'Panel is rendered with role="dialog" and a unique id',
+            'Escape and outside-click both dismiss the panel when using the click trigger',
+        ],
+        relatedSlugs: ['tooltip', 'dropdown-menu', 'modal'],
+    },
+    {
+        slug: 'timeline',
+        title: 'Timeline',
+        selector: 'zyra-timeline',
+        importName: 'ZyraTimeline',
+        category: 'Data Display',
+        description:
+            'A vertical timeline for order history, activity feeds, and audit logs, with color-coded status markers.',
+        icon: waveSquare,
+        accent: 'green',
+        highlights: [
+            'Color-coded status dots',
+            'Connecting line drawn automatically',
+            'Any rich content projected per entry',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraTimeline, ZyraTimelineItem } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-timeline',
+  standalone: true,
+  imports: [ZyraTimeline, ZyraTimelineItem],
+  template: \`
+    <zyra-timeline>
+      <zyra-timeline-item title="Order placed" date="Jan 1, 2026" variant="success">
+        Your order has been placed successfully.
+      </zyra-timeline-item>
+      <zyra-timeline-item title="Payment confirmed" date="Jan 2, 2026" variant="info">
+        Payment was received and confirmed.
+      </zyra-timeline-item>
+      <zyra-timeline-item title="Delivered" date="Jan 6, 2026" variant="default">
+        Package delivered to the recipient.
+      </zyra-timeline-item>
+    </zyra-timeline>
+  \`,
+})
+export class DemoTimelineComponent {}
+`,
+        variants: [
+            { name: 'default', description: 'Neutral marker for general events' },
+            { name: 'success / info / warning / danger', description: 'Color-coded status markers' },
+        ],
+        apiProps: [
+            {
+                name: 'title (on item)',
+                type: 'string',
+                default: "''",
+                description: 'Heading text for the entry',
+            },
+            {
+                name: 'date (on item)',
+                type: 'string',
+                default: "''",
+                description: 'Date or time label shown next to the title',
+            },
+            {
+                name: 'variant (on item)',
+                type: "'default' | 'success' | 'warning' | 'danger' | 'info'",
+                default: "'default'",
+                description: 'Color of the entry marker dot',
+            },
+        ],
+        a11yNotes: ['Rendered as a plain list of entries — wrap in an ordered list context if sequence matters for assistive tech'],
+        relatedSlugs: ['card', 'accordion', 'skeleton'],
+    },
+    {
+        slug: 'header',
+        title: 'Header',
+        selector: 'zyra-header',
+        importName: 'ZyraHeader',
+        category: 'Navigation',
+        description:
+            'An app-shell header with brand, nav and action slots — built-in mobile drawer, scroll elevation, and sticky/fixed positioning.',
+        icon: menu,
+        accent: 'blue',
+        highlights: [
+            'Content-projection slots for brand, nav, and actions',
+            'Built-in mobile menu toggle — no manual drawer wiring needed',
+            'Scroll-elevation and transparent-until-scrolled styling out of the box',
+            'Sticky, fixed, or static positioning',
+            'Split or centered nav alignment; contained or full-width layout',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraHeader, ZyraHeaderStart, ZyraHeaderNav, ZyraHeaderEnd, ZyraButton } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-header',
+  standalone: true,
+  imports: [ZyraHeader, ZyraHeaderStart, ZyraHeaderNav, ZyraHeaderEnd, ZyraButton],
+  template: \`
+    <zyra-header position="sticky">
+      <a zyraHeaderStart href="#">Brand</a>
+      <nav zyraHeaderNav>
+        <a href="#">Docs</a>
+        <a href="#">Blog</a>
+      </nav>
+      <div zyraHeaderEnd>
+        <zyra-button size="sm">Get started</zyra-button>
+      </div>
+    </zyra-header>
+  \`,
+})
+export class DemoHeaderComponent {}
+`,
+        variants: [
+            { name: 'split', description: 'Brand left, nav center, actions right (default)' },
+            { name: 'center', description: 'Nav visually centered between brand and actions' },
+            { name: 'contained', description: 'Content constrained to a max-width, centered (default)' },
+            { name: 'full-width', description: 'Content stretches edge-to-edge' },
+            { name: 'sticky / fixed / static', description: 'Positioning behavior on scroll' },
+            { name: 'transparent', description: 'Transparent until scrolled, then becomes opaque with elevation' },
+        ],
+        apiProps: [
+            {
+                name: 'position',
+                type: "'static' | 'sticky' | 'fixed'",
+                default: "'static'",
+                description: 'Positioning behavior of the header',
+            },
+            {
+                name: 'variant',
+                type: "'contained' | 'full-width'",
+                default: "'contained'",
+                description: 'Whether the bar content is max-width constrained or edge-to-edge',
+            },
+            {
+                name: 'align',
+                type: "'split' | 'center'",
+                default: "'split'",
+                description: 'Layout of the start/nav/end zones',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Header height and padding density',
+            },
+            {
+                name: 'transparent',
+                type: 'boolean',
+                default: 'false',
+                description: 'Renders transparent until scrolled past the threshold',
+            },
+            {
+                name: 'elevateOnScroll',
+                type: 'boolean',
+                default: 'true',
+                description: 'Applies a shadow/border once scrollY passes scrollThreshold',
+            },
+            {
+                name: 'scrollThreshold',
+                type: 'number',
+                default: '12',
+                description: 'Scroll distance in pixels before elevation is applied',
+            },
+            {
+                name: 'mobileBreakpoint',
+                type: 'number',
+                default: '768',
+                description: 'Viewport width in pixels below which the nav collapses behind the burger menu',
+            },
+            {
+                name: 'mobileOpenChange (output)',
+                type: 'boolean',
+                default: '-',
+                description: 'Emits when the mobile menu is opened or closed',
+            },
+            {
+                name: 'scrolledChange (output)',
+                type: 'boolean',
+                default: '-',
+                description: 'Emits when the scroll-elevated state changes',
+            },
+            {
+                name: 'zyraHeaderStart (directive)',
+                type: 'attribute',
+                default: '-',
+                description: 'Marks projected content as the brand/logo slot',
+            },
+            {
+                name: 'zyraHeaderNav (directive)',
+                type: 'attribute',
+                default: '-',
+                description: 'Marks projected content as the primary nav; automatically collapses into the mobile menu',
+            },
+            {
+                name: 'zyraHeaderEnd (directive)',
+                type: 'attribute',
+                default: '-',
+                description: 'Marks projected content as the actions/CTA slot',
+            },
+            {
+                name: 'zyraHeaderMobileEnd (directive)',
+                type: 'attribute',
+                default: '-',
+                description: 'Optional extra content shown only inside the open mobile panel',
+            },
+        ],
+        a11yNotes: [
+            'Rendered as a header element with role="banner"',
+            'The mobile toggle button exposes aria-expanded and an aria-label that updates between "Open" and "Close navigation menu"',
+            'Escape closes the open mobile panel',
+        ],
+        relatedSlugs: ['sidebar', 'tabs', 'breadcrumb'],
+    },
+    {
+        slug: 'sidebar',
+        title: 'Sidebar',
+        selector: 'zyra-sidebar',
+        importName: 'ZyraSidebar',
+        category: 'Navigation',
+        description:
+            'A collapsible app-shell navigation rail with header/footer slots, grouped sections, and active/disabled item states.',
+        icon: panelLeft,
+        accent: 'blue',
+        highlights: [
+            'Collapsible with a two-way collapsed model',
+            'Header and footer content-projection slots',
+            'Grouped sections with icons, badges, and active/disabled states',
+        ],
+        exampleCode: `import { Component, signal } from '@angular/core';
+import { ZyraSidebar, ZyraSidebarSection, ZyraSidebarItem } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-sidebar',
+  standalone: true,
+  imports: [ZyraSidebar, ZyraSidebarSection, ZyraSidebarItem],
+  template: \`
+    <zyra-sidebar [(collapsed)]="collapsed">
+      <div sidebar-header>Zyra UI</div>
+      <zyra-sidebar-section heading="General">
+        <a zyra-sidebar-item [active]="true">Overview</a>
+        <a zyra-sidebar-item>Projects</a>
+      </zyra-sidebar-section>
+    </zyra-sidebar>
+  \`,
+})
+export class DemoSidebarComponent {
+  collapsed = signal(false);
+}
+`,
+        variants: [
+            { name: 'expanded', description: 'Full width with labels visible (default)' },
+            { name: 'collapsed', description: 'Icon-only rail at a reduced width' },
+        ],
+        apiProps: [
+            {
+                name: 'width',
+                type: 'string',
+                default: "'260px'",
+                description: 'Width of the sidebar when expanded',
+            },
+            {
+                name: 'collapsedWidth',
+                type: 'string',
+                default: "'72px'",
+                description: 'Width of the sidebar when collapsed',
+            },
+            {
+                name: 'collapsed (model)',
+                type: 'boolean',
+                default: 'false',
+                description: 'Two-way collapsed state',
+            },
+            {
+                name: 'heading (on section)',
+                type: 'string',
+                default: "''",
+                description: 'Optional heading label for a group of items',
+            },
+            {
+                name: 'active (on item)',
+                type: 'boolean',
+                default: 'false',
+                description: 'Marks the item as the current page',
+            },
+            {
+                name: 'disabled (on item)',
+                type: 'boolean',
+                default: 'false',
+                description: 'Prevents interaction with the item',
+            },
+            {
+                name: 'icon (on item)',
+                type: 'ZyraIconData | null',
+                default: 'null',
+                description: 'Leading icon shown before the label',
+            },
+            {
+                name: 'badge (on item)',
+                type: 'string | number',
+                default: "''",
+                description: 'Trailing badge, e.g. an unread count',
+            },
+        ],
+        a11yNotes: [
+            'Sidebar items render as anchor elements with aria-current="page" when active',
+            'Disabled items get aria-disabled and are removed from tab order',
+            'Header and footer slots collapse to nothing in the DOM when left empty',
+        ],
+        relatedSlugs: ['header', 'tabs', 'breadcrumb'],
     },
 ] satisfies readonly UiComponentShowcaseCard[];
 

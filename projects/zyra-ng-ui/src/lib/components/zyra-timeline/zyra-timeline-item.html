@@ -1,0 +1,17 @@
+<div class="zyr-timeline-item">
+    <div class="zyr-timeline-item__marker">
+        <span [class]="markerClass()"></span>
+        <span class="zyr-timeline-item__line" aria-hidden="true"></span>
+    </div>
+    <div class="zyr-timeline-item__content">
+        <div class="zyr-timeline-item__header">
+            <span class="zyr-timeline-item__title">{{ title() }}</span>
+            @if (date()) {
+                <span class="zyr-timeline-item__date">{{ date() }}</span>
+            }
+        </div>
+        <div class="zyr-timeline-item__body">
+            <ng-content />
+        </div>
+    </div>
+</div>

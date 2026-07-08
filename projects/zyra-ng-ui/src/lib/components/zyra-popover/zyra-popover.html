@@ -1,0 +1,14 @@
+<span
+    #trigger
+    class="zyr-popover__trigger"
+    (click)="onTriggerClick()"
+    (mouseenter)="onTriggerMouseEnter()"
+    (mouseleave)="onTriggerMouseLeave()"
+>
+    <ng-content select="[slot=trigger]" />
+</span>
+
+<div #panel [id]="panelId" [class]="panelClass()" role="dialog" aria-modal="false">
+    <ng-content select="[slot=content]" />
+    <span class="zyr-popover__arrow"></span>
+</div>

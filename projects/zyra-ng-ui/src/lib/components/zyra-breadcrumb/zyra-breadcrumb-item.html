@@ -1,0 +1,11 @@
+<li class="zyr-breadcrumb__item">
+    <a
+        class="zyr-breadcrumb__link"
+        [class.zyr-breadcrumb__link--current]="current()"
+        [attr.href]="!current() && href() ? href() : null"
+        [attr.aria-current]="current() ? 'page' : null"
+    >
+        <ng-content />
+    </a>
+    <zyra-icon class="zyr-breadcrumb__sep" [img]="sepIcon" [size]="14" />
+</li>

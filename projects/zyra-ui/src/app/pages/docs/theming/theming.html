@@ -1,9 +1,17 @@
 <section class="theming-page">
+    <zyra-breadcrumb>
+        @for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+            <zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+        }
+    </zyra-breadcrumb>
+
     <header class="theming-header">
         <h1>Theming</h1>
         <p>
             Zyra UI ships five themes built on the same token layer — switch below to preview how
-            every component responds instantly, with no per-component changes required.
+            every component responds instantly, with no per-component changes required. For the
+            full token catalog and override rules, see
+            <a routerLink="/docs/theme-tokens">Theme tokens →</a>.
         </p>
     </header>
 
@@ -106,43 +114,6 @@
                     <pre><code>{{ step.code }}</code></pre>
                 </article>
             }
-        </div>
-    </div>
-
-    <!-- ── What's changeable ─────────────────────────────────────── -->
-    <div class="theming-section">
-        <h2>What can I change?</h2>
-        <p class="theming-section__intro">
-            Not every token is meant to be touched directly. Semantic and dimension tokens are the
-            supported customization surface — override these and everything downstream follows.
-            Primitives and per-component tokens are implementation detail: they already derive
-            from the semantic layer, and their names can change between component updates.
-        </p>
-
-        <div class="token-access-grid">
-            <div class="token-access-col token-access-col--ok">
-                <h3>✅ Safe to override</h3>
-                @for (group of overridableTokens; track group.label) {
-                    <div class="token-access-group">
-                        <span class="token-access-group__label">{{ group.label }}</span>
-                        @for (token of group.tokens; track token) {
-                            <code class="token-access-item">{{ token }}</code>
-                        }
-                    </div>
-                }
-            </div>
-
-            <div class="token-access-col token-access-col--internal">
-                <h3>🚫 Internal — don't override directly</h3>
-                @for (group of internalTokens; track group.label) {
-                    <div class="token-access-group">
-                        <span class="token-access-group__label">{{ group.label }}</span>
-                        @for (token of group.tokens; track token) {
-                            <code class="token-access-item">{{ token }}</code>
-                        }
-                    </div>
-                }
-            </div>
         </div>
     </div>
 </section>

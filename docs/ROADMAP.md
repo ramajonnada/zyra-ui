@@ -1,52 +1,258 @@
-# Zyra UI Roadmap
+# 🚀 ZyraUI Product Roadmap
 
-Zyra UI is a signal-first Angular UI library for building dark-mode, accessible apps faster.
+## 🎯 Vision
 
-## Current Focus
+Build ZyraUI into a complete Angular ecosystem that helps developers design, build, and ship modern applications faster.
 
-1. Polish the existing component documentation system.
-2. Add AI-friendly usage docs.
-3. Add copy-paste ready application blocks.
-4. Add a theme builder for design-token customization.
-5. Improve test coverage, SEO, and release confidence.
+The roadmap progresses from a trusted UI library to premium enterprise components, reusable templates, and eventually an AI-powered application generator.
 
-## Milestones
+---
 
-### Sprint 1: Docs Polish And AI Page
+# Phase 1 — Build a Strong Free Foundation (Current)
 
-- Audit exported library components against website docs.
-- Fix component docs data gaps.
-- Polish `/components/:component`.
-- Improve `/docs` setup content.
-- Add `/use-with-ai`.
+**Goal:** Become a trusted open-source Angular UI library.
 
-### Sprint 2: Blocks System
+### Target
 
-- Add `/blocks` and `/blocks/:block`.
-- Add Login, Settings, Pricing, Dashboard Stats, and Empty State blocks.
-- Add copy-code support and SEO for blocks.
+* 60+ production-ready free components
+* MIT License
+* Excellent documentation
+* Storybook for every component
+* Accessibility (WCAG AA)
+* Dark & Light themes
+* Design Token System
+* Responsive components
+* SSR Support
+* Tree-shakeable architecture
+* Comprehensive unit tests
+* Playground with live examples
 
-### Sprint 3: Theme Builder
+### Categories
 
-- Add `/theme-builder`.
-- Support accent color, radius, and theme mode controls.
-- Generate copyable CSS token output.
+#### Basic
 
-### Sprint 4: Quality And Release
+* Button
+* Card
+* Badge
+* Avatar
+* Chip
+* Divider
+* Typography
+* Icon
 
-- Improve tests for key components.
-- Verify accessibility, dark/light themes, and SSR/prerender.
-- Update sitemap, `llms.txt`, changelog, and package version.
-- Publish and announce.
+#### Layout
 
-## Visual Tracking
+* Box
+* Container
+* Stack
+* Grid
+* Flex
+* Aspect Ratio
+* Scroll Area
 
-Use GitHub Projects with these columns:
+#### Navigation
 
-- Backlog
-- Ready
-- In Progress
-- Review
-- Done
+* Tabs
+* Breadcrumb
+* Pagination
+* Menu
+* Sidebar
+* Drawer
+* Stepper
 
-Detailed work items live in `WORK_ITEMS.md`.
+#### Forms
+
+* Input
+* Select
+* Multi Select
+* Autocomplete
+* Slider
+* Rating
+* OTP Input
+* Password Input
+* Date Picker
+
+#### Feedback
+
+* Alert
+* Toast
+* Skeleton
+* Progress
+* Spinner
+
+#### Overlay
+
+* Modal
+* Popover
+* Tooltip
+* Confirm Dialog
+
+#### Data Display
+
+* Table
+* Timeline
+* Tree View
+* Calendar
+* Carousel
+* Empty State
+
+#### Utilities
+
+* Clipboard
+* Theme Switch
+* Image
+* JSON Viewer
+* Markdown Viewer
+* Code Block
+
+---
+
+# Phase 2 — ZyraUI Pro
+
+**Goal:** Build enterprise-grade components.
+
+### Advanced Data
+
+* Data Grid
+* Virtual Table
+* Tree Grid
+* Pivot Table
+* Spreadsheet
+
+### Dashboard
+
+* Dashboard Widgets
+* KPI Cards
+* Analytics Components
+
+### Scheduling
+
+* Scheduler
+* Timeline Scheduler
+* Resource Scheduler
+
+### Editors
+
+* Rich Text Editor
+* Markdown Editor
+* JSON Editor
+* Code Editor
+
+### Workflow
+
+* Kanban Board
+* Gantt Chart
+* Workflow Builder
+
+### File Management
+
+* File Manager
+* Image Cropper
+* PDF Viewer
+* Document Viewer
+
+### Charts
+
+* Line
+* Bar
+* Pie
+* Area
+* Radar
+* Heatmap
+* Treemap
+
+---
+
+# Phase 3 — ZyraUI Templates
+
+**Goal:** Help developers start projects quickly.
+
+Templates include:
+
+* Admin Dashboard
+* CRM
+* ERP
+* HRMS
+* E-Commerce
+* Finance Dashboard
+* Analytics Dashboard
+* Hospital Management
+* School Management
+* Inventory Management
+* Blog
+* Portfolio
+* Landing Pages
+* Authentication Pages
+* Email Dashboard
+
+---
+
+# Phase 4 — ZyraAI
+
+**Goal:** AI-assisted Angular development.
+
+Features:
+
+* Generate components from prompts
+* Generate forms
+* Generate dashboards
+* Generate CRUD pages
+* Generate Angular routing
+* Generate API services
+* Generate authentication flows
+* Generate layouts
+* Explain generated code
+* Refactor existing code
+* Improve accessibility
+* Generate tests
+* Generate Storybook stories
+* Generate documentation
+
+---
+
+# Phase 5 — Zyra Studio
+
+**Goal:** Prompt-to-Application platform.
+
+Users can describe an application in natural language.
+
+Example:
+
+> "Create an employee management dashboard with login, charts, user management, and a dark theme."
+
+The platform generates:
+
+* Angular application structure
+* Routing
+* Pages
+* Components
+* Layouts
+* Forms
+* Services
+* State management
+* Authentication
+* Theme
+* Responsive design
+* Documentation
+* Unit tests
+
+Users can then customize and export the generated project.
+
+---
+
+# Long-Term Vision
+
+* 60+ Free Components
+* 40+ Premium Components
+* Professional Templates
+* AI Code Generation
+* Prompt-to-App Generation
+* Design Token System
+* Theme Builder
+* Angular CLI Integration
+* VS Code Extension
+* Figma Integration
+* Strong Open Source Community
+* Sustainable Commercial Business
+
+**Mission:** Make ZyraUI the complete Angular development platform—from reusable UI components to AI-powered application generation.

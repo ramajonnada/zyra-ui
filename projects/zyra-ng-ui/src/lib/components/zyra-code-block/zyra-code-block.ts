@@ -1,6 +1,7 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import { ZyraIcon } from '../../internal/zyra-icon/zyra-icon';
 import { check, copy } from '../../shared/zyra-icons';
+import { tokenizeCode } from './zyra-code-block-tokenizer';
 
 @Component({
     selector: 'zyra-code-block',
@@ -27,7 +28,7 @@ export class ZyraCodeBlock {
 
     // ── Computed ──────────────────────────────────────────────
     hasHeader = computed(() => !!this.filename() || !!this.language() || this.copyable());
-    lines = computed(() => this.code().replace(/\n$/, '').split('\n'));
+    lines = computed(() => tokenizeCode(this.code(), this.language()));
 
     // ── Methods ───────────────────────────────────────────────
     async copyToClipboard(): Promise<void> {

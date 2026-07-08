@@ -5,6 +5,11 @@ import { UI_COMPONENT_SHOWCASE } from './pages/ui-components/ui-components.data'
 export const serverRoutes: ServerRoute[] = [
     { path: '', renderMode: RenderMode.Prerender },
     { path: 'docs', renderMode: RenderMode.Prerender },
+    { path: 'docs/installation', renderMode: RenderMode.Prerender },
+    { path: 'docs/components', renderMode: RenderMode.Prerender },
+    { path: 'docs/theming', renderMode: RenderMode.Prerender },
+    { path: 'docs/theme-tokens', renderMode: RenderMode.Prerender },
+    { path: 'theming', renderMode: RenderMode.Server },
     { path: 'blog', renderMode: RenderMode.Prerender },
     {
         path: 'blog/:slug',
@@ -15,9 +20,8 @@ export const serverRoutes: ServerRoute[] = [
             return slugs.map((slug) => ({ slug }));
         },
     },
-    { path: 'components', renderMode: RenderMode.Prerender },
     {
-        path: 'components/:component',
+        path: 'docs/components/:component',
         renderMode: RenderMode.Prerender,
         async getPrerenderParams(): Promise<Record<string, string>[]> {
             return UI_COMPONENT_SHOWCASE.map((component) => ({ component: component.slug }));

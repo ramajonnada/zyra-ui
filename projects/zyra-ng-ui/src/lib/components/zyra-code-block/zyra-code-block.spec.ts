@@ -83,6 +83,23 @@ describe('ZyraCodeBlock', () => {
         expect(numbers[1].textContent).toContain('2');
     });
 
+    // ── Syntax highlighting ───────────────────────────────────────────────
+    it('tokenizes keywords and strings when a language is set', () => {
+        host.language.set('typescript');
+        host.code.set(`import { a } from 'b';`);
+        fixture.detectChanges();
+        const keywords = fixture.nativeElement.querySelectorAll('.zyr-code-block__tok--keyword');
+        const strings = fixture.nativeElement.querySelectorAll('.zyr-code-block__tok--string');
+        expect(Array.from(keywords).map((el: any) => el.textContent)).toEqual(['import', 'from']);
+        expect(strings[0].textContent).toBe(`'b'`);
+    });
+
+    it('renders each line as a single plain token when no language is set', () => {
+        const tokens = fixture.nativeElement.querySelectorAll('.zyr-code-block__tok--plain');
+        expect(tokens.length).toBe(2);
+        expect(tokens[0].textContent).toBe('const a = 1;');
+    });
+
     // ── Copy ──────────────────────────────────────────────────────────────
     it('copies code to clipboard and shows confirmation', async () => {
         Object.defineProperty(navigator, 'clipboard', {

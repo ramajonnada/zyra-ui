@@ -1,0 +1,7 @@
+@if (icon()) {
+    <zyra-icon class="zyr-sidebar-item__icon" [img]="icon()" [size]="18" />
+}
+<span class="zyr-sidebar-item__label"><ng-content /></span>
+@if (badge()) {
+    <span class="zyr-sidebar-item__badge">{{ badge() }}</span>
+}

@@ -35,5 +35,25 @@ export * from './lib/components/zyra-radio/zyra-radio-group';
 export * from './lib/components/zyra-tabs/zyra-tab';
 export * from './lib/components/zyra-tabs/zyra-tabs';
 export * from './lib/components/zyra-code-block/zyra-code-block';
+export * from './lib/components/zyra-breadcrumb/zyra-breadcrumb';
+export * from './lib/components/zyra-breadcrumb/zyra-breadcrumb-item';
+export * from './lib/components/zyra-dropdown-menu/zyra-dropdown-menu';
+export * from './lib/components/zyra-dropdown-menu/zyra-menu-item';
+export * from './lib/components/zyra-sidebar/zyra-sidebar';
+export * from './lib/components/zyra-sidebar/zyra-sidebar-section';
+export * from './lib/components/zyra-sidebar/zyra-sidebar-item';
 export * from './lib/internal/zyra-icon/zyra-icon';
 export * from './lib/shared/zyra-icons';
+
+export * from './lib/components/zyra-typography/zyra-typography';
+export * from './lib/components/zyra-empty-state/zyra-empty-state';
+export * from './lib/components/zyra-clipboard/zyra-clipboard';
+export * from './lib/components/zyra-rating/zyra-rating';
+export * from './lib/components/zyra-stack/zyra-stack';
+export * from './lib/components/zyra-pagination/zyra-pagination';
+export * from './lib/components/zyra-stepper/zyra-stepper';
+export * from './lib/components/zyra-stepper/zyra-step';
+export * from './lib/components/zyra-popover/zyra-popover';
+export * from './lib/components/zyra-timeline/zyra-timeline';
+export * from './lib/components/zyra-timeline/zyra-timeline-item';
+export * from './lib/components/zyra-header/zyra-header'; // also exports ZyraHeaderStart, ZyraHeaderNav, ZyraHeaderEnd, ZyraHeaderMobileEnd

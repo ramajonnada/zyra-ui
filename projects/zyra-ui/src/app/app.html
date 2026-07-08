@@ -2,7 +2,22 @@
 	<app-header></app-header>
 	<div class="app-body" [class.app-body--landing]="!showSidebar()">
 		@if (showSidebar()) {
-		<app-sidebar></app-sidebar>
+		<button
+			type="button"
+			class="sidebar-toggle"
+			(click)="toggleSidebar()"
+			[attr.aria-expanded]="sidebarOpen()"
+			aria-controls="app-sidebar-drawer"
+			aria-label="Toggle sidebar navigation"
+		>
+			<span></span><span></span><span></span>
+		</button>
+		<div class="sidebar-backdrop" [class.is-visible]="sidebarOpen()" (click)="closeSidebar()"></div>
+		<app-sidebar
+			id="app-sidebar-drawer"
+			[open]="sidebarOpen()"
+			(closeRequested)="closeSidebar()"
+		></app-sidebar>
 		}
 		<app-main></app-main>
 	</div>

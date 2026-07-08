@@ -1,17 +1,16 @@
-﻿.app-shell {
+.app-shell {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 	background: var(--zyra-color-bg-app);
-	// background: red;
 }
 
 .app-body {
 	display: flex;
 	flex: 1;
 	align-items: stretch;
-	margin-top: 48px;
-	height: calc(100dvh - 48px);
+	margin-top: 60px;
+	height: calc(100dvh - 60px);
 	min-height: 0;
 }
 
@@ -20,9 +19,68 @@
 	height: auto;
 }
 
+.sidebar-toggle {
+	display: none;
+}
+
+.sidebar-backdrop {
+	display: none;
+}
+
 @media (max-width: 900px) {
 	.app-body {
 		flex-direction: column;
 		height: auto;
+		min-height: calc(100dvh - 60px);
+	}
+
+	.sidebar-toggle {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 3px;
+		position: sticky;
+		top: 60px;
+		left: 0;
+		z-index: 95;
+		width: 40px;
+		height: 40px;
+		margin: 10px 0 0 12px;
+		flex-shrink: 0;
+		border-radius: var(--zyra-radius-full);
+		border: 1px solid var(--zyra-color-border);
+		background: var(--zyra-color-background-elevated);
+		cursor: pointer;
+
+		span {
+			display: block;
+			width: 16px;
+			height: 2px;
+			border-radius: 1px;
+			background: var(--zyra-color-text-muted);
+			transition: background var(--zyra-transition-fast);
+		}
+
+		&:hover span,
+		&[aria-expanded='true'] span {
+			background: var(--zyra-color-accent);
+		}
+	}
+
+	.sidebar-backdrop {
+		display: block;
+		position: fixed;
+		inset: 60px 0 0 0;
+		z-index: 85;
+		background: rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity var(--zyra-transition-base);
+
+		&.is-visible {
+			opacity: 1;
+			pointer-events: auto;
+		}
 	}
 }

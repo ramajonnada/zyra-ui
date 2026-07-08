@@ -21,6 +21,17 @@ export class App {
 
 	readonly showSidebar = computed(() => this.isWorkspacePath(this.currentPath()));
 
+	// ── Mobile sidebar drawer ────────────────────────────────
+	readonly sidebarOpen = signal(false);
+
+	toggleSidebar(): void {
+		this.sidebarOpen.update((open) => !open);
+	}
+
+	closeSidebar(): void {
+		this.sidebarOpen.set(false);
+	}
+
 	constructor() {
 		this.router.events
 			.pipe(
@@ -29,6 +40,7 @@ export class App {
 			)
 			.subscribe((event) => {
 				this.currentPath.set(this.normalizePath(event.urlAfterRedirects));
+				this.sidebarOpen.set(false);
 			});
 	}
 
@@ -38,6 +50,6 @@ export class App {
 	}
 
 	private isWorkspacePath(path: string): boolean {
-		return path === '/docs' || path.startsWith('/components') || path.startsWith('/blog');
+		return path.startsWith('/docs') || path.startsWith('/components') || path.startsWith('/blog');
 	}
 }

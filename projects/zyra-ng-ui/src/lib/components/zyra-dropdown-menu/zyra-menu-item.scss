@@ -1,0 +1,35 @@
+.zyr-menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: var(--zyra-radius-sm);
+    background: transparent;
+    color: var(--zyra-color-text);
+    font-family: var(--zyra-font-body);
+    font-size: 13.5px;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background var(--zyra-transition-fast),
+        color var(--zyra-transition-fast);
+
+    &:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--zyra-color-accent) 8%, transparent);
+    }
+
+    &:disabled {
+        color: var(--zyra-color-text-dim);
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    &--danger {
+        color: var(--zyra-color-danger);
+
+        &:hover:not(:disabled) {
+            background: color-mix(in srgb, var(--zyra-color-danger) 10%, transparent);
+        }
+    }
+}

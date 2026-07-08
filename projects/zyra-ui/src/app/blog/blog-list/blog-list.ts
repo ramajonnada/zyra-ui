@@ -2,24 +2,26 @@ import { CommonModule } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
+    OnDestroy,
     OnInit,
     computed,
     inject,
     signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ZyraBadge, ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { BlogService, PostMeta } from '../../services/blog-service';
+import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
 
 @Component({
     selector: 'app-blog-list',
-    imports: [ZyraBadge, ZyraCard, CommonModule, RouterLink],
+    imports: [ZyraBadge, ZyraCard, CommonModule, RouterLink, ZyraBreadcrumb, ZyraBreadcrumbItem],
     templateUrl: './blog-list.html',
     styleUrl: './blog-list.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogList implements OnInit {
+export class BlogList implements OnInit, OnDestroy {
     private readonly blogService = inject(BlogService);
     private readonly seo = inject(SeoService);
 
@@ -27,6 +29,11 @@ export class BlogList implements OnInit {
     readonly error = signal<string | null>(null);
     readonly posts = signal<PostMeta[]>([]);
     readonly articleCount = computed(() => this.posts().length);
+
+    readonly breadcrumbItems: readonly BreadcrumbLink[] = [
+        { label: 'Home', url: 'https://www.zyraui.dev/' },
+        { label: 'Blog', url: 'https://www.zyraui.dev/blog' },
+    ];
     readonly categoryCount = computed(() => {
         const categories = new Set(
             this.posts()
@@ -45,6 +52,8 @@ export class BlogList implements OnInit {
             url: 'https://www.zyraui.dev/blog',
         });
 
+        this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems));
+
         this.blogService.getAllPosts().subscribe({
             next: (posts) => {
                 this.posts.set(
@@ -61,6 +70,10 @@ export class BlogList implements OnInit {
                 this.loading.set(false);
             },
         });
+    }
+
+    ngOnDestroy(): void {
+        this.seo.removeJsonLd('breadcrumb-jsonld');
     }
 
     categoryLabel(category: PostMeta['category']): string {

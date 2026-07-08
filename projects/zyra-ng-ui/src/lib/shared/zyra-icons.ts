@@ -195,6 +195,12 @@ export const magnifyingGlass: ZyraIconData = [
     ['circle', { cx: '11', cy: '11', r: '8', key: '4ej97u' }],
 ];
 
+export const menu: ZyraIconData = [
+    ['path', { d: 'M4 6h16', key: '1o5vig' }],
+    ['path', { d: 'M4 12h16', key: '1lakjw' }],
+    ['path', { d: 'M4 18h16', key: '19g7jn' }],
+];
+
 export const message: ZyraIconData = [
     ['path', { d: 'M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z', key: '18887p' }],
 ];
@@ -223,6 +229,11 @@ export const phone: ZyraIconData = [
     ['path', { d: 'M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384', key: '9njp5v' }],
 ];
 
+export const panelLeft: ZyraIconData = [
+    ['rect', { width: '18', height: '18', x: '3', y: '3', rx: '2', key: 'afitv7' }],
+    ['path', { d: 'M9 3v18', key: 'fh3hqa' }],
+];
+
 export const puzzlePiece: ZyraIconData = [
     ['path', { d: 'M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z', key: 'w46dr5' }],
 ];
@@ -248,6 +259,16 @@ export const spinner: ZyraIconData = [
 
 export const square: ZyraIconData = [
     ['rect', { width: '18', height: '18', x: '3', y: '3', rx: '2', key: 'afitv7' }],
+];
+
+export const star: ZyraIconData = [
+    [
+        'path',
+        {
+            d: 'M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z',
+            key: '17ma8d',
+        },
+    ],
 ];
 
 export const sun: ZyraIconData = [

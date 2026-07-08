@@ -1,4 +1,10 @@
 <main class="public-page about-page">
+    <zyra-breadcrumb>
+        @for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+            <zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+        }
+    </zyra-breadcrumb>
+
     <!-- ── Hero ──────────────────────────────────────────────── -->
     <section class="public-hero">
         <zyra-badge size="md">About Zyra UI</zyra-badge>
@@ -10,7 +16,7 @@
         </p>
 
         <div class="public-hero__actions">
-            <zyra-button size="lg" routerLink="/components">Explore components</zyra-button>
+            <zyra-button size="lg" routerLink="/docs/components">Explore components</zyra-button>
             <zyra-button size="lg" variant="outline" routerLink="/docs">Read docs</zyra-button>
         </div>
     </section>

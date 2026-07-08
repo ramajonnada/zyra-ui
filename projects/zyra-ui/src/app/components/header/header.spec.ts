@@ -47,56 +47,46 @@ describe('Header', () => {
     });
 
     // ── navLinks data ─────────────────────────────────────────────────────────
-    it('exposes 4 nav links', () => {
-        expect(component.navLinks.length).toBe(4);
+    it('exposes 3 nav links', () => {
+        expect(component.navLinks.length).toBe(3);
     });
 
-    it('nav links include Components, Docs, Blog and Contact', () => {
+    it('nav links include Components, Docs and Blog', () => {
         const labels = component.navLinks.map((l) => l.label);
         expect(labels).toContain('Components');
         expect(labels).toContain('Docs');
         expect(labels).toContain('Blog');
-        expect(labels).toContain('Contact');
     });
 
-    // ── toggleTheme ───────────────────────────────────────────────────────────
-    it('toggleTheme() delegates to ZyraThemeService.toggle()', () => {
-        const spy = spyOn(themeService, 'toggle');
-        component.toggleTheme();
-        expect(spy).toHaveBeenCalledOnceWith();
+    // ── theme dropdown ───────────────────────────────────────────────────────
+    it('selectTheme() delegates to ZyraThemeService.setTheme() and closes the dropdown', () => {
+        const spy = spyOn(themeService, 'setTheme');
+        component.themeDropdownOpen.set(true);
+        component.selectTheme('ocean');
+        expect(spy).toHaveBeenCalledOnceWith('ocean');
+        expect(component.themeDropdownOpen()).toBeFalse();
     });
 
-    // ── mobile nav ────────────────────────────────────────────────────────────
-    it('mobileNavOpen is false by default', () => {
-        expect(component.mobileNavOpen()).toBeFalse();
+    it('toggleThemeDropdown() flips themeDropdownOpen and stops event propagation', () => {
+        const event = new Event('click');
+        spyOn(event, 'stopPropagation');
+        component.toggleThemeDropdown(event);
+        expect(event.stopPropagation).toHaveBeenCalled();
+        expect(component.themeDropdownOpen()).toBeTrue();
+        component.toggleThemeDropdown(event);
+        expect(component.themeDropdownOpen()).toBeFalse();
     });
 
-    it('onToggle() toggles mobileNavOpen', async () => {
+    it('currentThemeOption() resolves the option matching the active theme', () => {
+        themeService.setTheme('ocean');
+        expect(component.currentThemeOption().value).toBe('ocean');
+    });
+
+    // ── mobile nav (delegated to ZyraHeader) ─────────────────────────────────
+    it('renders a zyra-header hosting the nav and mobile menu', async () => {
         await router.navigate(['/about']);
         fixture.detectChanges();
         await fixture.whenStable();
-        component.onToggle();
-        expect(component.mobileNavOpen()).toBeTrue();
-        component.onToggle();
-        expect(component.mobileNavOpen()).toBeFalse();
-    });
-
-    it('closeMobileNav() sets mobileNavOpen to false', async () => {
-        await router.navigate(['/about']);
-        fixture.detectChanges();
-        await fixture.whenStable();
-        component.onToggle(); // open
-        component.closeMobileNav();
-        expect(component.mobileNavOpen()).toBeFalse();
-    });
-
-    // ── menuLabel computed ────────────────────────────────────────────────────
-    it('menuLabel says "Open navigation menu" when nav is closed', () => {
-        expect(component.menuLabel()).toBe('Open navigation menu');
-    });
-
-    it('menuLabel says "Close navigation menu" when nav is open', () => {
-        component.onToggle();
-        expect(component.menuLabel()).toBe('Close navigation menu');
+        expect(fixture.nativeElement.querySelector('zyra-header')).toBeTruthy();
     });
 });

@@ -1,0 +1,30 @@
+:host {
+    display: block;
+}
+
+.zyr-sidebar-section + .zyr-sidebar-section {
+    margin-top: var(--zyra-space-4);
+}
+
+.zyr-sidebar-section__heading {
+    padding: 0 var(--zyra-space-3);
+    margin-bottom: var(--zyra-space-1);
+    color: var(--zyra-color-sidebar-heading);
+    font-family: var(--zyra-font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    :host-context(.zyr-sidebar--collapsed) & {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.zyr-sidebar-section__items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}

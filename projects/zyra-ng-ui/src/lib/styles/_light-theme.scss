@@ -51,6 +51,7 @@
     --zyra-color-danger: #ef4444;
     --zyra-color-danger-muted: rgba(239, 68, 68, 0.09);
     --zyra-color-danger-border: rgba(239, 68, 68, 0.22);
+    --zyra-color-danger-text: var(--zyra-color-danger);
 
     --zyra-color-info: #3b82f6;
     --zyra-color-info-muted: rgba(59, 130, 246, 0.1);
@@ -60,6 +61,7 @@
     --zyra-shadow-sm: 0 2px 10px rgba(7, 18, 30, 0.06);
     --zyra-shadow-md: 0 14px 36px rgba(7, 18, 30, 0.08);
     --zyra-shadow-accent: 0 14px 32px rgba(0, 122, 138, 0.18);
+    --zyra-shadow-glow: 0 24px 70px rgba(0, 122, 138, 0.18);
 
     // â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     --zyra-color-btn-primary-text: #ffffff;

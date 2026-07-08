@@ -1,0 +1,68 @@
+:host {
+    display: inline-block;
+}
+
+.zyr-pagination {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--zyra-font-body);
+
+    &__nav,
+    &__page {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--zyra-radius-sm);
+        border: 1px solid var(--zyra-color-border);
+        background: var(--zyra-color-surface-inset);
+        color: var(--zyra-color-text);
+        cursor: pointer;
+        transition:
+            background var(--zyra-transition-fast),
+            color var(--zyra-transition-fast),
+            border-color var(--zyra-transition-fast);
+
+        &:focus { outline: none; }
+        &:focus-visible {
+            outline: 2px solid var(--zyra-color-accent);
+            outline-offset: 2px;
+        }
+
+        &:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        &:not(:disabled):hover {
+            background: var(--zyra-color-bg-raised);
+            border-color: var(--zyra-color-border-hover);
+        }
+    }
+
+    &__page--active {
+        background: var(--zyra-color-accent-muted);
+        color: var(--zyra-color-accent);
+        border-color: var(--zyra-color-accent-border);
+    }
+
+    &__ellipsis {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--zyra-color-text-muted);
+    }
+
+    &--sm &__nav,
+    &--sm &__page,
+    &--sm &__ellipsis { min-width: 24px; height: 24px; font-size: 12px; }
+
+    &--md &__nav,
+    &--md &__page,
+    &--md &__ellipsis { min-width: 32px; height: 32px; font-size: 13.5px; }
+
+    &--lg &__nav,
+    &--lg &__page,
+    &--lg &__ellipsis { min-width: 38px; height: 38px; font-size: 15px; }
+}

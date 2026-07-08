@@ -24,8 +24,11 @@ function url(loc, lastmod, changefreq, priority) {
 
 const staticPages = [
     url(`${BASE_URL}/`,          today,        'weekly',  '1.0'),
-    url(`${BASE_URL}/components`, today,        'weekly',  '0.9'),
     url(`${BASE_URL}/docs`,       today,        'weekly',  '0.9'),
+    url(`${BASE_URL}/docs/installation`, today, 'monthly', '0.8'),
+    url(`${BASE_URL}/docs/components`,   today, 'monthly', '0.8'),
+    url(`${BASE_URL}/docs/theming`,      today, 'monthly', '0.8'),
+    url(`${BASE_URL}/docs/theme-tokens`, today, 'monthly', '0.8'),
     url(`${BASE_URL}/blog`,       today,        'weekly',  '0.8'),
     url(`${BASE_URL}/about`,      today,        'monthly', '0.6'),
     url(`${BASE_URL}/contact`,    today,        'monthly', '0.6'),
@@ -34,7 +37,7 @@ const staticPages = [
 ];
 
 const componentPages = componentSlugs.map((slug) =>
-    url(`${BASE_URL}/components/${slug}`, today, 'monthly', '0.8'),
+    url(`${BASE_URL}/docs/components/${slug}`, today, 'monthly', '0.8'),
 );
 
 const blogPages = posts.map((post) => {

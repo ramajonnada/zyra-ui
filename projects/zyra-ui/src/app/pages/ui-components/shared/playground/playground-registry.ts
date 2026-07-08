@@ -3,12 +3,14 @@ import { AccordionRenderer } from './renderers/accordion-renderer';
 import { AlertRenderer } from './renderers/alert-renderer';
 import { AvatarRenderer } from './renderers/avatar-renderer';
 import { BadgeRenderer } from './renderers/badge-renderer';
+import { BreadcrumbRenderer } from './renderers/breadcrumb-renderer';
 import { ButtonRenderer } from './renderers/button-renderer';
 import { CardRenderer } from './renderers/card-renderer';
 import { CheckboxRenderer } from './renderers/checkbox-renderer';
 import { ChipRenderer } from './renderers/chip-renderer';
 import { CodeBlockRenderer } from './renderers/code-block-renderer';
 import { DividerRenderer } from './renderers/divider-renderer';
+import { DropdownMenuRenderer } from './renderers/dropdown-menu-renderer';
 import { FormFieldRenderer } from './renderers/form-field-renderer';
 import { InputRenderer } from './renderers/input-renderer';
 import { ModalRenderer } from './renderers/modal-renderer';
@@ -23,6 +25,17 @@ import { ToastRenderer } from './renderers/toast-renderer';
 import { ToggleRenderer } from './renderers/toggle-renderer';
 import { SwitchRenderer } from './renderers/switch-renderer';
 import { TooltipRenderer } from './renderers/tooltip-renderer';
+import { TypographyRenderer } from './renderers/typography-renderer';
+import { EmptyStateRenderer } from './renderers/empty-state-renderer';
+import { ClipboardRenderer } from './renderers/clipboard-renderer';
+import { RatingRenderer } from './renderers/rating-renderer';
+import { StackRenderer } from './renderers/stack-renderer';
+import { PaginationRenderer } from './renderers/pagination-renderer';
+import { StepperRenderer } from './renderers/stepper-renderer';
+import { PopoverRenderer } from './renderers/popover-renderer';
+import { TimelineRenderer } from './renderers/timeline-renderer';
+import { HeaderRenderer } from './renderers/header-renderer';
+import { SidebarRenderer } from './renderers/sidebar-renderer';
 
 export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
     button: {
@@ -169,6 +182,65 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             if (s['lineNumbers']) a.push(`  [lineNumbers]="true"`);
             if (!s['copyable']) a.push(`  [copyable]="false"`);
             return `<zyra-code-block\n${a.join('\n')}\n  [code]="snippet"\n/>`;
+        },
+    },
+
+    breadcrumb: {
+        renderer: BreadcrumbRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'depth',
+                label: 'items',
+                options: ['2', '3', '4'],
+                defaultValue: '3',
+            },
+        ],
+        codeTemplate: (s) => {
+            const depth = Number(s['depth']);
+            const crumbs = [
+                { label: 'Home', href: '/' },
+                { label: 'Components', href: '/components' },
+                { label: 'Code Block', href: '/components/code-block' },
+                { label: 'Playground', href: '' },
+            ].slice(0, depth);
+            const items = crumbs
+                .map((c, i) => {
+                    const last = i === crumbs.length - 1;
+                    const attrs = [`href="${c.href}"`];
+                    if (last) attrs.push(`[current]="true"`);
+                    return `  <zyra-breadcrumb-item ${attrs.join(' ')}>${c.label}</zyra-breadcrumb-item>`;
+                })
+                .join('\n');
+            return `<zyra-breadcrumb>\n${items}\n</zyra-breadcrumb>`;
+        },
+    },
+
+    'dropdown-menu': {
+        renderer: DropdownMenuRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'align',
+                label: 'align',
+                options: ['start', 'end'],
+                defaultValue: 'start',
+            },
+            {
+                type: 'toggle',
+                key: 'danger',
+                label: 'states',
+                toggleLabel: 'danger item',
+                defaultValue: true,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['align'] !== 'start') a.push(` align="${s['align']}"`);
+            const dangerItem = s['danger'] ? `\n  <zyra-menu-item variant="danger">Delete</zyra-menu-item>` : '';
+            return `<zyra-dropdown-menu${a.join('')}>\n  <zyra-button slot="trigger" variant="outline">Actions</zyra-button>\n  <zyra-menu-item>Edit</zyra-menu-item>\n  <zyra-menu-item>Duplicate</zyra-menu-item>${dangerItem}\n</zyra-dropdown-menu>`;
         },
     },
 
@@ -1060,6 +1132,423 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
             const open = a.length ? `<zyra-form-field\n${a.join('\n')}\n>` : `<zyra-form-field>`;
             return `${open}\n  <zyra-input placeholder="Enter text" />\n</zyra-form-field>`;
+        },
+    },
+
+    typography: {
+        renderer: TypographyRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'variant',
+                label: 'variant',
+                options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body-lg', 'body', 'body-sm', 'caption', 'overline'],
+                defaultValue: 'h3',
+            },
+            {
+                type: 'button-group',
+                key: 'align',
+                label: 'align',
+                options: ['left', 'center', 'right'],
+                defaultValue: 'left',
+            },
+            {
+                type: 'toggle',
+                key: 'muted',
+                label: 'states',
+                toggleLabel: 'muted',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'truncate',
+                label: '',
+                toggleLabel: 'truncate',
+                defaultValue: false,
+            },
+            {
+                type: 'text',
+                key: 'text',
+                label: 'text',
+                placeholder: 'Heading text',
+                defaultValue: 'The quick brown fox jumps over the lazy dog',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['variant'] !== 'body') a.push(`  variant="${s['variant']}"`);
+            if (s['align'] !== 'left') a.push(`  align="${s['align']}"`);
+            if (s['muted']) a.push(`  [muted]="true"`);
+            if (s['truncate']) a.push(`  [truncate]="true"`);
+            return (
+                (a.length ? `<zyra-typography\n${a.join('\n')}\n>` : `<zyra-typography>`) +
+                `\n  ${s['text'] || 'Text'}\n</zyra-typography>`
+            );
+        },
+    },
+
+    'empty-state': {
+        renderer: EmptyStateRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'text',
+                key: 'title',
+                label: 'title',
+                placeholder: 'Empty state title',
+                defaultValue: 'No results found',
+            },
+            {
+                type: 'text',
+                key: 'description',
+                label: 'description',
+                placeholder: 'Empty state description',
+                defaultValue: 'Try adjusting your filters or search terms.',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['title']) a.push(`  title="${s['title']}"`);
+            if (s['description']) a.push(`  description="${s['description']}"`);
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            const open = a.length ? `<zyra-empty-state\n${a.join('\n')}\n>` : `<zyra-empty-state>`;
+            return `${open}\n  <div slot="actions">\n    <zyra-button variant="primary" size="sm">Reset filters</zyra-button>\n  </div>\n</zyra-empty-state>`;
+        },
+    },
+
+    clipboard: {
+        renderer: ClipboardRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'button-group',
+                key: 'variant',
+                label: 'variant',
+                options: ['button', 'icon'],
+                defaultValue: 'button',
+            },
+            {
+                type: 'text',
+                key: 'value',
+                label: 'value',
+                placeholder: 'Text to copy',
+                defaultValue: 'npm install zyra-ng-ui',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  value="${s['value']}"`];
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            if (s['variant'] !== 'button') a.push(`  variant="${s['variant']}"`);
+            return `<zyra-clipboard\n${a.join('\n')}\n/>`;
+        },
+    },
+
+    rating: {
+        renderer: RatingRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'max',
+                label: 'max',
+                options: ['5', '10'],
+                defaultValue: '5',
+            },
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'toggle',
+                key: 'readonly',
+                label: 'states',
+                toggleLabel: 'readonly',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: '',
+                toggleLabel: 'disabled',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [(value)]="rating"`];
+            if (s['max'] !== '5') a.push(`  [max]="${s['max']}"`);
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            if (s['readonly']) a.push(`  [readonly]="true"`);
+            if (s['disabled']) a.push(`  [disabled]="true"`);
+            return `<zyra-rating\n${a.join('\n')}\n/>`;
+        },
+    },
+
+    stack: {
+        renderer: StackRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'direction',
+                label: 'direction',
+                options: ['row', 'column'],
+                defaultValue: 'row',
+            },
+            {
+                type: 'button-group',
+                key: 'gap',
+                label: 'gap',
+                options: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'button-group',
+                key: 'align',
+                label: 'align',
+                options: ['start', 'center', 'end', 'stretch'],
+                defaultValue: 'center',
+            },
+            {
+                type: 'button-group',
+                key: 'justify',
+                label: 'justify',
+                options: ['start', 'center', 'end', 'between', 'around'],
+                defaultValue: 'start',
+            },
+            {
+                type: 'toggle',
+                key: 'wrap',
+                label: 'states',
+                toggleLabel: 'wrap',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['direction'] !== 'column') a.push(`  direction="${s['direction']}"`);
+            if (s['gap'] !== 'md') a.push(`  gap="${s['gap']}"`);
+            if (s['align'] !== 'stretch') a.push(`  align="${s['align']}"`);
+            if (s['justify'] !== 'start') a.push(`  justify="${s['justify']}"`);
+            if (s['wrap']) a.push(`  [wrap]="true"`);
+            const open = a.length ? `<zyra-stack\n${a.join('\n')}\n>` : `<zyra-stack>`;
+            return `${open}\n  <div>1</div>\n  <div>2</div>\n  <div>3</div>\n</zyra-stack>`;
+        },
+    },
+
+    pagination: {
+        renderer: PaginationRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'totalPages',
+                label: 'totalPages',
+                options: ['5', '10', '20'],
+                defaultValue: '10',
+            },
+            {
+                type: 'button-group',
+                key: 'siblingCount',
+                label: 'siblingCount',
+                options: ['1', '2'],
+                defaultValue: '1',
+            },
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: 'states',
+                toggleLabel: 'disabled',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [
+                `  [totalPages]="${s['totalPages']}"`,
+                `  [currentPage]="page"`,
+                `  (pageChange)="page = $event"`,
+            ];
+            if (s['siblingCount'] !== '1') a.push(`  [siblingCount]="${s['siblingCount']}"`);
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            if (s['disabled']) a.push(`  [disabled]="true"`);
+            return `<zyra-pagination\n${a.join('\n')}\n/>`;
+        },
+    },
+
+    stepper: {
+        renderer: StepperRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'orientation',
+                label: 'orientation',
+                options: ['horizontal', 'vertical'],
+                defaultValue: 'horizontal',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [activeIndex]="activeIndex"`];
+            if (s['orientation'] !== 'horizontal') a.push(`  orientation="${s['orientation']}"`);
+            const open = a.length ? `<zyra-stepper\n${a.join('\n')}\n>` : `<zyra-stepper>`;
+            return `${open}\n  <zyra-step label="Account" description="Create your account">...</zyra-step>\n  <zyra-step label="Profile" description="Tell us about yourself">...</zyra-step>\n  <zyra-step label="Review" description="Confirm and finish">...</zyra-step>\n</zyra-stepper>`;
+        },
+    },
+
+    popover: {
+        renderer: PopoverRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'position',
+                label: 'position',
+                options: ['top', 'bottom', 'left', 'right'],
+                defaultValue: 'bottom',
+            },
+            {
+                type: 'button-group',
+                key: 'trigger',
+                label: 'trigger',
+                options: ['click', 'hover'],
+                defaultValue: 'click',
+            },
+            {
+                type: 'toggle',
+                key: 'closeOnOutsideClick',
+                label: 'behaviour',
+                toggleLabel: 'closeOnOutsideClick',
+                defaultValue: true,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['position'] !== 'bottom') a.push(`  position="${s['position']}"`);
+            if (s['trigger'] !== 'click') a.push(`  trigger="${s['trigger']}"`);
+            if (!s['closeOnOutsideClick']) a.push(`  [closeOnOutsideClick]="false"`);
+            const open = a.length ? `<zyra-popover\n${a.join('\n')}\n>` : `<zyra-popover>`;
+            return `${open}\n  <zyra-button slot="trigger" variant="outline">Open popover</zyra-button>\n  <div slot="content">\n    <strong>Notifications</strong>\n    <p>You have 3 unread messages.</p>\n  </div>\n</zyra-popover>`;
+        },
+    },
+
+    timeline: {
+        renderer: TimelineRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'toggle',
+                key: 'showWarning',
+                label: 'states',
+                toggleLabel: 'show delay step',
+                defaultValue: true,
+            },
+        ],
+        codeTemplate: (s) => {
+            const warning = s['showWarning']
+                ? `\n  <zyra-timeline-item title="Delivery delayed" date="Jan 4, 2026" variant="warning">\n    Shipment is delayed due to weather conditions.\n  </zyra-timeline-item>`
+                : '';
+            return `<zyra-timeline>\n  <zyra-timeline-item title="Order placed" date="Jan 1, 2026" variant="success">\n    Your order has been placed successfully.\n  </zyra-timeline-item>\n  <zyra-timeline-item title="Payment confirmed" date="Jan 2, 2026" variant="info">\n    Payment was received and confirmed.\n  </zyra-timeline-item>${warning}\n  <zyra-timeline-item title="Delivered" date="Jan 6, 2026" variant="default">\n    Package delivered to the recipient.\n  </zyra-timeline-item>\n</zyra-timeline>`;
+        },
+    },
+
+    header: {
+        renderer: HeaderRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'align',
+                label: 'align',
+                options: ['split', 'center'],
+                defaultValue: 'split',
+            },
+            {
+                type: 'button-group',
+                key: 'variant',
+                label: 'variant',
+                options: ['contained', 'full-width'],
+                defaultValue: 'contained',
+            },
+            {
+                type: 'toggle',
+                key: 'transparent',
+                label: 'states',
+                toggleLabel: 'transparent',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'mobileView',
+                label: '',
+                toggleLabel: 'mobile view',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['align'] !== 'split') a.push(`  align="${s['align']}"`);
+            if (s['variant'] !== 'contained') a.push(`  variant="${s['variant']}"`);
+            if (s['transparent']) a.push(`  [transparent]="true"`);
+            const open = a.length ? `<zyra-header\n${a.join('\n')}\n>` : `<zyra-header>`;
+            return `${open}\n  <a zyraHeaderStart>Brand</a>\n  <nav zyraHeaderNav>\n    <a>Docs</a>\n    <a>Blog</a>\n    <a>Pricing</a>\n  </nav>\n  <div zyraHeaderEnd>\n    <zyra-button size="sm">Get started</zyra-button>\n  </div>\n</zyra-header>`;
+        },
+    },
+
+    sidebar: {
+        renderer: SidebarRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'toggle',
+                key: 'collapsed',
+                label: 'states',
+                toggleLabel: 'collapsed',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'badge',
+                label: '',
+                toggleLabel: 'show badge',
+                defaultValue: true,
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: '',
+                toggleLabel: 'disabled item',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['collapsed']) a.push(`  [collapsed]="collapsed"`);
+            const open = a.length ? `<zyra-sidebar\n${a.join('\n')}\n>` : `<zyra-sidebar>`;
+            const badge = s['badge'] ? ` badge="3"` : '';
+            const disabled = s['disabled'] ? ` [disabled]="true"` : '';
+            return `${open}\n  <div sidebar-header>Zyra UI</div>\n  <zyra-sidebar-section heading="General">\n    <a zyra-sidebar-item [active]="true">Overview</a>\n    <a zyra-sidebar-item>Projects</a>\n  </zyra-sidebar-section>\n  <zyra-sidebar-section heading="Account">\n    <a zyra-sidebar-item${badge}>Profile</a>\n    <a zyra-sidebar-item${disabled}>Billing</a>\n  </zyra-sidebar-section>\n</zyra-sidebar>`;
         },
     },
 };

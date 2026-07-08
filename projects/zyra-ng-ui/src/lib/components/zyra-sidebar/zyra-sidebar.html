@@ -1,0 +1,16 @@
+<aside
+    class="zyr-sidebar"
+    [class.zyr-sidebar--collapsed]="collapsed()"
+    [style.--zyr-sidebar-width]="width()"
+    [style.--zyr-sidebar-collapsed-width]="collapsedWidth()"
+>
+    <div class="zyr-sidebar__header">
+        <ng-content select="[sidebar-header]" />
+    </div>
+    <nav class="zyr-sidebar__nav">
+        <ng-content />
+    </nav>
+    <div class="zyr-sidebar__footer">
+        <ng-content select="[sidebar-footer]" />
+    </div>
+</aside>

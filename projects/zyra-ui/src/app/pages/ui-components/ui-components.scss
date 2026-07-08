@@ -200,14 +200,6 @@
         border-color var(--zyra-transition-base);
 }
 
-.component-card ::ng-deep .zyr-card {
-    background:
-        linear-gradient(var(--zyra-color-border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--zyra-color-border) 1px, transparent 1px),
-        var(--zyra-color-card-bg);
-    background-size: 28px 28px, 28px 28px, auto;
-}
-
 .component-card:hover zyra-card,
 .component-card:focus-visible zyra-card {
     transform: translateY(-6px);

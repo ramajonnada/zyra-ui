@@ -1,0 +1,39 @@
+<nav [class]="hostClass()" role="navigation" aria-label="Pagination">
+    <button
+        type="button"
+        class="zyr-pagination__nav zyr-pagination__prev"
+        aria-label="Previous page"
+        [disabled]="disabled() || isFirstPage() || null"
+        (click)="prev()"
+    >
+        <zyra-icon [img]="icons.chevronLeft" />
+    </button>
+
+    @for (item of pageItems(); track $index) {
+        @if (item === 'ellipsis') {
+            <span class="zyr-pagination__ellipsis" aria-hidden="true">&hellip;</span>
+        } @else {
+            <button
+                type="button"
+                class="zyr-pagination__page"
+                [class.zyr-pagination__page--active]="item === currentPage()"
+                [attr.aria-current]="item === currentPage() ? 'page' : null"
+                [attr.aria-label]="'Page ' + item"
+                [disabled]="disabled() || null"
+                (click)="goToPage(item)"
+            >
+                {{ item }}
+            </button>
+        }
+    }
+
+    <button
+        type="button"
+        class="zyr-pagination__nav zyr-pagination__next"
+        aria-label="Next page"
+        [disabled]="disabled() || isLastPage() || null"
+        (click)="next()"
+    >
+        <zyra-icon [img]="icons.chevronRight" />
+    </button>
+</nav>

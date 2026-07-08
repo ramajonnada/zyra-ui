@@ -1,0 +1,17 @@
+<div [class]="hostClass()">
+    <div class="zyr-empty-state__icon">
+        <ng-content select="[slot=icon]" />
+    </div>
+
+    @if (title()) {
+        <div class="zyr-empty-state__title">{{ title() }}</div>
+    }
+
+    @if (description()) {
+        <div class="zyr-empty-state__description">{{ description() }}</div>
+    }
+
+    <div class="zyr-empty-state__actions">
+        <ng-content select="[slot=actions]" />
+    </div>
+</div>

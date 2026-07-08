@@ -1,7 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
     ZyraAlert,
     ZyraBadge,
+    ZyraBreadcrumb,
+    ZyraBreadcrumbItem,
     ZyraButton,
     ZyraCard,
     ZyraFormField,
@@ -10,7 +13,8 @@ import {
     ZyraTheme,
     ZyraThemeService,
 } from 'zyra-ng-ui';
-import { SeoService } from '../../../seo/seo.service';
+import { SeoService } from '../../../../seo/seo.service';
+import { breadcrumbJsonLd, BreadcrumbLink } from '../../../shared/breadcrumb-jsonld';
 
 interface ThemeOption {
     value: ZyraTheme;
@@ -31,22 +35,34 @@ interface SetupStep {
     code: string;
 }
 
-interface TokenGroup {
-    label: string;
-    tokens: readonly string[];
-}
-
 @Component({
-    selector: 'app-theming',
-    imports: [ZyraAlert, ZyraBadge, ZyraButton, ZyraCard, ZyraFormField, ZyraInput, ZyraSwitch],
+    selector: 'app-docs-theming',
+    imports: [
+        RouterLink,
+        ZyraAlert,
+        ZyraBadge,
+        ZyraButton,
+        ZyraCard,
+        ZyraFormField,
+        ZyraInput,
+        ZyraSwitch,
+        ZyraBreadcrumb,
+        ZyraBreadcrumbItem,
+    ],
     templateUrl: './theming.html',
     styleUrl: './theming.scss',
 })
-export class Theming implements OnInit {
+export class DocsTheming implements OnInit, OnDestroy {
     private readonly seo = inject(SeoService);
     private readonly themeService = inject(ZyraThemeService);
 
     readonly currentTheme = this.themeService.theme;
+
+    readonly breadcrumbItems: readonly BreadcrumbLink[] = [
+        { label: 'Home', url: 'https://www.zyraui.dev/' },
+        { label: 'Docs', url: 'https://www.zyraui.dev/docs' },
+        { label: 'Theming', url: 'https://www.zyraui.dev/docs/theming' },
+    ];
 
     readonly themes: readonly ThemeOption[] = [
         { value: 'dark', label: 'Dark', accent: '#007a8a', surface: '#172232' },
@@ -112,59 +128,22 @@ theme.setTheme('ocean'); // 'dark' | 'light' | 'ocean' | 'amber' | 'rose'`,
         },
     ];
 
-    readonly overridableTokens: readonly TokenGroup[] = [
-        {
-            label: 'Semantic color (recommended)',
-            tokens: [
-                '--zyra-color-bg-app',
-                '--zyra-color-surface',
-                '--zyra-color-text',
-                '--zyra-color-fg-muted',
-                '--zyra-color-border',
-                '--zyra-color-accent',
-                '--zyra-color-success',
-                '--zyra-color-warning',
-                '--zyra-color-danger',
-                '--zyra-color-info',
-            ],
-        },
-        {
-            label: 'Dimension (shape, type, motion)',
-            tokens: [
-                '--zyra-radius-sm / md / lg',
-                '--zyra-space-1 … space-20',
-                '--zyra-font-body / display / mono',
-                '--zyra-transition-fast / base / slow',
-            ],
-        },
-    ];
-
-    readonly internalTokens: readonly TokenGroup[] = [
-        {
-            label: 'Primitives (raw palette)',
-            tokens: ['--zyra-color-cyan-50 … cyan-950'],
-        },
-        {
-            label: 'Component tokens (derived, per-component)',
-            tokens: [
-                '--zyra-color-btn-primary-bg',
-                '--zyra-color-checkbox-checked-bg',
-                '--zyra-color-tabs-badge-bg',
-                '--zyra-color-field-* / select-* / progress-*',
-            ],
-        },
-    ];
-
     selectTheme(theme: ZyraTheme): void {
         this.themeService.setTheme(theme);
     }
 
     ngOnInit(): void {
         this.seo.setSEO({
-            title: 'Theming - Zyra UI',
+            title: 'Theming - Zyra UI Docs',
             description:
                 'Preview and switch between the dark, light, ocean, amber, and rose themes shipped with Zyra UI, and see the design tokens each one drives.',
-            url: 'https://www.zyraui.dev/theming',
+            url: 'https://www.zyraui.dev/docs/theming',
         });
+
+        this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems));
+    }
+
+    ngOnDestroy(): void {
+        this.seo.removeJsonLd('breadcrumb-jsonld');
     }
 }

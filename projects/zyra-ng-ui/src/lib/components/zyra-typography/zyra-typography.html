@@ -1,0 +1,31 @@
+<ng-template #content><ng-content /></ng-template>
+
+<ng-container [ngSwitch]="tagName()">
+    <h1 *ngSwitchCase="'h1'" [class]="hostClass()">
+        <ng-container *ngTemplateOutlet="content" />
+    </h1>
+    <h2 *ngSwitchCase="'h2'" [class]="hostClass()">
+        <ng-container *ngTemplateOutlet="content" />
+    </h2>
+    <h3 *ngSwitchCase="'h3'" [class]="hostClass()">
+        <ng-container *ngTemplateOutlet="content" />
+    </h3>
+    <h4 *ngSwitchCase="'h4'" [class]="hostClass()">
+        <ng-container *ngTemplateOutlet="content" />
+    </h4>
+    <h5 *ngSwitchCase="'h5'" [class]="hostClass()">
+        <ng-container *ngTemplateOutlet="content" />
+    </h5>
+    <h6 *ngSwitchCase="'h6'" [class]="hostClass()">
+        <ng-container *ngTemplateOutlet="content" />
+    </h6>
+    <span *ngSwitchCase="'span'" [class]="hostClass()">
+        <ng-container *ngTemplateOutlet="content" />
+    </span>
+    <div *ngSwitchCase="'div'" [class]="hostClass()">
+        <ng-container *ngTemplateOutlet="content" />
+    </div>
+    <p *ngSwitchDefault [class]="hostClass()">
+        <ng-container *ngTemplateOutlet="content" />
+    </p>
+</ng-container>

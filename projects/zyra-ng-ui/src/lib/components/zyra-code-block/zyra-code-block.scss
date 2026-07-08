@@ -1,8 +1,8 @@
 .zyr-code-block {
     overflow: hidden;
     border-radius: var(--zyra-radius-md);
-    border: 1px solid var(--zyra-color-border);
-    background: var(--zyra-color-bg-panel);
+    border: 1px solid var(--zyra-color-accent-border);
+    background: var(--zyra-color-code-bg);
 
     &__header {
         display: flex;
@@ -78,7 +78,7 @@
         display: block;
         font-family: var(--zyra-font-mono);
         font-size: 13px;
-        line-height: 1;
+        line-height: 1.6;
         color: var(--zyra-color-text-muted);
         white-space: pre;
     }
@@ -94,5 +94,36 @@
         text-align: right;
         color: var(--zyra-color-text-dim);
         user-select: none;
+    }
+
+    &__tok {
+        &--keyword {
+            color: var(--zyra-color-code-keyword);
+        }
+
+        &--tag {
+            color: var(--zyra-color-code-tag);
+        }
+
+        &--attr {
+            color: var(--zyra-color-code-attr);
+        }
+
+        &--string {
+            color: var(--zyra-color-code-string);
+        }
+
+        &--number {
+            color: var(--zyra-color-code-number);
+        }
+
+        &--comment {
+            color: var(--zyra-color-code-comment);
+            font-style: italic;
+        }
+
+        &--punct {
+            color: var(--zyra-color-code-punct);
+        }
     }
 }

@@ -1,4 +1,10 @@
 <main class="contact-page">
+    <zyra-breadcrumb>
+        @for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+            <zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+        }
+    </zyra-breadcrumb>
+
     <section class="contact-hero">
         <zyra-badge size="md">Contact</zyra-badge>
         <h1>Questions, feedback, or component ideas?</h1>

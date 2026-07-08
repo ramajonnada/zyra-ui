@@ -1,7 +1,11 @@
 @if (component(); as selected) {
     <section class="component-detail-page">
         <div class="component-detail-page__hero">
-            <app-breadcrumb [items]="breadcrumbItems()" />
+            <zyra-breadcrumb>
+                @for (crumb of breadcrumbItems(); track crumb.label; let last = $last) {
+                    <zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+                }
+            </zyra-breadcrumb>
 
             <div class="component-detail-page__title-row">
                 <h1>{{ selected.title }}</h1>
@@ -88,7 +92,7 @@
 
                 <div class="related-grid">
                     @for (rel of relatedComponents(); track rel!.slug) {
-                        <a class="related-card" [routerLink]="['/components', rel!.slug]">
+                        <a class="related-card" [routerLink]="['/docs/components', rel!.slug]">
                             <span class="related-card__title">{{ rel!.title }}</span>
                             <span class="related-card__category">{{ rel!.category }}</span>
                             <span class="related-card__arrow">&rarr;</span>
@@ -103,7 +107,7 @@
         <section class="component-detail component-detail--missing">
             <h2>Component not found</h2>
             <p>The requested component showcase is not available in the current library catalog.</p>
-            <a class="component-detail-page__back" routerLink="/components">Return to components</a>
+            <a class="component-detail-page__back" routerLink="/docs/components">Return to components</a>
         </section>
     </section>
 }

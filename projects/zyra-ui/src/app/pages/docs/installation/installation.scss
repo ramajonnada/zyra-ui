@@ -1,0 +1,140 @@
+:host {
+	display: block;
+	background: var(--zyra-color-bg-app);
+	color: var(--zyra-color-text);
+}
+
+.docs-page {
+	width: min(1080px, calc(100% - 32px));
+	margin: 0 auto;
+	padding: 56px 0 80px;
+}
+
+.docs-page__header {
+	max-width: 660px;
+	margin-bottom: 40px;
+
+	h1 {
+		margin: 10px 0 12px;
+		font-family: var(--zyra-font-display);
+		font-size: 2.4rem;
+		line-height: 1.1;
+	}
+}
+
+.docs-page__lead {
+	color: var(--zyra-color-text-muted);
+	line-height: 1.75;
+	margin: 0;
+	font-size: 1rem;
+}
+
+.docs-eyebrow {
+	margin: 0;
+	color: var(--zyra-color-accent);
+	font-family: var(--zyra-font-mono);
+	font-size: 0.72rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+// ── Install steps (blog-article prose style) ───────────────────
+.docs-steps {
+	max-width: 760px;
+	margin: 0 0 40px;
+}
+
+.docs-step {
+	margin-bottom: 40px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	h2 {
+		margin: 0 0 12px;
+		font-family: var(--zyra-font-display);
+		font-size: 2.05rem;
+		line-height: 1.08;
+	}
+}
+
+.docs-step__eyebrow {
+	margin: 0 0 10px;
+	color: var(--zyra-color-accent);
+	font-family: var(--zyra-font-mono);
+	font-size: 0.72rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+.docs-step__desc {
+	margin: 0 0 18px;
+	color: var(--zyra-color-text-muted);
+	font-size: 1rem;
+	line-height: 1.9;
+}
+
+.docs-steps pre {
+	position: relative;
+	margin: 0;
+	padding: 20px 22px 20px 20px;
+	overflow-x: auto;
+	border: 1px solid var(--zyra-color-border);
+	border-left: 3px solid var(--zyra-color-accent);
+	border-radius: var(--zyra-radius-xl);
+	background: var(--zyra-color-bg-surface);
+	color: var(--zyra-color-text);
+	transition: background var(--zyra-transition-slow);
+
+	code {
+		display: block;
+		padding: 0;
+		background: none;
+		border: none;
+		border-radius: 0;
+		color: inherit;
+		font-family: var(--zyra-font-mono);
+		font-size: 0.875em;
+		line-height: 1.75;
+		white-space: pre;
+	}
+}
+
+// ── CTA ───────────────────────────────────────────────────────
+.docs-cta {
+	margin-top: 56px;
+	border-top: 1px solid var(--zyra-color-border);
+	padding-top: 56px;
+	text-align: center;
+
+	&__inner {
+		max-width: 540px;
+		margin: 0 auto;
+
+		h2 {
+			font-family: var(--zyra-font-display);
+			font-size: 2.2rem;
+			margin: 0 0 12px;
+		}
+
+		p {
+			color: var(--zyra-color-text-muted);
+			line-height: 1.7;
+			margin: 0 0 24px;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 12px;
+	}
+}
+
+@media (max-width: 640px) {
+	.docs-page__header h1 {
+		font-size: 1.9rem;
+	}
+}

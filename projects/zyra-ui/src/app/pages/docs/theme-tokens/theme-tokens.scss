@@ -1,0 +1,212 @@
+:host {
+	display: block;
+	background: var(--zyra-color-bg-app);
+	color: var(--zyra-color-text);
+}
+
+.docs-page {
+	width: min(1080px, calc(100% - 32px));
+	margin: 0 auto;
+	padding: 56px 0 80px;
+}
+
+.docs-page__header {
+	max-width: 700px;
+	margin-bottom: 40px;
+
+	h1 {
+		margin: 10px 0 12px;
+		font-family: var(--zyra-font-display);
+		font-size: 2.4rem;
+		line-height: 1.1;
+	}
+}
+
+.docs-page__lead {
+	color: var(--zyra-color-text-muted);
+	line-height: 1.75;
+	margin: 0;
+	font-size: 1rem;
+
+	a {
+		color: var(--zyra-color-accent);
+	}
+}
+
+.docs-eyebrow {
+	margin: 0;
+	color: var(--zyra-color-accent);
+	font-family: var(--zyra-font-mono);
+	font-size: 0.72rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+// ── Section wrapper ───────────────────────────────────────────
+.docs-section {
+	border-top: 1px solid var(--zyra-color-border);
+	padding-top: 48px;
+	margin-top: 48px;
+}
+
+.docs-section--first {
+	border-top: none;
+	padding-top: 0;
+	margin-top: 0;
+}
+
+.docs-section__header {
+	max-width: 660px;
+	margin-bottom: 24px;
+
+	h2 {
+		margin: 0 0 12px;
+		font-family: var(--zyra-font-display);
+		font-size: 1.7rem;
+		line-height: 1.1;
+	}
+
+	p {
+		color: var(--zyra-color-text-muted);
+		line-height: 1.75;
+		margin: 0;
+		font-size: 0.95rem;
+	}
+}
+
+// ── Token grid ────────────────────────────────────────────────
+.docs-token-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 12px;
+}
+
+.docs-token-group {
+	padding: 16px;
+	border: 1px solid var(--zyra-color-border);
+	border-radius: var(--zyra-radius-md);
+	background: var(--zyra-color-bg-panel);
+	transition: background var(--zyra-transition-slow);
+
+	&__label {
+		display: block;
+		font-family: var(--zyra-font-mono);
+		font-size: 10px;
+		font-weight: 600;
+		color: var(--zyra-color-accent);
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		margin-bottom: 10px;
+	}
+
+	&__tokens {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+	}
+}
+
+.docs-token {
+	font-family: var(--zyra-font-mono);
+	font-size: 12px;
+	color: var(--zyra-color-text-muted);
+	display: block;
+
+	&::before {
+		content: '·';
+		color: var(--zyra-color-accent);
+		margin-right: 6px;
+	}
+}
+
+// ── Token access grid ───────────────────────────────────────────
+.token-access-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+
+	@media (max-width: 720px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.token-access-col {
+	padding: 20px;
+	border-radius: var(--zyra-radius-lg);
+	border: 1px solid var(--zyra-color-border);
+
+	h3 {
+		margin: 0 0 16px;
+		font-size: 1rem;
+	}
+}
+
+.token-access-col--ok {
+	background: color-mix(in srgb, var(--zyra-color-success) 6%, var(--zyra-color-bg-panel));
+	border-color: var(--zyra-color-success-border);
+}
+
+.token-access-col--internal {
+	background: color-mix(in srgb, var(--zyra-color-fg-muted) 6%, var(--zyra-color-bg-panel));
+}
+
+.token-access-group {
+	margin-bottom: 18px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.token-access-group__label {
+	display: block;
+	margin-bottom: 8px;
+	font-family: var(--zyra-font-mono);
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--zyra-color-fg-muted);
+}
+
+.token-access-item {
+	display: block;
+	margin-bottom: 5px;
+	font-family: var(--zyra-font-mono);
+	font-size: 0.82rem;
+	color: var(--zyra-color-text);
+	word-break: break-word;
+}
+
+// ── Override example ────────────────────────────────────────────
+.docs-section pre {
+	position: relative;
+	margin: 0;
+	padding: 20px 22px 20px 20px;
+	overflow-x: auto;
+	border: 1px solid var(--zyra-color-border);
+	border-left: 3px solid var(--zyra-color-accent);
+	border-radius: var(--zyra-radius-xl);
+	background: var(--zyra-color-bg-surface);
+	color: var(--zyra-color-text);
+	transition: background var(--zyra-transition-slow);
+
+	code {
+		display: block;
+		padding: 0;
+		background: none;
+		border: none;
+		border-radius: 0;
+		color: inherit;
+		font-family: var(--zyra-font-mono);
+		font-size: 0.875em;
+		line-height: 1.75;
+		white-space: pre;
+	}
+}
+
+@media (max-width: 640px) {
+	.docs-page__header h1 {
+		font-size: 1.9rem;
+	}
+}

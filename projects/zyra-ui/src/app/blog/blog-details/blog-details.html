@@ -1,6 +1,10 @@
 <div class="article-page">
     <section class="article-hero">
-        <app-breadcrumb [items]="breadcrumbItems()" [backTo]="{ label: 'Blog', url: 'https://www.zyraui.dev/blog' }" />
+        <zyra-breadcrumb>
+            @for (crumb of breadcrumbItems(); track crumb.label; let last = $last) {
+                <zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+            }
+        </zyra-breadcrumb>
         <div class="article-meta-row">
             <zyra-badge size="md">{{ categoryLabel() }}</zyra-badge>
             @if (postDate()) {

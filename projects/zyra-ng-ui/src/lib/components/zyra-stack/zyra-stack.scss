@@ -1,0 +1,30 @@
+:host {
+    display: block;
+}
+
+.zyr-stack {
+    display: flex;
+
+    &--row { flex-direction: row; }
+    &--column { flex-direction: column; }
+
+    &--gap-none { gap: 0; }
+    &--gap-xs { gap: var(--zyra-space-1); }
+    &--gap-sm { gap: var(--zyra-space-2); }
+    &--gap-md { gap: var(--zyra-space-4); }
+    &--gap-lg { gap: var(--zyra-space-6); }
+    &--gap-xl { gap: var(--zyra-space-8); }
+
+    &--align-start { align-items: flex-start; }
+    &--align-center { align-items: center; }
+    &--align-end { align-items: flex-end; }
+    &--align-stretch { align-items: stretch; }
+
+    &--justify-start { justify-content: flex-start; }
+    &--justify-center { justify-content: center; }
+    &--justify-end { justify-content: flex-end; }
+    &--justify-between { justify-content: space-between; }
+    &--justify-around { justify-content: space-around; }
+
+    &--wrap { flex-wrap: wrap; }
+}

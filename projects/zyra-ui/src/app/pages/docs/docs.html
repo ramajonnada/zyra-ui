@@ -1,98 +1,29 @@
 <main class="docs-page">
-	<!-- ── Install steps ─────────────────────────────────────── -->
-	<section class="docs-steps" aria-label="Installation steps">
-		@for (step of installSteps; track step.step) {
-		<article class="docs-step">
-			<p class="docs-step__eyebrow">Step {{ step.step }}</p>
-			<h2>{{ step.title }}</h2>
-			<p class="docs-step__desc">{{ step.description }}</p>
-			<pre><code>{{ step.code }}</code></pre>
-		</article>
+	<zyra-breadcrumb>
+		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+			<zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
 		}
-	</section>
+	</zyra-breadcrumb>
 
-	<!-- ── Component reference ───────────────────────────────── -->
-	<section class="docs-section">
-		<div class="docs-section__header">
-			<p class="docs-eyebrow">/ Components</p>
-			<h2>All {{ componentCount }} components</h2>
-			<p>
-				Every component is a standalone import — add only what your feature needs. Click any
-				name to open its interactive playground.
-			</p>
-		</div>
+	<header class="docs-page__header">
+		<p class="docs-eyebrow">/ Docs</p>
+		<h1>Overview</h1>
+		<p class="docs-page__lead">
+			Zyra UI is a standalone-first Angular component library built on signals and a single
+			CSS custom-property token system. Everything below links to a dedicated guide — start
+			with Installation if this is your first time here.
+		</p>
+	</header>
 
-		<div class="docs-table-wrap">
-			<table class="docs-table">
-				<thead>
-					<tr>
-						<th>Component</th>
-						<th>Selector</th>
-						<th>Import name</th>
-						<th>Category</th>
-					</tr>
-				</thead>
-				<tbody>
-					@for (comp of componentList; track comp.slug) {
-					<tr>
-						<td>
-							<a [routerLink]="['/components', comp.slug]" class="docs-table__link">
-								{{ comp.name }}
-							</a>
-						</td>
-						<td>
-							<code>{{ comp.selector }}</code>
-						</td>
-						<td>
-							<code>{{ comp.importName }}</code>
-						</td>
-						<td>
-							<span class="docs-table__cat">{{ comp.category }}</span>
-						</td>
-					</tr>
-					}
-				</tbody>
-			</table>
-		</div>
-	</section>
-
-	<!-- ── Theming ────────────────────────────────────────────── -->
-	<section class="docs-section">
-		<div class="docs-section__header">
-			<p class="docs-eyebrow">/ Theming</p>
-			<h2>Customize the token layer</h2>
-			<p>
-				Zyra UI uses CSS custom properties as its design token system. Override any
-				<code>--zyra-*</code> variable in your global stylesheet to instantly restyle every
-				component. Five themes ship out of the box — dark, light, ocean, amber, and rose —
-				each defining the same set of tokens with different values.
-				<a routerLink="/theming">Preview all five themes live →</a>
-			</p>
-		</div>
-
-		<div class="docs-split">
-			<div class="docs-split__block">
-				<p class="docs-split__label">Override tokens in CSS</p>
-				<pre><code>{{ themeOverrideCode }}</code></pre>
-			</div>
-			<div class="docs-split__block">
-				<p class="docs-split__label">Switch themes at runtime</p>
-				<pre><code>{{ themeSwitchCode }}</code></pre>
-			</div>
-		</div>
-
-		<div class="docs-token-grid">
-			@for (group of tokenGroups; track group.label) {
-			<div class="docs-token-group">
-				<span class="docs-token-group__label">{{ group.label }}</span>
-				<div class="docs-token-group__tokens">
-					@for (token of group.tokens; track token) {
-					<code class="docs-token">{{ token }}</code>
-					}
-				</div>
-			</div>
-			}
-		</div>
+	<!-- ── Next steps ────────────────────────────────────────── -->
+	<section class="docs-next" aria-label="Documentation sections">
+		@for (link of nextLinks; track link.route) {
+		<a class="docs-next__card" [routerLink]="link.route">
+			<span class="docs-next__title">{{ link.title }}</span>
+			<span class="docs-next__desc">{{ link.description }}</span>
+			<span class="docs-next__arrow" aria-hidden="true">→</span>
+		</a>
+		}
 	</section>
 
 	<!-- ── FAQ ───────────────────────────────────────────────── -->
@@ -188,7 +119,7 @@
 			<h2>Ready to build?</h2>
 			<p>Browse the interactive playground for every component and copy the code you need.</p>
 			<div class="docs-cta__actions">
-				<zyra-button size="lg" routerLink="/components">Explore components</zyra-button>
+				<zyra-button size="lg" routerLink="/docs/components">Explore components</zyra-button>
 				<zyra-button size="lg" variant="outline" routerLink="/blog">Read blog</zyra-button>
 			</div>
 		</div>

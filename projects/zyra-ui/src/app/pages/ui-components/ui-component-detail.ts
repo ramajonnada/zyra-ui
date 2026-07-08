@@ -1,17 +1,17 @@
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Component, OnDestroy, computed, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ZyraBadge } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem } from 'zyra-ng-ui';
 import { getUiComponentShowcaseCard, UI_COMPONENT_SHOWCASE } from './ui-components.data';
 import { map } from 'rxjs';
 import { SeoService } from '../../../seo/seo.service';
 import { Playground } from './shared/playground/playground';
 import { PLAYGROUND_REGISTRY } from './shared/playground/playground-registry';
-import { Breadcrumb, BreadcrumbItem } from '../../shared/breadcrumb/breadcrumb';
+import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
 
 @Component({
     selector: 'app-ui-component-detail',
-    imports: [RouterLink, ZyraBadge, Playground, Breadcrumb],
+    imports: [RouterLink, ZyraBadge, Playground, ZyraBreadcrumb, ZyraBreadcrumbItem],
     templateUrl: './ui-component-detail.html',
     styleUrl: './ui-component-detail.scss',
 })
@@ -35,17 +35,17 @@ export class UiComponentDetail implements OnInit, OnDestroy {
         return slugs.map((s) => UI_COMPONENT_SHOWCASE.find((c) => c.slug === s)).filter(Boolean);
     });
 
-    readonly breadcrumbItems = computed<BreadcrumbItem[]>(() => [
+    readonly breadcrumbItems = computed<BreadcrumbLink[]>(() => [
         { label: 'Home', url: 'https://www.zyraui.dev/' },
-        { label: 'Components', url: 'https://www.zyraui.dev/components' },
-        { label: this.component()?.title ?? 'Component', url: `https://www.zyraui.dev/components/${this.component()?.slug ?? ''}` },
+        { label: 'Components', url: 'https://www.zyraui.dev/docs/components' },
+        { label: this.component()?.title ?? 'Component', url: `https://www.zyraui.dev/docs/components/${this.component()?.slug ?? ''}` },
     ]);
 
     ngOnInit(): void {
         const component = this.component();
         const componentName = component?.title || 'Component';
         const slug = component?.slug || '';
-        const url = `https://www.zyraui.dev/components/${slug}`;
+        const url = `https://www.zyraui.dev/docs/components/${slug}`;
         const description = component?.description
             ? `${component.description} Interactive playground and full API reference for the Angular ${componentName} component from Zyra UI.`
             : `Interactive playground and full API reference for the Angular ${componentName} component from Zyra UI.`;
@@ -64,9 +64,12 @@ export class UiComponentDetail implements OnInit, OnDestroy {
             url,
             isPartOf: { '@type': 'WebSite', url: 'https://www.zyraui.dev/' },
         });
+
+        this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems()));
     }
 
     ngOnDestroy(): void {
         this.seo.removeJsonLd('component-page-jsonld');
+        this.seo.removeJsonLd('breadcrumb-jsonld');
     }
 }

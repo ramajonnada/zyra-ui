@@ -129,12 +129,13 @@
     border: 1px solid var(--zyra-color-tabs-border);
     border-radius: var(--zyra-radius-md);
     background: var(--zyra-color-background);
-    overflow: hidden;
 
     > .zyr-tabs__list {
         background: var(--zyra-color-background-elevated);
         padding: 6px 8px;
         gap: 2px;
+        border-radius: var(--zyra-radius-md) var(--zyra-radius-md) 0 0;
+        overflow-y: hidden;
     }
 
     > .zyr-tabs__list > .zyr-tabs__trigger {
@@ -163,11 +164,12 @@
     border: 1px solid var(--zyra-color-tabs-border);
     border-radius: var(--zyra-radius-md);
     background: var(--zyra-color-background);
-    overflow: hidden;
 
     > .zyr-tabs__list {
         background: var(--zyra-color-background-elevated);
         gap: 0;
+        border-radius: var(--zyra-radius-md) var(--zyra-radius-md) 0 0;
+        overflow-y: hidden;
     }
 
     > .zyr-tabs__list > .zyr-tabs__trigger {

@@ -1,38 +1,24 @@
-<header class="site-header">
-    <div class="site-header__left">
-        <button
-            class="site-header__burger"
-            type="button"
-            (click)="onToggle()"
-            [attr.aria-label]="menuLabel()"
-            [attr.aria-expanded]="mobileNavOpen()"
-        >
-            <span class="site-header__sr-only">{{ menuLabel() }}</span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+<zyra-header #headerRef position="fixed" [transparent]="true">
+    <a zyraHeaderStart class="site-header__logo" routerLink="/">
+        <span class="site-header__logo-text">Zyra<span>UI</span></span>
+        <span class="site-header__version">v{{ version }}</span>
+    </a>
 
-        <a class="site-header__logo" routerLink="/">
-            <span class="site-header__logo-text">Zyra<span>UI</span></span>
-            <span class="site-header__version">v{{ version }}</span>
-        </a>
-    </div>
-
-    <nav class="site-header__nav" aria-label="Primary">
+    <nav zyraHeaderNav aria-label="Primary">
         @for (link of navLinks; track link.route) {
             <a
                 class="site-header__nav-link"
                 [routerLink]="link.route"
                 routerLinkActive="is-active"
-                [routerLinkActiveOptions]="{ exact: link.route === '/' }"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="headerRef.closeMobile()"
             >
                 {{ link.label }}
             </a>
         }
     </nav>
 
-    <div class="site-header__actions">
+    <div zyraHeaderEnd class="site-header__actions">
         <a
             class="site-header__repo"
             href="https://github.com/ramajonnada/zyra-ui"
@@ -104,40 +90,23 @@
             }
         </div>
 
-        <zyra-button size="sm" routerLink="/components">Get started</zyra-button>
+        <zyra-button size="sm" routerLink="/docs/components">Get started</zyra-button>
     </div>
-</header>
 
-@if (mobileNavOpen()) {
-    <div class="site-header__mobile-panel">
-        <nav class="site-header__mobile-nav" aria-label="Mobile">
-            @for (link of navLinks; track link.route) {
-                <a
-                    class="site-header__mobile-link"
-                    [routerLink]="link.route"
-                    routerLinkActive="is-active"
-                    [routerLinkActiveOptions]="{ exact: link.route === '/' }"
-                    (click)="closeMobileNav()"
-                >
-                    {{ link.label }}
-                </a>
-            }
-        </nav>
+    <div zyraHeaderMobileEnd class="site-header__mobile-actions">
+        <a
+            class="site-header__mobile-repo"
+            href="https://github.com/ramajonnada/zyra-ui"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="headerRef.closeMobile()"
+        >
+            <zyra-icon [img]="icons.github" />
+            <span>GitHub</span>
+        </a>
 
-        <div class="site-header__mobile-actions">
-            <a
-                class="site-header__mobile-repo"
-                href="https://github.com/ramajonnada/zyra-ui"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <zyra-icon [img]="icons.github" />
-                <span>GitHub</span>
-            </a>
-
-            <a class="site-header__mobile-cta" routerLink="/components" (click)="closeMobileNav()">
-                Get started
-            </a>
-        </div>
+        <a class="site-header__mobile-cta" routerLink="/docs/components" (click)="headerRef.closeMobile()">
+            Get started
+        </a>
     </div>
-}
+</zyra-header>

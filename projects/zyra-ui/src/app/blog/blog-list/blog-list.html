@@ -1,4 +1,10 @@
 <section class="blog-page">
+	<zyra-breadcrumb>
+		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+			<zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+		}
+	</zyra-breadcrumb>
+
 	<header class="blog-page__header">
 		<div class="blog-page__copy">
 			<p class="blog-page__eyebrow">Blog & Insights</p>

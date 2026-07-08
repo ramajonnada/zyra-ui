@@ -58,11 +58,10 @@ Write-Host "Scaffolding component: $fullName  ($className)" -ForegroundColor Cya
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 
-$root      = Split-Path $PSScriptRoot -Parent
-$compDir   = "$root\projects\zyra-ng-ui\src\lib\components\$fullName"
-$pubApi    = "$root\projects\zyra-ng-ui\src\public-api.ts"
-$lightTheme = "$root\projects\zyra-ng-ui\src\lib\styles\_light-theme.scss"
-$darkTheme  = "$root\projects\zyra-ng-ui\src\lib\styles\_dark-theme.scss"
+$root            = Split-Path $PSScriptRoot -Parent
+$compDir         = "$root\projects\zyra-ng-ui\src\lib\components\$fullName"
+$pubApi          = "$root\projects\zyra-ng-ui\src\public-api.ts"
+$tokensComponents = "$root\projects\zyra-ng-ui\src\lib\styles\_tokens-components.scss"
 
 # ── Guard: already exists ──────────────────────────────────────────────────────
 
@@ -116,9 +115,9 @@ $scssContent = @"
     display: block;
 
     // ── Theme tokens ──────────────────────────────────────────
-    background:    var(--$bemBase-bg);
-    color:         var(--$bemBase-color);
-    border-radius: var(--zyr-radius-md);
+    background:    var(--zyra-color-$Name-bg);
+    color:         var(--zyra-color-$Name-text);
+    border-radius: var(--zyra-radius-md);
 }
 "@
 
@@ -236,53 +235,42 @@ if ($pubContent -match [regex]::Escape($exportLine)) {
     Ok "public-api.ts  (+export)"
 }
 
-# ── 6. _light-theme.scss token stub ───────────────────────────────────────────
+# ── 6. _tokens-components.scss stub (tier 3 — applies to all 5 themes) ───────
+#
+# Tier 3 tokens reference tier 2 (semantic) tokens, which are themselves
+# per-theme aliases — so one stub here covers dark/light/ocean/amber/rose
+# automatically. Never write raw values or per-theme stubs into the 5 raw
+# theme files for component styling; see docs/THEME_SYSTEM.md.
 
-$lightToken = @"
+$componentToken = @"
 
-    // ── $className ────────────────────────────────────────────
-    --$bemBase-bg:    var(--zyr-bg-2);
-    --$bemBase-color: var(--zyr-text);
+    // ── $className ───────────────────────────────────────────
+    --zyra-color-$Name-bg:     var(--zyra-color-surface-inset);
+    --zyra-color-$Name-text:   var(--zyra-color-foreground);
+    --zyra-color-$Name-border: var(--zyra-color-border-color);
 "@
 
-$lightContent = Get-Content $lightTheme -Raw
-if ($lightContent -match [regex]::Escape("--$bemBase-bg")) {
-    Skip "_light-theme.scss (tokens already present)"
+$tokensContent = Get-Content $tokensComponents -Raw
+if ($tokensContent -match [regex]::Escape("--zyra-color-$Name-bg")) {
+    Skip "_tokens-components.scss (tokens already present)"
 } else {
     # Insert before the closing }
-    $lightContent = $lightContent -replace '(\s*\}\s*)$', "$lightToken`n}"
-    Set-Content -Path $lightTheme -Value $lightContent -Encoding utf8 -NoNewline
-    Ok "_light-theme.scss  (+tokens)"
-}
-
-# ── 7. _dark-theme.scss token stub ────────────────────────────────────────────
-
-$darkToken = @"
-
-    // ── $className ────────────────────────────────────────────
-    --$bemBase-bg:    var(--zyr-bg-3);
-    --$bemBase-color: var(--zyr-text);
-"@
-
-$darkContent = Get-Content $darkTheme -Raw
-if ($darkContent -match [regex]::Escape("--$bemBase-bg")) {
-    Skip "_dark-theme.scss (tokens already present)"
-} else {
-    $darkContent = $darkContent -replace '(\s*\}\s*)$', "$darkToken`n}"
-    Set-Content -Path $darkTheme -Value $darkContent -Encoding utf8 -NoNewline
-    Ok "_dark-theme.scss  (+tokens)"
+    $tokensContent = $tokensContent -replace '(\s*\}\s*)$', "$componentToken`n}"
+    Set-Content -Path $tokensComponents -Value $tokensContent -Encoding utf8 -NoNewline
+    Ok "_tokens-components.scss  (+tokens)"
 }
 
 # ── Summary ───────────────────────────────────────────────────────────────────
 
 Write-Host ""
-Write-Host "Done. 7 changes made." -ForegroundColor Cyan
+Write-Host "Done. 6 changes made." -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Next steps for you:" -ForegroundColor White
 Write-Host "  1. Fill in inputs/outputs/computed logic in  $fullName.ts"
 Write-Host "  2. Build the template in                     $fullName.html"
-Write-Host "  3. Style with real token values in           $fullName.scss"
-Write-Host "  4. Replace --$bemBase-* stubs with real values in both theme files"
+Write-Host "  3. Adjust the --zyra-color-$Name-* token stub in _tokens-components.scss"
+Write-Host "     if the defaults (surface-inset/foreground/border-color) aren't right"
+Write-Host "  4. Style with real token values in           $fullName.scss"
 Write-Host "  5. Run:  ng build zyra-ng-ui"
 Write-Host ""
 Write-Host "Tip: after adding inputs/signals, regenerate the spec:" -ForegroundColor DarkCyan

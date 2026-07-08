@@ -1,0 +1,13 @@
+<button
+    type="button"
+    [class]="hostClass()"
+    [attr.aria-label]="ariaLabel()"
+    (click)="handleClick()"
+>
+    <span class="zyr-clipboard__icon" aria-hidden="true">
+        <zyra-icon [img]="icon()" />
+    </span>
+    @if (variant() === 'button') {
+        <span class="zyr-clipboard__label">{{ currentLabel() }}</span>
+    }
+</button>

@@ -1,4 +1,10 @@
 <section class="components-page">
+    <zyra-breadcrumb>
+        @for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+            <zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+        }
+    </zyra-breadcrumb>
+
     <header class="components-page__header">
         <div class="components-page__copy">
             <p class="components-page__eyebrow">Zyra UI</p>
@@ -58,7 +64,7 @@
             @for (card of filteredCards(); track card.slug; let i = $index) {
                 <a
                     class="component-card"
-                    [routerLink]="['/components', card.slug]"
+                    [routerLink]="['/docs/components', card.slug]"
                     [style.animation-delay]="i * 55 + 'ms'"
                 >
                     <zyra-card variant="outlined" [clickable]="true" padding="lg">
