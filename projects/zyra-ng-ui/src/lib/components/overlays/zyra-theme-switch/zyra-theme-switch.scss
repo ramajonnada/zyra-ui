@@ -1,0 +1,79 @@
+.zyr-theme-switch {
+    display: inline-block;
+}
+
+.zyr-theme-switch__trigger {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: var(--zyra-color-theme-switch-bg);
+    color: var(--zyra-color-theme-switch-text);
+    border: 1px solid var(--zyra-color-theme-switch-border);
+    border-radius: var(--zyra-radius-md);
+    cursor: pointer;
+    transition:
+        background var(--zyra-transition-fast),
+        border-color var(--zyra-transition-fast);
+
+    // Expand the tap target to 44×44px without growing the visible button (WCAG 2.5.5)
+    &::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+    }
+
+    &:hover:not(:disabled) {
+        background: var(--zyra-color-theme-switch-bg-hover);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--zyra-color-accent);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.zyr-theme-switch__panel {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 140px;
+}
+
+.zyr-theme-switch__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--zyra-space-3);
+    width: 100%;
+    padding: var(--zyra-space-2) var(--zyra-space-3);
+    background: none;
+    border: none;
+    border-radius: var(--zyra-radius-sm);
+    color: var(--zyra-color-theme-switch-text);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--zyra-transition-fast);
+
+    &:hover {
+        background: var(--zyra-color-theme-switch-bg-hover);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--zyra-color-accent);
+        outline-offset: -2px;
+    }
+
+    &--active {
+        color: var(--zyra-color-accent);
+    }
+}

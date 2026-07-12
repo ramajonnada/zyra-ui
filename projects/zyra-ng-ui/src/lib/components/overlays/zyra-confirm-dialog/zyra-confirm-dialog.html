@@ -1,0 +1,26 @@
+<zyra-modal
+    [class]="hostClass()"
+    [(open)]="open"
+    [title]="title()"
+    size="sm"
+    [dismissible]="dismissible()"
+    (closed)="onModalClosed()"
+>
+    <p class="zyr-confirm-dialog__message">
+        <ng-content>{{ message() }}</ng-content>
+    </p>
+
+    <ng-container slot="footer">
+        <zyra-button variant="ghost" type="button" [disabled]="loading()" (clicked)="cancel()">
+            {{ cancelLabel() }}
+        </zyra-button>
+        <zyra-button
+            [variant]="confirmVariant()"
+            type="button"
+            [loading]="loading()"
+            (clicked)="confirm()"
+        >
+            {{ confirmLabel() }}
+        </zyra-button>
+    </ng-container>
+</zyra-modal>

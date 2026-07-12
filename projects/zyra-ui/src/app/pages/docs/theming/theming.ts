@@ -14,7 +14,7 @@ import {
     ZyraThemeService,
 } from 'zyra-ng-ui';
 import { SeoService } from '../../../../seo/seo.service';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../../shared/breadcrumb-jsonld';
 
 interface ThemeOption {
     value: ZyraTheme;
@@ -58,6 +58,8 @@ export class DocsTheming implements OnInit, OnDestroy {
 
     readonly currentTheme = this.themeService.theme;
 
+    protected readonly crumbPath = internalPath;
+
     readonly breadcrumbItems: readonly BreadcrumbLink[] = [
         { label: 'Home', url: 'https://www.zyraui.dev/' },
         { label: 'Docs', url: 'https://www.zyraui.dev/docs' },
@@ -65,7 +67,7 @@ export class DocsTheming implements OnInit, OnDestroy {
     ];
 
     readonly themes: readonly ThemeOption[] = [
-        { value: 'dark', label: 'Dark', accent: '#007a8a', surface: '#172232' },
+        { value: 'dark', label: 'Dark', accent: '#18d5ea', surface: '#0d1117' },
         { value: 'light', label: 'Light', accent: '#007a8a', surface: '#ecedf1' },
         { value: 'ocean', label: 'Ocean', accent: '#1a6ec8', surface: '#eaf0f8' },
         { value: 'amber', label: 'Amber', accent: '#b06020', surface: '#f0e8d8' },
@@ -76,7 +78,7 @@ export class DocsTheming implements OnInit, OnDestroy {
         { name: 'Background', variable: '--zyra-color-bg-app' },
         { name: 'Surface', variable: '--zyra-color-surface' },
         { name: 'Text', variable: '--zyra-color-text' },
-        { name: 'Text muted', variable: '--zyra-color-fg-muted' },
+        { name: 'Text muted', variable: '--zyra-color-text-muted' },
         { name: 'Border', variable: '--zyra-color-border' },
         { name: 'Primary', variable: '--zyra-color-accent' },
         { name: 'Accent secondary', variable: '--zyra-color-accent-secondary' },

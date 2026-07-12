@@ -175,14 +175,14 @@ const INSTALL_STEPS: readonly InstallStep[] = [
         title: 'Set the font roles',
         description:
             'Load the library families once so every component and section reads the same typography tokens.',
-        code: '--zyr-font-display / --zyr-font-body / --zyr-font-mono',
+        code: '--zyra-font-display / --zyra-font-body / --zyra-font-mono',
     },
     {
         step: '02',
         title: 'Compose with surfaces',
         description:
             'Build the hero, stats, cards, and CTA from semantic background and border tokens instead of isolated custom colors.',
-        code: 'var(--zyr-bg-2) + var(--zyr-border) + var(--zyr-accent)',
+        code: 'var(--zyra-color-bg-panel) + var(--zyra-color-border) + var(--zyra-color-accent)',
     },
     {
         step: '03',
@@ -200,11 +200,11 @@ const BLOCK_STATS: readonly BlockStat[] = [
 ] as const;
 
 const TOKEN_SWATCHES: readonly TokenSwatch[] = [
-    { name: 'Accent', token: '--zyr-accent', tone: 'accent' },
-    { name: 'Blue', token: '--zyr-accent-2', tone: 'blue' },
-    { name: 'Purple', token: '--zyr-accent-3', tone: 'purple' },
-    { name: 'Success', token: '--zyr-success', tone: 'success' },
-    { name: 'Warning', token: '--zyr-warning', tone: 'warning' },
+    { name: 'Accent', token: '--zyra-color-accent', tone: 'accent' },
+    { name: 'Blue', token: '--zyra-color-accent-secondary', tone: 'blue' },
+    { name: 'Purple', token: '--zyra-color-accent-tertiary', tone: 'purple' },
+    { name: 'Success', token: '--zyra-color-success', tone: 'success' },
+    { name: 'Warning', token: '--zyra-color-warning', tone: 'warning' },
 ] as const;
 
 const TESTIMONIALS: readonly Testimonial[] = [

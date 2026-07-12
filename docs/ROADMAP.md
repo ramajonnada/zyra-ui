@@ -71,6 +71,7 @@ The roadmap progresses from a trusted UI library to premium enterprise component
 * OTP Input
 * Password Input
 * Date Picker
+* File Upload
 
 #### Feedback
 
@@ -104,6 +105,7 @@ The roadmap progresses from a trusted UI library to premium enterprise component
 * JSON Viewer
 * Markdown Viewer
 * Code Block
+* Command Palette
 
 ---
 

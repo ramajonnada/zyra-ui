@@ -33,6 +33,61 @@ As of `v3.0.0`, every **color** token is prefixed `--zyra-color-*`. Structural t
 
 Numbered scales stay numbered where they're a genuine scale (`--zyra-color-cyan-500`, `--zyra-space-8`), but ordinal placeholders got real names: `--zyra-accent-2`/`--zyra-accent-3` are now `--zyra-color-accent-secondary`/`--zyra-color-accent-tertiary`.
 
+## Public API tiers
+
+Not every CSS custom property `zyra-ng-ui` ships is meant to be overridden. The four tiers split into two groups: things you're meant to customize, and internal wiring that happens to be visible in the compiled CSS because custom properties can't be truly private.
+
+| Tier | File | Status | Why |
+|---|---|---|---|
+| 0 — Primitive | `_tokens-primitives.scss` | **Internal** | Raw, unnamed-role values (`--zyra-color-cyan-500`). No consumer — including components — should reference these directly. They exist only so the theme files can build named roles from them. |
+| 1 — Foundation / Dimension | `_tokens-dimension.scss` | **Public** | Radius, spacing, typography, motion, z-index. Theme-invariant and safe to override globally — this is where you set your own type scale or corner radius. |
+| 2 — Semantic | `_tokens-semantic.scss` (plus the raw per-theme color names it aliases, e.g. `--zyra-color-accent`, `--zyra-color-bg-app`) | **Public — primary customization layer** | Role-based names (`--zyra-color-primary`, `--zyra-color-surface`, `--zyra-color-danger`) that resolve differently per theme. This is the intended place to re-brand: change what "primary" or "surface" *means*, and every component picks it up automatically. |
+| 3 — Component | `_tokens-components.scss` | **Internal** | Per-component namespaced tokens (`--zyra-color-btn-primary-hover-bg`, `--zyra-checkbox-focus-shadow`, `--zyra-card-radius`). These are how components consume tier 2 internally, not a public override surface — see below. |
+
+**Why tier 3 is internal, not public:** almost every tier-3 token is a state color (hover/active/checked/focus) or a calculated value (`--zyra-color-glow-shadow`, composed from an RGB-channel primitive via `rgba()`). Depending on one directly means depending on a specific component's internal implementation — it can be renamed, split, or removed in a minor release without notice, because nothing in the library's public contract promises it will stay. If you need a button's hover state to look different, override the semantic token it's built from (`--zyra-color-accent-hover`) — every component that uses that role picks up the change, and the override survives refactors to any single component.
+
+There is currently no dedicated "public component layout token" tier — per-variant sizing (button padding, card padding, etc.) is hardcoded in each component's `.scss` and controlled indirectly through tier-1 foundation tokens (`--zyra-radius-*`, `--zyra-space-*`) and variant classes (`--sm`/`--md`/`--lg`), not through overridable per-component dimension variables. Don't rely on undocumented tier-3 names to change a component's size or spacing.
+
+## Token Stability Policy
+
+- **Tier 0 (primitive):** No stability guarantee. Values and names may change at any time; nothing outside the library should reference them.
+- **Tier 1 (foundation) and Tier 2 (semantic):** Treated as SemVer-stable public API. Renaming or removing one of these is a breaking change and ships in a major version, called out in the changelog (as the `v3.0.0` `--zyra-color-*` rename was).
+- **Tier 3 (component):** No stability guarantee across minor/patch versions. These may be added, renamed, split, or collapsed as components are refactored. If you've overridden one and it stops working after an upgrade, that's expected — the fix is to move the override up to tier 2.
+
+## Override Best Practices
+
+**Safe — override tier 2 (semantic) or tier 1 (foundation):**
+
+```css
+/* global styles.css — safe: re-themes every component that uses these roles */
+:root {
+  --zyra-color-primary:       #7c3aed;  /* tier 2 semantic */
+  --zyra-color-primary-muted: #ede9fe;  /* tier 2 semantic */
+  --zyra-radius-md:           6px;      /* tier 1 foundation */
+  --zyra-font-body:           'Inter', sans-serif; /* tier 1 foundation */
+}
+```
+
+**Avoid — overriding tier 3 (component) or tier 0 (primitive) tokens:**
+
+```css
+/* avoid: reaches past the semantic tier into one component's internal wiring.
+   Works today, but --zyra-color-btn-primary-hover-bg isn't a documented API
+   and can be renamed/removed without a major version bump. */
+:root {
+  --zyra-color-btn-primary-hover-bg: #6d28d9;
+}
+
+/* avoid: primitive tokens are unnamed-role raw values, not a theming surface —
+   changing this recolors the primitive everywhere it's referenced internally,
+   with no guarantee about what that ends up touching. */
+:root {
+  --zyra-color-cyan-500: #6d28d9;
+}
+```
+
+If you find yourself reaching into tier 3 to fix one component, look for the tier-2 semantic role it's aliasing first (check `_tokens-components.scss` — every entry there is `var(--zyra-color-<semantic-name>)`) and override that instead.
+
 ## Overriding tokens
 
 ```css
@@ -142,7 +197,6 @@ theme.toggle();          // switch between dark and light only
 | `--zyra-field-hint-color` | `--zyra-color-field-hint-color` |
 | `--zyra-field-icon-color` | `--zyra-color-field-icon-color` |
 | `--zyra-field-label-color` | `--zyra-color-field-label-color` |
-| `--zyra-field-label-font` | `--zyra-color-field-label-font` |
 | `--zyra-field-required-mark` | `--zyra-color-field-required-mark` |
 | `--zyra-field-success-color` | `--zyra-color-field-success-color` |
 | `--zyra-foreground-muted` | `--zyra-color-foreground-muted` |

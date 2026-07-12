@@ -1,0 +1,73 @@
+:host {
+    display: block;
+}
+
+.zyr-grid {
+    box-sizing: border-box;
+
+    &--border {
+        border: 1px solid var(--zyra-color-border-color);
+    }
+
+    &--responsive-cols {
+        grid-template-columns: var(--zyr-grid-cols-base, repeat(1, minmax(0, 1fr)));
+    }
+
+    &--responsive-rows {
+        grid-template-rows: var(--zyr-grid-rows-base, auto);
+    }
+}
+
+@media (min-width: 640px) {
+    .zyr-grid--responsive-cols {
+        grid-template-columns: var(--zyr-grid-cols-sm, var(--zyr-grid-cols-base, repeat(1, minmax(0, 1fr))));
+    }
+    .zyr-grid--responsive-rows {
+        grid-template-rows: var(--zyr-grid-rows-sm, var(--zyr-grid-rows-base, auto));
+    }
+}
+
+@media (min-width: 768px) {
+    .zyr-grid--responsive-cols {
+        grid-template-columns: var(
+            --zyr-grid-cols-md,
+            var(--zyr-grid-cols-sm, var(--zyr-grid-cols-base, repeat(1, minmax(0, 1fr))))
+        );
+    }
+    .zyr-grid--responsive-rows {
+        grid-template-rows: var(--zyr-grid-rows-md, var(--zyr-grid-rows-sm, var(--zyr-grid-rows-base, auto)));
+    }
+}
+
+@media (min-width: 1024px) {
+    .zyr-grid--responsive-cols {
+        grid-template-columns: var(
+            --zyr-grid-cols-lg,
+            var(--zyr-grid-cols-md, var(--zyr-grid-cols-sm, var(--zyr-grid-cols-base, repeat(1, minmax(0, 1fr)))))
+        );
+    }
+    .zyr-grid--responsive-rows {
+        grid-template-rows: var(
+            --zyr-grid-rows-lg,
+            var(--zyr-grid-rows-md, var(--zyr-grid-rows-sm, var(--zyr-grid-rows-base, auto)))
+        );
+    }
+}
+
+@media (min-width: 1280px) {
+    .zyr-grid--responsive-cols {
+        grid-template-columns: var(
+            --zyr-grid-cols-xl,
+            var(
+                --zyr-grid-cols-lg,
+                var(--zyr-grid-cols-md, var(--zyr-grid-cols-sm, var(--zyr-grid-cols-base, repeat(1, minmax(0, 1fr)))))
+            )
+        );
+    }
+    .zyr-grid--responsive-rows {
+        grid-template-rows: var(
+            --zyr-grid-rows-xl,
+            var(--zyr-grid-rows-lg, var(--zyr-grid-rows-md, var(--zyr-grid-rows-sm, var(--zyr-grid-rows-base, auto))))
+        );
+    }
+}

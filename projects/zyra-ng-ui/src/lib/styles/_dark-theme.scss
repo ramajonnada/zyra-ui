@@ -29,7 +29,7 @@
 	--zyra-color-accent-hover: #43ddf0;
 	--zyra-color-accent-muted: rgba(24, 213, 234, 0.12);
 	--zyra-color-accent-border: rgba(24, 213, 234, 0.24);
-	--zyra-focus-ring: rgba(24, 213, 234, 0.14);
+	--zyra-focus-ring: rgba(24, 213, 234, 0.45);
 
 	// ── Secondary accents ─────────────────────────────────────────────────────
 	--zyra-color-accent-secondary: #2491e8;
@@ -72,7 +72,7 @@
 	// ── Inputs ────────────────────────────────────────────────────────────────
 	--zyra-color-input-bg: var(--zyra-color-bg-surface);
 	--zyra-color-input-border: var(--zyra-color-border);
-	--zyra-input-shadow-focus: 0 0 0 3px rgba(24, 213, 234, 0.14);
+	--zyra-input-shadow-focus: 0 0 0 3px rgba(24, 213, 234, 0.45);
 
 	// ── Cards ─────────────────────────────────────────────────────────────────
 	// A shade darker than --zyra-color-bg-surface so cards recede into the near-black
@@ -105,7 +105,7 @@
 	--zyra-color-pill-active-bg: var(--zyra-color-bg-surface);
 	--zyra-pill-active-shadow: 0 2px 5px rgba(0, 0, 0, 0.60), 0 0 0 1px var(--zyra-color-border-strong);
 
-	--zyra-color-preview-stage-bg: var(--zyra-color-bg-app);
+	--zyra-color-preview-stage-bg: var(--zyra-color-bg-raised);
 
 	--zyra-color-glass-bg: rgba(14, 22, 36, 0.52);
 	--zyra-color-header-glass-bg: rgba(8, 12, 20, 0.64);

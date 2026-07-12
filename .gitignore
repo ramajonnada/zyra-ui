@@ -10,6 +10,45 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+*.log
+
+# Environment files / secrets
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.jks
+
+# Backend/runtime artifacts
+backend/uploads/
+backend/logs/
+backend/tmp/
+backend/cache/
+backend/db/
+backend/data/
+uploads/
+logs/
+tmp/
+db/
+data/
+*.sqlite
+*.sqlite3
+*.db
+
+# Test / local artifacts
+coverage/
+playwright-report/
+test-results/
 
 # IDEs and editors
 .idea/

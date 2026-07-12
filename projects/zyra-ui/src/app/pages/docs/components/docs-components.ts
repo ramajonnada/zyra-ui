@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraButton } from 'zyra-ng-ui';
 import { SeoService } from '../../../../seo/seo.service';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../../shared/breadcrumb-jsonld';
 import { UI_COMPONENT_SHOWCASE } from '../../ui-components/ui-components.data';
 
 interface ComponentCategoryGroup {
@@ -41,6 +41,8 @@ export class DocsComponents implements OnInit, OnDestroy {
                 items: items.sort((a, b) => a.title.localeCompare(b.title)),
             }));
     });
+
+    protected readonly crumbPath = internalPath;
 
     readonly breadcrumbItems: readonly BreadcrumbLink[] = [
         { label: 'Home', url: 'https://www.zyraui.dev/' },

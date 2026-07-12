@@ -1,0 +1,19 @@
+<div [class]="hostClass()">
+    <input
+        class="zyr-slider__input"
+        type="range"
+        [id]="resolvedId()"
+        [min]="min()"
+        [max]="max()"
+        [step]="step()"
+        [disabled]="isDisabled()"
+        [value]="value()"
+        [style.--zyr-slider-fill.%]="fillPercent()"
+        [attr.aria-valuetext]="displayValue()"
+        (input)="onInput($any($event.target).value)"
+        (blur)="onBlur()"
+    />
+    @if (showValue()) {
+        <span class="zyr-slider__value">{{ displayValue() }}</span>
+    }
+</div>

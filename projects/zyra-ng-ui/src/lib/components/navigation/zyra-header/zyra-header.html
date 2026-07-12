@@ -1,0 +1,40 @@
+<div class="zyr-header__bar">
+    <div class="zyr-header__start">
+        <ng-content select="[zyraHeaderStart]" />
+    </div>
+
+    <nav class="zyr-header__nav" aria-label="Primary">
+        <ng-content select="[zyraHeaderNav]" />
+
+        @if (mobileOpen()) {
+            <div class="zyr-header__mobile-panel">
+                <div class="zyr-header__mobile-end">
+                    <ng-content select="[zyraHeaderMobileEnd]" />
+                </div>
+            </div>
+        }
+    </nav>
+
+    <div class="zyr-header__end">
+        <ng-content select="[zyraHeaderEnd]" />
+
+        <button
+            type="button"
+            class="zyr-header__burger"
+            (click)="toggleMobile()"
+            [attr.aria-expanded]="mobileOpen()"
+            [attr.aria-label]="menuLabel()"
+        >
+            <zyra-icon [img]="mobileOpen() ? icons.xmark : icons.menu" [size]="20" />
+        </button>
+    </div>
+</div>
+
+@if (mobileOpen()) {
+    <button
+        type="button"
+        class="zyr-header__backdrop"
+        aria-label="Close navigation menu"
+        (click)="closeMobile()"
+    ></button>
+}

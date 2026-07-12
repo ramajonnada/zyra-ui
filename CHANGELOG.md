@@ -7,15 +7,52 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [3.2.0] — 2026-07-12
+
+### Added
+
+- Added new form controls and input patterns including `zyra-autocomplete`, `zyra-file-upload`, `zyra-multi-select`, `zyra-slider`, and additional form field enhancements.
+- Added new data-display primitives such as `zyra-calendar`, `zyra-carousel`, `zyra-code-block`, `zyra-empty-state`, and `zyra-timeline`.
+- Added new overlay and feedback components including `zyra-confirm-dialog`, `zyra-drawer`, `zyra-theme-switch`, and related interactive utilities.
+- Added new layout primitives such as `zyra-box`, `zyra-flex`, `zyra-grid`, `zyra-container`, `zyra-aspect-ratio`, and `zyra-scroll-area`.
+
+### Changed
+
+- Expanded the public API surface of `zyra-ng-ui` with a broader set of exports for actions, forms, layouts, navigation, overlays, feedback, and data-display components.
+- Reorganized component files into more structured category folders for easier maintenance and clearer consumer imports.
+- Refined the library package structure to present a more complete component library experience for end users.
+
+### Fixed
+
+- Improved library discoverability and consistency by aligning the exported components with the current component inventory and folder structure.
+
+---
+
+## [3.1.0] — 2026-07-12
+
+### Added
+
+- Expanded the library public API with new exports for layout, form, overlay, navigation, data-display, feedback, and action components.
+- Added new components and modules for `zyra-button-group`, `zyra-calendar`, `zyra-carousel`, `zyra-confirm-dialog`, `zyra-drawer`, `zyra-file-upload`, `zyra-multi-select`, `zyra-slider`, `zyra-theme-switch`, `zyra-box`, `zyra-flex`, `zyra-grid`, `zyra-container`, `zyra-aspect-ratio`, and `zyra-scroll-area`.
+- Added new utility-style layout primitives for more flexible composition in app UIs.
+
+### Changed
+
+- Reorganized the component source structure into clearer category folders such as actions, forms, layout, navigation, overlays, feedback, status, and identity.
+- Updated the library surface to expose a broader and more complete set of components from a single public entry point.
+- Refined component organization and export paths so consumers can import from a more consistent API.
+
+### Fixed
+
+- Improved component discoverability and library structure for existing consumers by aligning the public exports with the current component inventory.
+
+---
+
 ## [3.0.0] — 2026-07-05
 
 ### Changed
 
 - **BREAKING:** Renamed all color design tokens to a consistent `--zyra-color-*` convention (e.g. `--zyra-text` → `--zyra-color-text`, `--zyra-accent` → `--zyra-color-accent`). Structural tokens (`--zyra-radius-*`, `--zyra-space-*`, `--zyra-shadow-*`, `--zyra-ring`, etc.) are unchanged. `--zyra-accent-2`/`--zyra-accent-3` are renamed to `--zyra-color-accent-secondary`/`--zyra-color-accent-tertiary`. Consumers referencing `--zyra-*` tokens directly in their own CSS must update to the new names — see the token reference in the docs for the full mapping.
-
-### Fixed
-
-- Restored `highlight.js`-powered syntax highlighting in blog code blocks (previously reverted, now reinstated and updated to use the renamed color tokens)
 
 ---
 

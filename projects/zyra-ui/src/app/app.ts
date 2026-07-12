@@ -1,6 +1,6 @@
 import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Footer } from './components/footer/footer';
 import { Header } from './components/header/header';
@@ -10,7 +10,8 @@ import { ZyraToastContainer } from 'zyra-ng-ui';
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterModule, Header, Footer, ZyraToastContainer, Main, Sidebar],
+	imports: [RouterModule, ZyraToastContainer, Main,Header, Footer, Sidebar],
+	// imports: [ZyraToastContainer, ZyraHeader, ZyraSidebar, RouterOutlet],
 	templateUrl: './app.html',
 	styleUrl: './app.scss',
 })

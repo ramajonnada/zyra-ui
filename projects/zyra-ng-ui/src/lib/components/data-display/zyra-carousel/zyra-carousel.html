@@ -1,0 +1,50 @@
+<div
+    class="zyr-carousel"
+    role="region"
+    aria-roledescription="carousel"
+    (mouseenter)="pauseAutoplay()"
+    (mouseleave)="resumeAutoplay()"
+>
+    <div class="zyr-carousel__viewport">
+        <div class="zyr-carousel__track" [style.transform]="trackTransform()">
+            <ng-content />
+        </div>
+    </div>
+
+    @if (showArrows() && slideIndexes().length > 1) {
+        <button
+            type="button"
+            class="zyr-carousel__arrow zyr-carousel__arrow--prev"
+            aria-label="Previous slide"
+            [disabled]="!canGoPrev()"
+            (click)="prev()"
+        >
+            <zyra-icon [img]="icons.caretLeft" [size]="18" />
+        </button>
+        <button
+            type="button"
+            class="zyr-carousel__arrow zyr-carousel__arrow--next"
+            aria-label="Next slide"
+            [disabled]="!canGoNext()"
+            (click)="next()"
+        >
+            <zyra-icon [img]="icons.caretRight" [size]="18" />
+        </button>
+    }
+
+    @if (showDots() && slideIndexes().length > 1) {
+        <div class="zyr-carousel__dots" role="tablist" aria-label="Slides">
+            @for (i of slideIndexes(); track i) {
+                <button
+                    type="button"
+                    class="zyr-carousel__dot"
+                    [class.zyr-carousel__dot--active]="i === activeIndex()"
+                    role="tab"
+                    [attr.aria-selected]="i === activeIndex()"
+                    [attr.aria-label]="'Go to slide ' + (i + 1)"
+                    (click)="goTo(i)"
+                ></button>
+            }
+        </div>
+    }
+</div>

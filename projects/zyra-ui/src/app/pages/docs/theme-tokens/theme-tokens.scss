@@ -147,7 +147,7 @@
 }
 
 .token-access-col--internal {
-	background: color-mix(in srgb, var(--zyra-color-fg-muted) 6%, var(--zyra-color-bg-panel));
+	background: color-mix(in srgb, var(--zyra-color-text-muted) 6%, var(--zyra-color-bg-panel));
 }
 
 .token-access-group {
@@ -166,7 +166,7 @@
 	font-weight: 600;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
-	color: var(--zyra-color-fg-muted);
+	color: var(--zyra-color-text-muted);
 }
 
 .token-access-item {

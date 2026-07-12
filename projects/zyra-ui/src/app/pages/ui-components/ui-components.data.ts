@@ -24,6 +24,8 @@ export interface UiComponentShowcaseCard {
     description?: string;
     icon: ZyraIconData;
     accent: UiComponentAccent;
+    /** Flags the component card with a "New" or "Updated" badge. Remove once it's no longer recent. */
+    status?: 'new' | 'updated';
     highlights: string[];
     exampleCode?: string;
     variants?: readonly ComponentVariant[];
@@ -46,6 +48,31 @@ import { ZyraButton } from 'zyra-ng-ui';
   \`,
 })
 export class DemoButtonComponent {}
+`;
+
+const BUTTON_GROUP_EXAMPLE_CODE = `import { Component, signal } from '@angular/core';
+import { ZyraButton, ZyraButtonGroup } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-button-group',
+  standalone: true,
+  imports: [ZyraButton, ZyraButtonGroup],
+  template: \`
+    <zyra-button-group
+      selectionMode="single"
+      variant="outline"
+      [(value)]="align"
+      aria-label="Text alignment"
+    >
+      <zyra-button value="left">Left</zyra-button>
+      <zyra-button value="center">Center</zyra-button>
+      <zyra-button value="right">Right</zyra-button>
+    </zyra-button-group>
+  \`,
+})
+export class DemoButtonGroupComponent {
+  align = signal('left');
+}
 `;
 
 const BADGE_EXAMPLE_CODE = `import { Component } from '@angular/core';
@@ -188,6 +215,119 @@ import { ZyraInput } from 'zyra-ng-ui';
 export class DemoInputComponent {}
 `;
 
+const OTP_INPUT_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraInput } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-otp-input',
+  standalone: true,
+  imports: [ZyraInput],
+  template: \`
+    <zyra-input
+      [otpLength]="6"
+      otpType="numeric"
+      (complete)="onComplete($event)"
+    />
+  \`,
+})
+export class DemoOtpInputComponent {
+  onComplete(code: string): void {
+    // verify the code
+  }
+}
+`;
+
+const PASSWORD_INPUT_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraFormField, ZyraInput } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-password-input',
+  standalone: true,
+  imports: [ZyraFormField, ZyraInput],
+  template: \`
+    <zyra-form-field label="Password" hint="Click the eye icon to reveal it">
+      <zyra-input type="password" placeholder="Enter password…" />
+    </zyra-form-field>
+  \`,
+})
+export class DemoPasswordInputComponent {}
+`;
+
+const SLIDER_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ZyraSlider } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-slider',
+  standalone: true,
+  imports: [FormsModule, ZyraSlider],
+  template: \`
+    <zyra-slider [(ngModel)]="volume" [showValue]="true" />
+  \`,
+})
+export class DemoSliderComponent {
+  volume = 40;
+}
+`;
+
+const FILE_UPLOAD_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraFileUpload } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-file-upload',
+  standalone: true,
+  imports: [ZyraFileUpload],
+  template: \`
+    <zyra-file-upload
+      multiple
+      accept="image/*"
+      [maxSizeMb]="5"
+      (filesChange)="onFiles($event)"
+    />
+  \`,
+})
+export class DemoFileUploadComponent {
+  onFiles(files: File[]): void {
+    // upload the files
+  }
+}
+`;
+
+const CAROUSEL_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraCarousel, ZyraCarouselSlide } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-carousel',
+  standalone: true,
+  imports: [ZyraCarousel, ZyraCarouselSlide],
+  template: \`
+    <zyra-carousel loop autoplay>
+      <zyra-carousel-slide>Slide 1</zyra-carousel-slide>
+      <zyra-carousel-slide>Slide 2</zyra-carousel-slide>
+      <zyra-carousel-slide>Slide 3</zyra-carousel-slide>
+    </zyra-carousel>
+  \`,
+})
+export class DemoCarouselComponent {}
+`;
+
+const CALENDAR_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ZyraCalendar } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-calendar',
+  standalone: true,
+  imports: [FormsModule, ZyraCalendar],
+  template: \`
+    <zyra-calendar [(ngModel)]="selectedDate" />
+  \`,
+})
+export class DemoCalendarComponent {
+  selectedDate: Date | null = null;
+}
+`;
+
 const FORM_FIELD_EXAMPLE_CODE = `import { Component } from '@angular/core';
 import { ZyraFormField, ZyraInput } from 'zyra-ng-ui';
 
@@ -297,6 +437,74 @@ import { ZyraModal, ZyraButton } from 'zyra-ng-ui';
   \`,
 })
 export class DemoModalComponent {
+  open = signal(false);
+}
+`;
+
+const CONFIRM_DIALOG_EXAMPLE_CODE = `import { Component, signal } from '@angular/core';
+import { ZyraConfirmDialog, ZyraButton } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-confirm-dialog',
+  standalone: true,
+  imports: [ZyraConfirmDialog, ZyraButton],
+  template: \`
+    <zyra-button variant="danger" (clicked)="open.set(true)">Delete item</zyra-button>
+
+    <zyra-confirm-dialog
+      [(open)]="open"
+      title="Delete item?"
+      message="This action cannot be undone."
+      tone="danger"
+      (confirmed)="onDelete()"
+    />
+  \`,
+})
+export class DemoConfirmDialogComponent {
+  open = signal(false);
+
+  onDelete(): void {
+    // perform the delete, then close
+    this.open.set(false);
+  }
+}
+`;
+
+const THEME_SWITCH_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraThemeSwitch } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-theme-switch',
+  standalone: true,
+  imports: [ZyraThemeSwitch],
+  template: \`
+    <zyra-theme-switch />
+  \`,
+})
+export class DemoThemeSwitchComponent {}
+`;
+
+const DRAWER_EXAMPLE_CODE = `import { Component, signal } from '@angular/core';
+import { ZyraDrawer, ZyraButton } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-drawer',
+  standalone: true,
+  imports: [ZyraDrawer, ZyraButton],
+  template: \`
+    <zyra-button (clicked)="open.set(true)">Open filters</zyra-button>
+
+    <zyra-drawer [(open)]="open" title="Filters" side="right">
+      <p>Filter controls go here.</p>
+
+      <div slot="footer">
+        <zyra-button variant="ghost" (clicked)="open.set(false)">Cancel</zyra-button>
+        <zyra-button variant="primary" (clicked)="open.set(false)">Apply</zyra-button>
+      </div>
+    </zyra-drawer>
+  \`,
+})
+export class DemoDrawerComponent {
   open = signal(false);
 }
 `;
@@ -423,6 +631,48 @@ import { ZyraSelect, ZyraOption } from 'zyra-ng-ui';
   \`,
 })
 export class DemoSelectComponent {
+  framework: string | null = null;
+}
+`;
+
+const MULTI_SELECT_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ZyraMultiSelect, ZyraOption } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-multi-select',
+  standalone: true,
+  imports: [FormsModule, ZyraMultiSelect, ZyraOption],
+  template: \`
+    <zyra-multi-select [(ngModel)]="frameworks" placeholder="Choose frameworks">
+      <zyra-option value="angular">Angular</zyra-option>
+      <zyra-option value="react">React</zyra-option>
+      <zyra-option value="vue">Vue</zyra-option>
+    </zyra-multi-select>
+  \`,
+})
+export class DemoMultiSelectComponent {
+  frameworks: (string | number)[] = [];
+}
+`;
+
+const AUTOCOMPLETE_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ZyraAutocomplete, ZyraOption } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-autocomplete',
+  standalone: true,
+  imports: [FormsModule, ZyraAutocomplete, ZyraOption],
+  template: \`
+    <zyra-autocomplete [(ngModel)]="framework" placeholder="Search frameworks">
+      <zyra-option value="angular">Angular</zyra-option>
+      <zyra-option value="react">React</zyra-option>
+      <zyra-option value="vue">Vue</zyra-option>
+    </zyra-autocomplete>
+  \`,
+})
+export class DemoAutocompleteComponent {
   framework: string | null = null;
 }
 `;
@@ -641,7 +891,101 @@ export const UI_COMPONENT_SHOWCASE = [
             'disabled state communicates unavailability without removing focusability',
             'All variants maintain a visible 2px focus ring for keyboard navigation',
         ],
-        relatedSlugs: ['badge', 'chip', 'switch'],
+        relatedSlugs: ['badge', 'chip', 'switch', 'button-group'],
+    },
+    {
+        slug: 'button-group',
+        title: 'Button Group',
+        selector: 'zyra-button-group',
+        importName: 'ZyraButtonGroup',
+        category: 'Actions',
+        description:
+            'Coordinates a set of ZyraButton children — shared size/variant/color/radius, layout, and optional single/multiple selection — without duplicating Button behavior.',
+        icon: square,
+        accent: 'blue',
+        highlights: [
+            'Buttons stay the single source of truth',
+            'Attached (segmented) or separated layout',
+            'Single/multiple selection, controlled or uncontrolled',
+        ],
+        exampleCode: BUTTON_GROUP_EXAMPLE_CODE,
+        variants: [
+            { name: 'separated', description: 'Default spacing, each button keeps its own radius' },
+            { name: 'attached', description: 'Segmented control — joined borders, no gap' },
+            { name: 'selectionMode="single"', description: 'Radiogroup semantics, one value selected' },
+            { name: 'selectionMode="multiple"', description: 'Toolbar of toggle buttons, aria-pressed' },
+            { name: 'selectionMode="none"', description: 'Plain cluster of independent actions' },
+        ],
+        apiProps: [
+            {
+                name: 'orientation',
+                type: "'horizontal' | 'vertical'",
+                default: "'horizontal'",
+                description: 'Layout direction',
+            },
+            {
+                name: 'join',
+                type: "'attached' | 'separated'",
+                default: "'separated'",
+                description: 'Segmented (joined) vs spaced layout',
+            },
+            {
+                name: 'gap',
+                type: "'none' | 'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Spacing between buttons when separated',
+            },
+            {
+                name: 'fullWidth',
+                type: 'boolean',
+                default: 'false',
+                description: 'Stretches buttons to evenly fill the container',
+            },
+            {
+                name: 'wrap',
+                type: 'boolean',
+                default: 'false',
+                description: 'Allows buttons to wrap onto multiple lines',
+            },
+            {
+                name: 'size, variant, color, radius',
+                type: 'ButtonSize | ButtonVariant | ButtonColor | ButtonRadius',
+                default: 'undefined',
+                description: 'Shared config pushed to children; a child’s own input always wins',
+            },
+            {
+                name: 'disabled',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables every button in the group',
+            },
+            {
+                name: 'selectionMode',
+                type: "'none' | 'single' | 'multiple'",
+                default: "'none'",
+                description: 'Whether the group tracks a selected value',
+            },
+            {
+                name: 'allowEmptySelection',
+                type: 'boolean',
+                default: 'false',
+                description: 'Single-select only: clicking the selected button again clears it',
+            },
+            {
+                name: 'value',
+                type: 'string | number | (string | number)[] | null',
+                default: 'null',
+                description: 'Two-way bindable selection; also works with ngModel/reactive forms',
+            },
+        ],
+        a11yNotes: [
+            'role="radiogroup" + role="radio"/aria-checked in single-select mode',
+            'role="group" + aria-pressed on each button in multiple-select mode',
+            'Arrow keys move focus (and select, in single mode); Home/End jump to first/last enabled button',
+            'Roving tabindex keeps exactly one button in the Tab order at a time',
+            'Disabled buttons are skipped during keyboard navigation',
+        ],
+        relatedSlugs: ['button', 'radio', 'chip'],
     },
     {
         slug: 'badge',
@@ -781,6 +1125,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Monospace code snippets with an optional filename/language header, line numbers, and a one-click copy button.',
         icon: code,
         accent: 'blue',
+        status: 'new',
         highlights: [
             'One-click copy to clipboard',
             'Optional line numbers',
@@ -1015,6 +1360,10 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'default', description: 'Standard text/email/password field' },
             { name: 'with prefix icon', description: 'Icon inside the leading edge of the field' },
             { name: 'with clear button', description: 'Shows x button to clear the value' },
+            {
+                name: 'debounced search',
+                description: 'type="search" with [debounce] to emit (search) after the user pauses typing',
+            },
             { name: 'disabled', description: 'Non-interactive state with muted styling' },
             { name: 'error', description: 'Red border and error icon for invalid state' },
         ],
@@ -1075,10 +1424,24 @@ export const UI_COMPONENT_SHOWCASE = [
                 description: 'Maximum value (number inputs)',
             },
             {
+                name: 'debounce',
+                type: 'number',
+                default: '0',
+                description:
+                    'Milliseconds to wait after the last keystroke before emitting `search`. 0 disables debouncing',
+            },
+            {
                 name: 'valueChange (output)',
                 type: 'string',
                 default: '-',
                 description: 'Emits the current string value on every keystroke',
+            },
+            {
+                name: 'search (output)',
+                type: 'string',
+                default: '-',
+                description:
+                    'Emits the value once `debounce` ms have elapsed since the last keystroke (only when debounce > 0)',
             },
             {
                 name: 'focused (output)',
@@ -1097,8 +1460,246 @@ export const UI_COMPONENT_SHOWCASE = [
             'Always associate an input with a visible <label> or use aria-label',
             'Pair with ZyraFormField to get proper label and hint associations automatically',
             'Error state sets aria-invalid="true"; pair with an error message element using aria-describedby',
+            'type="search" fields clear on Escape, matching native browser search inputs',
         ],
         relatedSlugs: ['form-field', 'switch', 'button'],
+    },
+    {
+        slug: 'otp-input',
+        title: 'OTP Input',
+        selector: 'zyra-input',
+        importName: 'ZyraInput',
+        category: 'Forms',
+        description:
+            'One-time-passcode entry rendered as N separate boxes — set otpLength on ZyraInput to switch it from a single field into this mode.',
+        icon: keyboard,
+        accent: 'amber',
+        status: 'new',
+        highlights: [
+            'Auto-advances focus as each box fills, and back on Backspace',
+            'Pasting a full code distributes it across every box',
+            'Emits `complete` once every box has a character',
+        ],
+        exampleCode: OTP_INPUT_EXAMPLE_CODE,
+        variants: [
+            { name: 'numeric', description: 'Digits only (default) — matches SMS one-time codes' },
+            { name: 'alphanumeric', description: 'Letters and digits, for email-style verification codes' },
+        ],
+        apiProps: [
+            {
+                name: 'otpLength',
+                type: 'number | null',
+                default: 'null',
+                description: 'Number of boxes to render; switches ZyraInput into OTP mode when set',
+            },
+            {
+                name: 'otpType',
+                type: "'numeric' | 'alphanumeric'",
+                default: "'numeric'",
+                description: 'Restricts which characters each box accepts',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Box dimensions and font scale',
+            },
+            {
+                name: 'complete (output)',
+                type: 'string',
+                default: '-',
+                description: 'Emits the full code once every box is filled',
+            },
+        ],
+        a11yNotes: [
+            'Boxes are grouped with role="group"; each has an aria-label identifying its position',
+            'Arrow Left/Right move between boxes; Backspace on an empty box clears and moves to the previous one',
+            'First box carries autocomplete="one-time-code" so mobile browsers can offer SMS autofill',
+        ],
+        relatedSlugs: ['input', 'password-input', 'form-field'],
+    },
+    {
+        slug: 'password-input',
+        title: 'Password Input',
+        selector: 'zyra-input',
+        importName: 'ZyraInput',
+        category: 'Forms',
+        description:
+            'Standard password field with a built-in show/hide toggle — set type="password" on ZyraInput inside ZyraFormField and the eye icon appears automatically.',
+        icon: keyboard,
+        accent: 'amber',
+        status: 'new',
+        highlights: [
+            'ZyraFormField detects type="password" and adds the toggle for you',
+            'No extra wiring — same CVA/ngModel/formControl integration as any other ZyraInput',
+            'Toggle button is keyboard and screen-reader accessible',
+        ],
+        exampleCode: PASSWORD_INPUT_EXAMPLE_CODE,
+        variants: [
+            { name: 'outline', description: 'Default bordered appearance' },
+            { name: 'filled', description: 'Filled background with bottom border only' },
+            { name: 'underline', description: 'Minimal underline-only border' },
+        ],
+        apiProps: [
+            {
+                name: 'type',
+                type: "'password'",
+                default: '-',
+                description: 'Set on ZyraInput to enable password masking and the ZyraFormField toggle',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Height and font scale (set on ZyraFormField)',
+            },
+        ],
+        a11yNotes: [
+            'Toggle button has an aria-label that switches between "Show password" and "Hide password"',
+            'Toggle is excluded from tab order (tabindex="-1") so Tab moves straight from the field to the next control',
+        ],
+        relatedSlugs: ['input', 'otp-input', 'form-field'],
+    },
+    {
+        slug: 'slider',
+        title: 'Slider',
+        selector: 'zyra-slider',
+        importName: 'ZyraSlider',
+        category: 'Forms',
+        description:
+            'Range input for numeric selection — a fully styled native <input type="range"> that keeps native keyboard, drag, and touch support for free.',
+        icon: keyboard,
+        accent: 'amber',
+        status: 'new',
+        highlights: [
+            'Styled native range input — no reimplemented drag/keyboard handling',
+            'Optional live value label',
+            'Works with Angular forms (CVA) like any other control',
+        ],
+        exampleCode: SLIDER_EXAMPLE_CODE,
+        variants: [
+            { name: 'sm / md / lg', description: 'Track thickness and thumb size scale with the size input' },
+        ],
+        apiProps: [
+            {
+                name: 'value',
+                type: 'number',
+                default: '0',
+                description: 'Two-way bound current value via [(value)] or ngModel',
+            },
+            {
+                name: 'min',
+                type: 'number',
+                default: '0',
+                description: 'Minimum value',
+            },
+            {
+                name: 'max',
+                type: 'number',
+                default: '100',
+                description: 'Maximum value',
+            },
+            {
+                name: 'step',
+                type: 'number',
+                default: '1',
+                description: 'Increment size',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Track thickness and thumb size',
+            },
+            {
+                name: 'showValue',
+                type: 'boolean',
+                default: 'false',
+                description: 'Shows the current value as a label next to the track',
+            },
+            {
+                name: 'valueLabel',
+                type: '(value: number) => string',
+                default: '(v) => `${v}`',
+                description: 'Formats the displayed value, e.g. as a percentage',
+            },
+            {
+                name: 'changed (output)',
+                type: 'number',
+                default: '-',
+                description: 'Emits the new value on every input event',
+            },
+        ],
+        a11yNotes: [
+            'Native <input type="range"> under the hood — Arrow keys, Home/End, and Page Up/Down all work out of the box',
+            'aria-valuetext reflects the formatted (valueLabel) display value for screen readers',
+        ],
+        relatedSlugs: ['input', 'rating', 'switch'],
+    },
+    {
+        slug: 'file-upload',
+        title: 'File Upload',
+        selector: 'zyra-file-upload',
+        importName: 'ZyraFileUpload',
+        category: 'Forms',
+        description:
+            'Click-to-browse and drag-and-drop file picker with type/size/count validation and a removable file list.',
+        icon: keyboard,
+        accent: 'amber',
+        status: 'new',
+        highlights: [
+            'Click or drag-and-drop to select files',
+            'Validates type (accept), size (maxSizeMb), and count (maxFiles), reporting rejects separately',
+            'Selected files render as a removable list with formatted sizes',
+        ],
+        exampleCode: FILE_UPLOAD_EXAMPLE_CODE,
+        variants: [
+            { name: 'single', description: 'Default — selecting a new file replaces the current one' },
+            { name: 'multiple', description: 'Accumulates files across selections up to maxFiles' },
+        ],
+        apiProps: [
+            {
+                name: 'multiple',
+                type: 'boolean',
+                default: 'false',
+                description: 'Allows selecting/accumulating more than one file',
+            },
+            {
+                name: 'accept',
+                type: 'string',
+                default: "''",
+                description: 'Comma-separated extensions/MIME patterns, e.g. ".pdf,image/*"',
+            },
+            {
+                name: 'maxSizeMb',
+                type: 'number | null',
+                default: 'null',
+                description: 'Rejects files larger than this size',
+            },
+            {
+                name: 'maxFiles',
+                type: 'number | null',
+                default: 'null',
+                description: 'Rejects files beyond this count',
+            },
+            {
+                name: 'filesChange (output)',
+                type: 'File[]',
+                default: '-',
+                description: 'Emits the current accepted file list whenever it changes',
+            },
+            {
+                name: 'rejected (output)',
+                type: "{ file: File; reason: 'size' | 'type' | 'count' }[]",
+                default: '-',
+                description: 'Emits files that failed validation, with the reason for each',
+            },
+        ],
+        a11yNotes: [
+            'Dropzone is a role="button" with tabindex="0" — Enter/Space opens the file picker',
+            'Each file in the list has a labeled, keyboard-accessible remove button',
+        ],
+        relatedSlugs: ['input', 'button', 'form-field'],
     },
     {
         slug: 'form-field',
@@ -1430,6 +2031,204 @@ export const UI_COMPONENT_SHOWCASE = [
             'aria-labelledby links the title to the dialog for screen reader announcement',
         ],
         relatedSlugs: ['button', 'tooltip', 'accordion'],
+    },
+    {
+        slug: 'confirm-dialog',
+        title: 'Confirm Dialog',
+        selector: 'zyra-confirm-dialog',
+        importName: 'ZyraConfirmDialog',
+        category: 'Overlays',
+        description:
+            'Purpose-built modal for confirm/cancel prompts — title, message, and Cancel/Confirm actions wired up on top of zyra-modal.',
+        icon: check,
+        accent: 'purple',
+        status: 'new',
+        highlights: [
+            'Wraps zyra-modal — same focus trap, ESC, and backdrop dismiss',
+            'Danger tone for destructive actions',
+            'Loading state disables actions during an async confirm',
+        ],
+        exampleCode: CONFIRM_DIALOG_EXAMPLE_CODE,
+        variants: [
+            { name: 'default', description: 'Neutral confirm action (primary button)' },
+            { name: 'danger', description: 'Destructive confirm action (danger button)' },
+        ],
+        apiProps: [
+            {
+                name: 'open',
+                type: 'boolean',
+                default: 'false',
+                description: 'Two-way bound visibility state via [(open)]',
+            },
+            {
+                name: 'title',
+                type: 'string',
+                default: "'Are you sure?'",
+                description: 'Dialog heading',
+            },
+            {
+                name: 'message',
+                type: 'string',
+                default: "''",
+                description: 'Body text shown when no content is projected',
+            },
+            {
+                name: 'tone',
+                type: "'default' | 'danger'",
+                default: "'default'",
+                description: 'Controls the Confirm button color',
+            },
+            {
+                name: 'confirmLabel',
+                type: 'string',
+                default: "'Confirm'",
+                description: 'Text for the confirm button',
+            },
+            {
+                name: 'cancelLabel',
+                type: 'string',
+                default: "'Cancel'",
+                description: 'Text for the cancel button',
+            },
+            {
+                name: 'loading',
+                type: 'boolean',
+                default: 'false',
+                description: 'Shows a loading state on the confirm button and disables both actions',
+            },
+            {
+                name: 'confirmed (output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits when Confirm is clicked (dialog does not auto-close)',
+            },
+            {
+                name: 'cancelled (output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits when the dialog is dismissed via Cancel, ESC, or backdrop click',
+            },
+        ],
+        a11yNotes: [
+            'Inherits role="dialog" and aria-modal="true" from zyra-modal',
+            'Focus is trapped inside the dialog while open, and ESC dismisses it',
+            'Cancel and Confirm buttons are disabled while loading to prevent double submission',
+        ],
+        relatedSlugs: ['modal', 'button', 'drawer'],
+    },
+    {
+        slug: 'theme-switch',
+        title: 'Theme Switch',
+        selector: 'zyra-theme-switch',
+        importName: 'ZyraThemeSwitch',
+        category: 'Overlays',
+        description:
+            'Drop-in theme picker button wired directly to ZyraThemeService — a compact toggle or a full 5-theme menu.',
+        icon: palette,
+        accent: 'teal',
+        status: 'new',
+        highlights: [
+            'Reads/writes theme through the existing ZyraThemeService — no wiring required',
+            '"toggle" mode flips dark/light; "menu" mode picks from all 5 themes',
+            'Sun/moon trigger icon reflects the active color scheme',
+        ],
+        exampleCode: THEME_SWITCH_EXAMPLE_CODE,
+        variants: [
+            { name: 'menu', description: 'Dropdown listing all 5 themes with a check on the active one' },
+            { name: 'toggle', description: 'Single click flips between dark and light only' },
+        ],
+        apiProps: [
+            {
+                name: 'mode',
+                type: "'menu' | 'toggle'",
+                default: "'menu'",
+                description: 'Whether the trigger opens a theme menu or toggles dark/light directly',
+            },
+            {
+                name: 'disabled',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables the trigger button',
+            },
+            {
+                name: 'aria-label',
+                type: 'string',
+                default: "'Toggle theme'",
+                description: 'Accessible name for the trigger button',
+            },
+        ],
+        a11yNotes: [
+            'Trigger has a 44×44px hit-slop for touch targets (WCAG 2.5.5) despite a 36px visual size',
+            'Menu options use role="menuitemradio" with aria-checked reflecting the active theme',
+            'Dropdown panel repositions to stay inside the viewport on any screen size',
+        ],
+        relatedSlugs: ['dropdown-menu', 'switch'],
+    },
+    {
+        slug: 'drawer',
+        title: 'Drawer',
+        selector: 'zyra-drawer',
+        importName: 'ZyraDrawer',
+        category: 'Overlays',
+        description:
+            'Slide-in panel anchored to any edge of the screen, sharing zyra-modal\'s focus trap and dismiss behavior.',
+        icon: panelLeft,
+        accent: 'blue',
+        status: 'new',
+        highlights: [
+            'Slides in from the left, right, top, or bottom',
+            'Same focus trap, ESC, and backdrop dismiss as zyra-modal',
+            'Width/height cap adapts to full-width on narrow viewports',
+        ],
+        exampleCode: DRAWER_EXAMPLE_CODE,
+        variants: [
+            { name: 'left / right', description: 'Vertical panel, capped to sm/md/lg widths' },
+            { name: 'top / bottom', description: 'Horizontal panel spanning the viewport width' },
+        ],
+        apiProps: [
+            {
+                name: 'open',
+                type: 'boolean',
+                default: 'false',
+                description: 'Two-way bound visibility state via [(open)]',
+            },
+            {
+                name: 'side',
+                type: "'left' | 'right' | 'top' | 'bottom'",
+                default: "'right'",
+                description: 'Edge of the viewport the panel slides in from',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Maximum width for left/right panels',
+            },
+            {
+                name: 'title',
+                type: 'string',
+                default: "''",
+                description: 'Panel heading displayed in the header',
+            },
+            {
+                name: 'dismissible',
+                type: 'boolean',
+                default: 'true',
+                description: 'Shows a close × button and allows ESC / backdrop click to close',
+            },
+            {
+                name: 'closed (output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits after the drawer finishes closing',
+            },
+        ],
+        a11yNotes: [
+            'Renders with role="dialog" and aria-modal="true"',
+            'Focus is trapped inside the panel while open; ESC closes it',
+            'Panel width is capped with max-width and falls back to 100% on narrow viewports',
+        ],
+        relatedSlugs: ['modal', 'sidebar', 'confirm-dialog'],
     },
     {
         slug: 'alert',
@@ -1881,6 +2680,117 @@ export const UI_COMPONENT_SHOWCASE = [
             'Disabled options are marked aria-disabled and skipped by keyboard navigation',
         ],
         relatedSlugs: ['input', 'form-field', 'switch'],
+    },
+    {
+        slug: 'multi-select',
+        title: 'Multi Select',
+        selector: 'zyra-multi-select',
+        importName: 'ZyraMultiSelect',
+        category: 'Forms',
+        description:
+            'Select multiple options from a dropdown list, shown as dismissible chips in the trigger — extends the same option/keyboard model as ZyraSelect.',
+        icon: alignLeft,
+        accent: 'teal',
+        status: 'new',
+        highlights: [
+            'Selected values render as dismissible chips in the trigger',
+            'Panel stays open after each selection so users can pick several',
+            'Same keyboard navigation and ZyraOption markup as ZyraSelect',
+        ],
+        exampleCode: MULTI_SELECT_EXAMPLE_CODE,
+        variants: [
+            { name: 'outline', description: 'Default bordered appearance matching ZyraInput outline' },
+            { name: 'filled', description: 'Filled background with bottom border only' },
+            { name: 'underline', description: 'Minimal underline-only border' },
+        ],
+        apiProps: [
+            {
+                name: 'placeholder',
+                type: 'string',
+                default: "'Select options'",
+                description: 'Text shown when nothing is selected',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Height and font scale',
+            },
+            {
+                name: 'appearance',
+                type: "'outline' | 'filled' | 'underline'",
+                default: "'outline'",
+                description: 'Visual style of the trigger',
+            },
+            {
+                name: 'maxChips',
+                type: 'number',
+                default: '3',
+                description: 'Maximum chips shown before collapsing into "+N more"',
+            },
+        ],
+        a11yNotes: [
+            'Panel uses role="listbox" with aria-multiselectable="true"',
+            'Trigger is a div with role="button" (not <button>) since chip dismiss buttons nest inside it',
+            'Arrow keys navigate options; Enter/Space toggles; Escape closes; Tab dismisses',
+            'Each chip\'s dismiss button is independently focusable and keyboard-operable',
+        ],
+        relatedSlugs: ['select', 'autocomplete', 'chip'],
+    },
+    {
+        slug: 'autocomplete',
+        title: 'Autocomplete',
+        selector: 'zyra-autocomplete',
+        importName: 'ZyraAutocomplete',
+        category: 'Forms',
+        description:
+            'Type-to-filter combobox built on the same ZyraOption/token foundation as ZyraSelect, with a text input trigger instead of a button.',
+        icon: alignLeft,
+        accent: 'blue',
+        status: 'new',
+        highlights: [
+            'Filters projected zyra-option children as you type',
+            'Arrow keys + Enter select the highlighted match',
+            'Reverts to the committed selection\'s label if the query no longer matches on blur',
+        ],
+        exampleCode: AUTOCOMPLETE_EXAMPLE_CODE,
+        variants: [
+            { name: 'outline', description: 'Default bordered appearance matching ZyraInput outline' },
+            { name: 'filled', description: 'Filled background with bottom border only' },
+            { name: 'underline', description: 'Minimal underline-only border' },
+        ],
+        apiProps: [
+            {
+                name: 'placeholder',
+                type: 'string',
+                default: "'Search…'",
+                description: 'Placeholder text for the input',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Height and font scale',
+            },
+            {
+                name: 'appearance',
+                type: "'outline' | 'filled' | 'underline'",
+                default: "'outline'",
+                description: 'Visual style of the input',
+            },
+            {
+                name: 'noResultsLabel',
+                type: 'string',
+                default: "'No results'",
+                description: 'Message shown in the panel when the query matches nothing',
+            },
+        ],
+        a11yNotes: [
+            'Input uses role="combobox" with aria-autocomplete="list" and aria-expanded',
+            'Panel uses role="listbox"; aria-activedescendant tracks the highlighted match',
+            'Arrow keys move the highlight; Enter selects; Escape closes; Tab dismisses',
+        ],
+        relatedSlugs: ['select', 'multi-select', 'input'],
     },
     {
         slug: 'textarea',
@@ -2336,6 +3246,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Consistent text styles for headings, body copy, and captions — renders the correct semantic HTML tag automatically.',
         icon: alignLeft,
         accent: 'blue',
+        status: 'new',
         highlights: [
             'Real heading tags for SEO and a11y',
             'Consistent type scale across the app',
@@ -2415,6 +3326,7 @@ export class DemoTypographyComponent {}
             'A friendly placeholder for empty lists, no search results, or first-run screens, with room for an icon and actions.',
         icon: boxOpen,
         accent: 'purple',
+        status: 'new',
         highlights: [
             'Icon, title, and description slots',
             'Optional actions row',
@@ -2481,6 +3393,7 @@ export class DemoEmptyStateComponent {}
             'A one-click copy-to-clipboard trigger with a built-in "copied" confirmation state, for API keys, code snippets, and share links.',
         icon: copy,
         accent: 'teal',
+        status: 'new',
         highlights: [
             'Button or icon-only variants',
             'Automatic copied confirmation with icon swap',
@@ -2551,6 +3464,7 @@ export class DemoClipboardComponent {}
             'A star-rating input for reviews and feedback forms, with hover preview and keyboard support.',
         icon: star,
         accent: 'amber',
+        status: 'new',
         highlights: [
             'Configurable max stars',
             'Keyboard arrow-key adjustable',
@@ -2623,6 +3537,7 @@ export class DemoRatingComponent {
             'A flex layout primitive that arranges children in a row or column with consistent gap spacing, alignment, and wrapping.',
         icon: square,
         accent: 'green',
+        status: 'new',
         highlights: [
             'Row or column direction',
             'Token-based gap scale',
@@ -2694,6 +3609,7 @@ export class DemoStackComponent {}
             'Page-number navigation for tables and lists, with smart ellipsis collapsing for large page counts.',
         icon: caretRight,
         accent: 'blue',
+        status: 'new',
         highlights: [
             'Collapses long page ranges with an ellipsis',
             'Configurable sibling count',
@@ -2769,6 +3685,7 @@ export class DemoPaginationComponent {
             'A numbered step indicator for multi-step forms and wizards, with horizontal and vertical layouts.',
         icon: check,
         accent: 'purple',
+        status: 'new',
         highlights: [
             'Horizontal or vertical orientation',
             'Completed / active / upcoming step states',
@@ -2851,6 +3768,7 @@ export class DemoStepperComponent {
             'A click- or hover-triggered floating panel for rich contextual content, menus, or previews — richer than a tooltip.',
         icon: message,
         accent: 'teal',
+        status: 'new',
         highlights: [
             'Click or hover trigger modes',
             'Projected trigger and content slots',
@@ -2915,6 +3833,7 @@ export class DemoPopoverComponent {}
             'A vertical timeline for order history, activity feeds, and audit logs, with color-coded status markers.',
         icon: waveSquare,
         accent: 'green',
+        status: 'new',
         highlights: [
             'Color-coded status dots',
             'Connecting line drawn automatically',
@@ -2971,6 +3890,156 @@ export class DemoTimelineComponent {}
         relatedSlugs: ['card', 'accordion', 'skeleton'],
     },
     {
+        slug: 'carousel',
+        title: 'Carousel',
+        selector: 'zyra-carousel',
+        importName: 'ZyraCarousel',
+        category: 'Data Display',
+        description:
+            'Slideshow for images, testimonials, or promo cards — arrow and dot navigation, keyboard support, looping, and optional autoplay.',
+        icon: swatchbook,
+        accent: 'green',
+        status: 'new',
+        highlights: [
+            'Arrow keys, prev/next buttons, and dot navigation all stay in sync',
+            'Autoplay pauses on hover/focus and resumes automatically',
+            'Slides are plain projected content — any markup works inside zyra-carousel-slide',
+        ],
+        exampleCode: CAROUSEL_EXAMPLE_CODE,
+        variants: [
+            { name: 'loop', description: 'Wraps from the last slide back to the first (default)' },
+            { name: 'autoplay', description: 'Advances automatically on a timer; pauses on hover' },
+        ],
+        apiProps: [
+            {
+                name: 'loop',
+                type: 'boolean',
+                default: 'true',
+                description: 'Whether prev/next wrap around at the ends',
+            },
+            {
+                name: 'autoplay',
+                type: 'boolean',
+                default: 'false',
+                description: 'Automatically advances to the next slide on a timer',
+            },
+            {
+                name: 'autoplayInterval',
+                type: 'number',
+                default: '5000',
+                description: 'Milliseconds between automatic slide advances',
+            },
+            {
+                name: 'showArrows',
+                type: 'boolean',
+                default: 'true',
+                description: 'Shows the prev/next arrow buttons',
+            },
+            {
+                name: 'showDots',
+                type: 'boolean',
+                default: 'true',
+                description: 'Shows the dot navigation',
+            },
+            {
+                name: 'indexChange (output)',
+                type: 'number',
+                default: '-',
+                description: 'Emits the active slide index whenever it changes',
+            },
+        ],
+        a11yNotes: [
+            'Root has role="region" with aria-roledescription="carousel"',
+            'Each slide has role="group" with aria-roledescription="slide"',
+            'Arrow Left/Right keys navigate; dots use role="tab" with aria-selected reflecting the active slide',
+            'Autoplay pauses on mouseenter and resumes on mouseleave so it never fights a reading user',
+        ],
+        relatedSlugs: ['card', 'timeline', 'empty-state'],
+    },
+    {
+        slug: 'calendar',
+        title: 'Calendar',
+        selector: 'zyra-calendar',
+        importName: 'ZyraCalendar',
+        category: 'Data Display',
+        description:
+            'Month-grid date picker with single/multiple/range selection, a quick month/year picker, keyboard navigation, min/max constraints, and full Angular Forms (CVA) integration — the foundation Date Picker will build on.',
+        icon: waveSquare,
+        accent: 'green',
+        status: 'new',
+        highlights: [
+            'Three selection modes: single date, multiple dates, or a start/end range',
+            'Click the month label to jump straight to any month/year instead of paging one at a time',
+            'Arrow keys move focus by day; Enter/Space selects the focused date',
+            'min/max inputs disable out-of-range dates',
+            'Works with Angular forms (CVA) like any other control',
+        ],
+        exampleCode: CALENDAR_EXAMPLE_CODE,
+        variants: [
+            { name: 'single', description: 'Default — one selected date, value is Date | null' },
+            { name: 'multiple', description: 'Several non-contiguous dates, value is Date[]' },
+            { name: 'range', description: 'A start/end range, value is { start, end }; first click sets start, second sets end' },
+            { name: 'constrained', description: 'min/max inputs disable dates outside the allowed range' },
+        ],
+        apiProps: [
+            {
+                name: 'value',
+                type: 'Date | Date[] | { start: Date | null; end: Date | null } | null',
+                default: 'null',
+                description: 'Two-way bound selection via [(value)] or ngModel — shape depends on selectionMode',
+            },
+            {
+                name: 'selectionMode',
+                type: "'single' | 'multiple' | 'range'",
+                default: "'single'",
+                description: 'Controls the selection behavior and the shape of value',
+            },
+            {
+                name: 'min',
+                type: 'Date | null',
+                default: 'null',
+                description: 'Dates before this are disabled',
+            },
+            {
+                name: 'max',
+                type: 'Date | null',
+                default: 'null',
+                description: 'Dates after this are disabled',
+            },
+            {
+                name: 'firstDayOfWeek',
+                type: 'number',
+                default: '0',
+                description: '0 = Sunday, 1 = Monday, etc. — controls the weekday column order',
+            },
+            {
+                name: 'locale',
+                type: 'string',
+                default: "'en-US'",
+                description: 'Locale used to format the month label and weekday names',
+            },
+            {
+                name: 'dateSelected (output)',
+                type: 'Date',
+                default: '-',
+                description: 'Emits the clicked/confirmed date on every selection, regardless of mode',
+            },
+            {
+                name: 'monthChange (output)',
+                type: '{ year: number; month: number }',
+                default: '-',
+                description: 'Emits whenever the visible month changes',
+            },
+        ],
+        a11yNotes: [
+            'Grid uses role="grid"/role="row"/role="gridcell" on the day buttons',
+            'Only the focused day is in the tab order (roving tabindex) — Arrow keys move focus between days',
+            'Today\'s date is marked with aria-current="date"',
+            'The month label is a button with aria-haspopup for the month/year picker view',
+        ],
+        relatedSlugs: ['carousel', 'input', 'form-field'],
+    },
+    {
         slug: 'header',
         title: 'Header',
         selector: 'zyra-header',
@@ -2980,6 +4049,7 @@ export class DemoTimelineComponent {}
             'An app-shell header with brand, nav and action slots — built-in mobile drawer, scroll elevation, and sticky/fixed positioning.',
         icon: menu,
         accent: 'blue',
+        status: 'new',
         highlights: [
             'Content-projection slots for brand, nav, and actions',
             'Built-in mobile menu toggle — no manual drawer wiring needed',
@@ -3120,6 +4190,7 @@ export class DemoHeaderComponent {}
             'A collapsible app-shell navigation rail with header/footer slots, grouped sections, and active/disabled item states.',
         icon: panelLeft,
         accent: 'blue',
+        status: 'new',
         highlights: [
             'Collapsible with a two-way collapsed model',
             'Header and footer content-projection slots',
@@ -3206,6 +4277,293 @@ export class DemoSidebarComponent {
             'Header and footer slots collapse to nothing in the DOM when left empty',
         ],
         relatedSlugs: ['header', 'tabs', 'breadcrumb'],
+    },
+    {
+        slug: 'box',
+        title: 'Box',
+        selector: 'zyra-box',
+        importName: 'ZyraBox',
+        category: 'Layout',
+        description:
+            'The foundational layout primitive — spacing, radius, background, shadow, border and dimensions driven entirely by design tokens.',
+        icon: boxOpen,
+        accent: 'teal',
+        highlights: [
+            'Token-based padding, margin, radius and shadow scales',
+            'Width/height and min/max dimension props',
+            'Tone variants (accent/success/warning/danger/info) for quick status boxes',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraBox } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-box',
+  standalone: true,
+  imports: [ZyraBox],
+  template: \`
+    <zyra-box padding="md" background="surface" rounded="lg">
+      content
+    </zyra-box>
+  \`,
+})
+export class DemoBoxComponent {}
+`,
+        variants: [
+            { name: 'background', description: 'none / surface / surface-subtle / surface-inset / tone (accent, success, warning, danger, info)' },
+            { name: 'shadow', description: 'none / sm / md / lg' },
+        ],
+        apiProps: [
+            { name: 'padding', type: 'BoxSpacing', default: "'none'", description: 'Uniform padding from the spacing scale' },
+            { name: 'paddingX / paddingY', type: 'BoxSpacing', default: 'undefined', description: 'Per-axis padding override' },
+            { name: 'margin', type: 'BoxSpacing', default: "'none'", description: 'Uniform margin from the spacing scale' },
+            { name: 'rounded', type: 'BoxRadius', default: "'none'", description: 'Border radius token' },
+            { name: 'background', type: 'BoxBackground', default: "'none'", description: 'Semantic background or tone variant' },
+            { name: 'border', type: 'boolean', default: 'false', description: 'Shows a 1px border, tinted to match a tone background' },
+            { name: 'width / height', type: 'string | number', default: 'undefined', description: 'Numbers are treated as pixels' },
+            { name: 'minWidth / maxWidth / minHeight / maxHeight', type: 'string | number', default: 'undefined', description: 'Dimension constraints' },
+            { name: 'overflow', type: "'visible' | 'hidden' | 'auto' | 'scroll' | 'clip'", default: "'visible'", description: 'Uniform overflow, with overflowX/overflowY overrides' },
+            { name: 'shadow', type: "'none' | 'sm' | 'md' | 'lg'", default: "'none'", description: 'Elevation shadow token' },
+            { name: 'position', type: "'static' | 'relative' | 'absolute' | 'fixed' | 'sticky'", default: "'static'", description: 'With optional top/right/bottom/left offsets' },
+            { name: 'cursor', type: 'BoxCursor', default: "'auto'", description: 'Mouse cursor style' },
+            { name: 'userSelect', type: "'auto' | 'none' | 'text' | 'all'", default: "'auto'", description: 'Text selection behavior' },
+        ],
+        a11yNotes: [
+            'Box is a plain, non-semantic wrapper — use it for visual grouping, not in place of semantic HTML',
+        ],
+        relatedSlugs: ['flex', 'grid', 'container'],
+    },
+    {
+        slug: 'flex',
+        title: 'Flex',
+        selector: 'zyra-flex',
+        importName: 'ZyraFlex',
+        category: 'Layout',
+        description:
+            'A flexbox layout primitive with direction, alignment, gap and wrap — plus a companion ZyraFlexItem for per-child grow/shrink/basis/order control.',
+        icon: scaleBalanced,
+        accent: 'blue',
+        highlights: [
+            'Responsive direction and gap via breakpoint objects',
+            'wrap / wrap-reverse',
+            'ZyraFlexItem for grow, shrink, basis, order and align-self',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraFlex } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-flex',
+  standalone: true,
+  imports: [ZyraFlex],
+  template: \`
+    <zyra-flex justify="between" align="center" gap="md">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </zyra-flex>
+  \`,
+})
+export class DemoFlexComponent {}
+`,
+        variants: [
+            { name: 'direction', description: 'row / row-reverse / column / column-reverse, or a responsive object' },
+            { name: 'wrap', description: 'wrap / wrap-reverse via `wrap` and `wrapReverse`' },
+        ],
+        apiProps: [
+            { name: 'direction', type: 'FlexDirection | FlexResponsiveDirection', default: "'row'", description: 'Flex direction, or a { base, sm, md, lg, xl } breakpoint map' },
+            { name: 'align', type: 'FlexAlign', default: "'stretch'", description: 'align-items' },
+            { name: 'justify', type: 'FlexJustify', default: "'start'", description: 'justify-content' },
+            { name: 'gap', type: 'BoxSpacing | FlexResponsiveGap', default: "'none'", description: 'Gap, or a responsive breakpoint map' },
+            { name: 'wrap / wrapReverse', type: 'boolean', default: 'false', description: 'flex-wrap: wrap / wrap-reverse' },
+            { name: 'inline', type: 'boolean', default: 'false', description: 'Uses inline-flex instead of flex' },
+        ],
+        a11yNotes: [
+            'Purely visual layout — doesn’t change the tab order of projected content',
+        ],
+        relatedSlugs: ['box', 'grid', 'stack'],
+    },
+    {
+        slug: 'grid',
+        title: 'Grid',
+        selector: 'zyra-grid',
+        importName: 'ZyraGrid',
+        category: 'Layout',
+        description:
+            'A CSS Grid layout primitive with responsive columns/rows, auto-fit/auto-fill tracks, named areas, and a companion ZyraGridItem for column/row span.',
+        icon: cubes,
+        accent: 'purple',
+        highlights: [
+            'Responsive columns and rows via breakpoint objects',
+            'auto-fit / auto-fill with a configurable minimum track size',
+            'ZyraGridItem for column/row span and named-area placement',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraGrid } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-grid',
+  standalone: true,
+  imports: [ZyraGrid],
+  template: \`
+    <zyra-grid [columns]="3" gap="sm">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </zyra-grid>
+  \`,
+})
+export class DemoGridComponent {}
+`,
+        variants: [
+            { name: 'columns', description: 'A number, "auto-fit" / "auto-fill", a raw track string, or a responsive breakpoint object' },
+            { name: 'areas', description: 'Named grid-template-areas rows, consumed by ZyraGridItem’s `area` input' },
+        ],
+        apiProps: [
+            { name: 'columns / rows', type: 'GridColumnsValue | GridResponsiveColumns', default: '1', description: 'Track sizing, responsive-capable' },
+            { name: 'minTrackSize', type: 'string | number', default: "'180px'", description: 'Minimum track size for auto-fit/auto-fill' },
+            { name: 'areas', type: 'string[]', default: 'undefined', description: 'Rows of named grid-template-areas' },
+            { name: 'autoFlow', type: 'GridAutoFlow', default: "'row'", description: 'grid-auto-flow' },
+            { name: 'justifyItems / alignItems', type: "'start' | 'center' | 'end' | 'stretch'", default: "'stretch'", description: 'Default alignment of grid items' },
+            { name: 'gap / columnGap / rowGap', type: 'BoxSpacing', default: "'none'", description: 'Gap between tracks' },
+        ],
+        a11yNotes: [
+            'Visual reflow via grid-auto-flow doesn’t change DOM/tab order — keep source order meaningful',
+        ],
+        relatedSlugs: ['box', 'flex', 'container'],
+    },
+    {
+        slug: 'container',
+        title: 'Container',
+        selector: 'zyra-container',
+        importName: 'ZyraContainer',
+        category: 'Layout',
+        description:
+            'Max-width plus centering with a horizontal gutter — the wrapper every page-level layout starts from, with a Bootstrap-style responsive breakpoint mode.',
+        icon: square,
+        accent: 'green',
+        highlights: [
+            'sm / md / lg / xl / 2xl / full max-width presets',
+            'maxWidth="responsive" snaps to breakpoint widths as the viewport grows',
+            'fluid and noGutters escape hatches',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraContainer } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-container',
+  standalone: true,
+  imports: [ZyraContainer],
+  template: \`
+    <zyra-container maxWidth="lg">
+      content
+    </zyra-container>
+  \`,
+})
+export class DemoContainerComponent {}
+`,
+        variants: [
+            { name: 'maxWidth', description: 'sm / md / lg / xl / 2xl / full / responsive' },
+        ],
+        apiProps: [
+            { name: 'maxWidth', type: 'ContainerMaxWidth', default: "'xl'", description: 'Preset width, or "responsive" for breakpoint-driven widths' },
+            { name: 'centered', type: 'boolean', default: 'true', description: 'Auto left/right margins' },
+            { name: 'fluid', type: 'boolean', default: 'false', description: 'Removes the max-width constraint entirely' },
+            { name: 'noGutters', type: 'boolean', default: 'false', description: 'Removes horizontal gutter padding' },
+            { name: 'paddingX', type: 'BoxSpacing | ContainerResponsivePadding', default: "'md'", description: 'Horizontal gutter, responsive-capable' },
+        ],
+        a11yNotes: [
+            'Purely visual layout — has no semantic role of its own',
+        ],
+        relatedSlugs: ['box', 'grid', 'flex'],
+    },
+    {
+        slug: 'aspect-ratio',
+        title: 'Aspect Ratio',
+        selector: 'zyra-aspect-ratio',
+        importName: 'ZyraAspectRatio',
+        category: 'Layout',
+        description:
+            'Locks a box’s width-to-height proportions using the padding-bottom technique, so it degrades correctly even without native aspect-ratio support.',
+        icon: waveSquare,
+        accent: 'amber',
+        highlights: [
+            'Accepts a number, "16/9", or "4:3" style ratio',
+            'object-fit control for projected images/video',
+            'Optional [zyraPlaceholder] slot for blur-up placeholders',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraAspectRatio } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-aspect-ratio',
+  standalone: true,
+  imports: [ZyraAspectRatio],
+  template: \`
+    <zyra-aspect-ratio ratio="16/9">
+      <img src="photo.jpg" alt="" />
+    </zyra-aspect-ratio>
+  \`,
+})
+export class DemoAspectRatioComponent {}
+`,
+        variants: [
+            { name: 'ratio', description: '16/9, 1/1, 4/3, 21/9, or any custom w/h ratio' },
+        ],
+        apiProps: [
+            { name: 'ratio', type: 'AspectRatioValue', default: "'16/9'", description: 'Number or "w/h" / "w:h" string' },
+            { name: 'objectFit', type: "'cover' | 'contain' | 'fill' | 'none' | 'scale-down'", default: "'cover'", description: 'Applied to a directly-projected img/video' },
+            { name: 'overflowHidden', type: 'boolean', default: 'true', description: 'Clips content to the ratio box' },
+        ],
+        a11yNotes: [
+            'Projected images still need their own meaningful `alt` text',
+        ],
+        relatedSlugs: ['box', 'container'],
+    },
+    {
+        slug: 'scroll-area',
+        title: 'Scroll Area',
+        selector: 'zyra-scroll-area',
+        importName: 'ZyraScrollArea',
+        category: 'Layout',
+        description:
+            'A styled, keyboard-navigable scroll container with custom scrollbars, optional auto-hide, scroll shadows, smooth scrolling and a programmatic scroll API.',
+        icon: panelLeft,
+        accent: 'blue',
+        highlights: [
+            'Arrow keys, Home/End, Page Up/Down when focused',
+            'Auto-hide scrollbar and pure-CSS scroll shadows',
+            'scrollToTop / scrollToBottom / scrollToElement methods, plus a (scrolled) event',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraScrollArea } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-scroll-area',
+  standalone: true,
+  imports: [ZyraScrollArea],
+  template: \`
+    <zyra-scroll-area maxHeight="220px">
+      ...
+    </zyra-scroll-area>
+  \`,
+})
+export class DemoScrollAreaComponent {}
+`,
+        variants: [
+            { name: 'orientation', description: 'vertical / horizontal / both' },
+        ],
+        apiProps: [
+            { name: 'maxHeight', type: 'string', default: "'300px'", description: 'CSS max-height of the viewport' },
+            { name: 'orientation', type: "'vertical' | 'horizontal' | 'both'", default: "'vertical'", description: 'Which axes scroll' },
+            { name: 'smoothScroll', type: 'boolean', default: 'false', description: 'scroll-behavior: smooth' },
+            { name: 'autoHideScrollbar', type: 'boolean', default: 'false', description: 'Scrollbar only visible on hover/focus' },
+            { name: 'showScrollShadows', type: 'boolean', default: 'false', description: 'Pure-CSS edge shadows indicating more scrollable content' },
+            { name: 'scrolled', type: 'output<ScrollAreaScrollEvent>', default: '—', description: 'Emits scroll metrics on every native scroll event' },
+        ],
+        a11yNotes: [
+            'Focusable via tabindex="0" with role="region" and an aria-label',
+            'Arrow/Home/End/PageUp/PageDown keys move the scroll position when focused',
+        ],
+        relatedSlugs: ['box', 'sidebar'],
     },
 ] satisfies readonly UiComponentShowcaseCard[];
 

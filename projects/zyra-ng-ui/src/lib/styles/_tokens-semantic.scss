@@ -2,9 +2,7 @@
 // References tokens from _dark-theme.scss and _light-theme.scss, which load
 // after this file in index.scss. CSS custom properties resolve lazily at
 // computed-value time, so forward references are safe.
-:root,
-[data-theme='light'],
-[data-theme='dark'] {
+:root {
 
     // ── Focus ────────────────────────────────────────────────
     // --zyra-focus-ring is defined per-theme with WCAG-passing alpha (≥0.45).

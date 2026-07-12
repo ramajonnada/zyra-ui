@@ -1,0 +1,85 @@
+:host {
+    display: block;
+}
+
+.zyr-container {
+    &--border {
+        border: 1px solid var(--zyra-color-border-color);
+    }
+
+    &--responsive-mw {
+        max-width: var(--zyr-container-mw-base, 100%);
+    }
+
+    &--responsive-px {
+        padding-left: var(--zyr-container-px-base, 0px);
+        padding-right: var(--zyr-container-px-base, 0px);
+    }
+}
+
+@media (min-width: 640px) {
+    .zyr-container--responsive-mw {
+        max-width: var(--zyr-container-mw-sm, var(--zyr-container-mw-base, 100%));
+    }
+    .zyr-container--responsive-px {
+        padding-left: var(--zyr-container-px-sm, var(--zyr-container-px-base, 0px));
+        padding-right: var(--zyr-container-px-sm, var(--zyr-container-px-base, 0px));
+    }
+}
+
+@media (min-width: 768px) {
+    .zyr-container--responsive-mw {
+        max-width: var(--zyr-container-mw-md, var(--zyr-container-mw-sm, var(--zyr-container-mw-base, 100%)));
+    }
+    .zyr-container--responsive-px {
+        padding-left: var(--zyr-container-px-md, var(--zyr-container-px-sm, var(--zyr-container-px-base, 0px)));
+        padding-right: var(--zyr-container-px-md, var(--zyr-container-px-sm, var(--zyr-container-px-base, 0px)));
+    }
+}
+
+@media (min-width: 1024px) {
+    .zyr-container--responsive-mw {
+        max-width: var(
+            --zyr-container-mw-lg,
+            var(--zyr-container-mw-md, var(--zyr-container-mw-sm, var(--zyr-container-mw-base, 100%)))
+        );
+    }
+    .zyr-container--responsive-px {
+        padding-left: var(
+            --zyr-container-px-lg,
+            var(--zyr-container-px-md, var(--zyr-container-px-sm, var(--zyr-container-px-base, 0px)))
+        );
+        padding-right: var(
+            --zyr-container-px-lg,
+            var(--zyr-container-px-md, var(--zyr-container-px-sm, var(--zyr-container-px-base, 0px)))
+        );
+    }
+}
+
+@media (min-width: 1280px) {
+    .zyr-container--responsive-mw {
+        max-width: var(
+            --zyr-container-mw-xl,
+            var(
+                --zyr-container-mw-lg,
+                var(--zyr-container-mw-md, var(--zyr-container-mw-sm, var(--zyr-container-mw-base, 100%)))
+            )
+        );
+    }
+    .zyr-container--responsive-px {
+        padding-left: var(
+            --zyr-container-px-xl,
+            var(
+                --zyr-container-px-lg,
+                var(--zyr-container-px-md, var(--zyr-container-px-sm, var(--zyr-container-px-base, 0px)))
+            )
+        );
+        padding-right: var(
+            --zyr-container-px-xl,
+            var(
+                --zyr-container-px-lg,
+                var(--zyr-container-px-md, var(--zyr-container-px-sm, var(--zyr-container-px-base, 0px)))
+            )
+        );
+    }
+}

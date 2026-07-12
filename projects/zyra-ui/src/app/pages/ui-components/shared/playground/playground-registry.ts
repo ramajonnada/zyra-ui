@@ -5,6 +5,7 @@ import { AvatarRenderer } from './renderers/avatar-renderer';
 import { BadgeRenderer } from './renderers/badge-renderer';
 import { BreadcrumbRenderer } from './renderers/breadcrumb-renderer';
 import { ButtonRenderer } from './renderers/button-renderer';
+import { ButtonGroupRenderer } from './renderers/button-group-renderer';
 import { CardRenderer } from './renderers/card-renderer';
 import { CheckboxRenderer } from './renderers/checkbox-renderer';
 import { ChipRenderer } from './renderers/chip-renderer';
@@ -36,6 +37,23 @@ import { PopoverRenderer } from './renderers/popover-renderer';
 import { TimelineRenderer } from './renderers/timeline-renderer';
 import { HeaderRenderer } from './renderers/header-renderer';
 import { SidebarRenderer } from './renderers/sidebar-renderer';
+import { BoxRenderer } from './renderers/box-renderer';
+import { FlexRenderer } from './renderers/flex-renderer';
+import { GridRenderer } from './renderers/grid-renderer';
+import { ContainerRenderer } from './renderers/container-renderer';
+import { AspectRatioRenderer } from './renderers/aspect-ratio-renderer';
+import { ScrollAreaRenderer } from './renderers/scroll-area-renderer';
+import { ConfirmDialogRenderer } from './renderers/confirm-dialog-renderer';
+import { ThemeSwitchRenderer } from './renderers/theme-switch-renderer';
+import { DrawerRenderer } from './renderers/drawer-renderer';
+import { MultiSelectRenderer } from './renderers/multi-select-renderer';
+import { AutocompleteRenderer } from './renderers/autocomplete-renderer';
+import { OtpInputRenderer } from './renderers/otp-input-renderer';
+import { PasswordInputRenderer } from './renderers/password-input-renderer';
+import { SliderRenderer } from './renderers/slider-renderer';
+import { FileUploadRenderer } from './renderers/file-upload-renderer';
+import { CarouselRenderer } from './renderers/carousel-renderer';
+import { CalendarRenderer } from './renderers/calendar-renderer';
 
 export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
     button: {
@@ -94,6 +112,61 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             return (
                 (a.length ? `<zyra-button\n${a.join('\n')}\n>` : `<zyra-button>`) +
                 `\n  ${s['label'] || 'Button'}\n</zyra-button>`
+            );
+        },
+    },
+    'button-group': {
+        renderer: ButtonGroupRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'orientation',
+                label: 'orientation',
+                options: ['horizontal', 'vertical'],
+                defaultValue: 'horizontal',
+            },
+            {
+                type: 'button-group',
+                key: 'join',
+                label: 'join',
+                options: ['separated', 'attached'],
+                defaultValue: 'separated',
+            },
+            {
+                type: 'button-group',
+                key: 'selectionMode',
+                label: 'selectionMode',
+                options: ['none', 'single', 'multiple'],
+                defaultValue: 'single',
+            },
+            {
+                type: 'button-group',
+                key: 'variant',
+                label: 'variant',
+                options: ['primary', 'secondary', 'ghost', 'outline'],
+                defaultValue: 'outline',
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: '',
+                toggleLabel: 'disabled',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['orientation'] !== 'horizontal') a.push(`  orientation="${s['orientation']}"`);
+            if (s['join'] !== 'separated') a.push(`  join="${s['join']}"`);
+            if (s['selectionMode'] !== 'none') a.push(`  selectionMode="${s['selectionMode']}"`);
+            if (s['variant'] !== 'primary') a.push(`  variant="${s['variant']}"`);
+            if (s['disabled']) a.push(`  [disabled]="true"`);
+            return (
+                `<zyra-button-group\n${a.join('\n')}\n>\n` +
+                `  <zyra-button value="left">Left</zyra-button>\n` +
+                `  <zyra-button value="center">Center</zyra-button>\n` +
+                `  <zyra-button value="right">Right</zyra-button>\n` +
+                `</zyra-button-group>`
             );
         },
     },
@@ -384,16 +457,27 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 toggleLabel: 'loading',
                 defaultValue: false,
             },
+            {
+                type: 'toggle',
+                key: 'debounce',
+                label: '',
+                toggleLabel: 'debounced search (300ms)',
+                defaultValue: false,
+            },
         ],
         codeTemplate: (s) => {
             const ff: string[] = [];
             if (s['appearance'] !== 'outline') ff.push(`  appearance="${s['appearance']}"`);
             if (s['size'] !== 'md') ff.push(`  size="${s['size']}"`);
             if (s['hint']) ff.push(`  hint="${s['hint']}"`);
+            if (s['clearButton']) ff.push(`  [clearButton]="true"`);
+            if (s['loading']) ff.push(`  [loading]="true"`);
+            if (s['type'] === 'search') ff.push(`  [prefixIcon]="icons.search"`);
             const inp: string[] = [];
             if (s['type'] !== 'text') inp.push(`    type="${s['type']}"`);
-            if (s['clearButton']) inp.push(`    [clearButton]="true"`);
-            if (s['loading']) inp.push(`    [loading]="true"`);
+            if (s['debounce']) {
+                inp.push(`    [debounce]="300"`, `    (search)="onSearch($event)"`);
+            }
             const ffOpen = ff.length
                 ? `<zyra-form-field label="Label"\n${ff.join('\n')}\n>`
                 : `<zyra-form-field label="Label">`;
@@ -401,6 +485,189 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 ? `  <zyra-input\n${inp.join('\n')}\n  />`
                 : `  <zyra-input />`;
             return `${ffOpen}\n${inpTag}\n</zyra-form-field>`;
+        },
+    },
+
+    'otp-input': {
+        renderer: OtpInputRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'length',
+                label: 'length',
+                options: ['4', '6'],
+                defaultValue: '6',
+            },
+            {
+                type: 'button-group',
+                key: 'otpType',
+                label: 'type',
+                options: ['numeric', 'alphanumeric'],
+                defaultValue: 'numeric',
+            },
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [otpLength]="${s['length']}"`];
+            if (s['otpType'] !== 'numeric') a.push(`  otpType="${s['otpType']}"`);
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            return `<zyra-input\n${a.join('\n')}\n  (complete)="onComplete($event)"\n/>`;
+        },
+    },
+
+    'password-input': {
+        renderer: PasswordInputRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'appearance',
+                label: 'appearance',
+                options: ['outline', 'filled', 'underline'],
+                defaultValue: 'outline',
+            },
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+        ],
+        codeTemplate: (s) => {
+            const ff: string[] = [];
+            if (s['appearance'] !== 'outline') ff.push(`  appearance="${s['appearance']}"`);
+            if (s['size'] !== 'md') ff.push(`  size="${s['size']}"`);
+            const ffOpen = ff.length
+                ? `<zyra-form-field label="Password"\n${ff.join('\n')}\n>`
+                : `<zyra-form-field label="Password">`;
+            return `${ffOpen}\n  <zyra-input type="password" />\n</zyra-form-field>`;
+        },
+    },
+
+    slider: {
+        renderer: SliderRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'toggle',
+                key: 'showValue',
+                label: 'features',
+                toggleLabel: 'showValue',
+                defaultValue: true,
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: '',
+                toggleLabel: 'disabled',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [(ngModel)]="value"`];
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            if (s['showValue']) a.push(`  [showValue]="true"`);
+            if (s['disabled']) a.push(`  [disabled]="true"`);
+            return `<zyra-slider\n${a.join('\n')}\n/>`;
+        },
+    },
+
+    'file-upload': {
+        renderer: FileUploadRenderer,
+        controls: [
+            {
+                type: 'toggle',
+                key: 'multiple',
+                label: 'features',
+                toggleLabel: 'multiple',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: '',
+                toggleLabel: 'disabled',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['multiple']) a.push(` multiple`);
+            if (s['disabled']) a.push(` disabled`);
+            return `<zyra-file-upload${a.join('')} />`;
+        },
+    },
+
+    carousel: {
+        renderer: CarouselRenderer,
+        controls: [
+            {
+                type: 'toggle',
+                key: 'loop',
+                label: 'behaviour',
+                toggleLabel: 'loop',
+                defaultValue: true,
+            },
+            {
+                type: 'toggle',
+                key: 'autoplay',
+                label: '',
+                toggleLabel: 'autoplay',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'showDots',
+                label: '',
+                toggleLabel: 'showDots',
+                defaultValue: true,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (!s['loop']) a.push(`  [loop]="false"`);
+            if (s['autoplay']) a.push(`  autoplay`);
+            if (!s['showDots']) a.push(`  [showDots]="false"`);
+            const open = a.length ? `<zyra-carousel\n${a.join('\n')}\n>` : `<zyra-carousel>`;
+            return `${open}\n  <zyra-carousel-slide>Slide 1</zyra-carousel-slide>\n  <zyra-carousel-slide>Slide 2</zyra-carousel-slide>\n  <zyra-carousel-slide>Slide 3</zyra-carousel-slide>\n</zyra-carousel>`;
+        },
+    },
+
+    calendar: {
+        renderer: CalendarRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'selectionMode',
+                label: 'selectionMode',
+                options: ['single', 'multiple', 'range'],
+                defaultValue: 'single',
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: 'states',
+                toggleLabel: 'disabled',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [(ngModel)]="selectedDate"`];
+            if (s['selectionMode'] !== 'single') a.push(`  selectionMode="${s['selectionMode']}"`);
+            if (s['disabled']) a.push(`  [disabled]="true"`);
+            return `<zyra-calendar\n${a.join('\n')}\n/>`;
         },
     },
 
@@ -711,6 +978,64 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
+    'multi-select': {
+        renderer: MultiSelectRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'appearance',
+                label: 'appearance',
+                options: ['outline', 'filled', 'underline'],
+                defaultValue: 'outline',
+            },
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['appearance'] !== 'outline') a.push(`  appearance="${s['appearance']}"`);
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            const open = a.length
+                ? `<zyra-multi-select\n${a.join('\n')}\n>`
+                : `<zyra-multi-select>`;
+            return `${open}\n  <zyra-option value="angular">Angular</zyra-option>\n  <zyra-option value="react">React</zyra-option>\n  <zyra-option value="vue">Vue</zyra-option>\n</zyra-multi-select>`;
+        },
+    },
+
+    autocomplete: {
+        renderer: AutocompleteRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'appearance',
+                label: 'appearance',
+                options: ['outline', 'filled', 'underline'],
+                defaultValue: 'outline',
+            },
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['appearance'] !== 'outline') a.push(`  appearance="${s['appearance']}"`);
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            const open = a.length
+                ? `<zyra-autocomplete\n${a.join('\n')}\n>`
+                : `<zyra-autocomplete>`;
+            return `${open}\n  <zyra-option value="angular">Angular</zyra-option>\n  <zyra-option value="react">React</zyra-option>\n  <zyra-option value="vue">Vue</zyra-option>\n</zyra-autocomplete>`;
+        },
+    },
+
     skeleton: {
         renderer: SkeletonRenderer,
         stageClass: 'column',
@@ -911,6 +1236,108 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             if (s['title']) a.push(`  title="${s['title']}"`);
             if (!s['dismissible']) a.push(`  [dismissible]="false"`);
             return `<zyra-modal\n${a.join('\n')}\n>\n  <p>Modal body content goes here.</p>\n  <div slot="footer">\n    <zyra-button variant="ghost" (clicked)="isOpen.set(false)">Cancel</zyra-button>\n    <zyra-button variant="primary" (clicked)="confirm()">Confirm</zyra-button>\n  </div>\n</zyra-modal>`;
+        },
+    },
+
+    'confirm-dialog': {
+        renderer: ConfirmDialogRenderer,
+        controls: [
+            {
+                type: 'text',
+                key: 'title',
+                label: 'title',
+                placeholder: 'Dialog title',
+                defaultValue: 'Delete item?',
+            },
+            {
+                type: 'text',
+                key: 'message',
+                label: 'message',
+                placeholder: 'Dialog message',
+                defaultValue: 'This action cannot be undone.',
+            },
+            {
+                type: 'button-group',
+                key: 'tone',
+                label: 'tone',
+                options: ['default', 'danger'],
+                defaultValue: 'danger',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [(open)]="isOpen"`];
+            if (s['title']) a.push(`  title="${s['title']}"`);
+            if (s['message']) a.push(`  message="${s['message']}"`);
+            if (s['tone'] !== 'default') a.push(`  tone="${s['tone']}"`);
+            return `<zyra-confirm-dialog\n${a.join('\n')}\n  (confirmed)="onConfirm()"\n/>`;
+        },
+    },
+
+    'theme-switch': {
+        renderer: ThemeSwitchRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'mode',
+                label: 'mode',
+                options: ['menu', 'toggle'],
+                defaultValue: 'menu',
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: 'states',
+                toggleLabel: 'disabled',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['mode'] !== 'menu') a.push(` mode="${s['mode']}"`);
+            if (s['disabled']) a.push(` disabled`);
+            return `<zyra-theme-switch${a.join('')} />`;
+        },
+    },
+
+    drawer: {
+        renderer: DrawerRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'side',
+                label: 'side',
+                options: ['left', 'right', 'top', 'bottom'],
+                defaultValue: 'right',
+            },
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'text',
+                key: 'title',
+                label: 'title',
+                placeholder: 'Drawer title',
+                defaultValue: 'Filters',
+            },
+            {
+                type: 'toggle',
+                key: 'dismissible',
+                label: 'behaviour',
+                toggleLabel: 'dismissible',
+                defaultValue: true,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [(open)]="isOpen"`];
+            if (s['side'] !== 'right') a.push(`  side="${s['side']}"`);
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            if (s['title']) a.push(`  title="${s['title']}"`);
+            if (!s['dismissible']) a.push(`  [dismissible]="false"`);
+            return `<zyra-drawer\n${a.join('\n')}\n>\n  <p>Drawer body content goes here.</p>\n  <div slot="footer">\n    <zyra-button variant="ghost" (clicked)="isOpen.set(false)">Cancel</zyra-button>\n    <zyra-button variant="primary" (clicked)="save()">Save</zyra-button>\n  </div>\n</zyra-drawer>`;
         },
     },
 
@@ -1476,6 +1903,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
     header: {
         renderer: HeaderRenderer,
         stageClass: 'column',
+        layout: 'stacked',
         controls: [
             {
                 type: 'button-group',
@@ -1549,6 +1977,248 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             const badge = s['badge'] ? ` badge="3"` : '';
             const disabled = s['disabled'] ? ` [disabled]="true"` : '';
             return `${open}\n  <div sidebar-header>Zyra UI</div>\n  <zyra-sidebar-section heading="General">\n    <a zyra-sidebar-item [active]="true">Overview</a>\n    <a zyra-sidebar-item>Projects</a>\n  </zyra-sidebar-section>\n  <zyra-sidebar-section heading="Account">\n    <a zyra-sidebar-item${badge}>Profile</a>\n    <a zyra-sidebar-item${disabled}>Billing</a>\n  </zyra-sidebar-section>\n</zyra-sidebar>`;
+        },
+    },
+
+    box: {
+        renderer: BoxRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'padding',
+                label: 'padding',
+                options: ['none', 'sm', 'md', 'lg', 'xl'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'button-group',
+                key: 'rounded',
+                label: 'rounded',
+                options: ['none', 'sm', 'lg', 'full'],
+                defaultValue: 'lg',
+            },
+            {
+                type: 'button-group',
+                key: 'background',
+                label: 'background',
+                options: ['none', 'surface', 'surface-inset', 'accent', 'danger'],
+                defaultValue: 'surface',
+            },
+            {
+                type: 'button-group',
+                key: 'shadow',
+                label: 'shadow',
+                options: ['none', 'sm', 'md', 'lg'],
+                defaultValue: 'none',
+            },
+            {
+                type: 'toggle',
+                key: 'border',
+                label: 'states',
+                toggleLabel: 'border',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['padding'] !== 'md') a.push(`  padding="${s['padding']}"`);
+            if (s['rounded'] !== 'lg') a.push(`  rounded="${s['rounded']}"`);
+            if (s['background'] !== 'surface') a.push(`  background="${s['background']}"`);
+            if (s['shadow'] !== 'none') a.push(`  shadow="${s['shadow']}"`);
+            if (s['border']) a.push(`  [border]="true"`);
+            const open = a.length ? `<zyra-box\n${a.join('\n')}\n>` : `<zyra-box>`;
+            return `${open}\n  content\n</zyra-box>`;
+        },
+    },
+
+    flex: {
+        renderer: FlexRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'direction',
+                label: 'direction',
+                options: ['row', 'column'],
+                defaultValue: 'row',
+            },
+            {
+                type: 'button-group',
+                key: 'justify',
+                label: 'justify',
+                options: ['start', 'center', 'between', 'end'],
+                defaultValue: 'start',
+            },
+            {
+                type: 'button-group',
+                key: 'align',
+                label: 'align',
+                options: ['start', 'center', 'end', 'stretch'],
+                defaultValue: 'stretch',
+            },
+            {
+                type: 'button-group',
+                key: 'gap',
+                label: 'gap',
+                options: ['none', 'sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'toggle',
+                key: 'wrap',
+                label: 'states',
+                toggleLabel: 'wrap',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['direction'] !== 'row') a.push(`  direction="${s['direction']}"`);
+            if (s['justify'] !== 'start') a.push(`  justify="${s['justify']}"`);
+            if (s['align'] !== 'stretch') a.push(`  align="${s['align']}"`);
+            if (s['gap'] !== 'md') a.push(`  gap="${s['gap']}"`);
+            if (s['wrap']) a.push(`  [wrap]="true"`);
+            const open = a.length ? `<zyra-flex\n${a.join('\n')}\n>` : `<zyra-flex>`;
+            return `${open}\n  <div>1</div>\n  <div>2</div>\n  <div>3</div>\n</zyra-flex>`;
+        },
+    },
+
+    grid: {
+        renderer: GridRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'columns',
+                label: 'columns',
+                options: ['1', '2', '3', '4', 'auto-fit'],
+                defaultValue: '3',
+            },
+            {
+                type: 'button-group',
+                key: 'gap',
+                label: 'gap',
+                options: ['none', 'xs', 'sm', 'lg'],
+                defaultValue: 'sm',
+            },
+            {
+                type: 'button-group',
+                key: 'autoFlow',
+                label: 'autoFlow',
+                options: ['row', 'column', 'dense'],
+                defaultValue: 'row',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['columns'] !== '3') {
+                const cols = s['columns'] === 'auto-fit' ? `"auto-fit"` : s['columns'];
+                a.push(`  [columns]="${cols}"`);
+            }
+            if (s['gap'] !== 'sm') a.push(`  gap="${s['gap']}"`);
+            if (s['autoFlow'] !== 'row') a.push(`  autoFlow="${s['autoFlow']}"`);
+            const open = a.length ? `<zyra-grid\n${a.join('\n')}\n>` : `<zyra-grid>`;
+            return `${open}\n  <div>1</div>\n  <div>2</div>\n  <div>3</div>\n  <div>4</div>\n  <div>5</div>\n  <div>6</div>\n</zyra-grid>`;
+        },
+    },
+
+    container: {
+        renderer: ContainerRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'maxWidth',
+                label: 'maxWidth',
+                options: ['sm', 'md', 'lg', 'xl', '2xl', 'full', 'responsive'],
+                defaultValue: 'xl',
+            },
+            {
+                type: 'toggle',
+                key: 'centered',
+                label: 'states',
+                toggleLabel: 'centered',
+                defaultValue: true,
+            },
+            {
+                type: 'toggle',
+                key: 'fluid',
+                label: '',
+                toggleLabel: 'fluid',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [];
+            if (s['maxWidth'] !== 'xl') a.push(`  maxWidth="${s['maxWidth']}"`);
+            if (!s['centered']) a.push(`  [centered]="false"`);
+            if (s['fluid']) a.push(`  [fluid]="true"`);
+            const open = a.length ? `<zyra-container\n${a.join('\n')}\n>` : `<zyra-container>`;
+            return `${open}\n  content\n</zyra-container>`;
+        },
+    },
+
+    'aspect-ratio': {
+        renderer: AspectRatioRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'ratio',
+                label: 'ratio',
+                options: ['16/9', '1/1', '4/3', '21/9'],
+                defaultValue: '16/9',
+            },
+            {
+                type: 'button-group',
+                key: 'objectFit',
+                label: 'objectFit',
+                options: ['cover', 'contain', 'fill'],
+                defaultValue: 'cover',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  ratio="${s['ratio']}"`];
+            if (s['objectFit'] !== 'cover') a.push(`  objectFit="${s['objectFit']}"`);
+            return `<zyra-aspect-ratio\n${a.join('\n')}\n>\n  <img src="photo.jpg" alt="" />\n</zyra-aspect-ratio>`;
+        },
+    },
+
+    'scroll-area': {
+        renderer: ScrollAreaRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'orientation',
+                label: 'orientation',
+                options: ['vertical', 'horizontal', 'both'],
+                defaultValue: 'vertical',
+            },
+            {
+                type: 'toggle',
+                key: 'autoHideScrollbar',
+                label: 'states',
+                toggleLabel: 'auto-hide scrollbar',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'showScrollShadows',
+                label: '',
+                toggleLabel: 'scroll shadows',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'smoothScroll',
+                label: '',
+                toggleLabel: 'smooth scroll',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  maxHeight="220px"`];
+            if (s['orientation'] !== 'vertical') a.push(`  orientation="${s['orientation']}"`);
+            if (s['autoHideScrollbar']) a.push(`  [autoHideScrollbar]="true"`);
+            if (s['showScrollShadows']) a.push(`  [showScrollShadows]="true"`);
+            if (s['smoothScroll']) a.push(`  [smoothScroll]="true"`);
+            return `<zyra-scroll-area\n${a.join('\n')}\n>\n  ...\n</zyra-scroll-area>`;
         },
     },
 };

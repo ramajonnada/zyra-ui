@@ -19,7 +19,9 @@ CSS custom properties resolve lazily at computed-value time, so `index.scss` can
 
 ## Why the tier separation matters
 
-Tier 2 (semantic) is the contract. Tier 3 (component) and the raw theme-file tokens are implementation detail — they're allowed to be restructured between minor versions because nothing outside the library is supposed to depend on them directly.
+Tier 1 (foundation/dimension) and tier 2 (semantic) are the public contract — see [TOKENS.md](TOKENS.md#public-api-tiers) for the full public/internal breakdown and stability guarantees. Tier 0 (primitive) and tier 3 (component) are implementation detail — they're allowed to be restructured between minor versions because nothing outside the library is supposed to depend on them directly.
+
+Concretely, tier 3 in `_tokens-components.scss` is almost entirely state colors (`--zyra-color-btn-primary-hover-bg`, `--zyra-color-checkbox-checked-bg`, `--zyra-color-tabs-badge-active-bg`, ...) and a few calculated or fixed values (`--zyra-color-glow-shadow`, `--zyra-card-radius`, `--zyra-btn-disabled-opacity`). None of it is a documented override surface — it's how a component wires itself to tier 2, not a knob for consumers. A consumer who wants a different hover color changes the tier-2 role the component reads from (`--zyra-color-accent-hover`), not the tier-3 alias.
 
 **This rule is not fully enforced today.** Some component `.scss` files reach past the semantic tier straight into raw theme tokens (e.g. referencing `--zyra-color-accent` instead of `--zyra-color-primary`), and a few tier-2 entries are redundant aliases of a tier-lower token with an near-identical name (`--zyra-color-border-color` vs `--zyra-color-border`). This is a known rough edge, not an intentional design — new component work should consume tier 2/3 correctly even where existing code doesn't, and cleanup is welcome but out of scope for a single change (see [COMPONENT_GUIDELINES.md](COMPONENT_GUIDELINES.md)).
 

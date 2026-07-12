@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ZyraIcon, type ZyraIconData } from 'zyra-ng-ui';
 import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraButton, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../shared/breadcrumb-jsonld';
 import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
 
 interface ContactMethod {
@@ -15,7 +16,7 @@ interface ContactMethod {
 
 @Component({
     selector: 'app-contact',
-    imports: [ZyraIcon, ZyraBadge, ZyraButton, ZyraCard, ZyraBreadcrumb, ZyraBreadcrumbItem],
+    imports: [RouterLink, ZyraIcon, ZyraBadge, ZyraButton, ZyraCard, ZyraBreadcrumb, ZyraBreadcrumbItem],
     templateUrl: './contact.html',
     styleUrl: './contact.scss',
 })
@@ -49,6 +50,8 @@ export class Contact implements OnInit, OnDestroy {
             icon: globe,
         },
     ];
+
+    protected readonly crumbPath = internalPath;
 
     readonly breadcrumbItems: readonly BreadcrumbLink[] = [
         { label: 'Home', url: 'https://www.zyraui.dev/' },

@@ -1,0 +1,35 @@
+<div [class]="wrapClass()">
+    <!-- ── Trigger ─────────────────────────────────────────── -->
+    <input
+        #inputEl
+        class="zyr-autocomplete__input"
+        type="text"
+        role="combobox"
+        [id]="resolvedId()"
+        [placeholder]="placeholder()"
+        [disabled]="isDisabled()"
+        [value]="query()"
+        aria-autocomplete="list"
+        [attr.aria-expanded]="isOpen()"
+        [attr.aria-controls]="listboxId"
+        [attr.aria-activedescendant]="activeOptionId()"
+        (input)="onInput($any($event.target).value)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+    />
+
+    <!-- ── Panel — always in DOM so contentChildren works ──── -->
+    <div
+        class="zyr-autocomplete__panel"
+        [class.zyr-autocomplete__panel--open]="isOpen()"
+        [id]="listboxId"
+        role="listbox"
+        [attr.inert]="isOpen() ? null : ''"
+        [attr.aria-hidden]="!isOpen()"
+    >
+        <ng-content />
+        @if (hasNoResults()) {
+            <div class="zyr-autocomplete__empty">{{ noResultsLabel() }}</div>
+        }
+    </div>
+</div>

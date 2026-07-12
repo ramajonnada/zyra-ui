@@ -1,0 +1,85 @@
+.zyr-btn-group {
+    display: inline-flex;
+
+    &--horizontal { flex-direction: row; }
+    &--vertical { flex-direction: column; }
+
+    &--wrap { flex-wrap: wrap; }
+
+    // Equalizes button widths (flex-basis 0 + equal grow spreads the combined
+    // content width evenly). --full additionally stretches the group itself.
+    &--full,
+    &--equal {
+        ::ng-deep > zyra-button {
+            flex: 1 1 0;
+
+            .zyr-btn { width: 100%; }
+        }
+    }
+
+    &--full {
+        display: flex;
+        width: 100%;
+    }
+
+    // ── Separated (default): normal spacing, buttons keep their own radius ──
+    &--separated {
+        &.zyr-btn-group--gap-none { gap: 0; }
+        &.zyr-btn-group--gap-sm { gap: var(--zyra-space-1); }
+        &.zyr-btn-group--gap-md { gap: var(--zyra-space-2); }
+        &.zyr-btn-group--gap-lg { gap: var(--zyra-space-4); }
+    }
+
+    // ── Attached: segmented control, no gap, joined borders ──────────────
+    &--attached {
+        gap: 0;
+
+        ::ng-deep > zyra-button {
+            .zyr-btn { border-radius: 0; }
+
+            &:not(:first-child) .zyr-btn { margin-inline-start: -1px; }
+        }
+
+        &.zyr-btn-group--horizontal {
+            ::ng-deep > zyra-button:first-child .zyr-btn {
+                border-top-left-radius: var(--zyra-radius-md);
+                border-bottom-left-radius: var(--zyra-radius-md);
+            }
+            ::ng-deep > zyra-button:last-child .zyr-btn {
+                border-top-right-radius: var(--zyra-radius-md);
+                border-bottom-right-radius: var(--zyra-radius-md);
+            }
+        }
+
+        &.zyr-btn-group--vertical {
+            ::ng-deep > zyra-button {
+                .zyr-btn { border-radius: 0; }
+
+                &:not(:first-child) .zyr-btn { margin-inline-start: 0; margin-top: -1px; }
+            }
+            ::ng-deep > zyra-button:first-child .zyr-btn {
+                border-top-left-radius: var(--zyra-radius-md);
+                border-top-right-radius: var(--zyra-radius-md);
+            }
+            ::ng-deep > zyra-button:last-child .zyr-btn {
+                border-bottom-left-radius: var(--zyra-radius-md);
+                border-bottom-right-radius: var(--zyra-radius-md);
+            }
+        }
+
+        // Keep the focused/hovered button's border above its neighbors.
+        ::ng-deep > zyra-button {
+            position: relative;
+
+            .zyr-btn:hover,
+            .zyr-btn:focus-visible {
+                z-index: 1;
+            }
+        }
+    }
+
+    &--disabled {
+        opacity: var(--zyra-btn-disabled-opacity);
+        pointer-events: none;
+    }
+}

@@ -7,12 +7,12 @@ import { BlogService, PostMeta } from '../../services/blog-service';
 import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { timeout } from 'rxjs';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../shared/breadcrumb-jsonld';
 
 @Component({
     selector: 'app-blog-details',
     standalone: true,
-    imports: [CommonModule, MarkdownModule, ZyraBadge, ZyraCard, ZyraBreadcrumb, ZyraBreadcrumbItem],
+    imports: [CommonModule, MarkdownModule, RouterLink, ZyraBadge, ZyraCard, ZyraBreadcrumb, ZyraBreadcrumbItem],
     templateUrl: './blog-details.html',
     styleUrls: ['./blog-details.scss'],
 })
@@ -28,6 +28,8 @@ export class BlogDetails implements OnDestroy {
     postFaq = signal<{ q: string; a: string }[]>([]);
     loading = signal(true);
     error = signal('');
+
+    protected readonly crumbPath = internalPath;
 
     readonly breadcrumbItems = computed<BreadcrumbLink[]>(() => [
         { label: 'Home', url: 'https://www.zyraui.dev/' },

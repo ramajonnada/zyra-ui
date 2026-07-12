@@ -13,7 +13,7 @@
 	align-items: center;
 	gap: 10px;
 	padding: 14px 12px;
-	background: rgba(255, 255, 255, 0.02);
+	background: var(--zyra-color-surface-subtle);
 }
 
 .sidebar__footer-dot {
@@ -44,7 +44,7 @@
 		left: 0;
 		bottom: 0;
 		z-index: 90;
-		width: min(84vw, 300px);
+		width: min(84vw, 240px);
 		height: auto;
 		margin-right: 0;
 		transform: translateX(-100%);

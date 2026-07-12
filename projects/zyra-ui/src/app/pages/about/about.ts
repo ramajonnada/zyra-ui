@@ -4,7 +4,7 @@ import { ZyraIcon, type ZyraIconData } from 'zyra-ng-ui';
 import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraButton, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { COMPONENT_COUNT } from '../ui-components/ui-components.data';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../shared/breadcrumb-jsonld';
 import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
 
 interface AboutValue {
@@ -36,6 +36,8 @@ export class About implements OnInit, OnDestroy {
     private readonly seo = inject(SeoService);
     readonly icons = { github, sun, moon, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, caretLeft, caretRight };
     readonly componentCount = COMPONENT_COUNT;
+
+    protected readonly crumbPath = internalPath;
 
     readonly breadcrumbItems: readonly BreadcrumbLink[] = [
         { label: 'Home', url: 'https://www.zyraui.dev/' },

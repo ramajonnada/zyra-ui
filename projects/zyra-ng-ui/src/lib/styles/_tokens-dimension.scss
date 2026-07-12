@@ -1,8 +1,6 @@
 ﻿// Tier 2: Dimension tokens — typography, radius, motion, spacing, z-index.
 // Theme-invariant: same values in both dark and light modes.
-:root,
-[data-theme='light'],
-[data-theme='dark'] {
+:root {
 
     // ── Typography ───────────────────────────────────────────
     --zyra-font-display: 'Outfit', sans-serif;

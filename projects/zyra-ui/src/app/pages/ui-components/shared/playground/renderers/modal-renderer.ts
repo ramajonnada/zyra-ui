@@ -16,7 +16,7 @@ import { ZyraModal, ZyraButton } from 'zyra-ng-ui';
             [title]="title()"
             [dismissible]="dismissible()"
         >
-            <p style="margin:0; color: var(--zyr-text-muted); line-height:1.6;">
+            <p style="margin:0; color: var(--zyra-color-foreground-muted); line-height:1.6;">
                 This is the modal body. You can place any content here.
             </p>
             <div slot="footer" style="display:flex; gap:8px; justify-content:flex-end;">

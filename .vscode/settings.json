@@ -1,4 +1,6 @@
 {
+    "files.encoding": "utf8",
+    "files.autoGuessEncoding": false,
     "json.schemaDownload.enable": false,
     "[markdown]": {
         "editor.fontSize": 14,

@@ -90,7 +90,7 @@
             }
         </div>
 
-        <zyra-button size="sm" routerLink="/docs/components">Get started</zyra-button>
+        <zyra-button class="site-header__cta" size="sm" routerLink="/docs/components">Get started</zyra-button>
     </div>
 
     <div zyraHeaderMobileEnd class="site-header__mobile-actions">
@@ -102,11 +102,54 @@
             (click)="headerRef.closeMobile()"
         >
             <zyra-icon [img]="icons.github" />
-            <span>GitHub</span>
-        </a>
-
-        <a class="site-header__mobile-cta" routerLink="/docs/components" (click)="headerRef.closeMobile()">
-            Get started
         </a>
     </div>
 </zyra-header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <zyra-header>
+
+    <app-logo zyraHeaderStart />
+
+    <app-navigation zyraHeaderNav />
+
+    <div zyraHeaderEnd>
+
+        <app-sidebar-toggle />
+
+        <app-github-button />
+
+        <app-theme-picker />
+
+        <app-get-started-button />
+
+    </div>
+
+    <app-mobile-navigation zyraHeaderMobileEnd />
+
+</zyra-header> -->

@@ -358,13 +358,13 @@
             <div class="editor__body">
                 <pre><span class="kw">:root</span> &#123;
   <span class="co">/* Brand — swap these three to re-skin everything */</span>
-  <span class="at">--zyr-accent</span>:    <span class="str">#00eaff</span>;  <span class="co">/* primary CTA, focus rings, glows */</span>
-  <span class="at">--zyr-accent-2</span>:  <span class="str">#4f8cff</span>;  <span class="co">/* links, info badges */</span>
-  <span class="at">--zyr-accent-3</span>:  <span class="str">#b57cff</span>;  <span class="co">/* secondary labels */</span>
+  <span class="at">--zyra-color-accent</span>:           <span class="str">#00eaff</span>;  <span class="co">/* primary CTA, focus rings, glows */</span>
+  <span class="at">--zyra-color-accent-secondary</span>: <span class="str">#4f8cff</span>;  <span class="co">/* links, info badges */</span>
+  <span class="at">--zyra-color-accent-tertiary</span>:  <span class="str">#b57cff</span>;  <span class="co">/* secondary labels */</span>
 
   <span class="co">/* Shape &amp; type */</span>
-  <span class="at">--zyr-radius-lg</span>: <span class="str">12px</span>;
-  <span class="at">--zyr-font-body</span>: <span class="str">'Inter'</span>, sans-serif;
+  <span class="at">--zyra-radius-lg</span>: <span class="str">12px</span>;
+  <span class="at">--zyra-font-body</span>: <span class="str">'Inter'</span>, sans-serif;
 &#125;</pre>
             </div>
         </div>
@@ -420,10 +420,10 @@
             <zyra-card
                 padding="none"
                 style="
-                    --zyr-card-border: color-mix(
+                    --zyra-color-card-border: color-mix(
                         in srgb,
-                        var(--zyr-accent-2) 30%,
-                        var(--zyr-border)
+                        var(--zyra-color-accent-secondary) 30%,
+                        var(--zyra-color-border)
                     );
                 "
             >

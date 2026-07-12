@@ -30,6 +30,10 @@ After scaffolding:
 5. `npm run build:lib` to confirm it compiles standalone.
 6. `npm run audit:components` to confirm nothing's missing.
 
+## Token consumption order
+
+Component styles must consume the tiers in order: primitive → foundation → semantic → component. In practice this means every `var(...)` in a component's `.scss` should resolve to a tier-2 semantic token (`--zyra-color-primary`) or a tier-3 component token that itself references tier 2 (`--zyra-color-btn-primary-bg: var(--zyra-color-accent)`) — never a tier-0 primitive (`--zyra-color-cyan-500`) reached from inside a component. Primitives exist only to build themes; skipping straight to one from a component bypasses the semantic layer and breaks re-theming for that one property. See [TOKENS.md](TOKENS.md#public-api-tiers) and [THEME_SYSTEM.md](THEME_SYSTEM.md) for why this split is the public/internal boundary, not just a style preference.
+
 ## API design
 
 - Prefer signal `input()`/`output()`/`model()` over decorators (see [CODING_STANDARDS.md](CODING_STANDARDS.md)).

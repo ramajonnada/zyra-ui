@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraButton } from 'zyra-ng-ui';
 import { SeoService } from '../../../../seo/seo.service';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../../shared/breadcrumb-jsonld';
 
 interface InstallStep {
     step: string;
@@ -68,6 +68,8 @@ export const appConfig: ApplicationConfig = {
 export class MyComponent {}`,
         },
     ];
+
+    protected readonly crumbPath = internalPath;
 
     readonly breadcrumbItems: readonly BreadcrumbLink[] = [
         { label: 'Home', url: 'https://www.zyraui.dev/' },

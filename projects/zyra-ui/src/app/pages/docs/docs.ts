@@ -8,7 +8,7 @@ import {
     ZyraButton,
 } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../shared/breadcrumb-jsonld';
 
 interface DocsNextLink {
     title: string;
@@ -54,6 +54,8 @@ export class Docs implements OnInit, OnDestroy {
             route: '/docs/theme-tokens',
         },
     ];
+
+    protected readonly crumbPath = internalPath;
 
     readonly breadcrumbItems: readonly BreadcrumbLink[] = [
         { label: 'Home', url: 'https://www.zyraui.dev/' },

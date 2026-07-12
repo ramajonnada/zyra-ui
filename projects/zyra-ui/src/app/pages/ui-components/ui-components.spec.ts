@@ -28,8 +28,8 @@ describe('UiComponents', () => {
         expect(component.componentCount).toBe(UI_COMPONENT_SHOWCASE.length);
     });
 
-    it('componentCount is 35', () => {
-        expect(component.componentCount).toBe(35);
+    it('componentCount is 44', () => {
+        expect(component.componentCount).toBe(44);
     });
 
     it('categoryCount reflects the number of unique categories', () => {

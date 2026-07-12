@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraCard } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { BlogService, PostMeta } from '../../services/blog-service';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../shared/breadcrumb-jsonld';
 
 @Component({
     selector: 'app-blog-list',
@@ -29,6 +29,8 @@ export class BlogList implements OnInit, OnDestroy {
     readonly error = signal<string | null>(null);
     readonly posts = signal<PostMeta[]>([]);
     readonly articleCount = computed(() => this.posts().length);
+
+    protected readonly crumbPath = internalPath;
 
     readonly breadcrumbItems: readonly BreadcrumbLink[] = [
         { label: 'Home', url: 'https://www.zyraui.dev/' },

@@ -1,7 +1,7 @@
 <main class="docs-page">
 	<zyra-breadcrumb>
 		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
-			<zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+			<zyra-breadcrumb-item [href]="crumb.url" [current]="last" [routerLink]="last ? null : crumbPath(crumb.url)">{{ crumb.label }}</zyra-breadcrumb-item>
 		}
 	</zyra-breadcrumb>
 
@@ -61,7 +61,7 @@
 				</zyra-accordion-item>
 
 				<zyra-accordion-item title="How do I change the accent color across all components?">
-					Override <code>--zyr-accent</code> in your global styles. Zyra UI derives every
+					Override <code>--zyra-color-accent</code> in your global styles. Zyra UI derives every
 					accent-tinted surface — muted backgrounds, borders, focus rings — from that
 					single variable, so one change cascades through the entire system.
 				</zyra-accordion-item>

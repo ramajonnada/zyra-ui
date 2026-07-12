@@ -1,16 +1,16 @@
-﻿[data-theme='light'] {
+[data-theme='light'] {
     // ── Surfaces (Emergent neutral scale) ─────────────────────────────────
     --zyra-color-bg-app: #ffffff;
     --zyra-color-bg-panel: #f6f7f9;
     --zyra-color-bg-surface: #ecedf1;
     --zyra-color-bg-raised: #d5d7e0;
 
-    // â”€â”€ Borders â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Borders ──────────────────────────────────────────────────────────────
     --zyra-color-border: rgba(9, 19, 31, 0.08);
     --zyra-color-border-hover: rgba(0, 122, 138, 0.24);
     --zyra-color-border-strong: rgba(9, 19, 31, 0.14);
 
-    // â”€â”€ Text â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Text ─────────────────────────────────────────────────────────────────
     // Closer to Emergent's hsl(220 10% 5%) = #0b0c0e
     --zyra-color-text: #0b0c0e;
     --zyra-color-text-muted: #545e6e;
@@ -18,11 +18,11 @@
     --zyra-color-text-inverse: #ffffff;
     --zyra-color-surface-inverse: #0f151c;
 
-    // â”€â”€ Glow RGB channels â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    // Used as: rgba(var(--zyra-color-glow), 0.35) â†’ rgba(0, 198, 220, 0.35)
+    // ── Glow RGB channels ─────────────────────────────────────────────────────
+    // Used as: rgba(var(--zyra-color-glow), 0.35) → rgba(0, 198, 220, 0.35)
     --zyra-color-glow: 0, 122, 138;
 
-    // â”€â”€ Accent â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Accent ──────────────────────────────────────────────────────────────
     // Kept bright for light-mode buttons (white text on teal)
     --zyra-color-accent: #007a8a;
     --zyra-color-accent-hover: #006676;
@@ -30,7 +30,7 @@
     --zyra-color-accent-border: rgba(0, 122, 138, 0.24);
     --zyra-focus-ring: rgba(0, 122, 138, 0.45);
 
-    // â”€â”€ Secondary accents (unchanged) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Secondary accents (unchanged) ─────────────────────────────────────────
     --zyra-color-accent-secondary: #1a6ec5;
     --zyra-color-accent-secondary-muted: rgba(26, 110, 197, 0.1);
     --zyra-color-accent-secondary-border: rgba(26, 110, 197, 0.22);
@@ -39,7 +39,7 @@
     --zyra-color-accent-tertiary-muted: rgba(139, 110, 245, 0.1);
     --zyra-color-accent-tertiary-border: rgba(139, 110, 245, 0.22);
 
-    // â”€â”€ Semantic â€” updated to Emergent's vivid palette â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Semantic — updated to Emergent's vivid palette ────────────────────────
     --zyra-color-success: #10b981;
     --zyra-color-success-muted: rgba(16, 185, 129, 0.1);
     --zyra-color-success-border: rgba(16, 185, 129, 0.22);
@@ -57,22 +57,22 @@
     --zyra-color-info-muted: rgba(59, 130, 246, 0.1);
     --zyra-color-info-border: rgba(59, 130, 246, 0.22);
 
-    // â”€â”€ Shadows â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Shadows ───────────────────────────────────────────────────────────────
     --zyra-shadow-sm: 0 2px 10px rgba(7, 18, 30, 0.06);
     --zyra-shadow-md: 0 14px 36px rgba(7, 18, 30, 0.08);
     --zyra-shadow-accent: 0 14px 32px rgba(0, 122, 138, 0.18);
     --zyra-shadow-glow: 0 24px 70px rgba(0, 122, 138, 0.18);
 
-    // â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Buttons ───────────────────────────────────────────────────────────────
     --zyra-color-btn-primary-text: #ffffff;
     --zyra-color-btn-ghost-hover-bg: rgba(9, 19, 31, 0.045);
 
-    // â”€â”€ Inputs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Inputs ────────────────────────────────────────────────────────────────
     --zyra-color-input-bg: #ffffff;
     --zyra-color-input-border: var(--zyra-color-border-strong);
-    --zyra-input-shadow-focus: 0 0 0 3px rgba(0, 122, 138, 0.42);
+    --zyra-input-shadow-focus: 0 0 0 3px rgba(0, 122, 138, 0.45);
 
-    // â”€â”€ Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Cards ─────────────────────────────────────────────────────────────────
     --zyra-color-card-bg: #f6f7f9;
     --zyra-color-card-border: rgba(9, 19, 31, 0.1);
     --zyra-color-card-section-bg: rgba(9, 19, 31, 0.03);
@@ -80,7 +80,7 @@
     --zyra-card-elevated-shadow: 0 8px 24px rgba(9, 19, 31, 0.1), 0 20px 48px rgba(9, 19, 31, 0.07);
     --zyra-card-focus-ring: rgba(0, 122, 138, 0.18);
 
-    // â”€â”€ Misc â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Misc ──────────────────────────────────────────────────────────────────
     --zyra-color-code-bg: #ecedf1;
 
     --zyra-color-scrollbar-thumb: rgba(9, 19, 31, 0.14);

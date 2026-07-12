@@ -42,10 +42,10 @@ describe('Zyra theme tokens', () => {
 		fixture.detectChanges();
 
 		const styles = probeStyles();
-		expect(styles.backgroundColor).toBe('rgb(255, 255, 255)');   // --zyr-bg: #ffffff
-		expect(styles.color).toBe('rgb(0, 122, 138)');               // --zyr-accent: #007a8a
-		expect(styles.borderTopColor).toBe('rgba(9, 19, 31, 0.08)'); // --zyr-border
-		expect(styles.transitionDuration).toContain('0.3s');         // --zyr-duration-base: 300ms
+		expect(styles.backgroundColor).toBe('rgb(255, 255, 255)');   // --zyra-color-bg-app: #ffffff
+		expect(styles.color).toBe('rgb(0, 122, 138)');               // --zyra-color-accent: #007a8a
+		expect(styles.borderTopColor).toBe('rgba(9, 19, 31, 0.08)'); // --zyra-color-border
+		expect(styles.transitionDuration).toContain('0.3s');         // --zyra-duration-base: 300ms
 	});
 
 	it('resolves the new semantic tokens in dark theme', () => {
@@ -54,9 +54,9 @@ describe('Zyra theme tokens', () => {
 		fixture.detectChanges();
 
 		const styles = probeStyles();
-		expect(styles.backgroundColor).toBe('rgb(11, 19, 32)');        // --zyra-color-bg-app: #0b1320
-		expect(styles.color).toBe('rgb(0, 122, 138)');                 // --zyra-color-accent: #007a8a (same teal as light theme)
-		expect(styles.borderTopColor).toBe('rgba(255, 255, 255, 0.08)'); // --zyra-color-border
-		expect(styles.transitionDuration).toContain('0.3s');          // --zyr-duration-base: 300ms
+		expect(styles.backgroundColor).toBe('rgb(9, 11, 16)');           // --zyra-color-bg-app: #090b10
+		expect(styles.color).toBe('rgb(24, 213, 234)');                  // --zyra-color-accent: #18d5ea (cyan)
+		expect(styles.borderTopColor).toBe('rgba(255, 255, 255, 0.07)'); // --zyra-color-border
+		expect(styles.transitionDuration).toContain('0.3s');             // --zyr-duration-base: 300ms
 	});
 });

@@ -1,17 +1,11 @@
 <div class="app-shell">
-	<app-header></app-header>
+	<app-header
+		[showSidebarToggle]="showSidebar()"
+		[sidebarOpen]="sidebarOpen()"
+		(sidebarToggle)="toggleSidebar()"
+	></app-header>
 	<div class="app-body" [class.app-body--landing]="!showSidebar()">
 		@if (showSidebar()) {
-		<button
-			type="button"
-			class="sidebar-toggle"
-			(click)="toggleSidebar()"
-			[attr.aria-expanded]="sidebarOpen()"
-			aria-controls="app-sidebar-drawer"
-			aria-label="Toggle sidebar navigation"
-		>
-			<span></span><span></span><span></span>
-		</button>
 		<div class="sidebar-backdrop" [class.is-visible]="sidebarOpen()" (click)="closeSidebar()"></div>
 		<app-sidebar
 			id="app-sidebar-drawer"
@@ -24,3 +18,11 @@
 	<app-footer></app-footer>
 </div>
 <zyra-toast-container></zyra-toast-container>
+<!-- <div>
+	<zyra-header></zyra-header>
+	<div><router-outlet></router-outlet></div>
+	 
+</div>
+
+
+<zyra-toast-container></zyra-toast-container>  -->

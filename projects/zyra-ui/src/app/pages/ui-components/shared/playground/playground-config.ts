@@ -37,4 +37,8 @@ export interface PlaygroundConfig {
     controls: PgControlDef[];
     codeTemplate: (state: Record<string, unknown>) => string;
     stageClass?: 'column' | 'vertical' | '';
+    // 'stacked' puts controls above a full-width preview instead of the default
+    // side-by-side split — layout primitives (Grid, Container, ...) need the
+    // full viewport width to actually demonstrate responsive behavior.
+    layout?: 'default' | 'stacked';
 }

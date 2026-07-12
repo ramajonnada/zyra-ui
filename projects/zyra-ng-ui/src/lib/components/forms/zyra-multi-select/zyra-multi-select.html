@@ -1,0 +1,48 @@
+<div [class]="wrapClass()">
+    <!-- ── Trigger — a div, not <button>, since chip dismiss buttons nest inside ── -->
+    <div
+        class="zyr-multi-select__trigger"
+        [id]="resolvedId()"
+        role="button"
+        [attr.tabindex]="isDisabled() ? -1 : 0"
+        [attr.aria-expanded]="isOpen()"
+        [attr.aria-disabled]="isDisabled() || null"
+        aria-haspopup="listbox"
+        [attr.aria-controls]="listboxId"
+        [attr.aria-activedescendant]="activeOptionId()"
+        (click)="toggle()"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+    >
+        @if (selectedOptions().length === 0) {
+            <span class="zyr-multi-select__value zyr-multi-select__value--placeholder">
+                {{ placeholder() }}
+            </span>
+        } @else {
+            <span class="zyr-multi-select__chips">
+                @for (opt of visibleChips(); track opt.value()) {
+                    <zyra-chip size="sm" dismissible (dismissed)="removeValue(opt.value())">
+                        {{ opt.getLabel() }}
+                    </zyra-chip>
+                }
+                @if (overflowCount() > 0) {
+                    <span class="zyr-multi-select__overflow">+{{ overflowCount() }} more</span>
+                }
+            </span>
+        }
+        <zyra-icon class="zyr-multi-select__chevron" [img]="icons.chevronDown" />
+    </div>
+
+    <!-- ── Panel — always in DOM so contentChildren works ──── -->
+    <div
+        class="zyr-multi-select__panel"
+        [class.zyr-multi-select__panel--open]="isOpen()"
+        [id]="listboxId"
+        role="listbox"
+        aria-multiselectable="true"
+        [attr.inert]="isOpen() ? null : ''"
+        [attr.aria-hidden]="!isOpen()"
+    >
+        <ng-content />
+    </div>
+</div>

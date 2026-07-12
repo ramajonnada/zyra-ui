@@ -3,7 +3,7 @@
         <div class="component-detail-page__hero">
             <zyra-breadcrumb>
                 @for (crumb of breadcrumbItems(); track crumb.label; let last = $last) {
-                    <zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
+                    <zyra-breadcrumb-item [href]="crumb.url" [current]="last" [routerLink]="last ? null : crumbPath(crumb.url)">{{ crumb.label }}</zyra-breadcrumb-item>
                 }
             </zyra-breadcrumb>
 

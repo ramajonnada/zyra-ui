@@ -1,8 +1,6 @@
 ﻿// Tier 0: Primitive color tokens — raw values, never consumed by components directly.
 // These are theme-invariant: the cyan palette is identical in dark and light modes.
-:root,
-[data-theme='light'],
-[data-theme='dark'] {
+:root {
     --zyra-color-cyan-50:  #e0fcfd;
     --zyra-color-cyan-100: #b3f8fb;
     --zyra-color-cyan-200: #80f3f8;

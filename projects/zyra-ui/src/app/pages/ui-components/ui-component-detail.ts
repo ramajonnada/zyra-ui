@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 import { SeoService } from '../../../seo/seo.service';
 import { Playground } from './shared/playground/playground';
 import { PLAYGROUND_REGISTRY } from './shared/playground/playground-registry';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../shared/breadcrumb-jsonld';
 
 @Component({
     selector: 'app-ui-component-detail',
@@ -34,6 +34,8 @@ export class UiComponentDetail implements OnInit, OnDestroy {
         const slugs = this.component()?.relatedSlugs ?? [];
         return slugs.map((s) => UI_COMPONENT_SHOWCASE.find((c) => c.slug === s)).filter(Boolean);
     });
+
+    protected readonly crumbPath = internalPath;
 
     readonly breadcrumbItems = computed<BreadcrumbLink[]>(() => [
         { label: 'Home', url: 'https://www.zyraui.dev/' },

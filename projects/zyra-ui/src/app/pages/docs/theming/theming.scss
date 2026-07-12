@@ -23,7 +23,7 @@
 
     p {
         margin: 0;
-        color: var(--zyra-color-fg-muted);
+        color: var(--zyra-color-text-muted);
         font-size: 1.05rem;
         line-height: 1.7;
     }
@@ -71,7 +71,7 @@
 .theme-swatch__label {
     font-family: var(--zyra-font-mono);
     font-size: 0.78rem;
-    color: var(--zyra-color-fg-muted);
+    color: var(--zyra-color-text-muted);
 }
 
 .theme-swatch:hover .theme-swatch__preview {
@@ -124,7 +124,7 @@
         font-size: 0.76rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--zyra-color-fg-muted);
+        color: var(--zyra-color-text-muted);
     }
 }
 
@@ -174,7 +174,7 @@
 .token-list__var {
     font-family: var(--zyra-font-mono);
     font-size: 0.76rem;
-    color: var(--zyra-color-fg-muted);
+    color: var(--zyra-color-text-muted);
 }
 
 // ── Sections (setup) ───────────────────────────────────────────
@@ -242,7 +242,7 @@
 
 .setup-step__desc {
     margin: 0 0 14px;
-    color: var(--zyra-color-fg-muted);
+    color: var(--zyra-color-text-muted);
     font-size: 0.9rem;
     line-height: 1.6;
 }

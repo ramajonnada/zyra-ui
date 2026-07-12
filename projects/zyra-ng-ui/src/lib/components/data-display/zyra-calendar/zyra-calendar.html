@@ -1,0 +1,124 @@
+<div
+    class="zyr-calendar"
+    role="application"
+    [attr.aria-label]="monthLabel() + ' calendar'"
+    [class.zyr-calendar--disabled]="isDisabledCalendar()"
+>
+    @if (viewMode() === 'days') {
+        <!-- ── Header ──────────────────────────────────────────── -->
+        <div class="zyr-calendar__header">
+            <button
+                type="button"
+                class="zyr-calendar__nav"
+                aria-label="Previous month"
+                [disabled]="isDisabledCalendar()"
+                (click)="prevMonth()"
+            >
+                <zyra-icon [img]="icons.caretLeft" [size]="16" />
+            </button>
+
+            <button
+                type="button"
+                class="zyr-calendar__month-label"
+                aria-haspopup="true"
+                [attr.aria-label]="'Choose month, currently ' + monthLabel()"
+                [disabled]="isDisabledCalendar()"
+                (click)="openMonthPicker()"
+            >
+                {{ monthLabel() }}
+            </button>
+
+            <button
+                type="button"
+                class="zyr-calendar__nav"
+                aria-label="Next month"
+                [disabled]="isDisabledCalendar()"
+                (click)="nextMonth()"
+            >
+                <zyra-icon [img]="icons.caretRight" [size]="16" />
+            </button>
+        </div>
+
+        <!-- ── Weekday row ─────────────────────────────────────── -->
+        <div class="zyr-calendar__weekdays">
+            @for (label of weekdayLabels(); track label) {
+                <span class="zyr-calendar__weekday">{{ label }}</span>
+            }
+        </div>
+
+        <!-- ── Weeks grid ──────────────────────────────────────── -->
+        <div class="zyr-calendar__grid" role="grid">
+            @for (week of weeks(); track $index) {
+                <div class="zyr-calendar__week" role="row">
+                    @for (day of week; track day.date.getTime()) {
+                        <button
+                            type="button"
+                            role="gridcell"
+                            class="zyr-calendar__day"
+                            [class.zyr-calendar__day--outside]="!day.inCurrentMonth"
+                            [class.zyr-calendar__day--today]="day.isToday"
+                            [class.zyr-calendar__day--selected]="day.isSelected"
+                            [class.zyr-calendar__day--range-start]="day.isRangeStart"
+                            [class.zyr-calendar__day--range-end]="day.isRangeEnd"
+                            [class.zyr-calendar__day--in-range]="day.isInRange"
+                            [attr.aria-selected]="day.isSelected"
+                            [attr.aria-current]="day.isToday ? 'date' : null"
+                            [disabled]="isDisabledCalendar() || day.isDisabled"
+                            [tabindex]="day.date.getTime() === focusedDate().getTime() ? 0 : -1"
+                            (click)="selectDate(day)"
+                        >
+                            {{ day.date.getDate() }}
+                        </button>
+                    }
+                </div>
+            }
+        </div>
+    } @else {
+        <!-- ── Month picker ──────────────────────────────────────── -->
+        <div class="zyr-calendar__header">
+            <button
+                type="button"
+                class="zyr-calendar__nav"
+                aria-label="Previous year"
+                [disabled]="isDisabledCalendar()"
+                (click)="prevYear()"
+            >
+                <zyra-icon [img]="icons.caretLeft" [size]="16" />
+            </button>
+
+            <button
+                type="button"
+                class="zyr-calendar__month-label"
+                aria-label="Back to day view"
+                (click)="closeMonthPicker()"
+            >
+                {{ yearLabel() }}
+            </button>
+
+            <button
+                type="button"
+                class="zyr-calendar__nav"
+                aria-label="Next year"
+                [disabled]="isDisabledCalendar()"
+                (click)="nextYear()"
+            >
+                <zyra-icon [img]="icons.caretRight" [size]="16" />
+            </button>
+        </div>
+
+        <div class="zyr-calendar__month-grid" role="grid" [attr.aria-label]="'Choose month for ' + yearLabel()">
+            @for (option of monthOptions(); track option.month) {
+                <button
+                    type="button"
+                    role="gridcell"
+                    class="zyr-calendar__month-option"
+                    [class.zyr-calendar__month-option--current]="option.isCurrent"
+                    [disabled]="isDisabledCalendar()"
+                    (click)="pickMonth(option)"
+                >
+                    {{ option.label }}
+                </button>
+            }
+        </div>
+    }
+</div>

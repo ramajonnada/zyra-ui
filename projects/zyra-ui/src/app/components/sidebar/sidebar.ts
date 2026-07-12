@@ -11,7 +11,7 @@ export interface NavItem {
 @Component({
 	selector: 'app-sidebar',
 	standalone: true,
-	imports: [RouterModule, ZyraSidebar, ZyraSidebarSection, ZyraSidebarItem],
+	imports: [RouterModule,ZyraSidebar, ZyraSidebarItem, ZyraSidebarSection],
 	templateUrl: './sidebar.html',
 	styleUrls: ['./sidebar.scss'],
 	host: {

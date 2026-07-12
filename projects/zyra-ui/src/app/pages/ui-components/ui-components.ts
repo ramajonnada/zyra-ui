@@ -8,23 +8,42 @@ import {
     signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraCard } from 'zyra-ng-ui';
+import {
+    search,
+    ZyraBadge,
+    ZyraBreadcrumb,
+    ZyraBreadcrumbItem,
+    ZyraCard,
+    ZyraFormField,
+    ZyraInput,
+} from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { COMPONENT_COUNT, UI_COMPONENT_SHOWCASE } from './ui-components.data';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../shared/breadcrumb-jsonld';
 
 @Component({
     selector: 'app-ui-components',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, ZyraBadge, ZyraCard, ZyraBreadcrumb, ZyraBreadcrumbItem],
+    imports: [
+        RouterLink,
+        ZyraBadge,
+        ZyraCard,
+        ZyraBreadcrumb,
+        ZyraBreadcrumbItem,
+        ZyraFormField,
+        ZyraInput,
+    ],
     templateUrl: './ui-components.html',
     styleUrl: './ui-components.scss',
 })
 export class UiComponents implements OnInit, OnDestroy {
     private readonly seo = inject(SeoService);
 
+    readonly icons = { search };
     readonly componentCount = COMPONENT_COUNT;
     readonly categoryCount = new Set(UI_COMPONENT_SHOWCASE.map((c) => c.category)).size;
+
+    protected readonly crumbPath = internalPath;
 
     readonly breadcrumbItems: readonly BreadcrumbLink[] = [
         { label: 'Home', url: 'https://www.zyraui.dev/' },

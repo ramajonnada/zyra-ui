@@ -2,8 +2,10 @@
     display: block;
 }
 
-// When the preview fills a fixed-height column (playground layout), the host
-// gets a "fill" class applied from outside so the flex chain flows through.
+// When the preview fills the playground column, the host gets a "fill" class
+// applied from outside. Sizing is content-driven — a tall renderer (e.g.
+// Calendar) grows this column (and the parent grid row) instead of being
+// clipped or scrolled inside a fixed-height box.
 :host.pv--fill {
     display: flex;
     flex-direction: column;
@@ -17,8 +19,6 @@
 }
 
 :host.pv--fill .pv {
-    flex: 1;
-    min-height: 0;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -48,30 +48,31 @@
     }
 }
 
-// Pierce into zyra-tabs/zyra-tab only in fill mode so the panel fills the
-// column. Scoped to .pv > zyra-tabs so styles don't leak into any zyra-tabs
-// that happen to be rendered inside the demo stage.
+// zyra-tabs itself never grows to fill a flex-column parent (its host has no
+// flex/height rule of its own), so in fill mode the height signal from `.pv`
+// dead-ends at the tabs component instead of reaching `.pv__stage` below.
+// Scoped to .pv > zyra-tabs so styles don't leak into any zyra-tabs that
+// happen to be rendered inside the demo stage itself.
 /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
-:host.pv--fill ::ng-deep {
-    .pv > zyra-tabs {
-        flex: 1;
-        min-height: 0;
-    }
+:host.pv--fill ::ng-deep .pv > zyra-tabs {
+    flex: 1;
+    min-height: 0;
+}
 
-    .pv > zyra-tabs .zyr-tabs__panels {
-        position: relative;
-        flex: 1;
-        min-height: 100px;
-        overflow: hidden;
-    }
+/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+:host.pv--fill ::ng-deep .pv > zyra-tabs .zyr-tabs__panels {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
 
-    .pv > zyra-tabs .zyr-tab__panel--active {
-        position: absolute;
-        inset: 0;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-    }
+/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+:host.pv--fill ::ng-deep .pv > zyra-tabs .zyr-tab__panel--active {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
 }
 
 // ── Preview stage ─────────────────────────────────────────────
@@ -90,7 +91,19 @@
         linear-gradient(var(--zyra-color-border) 1px, transparent 1px),
         linear-gradient(90deg, var(--zyra-color-border) 1px, transparent 1px);
     background-size: 28px 28px;
+    background-clip: padding-box;
+    // Defensive fallback only — the stage has no max-height, so it grows to
+    // fit tall content (e.g. Calendar) rather than clipping it.
+    overflow: auto;
     transition: background-color var(--zyra-transition-slow);
+
+    // Flex items default to min-width: auto (their content's min-content size),
+    // so a projected renderer with non-wrapping labels won't shrink below that —
+    // it overflows the stage box instead of scaling with the available width.
+    > * {
+        min-width: 0;
+        max-width: 100%;
+    }
 
     &--column {
         flex-direction: column;

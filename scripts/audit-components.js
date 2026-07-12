@@ -23,6 +23,20 @@ function listDirs(dir) {
         .map((entry) => entry.name);
 }
 
+// Components live one level deeper, under a category folder
+// (projects/zyra-ng-ui/src/lib/components/<category>/zyra-<name>/).
+function listComponentDirs(componentsRoot) {
+    const categories = listDirs(componentsRoot);
+    const result = [];
+    for (const category of categories) {
+        const categoryDir = path.join(componentsRoot, category);
+        for (const name of listDirs(categoryDir)) {
+            result.push({ name, dir: path.join(categoryDir, name) });
+        }
+    }
+    return result;
+}
+
 function hasFile(dir, predicate) {
     if (!fs.existsSync(dir)) return false;
     return fs.readdirSync(dir).some(predicate);
@@ -52,13 +66,12 @@ function toSlug(libDirName) {
 }
 
 function audit() {
-    const libDirs = listDirs(LIB_COMPONENTS_DIR);
+    const componentDirs = listComponentDirs(LIB_COMPONENTS_DIR);
     const showcaseSlugs = getShowcaseSlugs();
     const registrySlugs = getRegistrySlugs();
 
-    const rows = libDirs.map((libDirName) => {
+    const rows = componentDirs.map(({ name: libDirName, dir: libDir }) => {
         const slug = toSlug(libDirName);
-        const libDir = path.join(LIB_COMPONENTS_DIR, libDirName);
 
         const hasLibSpec = hasFile(libDir, (f) => f.endsWith('.spec.ts'));
         const hasRegistryEntry = registrySlugs.has(slug);

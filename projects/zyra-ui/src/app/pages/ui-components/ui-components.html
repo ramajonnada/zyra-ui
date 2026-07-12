@@ -1,98 +1,74 @@
 <section class="components-page">
-    <zyra-breadcrumb>
-        @for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
-            <zyra-breadcrumb-item [href]="crumb.url" [current]="last">{{ crumb.label }}</zyra-breadcrumb-item>
-        }
-    </zyra-breadcrumb>
+	<zyra-breadcrumb>
+		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+		<zyra-breadcrumb-item [href]="crumb.url" [current]="last" [routerLink]="last ? null : crumbPath(crumb.url)">{{ crumb.label }}</zyra-breadcrumb-item>
+		}
+	</zyra-breadcrumb>
 
-    <header class="components-page__header">
-        <div class="components-page__copy">
-            <p class="components-page__eyebrow">Zyra UI</p>
-            <h1>UI Components</h1>
-            <p class="components-page__intro">
-                Explore the library components and open each one on its own dedicated route for
-                previews and usage examples.
-            </p>
-        </div>
+	<header class="components-page__header">
+		<div class="components-page__main">
+			<div class="components-page__copy">
+				<h1>UI Components</h1>
+				<p class="components-page__intro">
+					Explore the library components and open each one on its own dedicated route
+					for previews and usage examples.
+				</p>
+			</div>
+			<div class="components-page__toolbar">
+				<div class="components-page__meta">
+					<zyra-badge variant="info" size="md">{{ componentCount }} components</zyra-badge>
+					<zyra-badge variant="default" size="md">{{ categoryCount }} categories</zyra-badge>
+				</div>
+				<div class="components-page__search">
+					<zyra-form-field [prefixIcon]="icons.search" [clearButton]="true">
+						<zyra-input type="search" placeholder="Search components…"
+							(valueChange)="searchQuery.set($event)" />
+					</zyra-form-field>
+				</div>
+			</div>
+		</div>
 
-        <div class="components-page__meta">
-            <zyra-badge variant="info" size="md">{{ componentCount }} components</zyra-badge>
-            <zyra-badge variant="default" size="md">{{ categoryCount }} categories</zyra-badge>
-        </div>
 
-        <div class="components-page__search">
-            <div class="search-bar">
-                <svg
-                    class="search-bar__icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                >
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.35-4.35" />
-                </svg>
-                <input
-                    class="search-bar__input"
-                    type="search"
-                    placeholder="Search components…"
-                    autocomplete="off"
-                    [value]="searchQuery()"
-                    (input)="searchQuery.set($any($event.target).value)"
-                />
-                @if (searchQuery()) {
-                    <button
-                        class="search-bar__clear"
-                        (click)="searchQuery.set('')"
-                        aria-label="Clear search"
-                    >
-                        ✕
-                    </button>
-                }
-            </div>
-        </div>
-    </header>
+	</header>
 
-    @if (filteredCards().length) {
-        <div class="components-page__grid">
-            @for (card of filteredCards(); track card.slug; let i = $index) {
-                <a
-                    class="component-card"
-                    [routerLink]="['/docs/components', card.slug]"
-                    [style.animation-delay]="i * 55 + 'ms'"
-                >
-                    <zyra-card variant="outlined" [clickable]="true" padding="lg">
-                        <div class="component-card__body">
-                            <div class="component-card__copy">
-                                <h2>{{ card.title }}</h2>
-                                <p>{{ card.description }}</p>
-                            </div>
+	@if (filteredCards().length) {
+	<div class="components-page__grid">
+		@for (card of filteredCards(); track card.slug; let i = $index) {
+		<a class="component-card" [routerLink]="['/docs/components', card.slug]"
+			[style.animation-delay]="i * 55 + 'ms'">
+			<zyra-card variant="outlined" [clickable]="true" padding="lg">
+				<div class="component-card__body">
+					<div class="component-card__copy">
+						<div class="component-card__title-row">
+							<h2>{{ card.title }}</h2>
+							@if (card.status) {
+							<span class="component-card__status" [class]="'component-card__status--' + card.status">
+								{{ card.status === 'new' ? 'New' : 'Updated' }}
+							</span>
+							}
+						</div>
+						<p>{{ card.description }}</p>
+					</div>
 
-                            <div class="component-card__footer">
-                                <span>{{ card.selector }}</span>
-                                <zyra-badge variant="default" size="sm">{{
-                                    card.category
-                                }}</zyra-badge>
-                            </div>
-                        </div>
-                    </zyra-card>
-                </a>
-            }
-        </div>
-    } @else {
-        <div class="components-page__empty">
-            <p class="components-page__empty-text">
-                No components match <strong>"{{ searchQuery() }}"</strong>
-            </p>
-            <button class="components-page__empty-clear" (click)="searchQuery.set('')">
-                Clear search
-            </button>
-        </div>
-    }
+					<div class="component-card__footer">
+						<span>{{ card.selector }}</span>
+						<zyra-badge variant="default" size="sm">{{
+							card.category
+							}}</zyra-badge>
+					</div>
+				</div>
+			</zyra-card>
+		</a>
+		}
+	</div>
+	} @else {
+	<div class="components-page__empty">
+		<p class="components-page__empty-text">
+			No components match <strong>"{{ searchQuery() }}"</strong>
+		</p>
+		<button class="components-page__empty-clear" (click)="searchQuery.set('')">
+			Clear search
+		</button>
+	</div>
+	}
 </section>

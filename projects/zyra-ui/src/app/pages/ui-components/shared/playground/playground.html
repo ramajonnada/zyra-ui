@@ -1,4 +1,4 @@
-<div class="pg-layout">
+<div class="pg-layout" [class.pg-layout--stacked]="config().layout === 'stacked'">
     <aside class="pg-layout__controls">
         <app-controls [controls]="controlDefs()" />
     </aside>

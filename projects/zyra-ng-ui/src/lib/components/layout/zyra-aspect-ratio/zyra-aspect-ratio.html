@@ -1,0 +1,8 @@
+<div [class]="hostClass()" [style]="hostStyle()">
+    <div class="zyr-aspect-ratio__placeholder">
+        <ng-content select="[zyraPlaceholder]" />
+    </div>
+    <div class="zyr-aspect-ratio__content">
+        <ng-content />
+    </div>
+</div>

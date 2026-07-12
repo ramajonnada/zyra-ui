@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ZyraBreadcrumb, ZyraBreadcrumbItem } from 'zyra-ng-ui';
 import { SeoService } from '../../../../seo/seo.service';
-import { breadcrumbJsonLd, BreadcrumbLink } from '../../../shared/breadcrumb-jsonld';
+import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../../shared/breadcrumb-jsonld';
 
 interface TokenGroup {
     label: string;
@@ -18,6 +18,8 @@ interface TokenGroup {
 export class DocsThemeTokens implements OnInit, OnDestroy {
     private readonly seo = inject(SeoService);
 
+    protected readonly crumbPath = internalPath;
+
     readonly breadcrumbItems: readonly BreadcrumbLink[] = [
         { label: 'Home', url: 'https://www.zyraui.dev/' },
         { label: 'Docs', url: 'https://www.zyraui.dev/docs' },
@@ -30,17 +32,17 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
             tokens: [
                 '--zyra-color-bg-app',
                 '--zyra-color-surface',
-                '--zyra-color-fg',
-                '--zyra-color-fg-muted',
+                '--zyra-color-text',
+                '--zyra-color-text-muted',
                 '--zyra-color-border',
-                '--zyra-color-primary',
+                '--zyra-color-accent',
             ],
         },
         {
-            label: 'Color — theme layer',
+            label: 'Color — accent variants',
             tokens: [
-                '--zyra-color-text',
-                '--zyra-color-accent',
+                '--zyra-color-accent-hover',
+                '--zyra-color-accent-muted',
                 '--zyra-color-accent-secondary',
                 '--zyra-color-accent-tertiary',
             ],
@@ -77,7 +79,7 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
                 '--zyra-color-bg-app',
                 '--zyra-color-surface',
                 '--zyra-color-text',
-                '--zyra-color-fg-muted',
+                '--zyra-color-text-muted',
                 '--zyra-color-border',
                 '--zyra-color-accent',
                 '--zyra-color-success',

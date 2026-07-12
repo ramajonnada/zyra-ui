@@ -1,0 +1,65 @@
+<button
+    [id]="buttonId"
+    [class]="hostClass()"
+    [type]="type()"
+    [disabled]="effectiveDisabled() || loading()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-disabled]="effectiveDisabled() || loading()"
+    [attr.aria-busy]="loading()"
+    [attr.aria-pressed]="ariaPressed()"
+    [attr.aria-checked]="ariaChecked()"
+    [attr.role]="role()"
+    [attr.tabindex]="tabIndex()"
+    (click)="handleClick($event)"
+    (focus)="handleFocus()"
+>
+    @if (loading()) {
+        <zyra-spinner [size]="spinnerSize()" [color]="spinnerColor()" />
+    }
+    @if (!loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
+            <ng-content select="[slot=prefix]" />
+        </span>
+    }
+    @if (leftIconImg() && !loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
+            <zyra-icon [img]="leftIconImg()!" />
+        </span>
+    } @else if (leftIconText() && !loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--left" aria-hidden="true">
+            {{ leftIconText() }}
+        </span>
+    }
+    <span class="zyr-btn__label">
+        <ng-content />
+    </span>
+    @if (!loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
+            <ng-content select="[slot=suffix]" />
+        </span>
+    }
+    @if (rightIconImg() && !loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
+            <zyra-icon [img]="rightIconImg()!" />
+        </span>
+    } @else if (rightIconText() && !loading()) {
+        <span class="zyr-btn__icon zyr-btn__icon--right" aria-hidden="true">
+            {{ rightIconText() }}
+        </span>
+    }
+</button>
+
+<!-- <div [class.full-width]="fullWidth">
+    <button
+        class="zyra-btn"
+        [class]="variant + ' ' + size"
+        [class.full-width]="fullWidth"
+        [disabled]="disabled || loading"
+    >
+        @if (!loading) {
+            <ng-content></ng-content>
+        } @else if (loading) {
+            <span class="loader"> Processing…</span>
+        }
+    </button>
+</div> -->

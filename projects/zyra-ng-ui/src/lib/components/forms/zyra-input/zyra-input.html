@@ -1,0 +1,45 @@
+<!-- projects/zyr-ng-ui/src/lib/input/zyr-input.html -->
+
+@if (isOtp()) {
+    <div class="zyr-otp zyr-otp--{{ size() }}" role="group">
+        @for (index of otpBoxIndexes(); track index) {
+            <input
+                #otpBox
+                class="zyr-otp__box"
+                [class.zyr-otp__box--filled]="!!otpCharAt(index)"
+                type="text"
+                [attr.inputmode]="otpType() === 'numeric' ? 'numeric' : 'text'"
+                [attr.autocomplete]="index === 0 ? 'one-time-code' : 'off'"
+                [attr.maxlength]="1"
+                [value]="otpCharAt(index)"
+                [disabled]="isDisabled()"
+                [attr.aria-label]="'Digit ' + (index + 1) + ' of ' + otpLength()"
+                (input)="onOtpInput(index, $event)"
+                (keydown)="onOtpKeydown(index, $event)"
+                (focus)="onFocus()"
+                (blur)="onBlur()"
+                (paste)="onOtpPaste(index, $event)"
+            />
+        }
+    </div>
+} @else {
+    <input
+        [class]="'zyr-input zyr-input--' + size()"
+        [id]="resolvedId()"
+        [type]="showPassword() ? 'text' : type()"
+        [placeholder]="placeholder()"
+        [disabled]="isDisabled()"
+        [readonly]="readonly()"
+        [attr.autocomplete]="
+            type() === 'password' ? 'current-password' : type() === 'email' ? 'email' : null
+        "
+        [attr.maxlength]="maxlength()"
+        [attr.min]="min()"
+        [attr.max]="max()"
+        [ngModel]="innerValue()"
+        (ngModelChange)="onModelChange($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        (keydown)="onKeydown($event)"
+    />
+}

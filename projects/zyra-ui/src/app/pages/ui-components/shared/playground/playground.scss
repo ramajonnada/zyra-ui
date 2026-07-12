@@ -5,32 +5,58 @@
 .pg-layout {
     display: grid;
     grid-template-columns: 280px 1fr;
-    height: calc(100vh - 220px);
+    // Content-driven height — a tall preview (e.g. Calendar) grows this whole
+    // row instead of being clipped/scrolled inside a fixed viewport-relative box.
     min-height: 480px;
     border: 1px solid var(--zyra-color-border);
     border-radius: var(--zyra-radius-md);
-    overflow: hidden;
 }
 
 .pg-layout__controls {
     height: 100%;
+    border-radius: var(--zyra-radius-md) 0 0 var(--zyra-radius-md);
     overflow: hidden;
 }
 
 .pg-layout__preview {
     height: 100%;
     border-left: 1px solid var(--zyra-color-border);
+    border-radius: 0 var(--zyra-radius-md) var(--zyra-radius-md) 0;
+    overflow: hidden;
 }
 
 @media (max-width: 768px) {
     .pg-layout {
         grid-template-columns: 1fr;
-        height: auto;
+    }
+
+    .pg-layout__controls {
+        border-radius: var(--zyra-radius-md) var(--zyra-radius-md) 0 0;
     }
 
     .pg-layout__preview {
         border-left: none;
         border-top: 1px solid var(--zyra-color-border);
-        height: 380px;
+        border-radius: 0 0 var(--zyra-radius-md) var(--zyra-radius-md);
+        min-height: 380px;
+    }
+}
+
+// Controls stacked above a full-width preview — used by components (Grid,
+// Container, Flex, ...) that need the full viewport width to actually
+// demonstrate responsive behavior, instead of the cramped 1fr preview column.
+.pg-layout--stacked {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: auto;
+
+    .pg-layout__controls {
+        height: auto;
+        border-bottom: 1px solid var(--zyra-color-border);
+    }
+
+    .pg-layout__preview {
+        border-left: none;
+        min-height: 420px;
     }
 }

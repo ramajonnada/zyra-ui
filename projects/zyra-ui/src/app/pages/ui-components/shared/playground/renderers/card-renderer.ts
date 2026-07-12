@@ -18,7 +18,7 @@ import { ZyraCard } from 'zyra-ng-ui';
             @if (hasHeader()) {
                 <div slot="header">Card Header</div>
             }
-            <p style="margin:0; color: var(--zyr-text-muted)">Card body content.</p>
+            <p style="margin:0; color: var(--zyra-color-foreground-muted)">Card body content.</p>
             @if (hasFooter()) {
                 <div slot="footer">Card Footer</div>
             }

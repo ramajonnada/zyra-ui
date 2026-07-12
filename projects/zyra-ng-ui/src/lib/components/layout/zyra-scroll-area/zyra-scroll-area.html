@@ -1,0 +1,12 @@
+<div
+    #viewport
+    [class]="hostClass()"
+    [style]="hostStyle()"
+    tabindex="0"
+    role="region"
+    aria-label="Scrollable content"
+    (keydown)="onKeydown($event)"
+    (scroll)="onScroll($event)"
+>
+    <ng-content />
+</div>

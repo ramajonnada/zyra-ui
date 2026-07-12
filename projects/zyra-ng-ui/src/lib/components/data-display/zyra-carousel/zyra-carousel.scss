@@ -1,0 +1,109 @@
+.zyr-carousel {
+    position: relative;
+    display: block;
+    width: 100%;
+    border-radius: var(--zyra-radius-md);
+    overflow: hidden;
+    background: var(--zyra-color-carousel-bg);
+    color: var(--zyra-color-carousel-text);
+
+    &:focus-visible {
+        outline: 2px solid var(--zyra-color-primary);
+        outline-offset: 2px;
+    }
+}
+
+.zyr-carousel__viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.zyr-carousel__track {
+    display: flex;
+    width: 100%;
+    transition: transform var(--zyra-transition-slow);
+
+    @media (prefers-reduced-motion: reduce) {
+        transition-duration: 1ms;
+    }
+}
+
+:host ::ng-deep .zyr-carousel__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+}
+
+.zyr-carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--zyra-color-card-bg);
+    color: var(--zyra-color-text);
+    border: 1px solid var(--zyra-color-border);
+    box-shadow: var(--zyra-shadow-md);
+    cursor: pointer;
+    z-index: 2;
+    transition:
+        background var(--zyra-transition-fast),
+        border-color var(--zyra-transition-fast),
+        opacity var(--zyra-transition-fast);
+
+    &:hover:not(:disabled) {
+        background: var(--zyra-color-primary-subtle);
+        border-color: var(--zyra-color-primary);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--zyra-color-primary);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+
+    &--prev { left: var(--zyra-space-3); }
+    &--next { right: var(--zyra-space-3); }
+}
+
+.zyr-carousel__dots {
+    position: absolute;
+    bottom: var(--zyra-space-3);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+
+.zyr-carousel__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background: var(--zyra-color-carousel-border);
+    cursor: pointer;
+    transition: background var(--zyra-transition-fast), transform var(--zyra-transition-fast);
+
+    &:hover {
+        background: var(--zyra-color-primary-subtle);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--zyra-color-primary);
+        outline-offset: 2px;
+    }
+
+    &--active {
+        background: var(--zyra-color-primary);
+        transform: scale(1.2);
+    }
+}
