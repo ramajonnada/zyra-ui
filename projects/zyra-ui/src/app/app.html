@@ -1,4 +1,4 @@
-<div class="app-shell">
+<!-- <!-- <div class="app-shell">
 	<app-header
 		[showSidebarToggle]="showSidebar()"
 		[sidebarOpen]="sidebarOpen()"
@@ -17,12 +17,53 @@
 	</div>
 	<app-footer></app-footer>
 </div>
-<zyra-toast-container></zyra-toast-container>
-<!-- <div>
-	<zyra-header></zyra-header>
-	<div><router-outlet></router-outlet></div>
-	 
+<zyra-toast-container></zyra-toast-container> -->
+
+<!-- <div class="app-shell">
+
+	<app-header></app-header>
+
+	<div class="app-body" [class.app-body--landing]="!showSidebar()">
+
+		@if (showSidebar()) {
+
+		<app-sidebar />
+
+		}
+
+		<app-main />
+
+	</div>
+
+	<app-footer />
+
 </div>
 
+<zyra-toast-container />  -->
 
-<zyra-toast-container></zyra-toast-container>  -->
+<!-- Mobile navigation lives inside app-header's mobile panel (see header.html),
+	 reusing this same app-sidebar component. Desktop rendering below is a
+	 separate instance, gated by CSS to >=900px, so only one is ever visible
+	 or focusable at a given viewport width. -->
+
+<div class="app-shell">
+
+	<app-header [showSidebar]="showSidebar()" />
+
+	<div class="app-body" [class.app-body--landing]="!showSidebar()">
+
+		@if (showSidebar()) {
+
+		<app-sidebar />
+
+		}
+
+		<app-main />
+
+	</div>
+
+	<app-footer />
+
+</div>
+
+<zyra-toast-container />

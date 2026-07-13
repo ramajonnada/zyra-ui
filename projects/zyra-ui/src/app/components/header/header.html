@@ -1,155 +1,55 @@
 <zyra-header #headerRef position="fixed" [transparent]="true">
-    <a zyraHeaderStart class="site-header__logo" routerLink="/">
-        <span class="site-header__logo-text">Zyra<span>UI</span></span>
-        <span class="site-header__version">v{{ version }}</span>
-    </a>
+	<a zyraHeaderStart class="site-header__logo" routerLink="/">
+		<span class="site-header__logo-text">Zyra<span>UI</span></span>
+		<span class="site-header__version">v{{ version }}</span>
+	</a>
 
-    <nav zyraHeaderNav aria-label="Primary">
-        @for (link of navLinks; track link.route) {
-            <a
-                class="site-header__nav-link"
-                [routerLink]="link.route"
-                routerLinkActive="is-active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="headerRef.closeMobile()"
-            >
-                {{ link.label }}
-            </a>
-        }
-    </nav>
+	<nav zyraHeaderNav aria-label="Primary">
+		@for (link of navItems; track link.route) {
+		<a class="site-header__nav-link" [routerLink]="link.route" routerLinkActive="is-active"
+			[routerLinkActiveOptions]="{ exact: true }" (click)="headerRef.closeMobile()">
+			{{ link.label }}
+		</a>
+		}
+	</nav>
 
-    <div zyraHeaderEnd class="site-header__actions">
-        <a
-            class="site-header__repo"
-            href="https://github.com/ramajonnada/zyra-ui"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open Zyra UI on GitHub"
-        >
-            <zyra-icon [img]="icons.github" [size]="16" />
-            <span>Star</span>
-            @if (githubStars() !== null) {
-                <span class="site-header__stars">{{ githubStars() }}</span>
-            }
-        </a>
+	<div zyraHeaderEnd class="site-header__actions">
+		<a class="site-header__repo" href="https://github.com/ramajonnada/zyra-ui" target="_blank"
+			rel="noopener noreferrer" aria-label="Open Zyra UI on GitHub">
+			<zyra-icon [img]="icons.github" [size]="16" />
+			<span>Star</span>
+			@if (githubStars() !== null) {
+			<span class="site-header__stars">{{ githubStars() }}</span>
+			}
+		</a>
 
-        <!-- Theme picker dropdown -->
-        <div class="site-header__theme-picker" (click)="stopProp($event)">
-            <button
-                type="button"
-                class="site-header__theme-btn"
-                (click)="toggleThemeDropdown($event)"
-                [attr.aria-expanded]="themeDropdownOpen()"
-                aria-haspopup="listbox"
-                aria-label="Select theme"
-            >
-                <span
-                    class="site-header__theme-dot"
-                    [style.background]="currentThemeOption().accent"
-                ></span>
-                <span class="site-header__theme-label">{{ currentThemeOption().label }}</span>
-                <zyra-icon
-                    [img]="icons.caretDown"
-                    [size]="11"
-                    class="site-header__theme-caret"
-                    [class.is-open]="themeDropdownOpen()"
-                />
-            </button>
+		<!-- Theme picker dropdown -->
+		<div class="site-header__theme-picker" (click)="stopProp($event)">
+			<button type="button" class="site-header__theme-btn" (click)="toggleThemeDropdown($event)"
+				[attr.aria-expanded]="themeDropdownOpen()" aria-haspopup="listbox" aria-label="Select theme">
+				<span class="site-header__theme-dot" [style.background]="currentThemeOption().accent"></span>
+				<span class="site-header__theme-label">{{ currentThemeOption().label }}</span>
+				<zyra-icon [img]="icons.caretDown" [size]="11" class="site-header__theme-caret"
+					[class.is-open]="themeDropdownOpen()" />
+			</button>
 
-            @if (themeDropdownOpen()) {
-                <div
-                    class="site-header__theme-panel"
-                    role="listbox"
-                    aria-label="Theme"
-                >
-                    @for (t of themes; track t.value) {
-                        <button
-                            type="button"
-                            class="site-header__theme-option"
-                            [class.is-active]="currentTheme() === t.value"
-                            (click)="selectTheme(t.value)"
-                            role="option"
-                            [attr.aria-selected]="currentTheme() === t.value"
-                        >
-                            <span
-                                class="site-header__theme-option-swatch"
-                                [style.background]="t.accent"
-                                [style.box-shadow]="'0 0 0 3px ' + t.surface"
-                            ></span>
-                            <span>{{ t.label }}</span>
-                            @if (currentTheme() === t.value) {
-                                <zyra-icon
-                                    [img]="icons.check"
-                                    [size]="12"
-                                    class="site-header__theme-check"
-                                />
-                            }
-                        </button>
-                    }
-                </div>
-            }
-        </div>
+			@if (themeDropdownOpen()) {
+			<div class="site-header__theme-panel" role="listbox" aria-label="Theme">
+				@for (t of themes; track t.value) {
+				<button type="button" class="site-header__theme-option" [class.is-active]="currentTheme() === t.value"
+					(click)="selectTheme(t.value)" role="option" [attr.aria-selected]="currentTheme() === t.value">
+					<span class="site-header__theme-option-swatch" [style.background]="t.accent"
+						[style.box-shadow]="'0 0 0 3px ' + t.surface"></span>
+					<span>{{ t.label }}</span>
+					@if (currentTheme() === t.value) {
+					<zyra-icon [img]="icons.check" [size]="12" class="site-header__theme-check" />
+					}
+				</button>
+				}
+			</div>
+			}
+		</div>
 
-        <zyra-button class="site-header__cta" size="sm" routerLink="/docs/components">Get started</zyra-button>
-    </div>
-
-    <div zyraHeaderMobileEnd class="site-header__mobile-actions">
-        <a
-            class="site-header__mobile-repo"
-            href="https://github.com/ramajonnada/zyra-ui"
-            target="_blank"
-            rel="noopener noreferrer"
-            (click)="headerRef.closeMobile()"
-        >
-            <zyra-icon [img]="icons.github" />
-        </a>
-    </div>
+		<zyra-button class="site-header__cta" size="sm" routerLink="/docs/components">Get started</zyra-button>
+	</div>
 </zyra-header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <zyra-header>
-
-    <app-logo zyraHeaderStart />
-
-    <app-navigation zyraHeaderNav />
-
-    <div zyraHeaderEnd>
-
-        <app-sidebar-toggle />
-
-        <app-github-button />
-
-        <app-theme-picker />
-
-        <app-get-started-button />
-
-    </div>
-
-    <app-mobile-navigation zyraHeaderMobileEnd />
-
-</zyra-header> -->

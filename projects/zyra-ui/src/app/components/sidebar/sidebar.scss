@@ -1,3 +1,79 @@
+// :host {
+// 	display: flex;
+// 	flex-shrink: 0;
+// 	position: sticky;
+// 	top: 60px;
+// 	height: calc(100dvh - 60px);
+// 	min-height: 0;
+// 	margin-right: 32px;
+// }
+
+// .sidebar__footer {
+// 	display: flex;
+// 	align-items: center;
+// 	gap: 10px;
+// 	padding: 14px 12px;
+// 	background: var(--zyra-color-surface-subtle);
+// }
+
+// .sidebar__footer-dot {
+// 	width: 7px;
+// 	height: 7px;
+// 	border-radius: 50%;
+// 	background: var(--zyra-color-accent);
+// 	flex-shrink: 0;
+// }
+
+// .sidebar__footer-text {
+// 	font-family: var(--zyra-font-display);
+// 	font-size: 0.78rem;
+// 	font-weight: 700;
+// 	color: var(--zyra-color-text-muted);
+
+// 	span {
+// 		color: var(--zyra-color-accent);
+// 	}
+// }
+
+// @media (max-width: 900px) {
+// 	// Off-canvas drawer: fixed to the viewport (not sticky) so it stays put
+// 	// under the header regardless of page scroll, and slides in from the left.
+// 	:host {
+// 		position: fixed;
+// 		top: 60px;
+// 		left: 0;
+// 		bottom: 0;
+// 		z-index: 90;
+// 		width: min(84vw, 240px);
+// 		height: auto;
+// 		margin-right: 0;
+// 		transform: translateX(-100%);
+// 		transition: transform var(--zyra-transition-base);
+// 		pointer-events: none;
+// 	}
+
+// 	:host(.sidebar--open) {
+// 		transform: translateX(0);
+// 		pointer-events: auto;
+// 	}
+
+// 	::ng-deep .zyr-sidebar {
+// 		width: 100%;
+// 		height: 100%;
+// 		box-shadow: var(--zyra-shadow-md);
+// 	}
+
+// 	.sidebar__footer {
+// 		display: flex;
+// 	}
+// }
+
+// @media (prefers-reduced-motion: reduce) {
+// 	:host {
+// 		transition: none;
+// 	}
+// }
+
 :host {
 	display: flex;
 	flex-shrink: 0;
@@ -36,40 +112,13 @@
 }
 
 @media (max-width: 900px) {
-	// Off-canvas drawer: fixed to the viewport (not sticky) so it stays put
-	// under the header regardless of page scroll, and slides in from the left.
+
+	// This instance (rendered in app-body, beside app-main) is desktop-only.
+	// Below 900px, the mobile copy of app-sidebar rendered inside
+	// zyra-header's own mobile panel takes over — display:none here removes
+	// this instance from the layout, the accessibility tree, and tab order,
+	// so only one interactive sidebar ever exists per viewport width.
 	:host {
-		position: fixed;
-		top: 60px;
-		left: 0;
-		bottom: 0;
-		z-index: 90;
-		width: min(84vw, 240px);
-		height: auto;
-		margin-right: 0;
-		transform: translateX(-100%);
-		transition: transform var(--zyra-transition-base);
-		pointer-events: none;
-	}
-
-	:host(.sidebar--open) {
-		transform: translateX(0);
-		pointer-events: auto;
-	}
-
-	::ng-deep .zyr-sidebar {
-		width: 100%;
-		height: 100%;
-		box-shadow: var(--zyra-shadow-md);
-	}
-
-	.sidebar__footer {
-		display: flex;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	:host {
-		transition: none;
+		display: none;
 	}
 }
