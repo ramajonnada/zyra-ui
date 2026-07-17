@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import {
+    ZyraSidebar,
+    ZyraSidebarSection,
+    ZyraSidebarItem,
     boxOpen,
     certificate,
     circleUser,
@@ -10,7 +13,7 @@ import {
     selector: 'pg-sidebar-renderer',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [],
+    imports: [ZyraSidebar, ZyraSidebarSection, ZyraSidebarItem],
     styles: [
         `
             :host {
@@ -27,7 +30,7 @@ import {
         `,
     ],
     template: `
-        <!-- <div class="pg-sidebar-frame">
+        <div class="pg-sidebar-frame">
             <zyra-sidebar [collapsed]="collapsed()">
                 <div sidebar-header>Zyra UI</div>
                 <zyra-sidebar-section heading="General">
@@ -39,7 +42,7 @@ import {
                     <a zyra-sidebar-item [icon]="certificate" [disabled]="disabled()">Billing</a>
                 </zyra-sidebar-section>
             </zyra-sidebar>
-        </div> -->
+        </div>
     `,
 })
 export class SidebarRenderer {

@@ -21,6 +21,8 @@
 :host.pv--fill .pv {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-height: 0;
     box-sizing: border-box;
 }
 

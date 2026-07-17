@@ -7,6 +7,8 @@ import {
     ZyraHeader,
     ZyraHeaderEnd,
     ZyraHeaderMobileEnd,
+    ZyraHeaderMobileFooter,
+    ZyraHeaderMobileNav,
     ZyraHeaderNav,
     ZyraHeaderStart,
 } from './zyra-header';
@@ -186,5 +188,160 @@ describe('ZyraHeader', () => {
         expect(headerEl().classList).not.toContain('zyr-header--scrolled');
 
         Object.defineProperty(window, 'scrollY', { value: 0, configurable: true });
+    });
+});
+
+// ── Independent mobile navigation (zyraHeaderMobileNav) ────────────────────
+
+@Component({
+    standalone: true,
+    imports: [
+        ZyraHeader,
+        ZyraHeaderStart,
+        ZyraHeaderNav,
+        ZyraHeaderEnd,
+        ZyraHeaderMobileNav,
+        ZyraHeaderMobileEnd,
+        ZyraHeaderMobileFooter,
+    ],
+    template: `
+        <zyra-header aria-label="Site">
+            <a zyraHeaderStart>Logo</a>
+            <nav zyraHeaderNav><a>Desktop Docs</a></nav>
+            <div zyraHeaderEnd>Desktop CTA</div>
+
+            <nav zyraHeaderMobileNav><a href="/docs">Mobile Docs</a><a href="/blog">Mobile Blog</a></nav>
+            @if (showContent()) {
+                <div zyraHeaderMobileEnd>Mobile Content</div>
+            }
+            @if (showFooter()) {
+                <div zyraHeaderMobileFooter>v1.0.0</div>
+            }
+        </zyra-header>
+    `,
+})
+class IndependentNavHostComponent {
+    showContent = signal(true);
+    showFooter = signal(true);
+}
+
+@Component({
+    standalone: true,
+    imports: [ZyraHeader, ZyraHeaderStart, ZyraHeaderNav, ZyraHeaderMobileNav],
+    template: `
+        <zyra-header aria-label="Site">
+            <a zyraHeaderStart>Logo</a>
+            <nav zyraHeaderNav><a>Desktop Docs</a></nav>
+            <nav zyraHeaderMobileNav><a>Mobile Docs</a></nav>
+        </zyra-header>
+    `,
+})
+class MobileNavOnlyHostComponent {}
+
+describe('ZyraHeader — independent mobile navigation', () => {
+    let fixture: ComponentFixture<IndependentNavHostComponent>;
+    let host: IndependentNavHostComponent;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [IndependentNavHostComponent],
+        }).compileComponents();
+        fixture = TestBed.createComponent(IndependentNavHostComponent);
+        host = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    function headerEl(): HTMLElement {
+        return fixture.nativeElement.querySelector('zyra-header');
+    }
+
+    function openDrawer(): void {
+        const burger: HTMLButtonElement = headerEl().querySelector('.zyr-header__burger')!;
+        burger.click();
+        fixture.detectChanges();
+    }
+
+    it('renders desktop nav content in .zyr-header__nav', () => {
+        const desktopNav = headerEl().querySelector('.zyr-header__nav')!;
+        expect(desktopNav.textContent).toContain('Desktop Docs');
+    });
+
+    it('renders independent mobile content in .zyr-drawer, not in the desktop nav', () => {
+        const drawer = headerEl().querySelector('.zyr-drawer')!;
+        expect(drawer.textContent).toContain('Mobile Docs');
+        expect(drawer.textContent).toContain('Mobile Blog');
+
+        // Desktop nav never renders inside the independent drawer.
+        const desktopNav = headerEl().querySelector('.zyr-header__nav')!;
+        expect(desktopNav.textContent).not.toContain('Mobile Docs');
+        expect(drawer.textContent).not.toContain('Desktop Docs');
+    });
+
+    it('renders the Content section from the reused [zyraHeaderMobileEnd] slot', () => {
+        const content = headerEl().querySelector('.zyr-drawer__content')!;
+        expect(content.textContent).toContain('Mobile Content');
+    });
+
+    it('renders the Footer section from [zyraHeaderMobileFooter]', () => {
+        const footer = headerEl().querySelector('.zyr-drawer__footer')!;
+        expect(footer.textContent).toContain('v1.0.0');
+    });
+
+    it('omits the Content section wrapper entirely when not provided', () => {
+        host.showContent.set(false);
+        fixture.detectChanges();
+        expect(headerEl().querySelector('.zyr-drawer__content')).toBeNull();
+    });
+
+    it('omits the Footer section wrapper entirely when not provided', () => {
+        host.showFooter.set(false);
+        fixture.detectChanges();
+        expect(headerEl().querySelector('.zyr-drawer__footer')).toBeNull();
+    });
+
+    it('still toggles mobileOpen / drawer visibility via the burger button', () => {
+        expect(headerEl().classList).not.toContain('zyr-header--mobile-open');
+        openDrawer();
+        expect(headerEl().classList).toContain('zyr-header--mobile-open');
+    });
+
+    it('still closes on Escape', () => {
+        openDrawer();
+        expect(headerEl().classList).toContain('zyr-header--mobile-open');
+
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        fixture.detectChanges();
+
+        expect(headerEl().classList).not.toContain('zyr-header--mobile-open');
+    });
+
+    it('moves focus into the drawer on open and restores it to the burger on close', () => {
+        const burger: HTMLButtonElement = headerEl().querySelector('.zyr-header__burger')!;
+        burger.click();
+        fixture.detectChanges();
+
+        const drawer = headerEl().querySelector('.zyr-drawer')!;
+        expect(drawer.contains(document.activeElement)).toBe(true);
+
+        burger.click();
+        fixture.detectChanges();
+
+        expect(document.activeElement).toBe(burger);
+    });
+});
+
+describe('ZyraHeader — mobile nav/content projected together (no conflict)', () => {
+    it('resolves to independent mode without duplicating or crashing when only zyraHeaderMobileNav is provided', async () => {
+        await TestBed.configureTestingModule({
+            imports: [MobileNavOnlyHostComponent],
+        }).compileComponents();
+        const fixture = TestBed.createComponent(MobileNavOnlyHostComponent);
+        fixture.detectChanges();
+
+        const headerEl: HTMLElement = fixture.nativeElement.querySelector('zyra-header');
+        expect(headerEl.querySelector('.zyr-drawer')).not.toBeNull();
+        expect(headerEl.querySelector('.zyr-drawer__content')).toBeNull();
+        expect(headerEl.querySelector('.zyr-drawer__footer')).toBeNull();
+        expect(headerEl.querySelector('.zyr-drawer')!.textContent).toContain('Mobile Docs');
     });
 });

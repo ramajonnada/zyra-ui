@@ -22,22 +22,24 @@ describe('DocsThemeTokens', () => {
         expect(component).toBeTruthy();
     });
 
-    it('exposes 5 token groups', () => {
-        expect(component.tokenGroups.length).toBe(5);
+    it('exposes 5 token tiers', () => {
+        expect(component.tiers.length).toBe(5);
     });
 
-    it('first token group is Color — semantic', () => {
-        expect(component.tokenGroups[0].label).toBe('Color — semantic');
+    it('first tier is Primitives', () => {
+        expect(component.tiers[0].title).toContain('Primitives');
     });
 
-    it('Color — semantic group includes --zyra-color-accent and --zyra-color-bg-app', () => {
-        const colorGroup = component.tokenGroups[0];
-        expect(colorGroup.tokens).toContain('--zyra-color-accent');
-        expect(colorGroup.tokens).toContain('--zyra-color-bg-app');
+    it('per-theme tier includes --zyra-color-accent and --zyra-color-bg-app', () => {
+        const perTheme = component.tiers.find((t) => t.id === 'per-theme');
+        const allTokens = perTheme?.groups.flatMap((g) => g.tokens) ?? [];
+        expect(allTokens).toContain('--zyra-color-accent');
+        expect(allTokens).toContain('--zyra-color-bg-app');
     });
 
-    it('Typography token group includes font tokens', () => {
-        const typo = component.tokenGroups.find((g) => g.label === 'Typography');
+    it('dimension tier Typography group includes font tokens', () => {
+        const dimension = component.tiers.find((t) => t.id === 'dimension');
+        const typo = dimension?.groups.find((g) => g.label === 'Typography');
         expect(typo?.tokens).toContain('--zyra-font-body');
         expect(typo?.tokens).toContain('--zyra-font-display');
     });

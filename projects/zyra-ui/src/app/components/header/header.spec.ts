@@ -46,13 +46,13 @@ describe('Header', () => {
         expect(component).toBeTruthy();
     });
 
-    // ── navLinks data ─────────────────────────────────────────────────────────
-    it('exposes 3 nav links', () => {
-        expect(component.navLinks.length).toBe(3);
+    // ── navItems data ─────────────────────────────────────────────────────────
+    it('exposes 3 nav items', () => {
+        expect(component.navItems.length).toBe(3);
     });
 
-    it('nav links include Components, Docs and Blog', () => {
-        const labels = component.navLinks.map((l) => l.label);
+    it('nav items include Components, Docs and Blog', () => {
+        const labels = component.navItems.map((l) => l.label);
         expect(labels).toContain('Components');
         expect(labels).toContain('Docs');
         expect(labels).toContain('Blog');

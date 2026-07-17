@@ -12,8 +12,10 @@ import {
     input,
     OnInit,
     output,
+    PLATFORM_ID,
     signal,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { ZyraOption, type SelectValue } from '../zyra-select/zyra-option';
 import { ZYRA_SELECT, type ZyraSelectRef } from '../zyra-select/zyra-select-token';
@@ -114,6 +116,7 @@ export class ZyraAutocomplete
 
     private readonly _el = inject(ElementRef<HTMLElement>);
     private readonly _injector = inject(Injector);
+    private readonly _isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
     private _ngControl: NgControl | null = null;
 
     ngOnInit(): void {
@@ -258,7 +261,9 @@ export class ZyraAutocomplete
 
         this.activeIndex.set(idx);
         this._syncOptions();
-        document.getElementById(opts[idx].optionId)?.scrollIntoView({ block: 'nearest' });
+        if (this._isBrowser) {
+            document.getElementById(opts[idx].optionId)?.scrollIntoView({ block: 'nearest' });
+        }
     }
 
     private _syncOptions(): void {
@@ -273,6 +278,7 @@ export class ZyraAutocomplete
     /** Hides options that don't match the current query — reuses `zyra-option`'s
      * DOM id rather than forking it with a new "hidden" input. */
     private _syncVisibility(): void {
+        if (!this._isBrowser) return;
         const visible = new Set(this.filteredOptions().map((o) => o.optionId));
         this._options().forEach((opt) => {
             const el = document.getElementById(opt.optionId);

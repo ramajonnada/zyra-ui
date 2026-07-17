@@ -10,21 +10,22 @@
 		<h1>Theme tokens</h1>
 		<p class="docs-page__lead">
 			Every color, radius, font, and transition in Zyra UI is a CSS custom property, organized
-			in three tiers: primitives, semantic tokens, and per-component tokens. Override the
-			semantic layer and everything downstream — including per-component tokens — follows
-			automatically. Prefer to see them applied live?
+			in layered tiers — primitives, per-theme raw tokens, semantic tokens, dimension tokens,
+			and per-component tokens. Override the semantic layer and everything downstream —
+			including per-component tokens — follows automatically. Prefer to see them applied live?
 			<a routerLink="/docs/theming">Open the theming page →</a>
 		</p>
 	</header>
 
-	<section class="docs-section docs-section--first">
+	@for (tier of tiers; track tier.id; let first = $first) {
+	<section class="docs-section" [class.docs-section--first]="first" [id]="tier.id">
 		<div class="docs-section__header">
-			<h2>Token reference</h2>
-			<p>The semantic tokens most components read from directly.</p>
+			<h2>{{ tier.title }}</h2>
+			<p>{{ tier.description }}</p>
 		</div>
 
 		<div class="docs-token-grid">
-			@for (group of tokenGroups; track group.label) {
+			@for (group of tier.groups; track group.label) {
 			<div class="docs-token-group">
 				<span class="docs-token-group__label">{{ group.label }}</span>
 				<div class="docs-token-group__tokens">
@@ -36,15 +37,16 @@
 			}
 		</div>
 	</section>
+	}
 
 	<section class="docs-section">
 		<div class="docs-section__header">
 			<h2>What can I change?</h2>
 			<p>
 				Semantic and dimension tokens are the supported customization surface — override these
-				and everything downstream follows. Primitives and per-component tokens are
-				implementation detail: they already derive from the semantic layer, and their names
-				can change between component updates.
+				and everything downstream follows. Primitives, per-theme raw tokens, and
+				per-component tokens are implementation detail: they already derive from (or feed) the
+				semantic layer, and their names can change between component updates.
 			</p>
 		</div>
 

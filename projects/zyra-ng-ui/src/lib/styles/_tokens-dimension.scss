@@ -22,11 +22,13 @@
     --zyra-ease-standard:     cubic-bezier(0.22, 1, 0.36, 1);
     --zyra-ease-spring:       cubic-bezier(0.34, 1.56, 0.64, 1);
     --zyra-duration-fast:     150ms;
+    --zyra-duration-moderate: 220ms;
     --zyra-duration-base:     300ms;
     --zyra-duration-slow:     600ms;
-    --zyra-transition-fast:   150ms cubic-bezier(0.22, 1, 0.36, 1);
-    --zyra-transition-base:   300ms cubic-bezier(0.22, 1, 0.36, 1);
-    --zyra-transition-slow:   600ms cubic-bezier(0.22, 1, 0.36, 1);
+    --zyra-transition-fast:     150ms cubic-bezier(0.22, 1, 0.36, 1);
+    --zyra-transition-moderate: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    --zyra-transition-base:     300ms cubic-bezier(0.22, 1, 0.36, 1);
+    --zyra-transition-slow:     600ms cubic-bezier(0.22, 1, 0.36, 1);
     --zyra-transition-spring: 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
     // ── Spacing ──────────────────────────────────────────────

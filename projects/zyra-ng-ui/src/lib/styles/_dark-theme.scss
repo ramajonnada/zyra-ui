@@ -88,8 +88,8 @@
 	--zyra-color-code-bg: #0a0f15;
 	--zyra-color-overlay-bg: rgba(4, 8, 12, 0.72);
 
-	--zyra-color-scrollbar-thumb: rgba(255, 255, 255, 0.07);
-	--zyra-color-scrollbar-track: transparent;
+	--zyra-color-scrollbar-thumb-base: rgba(255, 255, 255, 0.07);
+	--zyra-color-scrollbar-track-base: transparent;
 
 	--zyra-color-tooltip-bg: #0f151c;
 	--zyra-color-tooltip-text: #f6f7f9;
@@ -109,8 +109,8 @@
 
 	--zyra-color-glass-bg: rgba(14, 22, 36, 0.52);
 	--zyra-color-header-glass-bg: rgba(8, 12, 20, 0.64);
-	--zyra-header-backdrop: blur(28px) saturate(200%) brightness(1.08);
-	--zyra-header-shadow:
+	--zyra-header-backdrop-base: blur(28px) saturate(200%) brightness(1.08);
+	--zyra-header-shadow-base:
 		0 1px 0 rgba(var(--zyra-color-glow), 0.08) inset, 0 2px 8px rgba(0, 0, 0, 0.12),
 		0 8px 28px rgba(0, 0, 0, 0.18);
 }

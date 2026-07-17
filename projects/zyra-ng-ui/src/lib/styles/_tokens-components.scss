@@ -1,8 +1,13 @@
-﻿// Tier 3: Component tokens â€” per-component namespaced aliases over Tier 1.
-// All values reference semantic tokens (Tier 1), never raw foundation tokens directly.
+// Tier 3: Component tokens — per-component namespaced aliases over Tier 2 (semantic).
+// All values reference semantic tokens, dimension tokens, or existing per-theme
+// tokens — never new raw foundation values invented at this layer.
 :root {
 
-	// â”€â”€ Button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ════════════════════════════════════════════════════════════════════
+	// Actions
+	// ════════════════════════════════════════════════════════════════════
+
+	// ── Button ───────────────────────────────────────────────────────────
 	--zyra-color-btn-primary-bg: var(--zyra-color-primary);
 	--zyra-color-btn-primary-border: var(--zyra-color-primary-border);
 	--zyra-color-btn-primary-hover-bg: var(--zyra-color-primary-hover);
@@ -25,26 +30,71 @@
 	--zyra-btn-disabled-opacity: 0.42;
 	--zyra-btn-focus-ring: var(--zyra-ring);
 
-	// â”€â”€ Card & Glow â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-	// --zyra-color-glow is defined per-theme as RGB channels ("0, 234, 255")
-	// enabling rgba(var(--zyra-color-glow), 0.4) composition.
-	--zyra-color-card-border: var(--zyra-color-border-color);
-	--zyra-color-card-hover-border: var(--zyra-color-border-hover);
-	--zyra-card-radius: 20px;
-	--zyra-card-focus-ring: var(--zyra-ring);
-	--zyra-color-glow-border: rgba(var(--zyra-color-glow), 0.46);
-	--zyra-color-glow-shadow: 0 24px 70px rgba(var(--zyra-color-glow), 0.18);
-	--zyra-color-glow-shadow-strong: 0 18px 46px rgba(var(--zyra-color-glow), 0.26);
-	--zyra-color-glow-surface: rgba(var(--zyra-color-glow), 0.1);
+	// ════════════════════════════════════════════════════════════════════
+	// Navigation
+	// ════════════════════════════════════════════════════════════════════
 
-	// â”€â”€ Avatar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-	--zyra-color-avatar-primary-end: var(--zyra-color-accent-secondary);
-	--zyra-color-avatar-blue-end: var(--zyra-color-primary);
-	--zyra-color-avatar-purple-end: var(--zyra-color-accent-secondary);
-	--zyra-color-avatar-warm-end: var(--zyra-color-danger-foreground);
-	--zyra-color-avatar-contrast: var(--zyra-color-on-brand);
+	// ── Header ───────────────────────────────────────────────────────────
+	--zyra-header-bg: var(--zyra-color-background);
+	--zyra-header-border: var(--zyra-color-border);
+	--zyra-header-border-width: 1px;
+	--zyra-header-padding-x: var(--zyra-space-6);
+	--zyra-header-gap: var(--zyra-space-5);
+	--zyra-header-height: 60px;
+	--zyra-header-height-sm: 48px;
+	--zyra-header-height-lg: 76px;
+	--zyra-header-burger-size: 38px;
+	--zyra-header-burger-radius: var(--zyra-radius-full);
+	--zyra-header-z-index: var(--zyra-z-dropdown);
+	--zyra-header-glass-bg: var(--zyra-color-header-glass-bg);
+	--zyra-header-backdrop: var(--zyra-header-backdrop-base);
+	--zyra-header-shadow: var(--zyra-header-shadow-base);
+	--zyra-header-divider-color: var(--zyra-color-border);
+	--zyra-header-divider-width: 1px;
 
-	// â”€â”€ Checkbox â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Sidebar ──────────────────────────────────────────────────────────
+	--zyra-color-sidebar-bg: var(--zyra-color-background-elevated);
+	--zyra-color-sidebar-border: var(--zyra-color-border-color);
+	--zyra-color-sidebar-heading: var(--zyra-color-foreground-subtle);
+	--zyra-color-sidebar-text: var(--zyra-color-foreground-muted);
+	--zyra-color-sidebar-text-hover: var(--zyra-color-foreground);
+	--zyra-color-sidebar-text-active: var(--zyra-color-primary);
+	--zyra-color-sidebar-hover-bg: var(--zyra-color-surface-inset);
+	--zyra-color-sidebar-active-bg: var(--zyra-color-primary-subtle);
+	--zyra-color-sidebar-badge-bg: var(--zyra-color-primary-subtle);
+	--zyra-color-sidebar-badge-text: var(--zyra-color-primary);
+
+	// ── Drawer (generic — reusable by Header mobile nav, ZyraDrawer,
+	//    future Sidebar-as-drawer, Modal, Command Palette, Filter Panel) ──
+	--zyra-color-drawer-bg: var(--zyra-color-surface);
+	--zyra-color-drawer-text: var(--zyra-color-foreground);
+	--zyra-color-drawer-border: var(--zyra-color-border-color);
+	--zyra-drawer-width: 300px;
+	--zyra-drawer-max-width: 85vw;
+	--zyra-drawer-padding: var(--zyra-space-4);
+	--zyra-drawer-nav-item-gap: var(--zyra-space-1);
+	--zyra-drawer-section-gap: var(--zyra-space-4);
+	--zyra-drawer-footer-gap: var(--zyra-space-2);
+	--zyra-drawer-shadow: var(--zyra-shadow-md);
+
+	// ── Tabs ─────────────────────────────────────────────────────────────
+	--zyra-color-tabs-text: var(--zyra-color-foreground-muted);
+	--zyra-color-tabs-text-hover: var(--zyra-color-foreground);
+	--zyra-color-tabs-text-active: var(--zyra-color-primary);
+	--zyra-color-tabs-border: var(--zyra-color-border-color);
+	--zyra-color-tabs-indicator: var(--zyra-color-primary);
+	--zyra-color-tabs-badge-bg: var(--zyra-color-primary-subtle);
+	--zyra-color-tabs-badge-text: var(--zyra-color-primary);
+	--zyra-color-tabs-badge-active-bg: var(--zyra-color-primary);
+	--zyra-color-tabs-badge-active-text: var(--zyra-color-on-brand);
+	--zyra-color-tabs-pill-active-bg: var(--zyra-color-pill-active-bg);
+	--zyra-tabs-pill-active-shadow: var(--zyra-pill-active-shadow);
+
+	// ════════════════════════════════════════════════════════════════════
+	// Forms
+	// ════════════════════════════════════════════════════════════════════
+
+	// ── Checkbox ─────────────────────────────────────────────────────────
 	--zyra-color-checkbox-bg: var(--zyra-color-input-bg);
 	--zyra-color-checkbox-border: var(--zyra-color-input-border);
 	--zyra-checkbox-focus-shadow: var(--zyra-input-shadow-focus);
@@ -52,7 +102,7 @@
 	--zyra-color-checkbox-checked-border: var(--zyra-color-primary);
 	--zyra-color-checkbox-mark: var(--zyra-color-text-inverse);
 
-	// â”€â”€ Radio â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Radio ────────────────────────────────────────────────────────────
 	--zyra-color-radio-bg: var(--zyra-color-input-bg);
 	--zyra-color-radio-border: var(--zyra-color-input-border);
 	--zyra-radio-focus-shadow: var(--zyra-input-shadow-focus);
@@ -60,18 +110,18 @@
 	--zyra-color-radio-checked-bg: var(--zyra-color-primary-subtle);
 	--zyra-color-radio-dot: var(--zyra-color-primary);
 
-	// â”€â”€ Switch â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Switch ───────────────────────────────────────────────────────────
 	--zyra-color-switch-track-off: var(--zyra-color-border-strong-color);
 	--zyra-color-switch-track-on: var(--zyra-color-primary);
 	--zyra-switch-ring: var(--zyra-color-primary-subtle);
 
-	// â”€â”€ Toggle (button-press) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Toggle (button-press) ────────────────────────────────────────────
 	--zyra-color-toggle-border: var(--zyra-color-border-strong-color);
 	--zyra-color-toggle-bg-on: var(--zyra-color-primary-subtle);
 	--zyra-color-toggle-fg-on: var(--zyra-color-primary);
 	--zyra-toggle-ring: var(--zyra-color-primary-subtle);
 
-	// â”€â”€ Form-field â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Form-field ───────────────────────────────────────────────────────
 	--zyra-field-label-font: var(--zyra-font-mono);
 	--zyra-color-field-label-color: var(--zyra-color-foreground-muted);
 	--zyra-color-field-required-mark: var(--zyra-color-danger-foreground);
@@ -90,7 +140,7 @@
 	--zyra-color-field-error-color: var(--zyra-color-danger-foreground);
 	--zyra-field-error-shadow: 0 0 0 3px var(--zyra-color-danger-subtle);
 
-	// â”€â”€ Select â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Select ───────────────────────────────────────────────────────────
 	--zyra-color-select-text: var(--zyra-color-foreground);
 	--zyra-color-select-placeholder: var(--zyra-color-foreground-subtle);
 	--zyra-color-select-icon: var(--zyra-color-foreground-subtle);
@@ -103,32 +153,42 @@
 	--zyra-color-select-panel-border: var(--zyra-color-border-color);
 	--zyra-select-panel-shadow: var(--zyra-shadow-md);
 
-	// â”€â”€ Tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-	--zyra-color-tabs-text: var(--zyra-color-foreground-muted);
-	--zyra-color-tabs-text-hover: var(--zyra-color-foreground);
-	--zyra-color-tabs-text-active: var(--zyra-color-primary);
-	--zyra-color-tabs-border: var(--zyra-color-border-color);
-	--zyra-color-tabs-indicator: var(--zyra-color-primary);
-	--zyra-color-tabs-badge-bg: var(--zyra-color-primary-subtle);
-	--zyra-color-tabs-badge-text: var(--zyra-color-primary);
-	--zyra-color-tabs-badge-active-bg: var(--zyra-color-primary);
-	--zyra-color-tabs-badge-active-text: var(--zyra-color-on-brand);
-	--zyra-color-tabs-pill-active-bg: var(--zyra-color-pill-active-bg);
-	--zyra-tabs-pill-active-shadow: var(--zyra-pill-active-shadow);
+	// ── Slider ───────────────────────────────────────────────────────────
+	--zyra-color-slider-track: var(--zyra-color-border-strong-color);
+	--zyra-color-slider-fill: var(--zyra-color-primary);
+	--zyra-color-slider-thumb: var(--zyra-color-primary);
+	--zyra-color-slider-thumb-ring: var(--zyra-color-primary-subtle);
+	--zyra-color-slider-text: var(--zyra-color-foreground-muted);
 
-	// â”€â”€ Sidebar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-	--zyra-color-sidebar-bg: var(--zyra-color-background-elevated);
-	--zyra-color-sidebar-border: var(--zyra-color-border-color);
-	--zyra-color-sidebar-heading: var(--zyra-color-foreground-subtle);
-	--zyra-color-sidebar-text: var(--zyra-color-foreground-muted);
-	--zyra-color-sidebar-text-hover: var(--zyra-color-foreground);
-	--zyra-color-sidebar-text-active: var(--zyra-color-primary);
-	--zyra-color-sidebar-hover-bg: var(--zyra-color-surface-inset);
-	--zyra-color-sidebar-active-bg: var(--zyra-color-primary-subtle);
-	--zyra-color-sidebar-badge-bg: var(--zyra-color-primary-subtle);
-	--zyra-color-sidebar-badge-text: var(--zyra-color-primary);
+	// ── File Upload ──────────────────────────────────────────────────────
+	--zyra-color-file-upload-bg: var(--zyra-color-surface-inset);
+	--zyra-color-file-upload-text: var(--zyra-color-foreground);
+	--zyra-color-file-upload-border: var(--zyra-color-border-color);
 
-	// â”€â”€ Code block â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ════════════════════════════════════════════════════════════════════
+	// Data Display
+	// ════════════════════════════════════════════════════════════════════
+
+	// ── Card & Glow ──────────────────────────────────────────────────────
+	// --zyra-color-glow is defined per-theme as RGB channels ("0, 234, 255")
+	// enabling rgba(var(--zyra-color-glow), 0.4) composition.
+	--zyra-color-card-border: var(--zyra-color-border-color);
+	--zyra-color-card-hover-border: var(--zyra-color-border-hover);
+	--zyra-card-radius: 20px;
+	--zyra-card-focus-ring: var(--zyra-ring);
+	--zyra-color-glow-border: rgba(var(--zyra-color-glow), 0.46);
+	--zyra-color-glow-shadow: 0 24px 70px rgba(var(--zyra-color-glow), 0.18);
+	--zyra-color-glow-shadow-strong: 0 18px 46px rgba(var(--zyra-color-glow), 0.26);
+	--zyra-color-glow-surface: rgba(var(--zyra-color-glow), 0.1);
+
+	// ── Avatar ───────────────────────────────────────────────────────────
+	--zyra-color-avatar-primary-end: var(--zyra-color-accent-secondary);
+	--zyra-color-avatar-blue-end: var(--zyra-color-primary);
+	--zyra-color-avatar-purple-end: var(--zyra-color-accent-secondary);
+	--zyra-color-avatar-warm-end: var(--zyra-color-danger-foreground);
+	--zyra-color-avatar-contrast: var(--zyra-color-on-brand);
+
+	// ── Code block ───────────────────────────────────────────────────────
 	--zyra-color-code-keyword: var(--zyra-color-accent-secondary);
 	--zyra-color-code-tag: var(--zyra-color-primary);
 	--zyra-color-code-attr: var(--zyra-color-accent-tertiary);
@@ -137,7 +197,21 @@
 	--zyra-color-code-comment: var(--zyra-color-foreground-subtle);
 	--zyra-color-code-punct: var(--zyra-color-foreground-muted);
 
-	// â”€â”€ Progress â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	// ── Carousel ─────────────────────────────────────────────────────────
+	--zyra-color-carousel-bg: var(--zyra-color-surface-inset);
+	--zyra-color-carousel-text: var(--zyra-color-foreground);
+	--zyra-color-carousel-border: var(--zyra-color-border-color);
+
+	// ── Calendar ─────────────────────────────────────────────────────────
+	--zyra-color-calendar-bg: var(--zyra-color-surface-inset);
+	--zyra-color-calendar-text: var(--zyra-color-foreground);
+	--zyra-color-calendar-border: var(--zyra-color-border-color);
+
+	// ════════════════════════════════════════════════════════════════════
+	// Feedback
+	// ════════════════════════════════════════════════════════════════════
+
+	// ── Progress ─────────────────────────────────────────────────────────
 	--zyra-color-progress-track-bg: var(--zyra-color-surface-inset);
 	--zyra-color-progress-track-border: var(--zyra-color-border-color);
 	--zyra-color-progress-label-color: var(--zyra-color-foreground-muted);
@@ -147,37 +221,28 @@
 	--zyra-color-progress-danger: var(--zyra-color-danger-foreground);
 	--zyra-color-progress-info: var(--zyra-color-info-foreground);
 
-	// â”€â”€ Scroll area â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-	--zyra-color-scrollbar-thumb: var(--zyra-color-border-strong-color);
+	// ════════════════════════════════════════════════════════════════════
+	// Overlay (generic — reusable scrim for Drawer, Modal, Command Palette,
+	//    Filter Panel, dropdown panels; not navigation-specific)
+	// ════════════════════════════════════════════════════════════════════
+	--zyra-overlay-bg: var(--zyra-color-overlay-scrim);
+	--zyra-overlay-z-index: var(--zyra-z-overlay);
+	--zyra-overlay-fade-duration: var(--zyra-duration-fast);
+
+	// ════════════════════════════════════════════════════════════════════
+	// Utilities
+	// ════════════════════════════════════════════════════════════════════
+
+	// ── Scroll area ──────────────────────────────────────────────────────
+	--zyra-color-scrollbar-thumb: var(--zyra-color-scrollbar-thumb-base);
 	--zyra-color-scrollbar-thumb-hover: var(--zyra-color-foreground-subtle);
-	--zyra-color-scrollbar-track: transparent;
-	// â”€â”€ ZyraThemeSwitch â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+	--zyra-color-scrollbar-track: var(--zyra-color-scrollbar-track-base);
+
+	// ── ZyraThemeSwitch ──────────────────────────────────────────────────
 	--zyra-color-theme-switch-bg: var(--zyra-color-surface-inset);
 	--zyra-color-theme-switch-bg-hover: var(--zyra-color-bg-raised);
 	--zyra-color-theme-switch-text: var(--zyra-color-foreground);
 	--zyra-color-theme-switch-border: var(--zyra-color-border-color);
 	--zyra-color-theme-switch-panel-bg: var(--zyra-color-surface);
 	--zyra-color-theme-switch-panel-shadow: var(--zyra-card-elevated-shadow);
-	// â”€â”€ ZyraDrawer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-	--zyra-color-drawer-bg: var(--zyra-color-surface);
-	--zyra-color-drawer-text: var(--zyra-color-foreground);
-	--zyra-color-drawer-border: var(--zyra-color-border-color);
-    // â”€â”€ ZyraSlider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    --zyra-color-slider-track:      var(--zyra-color-border-strong-color);
-    --zyra-color-slider-fill:       var(--zyra-color-primary);
-    --zyra-color-slider-thumb:      var(--zyra-color-primary);
-    --zyra-color-slider-thumb-ring: var(--zyra-color-primary-subtle);
-    --zyra-color-slider-text:       var(--zyra-color-foreground-muted);
-	// â”€â”€ ZyraFileUpload â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    --zyra-color-file-upload-bg:     var(--zyra-color-surface-inset);
-    --zyra-color-file-upload-text:   var(--zyra-color-foreground);
-    --zyra-color-file-upload-border: var(--zyra-color-border-color);
-    // â”€â”€ ZyraCarousel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    --zyra-color-carousel-bg:     var(--zyra-color-surface-inset);
-    --zyra-color-carousel-text:   var(--zyra-color-foreground);
-    --zyra-color-carousel-border: var(--zyra-color-border-color);
-    // â”€â”€ ZyraCalendar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    --zyra-color-calendar-bg:     var(--zyra-color-surface-inset);
-    --zyra-color-calendar-text:   var(--zyra-color-foreground);
-    --zyra-color-calendar-border: var(--zyra-color-border-color);
 }

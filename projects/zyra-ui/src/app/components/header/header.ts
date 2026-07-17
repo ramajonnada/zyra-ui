@@ -162,10 +162,10 @@ export class Header {
 	readonly themeDropdownOpen = signal(false);
 
 	readonly navItems: readonly NavItem[] = [
-		{ label: 'Overview', route: '/docs', heading: 'Getting started' },
-		{ label: 'Installation', route: '/docs/installation' },
-		{ label: 'Theming', route: '/docs/theming' },
-		{ label: 'Theme tokens', route: '/docs/theme-tokens' },
+		{ label: 'Docs', route: '/docs', heading: 'Docs' },
+		// { label: 'Installation', route: '/docs/installation' },
+		// { label: 'Theming', route: '/docs/theming' },
+		// { label: 'Theme tokens', route: '/docs/theme-tokens' },
 		{ label: 'Components', route: '/docs/components' },
 		{ label: 'Blog', route: '/blog' },
 	];

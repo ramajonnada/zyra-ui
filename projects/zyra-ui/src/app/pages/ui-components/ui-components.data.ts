@@ -4053,27 +4053,69 @@ export class DemoTimelineComponent {}
         highlights: [
             'Content-projection slots for brand, nav, and actions',
             'Built-in mobile menu toggle — no manual drawer wiring needed',
+            'Independent mobile navigation: project entirely different nav/content/footer into the drawer than desktop shows, or omit them to keep today\'s behavior — zero breaking changes either way',
             'Scroll-elevation and transparent-until-scrolled styling out of the box',
             'Sticky, fixed, or static positioning',
             'Split or centered nav alignment; contained or full-width layout',
         ],
         exampleCode: `import { Component } from '@angular/core';
-import { ZyraHeader, ZyraHeaderStart, ZyraHeaderNav, ZyraHeaderEnd, ZyraButton } from 'zyra-ng-ui';
+import {
+  ZyraHeader,
+  ZyraHeaderStart,
+  ZyraHeaderNav,
+  ZyraHeaderEnd,
+  ZyraHeaderMobileNav,
+  ZyraHeaderMobileEnd,
+  ZyraHeaderMobileFooter,
+  ZyraButton,
+} from 'zyra-ng-ui';
 
 @Component({
   selector: 'app-demo-header',
   standalone: true,
-  imports: [ZyraHeader, ZyraHeaderStart, ZyraHeaderNav, ZyraHeaderEnd, ZyraButton],
+  imports: [
+    ZyraHeader,
+    ZyraHeaderStart,
+    ZyraHeaderNav,
+    ZyraHeaderEnd,
+    ZyraHeaderMobileNav,
+    ZyraHeaderMobileEnd,
+    ZyraHeaderMobileFooter,
+    ZyraButton,
+  ],
   template: \`
     <zyra-header position="sticky">
       <a zyraHeaderStart href="#">Brand</a>
+
+      <!-- Desktop nav — a handful of top-level links -->
       <nav zyraHeaderNav>
         <a href="#">Docs</a>
         <a href="#">Blog</a>
+        <a href="#">Pricing</a>
       </nav>
       <div zyraHeaderEnd>
         <zyra-button size="sm">Get started</zyra-button>
       </div>
+
+      <!--
+        Independent mobile drawer content. Once zyraHeaderMobileNav is
+        present, the drawer never falls back to the desktop nav above —
+        project whatever fits a mobile menu: more links, secondary
+        actions, footer metadata. Omit these three and the header behaves
+        exactly as before (desktop nav becomes the drawer, unchanged).
+      -->
+      <nav zyraHeaderMobileNav>
+        <a href="#">Docs</a>
+        <a href="#">Blog</a>
+        <a href="#">Pricing</a>
+        <a href="#">Changelog</a>
+        <a href="#">Community</a>
+      </nav>
+      <div zyraHeaderMobileEnd>
+        <zyra-button size="sm" variant="outline" fullWidth>Sign in</zyra-button>
+        <zyra-button size="sm" fullWidth>Get started</zyra-button>
+      </div>
+      <div zyraHeaderMobileFooter>v1.0.0 — © Zyra UI</div>
     </zyra-header>
   \`,
 })
@@ -4170,13 +4212,29 @@ export class DemoHeaderComponent {}
                 name: 'zyraHeaderMobileEnd (directive)',
                 type: 'attribute',
                 default: '-',
-                description: 'Optional extra content shown only inside the open mobile panel',
+                description:
+                    'Optional extra content shown only inside the open mobile panel. Legacy: appended below the desktop nav in the drawer. Independent mode (see below): becomes the drawer\'s Content section',
+            },
+            {
+                name: 'zyraHeaderMobileNav (directive)',
+                type: 'attribute',
+                default: '-',
+                description:
+                    'Independent mobile drawer navigation. Once projected, the drawer never falls back to zyraHeaderNav\'s content — desktop and mobile navigation become completely independent',
+            },
+            {
+                name: 'zyraHeaderMobileFooter (directive)',
+                type: 'attribute',
+                default: '-',
+                description: 'Optional drawer footer content (version info, links, branding) — only used in independent mode',
             },
         ],
         a11yNotes: [
             'Rendered as a header element with role="banner"',
             'The mobile toggle button exposes aria-expanded and an aria-label that updates between "Open" and "Close navigation menu"',
             'Escape closes the open mobile panel',
+            'Focus moves into the drawer on open and returns to the toggle button on close',
+            'Desktop and mobile nav landmarks are mutually exclusive in the accessibility tree — only the currently relevant one is ever exposed to assistive tech',
         ],
         relatedSlugs: ['sidebar', 'tabs', 'breadcrumb'],
     },

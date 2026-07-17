@@ -1,19 +1,25 @@
 import {
+    afterNextRender,
     AfterViewInit,
     booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     computed,
+    contentChild,
     Directive,
     effect,
+    ElementRef,
     HostListener,
     inject,
     input,
+    Injector,
+    OnDestroy,
     output,
     PLATFORM_ID,
     signal,
+    viewChild,
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgTemplateOutlet } from '@angular/common';
 import { ZyraIcon as ZyraIconComponent } from '../../../internal/zyra-icon/zyra-icon';
 import { menu, xmark } from '../../../shared/zyra-icons';
 
@@ -22,23 +28,86 @@ export type HeaderVariant = 'contained' | 'full-width';
 export type HeaderAlign = 'split' | 'center';
 export type HeaderSize = 'sm' | 'md' | 'lg';
 
+const FOCUSABLE = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
 @Directive({ selector: '[zyraHeaderStart]', standalone: true })
 export class ZyraHeaderStart {}
 
-@Directive({ selector: '[zyraHeaderNav]', standalone: true })
+@Directive({
+    selector: '[zyraHeaderNav]',
+    standalone: true,
+    host: {
+        '[style.display]': "'var(--zyr-header-nav-display, flex)'",
+        '[style.align-items]': "'var(--zyr-header-nav-align, center)'",
+        '[style.gap]': "'var(--zyr-header-nav-gap, 4px)'",
+        '[style.flex-direction]': "'var(--zyr-header-nav-direction, row)'",
+        '[style.height]': "'var(--zyr-header-nav-height, auto)'",
+    },
+})
 export class ZyraHeaderNav {}
 
-@Directive({ selector: '[zyraHeaderEnd]', standalone: true })
+@Directive({
+    selector: '[zyraHeaderEnd]',
+    standalone: true,
+    host: {
+        '[style.display]': "'var(--zyr-header-end-display, flex)'",
+        '[style.align-items]': "'var(--zyr-header-end-align, center)'",
+        '[style.gap]': "'var(--zyr-header-end-gap, 10px)'",
+    },
+})
 export class ZyraHeaderEnd {}
 
-@Directive({ selector: '[zyraHeaderMobileEnd]', standalone: true })
+@Directive({
+    selector: '[zyraHeaderMobileEnd]',
+    standalone: true,
+    host: {
+        '[style.display]': "'var(--zyr-header-mobile-end-display, grid)'",
+        '[style.gap]': "'var(--zyr-header-mobile-end-gap, 8px)'",
+    },
+})
 export class ZyraHeaderMobileEnd {}
+
+/**
+ * Independent mobile-drawer navigation slot. Projects into the drawer's
+ * Navigation section — never falls back to `[zyraHeaderNav]`'s content.
+ * See `zyra-header`'s content-mode branch for how presence of this
+ * directive selects independent drawer content over the legacy behavior.
+ */
+@Directive({
+    selector: '[zyraHeaderMobileNav]',
+    standalone: true,
+    host: {
+        '[style.display]': "'var(--zyui-header-mobile-nav-display, flex)'",
+        '[style.flex-direction]': "'var(--zyui-header-mobile-nav-direction, column)'",
+        '[style.align-items]': "'var(--zyui-header-mobile-nav-align, stretch)'",
+        '[style.gap]': "'var(--zyui-header-mobile-nav-gap, 4px)'",
+    },
+})
+export class ZyraHeaderMobileNav {}
+
+/** Independent mobile-drawer footer slot (version info, links, branding). */
+@Directive({
+    selector: '[zyraHeaderMobileFooter]',
+    standalone: true,
+    host: {
+        '[style.display]': "'var(--zyui-header-mobile-footer-display, grid)'",
+        '[style.gap]': "'var(--zyui-header-mobile-footer-gap, 8px)'",
+    },
+})
+export class ZyraHeaderMobileFooter {}
 
 @Component({
     selector: 'zyra-header',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ZyraIconComponent],
+    imports: [ZyraIconComponent, NgTemplateOutlet],
     templateUrl: './zyra-header.html',
     styleUrl: './zyra-header.scss',
     host: {
@@ -46,7 +115,7 @@ export class ZyraHeaderMobileEnd {}
         '[attr.aria-label]': 'ariaLabel()',
     },
 })
-export class ZyraHeader implements AfterViewInit {
+export class ZyraHeader implements AfterViewInit, OnDestroy {
     // ── Inputs ────────────────────────────────────────────────
     position = input<HeaderPosition>('static');
     variant = input<HeaderVariant>('contained');
@@ -62,14 +131,30 @@ export class ZyraHeader implements AfterViewInit {
     mobileOpenChange = output<boolean>();
     scrolledChange = output<boolean>();
 
+    // ── Drawer controller (shared, generic — not header-specific;
+    //    this is the seam a future reusable sliding-surface primitive
+    //    would lift out wholesale) ────────────────────────────────
+    readonly mobileOpen = signal(false);
+    private readonly _legacySurface = viewChild<ElementRef<HTMLElement>>('legacySurface');
+    private readonly _independentSurface = viewChild<ElementRef<HTMLElement>>('independentSurface');
+    private readonly _burgerButton = viewChild<ElementRef<HTMLButtonElement>>('burgerButton');
+    private _skipInitialFocusEffect = true;
+    private _lockedBodyOverflow: string | null = null;
+
+    // ── Layout API: independent mobile-content presence (drives the
+    //    legacy vs. independent content-mode branch — see zyra-header.html) ──
+    readonly mobileNavRef = contentChild(ZyraHeaderMobileNav);
+    readonly mobileContentRef = contentChild(ZyraHeaderMobileEnd);
+    readonly mobileFooterRef = contentChild(ZyraHeaderMobileFooter);
+
     // ── State ─────────────────────────────────────────────────
     readonly isScrolled = signal(false);
-    readonly mobileOpen = signal(false);
     readonly isCompact = signal(false);
 
     readonly icons = { menu, xmark };
 
     private readonly _isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+    private readonly _injector = inject(Injector);
 
     readonly hostClass = computed(() => {
         const classes = [
@@ -103,11 +188,41 @@ export class ZyraHeader implements AfterViewInit {
                 mediaQuery.addEventListener('change', onChange);
                 onCleanup(() => mediaQuery.removeEventListener('change', onChange));
             });
+
+            // Drawer controller: additive focus management (does not alter
+            // openMobile()/closeMobile()/toggleMobile() or Escape handling).
+            effect(() => {
+                const open = this.mobileOpen();
+                if (this._skipInitialFocusEffect) {
+                    this._skipInitialFocusEffect = false;
+                    return;
+                }
+                if (open) {
+                    afterNextRender(() => this.focusFirstInSurface(), { injector: this._injector });
+                } else {
+                    this._burgerButton()?.nativeElement.focus();
+                }
+            });
+
+            // Lock body scroll while the drawer is open — otherwise the page
+            // behind it keeps scrolling, which also re-triggers the scroll
+            // listener and can shift the fixed backdrop/drawer mid-gesture.
+            effect(() => {
+                if (this.mobileOpen()) {
+                    this.lockBodyScroll();
+                } else {
+                    this.unlockBodyScroll();
+                }
+            });
         }
     }
 
     ngAfterViewInit(): void {
         this.updateScrolledState();
+    }
+
+    ngOnDestroy(): void {
+        this.unlockBodyScroll();
     }
 
     @HostListener('window:scroll')
@@ -143,5 +258,24 @@ export class ZyraHeader implements AfterViewInit {
             this.isScrolled.set(scrolled);
             this.scrolledChange.emit(scrolled);
         }
+    }
+
+    private lockBodyScroll(): void {
+        if (this._lockedBodyOverflow !== null) return;
+        this._lockedBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+    }
+
+    private unlockBodyScroll(): void {
+        if (this._lockedBodyOverflow === null) return;
+        document.body.style.overflow = this._lockedBodyOverflow;
+        this._lockedBodyOverflow = null;
+    }
+
+    private focusFirstInSurface(): void {
+        const surface = this.mobileNavRef()
+            ? this._independentSurface()?.nativeElement
+            : this._legacySurface()?.nativeElement;
+        surface?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
     }
 }

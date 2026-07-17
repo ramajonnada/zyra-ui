@@ -3,13 +3,27 @@
         <ng-content select="[zyraHeaderStart]" />
     </div>
 
-    <nav class="zyr-header__nav" aria-label="Primary">
+    <!--
+        Always the single home for [zyraHeaderNav] content — content
+        projection only allows one <ng-content> per selector, so desktop
+        nav content is never duplicated across modes. In legacy content
+        mode (no zyraHeaderMobileNav projected) this same element also
+        becomes the sliding drawer via the .zyr-drawer-surface class; in
+        independent content mode it stays desktop-only and is hidden via
+        CSS in compact mode (see zyra-header.scss).
+    -->
+    <nav
+        class="zyr-header__nav"
+        [class.zyr-drawer-surface]="!mobileNavRef()"
+        #legacySurface
+        aria-label="Primary"
+    >
         <ng-content select="[zyraHeaderNav]" />
 
-        @if (mobileOpen()) {
+        @if (!mobileNavRef() && mobileOpen()) {
             <div class="zyr-header__mobile-panel">
                 <div class="zyr-header__mobile-end">
-                    <ng-content select="[zyraHeaderMobileEnd]" />
+                    <ng-container *ngTemplateOutlet="mobileEndSlot" />
                 </div>
             </div>
         }
@@ -21,6 +35,7 @@
         <button
             type="button"
             class="zyr-header__burger"
+            #burgerButton
             (click)="toggleMobile()"
             [attr.aria-expanded]="mobileOpen()"
             [attr.aria-label]="menuLabel()"
@@ -29,6 +44,37 @@
         </button>
     </div>
 </div>
+
+@if (mobileNavRef()) {
+    <!-- Independent content mode: desktop nav is never reused as the drawer. -->
+    <nav class="zyr-drawer zyr-drawer-surface" #independentSurface aria-label="Mobile">
+        <div class="zyr-drawer__nav">
+            <ng-content select="[zyraHeaderMobileNav]" />
+        </div>
+
+        @if (mobileContentRef()) {
+            <div class="zyr-drawer__content">
+                <ng-container *ngTemplateOutlet="mobileEndSlot" />
+            </div>
+        }
+
+        @if (mobileFooterRef()) {
+            <div class="zyr-drawer__footer">
+                <ng-content select="[zyraHeaderMobileFooter]" />
+            </div>
+        }
+    </nav>
+}
+
+<!--
+    Single canonical home for [zyraHeaderMobileEnd] content, reused as the
+    drawer's "Content" section in independent mode. Stamped via
+    ngTemplateOutlet into whichever mode is active above — never duplicated
+    as a second <ng-content> tag, since only one is ever allowed per selector.
+-->
+<ng-template #mobileEndSlot>
+    <ng-content select="[zyraHeaderMobileEnd]" />
+</ng-template>
 
 @if (mobileOpen()) {
     <button

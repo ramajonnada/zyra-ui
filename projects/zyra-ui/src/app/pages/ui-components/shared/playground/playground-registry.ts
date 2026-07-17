@@ -1933,6 +1933,13 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 toggleLabel: 'mobile view',
                 defaultValue: false,
             },
+            {
+                type: 'toggle',
+                key: 'independentNav',
+                label: '',
+                toggleLabel: 'independent mobile nav',
+                defaultValue: false,
+            },
         ],
         codeTemplate: (s) => {
             const a: string[] = [];
@@ -1940,7 +1947,11 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             if (s['variant'] !== 'contained') a.push(`  variant="${s['variant']}"`);
             if (s['transparent']) a.push(`  [transparent]="true"`);
             const open = a.length ? `<zyra-header\n${a.join('\n')}\n>` : `<zyra-header>`;
-            return `${open}\n  <a zyraHeaderStart>Brand</a>\n  <nav zyraHeaderNav>\n    <a>Docs</a>\n    <a>Blog</a>\n    <a>Pricing</a>\n  </nav>\n  <div zyraHeaderEnd>\n    <zyra-button size="sm">Get started</zyra-button>\n  </div>\n</zyra-header>`;
+            const desktop = `\n  <a zyraHeaderStart>Brand</a>\n  <nav zyraHeaderNav>\n    <a>Docs</a>\n    <a>Blog</a>\n    <a>Pricing</a>\n  </nav>\n  <div zyraHeaderEnd>\n    <zyra-button size="sm">Get started</zyra-button>\n  </div>`;
+            const independentMobile = s['independentNav']
+                ? `\n\n  <!-- Independent mobile drawer content — never falls back to the desktop nav above -->\n  <nav zyraHeaderMobileNav>\n    <a>Docs</a>\n    <a>Blog</a>\n    <a>Pricing</a>\n    <a>Changelog</a>\n    <a>Community</a>\n  </nav>\n  <div zyraHeaderMobileEnd>\n    <zyra-button size="sm" variant="outline" fullWidth>Sign in</zyra-button>\n    <zyra-button size="sm" fullWidth>Get started</zyra-button>\n  </div>\n  <div zyraHeaderMobileFooter>v1.0.0 — © Zyra UI</div>`
+                : '';
+            return `${open}${desktop}${independentMobile}\n</zyra-header>`;
         },
     },
 

@@ -30,6 +30,16 @@
 
     &:disabled { cursor: not-allowed; opacity: 0.5; }
     &[readonly] { cursor: default; }
+
+    // Suppress the native type="search" clear button — zyra-form-field's
+    // own [clearButton] already covers this, so both would otherwise stack.
+    &[type='search'] {
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-decoration {
+            display: none;
+            appearance: none;
+        }
+    }
 }
 
 .zyr-otp {
