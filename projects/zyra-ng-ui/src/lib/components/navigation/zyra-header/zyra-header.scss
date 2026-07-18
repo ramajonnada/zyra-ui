@@ -189,7 +189,6 @@
 	align-items: stretch;
 	width: min(var(--zyra-drawer-width), var(--zyra-drawer-max-width));
 	overflow-y: auto;
-	height: 100%;
 	background: var(--zyra-color-drawer-bg, var(--zyra-header-bg));
 	border-right: 1px solid var(--zyra-color-drawer-border);
 	box-shadow: var(--zyra-drawer-shadow);

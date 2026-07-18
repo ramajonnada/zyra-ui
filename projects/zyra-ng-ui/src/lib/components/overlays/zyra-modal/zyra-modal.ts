@@ -16,6 +16,7 @@ import {
     output,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { lockBodyScroll, unlockBodyScroll } from '../../../internal/body-scroll-lock';
 
 export type ModalSize = 'sm' | 'md' | 'lg' | 'xl';
 
@@ -52,16 +53,21 @@ export class ZyraModal implements OnDestroy {
 
     private _injector = inject(Injector);
     private _doc = inject(DOCUMENT);
+    private _hasScrollLock = false;
 
     constructor() {
         effect(() => {
             if (this.open()) {
-                this._doc.body.style.overflow = 'hidden';
+                if (!this._hasScrollLock) {
+                    lockBodyScroll(this._doc);
+                    this._hasScrollLock = true;
+                }
                 afterNextRender(() => this.modalPanel?.nativeElement?.focus(), {
                     injector: this._injector,
                 });
-            } else {
-                this._doc.body.style.overflow = '';
+            } else if (this._hasScrollLock) {
+                unlockBodyScroll(this._doc);
+                this._hasScrollLock = false;
             }
         });
     }
@@ -114,6 +120,9 @@ export class ZyraModal implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this._doc.body.style.overflow = '';
+        if (this._hasScrollLock) {
+            unlockBodyScroll(this._doc);
+            this._hasScrollLock = false;
+        }
     }
 }

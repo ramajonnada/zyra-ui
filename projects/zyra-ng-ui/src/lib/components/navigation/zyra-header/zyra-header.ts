@@ -22,6 +22,7 @@ import {
 import { isPlatformBrowser, NgTemplateOutlet } from '@angular/common';
 import { ZyraIcon as ZyraIconComponent } from '../../../internal/zyra-icon/zyra-icon';
 import { menu, xmark } from '../../../shared/zyra-icons';
+import { lockBodyScroll, unlockBodyScroll } from '../../../internal/body-scroll-lock';
 
 export type HeaderPosition = 'static' | 'sticky' | 'fixed';
 export type HeaderVariant = 'contained' | 'full-width';
@@ -139,7 +140,7 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
     private readonly _independentSurface = viewChild<ElementRef<HTMLElement>>('independentSurface');
     private readonly _burgerButton = viewChild<ElementRef<HTMLButtonElement>>('burgerButton');
     private _skipInitialFocusEffect = true;
-    private _lockedBodyOverflow: string | null = null;
+    private _hasScrollLock = false;
 
     // ── Layout API: independent mobile-content presence (drives the
     //    legacy vs. independent content-mode branch — see zyra-header.html) ──
@@ -199,7 +200,12 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
                 }
                 if (open) {
                     afterNextRender(() => this.focusFirstInSurface(), { injector: this._injector });
-                } else {
+                } else if (this.isCompact()) {
+                    // Only restore focus to the burger if it's still visible —
+                    // closeMobile() also fires when a resize crosses the
+                    // breakpoint (see the effect above), at which point the
+                    // burger is hidden and .focus() on it would just strand
+                    // focus nowhere useful.
                     this._burgerButton()?.nativeElement.focus();
                 }
             });
@@ -207,11 +213,17 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
             // Lock body scroll while the drawer is open — otherwise the page
             // behind it keeps scrolling, which also re-triggers the scroll
             // listener and can shift the fixed backdrop/drawer mid-gesture.
+            // Reference-counted via the shared lock so it coexists correctly
+            // with zyra-modal/zyra-drawer if one happens to be open too.
             effect(() => {
                 if (this.mobileOpen()) {
-                    this.lockBodyScroll();
-                } else {
-                    this.unlockBodyScroll();
+                    if (!this._hasScrollLock) {
+                        lockBodyScroll(document);
+                        this._hasScrollLock = true;
+                    }
+                } else if (this._hasScrollLock) {
+                    unlockBodyScroll(document);
+                    this._hasScrollLock = false;
                 }
             });
         }
@@ -222,7 +234,10 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.unlockBodyScroll();
+        if (this._hasScrollLock) {
+            unlockBodyScroll(document);
+            this._hasScrollLock = false;
+        }
     }
 
     @HostListener('window:scroll')
@@ -235,8 +250,43 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
         this.closeMobile();
     }
 
+    // ── Focus trap ────────────────────────────────────────────
+    // Same pattern as zyra-modal/zyra-drawer: while the drawer is open, Tab
+    // cycles only among its own focusable elements instead of escaping into
+    // the (visually hidden-behind) page content.
+    @HostListener('keydown', ['$event'])
+    onDrawerKeydown(event: KeyboardEvent): void {
+        if (!this.mobileOpen() || event.key !== 'Tab') return;
+        const surface = this.mobileNavRef()
+            ? this._independentSurface()?.nativeElement
+            : this._legacySurface()?.nativeElement;
+        if (!surface) return;
+
+        const focusable = Array.from(surface.querySelectorAll<HTMLElement>(FOCUSABLE));
+        if (focusable.length === 0) {
+            event.preventDefault();
+            return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        const active = document.activeElement as HTMLElement;
+
+        if (event.shiftKey && (active === first || active === surface)) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && (active === last || active === surface)) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
     toggleMobile(): void {
-        this.mobileOpen() ? this.closeMobile() : this.openMobile();
+        if (this.mobileOpen()) {
+            this.closeMobile();
+        } else {
+            this.openMobile();
+        }
     }
 
     openMobile(): void {
@@ -258,18 +308,6 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
             this.isScrolled.set(scrolled);
             this.scrolledChange.emit(scrolled);
         }
-    }
-
-    private lockBodyScroll(): void {
-        if (this._lockedBodyOverflow !== null) return;
-        this._lockedBodyOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
-    }
-
-    private unlockBodyScroll(): void {
-        if (this._lockedBodyOverflow === null) return;
-        document.body.style.overflow = this._lockedBodyOverflow;
-        this._lockedBodyOverflow = null;
     }
 
     private focusFirstInSurface(): void {
