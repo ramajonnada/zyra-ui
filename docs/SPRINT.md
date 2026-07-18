@@ -5,7 +5,7 @@ This document is the working, sprint-by-sprint execution plan for building ZyraU
 - **ROADMAP.md** = long-term vision, phases, and the full component list. Don't edit it here.
 - **SPRINT.md** = "what are we building right now, in what order, and how do we know a component is actually done." Rewritten/reset at the start of every sprint.
 
-A component only counts as shipped when it clears every row of the [Development Checklist](#development-checklist) below — matching what `npm run audit:components` and the [Component Guidelines](COMPONENT_GUIDELINES.md) already enforce for lib spec / playground / showcase entries, plus the non-negotiables from that doc (accessibility, keyboard support, cross-theme review).
+A component only counts as shipped when it clears every row of the [Development Checklist](#3-development-checklist) below — matching what `npm run audit:components` and the [Component Guidelines](COMPONENT_GUIDELINES.md) already enforce for lib spec / playground / showcase entries, plus the non-negotiables from that doc (accessibility, keyboard support, cross-theme review).
 
 ---
 
@@ -40,9 +40,9 @@ A component only counts as shipped when it clears every row of the [Development 
 
 | Component | Priority | Final Status | Complexity | Dependencies |
 |---|---|---|---|---|
-| Date Picker | P0 | Done | Medium | Calendar (Sprint 5) — wraps it directly, no Popover dependency needed |
-| Table | P1 | Done | High | None — new component |
-| Tree View | P2 | Done | High | None — new component; reuses the roving-tabindex keyboard pattern from Sidebar/Calendar |
+| Date Picker | P0 | Code complete — pending visual QA | Medium | Calendar (Sprint 5) — wraps it directly, no Popover dependency needed |
+| Table | P1 | Code complete — pending visual QA | High | None — new component |
+| Tree View | P2 | Code complete — pending visual QA | High | None — new component; reuses the roving-tabindex keyboard pattern from Sidebar/Calendar |
 
 **Explicitly out of scope for Sprint 6:** Virtual Table / virtualized scrolling (Phase 2, Sprint 11 — Table in this sprint is a plain, non-virtualized implementation), Data Grid, Tree Grid, and every other Phase 1/2 category.
 

@@ -2,7 +2,6 @@
 // All values reference semantic tokens, dimension tokens, or existing per-theme
 // tokens — never new raw foundation values invented at this layer.
 :root {
-
 	// ════════════════════════════════════════════════════════════════════
 	// Actions
 	// ════════════════════════════════════════════════════════════════════
@@ -40,10 +39,10 @@
 	--zyra-header-border-width: 1px;
 	--zyra-header-padding-x: var(--zyra-space-6);
 	--zyra-header-gap: var(--zyra-space-5);
-	--zyra-header-height: 60px;
-	--zyra-header-height-sm: 48px;
-	--zyra-header-height-lg: 76px;
-	--zyra-header-burger-size: 38px;
+	--zyra-header-height: var(--zyra-size-header-md);
+	--zyra-header-height-sm: var(--zyra-space-12);
+	--zyra-header-height-lg: var(--zyra-size-header-lg);
+	--zyra-header-burger-size: var(--zyra-size-icon-button-md);
 	--zyra-header-burger-radius: var(--zyra-radius-full);
 	--zyra-header-z-index: var(--zyra-z-dropdown);
 	--zyra-header-glass-bg: var(--zyra-color-header-glass-bg);
@@ -172,6 +171,11 @@
 	// ── Card & Glow ──────────────────────────────────────────────────────
 	// --zyra-color-glow is defined per-theme as RGB channels ("0, 234, 255")
 	// enabling rgba(var(--zyra-color-glow), 0.4) composition.
+	// --zyra-color-card-border and --zyra-card-focus-ring resolve to Tier 2
+	// here as their documented fallback, but every theme file (loaded after
+	// this one in styles/index.scss) redeclares them with a tuned per-theme
+	// rgba value, which wins the cascade — this is the Tier 3 contract
+	// zyra-card.scss actually consumes.
 	--zyra-color-card-border: var(--zyra-color-border-color);
 	--zyra-color-card-hover-border: var(--zyra-color-border-hover);
 	--zyra-card-radius: 20px;

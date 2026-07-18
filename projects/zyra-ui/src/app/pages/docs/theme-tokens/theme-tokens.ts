@@ -65,7 +65,7 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
     // ocean, amber, rose). The semantic tier below aliases these.
     private readonly perThemeTier: TokenTier = {
         id: 'per-theme',
-        title: 'Per-theme tokens (raw)',
+        title: 'Tier 1 — Theme (raw, per-theme)',
         description:
             'Defined once per theme file with identical names and different values — this is what actually changes when you switch between dark, light, ocean, amber, and rose. See it live on the theming page.',
         groups: [
@@ -174,7 +174,7 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
     // ── Tier 1 — Semantic ─────────────────────────────────────────
     private readonly semanticTier: TokenTier = {
         id: 'semantic',
-        title: 'Tier 1 — Semantic',
+        title: 'Tier 2 — Semantic',
         description:
             'Role-based aliases over the per-theme raw tokens above. This is the layer components read from and the layer you should override — everything downstream follows automatically.',
         groups: [
@@ -242,9 +242,9 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
     // ── Tier 2 — Dimension ────────────────────────────────────────
     private readonly dimensionTier: TokenTier = {
         id: 'dimension',
-        title: 'Tier 2 — Dimension',
+        title: 'Tier 0 — Primitives (Dimension)',
         description:
-            'Typography, shape, motion, spacing, and z-index. Theme-invariant — identical values across all five themes.',
+            'Typography, shape, motion, spacing, and z-index — theme-invariant raw values, same tier as the color primitives above (per the engineering guide, structural values like these are Tier 0, not a separate numbered tier).',
         groups: [
             {
                 label: 'Typography',
@@ -317,7 +317,7 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
         id: 'component',
         title: 'Tier 3 — Component',
         description:
-            'Per-component namespaced aliases over the semantic and dimension tiers, grouped the same way the component library itself is organized. Implementation detail — override the semantic tier upstream instead.',
+            'Per-component namespaced aliases over the semantic and dimension tiers, grouped the same way the component library itself is organized. This is the public, documented styling API — safe to override indefinitely. Override the semantic tier instead when you want a broad theme-wide change; override these directly to restyle one component without touching anything else.',
         groups: [
             {
                 label: 'Actions — Button',
@@ -494,6 +494,15 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
                 '--zyra-transition-fast / moderate / base / slow / spring',
             ],
         },
+        {
+            label: 'Component (most targeted — restyle one component)',
+            tokens: [
+                '--zyra-color-btn-primary-bg',
+                '--zyra-color-checkbox-checked-bg',
+                '--zyra-color-tabs-badge-bg',
+                '--zyra-color-field-* / select-* / progress-* / header-* / sidebar-*',
+            ],
+        },
     ];
 
     readonly internalTokens: readonly TokenGroup[] = [
@@ -504,15 +513,6 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
         {
             label: 'Per-theme raw tokens',
             tokens: ['--zyra-color-bg-app / -accent / -text — swap themes instead of these directly'],
-        },
-        {
-            label: 'Component tokens (derived, per-component)',
-            tokens: [
-                '--zyra-color-btn-primary-bg',
-                '--zyra-color-checkbox-checked-bg',
-                '--zyra-color-tabs-badge-bg',
-                '--zyra-color-field-* / select-* / progress-* / header-* / sidebar-*',
-            ],
         },
     ];
 
@@ -528,7 +528,7 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
         this.seo.setSEO({
             title: 'Theme tokens - Zyra UI Docs',
             description:
-                'The full Zyra UI design token reference: primitives, per-theme raw tokens, semantic colors, typography, shape and motion tokens, and per-component tokens, and which layer is safe to override.',
+                'The full Zyra UI design token reference: primitives, per-theme raw tokens, semantic colors, typography, shape and motion tokens, and per-component tokens — plus which layer is safe to override.',
             url: 'https://www.zyraui.dev/docs/theme-tokens',
         });
 

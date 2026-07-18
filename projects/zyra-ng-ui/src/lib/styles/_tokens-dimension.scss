@@ -44,6 +44,15 @@
     --zyra-space-16: 64px;
     --zyra-space-20: 80px;
 
+    // ── Component Sizing ─────────────────────────────────────
+    // One-off UI dimensions that don't decompose cleanly onto the spacing
+    // scale above — kept here as named primitives (not hardcoded at the
+    // Tier 3 component-token layer) so they're still a single source of
+    // truth if reused.
+    --zyra-size-header-md: 60px;
+    --zyra-size-header-lg: 76px;
+    --zyra-size-icon-button-md: 38px;
+
     // ── Z-Index ──────────────────────────────────────────────
     --zyra-z-base:     0;
     --zyra-z-raised:   10;

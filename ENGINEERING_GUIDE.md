@@ -46,7 +46,7 @@ Every new feature — component, directive, token group, service, or utility —
 follows this sequence. **No implementation begins before architecture is
 approved.** Steps can be fast for small work, but none are skipped.
 
-```
+```text
 Requirements Analysis
         ↓
 Architecture Review
@@ -113,7 +113,7 @@ through review and revision *before* any `.scss` file changed.
 
 The official, permanent token hierarchy:
 
-```
+```text
 Tier 0 — Primitive Tokens   (raw values: color ramps, spacing, radius, motion, z-index — theme-invariant)
               ↓
 Tier 1 — Theme Tokens       (per-theme palette instance: dark/light/ocean/amber/rose)

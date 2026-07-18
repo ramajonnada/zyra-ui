@@ -43,10 +43,12 @@
 		<div class="docs-section__header">
 			<h2>What can I change?</h2>
 			<p>
-				Semantic and dimension tokens are the supported customization surface — override these
-				and everything downstream follows. Primitives, per-theme raw tokens, and
-				per-component tokens are implementation detail: they already derive from (or feed) the
-				semantic layer, and their names can change between component updates.
+				Semantic and dimension tokens are the recommended customization surface — override these
+				and everything downstream follows. Component (Tier 3) tokens are also part of the public,
+				stable API — override one directly when you want to restyle a single component without
+				touching anything else. Primitives and per-theme raw tokens are the only true implementation
+				detail here: they feed the layers above and shouldn't be overridden directly — swap the
+				whole theme instead.
 			</p>
 		</div>
 
