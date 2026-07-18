@@ -1,0 +1,129 @@
+<div [class]="hostClass()">
+    @if (loading()) {
+        <div class="zyr-table__scroll">
+            <table class="zyr-table__table">
+                <thead>
+                    <tr>
+                        @if (selectionMode() !== 'none') {
+                            <th class="zyr-table__select-col"></th>
+                        }
+                        @for (col of columns(); track col.key) {
+                            <th [style.width]="col.width">{{ col.label }}</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (i of skeletonRows(); track i) {
+                        <tr>
+                            @if (selectionMode() !== 'none') {
+                                <td class="zyr-table__select-col">
+                                    <zyra-skeleton variant="rect" width="16px" height="16px" />
+                                </td>
+                            }
+                            @for (col of columns(); track col.key) {
+                                <td><zyra-skeleton variant="text" [lines]="1" /></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    } @else if (rows().length === 0) {
+        <zyra-empty-state [title]="emptyTitle()" [description]="emptyDescription()" />
+    } @else {
+        <div class="zyr-table__scroll">
+            <table class="zyr-table__table">
+                <thead [class.zyr-table__head--sticky]="stickyHeader()">
+                    <tr>
+                        @if (selectionMode() === 'multiple') {
+                            <th class="zyr-table__select-col">
+                                <zyra-checkbox
+                                    [checked]="isAllSelected()"
+                                    [indeterminate]="isSomeSelected()"
+                                    (changed)="toggleSelectAll()"
+                                />
+                                <span class="sr-only">Select all rows</span>
+                            </th>
+                        } @else if (selectionMode() === 'single') {
+                            <th class="zyr-table__select-col"></th>
+                        }
+                        @for (col of columns(); track col.key) {
+                            <th
+                                [style.width]="col.width"
+                                [class]="'zyr-table__align-' + (col.align ?? 'left')"
+                                [attr.aria-sort]="ariaSortFor(col)"
+                            >
+                                @if (col.sortable) {
+                                    <button
+                                        [id]="headerDomId(col.key)"
+                                        type="button"
+                                        class="zyr-table__th-btn"
+                                        [tabindex]="isHeaderFocused(col.key) ? 0 : -1"
+                                        (click)="toggleSort(col)"
+                                        (focus)="onHeaderFocus(col.key)"
+                                    >
+                                        <span>{{ col.label }}</span>
+                                        <zyra-icon
+                                            class="zyr-table__sort-icon"
+                                            [class.zyr-table__sort-icon--asc]="sort()?.key === col.key && sort()?.direction === 'asc'"
+                                            [class.zyr-table__sort-icon--active]="sort()?.key === col.key"
+                                            [img]="icons.chevronDown"
+                                            [size]="12"
+                                        />
+                                    </button>
+                                } @else {
+                                    <span>{{ col.label }}</span>
+                                }
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (pair of pagedPairs(); track keyOf(pair)) {
+                        <tr
+                            [id]="rowDomId(keyOf(pair))"
+                            class="zyr-table__row"
+                            [tabindex]="isRowFocused(pair) ? 0 : -1"
+                            [class.zyr-table__row--selected]="isSelected(pair)"
+                            (click)="onRowClick(pair.row)"
+                            (focus)="onRowFocus(pair)"
+                        >
+                            @if (selectionMode() === 'multiple') {
+                                <td class="zyr-table__select-col" (click)="$event.stopPropagation()">
+                                    <zyra-checkbox [checked]="isSelected(pair)" (changed)="toggleRow(pair)" />
+                                </td>
+                            } @else if (selectionMode() === 'single') {
+                                <td class="zyr-table__select-col" (click)="$event.stopPropagation()">
+                                    <input
+                                        type="radio"
+                                        class="zyr-table__radio"
+                                        [name]="tableId"
+                                        [checked]="isSelected(pair)"
+                                        (change)="toggleRow(pair)"
+                                        aria-label="Select row"
+                                    />
+                                </td>
+                            }
+                            @for (col of columns(); track col.key) {
+                                <td [class]="'zyr-table__align-' + (col.align ?? 'left')">
+                                    {{ formatCell(col, pair.row) }}
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (pageSize()) {
+            <div class="zyr-table__footer">
+                <zyra-pagination
+                    [totalPages]="totalPages()"
+                    [currentPage]="page()"
+                    (pageChange)="page.set($event)"
+                    size="sm"
+                />
+            </div>
+        }
+    }
+</div>

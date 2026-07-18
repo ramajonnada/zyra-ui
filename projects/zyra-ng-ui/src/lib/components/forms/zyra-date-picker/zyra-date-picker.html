@@ -1,0 +1,65 @@
+<div [class]="wrapClass()">
+    <!-- ── Trigger — a div, not a button, so the nested Clear button below
+         stays valid HTML (buttons can't nest inside buttons) ──────────── -->
+    <div
+        #trigger
+        class="zyr-date-picker__trigger"
+        role="button"
+        tabindex="0"
+        [id]="resolvedId()"
+        [attr.aria-disabled]="isDisabledPicker()"
+        [attr.aria-expanded]="isOpen()"
+        aria-haspopup="dialog"
+        [attr.aria-controls]="panelId"
+        (click)="toggle()"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+    >
+        <zyra-icon class="zyr-date-picker__icon" [img]="icons.calendarIcon" />
+        <span class="zyr-date-picker__value" [class.zyr-date-picker__value--placeholder]="!hasValue()">
+            {{ displayLabel() || placeholder() }}
+        </span>
+        @if (clearable() && hasValue() && !isDisabledPicker()) {
+            <button
+                type="button"
+                class="zyr-date-picker__clear"
+                tabindex="-1"
+                aria-label="Clear date"
+                (click)="clear($event)"
+            >
+                &times;
+            </button>
+        }
+    </div>
+
+    <!-- ── Panel — always in DOM so calendar keyboard state persists ── -->
+    <div
+        #panel
+        class="zyr-date-picker__panel"
+        [class.zyr-date-picker__panel--open]="isOpen()"
+        [id]="panelId"
+        role="dialog"
+        [attr.aria-label]="placeholder()"
+        [attr.aria-hidden]="!isOpen()"
+        [attr.inert]="isOpen() ? null : ''"
+    >
+        <zyra-calendar
+            [value]="value()"
+            (valueChange)="onCalendarValueChange($event)"
+            [min]="min()"
+            [max]="max()"
+            [firstDayOfWeek]="firstDayOfWeek()"
+            [locale]="locale()"
+            [selectionMode]="selectionMode()"
+            [disabled]="isDisabledPicker()"
+            (dateSelected)="onCalendarDateSelected()"
+        />
+
+        @if (selectionMode() === 'single') {
+            <div class="zyr-date-picker__footer">
+                <button type="button" class="zyr-date-picker__footer-btn" (click)="selectToday()">Today</button>
+                <button type="button" class="zyr-date-picker__footer-btn" (click)="clear()">Clear</button>
+            </div>
+        }
+    </div>
+</div>

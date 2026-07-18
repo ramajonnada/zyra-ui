@@ -1,5 +1,5 @@
 import type { ZyraIconData } from 'zyra-ng-ui';
-import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, code, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced, menu, copy, star, panelLeft } from 'zyra-ng-ui';
+import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, code, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced, menu, copy, star, panelLeft, calendarIcon } from 'zyra-ng-ui';
 
 export type UiComponentAccent = 'teal' | 'blue' | 'purple' | 'amber' | 'green';
 
@@ -286,6 +286,23 @@ import { ZyraCalendar } from 'zyra-ng-ui';
   \`,
 })
 export class DemoCalendarComponent {
+  selectedDate: Date | null = null;
+}
+`;
+
+const DATE_PICKER_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ZyraDatePicker } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-date-picker',
+  standalone: true,
+  imports: [FormsModule, ZyraDatePicker],
+  template: \`
+    <zyra-date-picker [(ngModel)]="selectedDate" placeholder="Select date" />
+  \`,
+})
+export class DemoDatePickerComponent {
   selectedDate: Date | null = null;
 }
 `;
@@ -3756,6 +3773,250 @@ export class DemoTimelineComponent {}
         relatedSlugs: ['card', 'accordion', 'skeleton'],
     },
     {
+        slug: 'table',
+        title: 'Table',
+        selector: 'zyra-table',
+        importName: 'ZyraTable',
+        category: 'Data Display',
+        description:
+            'A data table with sortable columns, single/multiple row selection, and built-in pagination, loading, and empty states — reuses Checkbox, Pagination, Skeleton, and Empty State under the hood.',
+        icon: waveSquare,
+        accent: 'green',
+        status: 'new',
+        highlights: [
+            'Click a sortable column header to cycle ascending → descending → unsorted',
+            'Full keyboard navigation — arrow keys move between sortable headers and rows',
+            'Single (radio) or multiple (checkbox + select-all) row selection',
+            'Built-in pagination via [pageSize] — reuses the Pagination component',
+            'Loading skeleton rows and an Empty State for zero rows, no extra markup needed',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { TableColumn, ZyraTable } from 'zyra-ng-ui';
+
+interface Person extends Record<string, unknown> {
+  id: number;
+  name: string;
+  role: string;
+}
+
+@Component({
+  selector: 'app-demo-table',
+  standalone: true,
+  imports: [ZyraTable],
+  template: \`
+    <zyra-table [columns]="columns" [rows]="rows" />
+  \`,
+})
+export class DemoTableComponent {
+  columns: TableColumn<Person>[] = [
+    { key: 'name', label: 'Name', sortable: true },
+    { key: 'role', label: 'Role', sortable: true },
+  ];
+
+  rows: Person[] = [
+    { id: 1, name: 'Ava Patel', role: 'Frontend Engineer' },
+    { id: 2, name: 'Marcus Lee', role: 'Backend Engineer' },
+  ];
+}
+`,
+        variants: [
+            { name: 'default', description: 'No selection column, click-to-sort headers' },
+            { name: 'single', description: 'One radio-selectable row at a time' },
+            { name: 'multiple', description: 'Checkbox selection per row plus a header select-all' },
+            { name: 'paginated', description: '[pageSize] slices rows and renders a Pagination footer' },
+            { name: 'loading', description: 'Skeleton rows in place of data while fetching' },
+        ],
+        apiProps: [
+            {
+                name: 'columns',
+                type: 'TableColumn<T>[]',
+                default: 'required',
+                description: '{ key, label, sortable?, align?, width?, format? } per column',
+            },
+            {
+                name: 'rows',
+                type: 'T[]',
+                default: 'required',
+                description: 'The data to display, one object per row',
+            },
+            {
+                name: 'rowKey',
+                type: '(row: T, index: number) => string | number',
+                default: '(row, index) => index',
+                description: 'Derives a stable identity per row, used for selection and tracking',
+            },
+            {
+                name: 'selectionMode',
+                type: "'none' | 'single' | 'multiple'",
+                default: "'none'",
+                description: 'Adds a radio or checkbox selection column',
+            },
+            {
+                name: 'selected',
+                type: '(string | number)[]',
+                default: '[]',
+                description: 'Two-way bound via [(selected)] — the row keys currently selected',
+            },
+            {
+                name: 'sort',
+                type: '{ key: string; direction: \'asc\' | \'desc\' } | null',
+                default: 'null',
+                description: 'Two-way bound via [(sort)] — the active sort column and direction',
+            },
+            {
+                name: 'manualSort',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables internal sorting so a server can sort instead — sort still updates on header click',
+            },
+            {
+                name: 'pageSize',
+                type: 'number | null',
+                default: 'null',
+                description: 'When set, slices rows into pages and renders a Pagination footer',
+            },
+            {
+                name: 'page',
+                type: 'number',
+                default: '1',
+                description: 'Two-way bound via [(page)] — the current page when pageSize is set',
+            },
+            {
+                name: 'loading',
+                type: 'boolean',
+                default: 'false',
+                description: 'Shows skeleton rows instead of data',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Row height and font scale',
+            },
+            {
+                name: 'rowClick (output)',
+                type: 'T',
+                default: '-',
+                description: 'Emits the clicked row (not emitted when a selection control is clicked)',
+            },
+        ],
+        a11yNotes: [
+            'Renders a native <table>/<thead>/<tbody> — no ARIA table roles needed',
+            'Sortable headers are real <button> elements with aria-sort reflected on the parent <th>',
+            'Two independent roving-tabindex zones — sortable headers and body rows — each with a single tab stop',
+            'Left/Right move between sortable headers; Up/Down move between rows; Down from a header enters the first row, Up from the first row returns to the header',
+            'Home/End jump to the first/last row; Enter/Space on a focused row fires rowClick and toggles selection',
+            'Select-all and per-row checkboxes reuse the accessible Checkbox component',
+            'Single-selection mode uses native radio inputs grouped per table instance',
+        ],
+        relatedSlugs: ['pagination', 'checkbox', 'empty-state', 'skeleton'],
+    },
+    {
+        slug: 'tree-view',
+        title: 'Tree View',
+        selector: 'zyra-tree-view',
+        importName: 'ZyraTreeView',
+        category: 'Data Display',
+        description:
+            'A hierarchical, expandable list for file trees, org charts, and nested categories — keyboard navigable with the same roving-tabindex pattern as Sidebar and Calendar, single/multiple selection, and unlimited nesting depth.',
+        icon: waveSquare,
+        accent: 'green',
+        status: 'new',
+        highlights: [
+            'Unlimited nesting via a node.children array — no depth limit',
+            'Arrow Right/Left expand, collapse, or move to parent/child; Up/Down move focus',
+            'Single (click) or multiple (checkbox) selection, or none',
+            'Only the focused row is in the tab order (roving tabindex)',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { TreeNode, ZyraTreeView } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-tree-view',
+  standalone: true,
+  imports: [ZyraTreeView],
+  template: \`
+    <zyra-tree-view [nodes]="nodes" />
+  \`,
+})
+export class DemoTreeViewComponent {
+  nodes: TreeNode[] = [
+    {
+      id: 'src',
+      label: 'src',
+      children: [
+        { id: 'app', label: 'app.ts' },
+        { id: 'main', label: 'main.ts' },
+      ],
+    },
+    { id: 'readme', label: 'README.md' },
+  ];
+}
+`,
+        variants: [
+            { name: 'none', description: 'No selection — click a node with children to expand/collapse it' },
+            { name: 'single', description: 'Clicking a row selects it, replacing any previous selection' },
+            { name: 'multiple', description: 'A checkbox per row, independently toggled' },
+        ],
+        apiProps: [
+            {
+                name: 'nodes',
+                type: 'TreeNode[]',
+                default: 'required',
+                description: '{ id, label, icon?, disabled?, children? } — children nest recursively',
+            },
+            {
+                name: 'selectionMode',
+                type: "'none' | 'single' | 'multiple'",
+                default: "'none'",
+                description: 'Adds row-click (single) or checkbox (multiple) selection',
+            },
+            {
+                name: 'selected',
+                type: '(string | number)[]',
+                default: '[]',
+                description: 'Two-way bound via [(selected)] — the ids currently selected',
+            },
+            {
+                name: 'expanded',
+                type: '(string | number)[]',
+                default: '[]',
+                description: 'Two-way bound via [(expanded)] — the ids of currently expanded nodes',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Row height and font scale',
+            },
+            {
+                name: 'disabled',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables the entire tree',
+            },
+            {
+                name: 'nodeClick (output)',
+                type: 'TreeNode',
+                default: '-',
+                description: 'Emits on every row click, regardless of selectionMode',
+            },
+            {
+                name: 'nodeToggle (output)',
+                type: '{ node: TreeNode; expanded: boolean }',
+                default: '-',
+                description: 'Emits when a node is expanded or collapsed',
+            },
+        ],
+        a11yNotes: [
+            'Root has role="tree"; each row has role="treeitem" with aria-level and aria-expanded',
+            'Only the focused row is in the tab order — Arrow Up/Down move focus, Arrow Right/Left expand/collapse or move to parent/child',
+            'Home/End jump to the first/last visible row',
+            'Enter/Space toggles selection (if enabled) or expansion',
+        ],
+        relatedSlugs: ['sidebar', 'accordion', 'calendar'],
+    },
+    {
         slug: 'carousel',
         title: 'Carousel',
         selector: 'zyra-carousel',
@@ -3903,7 +4164,114 @@ export class DemoTimelineComponent {}
             'Today\'s date is marked with aria-current="date"',
             'The month label is a button with aria-haspopup for the month/year picker view',
         ],
-        relatedSlugs: ['carousel', 'input', 'form-field'],
+        relatedSlugs: ['date-picker', 'carousel', 'input', 'form-field'],
+    },
+    {
+        slug: 'date-picker',
+        title: 'Date Picker',
+        selector: 'zyra-date-picker',
+        importName: 'ZyraDatePicker',
+        category: 'Forms',
+        description:
+            'A dropdown date field that wraps Calendar in a select-style trigger — single date or start/end range, with a formatted display label and full Angular Forms (CVA) integration.',
+        icon: calendarIcon,
+        accent: 'amber',
+        status: 'new',
+        highlights: [
+            'Wraps the existing Calendar component — no date logic duplicated',
+            'Single date or start/end range selection',
+            'Closes automatically once a full selection is made',
+            'Today / Clear quick actions in single mode',
+            'Same outline/filled/underline appearance and sm/md/lg sizes as Select',
+        ],
+        exampleCode: DATE_PICKER_EXAMPLE_CODE,
+        variants: [
+            { name: 'single', description: 'Default — one selected date, value is Date | null' },
+            { name: 'range', description: 'A start/end range, value is { start, end } | null' },
+            { name: 'outline / filled / underline', description: 'Same trigger appearances as Select' },
+        ],
+        apiProps: [
+            {
+                name: 'value',
+                type: 'Date | { start: Date | null; end: Date | null } | null',
+                default: 'null',
+                description: 'Two-way bound selection via [(value)] or ngModel — shape depends on selectionMode',
+            },
+            {
+                name: 'selectionMode',
+                type: "'single' | 'range'",
+                default: "'single'",
+                description: 'Controls the selection behavior and the shape of value',
+            },
+            {
+                name: 'appearance',
+                type: "'outline' | 'filled' | 'underline'",
+                default: "'outline'",
+                description: 'Trigger chrome style',
+            },
+            {
+                name: 'size',
+                type: "'sm' | 'md' | 'lg'",
+                default: "'md'",
+                description: 'Trigger height and font scale',
+            },
+            {
+                name: 'placeholder',
+                type: 'string',
+                default: "'Select date'",
+                description: 'Shown in the trigger when no value is selected',
+            },
+            {
+                name: 'min',
+                type: 'Date | null',
+                default: 'null',
+                description: 'Dates before this are disabled (passed through to Calendar)',
+            },
+            {
+                name: 'max',
+                type: 'Date | null',
+                default: 'null',
+                description: 'Dates after this are disabled (passed through to Calendar)',
+            },
+            {
+                name: 'closeOnSelect',
+                type: 'boolean',
+                default: 'true',
+                description: 'Closes the panel once a full selection is made',
+            },
+            {
+                name: 'clearable',
+                type: 'boolean',
+                default: 'true',
+                description: 'Shows an inline clear (×) button in the trigger once a value is set',
+            },
+            {
+                name: 'disabled',
+                type: 'boolean',
+                default: 'false',
+                description: 'Disables the trigger and panel',
+            },
+            {
+                name: 'opened (output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits when the panel opens',
+            },
+            {
+                name: 'closed (output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits when the panel closes',
+            },
+        ],
+        a11yNotes: [
+            'Trigger has aria-haspopup="dialog" and reflects aria-expanded',
+            'Panel is role="dialog" and inert while closed',
+            'ArrowDown/Enter/Space opens the panel, Escape closes it, Tab closes and moves on',
+            'Clicking outside the trigger and panel closes it',
+            'Calendar\'s own keyboard grid navigation (arrow keys, roving tabindex) applies inside the panel',
+        ],
+        relatedSlugs: ['calendar', 'select', 'form-field'],
     },
     {
         slug: 'header',

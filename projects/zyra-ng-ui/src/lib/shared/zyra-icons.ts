@@ -51,6 +51,13 @@ export const caretDown: ZyraIconData  = [['path', { d: 'm6 9 6 6 6-6',   key: 'm
 export const caretLeft: ZyraIconData  = [['path', { d: 'm15 18-6-6 6-6', key: '1wnfg3' }]];
 export const caretRight: ZyraIconData = [['path', { d: 'm9 18 6-6-6-6',  key: 'mthhwq' }]];
 
+export const calendarIcon: ZyraIconData = [
+    ['rect', { width: '18', height: '18', x: '3', y: '4', rx: '2', ry: '2', key: 'q2avja' }],
+    ['line', { x1: '16', x2: '16', y1: '2', y2: '6', key: 'm3sd8h' }],
+    ['line', { x1: '8', x2: '8', y1: '2', y2: '6', key: '18b2jo' }],
+    ['line', { x1: '3', x2: '21', y1: '10', y2: '10', key: 'xt86sb' }],
+];
+
 export const certificate: ZyraIconData = [
     ['path', { d: 'm15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526', key: '1yiouv' }],
     ['circle', { cx: '12', cy: '8', r: '6', key: '1vp47v' }],

@@ -52,6 +52,9 @@ import { SliderRenderer } from './renderers/slider-renderer';
 import { FileUploadRenderer } from './renderers/file-upload-renderer';
 import { CarouselRenderer } from './renderers/carousel-renderer';
 import { CalendarRenderer } from './renderers/calendar-renderer';
+import { DatePickerRenderer } from './renderers/date-picker-renderer';
+import { TableRenderer } from './renderers/table-renderer';
+import { TreeViewRenderer } from './renderers/tree-view-renderer';
 
 export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
     button: {
@@ -607,6 +610,48 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
+    'date-picker': {
+        renderer: DatePickerRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'appearance',
+                label: 'appearance',
+                options: ['outline', 'filled', 'underline'],
+                defaultValue: 'outline',
+            },
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'button-group',
+                key: 'selectionMode',
+                label: 'selectionMode',
+                options: ['single', 'range'],
+                defaultValue: 'single',
+            },
+            {
+                type: 'toggle',
+                key: 'disabled',
+                label: 'states',
+                toggleLabel: 'disabled',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [(ngModel)]="selectedDate"`];
+            if (s['appearance'] !== 'outline') a.push(`  appearance="${s['appearance']}"`);
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            if (s['selectionMode'] !== 'single') a.push(`  selectionMode="${s['selectionMode']}"`);
+            if (s['disabled']) a.push(`  [disabled]="true"`);
+            return `<zyra-date-picker\n${a.join('\n')}\n/>`;
+        },
+    },
+
     chip: {
         renderer: ChipRenderer,
         controls: [
@@ -1111,6 +1156,58 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
         },
     },
 
+    table: {
+        renderer: TableRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'selectionMode',
+                label: 'selectionMode',
+                options: ['none', 'single', 'multiple'],
+                defaultValue: 'none',
+            },
+            {
+                type: 'toggle',
+                key: 'paginated',
+                label: 'features',
+                toggleLabel: 'paginated (3 per page)',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'manualSort',
+                label: '',
+                toggleLabel: 'manualSort (server-side)',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'loading',
+                label: '',
+                toggleLabel: 'loading',
+                defaultValue: false,
+            },
+            {
+                type: 'toggle',
+                key: 'empty',
+                label: '',
+                toggleLabel: 'empty',
+                defaultValue: false,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [columns]="columns"`, `  [rows]="rows"`, `  [(sort)]="sort"`];
+            if (s['selectionMode'] !== 'none') {
+                a.push(`  selectionMode="${s['selectionMode']}"`, `  [(selected)]="selected"`);
+            }
+            if (s['paginated']) a.push(`  [pageSize]="3"`);
+            if (s['manualSort']) a.push(`  [manualSort]="true"`);
+            if (s['loading']) a.push(`  [loading]="true"`);
+            a.push(`  (rowClick)="onRowClick($event)"`);
+            return `<zyra-table\n${a.join('\n')}\n/>`;
+        },
+    },
+
     textarea: {
         renderer: TextareaRenderer,
         stageClass: 'column',
@@ -1495,6 +1592,32 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
             const open = a.length ? `<zyra-form-field\n${a.join('\n')}\n>` : `<zyra-form-field>`;
             return `${open}\n  <zyra-input placeholder="Enter text" />\n</zyra-form-field>`;
+        },
+    },
+
+    'tree-view': {
+        renderer: TreeViewRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'selectionMode',
+                label: 'selectionMode',
+                options: ['none', 'single', 'multiple'],
+                defaultValue: 'none',
+            },
+            {
+                type: 'button-group',
+                key: 'size',
+                label: 'size',
+                options: ['sm', 'md', 'lg'],
+                defaultValue: 'md',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [nodes]="nodes"`];
+            if (s['selectionMode'] !== 'none') a.push(`  selectionMode="${s['selectionMode']}"`);
+            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
+            return `<zyra-tree-view\n${a.join('\n')}\n/>`;
         },
     },
 

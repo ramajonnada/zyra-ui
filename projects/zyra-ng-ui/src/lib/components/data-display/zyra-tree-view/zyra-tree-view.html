@@ -1,0 +1,59 @@
+<div
+    [class]="hostClass()"
+    role="tree"
+    [attr.aria-multiselectable]="selectionMode() === 'multiple' ? true : null"
+    [attr.aria-disabled]="disabled()"
+>
+    @for (flat of visibleNodes(); track flat.node.id) {
+        <div
+            [id]="rowDomId(flat.node.id)"
+            class="zyr-tree__row"
+            role="treeitem"
+            [style.paddingLeft.px]="flat.depth * 20 + 8"
+            [attr.aria-expanded]="flat.hasChildren ? isExpanded(flat.node.id) : null"
+            [attr.aria-selected]="selectionMode() !== 'none' ? isSelected(flat.node.id) : null"
+            [attr.aria-level]="flat.depth + 1"
+            [attr.aria-disabled]="flat.node.disabled ? true : null"
+            [tabindex]="isFocused(flat.node.id) ? 0 : -1"
+            [class.zyr-tree__row--selected]="isSelected(flat.node.id)"
+            [class.zyr-tree__row--disabled]="flat.node.disabled"
+            (click)="onRowClick(flat)"
+            (focus)="onRowFocus(flat.node.id)"
+        >
+            @if (flat.hasChildren) {
+                <button
+                    type="button"
+                    class="zyr-tree__toggle"
+                    tabindex="-1"
+                    [attr.aria-label]="isExpanded(flat.node.id) ? 'Collapse' : 'Expand'"
+                    (click)="toggleExpand(flat.node); $event.stopPropagation()"
+                >
+                    <zyra-icon
+                        class="zyr-tree__toggle-icon"
+                        [class.zyr-tree__toggle-icon--expanded]="isExpanded(flat.node.id)"
+                        [img]="icons.chevronDown"
+                        [size]="14"
+                    />
+                </button>
+            } @else {
+                <span class="zyr-tree__toggle-spacer"></span>
+            }
+
+            @if (selectionMode() === 'multiple') {
+                <span class="zyr-tree__checkbox" (click)="$event.stopPropagation()">
+                    <zyra-checkbox
+                        [checked]="isSelected(flat.node.id)"
+                        [disabled]="flat.node.disabled ?? false"
+                        (changed)="toggleSelect(flat.node)"
+                    />
+                </span>
+            }
+
+            @if (flat.node.icon) {
+                <zyra-icon class="zyr-tree__node-icon" [img]="flat.node.icon" [size]="14" />
+            }
+
+            <span class="zyr-tree__label">{{ flat.node.label }}</span>
+        </div>
+    }
+</div>

@@ -43,6 +43,8 @@ export * from './lib/components/data-display/zyra-timeline/zyra-timeline-item';
 export * from './lib/components/data-display/zyra-carousel/zyra-carousel';
 export * from './lib/components/data-display/zyra-carousel/zyra-carousel-slide';
 export * from './lib/components/data-display/zyra-calendar/zyra-calendar';
+export * from './lib/components/data-display/zyra-table/zyra-table';
+export * from './lib/components/data-display/zyra-tree-view/zyra-tree-view';
 
 // ── Navigation ──────────────────────────────────────────────────────────
 export * from './lib/components/navigation/zyra-breadcrumb/zyra-breadcrumb';
@@ -81,6 +83,7 @@ export * from './lib/components/forms/zyra-multi-select/zyra-multi-select';
 export * from './lib/components/forms/zyra-autocomplete/zyra-autocomplete';
 export * from './lib/components/forms/zyra-slider/zyra-slider';
 export * from './lib/components/forms/zyra-file-upload/zyra-file-upload';
+export * from './lib/components/forms/zyra-date-picker/zyra-date-picker';
 
 // ── Feedback ────────────────────────────────────────────────────────────
 export * from './lib/components/feedback/zyra-spinner/zyra-spinner';

@@ -1,0 +1,119 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.zyr-table {
+    width: 100%;
+    font-family: var(--zyra-font-body);
+
+    &__scroll {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid var(--zyra-color-border);
+        border-radius: var(--zyra-radius-md);
+    }
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: var(--zyra-color-card-bg);
+    }
+
+    &__head--sticky {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    th {
+        text-align: left;
+        font-weight: 600;
+        color: var(--zyra-color-text-dim);
+        border-bottom: 1px solid var(--zyra-color-border);
+        white-space: nowrap;
+    }
+
+    td {
+        color: var(--zyra-color-text);
+        border-bottom: 1px solid var(--zyra-color-border);
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    &__row {
+        transition: background var(--zyra-transition-fast);
+
+        &:hover {
+            background: var(--zyra-color-sidebar-hover-bg);
+        }
+    }
+
+    &__row--selected {
+        background: var(--zyra-color-sidebar-hover-bg);
+    }
+
+    &__row:focus-visible {
+        outline: 2px solid var(--zyra-color-primary);
+        outline-offset: -2px;
+    }
+
+    &__select-col {
+        width: 40px;
+        text-align: center;
+    }
+
+    &__align-left { text-align: left; }
+    &__align-center { text-align: center; }
+    &__align-right { text-align: right; }
+
+    &__th-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        font-weight: inherit;
+        color: inherit;
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: 2px solid var(--zyra-color-primary);
+            outline-offset: 2px;
+        }
+    }
+
+    &__sort-icon {
+        color: var(--zyra-color-text-dim);
+        opacity: 0.4;
+        transition: transform var(--zyra-transition-fast), opacity var(--zyra-transition-fast);
+
+        :where(svg) { width: 1em; height: 1em; display: block; }
+
+        &--active { opacity: 1; }
+        &--asc { transform: rotate(180deg); }
+    }
+
+    &__radio {
+        accent-color: var(--zyra-color-primary);
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+
+    // ── Sizes ─────────────────────────────────────────────────
+    &--sm th, &--sm td { padding: 6px 10px; font-size: 12.5px; }
+    &--md th, &--md td { padding: 10px 14px; font-size: 13.5px; }
+    &--lg th, &--lg td { padding: 14px 18px; font-size: 15px; }
+}

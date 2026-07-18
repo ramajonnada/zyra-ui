@@ -22,15 +22,17 @@ A component only counts as shipped when it clears every row of the [Development 
 
 | Field | Value |
 |---|---|
-| Sprint Number | Sprint 5 |
-| Sprint Goal | **Data Display — foundational** — ship Calendar, a from-scratch month-grid date picker with full keyboard support and Angular Forms (CVA) integration. (Carousel, originally paired with Calendar in this sprint, shipped early in Sprint 4 at the user's request.) |
+| Sprint Number | Sprint 6 |
+| Sprint Goal | **Data Display — complex** — ship Date Picker, Table, and Tree View, the three most complex remaining Data Display components. |
 | Duration | 2 weeks (suggested — adjust to actual team velocity; not tracked elsewhere in the repo) |
-| Status | Done |
+| Status | Code complete — pending manual visual QA (see Risks & Notes) |
 
-### Why Calendar, and why now
+### Why this grouping, and why this order
 
-- Sprint 4 (Forms Input family + Carousel) shipped. Per [SPRINT_PLAN.md](SPRINT_PLAN.md)'s Full Sprint Index, Sprint 5 was originally Calendar + Carousel; Carousel moved to Sprint 4, leaving Calendar to stand alone here.
-- Calendar has no dependency on anything built so far — it's a self-contained month-grid component (own date-math helpers, own CVA). It's sequenced now specifically because **Date Picker (Sprint 6)** will need it as a foundation — building it first removes that dependency risk from the next sprint.
+- Per [SPRINT_PLAN.md](SPRINT_PLAN.md)'s Full Sprint Index, Sprint 6 was always slated as Table + Tree View + Date Picker — the three most complex Data Display components left in Phase 1.
+- **Date Picker first (P0):** it depends on Calendar (shipped in Sprint 5) and composes the already-shipped Popover for its trigger/panel — lowest net-new complexity of the three since it's mostly wiring, not new primitives. Sequencing it first also validates Calendar's CVA/keyboard contract works inside a real consumer before the sprint moves to fully new components.
+- **Table second (P1):** foundational and independent of the other two, but high complexity (sorting, selection, pagination hooks) — no dependency on Date Picker or Tree View, so it can start in parallel once Date Picker's shape is settled.
+- **Tree View third (P2):** highest complexity, no hard dependency on Table, but expandable-row/selection-state patterns settled while building Table's rows are likely to transfer directly to Tree View's node expand/collapse and selection model.
 
 ---
 
@@ -38,9 +40,11 @@ A component only counts as shipped when it clears every row of the [Development 
 
 | Component | Priority | Final Status | Complexity | Dependencies |
 |---|---|---|---|---|
-| Calendar | P0 | Done | Medium | None — new component, own date-math helpers |
+| Date Picker | P0 | Done | Medium | Calendar (Sprint 5) — wraps it directly, no Popover dependency needed |
+| Table | P1 | Done | High | None — new component |
+| Tree View | P2 | Done | High | None — new component; reuses the roving-tabindex keyboard pattern from Sidebar/Calendar |
 
-**Explicitly out of scope for Sprint 5:** Date Picker (queued as Sprint 6 — it will wrap this Calendar in a popover trigger), and every other Phase 1 category.
+**Explicitly out of scope for Sprint 6:** Virtual Table / virtualized scrolling (Phase 2, Sprint 11 — Table in this sprint is a plain, non-virtualized implementation), Data Grid, Tree Grid, and every other Phase 1/2 category.
 
 ---
 
@@ -48,23 +52,23 @@ A component only counts as shipped when it clears every row of the [Development 
 
 Every component below must clear all rows before it's considered done. This mirrors the non-negotiables in [COMPONENT_GUIDELINES.md](COMPONENT_GUIDELINES.md) (accessibility, keyboard support, cross-theme review, `npm run audit:components`).
 
-| Step | Calendar |
-|---|---|
-| Requirements Analysis | ☑ |
-| API Design | ☑ |
-| Feature List | ☑ |
-| Accessibility Review | ☑ |
-| Keyboard Support | ☑ |
-| Theme Support (all 5 themes) | ☑ |
-| Responsive Support | ☑ |
-| SSR Compatibility | ☑ |
-| Zoneless Compatibility | ☑ |
-| Implementation | ☑ |
-| Unit Tests | ☑ |
-| Playground page | ☑ |
-| Documentation | ☑ |
-| Examples | ☑ |
-| Final Review | ☑ |
+| Step | Date Picker | Table | Tree View |
+|---|---|---|---|
+| Requirements Analysis | ☑ | ☑ | ☑ |
+| API Design | ☑ | ☑ | ☑ |
+| Feature List | ☑ | ☑ | ☑ |
+| Accessibility Review | ☑ | ☑ | ☑ |
+| Keyboard Support | ☑ | ☑ | ☑ |
+| Theme Support (all 5 themes) | ☐ | ☐ | ☐ |
+| Responsive Support | ☐ | ☐ | ☐ |
+| SSR Compatibility | ☑ | ☑ | ☑ |
+| Zoneless Compatibility | ☑ | ☑ | ☑ |
+| Implementation | ☑ | ☑ | ☑ |
+| Unit Tests | ☑ | ☑ | ☑ |
+| Playground page | ☑ | ☑ | ☑ |
+| Documentation | ☑ | ☑ | ☑ |
+| Examples | ☑ | ☑ | ☑ |
+| Final Review | ☑ | ☑ | ☑ |
 
 ---
 
@@ -72,19 +76,19 @@ Every component below must clear all rows before it's considered done. This mirr
 
 | Metric | Count |
 |---|---|
-| Completed Components | 1 / 1 |
-| Components In Progress | 0 / 1 |
-| Remaining Components | 0 / 1 |
-| **Overall Progress** | **100%** |
+| Completed Components | 3 / 3 code-complete — theme/responsive visual QA still outstanding (see Risks) |
+| Components In Progress | 0 / 3 |
+| Remaining Components | 0 / 3 |
+| **Overall Progress** | **~90%** — pending manual visual review |
 
 ---
 
 ## 5. Risks & Notes
 
-- **Own date-math, no date library:** Calendar implements its own `sameDay`/`startOfDay`/month-grid generation using plain `Date` objects rather than pulling in a date library (date-fns, Luxon, etc.). Reasonable for a single-date month grid; if Date Picker (Sprint 6) or later range-selection needs grow complex (timezones, locales beyond `Intl`, recurring ranges), revisit whether a date library earns its weight then — don't add one preemptively.
-- **Roving tabindex for keyboard nav:** only the currently-focused day is in the tab order (`tabindex="0"`); all others are `-1`. Arrow keys move a `focusedDate` signal independently of the *selected* date, matching the standard ARIA grid/date-picker keyboard pattern.
-- **Post-sprint polish (user-reported):** after Sprint 4/5 shipped, the user flagged the Carousel playground demo as low-contrast (arrows blended into the dark background) with no visible slide transition. Fixed both in this pass: arrows now use `--zyra-color-card-bg` + a shadow instead of matching the carousel's own background (so they read as floating buttons), and the track's `[style]` binding was switched to `[style.transform]` for a reliable CSS transition. The playground demo slides were also redesigned as centered `zyra-aspect-ratio` cards with distinct accent colors, closer to what the user referenced.
-- Verified end-to-end: `npm run build:lib`, `npm run audit:components`, and the full unit suite (790/791 — the 1 failure is the same pre-existing flaky layout-measurement test in `zyra-button-group.spec.ts` from earlier sprints, unrelated to this work) all pass. `/docs/components/calendar` and `/docs/components/carousel` both confirmed rendering on the local dev server after the Carousel fixes.
+- **Date Picker ended up not needing Popover:** the plan assumed Date Picker would wrap Calendar in a `zyra-popover` trigger. In practice it follows `zyra-select`'s self-contained dropdown pattern instead (own `isOpen` signal, outside-click/Escape/Tab handling, absolutely-positioned panel) — `zyra-popover` is a portal-to-`<body>` overlay with no other internal consumers in the library yet, while every other form dropdown (Select, Autocomplete, Multi Select) already uses the self-contained pattern. Consistency with sibling form components won out over reusing Popover. No Calendar API changes were needed — min/max, CVA, and single/range modes already covered everything Date Picker needed.
+- **Table scope discipline:** kept to sorting, row selection, and pagination against a plain (non-virtualized) row list, per plan. Reused four existing components rather than rebuilding their pieces: Checkbox (row/select-all selection), Pagination (page footer), Skeleton (loading rows), and Empty State (zero rows) — no virtualization, matching that Virtual Table stays Phase 2 (Sprint 11).
+- **Tree View selection/expand state:** followed the same roving-tabindex + ARIA (`role="tree"`/`treeitem"`, `aria-level`, `aria-expanded`) pattern used in Calendar's day grid (Sprint 5) and Sidebar's nav tree, per plan, for consistency across the library's keyboard-nav components.
+- **Outstanding before Sprint 6 is fully done — manual visual QA:** all three components are code-complete (`npx tsc --noEmit`, full unit suite, `npm run build:lib`, and a full `ng build zyra-ui` with SSR + prerender all pass clean), and their SCSS uses the same semantic design tokens (`--zyra-color-*`) as every other component, so cross-theme support should hold by construction. But none of the three have actually been opened in a running dev server and eyeballed across all 5 themes or at mobile/tablet widths yet — that visual review is still outstanding and should happen before marking this sprint fully Done.
 
 ---
 
@@ -92,9 +96,9 @@ Every component below must clear all rows before it's considered done. This mirr
 
 The full multi-sprint plan — every remaining component and initiative across Phase 1 through Phase 5 of ROADMAP.md, in recommended order — lives in **[SPRINT_PLAN.md](SPRINT_PLAN.md)**. This section only tracks the *next* sprint candidate so it's visible without leaving this file:
 
-- **Sprint 6 candidate — Data Display complex:** Table, Tree View, Date Picker — the three most complex remaining Data Display components. Date Picker is sequenced here specifically because it depends on Calendar (this sprint).
+- **Sprint 7 candidate — Utilities (closes Phase 1):** Image, JSON Viewer, Markdown Viewer, Command Palette. JSON/Markdown Viewers can reuse rendering/tokenizer pieces from the already-shipped Code Block; Command Palette has no dependency on anything earlier and closes Phase 1 with a high-visibility component.
 
-See [SPRINT_PLAN.md](SPRINT_PLAN.md) for Sprints 7 onward, including Phase 2 (Pro components), Phase 3 (Templates), Phase 4 (ZyraAI), and Phase 5 (Zyra Studio). Re-prioritize at the start of each sprint based on what actually shipped, not just what was planned.
+See [SPRINT_PLAN.md](SPRINT_PLAN.md) for Sprints 8 onward, including Phase 2 (Pro components), Phase 3 (Templates), Phase 4 (ZyraAI), and Phase 5 (Zyra Studio). Re-prioritize at the start of each sprint based on what actually shipped, not just what was planned.
 
 ---
 
