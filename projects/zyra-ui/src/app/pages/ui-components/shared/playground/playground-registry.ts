@@ -48,8 +48,6 @@ import { ThemeSwitchRenderer } from './renderers/theme-switch-renderer';
 import { DrawerRenderer } from './renderers/drawer-renderer';
 import { MultiSelectRenderer } from './renderers/multi-select-renderer';
 import { AutocompleteRenderer } from './renderers/autocomplete-renderer';
-import { OtpInputRenderer } from './renderers/otp-input-renderer';
-import { PasswordInputRenderer } from './renderers/password-input-renderer';
 import { SliderRenderer } from './renderers/slider-renderer';
 import { FileUploadRenderer } from './renderers/file-upload-renderer';
 import { CarouselRenderer } from './renderers/carousel-renderer';
@@ -485,68 +483,6 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
                 ? `  <zyra-input\n${inp.join('\n')}\n  />`
                 : `  <zyra-input />`;
             return `${ffOpen}\n${inpTag}\n</zyra-form-field>`;
-        },
-    },
-
-    'otp-input': {
-        renderer: OtpInputRenderer,
-        controls: [
-            {
-                type: 'button-group',
-                key: 'length',
-                label: 'length',
-                options: ['4', '6'],
-                defaultValue: '6',
-            },
-            {
-                type: 'button-group',
-                key: 'otpType',
-                label: 'type',
-                options: ['numeric', 'alphanumeric'],
-                defaultValue: 'numeric',
-            },
-            {
-                type: 'button-group',
-                key: 'size',
-                label: 'size',
-                options: ['sm', 'md', 'lg'],
-                defaultValue: 'md',
-            },
-        ],
-        codeTemplate: (s) => {
-            const a: string[] = [`  [otpLength]="${s['length']}"`];
-            if (s['otpType'] !== 'numeric') a.push(`  otpType="${s['otpType']}"`);
-            if (s['size'] !== 'md') a.push(`  size="${s['size']}"`);
-            return `<zyra-input\n${a.join('\n')}\n  (complete)="onComplete($event)"\n/>`;
-        },
-    },
-
-    'password-input': {
-        renderer: PasswordInputRenderer,
-        controls: [
-            {
-                type: 'button-group',
-                key: 'appearance',
-                label: 'appearance',
-                options: ['outline', 'filled', 'underline'],
-                defaultValue: 'outline',
-            },
-            {
-                type: 'button-group',
-                key: 'size',
-                label: 'size',
-                options: ['sm', 'md', 'lg'],
-                defaultValue: 'md',
-            },
-        ],
-        codeTemplate: (s) => {
-            const ff: string[] = [];
-            if (s['appearance'] !== 'outline') ff.push(`  appearance="${s['appearance']}"`);
-            if (s['size'] !== 'md') ff.push(`  size="${s['size']}"`);
-            const ffOpen = ff.length
-                ? `<zyra-form-field label="Password"\n${ff.join('\n')}\n>`
-                : `<zyra-form-field label="Password">`;
-            return `${ffOpen}\n  <zyra-input type="password" />\n</zyra-form-field>`;
         },
     },
 

@@ -42,6 +42,19 @@ function hasFile(dir, predicate) {
     return fs.readdirSync(dir).some(predicate);
 }
 
+// A compound component (e.g. zyra-button-group) can be colocated inside a
+// sibling component's directory (e.g. zyra-button/) instead of getting its
+// own top-level folder — same convention as zyra-sidebar-item living inside
+// zyra-sidebar/. Directory-name matching alone misses these, so also search
+// every component directory for a `zyra-<slug>.spec.ts` file directly.
+function findLibSpec(componentDirs, slug) {
+    const specFileName = `zyra-${slug}.spec.ts`;
+    for (const { dir } of componentDirs) {
+        if (fs.existsSync(path.join(dir, specFileName))) return true;
+    }
+    return false;
+}
+
 function getShowcaseSlugs() {
     const content = fs.readFileSync(SHOWCASE_DATA_FILE, 'utf8');
     const slugs = new Set();
@@ -70,10 +83,17 @@ function audit() {
     const showcaseSlugs = getShowcaseSlugs();
     const registrySlugs = getRegistrySlugs();
 
-    const rows = componentDirs.map(({ name: libDirName, dir: libDir }) => {
-        const slug = toSlug(libDirName);
+    // Union of every slug source: a directory-per-component slug, a showcase
+    // entry, or a registry entry all count as "this component should exist".
+    // Union (not just directory names) is what catches compound components
+    // like zyra-button-group that are colocated in a sibling's directory.
+    const dirSlugs = componentDirs.map(({ name }) => toSlug(name));
+    const allSlugs = Array.from(new Set([...dirSlugs, ...showcaseSlugs, ...registrySlugs])).sort();
 
-        const hasLibSpec = hasFile(libDir, (f) => f.endsWith('.spec.ts'));
+    const rows = allSlugs.map((slug) => {
+        const hasLibSpec = dirSlugs.includes(slug)
+            ? hasFile(componentDirs.find((d) => toSlug(d.name) === slug).dir, (f) => f.endsWith('.spec.ts'))
+            : findLibSpec(componentDirs, slug);
         const hasRegistryEntry = registrySlugs.has(slug);
         const hasShowcaseEntry = showcaseSlugs.has(slug);
 
