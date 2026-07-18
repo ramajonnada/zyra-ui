@@ -7,6 +7,17 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [3.4.0] — 2026-07-18
+
+### Added
+
+- Added `zyra-date-picker` — a dropdown date field wrapping `zyra-calendar` in a select-style trigger, with single or start/end range selection, a formatted display label, min/max constraints, and full Angular Forms (CVA) integration.
+- Added `zyra-table` — a data table with sortable columns (full keyboard navigation via roving tabindex across both headers and rows), single/multiple row selection, built-in pagination, loading skeleton rows, and an empty state — composing `zyra-checkbox`, `zyra-pagination`, `zyra-skeleton`, and `zyra-empty-state` rather than reimplementing them.
+- Added `zyra-tree-view` — a hierarchical, expandable list with unlimited nesting, single/multiple selection, per-node icons and disabled state, and the same roving-tabindex keyboard pattern as `zyra-calendar` and the app sidebar.
+- Added a `calendar` icon to the shared icon set, used by `zyra-date-picker`'s trigger.
+
+---
+
 ## [3.2.0] — 2026-07-12
 
 ### Added
