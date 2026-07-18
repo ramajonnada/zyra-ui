@@ -84,11 +84,48 @@
 	margin-right: 32px;
 }
 
+// Children list (e.g. the 53 component links under "Components") — capped
+// height with its own scroll so a long child list doesn't push the rest of
+// the nav (Theming, Blog, footer, ...) out of view. Uses the library's
+// global thin-scrollbar styling (see zyra-ng-ui _base.scss) automatically.
+// A left border + indent reads as a tree/nesting guide connecting each
+// child back to its parent link, since plain indentation alone read as
+// just "smaller text" rather than a clear parent/child relationship.
+.sidebar__children {
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	max-height: 320px;
+	overflow-y: auto;
+	margin: 2px 0 4px 28px;
+	padding-left: 10px;
+	border-left: 1px solid var(--zyra-color-border);
+}
+
+// Higher-specificity selector (tag + attribute + class) so this reliably
+// wins over ZyraSidebarItem's own :host padding/height shorthand
+// regardless of stylesheet load order.
+a.sidebar__child-item[zyra-sidebar-item] {
+	height: 30px;
+	padding-left: var(--zyra-space-2);
+	font-size: 13px;
+	color: var(--zyra-color-text-muted);
+
+	&:hover:not(.zyr-sidebar-item--disabled) {
+		color: var(--zyra-color-sidebar-text-hover);
+	}
+
+	&.zyr-sidebar-item--active {
+		color: var(--zyra-color-sidebar-text-active);
+		font-weight: 500;
+	}
+}
+
 .sidebar__footer {
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	
+
 }
 
 .sidebar__footer-dot {
@@ -113,10 +150,10 @@
 @media (max-width: 900px) {
 
 	// This instance (rendered in app-body, beside app-main) is desktop-only.
-	// Below 900px, the mobile copy of app-sidebar rendered inside
-	// zyra-header's own mobile panel takes over — display:none here removes
-	// this instance from the layout, the accessibility tree, and tab order,
-	// so only one interactive sidebar ever exists per viewport width.
+	// Below 900px, the mobile drawer (zyra-header's zyraHeaderMobileNav,
+	// see header.html) renders the same links directly — display:none here
+	// removes this instance from the layout, the accessibility tree, and tab
+	// order, so only one interactive nav ever exists per viewport width.
 	:host {
 		display: none;
 	}

@@ -114,12 +114,14 @@ import {
 	ZyraHeaderStart,
 	ZyraHeaderNav,
 	ZyraHeaderEnd,
-	ZyraHeaderMobileEnd
+	ZyraHeaderMobileNav,
+	ZyraSidebarItem,
+	ZyraSidebarSection,
 } from 'zyra-ng-ui';
 import { github, check, caretDown } from 'zyra-ng-ui';
 import { GithubService } from '../../services/github.service';
 import { LIBRARY_VERSION } from '../../shared/version';
-import { NavItem, Sidebar } from '../sidebar/sidebar';
+import { DOCS_NAV_ITEMS, NavItem } from '../sidebar/sidebar';
 
 interface HeaderLink {
 	label: string;
@@ -139,13 +141,14 @@ interface ThemeOption {
 		RouterLink,
 		RouterLinkActive,
 		ZyraButton,
-		// Sidebar,
 		ZyraIcon,
 		ZyraHeader,
 		ZyraHeaderStart,
 		ZyraHeaderNav,
 		ZyraHeaderEnd,
-		// ZyraHeaderMobileEnd,
+		ZyraHeaderMobileNav,
+		ZyraSidebarItem,
+		ZyraSidebarSection,
 	],
 	templateUrl: './header.html',
 	styleUrl: './header.scss',
@@ -169,6 +172,12 @@ export class Header {
 		{ label: 'Components', route: '/docs/components' },
 		{ label: 'Blog', route: '/blog' },
 	];
+
+	// Mobile drawer nav on docs pages — same list as the desktop app-sidebar
+	// rail (see sidebar.ts), rendered directly with the bare link/section
+	// pieces instead of nesting <app-sidebar>, so no extra panel background
+	// shows up inside the drawer.
+	readonly mobileNavItems = DOCS_NAV_ITEMS;
 
 	readonly themes: readonly ThemeOption[] = [
 		{ value: 'dark', label: 'Dark', accent: '#18d5ea', surface: '#0d1117' },

@@ -23,6 +23,23 @@
 				{{ item.label }}
 			</a>
 		}
+
+		@if (item.children) {
+			<div class="sidebar__children">
+				@for (child of item.children; track child.route) {
+					<a
+						zyra-sidebar-item
+						class="sidebar__child-item"
+						[routerLink]="child.route"
+						routerLinkActive="zyr-sidebar-item--active"
+						[routerLinkActiveOptions]="{ exact: true }"
+						[attr.aria-label]="child.label"
+					>
+						{{ child.label }}
+					</a>
+				}
+			</div>
+		}
 	}
 
 	<div sidebar-footer class="sidebar__footer">

@@ -13,6 +13,38 @@
 		}
 	</nav>
 
+	<div zyraHeaderMobileNav aria-label="Docs">
+		@for (item of mobileNavItems; track item.route) {
+		@if (item.heading) {
+		<zyra-sidebar-section [heading]="item.heading">
+			<a zyra-sidebar-item [routerLink]="item.route" routerLinkActive="zyr-sidebar-item--active"
+				[routerLinkActiveOptions]="{ exact: true }" [attr.aria-label]="item.label"
+				(click)="headerRef.closeMobile()">
+				{{ item.label }}
+			</a>
+		</zyra-sidebar-section>
+		} @else {
+		<a zyra-sidebar-item [routerLink]="item.route" routerLinkActive="zyr-sidebar-item--active"
+			[routerLinkActiveOptions]="{ exact: true }" [attr.aria-label]="item.label"
+			(click)="headerRef.closeMobile()">
+			{{ item.label }}
+		</a>
+		}
+
+		@if (item.children) {
+		<div class="site-header__mobile-children">
+			@for (child of item.children; track child.route) {
+			<a zyra-sidebar-item class="site-header__mobile-child-item" [routerLink]="child.route"
+				routerLinkActive="zyr-sidebar-item--active" [routerLinkActiveOptions]="{ exact: true }"
+				[attr.aria-label]="child.label" (click)="headerRef.closeMobile()">
+				{{ child.label }}
+			</a>
+			}
+		</div>
+		}
+		}
+	</div>
+
 	<div zyraHeaderEnd class="site-header__actions">
 		<a class="site-header__repo" href="https://github.com/ramajonnada/zyra-ui" target="_blank"
 			rel="noopener noreferrer" aria-label="Open Zyra UI on GitHub">
