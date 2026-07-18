@@ -229,6 +229,10 @@
         flex-direction: column;
     }
 
+    .components-page__main {
+        flex-basis: auto;
+    }
+
     .components-page__meta {
         justify-content: flex-start;
     }
@@ -239,6 +243,7 @@
     }
 
     .components-page__search {
+        flex-basis: auto;
         margin-left: 0;
         max-width: none;
     }
