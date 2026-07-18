@@ -3,6 +3,7 @@ import {
     ChangeDetectionStrategy,
     Component,
     computed,
+    effect,
     ElementRef,
     HostListener,
     inject,
@@ -124,6 +125,16 @@ export class ZyraTable<T extends Record<string, unknown> = Record<string, unknow
         () => !this.isAllSelected() && this.pagedPairs().some((pair) => this.isSelected(pair)),
     );
 
+    constructor() {
+        // Clamp `page` whenever the available range shrinks — e.g. `rows`
+        // updates to fewer entries, or `pageSize` changes — so it never
+        // points past the last page and silently renders zero rows.
+        effect(() => {
+            const total = this.totalPages();
+            if (this.page() > total) this.page.set(total);
+        });
+    }
+
     // ── Keyboard navigation (roving tabindex) ──────────────────
     // Two independent zones — sortable headers and body rows — each with
     // their own single tab stop; Arrow Down/Up bridge between the tracked
@@ -164,6 +175,12 @@ export class ZyraTable<T extends Record<string, unknown> = Record<string, unknow
 
     onRowFocus(pair: RowPair<T>): void {
         if (!this.isRowFocused(pair)) this._focusedRowKey.set(this.keyOf(pair));
+    }
+
+    rowAriaLabel(pair: RowPair<T>): string {
+        const first = this.columns()[0];
+        const descriptor = first ? this.formatCell(first, pair.row) : '';
+        return `Select row: ${descriptor || String(this.keyOf(pair))}`;
     }
 
     @HostListener('keydown', ['$event'])

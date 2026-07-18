@@ -5,6 +5,11 @@
     [attr.aria-disabled]="disabled()"
 >
     @for (flat of visibleNodes(); track flat.node.id) {
+        <!-- Keyboard handling lives on the host's own @HostListener('keydown')
+             in zyra-tree-view.ts (arrow keys, Enter/Space) rather than
+             inline here — the template linter can't see across that
+             boundary, hence the disable below. -->
+        <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
         <div
             [id]="rowDomId(flat.node.id)"
             class="zyr-tree__row"
@@ -25,6 +30,7 @@
                     type="button"
                     class="zyr-tree__toggle"
                     tabindex="-1"
+                    [disabled]="disabled() || flat.node.disabled"
                     [attr.aria-label]="isExpanded(flat.node.id) ? 'Collapse' : 'Expand'"
                     (click)="toggleExpand(flat.node); $event.stopPropagation()"
                 >
@@ -40,10 +46,16 @@
             }
 
             @if (selectionMode() === 'multiple') {
-                <span class="zyr-tree__checkbox" (click)="$event.stopPropagation()">
+                <span
+                    class="zyr-tree__checkbox"
+                    tabindex="-1"
+                    (click)="$event.stopPropagation()"
+                    (keydown)="$event.stopPropagation()"
+                >
                     <zyra-checkbox
                         [checked]="isSelected(flat.node.id)"
-                        [disabled]="flat.node.disabled ?? false"
+                        [disabled]="disabled() || (flat.node.disabled ?? false)"
+                        [attr.aria-label]="'Select ' + flat.node.label"
                         (changed)="toggleSelect(flat.node)"
                     />
                 </span>

@@ -86,7 +86,16 @@ export class ZyraTreeView {
         return result;
     });
 
-    readonly focusedId = computed(() => this._focusedId() ?? this.visibleNodes()[0]?.node.id ?? null);
+    // Falls back to the first visible node not just when nothing is tracked
+    // yet, but also when the tracked node has been hidden (e.g. its parent
+    // collapsed) — otherwise no row would carry tabindex="0" and the whole
+    // tree would drop out of the Tab order.
+    readonly focusedId = computed(() => {
+        const tracked = this._focusedId();
+        const visible = this.visibleNodes();
+        if (tracked !== null && visible.some((f) => f.node.id === tracked)) return tracked;
+        return visible[0]?.node.id ?? null;
+    });
 
     // ── State helpers ─────────────────────────────────────────
     isExpanded(id: TreeNodeId): boolean {
@@ -111,7 +120,7 @@ export class ZyraTreeView {
 
     // ── Expand / collapse ─────────────────────────────────────
     toggleExpand(node: TreeNode): void {
-        if (this.disabled() || !node.children?.length) return;
+        if (this.disabled() || node.disabled || !node.children?.length) return;
         const isOpen = this.expanded().includes(node.id);
         this.expanded.set(isOpen ? this.expanded().filter((id) => id !== node.id) : [...this.expanded(), node.id]);
         this.nodeToggle.emit({ node, expanded: !isOpen });

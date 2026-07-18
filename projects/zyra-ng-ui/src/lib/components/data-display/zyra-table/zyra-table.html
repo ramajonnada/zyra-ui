@@ -40,9 +40,9 @@
                                 <zyra-checkbox
                                     [checked]="isAllSelected()"
                                     [indeterminate]="isSomeSelected()"
+                                    aria-label="Select all rows"
                                     (changed)="toggleSelectAll()"
                                 />
-                                <span class="sr-only">Select all rows</span>
                             </th>
                         } @else if (selectionMode() === 'single') {
                             <th class="zyr-table__select-col"></th>
@@ -90,7 +90,11 @@
                         >
                             @if (selectionMode() === 'multiple') {
                                 <td class="zyr-table__select-col" (click)="$event.stopPropagation()">
-                                    <zyra-checkbox [checked]="isSelected(pair)" (changed)="toggleRow(pair)" />
+                                    <zyra-checkbox
+                                        [checked]="isSelected(pair)"
+                                        [attr.aria-label]="rowAriaLabel(pair)"
+                                        (changed)="toggleRow(pair)"
+                                    />
                                 </td>
                             } @else if (selectionMode() === 'single') {
                                 <td class="zyr-table__select-col" (click)="$event.stopPropagation()">
@@ -100,7 +104,7 @@
                                         [name]="tableId"
                                         [checked]="isSelected(pair)"
                                         (change)="toggleRow(pair)"
-                                        aria-label="Select row"
+                                        [attr.aria-label]="rowAriaLabel(pair)"
                                     />
                                 </td>
                             }

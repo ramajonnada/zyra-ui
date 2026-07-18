@@ -15,7 +15,6 @@
         align-items: center;
         gap: 8px;
         width: 100%;
-        cursor: pointer;
         font-family: var(--zyra-font-body);
         color: var(--zyra-color-select-text);
         text-align: left;
@@ -24,6 +23,15 @@
             border-color var(--zyra-transition-base),
             box-shadow var(--zyra-transition-base),
             background var(--zyra-transition-slow);
+    }
+
+    &__open-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+        min-width: 0;
+        cursor: pointer;
 
         &:focus { outline: none; }
         &[aria-disabled='true'] { cursor: not-allowed; }
@@ -53,13 +61,13 @@
         justify-content: center;
         width: 16px;
         height: 16px;
-        line-height: 1;
         border-radius: var(--zyra-radius-full);
         color: var(--zyra-color-select-icon);
         background: transparent;
         border: none;
         padding: 0;
         font: inherit;
+        line-height: 1;
         cursor: pointer;
 
         &:hover { color: var(--zyra-color-select-text); }
@@ -117,7 +125,8 @@
         cursor: pointer;
         transition: background var(--zyra-transition-fast);
 
-        &:hover { background: var(--zyra-color-select-filled-bg); }
+        &:hover:not(:disabled) { background: var(--zyra-color-select-filled-bg); }
+        &:disabled { opacity: 0.5; cursor: not-allowed; }
     }
 
     &--outline &__trigger {

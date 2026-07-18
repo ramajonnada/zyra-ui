@@ -39,6 +39,8 @@ export class ZyraCheckbox implements ControlValueAccessor {
     indeterminate = input(false, { transform: booleanAttribute });
     label = input<string>('');
     labelPosition = input<'left' | 'right'>('right');
+    /** Accessible name when there's no visible `label` — e.g. a checkbox used standalone in a table header/cell. */
+    ariaLabel = input<string>('', { alias: 'aria-label' });
     size = input<CheckboxSize>('md');
 
     // ── Outputs ───────────────────────────────────────────────

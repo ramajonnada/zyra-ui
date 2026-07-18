@@ -1,29 +1,31 @@
 <div [class]="wrapClass()">
-    <!-- ── Trigger — a div, not a button, so the nested Clear button below
-         stays valid HTML (buttons can't nest inside buttons) ──────────── -->
-    <div
-        #trigger
-        class="zyr-date-picker__trigger"
-        role="button"
-        tabindex="0"
-        [id]="resolvedId()"
-        [attr.aria-disabled]="isDisabledPicker()"
-        [attr.aria-expanded]="isOpen()"
-        aria-haspopup="dialog"
-        [attr.aria-controls]="panelId"
-        (click)="toggle()"
-        (focus)="onFocus()"
-        (blur)="onBlur()"
-    >
-        <zyra-icon class="zyr-date-picker__icon" [img]="icons.calendarIcon" />
-        <span class="zyr-date-picker__value" [class.zyr-date-picker__value--placeholder]="!hasValue()">
-            {{ displayLabel() || placeholder() }}
-        </span>
+    <!-- ── Trigger — a plain (non-interactive) field wrapper. The open
+         button and the clear button are siblings inside it, not nested —
+         a tabbable button inside a focusable role="button" element is an
+         interactive-nesting anti-pattern even where it's valid HTML. ──── -->
+    <div #trigger class="zyr-date-picker__trigger">
+        <div
+            class="zyr-date-picker__open-btn"
+            role="button"
+            tabindex="0"
+            [id]="resolvedId()"
+            [attr.aria-disabled]="isDisabledPicker()"
+            [attr.aria-expanded]="isOpen()"
+            aria-haspopup="dialog"
+            [attr.aria-controls]="panelId"
+            (click)="toggle()"
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+        >
+            <zyra-icon class="zyr-date-picker__icon" [img]="icons.calendarIcon" />
+            <span class="zyr-date-picker__value" [class.zyr-date-picker__value--placeholder]="!hasValue()">
+                {{ displayLabel() || placeholder() }}
+            </span>
+        </div>
         @if (clearable() && hasValue() && !isDisabledPicker()) {
             <button
                 type="button"
                 class="zyr-date-picker__clear"
-                tabindex="-1"
                 aria-label="Clear date"
                 (click)="clear($event)"
             >
@@ -57,7 +59,14 @@
 
         @if (selectionMode() === 'single') {
             <div class="zyr-date-picker__footer">
-                <button type="button" class="zyr-date-picker__footer-btn" (click)="selectToday()">Today</button>
+                <button
+                    type="button"
+                    class="zyr-date-picker__footer-btn"
+                    [disabled]="isTodayDisabled()"
+                    (click)="selectToday()"
+                >
+                    Today
+                </button>
                 <button type="button" class="zyr-date-picker__footer-btn" (click)="clear()">Clear</button>
             </div>
         }

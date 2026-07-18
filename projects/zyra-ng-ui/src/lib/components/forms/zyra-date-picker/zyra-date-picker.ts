@@ -209,6 +209,11 @@ export class ZyraDatePicker implements ControlValueAccessor, AfterViewInit, OnDe
         const trigger = this._trigger().nativeElement;
         const panel = this._panel().nativeElement;
         const rect = trigger.getBoundingClientRect();
+
+        // Apply minWidth before measuring — setting it can grow the panel
+        // wider than its natural size, so measuring first would use a stale
+        // (too-small) rect and let the panel overflow the viewport edge.
+        panel.style.minWidth = `${rect.width}px`;
         const panelRect = panel.getBoundingClientRect();
         const vw = window.innerWidth;
         const vh = window.innerHeight;
@@ -225,7 +230,6 @@ export class ZyraDatePicker implements ControlValueAccessor, AfterViewInit, OnDe
 
         panel.style.top = `${top}px`;
         panel.style.left = `${left}px`;
-        panel.style.minWidth = `${rect.width}px`;
     }
 
     // ── Selection ─────────────────────────────────────────────
@@ -243,8 +247,18 @@ export class ZyraDatePicker implements ControlValueAccessor, AfterViewInit, OnDe
         if (complete && this.closeOnSelect()) this.close();
     }
 
+    readonly isTodayDisabled = computed(() => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const min = this.min();
+        const max = this.max();
+        if (min && today < min) return true;
+        if (max && today > max) return true;
+        return false;
+    });
+
     selectToday(): void {
-        if (this.isDisabledPicker() || this.selectionMode() !== 'single') return;
+        if (this.isDisabledPicker() || this.selectionMode() !== 'single' || this.isTodayDisabled()) return;
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         this.value.set(today);
@@ -286,9 +300,28 @@ export class ZyraDatePicker implements ControlValueAccessor, AfterViewInit, OnDe
                     this.close();
                 }
                 break;
-            case 'Tab':
-                if (this.isOpen()) this.close();
+            case 'Tab': {
+                if (!this.isOpen()) break;
+                // The panel is portaled to <body>, so it's DOM-detached from
+                // the trigger — natural Tab order won't reach it. Forward-Tab
+                // moves focus into its first focusable element (Calendar's
+                // own "Previous month" button) instead of just closing;
+                // Shift+Tab (backing out of the trigger) still closes.
+                if (event.shiftKey) {
+                    this.close();
+                    break;
+                }
+                const focusable = this._panel().nativeElement.querySelector<HTMLElement>(
+                    'button:not(:disabled), [href], input, select, [tabindex]:not([tabindex="-1"])',
+                );
+                if (focusable) {
+                    event.preventDefault();
+                    focusable.focus();
+                } else {
+                    this.close();
+                }
                 break;
+            }
         }
     }
 

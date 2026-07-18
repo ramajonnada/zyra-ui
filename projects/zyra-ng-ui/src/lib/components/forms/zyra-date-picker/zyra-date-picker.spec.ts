@@ -12,6 +12,7 @@ import { DatePickerSelectionMode, ZyraDatePicker } from './zyra-date-picker';
             [(ngModel)]="value"
             [placeholder]="placeholder()"
             [selectionMode]="selectionMode()"
+            [max]="max()"
         />
     `,
 })
@@ -19,6 +20,7 @@ class DatePickerHostComponent {
     value = signal<Date | DateRange | null>(null);
     placeholder = signal('Select date');
     selectionMode = signal<DatePickerSelectionMode>('single');
+    max = signal<Date | null>(null);
 }
 
 describe('ZyraDatePicker', () => {
@@ -167,6 +169,23 @@ describe('ZyraDatePicker', () => {
         expect(val.toDateString()).toBe(today.toDateString());
     });
 
+    it('does not select today via the footer button when it is outside max', async () => {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        host.max.set(yesterday);
+        fixture.detectChanges();
+
+        trigger(fixture).click();
+        fixture.detectChanges();
+        footerButton('Today').click();
+        fixture.detectChanges();
+        await fixture.whenStable();
+        fixture.detectChanges();
+
+        expect(host.value()).toBeNull();
+        expect(footerButton('Today').disabled).toBeTrue();
+    });
+
     // ── Keyboard navigation ───────────────────────────────────────────────
     it('opens panel on ArrowDown', () => {
         datePickerEl(fixture).dispatchEvent(
@@ -186,10 +205,21 @@ describe('ZyraDatePicker', () => {
         expect(openPanel()).toBeNull();
     });
 
-    it('closes panel on Tab key', () => {
+    it('moves focus into the calendar on Tab instead of closing the panel', () => {
         trigger(fixture).click();
         fixture.detectChanges();
         datePickerEl(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
+        fixture.detectChanges();
+        expect(openPanel()).not.toBeNull();
+        expect(document.activeElement?.closest('.zyr-date-picker__panel')).not.toBeNull();
+    });
+
+    it('closes the panel on Shift+Tab', () => {
+        trigger(fixture).click();
+        fixture.detectChanges();
+        datePickerEl(fixture).dispatchEvent(
+            new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true }),
+        );
         fixture.detectChanges();
         expect(openPanel()).toBeNull();
     });
@@ -207,7 +237,7 @@ describe('ZyraDatePicker', () => {
 });
 
 function trigger(f: ComponentFixture<DatePickerHostComponent>): HTMLElement {
-    return f.nativeElement.querySelector('.zyr-date-picker__trigger');
+    return f.nativeElement.querySelector('.zyr-date-picker__open-btn');
 }
 
 function datePickerEl(f: ComponentFixture<DatePickerHostComponent>): HTMLElement {
