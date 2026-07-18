@@ -7,11 +7,19 @@ const BASE_URL = 'https://www.zyraui.dev';
 const today = new Date().toISOString().split('T')[0];
 
 const indexJson = resolve(__dirname, '../src/content/index.json');
-const componentSlugsJson = resolve(__dirname, './component-slugs.json');
+// Source of truth for component slugs — same file (and same regex) that
+// scripts/check-component-count.js parses — so the sitemap can never drift
+// out of sync with the actual showcase the way the old hand-maintained
+// component-slugs.json did (it had 22 of 56 real components).
+const componentsDataFile = resolve(
+    __dirname,
+    '../src/app/pages/ui-components/ui-components.data.ts',
+);
 const outputPath = resolve(__dirname, '../public/sitemap.xml');
 
 const posts = JSON.parse(readFileSync(indexJson, 'utf-8'));
-const componentSlugs = JSON.parse(readFileSync(componentSlugsJson, 'utf-8'));
+const componentsDataSrc = readFileSync(componentsDataFile, 'utf-8');
+const componentSlugs = [...componentsDataSrc.matchAll(/slug:\s*'([a-z0-9-]+)'/g)].map((m) => m[1]);
 
 function url(loc, lastmod, changefreq, priority) {
     return `  <url>
