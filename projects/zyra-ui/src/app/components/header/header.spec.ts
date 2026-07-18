@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter, Router } from '@angular/router';
-import { ZyraThemeService } from 'zyra-ng-ui';
 
 import { Header } from './header';
 
@@ -13,7 +12,6 @@ class FakePage {}
 describe('Header', () => {
     let component: Header;
     let fixture: ComponentFixture<Header>;
-    let themeService: ZyraThemeService;
     let router: Router;
 
     beforeEach(async () => {
@@ -36,7 +34,6 @@ describe('Header', () => {
 
         fixture = TestBed.createComponent(Header);
         component = fixture.componentInstance;
-        themeService = TestBed.inject(ZyraThemeService);
         router = TestBed.inject(Router);
         fixture.detectChanges();
         await fixture.whenStable();
@@ -58,28 +55,13 @@ describe('Header', () => {
         expect(labels).toContain('Blog');
     });
 
-    // ── theme dropdown ───────────────────────────────────────────────────────
-    it('selectTheme() delegates to ZyraThemeService.setTheme() and closes the dropdown', () => {
-        const spy = spyOn(themeService, 'setTheme');
-        component.themeDropdownOpen.set(true);
-        component.selectTheme('ocean');
-        expect(spy).toHaveBeenCalledOnceWith('ocean');
-        expect(component.themeDropdownOpen()).toBeFalse();
-    });
-
-    it('toggleThemeDropdown() flips themeDropdownOpen and stops event propagation', () => {
-        const event = new Event('click');
-        spyOn(event, 'stopPropagation');
-        component.toggleThemeDropdown(event);
-        expect(event.stopPropagation).toHaveBeenCalled();
-        expect(component.themeDropdownOpen()).toBeTrue();
-        component.toggleThemeDropdown(event);
-        expect(component.themeDropdownOpen()).toBeFalse();
-    });
-
-    it('currentThemeOption() resolves the option matching the active theme', () => {
-        themeService.setTheme('ocean');
-        expect(component.currentThemeOption().value).toBe('ocean');
+    // ── theme switch ─────────────────────────────────────────────────────────
+    // Theme selection itself is zyra-theme-switch's own responsibility (see
+    // its spec) — the header only needs to host it in menu mode.
+    it('renders zyra-theme-switch in menu mode', () => {
+        const el: HTMLElement = fixture.nativeElement.querySelector('zyra-theme-switch');
+        expect(el).toBeTruthy();
+        expect(el.getAttribute('mode')).toBe('menu');
     });
 
     // ── mobile nav (delegated to ZyraHeader) ─────────────────────────────────
