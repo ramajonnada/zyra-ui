@@ -70,8 +70,10 @@ Lines ~89-106: scroll shadow fade indicators use hardcoded `rgba(0, 0, 0, 0.18)`
 invisible on light theme surfaces (the fade is dark on a dark bg — fine; dark on a white bg —
 disappears).
 
-**Fix:** Add `--zyra-scroll-area-fade-color` to `_tokens-components.scss` pointing at a
-theme-aware value (e.g. `var(--zyra-color-border-color)`), then use it in the gradient.
+**Fix:** Add `--zyra-scroll-area-fade-color` to `_tokens-components.scss` pointing at
+`var(--zyra-color-surface)` — the same surface color used as the scroll container background.
+Using the surface token (not `--zyra-color-border-color`) makes the fade blend into the
+container background correctly on every theme, including light.
 
 ---
 
@@ -224,9 +226,10 @@ component token in the SCSS file — never the semantic token directly in SCSS r
 &:hover { background: var(--zyra-color-table-row-hover-bg); }
 ```
 
-Exception: layout/structural values (border-radius, spacing, z-index, transitions) may
-reference dimension tokens (`--zyra-radius-md`, `--zyra-space-4`, `--zyra-transition-fast`)
-directly from component SCSS — these are theme-invariant so there is no re-theming concern.
+**This rule applies to theme-dependent (color) values only.** Dimension tokens
+(`--zyra-radius-md`, `--zyra-space-4`, `--zyra-transition-fast`, `--zyra-z-modal`) are
+theme-invariant and may be referenced directly from component SCSS without a Tier 3 stub —
+there is no re-theming concern for values that don't change between themes.
 
 ### Rule T-3 · Never borrow another component's Tier 3 token
 

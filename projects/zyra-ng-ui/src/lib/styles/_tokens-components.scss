@@ -111,10 +111,12 @@
 
 	// ── Switch ───────────────────────────────────────────────────────────
 	--zyra-color-switch-track-off: var(--zyra-color-border-strong-color);
-	--zyra-color-switch-track-on: var(--zyra-color-primary);
-	--zyra-switch-ring: var(--zyra-color-primary-subtle);
-	--zyra-color-switch-thumb: var(--zyra-color-text-inverse);
-	--zyra-switch-thumb-shadow: var(--zyra-shadow-sm);
+	--zyra-color-switch-track-on:  var(--zyra-color-primary);
+	--zyra-switch-ring:            var(--zyra-color-primary-subtle);
+	// foreground-inverse resolves to white on dark themes, dark on light —
+	// correct "lifted knob" appearance without hardcoding #ffffff.
+	--zyra-color-switch-thumb:     var(--zyra-color-foreground-inverse);
+	--zyra-switch-thumb-shadow:    var(--zyra-shadow-sm);
 
 	// ── Toggle (button-press) ────────────────────────────────────────────
 	--zyra-color-toggle-border: var(--zyra-color-border-strong-color);
@@ -182,6 +184,11 @@
 	--zyra-color-card-hover-border: var(--zyra-color-border-hover);
 	--zyra-card-radius: 20px;
 	--zyra-card-focus-ring: var(--zyra-ring);
+	// Inset top-edge highlight — a subtle 1 px alpha line that lifts the card
+	// visually. Uses foreground-inverse (≈ white on dark, dark on light) so it
+	// adapts per-theme. Themes can override to transparent for flat surfaces.
+	--zyra-card-inset-highlight:       color-mix(in srgb, var(--zyra-color-foreground-inverse) 5%, transparent);
+	--zyra-card-inset-highlight-hover: color-mix(in srgb, var(--zyra-color-foreground-inverse) 8%, transparent);
 	--zyra-color-glow-border: rgba(var(--zyra-color-glow), 0.46);
 	--zyra-color-glow-shadow: 0 24px 70px rgba(var(--zyra-color-glow), 0.18);
 	--zyra-color-glow-shadow-strong: 0 18px 46px rgba(var(--zyra-color-glow), 0.26);
@@ -214,7 +221,9 @@
 	--zyra-color-calendar-border: var(--zyra-color-border-color);
 
 	// ── Scroll Area ──────────────────────────────────────────────────────
-	--zyra-scroll-area-fade-color: var(--zyra-color-border-color);
+	// Fade indicators gradient to the container's own background so the edges
+	// blend seamlessly. Must match the surface the scroll area sits on.
+	--zyra-scroll-area-fade-color: var(--zyra-color-surface);
 
 	// ── Table ────────────────────────────────────────────────────────────
 	--zyra-color-table-row-hover-bg: var(--zyra-color-surface-inset);

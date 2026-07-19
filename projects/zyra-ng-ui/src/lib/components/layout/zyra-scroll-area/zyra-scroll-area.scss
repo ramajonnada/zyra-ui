@@ -83,6 +83,7 @@
     // background isn't `--zyra-color-surface`.
     &--shadows.zyr-scroll-area--vertical {
         --zyr-scroll-shadow-bg: var(--zyra-color-surface);
+
         background:
             linear-gradient(var(--zyr-scroll-shadow-bg) 30%, transparent) local,
             linear-gradient(transparent, var(--zyr-scroll-shadow-bg) 70%) local 0 100%,
@@ -99,6 +100,7 @@
 
     &--shadows.zyr-scroll-area--horizontal {
         --zyr-scroll-shadow-bg: var(--zyra-color-surface);
+
         background:
             linear-gradient(90deg, var(--zyr-scroll-shadow-bg) 30%, transparent) local,
             linear-gradient(270deg, var(--zyr-scroll-shadow-bg) 30%, transparent) local 100% 0,

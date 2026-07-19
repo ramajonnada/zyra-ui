@@ -21,9 +21,14 @@
     --zyra-color-overlay-scrim:    var(--zyra-color-overlay-bg);
 
     // ── Foreground / Text ────────────────────────────────────
-    --zyra-color-foreground:        var(--zyra-color-text);
-    --zyra-color-foreground-muted:  var(--zyra-color-text-muted);
-    --zyra-color-foreground-subtle: var(--zyra-color-text-dim);
+    --zyra-color-foreground:         var(--zyra-color-text);
+    --zyra-color-foreground-muted:   var(--zyra-color-text-muted);
+    --zyra-color-foreground-subtle:  var(--zyra-color-text-dim);
+    
+	// Inverse foreground — for text/icons placed on a filled inverse surface
+    // (e.g. switch thumb, tooltip text). Use --zyra-color-on-* for status fills.
+    
+	--zyra-color-foreground-inverse: var(--zyra-color-text-inverse);
 
     // ── Brand / Primary ──────────────────────────────────────
     --zyra-color-primary:        var(--zyra-color-accent);

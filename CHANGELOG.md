@@ -7,6 +7,21 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [3.4.3] — 2026-07-19
+
+### Added
+
+- New semantic token `--zyra-color-foreground-inverse`, for text/icons/knobs placed on a filled inverse surface (resolves to white on dark themes, dark on light) — replaces ad hoc `text-inverse` reaches and hardcoded `#ffffff` in component SCSS.
+
+### Fixed
+
+- `zyra-alert`: warning-variant icon now uses `--zyra-color-on-warning` instead of a hardcoded white, fixing a WCAG AA contrast failure on the amber background.
+- `zyra-card`: base and hover shadows now use the per-theme `--zyra-card-shadow` / `--zyra-card-elevated-shadow` tokens instead of hardcoded black-alpha values that were too heavy on light theme; the inset top-edge highlight now uses new `--zyra-card-inset-highlight` / `--zyra-card-inset-highlight-hover` tokens (built on `--zyra-color-foreground-inverse`) instead of an inline hardcoded `color-mix(..., white ...)`.
+- `zyra-scroll-area`: added `--zyra-scroll-area-fade-color` (defaults to `--zyra-color-surface`) so the scroll-fade indicators blend with the container's own background and stay visible on light theme surfaces, not just dark.
+- `zyra-table`: added `--zyra-color-table-row-hover-bg` — row hover/selected states no longer borrow `zyra-sidebar`'s hover token.
+- `zyra-switch`: added `--zyra-color-switch-thumb` (now built on `--zyra-color-foreground-inverse`) / `--zyra-switch-thumb-shadow` tokens, replacing a hardcoded `#ffffff` thumb and shadow.
+- Corrected swapped Tier 1/Tier 2 header comments in `_tokens-dimension.scss` and `_tokens-semantic.scss`.
+
 ## [3.4.2] — 2026-07-19
 
 ### Added
