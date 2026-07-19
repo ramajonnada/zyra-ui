@@ -74,21 +74,23 @@ export class DocsTheming implements OnInit, OnDestroy {
         { value: 'rose', label: 'Rose', accent: '#d03050', surface: '#faedf1' },
     ];
 
+    // Semantic (Tier 2) tokens only — these are the public re-theming
+    // contract. Raw per-theme tokens (e.g. --zyra-color-accent-secondary)
+    // are internal implementation details with no semantic alias, so they
+    // aren't shown here; see Rule D-1 in CLAUDE.md.
     readonly tokenSwatches: readonly TokenSwatch[] = [
-        { name: 'Background', variable: '--zyra-color-bg-app' },
+        { name: 'Background', variable: '--zyra-color-background' },
         { name: 'Surface', variable: '--zyra-color-surface' },
-        { name: 'Text', variable: '--zyra-color-text' },
-        { name: 'Text muted', variable: '--zyra-color-text-muted' },
-        { name: 'Border', variable: '--zyra-color-border' },
-        { name: 'Border strong', variable: '--zyra-color-border-strong' },
-        { name: 'Primary', variable: '--zyra-color-accent' },
-        { name: 'Primary hover', variable: '--zyra-color-accent-hover' },
-        { name: 'Accent secondary', variable: '--zyra-color-accent-secondary' },
-        { name: 'Accent tertiary', variable: '--zyra-color-accent-tertiary' },
-        { name: 'Success', variable: '--zyra-color-success' },
-        { name: 'Warning', variable: '--zyra-color-warning' },
-        { name: 'Danger', variable: '--zyra-color-danger' },
-        { name: 'Info', variable: '--zyra-color-info' },
+        { name: 'Text', variable: '--zyra-color-foreground' },
+        { name: 'Text muted', variable: '--zyra-color-foreground-muted' },
+        { name: 'Border', variable: '--zyra-color-border-color' },
+        { name: 'Border strong', variable: '--zyra-color-border-strong-color' },
+        { name: 'Primary', variable: '--zyra-color-primary' },
+        { name: 'Primary hover', variable: '--zyra-color-primary-hover' },
+        { name: 'Success', variable: '--zyra-color-success-foreground' },
+        { name: 'Warning', variable: '--zyra-color-warning-foreground' },
+        { name: 'Danger', variable: '--zyra-color-danger-foreground' },
+        { name: 'Info', variable: '--zyra-color-info-foreground' },
     ];
 
     readonly setupSteps: readonly SetupStep[] = [

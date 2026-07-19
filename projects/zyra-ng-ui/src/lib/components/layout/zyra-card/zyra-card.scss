@@ -14,7 +14,7 @@
 	border-radius: var(--zyra-card-radius);
 	box-shadow:
 		inset 0 1px 0 color-mix(in srgb, white 5%, transparent),
-		0 2px 8px rgba(0, 0, 0, 0.12);
+		var(--zyra-card-shadow, var(--zyra-shadow-sm));
 	overflow: hidden;
 	transition:
 		background var(--zyra-transition-slow),
@@ -41,7 +41,7 @@
 		border-color: var(--zyra-color-glow-border);
 		box-shadow:
 			inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
-			0 8px 24px rgba(0, 0, 0, 0.32), 0 4px 12px rgba(0, 0, 0, 0.16);
+			var(--zyra-card-elevated-shadow, var(--zyra-shadow-md));
 
 		&::before {
 			opacity: 1;

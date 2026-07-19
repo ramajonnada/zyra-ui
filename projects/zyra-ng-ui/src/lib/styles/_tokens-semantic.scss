@@ -1,4 +1,4 @@
-﻿// Tier 1: Semantic tokens — role-based aliases over raw theme primitives.
+﻿// Tier 2: Semantic tokens — role-based aliases over raw theme primitives.
 // References tokens from _dark-theme.scss and _light-theme.scss, which load
 // after this file in index.scss. CSS custom properties resolve lazily at
 // computed-value time, so forward references are safe.

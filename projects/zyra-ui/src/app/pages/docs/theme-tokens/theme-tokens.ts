@@ -65,7 +65,7 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
     // ocean, amber, rose). The semantic tier below aliases these.
     private readonly perThemeTier: TokenTier = {
         id: 'per-theme',
-        title: 'Tier 1 — Theme (raw, per-theme)',
+        title: 'Raw Per-Theme Tokens',
         description:
             'Defined once per theme file with identical names and different values — this is what actually changes when you switch between dark, light, ocean, amber, and rose. See it live on the theming page.',
         groups: [
@@ -239,12 +239,12 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
         ],
     };
 
-    // ── Tier 2 — Dimension ────────────────────────────────────────
+    // ── Tier 1 — Dimension ────────────────────────────────────────
     private readonly dimensionTier: TokenTier = {
         id: 'dimension',
-        title: 'Tier 0 — Primitives (Dimension)',
+        title: 'Tier 1 — Dimension',
         description:
-            'Typography, shape, motion, spacing, and z-index — theme-invariant raw values, same tier as the color primitives above (per the engineering guide, structural values like these are Tier 0, not a separate numbered tier).',
+            'Typography, shape, motion, spacing, and z-index — theme-invariant raw values that sit above the color primitives.',
         groups: [
             {
                 label: 'Typography',

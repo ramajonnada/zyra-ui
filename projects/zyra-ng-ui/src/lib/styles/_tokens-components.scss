@@ -113,6 +113,8 @@
 	--zyra-color-switch-track-off: var(--zyra-color-border-strong-color);
 	--zyra-color-switch-track-on: var(--zyra-color-primary);
 	--zyra-switch-ring: var(--zyra-color-primary-subtle);
+	--zyra-color-switch-thumb: var(--zyra-color-text-inverse);
+	--zyra-switch-thumb-shadow: var(--zyra-shadow-sm);
 
 	// ── Toggle (button-press) ────────────────────────────────────────────
 	--zyra-color-toggle-border: var(--zyra-color-border-strong-color);
@@ -210,6 +212,12 @@
 	--zyra-color-calendar-bg: var(--zyra-color-surface-inset);
 	--zyra-color-calendar-text: var(--zyra-color-foreground);
 	--zyra-color-calendar-border: var(--zyra-color-border-color);
+
+	// ── Scroll Area ──────────────────────────────────────────────────────
+	--zyra-scroll-area-fade-color: var(--zyra-color-border-color);
+
+	// ── Table ────────────────────────────────────────────────────────────
+	--zyra-color-table-row-hover-bg: var(--zyra-color-surface-inset);
 
 	// ════════════════════════════════════════════════════════════════════
 	// Feedback

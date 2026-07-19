@@ -86,8 +86,8 @@
         background:
             linear-gradient(var(--zyr-scroll-shadow-bg) 30%, transparent) local,
             linear-gradient(transparent, var(--zyr-scroll-shadow-bg) 70%) local 0 100%,
-            radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.18), transparent) scroll,
-            radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.18), transparent) scroll 0 100%;
+            radial-gradient(farthest-side at 50% 0, var(--zyra-scroll-area-fade-color), transparent) scroll,
+            radial-gradient(farthest-side at 50% 100%, var(--zyra-scroll-area-fade-color), transparent) scroll 0 100%;
         background-repeat: no-repeat;
         background-color: var(--zyr-scroll-shadow-bg);
         background-size:
@@ -102,8 +102,8 @@
         background:
             linear-gradient(90deg, var(--zyr-scroll-shadow-bg) 30%, transparent) local,
             linear-gradient(270deg, var(--zyr-scroll-shadow-bg) 30%, transparent) local 100% 0,
-            radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.18), transparent) scroll,
-            radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.18), transparent) scroll 100% 0;
+            radial-gradient(farthest-side at 0 50%, var(--zyra-scroll-area-fade-color), transparent) scroll,
+            radial-gradient(farthest-side at 100% 50%, var(--zyra-scroll-area-fade-color), transparent) scroll 100% 0;
         background-repeat: no-repeat;
         background-color: var(--zyr-scroll-shadow-bg);
         background-size:

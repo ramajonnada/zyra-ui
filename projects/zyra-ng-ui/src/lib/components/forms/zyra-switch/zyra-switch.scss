@@ -32,9 +32,9 @@
 
     &__thumb {
         display: block;
-        background: #ffffff;
+        background: var(--zyra-color-switch-thumb);
         border-radius: 50%;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        box-shadow: var(--zyra-switch-thumb-shadow);
         transition: transform var(--zyra-transition-base);
         position: absolute;
         top: 50%;

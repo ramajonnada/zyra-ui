@@ -2,6 +2,43 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <!-- Sets the theme attribute synchronously, before any CSS paints,
+             so the page never flashes the library's bare-:root fallback
+             (dark, from _dark-theme.scss) before ZyraThemeService resolves
+             the real theme once Angular boots. Mirrors ZyraThemeService's
+             own resolution order exactly — stored preference, then system
+             preference (if respectSystemTheme), then the configured
+             default — so this must be kept in sync with the
+             `provideZyra({ theme: ..., respectSystemTheme: ... })` call in
+             app.config.ts whenever that config changes. -->
+        <script>
+            (function () {
+                try {
+                    var STORAGE_KEY = 'zyra-theme';
+                    var VALID = ['dark', 'light', 'ocean', 'amber', 'rose'];
+                    var COLOR_SCHEME = { dark: 'dark', light: 'light', ocean: 'light', amber: 'light', rose: 'light' };
+                    var RESPECT_SYSTEM_THEME = false; // keep in sync with app.config.ts
+                    var DEFAULT_THEME = 'light'; // keep in sync with app.config.ts
+
+                    var stored = localStorage.getItem(STORAGE_KEY);
+                    var theme;
+                    if (VALID.indexOf(stored) !== -1) {
+                        theme = stored;
+                    } else if (RESPECT_SYSTEM_THEME && window.matchMedia) {
+                        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                    } else {
+                        theme = DEFAULT_THEME;
+                    }
+
+                    var root = document.documentElement;
+                    root.setAttribute('data-theme', theme);
+                    root.setAttribute('data-zyra-theme', theme);
+                    root.classList.toggle('zyra-theme-dark', COLOR_SCHEME[theme] === 'dark');
+                    root.classList.toggle('zyra-theme-light', COLOR_SCHEME[theme] === 'light');
+                    root.style.colorScheme = COLOR_SCHEME[theme];
+                } catch (e) {}
+            })();
+        </script>
         <title>Zyra UI — Angular Component Library with Design Tokens</title>
         <meta
             name="description"

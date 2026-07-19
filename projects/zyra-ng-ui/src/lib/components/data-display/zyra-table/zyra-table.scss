@@ -50,12 +50,12 @@
         transition: background var(--zyra-transition-fast);
 
         &:hover {
-            background: var(--zyra-color-sidebar-hover-bg);
+            background: var(--zyra-color-table-row-hover-bg);
         }
     }
 
     &__row--selected {
-        background: var(--zyra-color-sidebar-hover-bg);
+        background: var(--zyra-color-table-row-hover-bg);
     }
 
     &__row:focus-visible {
