@@ -202,10 +202,14 @@ export class ZyraTreeView {
             case 'Enter':
             case ' ': {
                 event.preventDefault();
-                if (this.selectionMode() !== 'none') {
-                    this.onRowClick(current);
-                } else if (current.hasChildren) {
+                // In 'none' mode, a parent node's primary action is expand;
+                // otherwise fire the same nodeClick a mouse click would —
+                // including leaf nodes in 'none' mode, which previously did
+                // nothing on Enter/Space despite always emitting on click.
+                if (this.selectionMode() === 'none' && current.hasChildren) {
                     this.toggleExpand(current.node);
+                } else {
+                    this.onRowClick(current);
                 }
                 break;
             }

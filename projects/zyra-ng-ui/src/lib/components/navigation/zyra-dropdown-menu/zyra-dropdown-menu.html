@@ -1,3 +1,9 @@
+<!-- Wrapper only; the actual interactive element is the projected
+     [slot=trigger] content (a real <button>), which is natively focusable
+     and already fires its own click on Enter/Space — that bubbles up to
+     toggle() here, so keyboard activation works without a handler on this
+     div itself. -->
+<!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
 <div #trigger class="zyr-dropdown__trigger" (click)="toggle()">
     <ng-content select="[slot=trigger]" />
 </div>

@@ -19,7 +19,7 @@ import {
     signal,
     viewChild,
 } from '@angular/core';
-import { isPlatformBrowser, NgTemplateOutlet } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser, NgTemplateOutlet } from '@angular/common';
 import { ZyraIcon as ZyraIconComponent } from '../../../internal/zyra-icon/zyra-icon';
 import { menu, xmark } from '../../../shared/zyra-icons';
 import { lockBodyScroll, unlockBodyScroll } from '../../../internal/body-scroll-lock';
@@ -156,6 +156,7 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
 
     private readonly _isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
     private readonly _injector = inject(Injector);
+    private readonly _document = inject(DOCUMENT);
 
     readonly hostClass = computed(() => {
         const classes = [
@@ -218,11 +219,11 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
             effect(() => {
                 if (this.mobileOpen()) {
                     if (!this._hasScrollLock) {
-                        lockBodyScroll(document);
+                        lockBodyScroll(this._document);
                         this._hasScrollLock = true;
                     }
                 } else if (this._hasScrollLock) {
-                    unlockBodyScroll(document);
+                    unlockBodyScroll(this._document);
                     this._hasScrollLock = false;
                 }
             });
@@ -235,7 +236,7 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
 
     ngOnDestroy(): void {
         if (this._hasScrollLock) {
-            unlockBodyScroll(document);
+            unlockBodyScroll(this._document);
             this._hasScrollLock = false;
         }
     }
@@ -270,7 +271,7 @@ export class ZyraHeader implements AfterViewInit, OnDestroy {
 
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
-        const active = document.activeElement as HTMLElement;
+        const active = this._document.activeElement as HTMLElement;
 
         if (event.shiftKey && (active === first || active === surface)) {
             event.preventDefault();

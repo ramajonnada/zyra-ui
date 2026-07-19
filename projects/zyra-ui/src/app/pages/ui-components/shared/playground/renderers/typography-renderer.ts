@@ -9,7 +9,7 @@ import { ZyraTypography } from 'zyra-ng-ui';
     template: `
         <zyra-typography
             [variant]="$any(variant())"
-            [as]="tagOverride()"
+            [as]="tag()"
             [weight]="$any(weight())"
             [align]="$any(align())"
             [muted]="muted()"
@@ -21,7 +21,7 @@ import { ZyraTypography } from 'zyra-ng-ui';
 })
 export class TypographyRenderer {
     variant = input<string>('h3');
-    tagOverride = input<string>('', { alias: 'as' });
+    tag = input<string>('');
     weight = input<string>('');
     align = input<string>('left');
     muted = input<boolean>(false);

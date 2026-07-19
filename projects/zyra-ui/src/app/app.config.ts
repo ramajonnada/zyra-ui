@@ -1,6 +1,5 @@
 import {
     ApplicationConfig,
-    importProvidersFrom,
     provideBrowserGlobalErrorListeners,
     provideZonelessChangeDetection,
 } from '@angular/core';

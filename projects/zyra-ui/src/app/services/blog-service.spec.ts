@@ -73,7 +73,7 @@ describe('BlogService — loader path (BLOG_POSTS_LOADER provided)', () => {
                 },
                 {
                     provide: BLOG_CONTENT_LOADER,
-                    useValue: (_slug: string) => Promise.resolve('# Loaded Content'),
+                    useValue: () => Promise.resolve('# Loaded Content'),
                 },
             ],
         });

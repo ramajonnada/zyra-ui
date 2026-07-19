@@ -5,7 +5,8 @@
 // chunks. Sidebar/header are part of the eager app shell, so importing the
 // full data file here would drag that ~170KB into every page's initial
 // bundle. Keep this list in sync with ui-components.data.ts's slugs/titles
-// when components are added, renamed, or removed.
+// when components are added, renamed, or removed. (56 components as of
+// this writing — see COMPONENT_COUNT in ui-components.data.ts.)
 export interface ComponentNavItem {
 	label: string;
 	route: string;
@@ -31,6 +32,7 @@ export const COMPONENT_NAV_ITEMS: readonly ComponentNavItem[] = [
 	{ label: 'Code Block', route: '/docs/components/code-block' },
 	{ label: 'Confirm Dialog', route: '/docs/components/confirm-dialog' },
 	{ label: 'Container', route: '/docs/components/container' },
+	{ label: 'Date Picker', route: '/docs/components/date-picker' },
 	{ label: 'Divider', route: '/docs/components/divider' },
 	{ label: 'Drawer', route: '/docs/components/drawer' },
 	{ label: 'Dropdown Menu', route: '/docs/components/dropdown-menu' },
@@ -57,6 +59,7 @@ export const COMPONENT_NAV_ITEMS: readonly ComponentNavItem[] = [
 	{ label: 'Stack', route: '/docs/components/stack' },
 	{ label: 'Stepper', route: '/docs/components/stepper' },
 	{ label: 'Switch', route: '/docs/components/switch' },
+	{ label: 'Table', route: '/docs/components/table' },
 	{ label: 'Tabs', route: '/docs/components/tabs' },
 	{ label: 'Textarea', route: '/docs/components/textarea' },
 	{ label: 'Theme Switch', route: '/docs/components/theme-switch' },
@@ -64,5 +67,6 @@ export const COMPONENT_NAV_ITEMS: readonly ComponentNavItem[] = [
 	{ label: 'Toast', route: '/docs/components/toast' },
 	{ label: 'Toggle', route: '/docs/components/toggle' },
 	{ label: 'Tooltip', route: '/docs/components/tooltip' },
+	{ label: 'Tree View', route: '/docs/components/tree-view' },
 	{ label: 'Typography', route: '/docs/components/typography' },
 ];

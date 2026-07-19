@@ -477,7 +477,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             const inp: string[] = [];
             if (s['type'] !== 'text') inp.push(`    type="${s['type']}"`);
             if (s['debounce']) {
-                inp.push(`    [debounce]="300"`, `    (search)="onSearch($event)"`);
+                inp.push(`    [debounce]="300"`, `    (searched)="onSearch($event)"`);
             }
             const ffOpen = ff.length
                 ? `<zyra-form-field label="Label"\n${ff.join('\n')}\n>`
@@ -2006,9 +2006,9 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             if (s['variant'] !== 'contained') a.push(`  variant="${s['variant']}"`);
             if (s['transparent']) a.push(`  [transparent]="true"`);
             const open = a.length ? `<zyra-header\n${a.join('\n')}\n>` : `<zyra-header>`;
-            const desktop = `\n  <a zyraHeaderStart>Brand</a>\n  <nav zyraHeaderNav>\n    <a>Docs</a>\n    <a>Blog</a>\n    <a>Pricing</a>\n  </nav>\n  <div zyraHeaderEnd>\n    <zyra-button size="sm">Get started</zyra-button>\n  </div>`;
+            const desktop = `\n  <a zyraHeaderStart>Brand</a>\n  <nav zyraHeaderNav aria-label="Primary">\n    <a>Docs</a>\n    <a>Blog</a>\n    <a>Pricing</a>\n  </nav>\n  <div zyraHeaderEnd>\n    <zyra-button size="sm">Get started</zyra-button>\n  </div>`;
             const independentMobile = s['independentNav']
-                ? `\n\n  <!-- Independent mobile drawer content — never falls back to the desktop nav above -->\n  <nav zyraHeaderMobileNav>\n    <a>Docs</a>\n    <a>Blog</a>\n    <a>Pricing</a>\n    <a>Changelog</a>\n    <a>Community</a>\n  </nav>\n  <div zyraHeaderMobileEnd>\n    <zyra-button size="sm" variant="outline" fullWidth>Sign in</zyra-button>\n    <zyra-button size="sm" fullWidth>Get started</zyra-button>\n  </div>\n  <div zyraHeaderMobileFooter>v1.0.0 — © Zyra UI</div>`
+                ? `\n\n  <!-- Independent mobile drawer content — never falls back to the desktop nav above -->\n  <nav zyraHeaderMobileNav aria-label="Mobile">\n    <a>Docs</a>\n    <a>Blog</a>\n    <a>Pricing</a>\n    <a>Changelog</a>\n    <a>Community</a>\n  </nav>\n  <div zyraHeaderMobileEnd>\n    <zyra-button size="sm" variant="outline" fullWidth>Sign in</zyra-button>\n    <zyra-button size="sm" fullWidth>Get started</zyra-button>\n  </div>\n  <div zyraHeaderMobileFooter>v1.0.0 — © Zyra UI</div>`
                 : '';
             return `${open}${desktop}${independentMobile}\n</zyra-header>`;
         },

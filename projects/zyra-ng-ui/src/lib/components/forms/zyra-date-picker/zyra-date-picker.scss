@@ -80,6 +80,9 @@
         // panel is no longer a descendant of :host once appended to <body>.
         position: fixed;
         width: max-content;
+        max-width: calc(100vw - 16px);
+        max-height: calc(100vh - 16px);
+        overflow: auto;
         background: var(--zyra-color-select-panel-bg);
         border: 1px solid var(--zyra-color-select-panel-border);
         border-radius: var(--zyra-radius-md);

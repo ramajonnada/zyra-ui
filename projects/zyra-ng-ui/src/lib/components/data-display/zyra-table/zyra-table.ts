@@ -126,12 +126,18 @@ export class ZyraTable<T extends Record<string, unknown> = Record<string, unknow
     );
 
     constructor() {
-        // Clamp `page` whenever the available range shrinks — e.g. `rows`
-        // updates to fewer entries, or `pageSize` changes — so it never
+        // Clamp `page` to a valid positive integer within the current
+        // range — `page` is a public model, so a consumer binding
+        // [(page)] could hand it 0, a negative number, NaN, or a float,
+        // any of which would break the (page - 1) * size slice math below.
+        // Also re-clamps whenever the available range shrinks (e.g. `rows`
+        // updates to fewer entries, or `pageSize` changes) so it never
         // points past the last page and silently renders zero rows.
         effect(() => {
             const total = this.totalPages();
-            if (this.page() > total) this.page.set(total);
+            const current = this.page();
+            const clamped = Math.min(Math.max(Math.round(current) || 1, 1), total);
+            if (clamped !== current) this.page.set(clamped);
         });
     }
 
@@ -145,11 +151,24 @@ export class ZyraTable<T extends Record<string, unknown> = Record<string, unknow
 
     readonly sortableColumns = computed(() => this.columns().filter((c) => c.sortable));
 
-    readonly focusedHeaderKey = computed(() => this._focusedHeaderKey() ?? this.sortableColumns()[0]?.key ?? null);
+    // Falls back to the first sortable column not just when nothing is
+    // tracked yet, but also when the tracked column no longer exists (e.g.
+    // `columns` changed) — otherwise no header button would carry
+    // tabindex="0" and the header row would drop out of the Tab order.
+    readonly focusedHeaderKey = computed(() => {
+        const tracked = this._focusedHeaderKey();
+        const sortable = this.sortableColumns();
+        if (tracked !== null && sortable.some((c) => c.key === tracked)) return tracked;
+        return sortable[0]?.key ?? null;
+    });
+
+    // Same fallback logic for rows — the tracked key can go stale when
+    // sorting/paging/filtering changes which rows are actually rendered.
     readonly focusedRowKey = computed(() => {
         const tracked = this._focusedRowKey();
-        if (tracked !== null) return tracked;
-        const first = this.pagedPairs()[0];
+        const visible = this.pagedPairs();
+        if (tracked !== null && visible.some((p) => this.keyOf(p) === tracked)) return tracked;
+        const first = visible[0];
         return first ? this.keyOf(first) : null;
     });
 

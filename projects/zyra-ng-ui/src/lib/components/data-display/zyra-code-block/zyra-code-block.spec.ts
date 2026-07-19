@@ -88,9 +88,11 @@ describe('ZyraCodeBlock', () => {
         host.language.set('typescript');
         host.code.set(`import { a } from 'b';`);
         fixture.detectChanges();
-        const keywords = fixture.nativeElement.querySelectorAll('.zyr-code-block__tok--keyword');
+        const keywords: NodeListOf<Element> = fixture.nativeElement.querySelectorAll(
+            '.zyr-code-block__tok--keyword',
+        );
         const strings = fixture.nativeElement.querySelectorAll('.zyr-code-block__tok--string');
-        expect(Array.from(keywords).map((el: any) => el.textContent)).toEqual(['import', 'from']);
+        expect(Array.from(keywords).map((el) => el.textContent)).toEqual(['import', 'from']);
         expect(strings[0].textContent).toBe(`'b'`);
     });
 

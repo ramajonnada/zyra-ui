@@ -1,3 +1,9 @@
+<!-- Wrapper only; the actual interactive element is the projected
+     [slot=trigger] content (a real <button>), which is natively focusable
+     and already fires its own click on Enter/Space — that bubbles up to
+     onTriggerClick() here, so keyboard activation works without a handler
+     on this element itself. -->
+<!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
 <span
     #trigger
     class="zyr-popover__trigger"

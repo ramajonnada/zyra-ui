@@ -67,7 +67,9 @@
                 >
                     Today
                 </button>
-                <button type="button" class="zyr-date-picker__footer-btn" (click)="clear()">Clear</button>
+                @if (clearable()) {
+                    <button type="button" class="zyr-date-picker__footer-btn" (click)="clear()">Clear</button>
+                }
             </div>
         }
     </div>

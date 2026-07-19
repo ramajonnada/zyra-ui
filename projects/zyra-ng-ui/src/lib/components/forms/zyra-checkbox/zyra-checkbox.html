@@ -10,6 +10,7 @@
         class="zyr-checkbox__box"
         [attr.aria-checked]="indeterminate() ? 'mixed' : checked()"
         [attr.aria-label]="label() ? null : (ariaLabel() || 'Checkbox')"
+        [tabindex]="tabbable() ? 0 : -1"
         [disabled]="isDisabled() || null"
         (click)="toggle()"
         (keydown.space)="$event.preventDefault(); toggle()"

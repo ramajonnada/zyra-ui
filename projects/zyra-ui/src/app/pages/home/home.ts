@@ -10,7 +10,7 @@ import {
     ZyraToastService,
 } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
-import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
+import { github, envelope, cubes, palette, codeBranch, universalAccess, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight } from 'zyra-ng-ui';
 import { LIBRARY_VERSION } from '../../shared/version';
 import { COMPONENT_COUNT } from '../ui-components/ui-components.data';
 

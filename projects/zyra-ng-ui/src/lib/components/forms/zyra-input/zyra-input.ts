@@ -49,7 +49,7 @@ export class ZyraInput implements ControlValueAccessor, OnInit, OnDestroy {
     maxlength = input<number | null>(null);
     min = input<number | null>(null);
     max = input<number | null>(null);
-    // Milliseconds to wait after the last keystroke before emitting `search`. 0 = disabled.
+    // Milliseconds to wait after the last keystroke before emitting `searched`. 0 = disabled.
     debounce = input<number>(0);
     // Set to render as N separate one-time-passcode boxes instead of a single field.
     otpLength = input<number | null>(null);
@@ -58,6 +58,14 @@ export class ZyraInput implements ControlValueAccessor, OnInit, OnDestroy {
     // ── Outputs ───────────────────────────────────────────────
     valueChange = output<string>();
     // Emits `debounce` ms after the user stops typing (only when debounce > 0).
+    searched = output<string>();
+    /**
+     * @deprecated Use `searched` instead — this name shadows the native DOM
+     * `search` event. Kept as a deprecated alias (emits alongside `searched`)
+     * so renaming it isn't a breaking change in a patch release; will be
+     * removed in a future major version.
+     */
+    // eslint-disable-next-line @angular-eslint/no-output-native
     search = output<string>();
     focused = output<void>();
     blurred = output<void>();
@@ -164,13 +172,19 @@ export class ZyraInput implements ControlValueAccessor, OnInit, OnDestroy {
         this.innerValue.set('');
         this._onChange('');
         this.valueChange.emit('');
-        if (this.debounce() > 0) this.search.emit('');
+        if (this.debounce() > 0) {
+            this.searched.emit('');
+            this.search.emit('');
+        }
     }
 
     private _scheduleSearch(val: string): void {
         if (this.debounce() <= 0) return;
         if (this._debounceTimer) clearTimeout(this._debounceTimer);
-        this._debounceTimer = setTimeout(() => this.search.emit(val), this.debounce());
+        this._debounceTimer = setTimeout(() => {
+            this.searched.emit(val);
+            this.search.emit(val);
+        }, this.debounce());
     }
 
     // ── Called by zyra-form-field to toggle password ──────────

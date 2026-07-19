@@ -89,7 +89,6 @@ describe('ZyraCalendar', () => {
     });
 
     it('selects a date on click and updates the model', () => {
-        const cal = calendar(fixture);
         const inMonthDay = dayButtons(fixture).find(
             (b) => !b.classList.contains('zyr-calendar__day--outside'),
         )!;

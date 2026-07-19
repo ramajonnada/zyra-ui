@@ -110,7 +110,7 @@ describe('ZyraFileUpload', () => {
         fixture.componentInstance.accept.set('.pdf');
         fixture.detectChanges();
 
-        const rejected: Array<{ file: File; reason: string }[]> = [];
+        const rejected: { file: File; reason: string }[][] = [];
         component.rejected.subscribe((r) => rejected.push(r));
 
         const file = new File(['x'], 'photo.png', { type: 'image/png' });
@@ -125,7 +125,7 @@ describe('ZyraFileUpload', () => {
         fixture.componentInstance.maxSizeMb.set(0.000001); // ~1 byte
         fixture.detectChanges();
 
-        const rejected: Array<{ file: File; reason: string }[]> = [];
+        const rejected: { file: File; reason: string }[][] = [];
         component.rejected.subscribe((r) => rejected.push(r));
 
         const file = new File(['this is definitely more than one byte'], 'big.txt');
@@ -141,7 +141,7 @@ describe('ZyraFileUpload', () => {
         fixture.componentInstance.maxFiles.set(1);
         fixture.detectChanges();
 
-        const rejected: Array<{ file: File; reason: string }[]> = [];
+        const rejected: { file: File; reason: string }[][] = [];
         component.rejected.subscribe((r) => rejected.push(r));
 
         const first = new File(['a'], 'a.txt');

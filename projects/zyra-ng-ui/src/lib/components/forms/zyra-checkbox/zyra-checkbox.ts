@@ -42,6 +42,8 @@ export class ZyraCheckbox implements ControlValueAccessor {
     /** Accessible name when there's no visible `label` — e.g. a checkbox used standalone in a table header/cell. */
     ariaLabel = input<string>('', { alias: 'aria-label' });
     size = input<CheckboxSize>('md');
+    /** Set false to remove this checkbox from the normal Tab order — e.g. inside a row that already has its own roving tabindex handling Enter/Space. */
+    tabbable = input(true, { transform: booleanAttribute });
 
     // ── Outputs ───────────────────────────────────────────────
     changed = output<boolean>();

@@ -195,6 +195,18 @@ describe('ZyraDatePicker', () => {
         expect(openPanel()).not.toBeNull();
     });
 
+    it('opens the panel on Enter when the trigger is focused (role="button" div, not a native button)', () => {
+        trigger(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        fixture.detectChanges();
+        expect(openPanel()).not.toBeNull();
+    });
+
+    it('opens the panel on Space when the trigger is focused', () => {
+        trigger(fixture).dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true }));
+        fixture.detectChanges();
+        expect(openPanel()).not.toBeNull();
+    });
+
     it('closes the panel on Escape key', () => {
         trigger(fixture).click();
         fixture.detectChanges();

@@ -1,5 +1,5 @@
 import type { ZyraIconData } from 'zyra-ng-ui';
-import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, code, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced, menu, copy, star, panelLeft, calendarIcon } from 'zyra-ng-ui';
+import { cubes, message, palette, bolt, code, swatchbook, boxOpen, waveSquare, check, circleInfo, triangleExclamation, alignLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced, menu, copy, star, panelLeft, calendarIcon } from 'zyra-ng-ui';
 
 export type UiComponentAccent = 'teal' | 'blue' | 'purple' | 'amber' | 'green';
 
@@ -1341,7 +1341,7 @@ export const UI_COMPONENT_SHOWCASE = [
             { name: 'with clear button', description: 'Shows x button to clear the value' },
             {
                 name: 'debounced search',
-                description: 'type="search" with [debounce] to emit (search) after the user pauses typing',
+                description: 'type="search" with [debounce] to emit (searched) after the user pauses typing',
             },
             { name: 'disabled', description: 'Non-interactive state with muted styling' },
             { name: 'error', description: 'Red border and error icon for invalid state' },
@@ -1416,7 +1416,7 @@ export const UI_COMPONENT_SHOWCASE = [
                 description: 'Emits the current string value on every keystroke',
             },
             {
-                name: 'search (output)',
+                name: 'searched (output)',
                 type: 'string',
                 default: '-',
                 description:

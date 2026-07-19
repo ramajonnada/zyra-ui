@@ -123,11 +123,6 @@ import { GithubService } from '../../services/github.service';
 import { LIBRARY_VERSION } from '../../shared/version';
 import { DOCS_NAV_ITEMS, NavItem } from '../sidebar/sidebar';
 
-interface HeaderLink {
-	label: string;
-	route: string;
-}
-
 @Component({
 	selector: 'app-header',
 	imports: [

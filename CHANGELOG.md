@@ -7,6 +7,48 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [3.4.2] — 2026-07-19
+
+### Added
+
+- `zyra-checkbox`: new `tabbable` input to exclude a checkbox from the normal Tab order when a parent row already handles it via roving tabindex (used by `zyra-table` and `zyra-tree-view`).
+
+### Fixed
+
+- `zyra-table`: header/row roving-tabindex now revalidates against the currently visible sortable columns/rows, so the table doesn't drop out of Tab order when sorting or filtering changes what's rendered; `page` clamping now also handles the lower bound, `NaN`, and non-integer values, not just the upper bound; selection checkbox/radio cells now stop `keydown` (not just `click`) from bubbling into row navigation, preventing double-toggling.
+- `zyra-tree-view`: selection checkboxes no longer add a separate Tab stop on top of the row's own roving tabindex; Enter/Space on a leaf node now fires `nodeClick` in `selectionMode="none"` too, matching mouse-click behavior.
+- `zyra-date-picker`: the footer "Clear" button now honors the `clearable` input, like the trigger's own clear button; the portaled panel is now capped to the viewport size so it can't overflow on narrow screens or with wide content; keyboard handling (Escape, Tab) now works while focus is inside the portaled calendar panel, not just the trigger.
+- `zyra-header`: body-scroll-lock and focus-trap logic now consistently use Angular's injected `DOCUMENT` instead of the global `document`.
+- Body-scroll-lock state is now scoped per-`Document` (via a `WeakMap`) instead of shared module-level globals, fixing state leakage across multiple documents (e.g. SSR).
+- Marketing site sitemap: `/privacy` and `/terms` now derive `lastmod` from each page's actual last commit date instead of the build date.
+
+### Changed
+
+- Narrowed the `zyra-sidebar-item` component-selector lint override to that file only, instead of a project-wide allowance.
+
+## [3.4.1] — 2026-07-18
+
+### Added
+
+- Added an `ariaLabel` input to `zyra-checkbox` for standalone usage without a visible label (e.g. table/tree-view selection checkboxes).
+
+### Deprecated
+
+- `zyra-input`'s `search` output is deprecated in favor of `searched` — the old name shadowed the native DOM `search` event, which Angular's style guide disallows for component outputs. `search` still emits (identically, alongside `searched`) and will be removed in a future major version — this release does not break existing usage.
+
+### Changed
+
+- Added a shared, reference-counted body-scroll-lock utility used by `zyra-header`'s mobile drawer, `zyra-modal`, and `zyra-drawer`, so scroll stays locked correctly if more than one is open at once.
+- `zyra-header`'s mobile drawer now traps keyboard focus while open and no longer tries to restore focus to the hidden burger button after a breakpoint change.
+
+### Fixed
+
+- `zyra-date-picker`: the calendar panel now escapes clipping ancestors (portaled to `<body>`, matching `zyra-popover`), honors `min`/`max` when picking "Today", keeps the clear button keyboard-reachable and outside the focusable trigger, and Tab now moves focus into the calendar instead of closing the panel.
+- `zyra-table`: `page` is now clamped when the available page range shrinks, and row/select-all checkboxes have real accessible names.
+- `zyra-tree-view`: roving focus recovers when the tracked node is hidden (e.g. its parent collapses), disabled nodes can no longer be expanded, and selection checkboxes respect the tree's own `disabled` input.
+
+---
+
 ## [3.4.0] — 2026-07-18
 
 ### Added

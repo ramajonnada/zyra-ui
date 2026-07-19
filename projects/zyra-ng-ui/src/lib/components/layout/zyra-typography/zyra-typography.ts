@@ -1,5 +1,5 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { NgSwitch, NgSwitchCase, NgSwitchDefault, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 
 export type TypographyVariant =
     | 'h1'
@@ -34,7 +34,7 @@ const TAG_MAP: Record<TypographyVariant, string> = {
     selector: 'zyra-typography',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgSwitch, NgSwitchCase, NgSwitchDefault, NgTemplateOutlet],
+    imports: [NgTemplateOutlet],
     templateUrl: './zyra-typography.html',
     styleUrl: './zyra-typography.scss',
 })

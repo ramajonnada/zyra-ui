@@ -500,7 +500,11 @@ export class DocsThemeTokens implements OnInit, OnDestroy {
                 '--zyra-color-btn-primary-bg',
                 '--zyra-color-checkbox-checked-bg',
                 '--zyra-color-tabs-badge-bg',
-                '--zyra-color-field-* / select-* / progress-* / header-* / sidebar-*',
+                '--zyra-color-field-bg / -border, --zyra-field-focus-shadow',
+                '--zyra-color-select-text / -bg, --zyra-select-focus-shadow',
+                '--zyra-color-progress-default / -success / -warning / -danger',
+                '--zyra-header-bg / -height / -padding-x (no "color-" infix)',
+                '--zyra-color-sidebar-bg / -text / -active-bg',
             ],
         },
     ];

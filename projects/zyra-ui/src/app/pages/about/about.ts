@@ -5,7 +5,7 @@ import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraButton, ZyraCard } f
 import { SeoService } from '../../../seo/seo.service';
 import { COMPONENT_COUNT } from '../ui-components/ui-components.data';
 import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../shared/breadcrumb-jsonld';
-import { github, npm as npmIcon, envelope, folder, cubes, message, palette, bolt, codeBranch, universalAccess, rocket, instagram, globe, swatchbook, boxOpen, moon, waveSquare, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner } from 'zyra-ng-ui';
+import { github, palette, bolt, codeBranch, universalAccess, rocket, moon, check, lock, circleInfo, triangleExclamation, alignLeft, puzzlePiece, sun, caretLeft, caretRight } from 'zyra-ng-ui';
 
 interface AboutValue {
     title: string;

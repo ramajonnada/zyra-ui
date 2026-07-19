@@ -26,7 +26,7 @@ import { search, ZyraFormField, ZyraInput, type ZyraIconData } from 'zyra-ng-ui'
                     [type]="$any(type())"
                     placeholder="Enter text…"
                     [debounce]="debounce() ? 300 : 0"
-                    (search)="lastSearch.set($event)"
+                    (searched)="lastSearch.set($event)"
                 />
             </zyra-form-field>
             @if (debounce()) {

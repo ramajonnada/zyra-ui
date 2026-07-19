@@ -89,18 +89,28 @@
                             (focus)="onRowFocus(pair)"
                         >
                             @if (selectionMode() === 'multiple') {
-                                <td class="zyr-table__select-col" (click)="$event.stopPropagation()">
+                                <td
+                                    class="zyr-table__select-col"
+                                    (click)="$event.stopPropagation()"
+                                    (keydown)="$event.stopPropagation()"
+                                >
                                     <zyra-checkbox
                                         [checked]="isSelected(pair)"
+                                        [tabbable]="false"
                                         [attr.aria-label]="rowAriaLabel(pair)"
                                         (changed)="toggleRow(pair)"
                                     />
                                 </td>
                             } @else if (selectionMode() === 'single') {
-                                <td class="zyr-table__select-col" (click)="$event.stopPropagation()">
+                                <td
+                                    class="zyr-table__select-col"
+                                    (click)="$event.stopPropagation()"
+                                    (keydown)="$event.stopPropagation()"
+                                >
                                     <input
                                         type="radio"
                                         class="zyr-table__radio"
+                                        tabindex="-1"
                                         [name]="tableId"
                                         [checked]="isSelected(pair)"
                                         (change)="toggleRow(pair)"

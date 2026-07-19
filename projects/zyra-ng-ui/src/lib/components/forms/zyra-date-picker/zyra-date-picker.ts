@@ -283,8 +283,18 @@ export class ZyraDatePicker implements ControlValueAccessor, AfterViewInit, OnDe
     }
 
     // ── Keyboard navigation ───────────────────────────────────
-    @HostListener('keydown', ['$event'])
+    // Listens on `document`, not the host, because the panel is portaled to
+    // <body> — a host-level listener would never see keydowns that occur
+    // once focus has moved into the detached panel (e.g. Escape while the
+    // calendar itself is focused). Same insideTrigger/insidePanel guard as
+    // the click-outside handler below keeps this scoped to this picker.
+    @HostListener('document:keydown', ['$event'])
     onKeydown(event: KeyboardEvent): void {
+        const target = event.target as Node;
+        const insideTrigger = this._el.nativeElement.contains(target);
+        const insidePanel = this._isBrowser && this._panel().nativeElement.contains(target);
+        if (!insideTrigger && !insidePanel) return;
+
         switch (event.key) {
             case 'ArrowDown':
             case 'Enter':

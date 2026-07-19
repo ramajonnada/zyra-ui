@@ -1,10 +1,27 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const BASE_URL = 'https://www.zyraui.dev';
 const today = new Date().toISOString().split('T')[0];
+
+// For low-churn legal pages, stamping `today` on every build/deploy tells
+// crawlers the content changed when it usually hasn't — pull the real last
+// commit date for the page's source file instead. Falls back to `today`
+// only if git history isn't available (e.g. a shallow checkout).
+function lastCommitDate(relativeFilePath) {
+    try {
+        const out = execSync(`git log -1 --format=%ad --date=short -- "${relativeFilePath}"`, {
+            cwd: resolve(__dirname, '../../..'),
+            encoding: 'utf-8',
+        }).trim();
+        return out || today;
+    } catch {
+        return today;
+    }
+}
 
 const indexJson = resolve(__dirname, '../src/content/index.json');
 // Source of truth for component slugs — same file (and same regex) that
@@ -40,8 +57,18 @@ const staticPages = [
     url(`${BASE_URL}/blog`,       today,        'weekly',  '0.8'),
     url(`${BASE_URL}/about`,      today,        'monthly', '0.6'),
     url(`${BASE_URL}/contact`,    today,        'monthly', '0.6'),
-    url(`${BASE_URL}/privacy`,    today,        'yearly',  '0.3'),
-    url(`${BASE_URL}/terms`,      today,        'yearly',  '0.3'),
+    url(
+        `${BASE_URL}/privacy`,
+        lastCommitDate('projects/zyra-ui/src/app/components/privacy-policy/privacy-policy.html'),
+        'yearly',
+        '0.3',
+    ),
+    url(
+        `${BASE_URL}/terms`,
+        lastCommitDate('projects/zyra-ui/src/app/components/terms-of-services/terms-of-services.html'),
+        'yearly',
+        '0.3',
+    ),
 ];
 
 const componentPages = componentSlugs.map((slug) =>

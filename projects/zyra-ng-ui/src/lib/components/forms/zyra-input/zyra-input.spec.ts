@@ -194,7 +194,7 @@ describe('ZyraInput', () => {
     // ── Debounced search ──────────────────────────────────────────────────
     it('does not emit search when debounce is 0 (default)', () => {
         const emitted: string[] = [];
-        component.search.subscribe((v) => emitted.push(v));
+        component.searched.subscribe((v) => emitted.push(v));
 
         component.onModelChange('abc');
         jasmine.clock().tick(1000);
@@ -205,7 +205,7 @@ describe('ZyraInput', () => {
     it('emits search only after debounce interval elapses', () => {
         fixture.componentRef.setInput('debounce', 300);
         const emitted: string[] = [];
-        component.search.subscribe((v) => emitted.push(v));
+        component.searched.subscribe((v) => emitted.push(v));
 
         component.onModelChange('a');
         component.onModelChange('ab');
@@ -219,13 +219,27 @@ describe('ZyraInput', () => {
     it('emits search("") immediately on clear() when debounce is enabled', () => {
         fixture.componentRef.setInput('debounce', 300);
         const emitted: string[] = [];
-        component.search.subscribe((v) => emitted.push(v));
+        component.searched.subscribe((v) => emitted.push(v));
 
         component.onModelChange('term');
         component.clear();
         jasmine.clock().tick(300);
 
         expect(emitted).toEqual(['']);
+    });
+
+    it('still emits the deprecated `search` output alongside `searched`', () => {
+        fixture.componentRef.setInput('debounce', 300);
+        const searched: string[] = [];
+        const deprecated: string[] = [];
+        component.searched.subscribe((v) => searched.push(v));
+        component.search.subscribe((v) => deprecated.push(v));
+
+        component.onModelChange('abc');
+        jasmine.clock().tick(300);
+
+        expect(searched).toEqual(['abc']);
+        expect(deprecated).toEqual(['abc']);
     });
 
     // ── Escape-to-clear on search fields ────────────────────────────────

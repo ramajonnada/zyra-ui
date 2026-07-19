@@ -91,9 +91,12 @@ function audit() {
     const allSlugs = Array.from(new Set([...dirSlugs, ...showcaseSlugs, ...registrySlugs])).sort();
 
     const rows = allSlugs.map((slug) => {
-        const hasLibSpec = dirSlugs.includes(slug)
-            ? hasFile(componentDirs.find((d) => toSlug(d.name) === slug).dir, (f) => f.endsWith('.spec.ts'))
-            : findLibSpec(componentDirs, slug);
+        // Always require the spec file that actually belongs to this slug
+        // (zyra-<slug>.spec.ts), not just "any .spec.ts in the matching
+        // directory" — a compound folder like zyra-button/ holds specs for
+        // multiple components, and the looser check could pass slug A off
+        // the presence of slug B's spec file.
+        const hasLibSpec = findLibSpec(componentDirs, slug);
         const hasRegistryEntry = registrySlugs.has(slug);
         const hasShowcaseEntry = showcaseSlugs.has(slug);
 

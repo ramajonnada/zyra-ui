@@ -46,15 +46,21 @@
             }
 
             @if (selectionMode() === 'multiple') {
+                <!-- Wrapper only stops the click/keydown from bubbling into
+                     the row's own handlers — the real interactive control is
+                     the checkbox inside it (tabbable="false" there, so it
+                     doesn't add its own separate Tab stop on top of the
+                     row's roving tabindex). -->
+                <!-- eslint-disable-next-line @angular-eslint/template/interactive-supports-focus -->
                 <span
                     class="zyr-tree__checkbox"
-                    tabindex="-1"
                     (click)="$event.stopPropagation()"
                     (keydown)="$event.stopPropagation()"
                 >
                     <zyra-checkbox
                         [checked]="isSelected(flat.node.id)"
                         [disabled]="disabled() || (flat.node.disabled ?? false)"
+                        [tabbable]="false"
                         [attr.aria-label]="'Select ' + flat.node.label"
                         (changed)="toggleSelect(flat.node)"
                     />

@@ -1,3 +1,8 @@
+<!-- The radiogroup container isn't itself focusable per the ARIA APG
+     radiogroup pattern — each role="radio" button below is a real <button>,
+     already natively focusable, and (keydown) here just catches events
+     bubbling up from whichever one currently has focus. -->
+<!-- eslint-disable-next-line @angular-eslint/template/interactive-supports-focus -->
 <div
     [class]="hostClass()"
     role="radiogroup"
