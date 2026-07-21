@@ -25,7 +25,7 @@ A component only counts as shipped when it clears every row of the [Development 
 | Sprint Number | Sprint 6 |
 | Sprint Goal | **Data Display — complex** — ship Date Picker, Table, and Tree View, the three most complex remaining Data Display components. |
 | Duration | 2 weeks (suggested — adjust to actual team velocity; not tracked elsewhere in the repo) |
-| Status | Code complete — pending manual visual QA (see Risks & Notes) |
+| Status | Done |
 
 ### Why this grouping, and why this order
 
@@ -40,9 +40,9 @@ A component only counts as shipped when it clears every row of the [Development 
 
 | Component | Priority | Final Status | Complexity | Dependencies |
 |---|---|---|---|---|
-| Date Picker | P0 | Code complete — pending visual QA | Medium | Calendar (Sprint 5) — wraps it directly, no Popover dependency needed |
-| Table | P1 | Code complete — pending visual QA | High | None — new component |
-| Tree View | P2 | Code complete — pending visual QA | High | None — new component; reuses the roving-tabindex keyboard pattern from Sidebar/Calendar |
+| Date Picker | P0 | Done | Medium | Calendar (Sprint 5) — wraps it directly, no Popover dependency needed |
+| Table | P1 | Done | High | None — new component |
+| Tree View | P2 | Done | High | None — new component; reuses the roving-tabindex keyboard pattern from Sidebar/Calendar |
 
 **Explicitly out of scope for Sprint 6:** Virtual Table / virtualized scrolling (Phase 2, Sprint 11 — Table in this sprint is a plain, non-virtualized implementation), Data Grid, Tree Grid, and every other Phase 1/2 category.
 
@@ -59,8 +59,8 @@ Every component below must clear all rows before it's considered done. This mirr
 | Feature List | ☑ | ☑ | ☑ |
 | Accessibility Review | ☑ | ☑ | ☑ |
 | Keyboard Support | ☑ | ☑ | ☑ |
-| Theme Support (all 5 themes) | ☐ | ☐ | ☐ |
-| Responsive Support | ☐ | ☐ | ☐ |
+| Theme Support (all 5 themes) | ☑ | ☑ | ☑ |
+| Responsive Support | ☑ | ☑ | ☑ |
 | SSR Compatibility | ☑ | ☑ | ☑ |
 | Zoneless Compatibility | ☑ | ☑ | ☑ |
 | Implementation | ☑ | ☑ | ☑ |
@@ -76,10 +76,10 @@ Every component below must clear all rows before it's considered done. This mirr
 
 | Metric | Count |
 |---|---|
-| Completed Components | 3 / 3 code-complete — theme/responsive visual QA still outstanding (see Risks) |
+| Completed Components | 3 / 3 |
 | Components In Progress | 0 / 3 |
 | Remaining Components | 0 / 3 |
-| **Overall Progress** | **~90%** — pending manual visual review |
+| **Overall Progress** | **100%** |
 
 ---
 
@@ -88,7 +88,8 @@ Every component below must clear all rows before it's considered done. This mirr
 - **Date Picker ended up not needing Popover:** the plan assumed Date Picker would wrap Calendar in a `zyra-popover` trigger. In practice it follows `zyra-select`'s self-contained dropdown pattern instead (own `isOpen` signal, outside-click/Escape/Tab handling, absolutely-positioned panel) — `zyra-popover` is a portal-to-`<body>` overlay with no other internal consumers in the library yet, while every other form dropdown (Select, Autocomplete, Multi Select) already uses the self-contained pattern. Consistency with sibling form components won out over reusing Popover. No Calendar API changes were needed — min/max, CVA, and single/range modes already covered everything Date Picker needed.
 - **Table scope discipline:** kept to sorting, row selection, and pagination against a plain (non-virtualized) row list, per plan. Reused four existing components rather than rebuilding their pieces: Checkbox (row/select-all selection), Pagination (page footer), Skeleton (loading rows), and Empty State (zero rows) — no virtualization, matching that Virtual Table stays Phase 2 (Sprint 11).
 - **Tree View selection/expand state:** followed the same roving-tabindex + ARIA (`role="tree"`/`treeitem"`, `aria-level`, `aria-expanded`) pattern used in Calendar's day grid (Sprint 5) and Sidebar's nav tree, per plan, for consistency across the library's keyboard-nav components.
-- **Outstanding before Sprint 6 is fully done — manual visual QA:** all three components are code-complete (`npx tsc --noEmit`, full unit suite, `npm run build:lib`, and a full `ng build zyra-ui` with SSR + prerender all pass clean), and their SCSS uses the same semantic design tokens (`--zyra-color-*`) as every other component, so cross-theme support should hold by construction. But none of the three have actually been opened in a running dev server and eyeballed across all 5 themes or at mobile/tablet widths yet — that visual review is still outstanding and should happen before marking this sprint fully Done.
+- **Manual visual QA completed:** all three components were opened in a running dev server and checked across all 5 themes (dark, light, ocean, amber, rose) and 5 viewport widths (375px through 1440px), including opened/interactive states (Date Picker's calendar panel, Table's row hover/selection, Tree View's expand + multi-select checkbox). No console/page errors and no horizontal page overflow at any breakpoint.
+- **Bug found and fixed — Table wrapped instead of scrolling on narrow viewports:** `zyra-table.scss`'s `td` was missing `white-space: nowrap` (present on `th` but not `td`), so at mobile widths cell text wrapped and the table shrank below its natural content width instead of triggering the existing `.zyr-table__scroll { overflow-x: auto }` wrapper — the Status column was visibly truncated (e.g. "Suspended" rendered as "Suspe"). Fixed by adding `white-space: nowrap` to `td` in `projects/zyra-ng-ui/src/lib/components/data-display/zyra-table/zyra-table.scss`; verified the scroll container now reports `scrollWidth > clientWidth` at 375px and content no longer truncates. Full unit suite (882 tests) still passes.
 
 ---
 

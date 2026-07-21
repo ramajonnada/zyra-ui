@@ -40,6 +40,7 @@
     td {
         color: var(--zyra-color-foreground);
         border-bottom: 1px solid var(--zyra-color-border-color);
+        white-space: nowrap;
     }
 
     tbody tr:last-child td {

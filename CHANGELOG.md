@@ -7,6 +7,14 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [3.4.5] — 2026-07-21
+
+### Fixed
+
+- `zyra-table`: cells now correctly scroll horizontally on narrow viewports instead of wrapping/truncating content. `td` was missing the `white-space: nowrap` already present on `th`, letting the table shrink below its natural content width and cut off cell text (e.g. a `Suspended` status cell rendered as `Suspe`) instead of triggering the existing `.zyr-table__scroll` horizontal-scroll wrapper.
+
+---
+
 ## [3.4.4] — 2026-07-21
 
 ### Added

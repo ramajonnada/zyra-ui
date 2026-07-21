@@ -62,21 +62,28 @@ function bump(version) {
     // 4. Scaffold CHANGELOG entry
     const changelogPath = path.join(ROOT, 'CHANGELOG.md');
     let changelog = fs.readFileSync(changelogPath, 'utf8');
-    const entry = `## [${version}] — ${today}
-
-### Added
--
-
-### Changed
--
-
-### Fixed
--
-
----
-
-`;
-    changelog = changelog.replace(/^(# Changelog.*?\n---\n\n)/s, `$1${entry}`);
+    const eol = changelog.includes('\r\n') ? '\r\n' : '\n';
+    const entry = [
+        `## [${version}] — ${today}`,
+        '',
+        '### Added',
+        '-',
+        '',
+        '### Changed',
+        '-',
+        '',
+        '### Fixed',
+        '-',
+        '',
+        '---',
+        '',
+        '',
+    ].join(eol);
+    const headerRe = /^(# Changelog.*?\r?\n---\r?\n\r?\n)/s;
+    if (!headerRe.test(changelog)) {
+        throw new Error('CHANGELOG.md scaffold failed: could not find "# Changelog ... ---" header to insert after.');
+    }
+    changelog = changelog.replace(headerRe, `$1${entry}`);
     fs.writeFileSync(changelogPath, changelog);
     console.log(`✔ CHANGELOG.md                       scaffolded [${version}] entry`);
 
