@@ -17,46 +17,46 @@
     &--lg { padding: 5px 12px; font-size: 13px; }
 
     &--default {
-        background: var(--zyra-color-surface-inset);
-        color: var(--zyra-color-text-muted);
-        border-color: var(--zyra-color-border);
+        background: var(--zyra-color-badge-default-bg);
+        color: var(--zyra-color-badge-default-text);
+        border-color: var(--zyra-color-badge-default-border);
     }
 
     &--success {
-        background: var(--zyra-color-success-muted);
-        color: var(--zyra-color-success);
-        border-color: var(--zyra-color-success-border);
+        background: var(--zyra-color-badge-success-bg);
+        color: var(--zyra-color-badge-success-text);
+        border-color: var(--zyra-color-badge-success-border);
     }
 
     &--warning {
-        background: var(--zyra-color-warning-muted);
-        color: var(--zyra-color-warning);
-        border-color: var(--zyra-color-warning-border);
+        background: var(--zyra-color-badge-warning-bg);
+        color: var(--zyra-color-badge-warning-text);
+        border-color: var(--zyra-color-badge-warning-border);
     }
 
     &--danger {
-        background: var(--zyra-color-danger-muted);
-        color: var(--zyra-color-danger);
-        border-color: var(--zyra-color-danger-border);
+        background: var(--zyra-color-badge-danger-bg);
+        color: var(--zyra-color-badge-danger-text);
+        border-color: var(--zyra-color-badge-danger-border);
     }
 
     &--info {
-        background: var(--zyra-color-info-muted);
-        color: var(--zyra-color-info);
-        border-color: var(--zyra-color-info-border);
+        background: var(--zyra-color-badge-info-bg);
+        color: var(--zyra-color-badge-info-text);
+        border-color: var(--zyra-color-badge-info-border);
     }
 
     &--purple {
-        background: var(--zyra-color-accent-tertiary-muted);
-        color: var(--zyra-color-accent-tertiary);
-        border-color: var(--zyra-color-accent-tertiary-border);
+        background: var(--zyra-color-badge-purple-bg);
+        color: var(--zyra-color-badge-purple-text);
+        border-color: var(--zyra-color-badge-purple-border);
     }
 
     &__dot {
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background: currentColor;
+        background: currentcolor;
         flex-shrink: 0;
     }
 }

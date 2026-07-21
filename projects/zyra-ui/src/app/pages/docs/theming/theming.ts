@@ -2,13 +2,17 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
     ZyraAlert,
+    ZyraAvatar,
     ZyraBadge,
     ZyraBreadcrumb,
     ZyraBreadcrumbItem,
     ZyraButton,
     ZyraCard,
+    ZyraCheckbox,
+    ZyraChip,
     ZyraFormField,
     ZyraInput,
+    ZyraProgress,
     ZyraSwitch,
     ZyraTheme,
     ZyraThemeService,
@@ -23,11 +27,6 @@ interface ThemeOption {
     surface: string;
 }
 
-interface TokenSwatch {
-    name: string;
-    variable: string;
-}
-
 interface SetupStep {
     step: string;
     title: string;
@@ -35,16 +34,33 @@ interface SetupStep {
     code: string;
 }
 
+interface ApiMethod {
+    signature: string;
+    returns: string;
+    description: string;
+}
+
+interface ConfigOption {
+    prop: string;
+    type: string;
+    default: string;
+    description: string;
+}
+
 @Component({
     selector: 'app-docs-theming',
     imports: [
         RouterLink,
         ZyraAlert,
+        ZyraAvatar,
         ZyraBadge,
         ZyraButton,
         ZyraCard,
+        ZyraCheckbox,
+        ZyraChip,
         ZyraFormField,
         ZyraInput,
+        ZyraProgress,
         ZyraSwitch,
         ZyraBreadcrumb,
         ZyraBreadcrumbItem,
@@ -72,25 +88,6 @@ export class DocsTheming implements OnInit, OnDestroy {
         { value: 'ocean', label: 'Ocean', accent: '#1a6ec8', surface: '#eaf0f8' },
         { value: 'amber', label: 'Amber', accent: '#b06020', surface: '#f0e8d8' },
         { value: 'rose', label: 'Rose', accent: '#d03050', surface: '#faedf1' },
-    ];
-
-    // Semantic (Tier 2) tokens only — these are the public re-theming
-    // contract. Raw per-theme tokens (e.g. --zyra-color-accent-secondary)
-    // are internal implementation details with no semantic alias, so they
-    // aren't shown here; see Rule D-1 in CLAUDE.md.
-    readonly tokenSwatches: readonly TokenSwatch[] = [
-        { name: 'Background', variable: '--zyra-color-background' },
-        { name: 'Surface', variable: '--zyra-color-surface' },
-        { name: 'Text', variable: '--zyra-color-foreground' },
-        { name: 'Text muted', variable: '--zyra-color-foreground-muted' },
-        { name: 'Border', variable: '--zyra-color-border-color' },
-        { name: 'Border strong', variable: '--zyra-color-border-strong-color' },
-        { name: 'Primary', variable: '--zyra-color-primary' },
-        { name: 'Primary hover', variable: '--zyra-color-primary-hover' },
-        { name: 'Success', variable: '--zyra-color-success-foreground' },
-        { name: 'Warning', variable: '--zyra-color-warning-foreground' },
-        { name: 'Danger', variable: '--zyra-color-danger-foreground' },
-        { name: 'Info', variable: '--zyra-color-info-foreground' },
     ];
 
     readonly setupSteps: readonly SetupStep[] = [
@@ -128,14 +125,80 @@ theme.setTheme('ocean'); // 'dark' | 'light' | 'ocean' | 'amber' | 'rose'`,
             description: 'Set any token after the Zyra import to customize without forking a theme file.',
             code: `// styles.scss — after @use 'zyra-ng-ui'
 :root {
-  --zyra-color-accent: #7c3aed;
-  --zyra-radius-md: 6px;
+  --zyra-color-primary: #7c3aed; /* semantic Tier 2 — propagates everywhere */
+  --zyra-radius-md: 6px;         /* dimension Tier 1 — affects all md-radius components */
 }`,
+        },
+    ];
+
+    readonly apiMethods: readonly ApiMethod[] = [
+        {
+            signature: 'theme',
+            returns: 'Signal<ZyraTheme>',
+            description: 'Read-only signal with the currently active theme name.',
+        },
+        {
+            signature: 'setTheme(theme: ZyraTheme)',
+            returns: 'void',
+            description: 'Switch to a named theme. Persists to localStorage automatically.',
+        },
+        {
+            signature: 'toggleTheme()',
+            returns: 'void',
+            description: 'Cycle through all available themes in order.',
+        },
+        {
+            signature: 'isDark',
+            returns: 'Signal<boolean>',
+            description: 'True when the active theme uses a dark color scheme.',
+        },
+    ];
+
+    readonly configOptions: readonly ConfigOption[] = [
+        {
+            prop: 'theme',
+            type: "'dark' | 'light' | 'ocean' | 'amber' | 'rose'",
+            default: "'dark'",
+            description: 'Initial theme applied before Angular hydrates.',
+        },
+        {
+            prop: 'respectSystemTheme',
+            type: 'boolean',
+            default: 'false',
+            description: "Use OS prefers-color-scheme when no localStorage value is saved.",
+        },
+        {
+            prop: 'storageKey',
+            type: 'string',
+            default: "'zyra-theme'",
+            description: "localStorage key used to persist the user's last choice.",
         },
     ];
 
     selectTheme(theme: ZyraTheme): void {
         this.themeService.setTheme(theme);
+    }
+
+    onThemeSwitcherKeydown(event: KeyboardEvent): void {
+        const forward = event.key === 'ArrowRight' || event.key === 'ArrowDown';
+        const backward = event.key === 'ArrowLeft' || event.key === 'ArrowUp';
+        if (!forward && !backward) {
+            return;
+        }
+
+        event.preventDefault();
+        const themes = this.themes;
+        const currentIndex = themes.findIndex((t) => t.value === this.currentTheme());
+        const delta = forward ? 1 : -1;
+        const nextIndex = (currentIndex + delta + themes.length) % themes.length;
+        const nextTheme = themes[nextIndex].value;
+
+        this.selectTheme(nextTheme);
+
+        const button = event.currentTarget as HTMLElement;
+        const container = button.closest('.theme-switcher');
+        const buttons = container?.querySelectorAll<HTMLButtonElement>('.theme-btn');
+        buttons?.[nextIndex]?.focus();
     }
 
     ngOnInit(): void {

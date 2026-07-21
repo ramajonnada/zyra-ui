@@ -12,7 +12,7 @@
     background-image: linear-gradient(
         90deg,
         var(--zyra-color-surface-inset) 0%,
-        var(--zyra-color-bg-raised) 40%,
+        var(--zyra-color-surface-raised) 40%,
         var(--zyra-color-surface-inset) 80%
     );
     background-size: 800px 100%;
@@ -90,7 +90,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--zyra-color-text-dim);
+    color: var(--zyra-color-foreground-subtle);
 }
 
 .zyr-sk-img-icon {
@@ -145,9 +145,9 @@
     align-items: center;
     gap: 12px;
     padding: 12px 14px;
-    border: 1px solid var(--zyra-color-border);
+    border: 1px solid var(--zyra-color-border-color);
     border-radius: var(--zyra-radius-md);
-    background: var(--zyra-color-bg-panel);
+    background: var(--zyra-color-background-elevated);
 }
 
 .zyr-sk-list__content {
@@ -168,10 +168,10 @@
 
 .zyr-sk-table {
     gap: 0;
-    border: 1px solid var(--zyra-color-border-strong);
+    border: 1px solid var(--zyra-color-border-strong-color);
     border-radius: var(--zyra-radius-md);
     overflow: hidden;
-    background: var(--zyra-color-bg-panel);
+    background: var(--zyra-color-background-elevated);
 }
 
 .zyr-sk-table__header {
@@ -179,7 +179,7 @@
     gap: 16px;
     padding: 12px 16px;
     background: var(--zyra-color-surface-inset);
-    border-bottom: 1px solid var(--zyra-color-border-strong);
+    border-bottom: 1px solid var(--zyra-color-border-strong-color);
 }
 
 .zyr-sk-table__row {
@@ -187,7 +187,7 @@
     gap: 16px;
     padding: 13px 16px;
 
-    & + & { border-top: 1px solid var(--zyra-color-border); }
+    & + & { border-top: 1px solid var(--zyra-color-border-color); }
 }
 
 .zyr-sk-chat { gap: 16px; }
@@ -230,7 +230,7 @@
     flex-direction: column;
     gap: 8px;
     padding: 16px;
-    border: 1px solid var(--zyra-color-border);
+    border: 1px solid var(--zyra-color-border-color);
     border-radius: var(--zyra-radius-md);
 }
 
@@ -241,7 +241,7 @@
 }
 
 .zyr-sk-dashboard__chart {
-    border: 1px solid var(--zyra-color-border);
+    border: 1px solid var(--zyra-color-border-color);
     border-radius: var(--zyra-radius-md);
     padding: 16px;
 }
@@ -347,7 +347,7 @@
 
 .zyr-sk-profile__stats {
     display: flex;
-    border: 1px solid var(--zyra-color-border);
+    border: 1px solid var(--zyra-color-border-color);
     border-radius: var(--zyra-radius-md);
     overflow: hidden;
 
@@ -358,7 +358,7 @@
         padding: 12px 16px;
         align-items: center;
 
-        & + .zyr-sk-stat { border-left: 1px solid var(--zyra-color-border); }
+        & + .zyr-sk-stat { border-left: 1px solid var(--zyra-color-border-color); }
     }
 }
 

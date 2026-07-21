@@ -88,35 +88,39 @@
     }
 
     &--success {
-        --zyra-alert-color: var(--zyra-color-success);
-        background: var(--zyra-color-success-muted);
-        border-color: var(--zyra-color-success-border);
+        --zyra-alert-color: var(--zyra-color-alert-success-color);
 
-        .zyr-alert__icon { background: var(--zyra-color-success); color: var(--zyra-color-on-success); }
+        background: var(--zyra-color-alert-success-bg);
+        border-color: var(--zyra-color-alert-success-border);
+
+        .zyr-alert__icon { background: var(--zyra-color-alert-success-color); color: var(--zyra-color-on-success); }
     }
 
     &--warning {
-        --zyra-alert-color: var(--zyra-color-warning);
-        background: var(--zyra-color-warning-muted);
-        border-color: var(--zyra-color-warning-border);
+        --zyra-alert-color: var(--zyra-color-alert-warning-color);
 
-        .zyr-alert__icon { background: var(--zyra-color-warning); color: var(--zyra-color-on-warning); }
+        background: var(--zyra-color-alert-warning-bg);
+        border-color: var(--zyra-color-alert-warning-border);
+
+        .zyr-alert__icon { background: var(--zyra-color-alert-warning-color); color: var(--zyra-color-on-warning); }
     }
 
     &--danger {
-        --zyra-alert-color: var(--zyra-color-danger);
-        background: var(--zyra-color-danger-muted);
-        border-color: var(--zyra-color-danger-border);
+        --zyra-alert-color: var(--zyra-color-alert-danger-color);
 
-        .zyr-alert__icon { background: var(--zyra-color-danger); color: var(--zyra-color-on-danger); }
+        background: var(--zyra-color-alert-danger-bg);
+        border-color: var(--zyra-color-alert-danger-border);
+
+        .zyr-alert__icon { background: var(--zyra-color-alert-danger-color); color: var(--zyra-color-on-danger); }
     }
 
     &--info {
-        --zyra-alert-color: var(--zyra-color-info);
-        background: var(--zyra-color-info-muted);
-        border-color: var(--zyra-color-info-border);
+        --zyra-alert-color: var(--zyra-color-alert-info-color);
 
-        .zyr-alert__icon { background: var(--zyra-color-info); color: var(--zyra-color-on-info); }
+        background: var(--zyra-color-alert-info-bg);
+        border-color: var(--zyra-color-alert-info-border);
+
+        .zyr-alert__icon { background: var(--zyra-color-alert-info-color); color: var(--zyra-color-on-info); }
     }
 }
 

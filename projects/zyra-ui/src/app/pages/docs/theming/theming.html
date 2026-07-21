@@ -8,112 +8,195 @@
     <header class="theming-header">
         <h1>Theming</h1>
         <p>
-            Zyra UI ships five themes built on the same token layer — switch below to preview how
-            every component responds instantly, with no per-component changes required. For the
-            full token catalog and override rules, see
-            <a routerLink="/docs/theme-tokens">Theme tokens →</a>.
+            Five built-in themes, all driven by the same token layer. Switch below to see every
+            component respond instantly — no per-component overrides needed. To customize colors
+            or shape, override semantic tokens after the import.
+            <a routerLink="/docs/theme-tokens">Full token reference →</a>
         </p>
     </header>
 
+    <!-- ── Theme switcher ──────────────────────────────────────── -->
     <div class="theme-switcher" role="radiogroup" aria-label="Choose a theme">
         @for (theme of themes; track theme.value) {
             <button
                 type="button"
-                class="theme-swatch"
-                [class.theme-swatch--active]="currentTheme() === theme.value"
+                class="theme-btn"
+                [class.theme-btn--active]="currentTheme() === theme.value"
                 role="radio"
                 [attr.aria-checked]="currentTheme() === theme.value"
+                [tabindex]="currentTheme() === theme.value ? 0 : -1"
+                [style.--t-surface]="theme.surface"
+                [style.--t-accent]="theme.accent"
                 (click)="selectTheme(theme.value)"
+                (keydown)="onThemeSwitcherKeydown($event)"
             >
-                <span
-                    class="theme-swatch__preview"
-                    [style.background]="theme.surface"
-                    [style.border-color]="theme.accent"
-                >
-                    <span class="theme-swatch__dot" [style.background]="theme.accent"></span>
-                </span>
-                <span class="theme-swatch__label">{{ theme.label }}</span>
+                <span class="theme-btn__dot"></span>
+                <span class="theme-btn__label">{{ theme.label }}</span>
             </button>
         }
     </div>
 
-    <div class="theming-grid">
-        <zyra-card class="preview-card" [hasHeader]="true">
-            <div slot="header">
-                <h2>Live preview</h2>
-            </div>
+    <!-- ── Live preview ────────────────────────────────────────── -->
+    <zyra-card class="preview-card" [hasHeader]="true">
+        <div slot="header">
+            <h2>Live preview</h2>
+            <span class="preview-theme-badge">{{ currentTheme() }}</span>
+        </div>
 
-            <div class="preview-section">
-                <h3>Buttons</h3>
-                <div class="preview-row">
-                    <zyra-button variant="primary">Primary</zyra-button>
-                    <zyra-button variant="secondary">Secondary</zyra-button>
-                    <zyra-button variant="outline">Outline</zyra-button>
-                    <zyra-button variant="ghost">Ghost</zyra-button>
-                    <zyra-button variant="danger">Danger</zyra-button>
+        <div class="preview-grid">
+            <!-- Column 1 -->
+            <div class="preview-col">
+                <div class="preview-section">
+                    <p class="preview-label">Buttons</p>
+                    <div class="preview-row">
+                        <zyra-button variant="primary">Primary</zyra-button>
+                        <zyra-button variant="secondary">Secondary</zyra-button>
+                        <zyra-button variant="outline">Outline</zyra-button>
+                        <zyra-button variant="ghost">Ghost</zyra-button>
+                        <zyra-button variant="danger">Danger</zyra-button>
+                    </div>
+                </div>
+
+                <div class="preview-section">
+                    <p class="preview-label">Badges &amp; chips</p>
+                    <div class="preview-row">
+                        <zyra-badge variant="default">Default</zyra-badge>
+                        <zyra-badge variant="success">Success</zyra-badge>
+                        <zyra-badge variant="warning">Warning</zyra-badge>
+                        <zyra-badge variant="danger">Danger</zyra-badge>
+                        <zyra-badge variant="info">Info</zyra-badge>
+                    </div>
+                    <div class="preview-row" style="margin-top: 10px">
+                        <zyra-chip>Angular</zyra-chip>
+                        <zyra-chip [selected]="true">Signals</zyra-chip>
+                        <zyra-chip [selected]="true">SSR</zyra-chip>
+                    </div>
+                </div>
+
+                <div class="preview-section">
+                    <p class="preview-label">Alerts</p>
+                    <div class="preview-stack">
+                        <zyra-alert variant="info">Themes persist to localStorage automatically.</zyra-alert>
+                        <zyra-alert variant="success">Every token updates in one repaint — no reload.</zyra-alert>
+                        <zyra-alert variant="warning">Warning uses dark text on amber — passes WCAG AA.</zyra-alert>
+                    </div>
                 </div>
             </div>
 
-            <div class="preview-section">
-                <h3>Badges</h3>
-                <div class="preview-row">
-                    <zyra-badge variant="default">Default</zyra-badge>
-                    <zyra-badge variant="success">Success</zyra-badge>
-                    <zyra-badge variant="warning">Warning</zyra-badge>
-                    <zyra-badge variant="danger">Danger</zyra-badge>
-                    <zyra-badge variant="info">Info</zyra-badge>
-                    <zyra-badge variant="purple">Purple</zyra-badge>
+            <!-- Column 2 -->
+            <div class="preview-col">
+                <div class="preview-section">
+                    <p class="preview-label">Progress</p>
+                    <div class="preview-stack">
+                        <zyra-progress [value]="72" variant="default" [showLabel]="true" label="Default" />
+                        <zyra-progress [value]="48" variant="success" [showLabel]="true" label="Success" />
+                        <zyra-progress [value]="60" variant="warning" [showLabel]="true" label="Warning" />
+                        <zyra-progress [value]="30" variant="danger" [showLabel]="true" label="Danger" />
+                    </div>
+                </div>
+
+                <div class="preview-section">
+                    <p class="preview-label">Avatars</p>
+                    <div class="preview-row">
+                        <zyra-avatar name="Rama Jonnada" variant="teal" />
+                        <zyra-avatar name="Zyra UI" variant="blue" />
+                        <zyra-avatar name="Angular" variant="purple" />
+                        <zyra-avatar name="Design" variant="warm" />
+                    </div>
+                </div>
+
+                <div class="preview-section">
+                    <p class="preview-label">Form controls</p>
+                    <div class="preview-stack preview-stack--form">
+                        <zyra-form-field label="Email">
+                            <zyra-input type="email" placeholder="you@example.com" />
+                        </zyra-form-field>
+                        <div class="preview-row preview-row--form">
+                            <zyra-switch label="Notifications" labelPosition="right" />
+                            <zyra-checkbox label="Remember me" />
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="preview-section">
-                <h3>Alerts</h3>
-                <div class="preview-stack">
-                    <zyra-alert variant="info">Themes persist to localStorage automatically.</zyra-alert>
-                    <zyra-alert variant="success">Every token updates in one repaint — no reload.</zyra-alert>
-                </div>
-            </div>
-
-            <div class="preview-section">
-                <h3>Form controls</h3>
-                <div class="preview-row preview-row--form">
-                    <zyra-form-field label="Email">
-                        <zyra-input type="email" placeholder="you@example.com" />
-                    </zyra-form-field>
-                    <zyra-switch label="Notifications" labelPosition="right" />
-                </div>
-            </div>
-        </zyra-card>
-
-        <zyra-card class="token-card" [hasHeader]="true">
-            <div slot="header">
-                <h2>Active theme tokens</h2>
-            </div>
-
-            <ul class="token-list">
-                @for (token of tokenSwatches; track token.variable) {
-                    <li class="token-list__item">
-                        <span class="token-list__swatch" [style.background]="'var(' + token.variable + ')'"></span>
-                        <span class="token-list__name">{{ token.name }}</span>
-                        <code class="token-list__var">{{ token.variable }}</code>
-                    </li>
-                }
-            </ul>
-        </zyra-card>
-    </div>
+        </div>
+    </zyra-card>
 
     <!-- ── Setup ─────────────────────────────────────────────────── -->
     <div class="theming-section">
         <h2>How to set it up</h2>
-        <div class="setup-steps">
-            @for (step of setupSteps; track step.step) {
-                <article class="setup-step">
-                    <p class="setup-step__eyebrow">Step {{ step.step }}</p>
-                    <h3>{{ step.title }}</h3>
-                    <p class="setup-step__desc">{{ step.description }}</p>
-                    <pre><code>{{ step.code }}</code></pre>
-                </article>
+        <p class="theming-section__lead">Four steps from install to theme-switched runtime.</p>
+        <ol class="setup-steps" role="list">
+            @for (step of setupSteps; track step.step; let last = $last) {
+                <li class="setup-step" [class.setup-step--last]="last">
+                    <div class="setup-step__track">
+                        <span class="setup-step__number" aria-hidden="true">{{ step.step }}</span>
+                        @if (!last) {
+                            <span class="setup-step__line" aria-hidden="true"></span>
+                        }
+                    </div>
+                    <div class="setup-step__body">
+                        <div class="setup-step__meta">
+                            <h3>{{ step.title }}</h3>
+                            <p class="setup-step__desc">{{ step.description }}</p>
+                        </div>
+                        <pre class="setup-step__code"><code>{{ step.code }}</code></pre>
+                    </div>
+                </li>
             }
+        </ol>
+    </div>
+
+    <!-- ── ZyraThemeService API ───────────────────────────────────── -->
+    <div class="theming-section">
+        <h2>ZyraThemeService API</h2>
+        <p class="theming-section__lead">Signal-based, SSR-safe, tree-shakeable.</p>
+        <div class="api-table-wrap">
+            <table class="api-table">
+                <thead>
+                    <tr>
+                        <th>Member</th>
+                        <th>Returns</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (method of apiMethods; track method.signature) {
+                        <tr>
+                            <td><code>{{ method.signature }}</code></td>
+                            <td><code class="api-table__type">{{ method.returns }}</code></td>
+                            <td class="api-table__desc">{{ method.description }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ── provideZyra() config ───────────────────────────────────── -->
+    <div class="theming-section">
+        <h2>provideZyra() options</h2>
+        <p class="theming-section__lead">Passed once in <code>app.config.ts</code>. All fields optional.</p>
+        <div class="api-table-wrap">
+            <table class="api-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (opt of configOptions; track opt.prop) {
+                        <tr>
+                            <td><code>{{ opt.prop }}</code></td>
+                            <td><code class="api-table__type">{{ opt.type }}</code></td>
+                            <td><code class="api-table__default">{{ opt.default }}</code></td>
+                            <td class="api-table__desc">{{ opt.description }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </section>

@@ -65,6 +65,46 @@
             </section>
         }
 
+        @if (selected.tokens && selected.tokens.length) {
+            <section class="component-detail component-detail--tokens">
+                <div class="component-detail__copy">
+                    <h2>Tokens</h2>
+                    <p>
+                        CSS custom properties <code class="inline-code">{{ selected.selector }}</code> reads at
+                        runtime — override any of these in your own stylesheet after
+                        <code class="inline-code">@use 'zyra-ng-ui';</code> to restyle it without touching the
+                        component itself.
+                    </p>
+                </div>
+
+                <div class="api-table-wrap">
+                    <table class="api-table">
+                        <thead>
+                            <tr>
+                                <th>Token</th>
+                                <th>Default points to</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (token of selected.tokens; track token.variable) {
+                                <tr>
+                                    <td>
+                                        {{ token.name }}<br />
+                                        <code class="api-table__type">{{ token.variable }}</code>
+                                    </td>
+                                    <td>
+                                        <code class="api-table__default">{{ token.defaultValue }}</code>
+                                    </td>
+                                    <td class="api-table__desc">{{ token.description }}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        }
+
         @if (selected.a11yNotes && selected.a11yNotes.length) {
             <section class="component-detail component-detail--a11y">
                 <div class="component-detail__copy">

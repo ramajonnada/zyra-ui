@@ -24,10 +24,10 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        background: var(--zyra-color-card-bg);
-        border: 1px solid var(--zyra-color-border);
+        background: var(--zyra-color-surface);
+        border: 1px solid var(--zyra-color-border-color);
         border-radius: var(--zyra-radius-xl);
-        box-shadow: var(--zyra-card-elevated-shadow);
+        box-shadow: var(--zyra-modal-shadow);
         width: 100%;
         max-height: calc(100vh - 64px);
         overflow: hidden;
@@ -45,14 +45,14 @@
         align-items: center;
         justify-content: space-between;
         padding: var(--zyra-space-5) var(--zyra-space-6);
-        border-bottom: 1px solid var(--zyra-color-border);
+        border-bottom: 1px solid var(--zyra-color-border-color);
         flex-shrink: 0;
     }
 
     &__title {
         font-size: 16px;
         font-weight: 600;
-        color: var(--zyra-color-text);
+        color: var(--zyra-color-foreground);
         margin: 0;
         line-height: 1.3;
     }
@@ -68,7 +68,7 @@
         background: none;
         border: none;
         cursor: pointer;
-        color: var(--zyra-color-text-muted);
+        color: var(--zyra-color-foreground-muted);
         font-size: 22px;
         line-height: 1;
         transition:
@@ -82,15 +82,15 @@
             inset: -8px;
         }
 
-        &:hover { background: var(--zyra-color-surface-inset); color: var(--zyra-color-text); }
-        &:focus-visible { outline: 2px solid var(--zyra-color-accent); outline-offset: 2px; }
+        &:hover { background: var(--zyra-color-surface-inset); color: var(--zyra-color-foreground); }
+        &:focus-visible { outline: 2px solid var(--zyra-ring); outline-offset: 2px; }
     }
 
     &__body {
         padding: var(--zyra-space-6);
         overflow-y: auto;
         flex: 1;
-        color: var(--zyra-color-text-muted);
+        color: var(--zyra-color-foreground-muted);
         font-size: 14px;
         line-height: 1.7;
     }
@@ -101,7 +101,7 @@
         justify-content: flex-end;
         gap: var(--zyra-space-3);
         padding: var(--zyra-space-4) var(--zyra-space-6);
-        border-top: 1px solid var(--zyra-color-border);
+        border-top: 1px solid var(--zyra-color-border-color);
         flex-shrink: 0;
 
         > * { display: contents; }

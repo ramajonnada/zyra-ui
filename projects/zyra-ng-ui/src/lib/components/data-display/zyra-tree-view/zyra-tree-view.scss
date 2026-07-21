@@ -17,12 +17,12 @@
         padding-bottom: 6px;
         padding-right: 8px;
         border-radius: var(--zyra-radius-sm);
-        color: var(--zyra-color-text);
+        color: var(--zyra-color-foreground);
         cursor: pointer;
         transition: background var(--zyra-transition-fast);
 
         &:hover:not(&--disabled) {
-            background: var(--zyra-color-sidebar-hover-bg);
+            background: var(--zyra-color-tree-view-hover-bg);
         }
 
         &:focus-visible {
@@ -55,11 +55,11 @@
         background: transparent;
         border: none;
         padding: 0;
-        color: var(--zyra-color-text-dim);
+        color: var(--zyra-color-foreground-subtle);
         cursor: pointer;
         border-radius: var(--zyra-radius-sm);
 
-        &:hover { color: var(--zyra-color-text); }
+        &:hover { color: var(--zyra-color-foreground); }
     }
 
     &__toggle-icon {
@@ -78,7 +78,7 @@
 
     &__node-icon {
         flex-shrink: 0;
-        color: var(--zyra-color-text-dim);
+        color: var(--zyra-color-foreground-subtle);
 
         :where(svg) { width: 1em; height: 1em; display: block; }
     }

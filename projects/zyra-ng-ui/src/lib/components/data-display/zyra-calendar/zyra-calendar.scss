@@ -34,7 +34,7 @@
     transition: background var(--zyra-transition-fast);
 
     &:hover:not(:disabled) {
-        background: var(--zyra-color-bg-raised);
+        background: var(--zyra-color-surface-raised);
     }
 
     &:focus-visible {
@@ -62,7 +62,7 @@
     transition: background var(--zyra-transition-fast);
 
     &:hover:not(:disabled) {
-        background: var(--zyra-color-bg-raised);
+        background: var(--zyra-color-surface-raised);
     }
 
     &:focus-visible {
@@ -113,7 +113,7 @@
         color var(--zyra-transition-fast);
 
     &:hover:not(:disabled) {
-        background: var(--zyra-color-bg-raised);
+        background: var(--zyra-color-surface-raised);
     }
 
     &:focus-visible {
@@ -139,7 +139,7 @@
     // ── Range selection ──────────────────────────────────────
     &--in-range {
         background: var(--zyra-color-primary-subtle);
-        color: var(--zyra-color-text);
+        color: var(--zyra-color-foreground);
         border-radius: 0;
     }
 
@@ -187,7 +187,7 @@
     transition: background var(--zyra-transition-fast);
 
     &:hover:not(:disabled) {
-        background: var(--zyra-color-bg-raised);
+        background: var(--zyra-color-surface-raised);
     }
 
     &:focus-visible {

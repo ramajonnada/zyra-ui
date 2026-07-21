@@ -27,8 +27,8 @@ describe('About', () => {
         expect(component.stats.length).toBe(4);
     });
 
-    it('first stat value is "44" (component count)', () => {
-        expect(component.stats[0].value).toBe('44');
+    it('first stat value is "56" (component count)', () => {
+        expect(component.stats[0].value).toBe('56');
     });
 
     it('first stat label is "Components"', () => {

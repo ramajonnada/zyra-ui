@@ -39,9 +39,9 @@
     }
 
     &--copied {
-        color: var(--zyra-color-success);
-        border-color: var(--zyra-color-success-border);
-        background: var(--zyra-color-success-muted);
+        color: var(--zyra-color-success-foreground);
+        border-color: var(--zyra-color-success-border-color);
+        background: var(--zyra-color-success-subtle);
     }
 
     &__icon {

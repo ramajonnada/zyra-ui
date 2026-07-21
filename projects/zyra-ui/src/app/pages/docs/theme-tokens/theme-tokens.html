@@ -6,84 +6,103 @@
 	</zyra-breadcrumb>
 
 	<header class="docs-page__header">
-		<p class="docs-eyebrow">/ Docs</p>
 		<h1>Theme tokens</h1>
 		<p class="docs-page__lead">
-			Every color, radius, font, and transition in Zyra UI is a CSS custom property, organized
-			in layered tiers — primitives, per-theme raw tokens, semantic tokens, dimension tokens,
-			and per-component tokens. Override the semantic layer and everything downstream —
-			including per-component tokens — follows automatically. Prefer to see them applied live?
-			<a routerLink="/docs/theming">Open the theming page →</a>
+			Everything in Zyra UI is a CSS custom property. Override any token in
+			<code>:root</code> after the import — no forking a theme file, no
+			<code>!important</code>.
 		</p>
 	</header>
 
-	@for (tier of tiers; track tier.id; let first = $first) {
-	<section class="docs-section" [class.docs-section--first]="first" [id]="tier.id">
-		<div class="docs-section__header">
-			<h2>{{ tier.title }}</h2>
-			<p>{{ tier.description }}</p>
-		</div>
-
-		<div class="docs-token-grid">
-			@for (group of tier.groups; track group.label) {
-			<div class="docs-token-group">
-				<span class="docs-token-group__label">{{ group.label }}</span>
-				<div class="docs-token-group__tokens">
-					@for (token of group.tokens; track token) {
-					<code class="docs-token">{{ token }}</code>
-					}
+	<!-- ── 0. Tier explainer ────────────────────────────────────── -->
+	<section class="docs-section docs-section--first" id="tiers">
+		<h2 class="docs-section__title">How tokens are organised</h2>
+		<p class="docs-section__lead">
+			Tokens are split into four tiers. Each tier references the one above it —
+			change a token high up and everything below it updates automatically.
+		</p>
+		<div class="tier-list">
+			@for (t of tiers; track t.tier) {
+				<div class="tier-row">
+					<span class="tier-badge">Tier {{ t.tier }}</span>
+					<div class="tier-body">
+						<p class="tier-name">{{ t.name }}</p>
+						<p class="tier-purpose">{{ t.purpose }}</p>
+						<code class="tier-example">{{ t.example }}</code>
+					</div>
+					<p class="tier-action">{{ t.action }}</p>
 				</div>
-			</div>
 			}
 		</div>
 	</section>
-	}
 
+	<!-- ── 1. How to override ────────────────────────────────────── -->
 	<section class="docs-section">
-		<div class="docs-section__header">
-			<h2>What can I change?</h2>
-			<p>
-				Semantic and dimension tokens are the recommended customization surface — override these
-				and everything downstream follows. Component (Tier 3) tokens are also part of the public,
-				stable API — override one directly when you want to restyle a single component without
-				touching anything else. Primitives and per-theme raw tokens are the only true implementation
-				detail here: they feed the layers above and shouldn't be overridden directly — swap the
-				whole theme instead.
-			</p>
-		</div>
+		<h2 class="docs-section__title">How to override</h2>
+		<p class="docs-section__lead">
+			Add this to your <code>styles.scss</code> after <code>@use 'zyra-ng-ui'</code>.
+			Any token you set here wins the cascade for the whole app.
+		</p>
+		<pre class="code-block"><code>{{ overrideCode }}</code></pre>
+	</section>
 
-		<div class="token-access-grid">
-			<div class="token-access-col token-access-col--ok">
-				<h3>✅ Safe to override</h3>
-				@for (group of overridableTokens; track group.label) {
-					<div class="token-access-group">
-						<span class="token-access-group__label">{{ group.label }}</span>
-						@for (token of group.tokens; track token) {
-							<code class="token-access-item">{{ token }}</code>
-						}
-					</div>
-				}
-			</div>
+	<!-- ── 2. Color tokens ───────────────────────────────────────── -->
+	<section class="docs-section" id="colors">
+		<h2 class="docs-section__title">Color tokens</h2>
+		<p class="docs-section__lead">
+			These update live as you switch themes. Override any of them in
+			<code>:root</code> and every component that uses that role follows automatically.
+		</p>
 
-			<div class="token-access-col token-access-col--internal">
-				<h3>🚫 Internal — don't override directly</h3>
-				@for (group of internalTokens; track group.label) {
-					<div class="token-access-group">
-						<span class="token-access-group__label">{{ group.label }}</span>
-						@for (token of group.tokens; track token) {
-							<code class="token-access-item">{{ token }}</code>
-						}
-					</div>
-				}
-			</div>
+		<div class="swatch-grid">
+			@for (swatch of colorSwatches; track swatch.variable) {
+				<div class="swatch-item">
+					<span
+						class="swatch-item__color"
+						[style.background]="'var(' + swatch.variable + ')'"
+						aria-hidden="true"
+					></span>
+					<span class="swatch-item__name">{{ swatch.name }}</span>
+					<code class="swatch-item__var">{{ swatch.variable }}</code>
+				</div>
+			}
 		</div>
 	</section>
 
-	<section class="docs-section">
-		<div class="docs-section__header">
-			<h2>Override example</h2>
-			<p>Set any semantic token after the Zyra import — no forking a theme file required.</p>
+	<!-- ── 3. Shape + font tokens ────────────────────────────────── -->
+	<section class="docs-section" id="shape">
+		<h2 class="docs-section__title">Shape &amp; font tokens</h2>
+		<p class="docs-section__lead">
+			These are the same across all themes — override them to change
+			corner radius, typography, spacing, or motion globally.
+		</p>
+
+		<div class="shape-grid">
+			@for (group of shapeTokens; track group.label) {
+				<div class="shape-group">
+					<p class="shape-group__label">{{ group.label }}</p>
+					<div class="shape-group__tokens">
+						@for (token of group.tokens; track token) {
+							<code class="shape-token">{{ token }}</code>
+						}
+					</div>
+				</div>
+			}
 		</div>
-		<pre><code>{{ themeOverrideCode }}</code></pre>
+	</section>
+
+	<!-- ── 4. Component tokens ───────────────────────────────────── -->
+	<section class="docs-section">
+		<div class="component-note">
+			<span class="component-note__icon">🔩</span>
+			<div>
+				<p class="component-note__title">Need to restyle one specific component?</p>
+				<p class="component-note__body">
+					Each component has its own tokens listed on its doc page — override just those
+					and nothing else in your app changes.
+					<a routerLink="/docs/components">Browse components →</a>
+				</p>
+			</div>
+		</div>
 	</section>
 </main>

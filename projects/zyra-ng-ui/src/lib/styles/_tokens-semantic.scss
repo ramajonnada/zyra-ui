@@ -18,17 +18,17 @@
     --zyra-color-surface-subtle:   var(--zyra-color-card-section-bg);
     --zyra-color-surface-inset:    var(--zyra-color-bg-surface);
     --zyra-color-surface-dropdown: var(--zyra-color-card-bg);
+    --zyra-color-surface-raised:   var(--zyra-color-bg-raised);
     --zyra-color-overlay-scrim:    var(--zyra-color-overlay-bg);
 
     // ── Foreground / Text ────────────────────────────────────
     --zyra-color-foreground:         var(--zyra-color-text);
     --zyra-color-foreground-muted:   var(--zyra-color-text-muted);
     --zyra-color-foreground-subtle:  var(--zyra-color-text-dim);
-    
-	// Inverse foreground — for text/icons placed on a filled inverse surface
+
+    // Inverse foreground — for text/icons placed on a filled inverse surface
     // (e.g. switch thumb, tooltip text). Use --zyra-color-on-* for status fills.
-    
-	--zyra-color-foreground-inverse: var(--zyra-color-text-inverse);
+    --zyra-color-foreground-inverse: var(--zyra-color-text-inverse);
 
     // ── Brand / Primary ──────────────────────────────────────
     --zyra-color-primary:        var(--zyra-color-accent);
@@ -53,6 +53,12 @@
     --zyra-color-info-foreground:      var(--zyra-color-info);
     --zyra-color-info-subtle:          var(--zyra-color-info-muted);
     --zyra-color-info-border-color:    var(--zyra-color-info-border);
+    --zyra-color-purple-foreground:    var(--zyra-color-accent-tertiary);
+    --zyra-color-purple-subtle:        var(--zyra-color-accent-tertiary-muted);
+    --zyra-color-purple-border-color:  var(--zyra-color-accent-tertiary-border);
+
+    // ── Code surface ─────────────────────────────────────────
+    --zyra-color-surface-code: var(--zyra-color-code-bg);
 
     // ── "on-*" role tokens ───────────────────────────────────
     // Text/icon color for content placed ON a filled semantic background.

@@ -31,7 +31,7 @@
     }
 
     &:focus-visible {
-        outline: 2px solid var(--zyra-color-accent);
+        outline: 2px solid var(--zyra-color-primary);
         outline-offset: 2px;
     }
 
@@ -69,11 +69,11 @@
     }
 
     &:focus-visible {
-        outline: 2px solid var(--zyra-color-accent);
+        outline: 2px solid var(--zyra-color-primary);
         outline-offset: -2px;
     }
 
     &--active {
-        color: var(--zyra-color-accent);
+        color: var(--zyra-color-primary);
     }
 }

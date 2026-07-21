@@ -35,59 +35,59 @@
     }
 
     &--default {
-        background: var(--zyra-color-surface-inset);
-        color: var(--zyra-color-text-muted);
-        border-color: var(--zyra-color-border);
+        background: var(--zyra-color-chip-default-bg);
+        color: var(--zyra-color-chip-default-text);
+        border-color: var(--zyra-color-chip-default-border);
     }
 
     &--success {
-        background: var(--zyra-color-success-muted);
-        color: var(--zyra-color-success);
-        border-color: var(--zyra-color-success-border);
+        background: var(--zyra-color-chip-success-bg);
+        color: var(--zyra-color-chip-success-text);
+        border-color: var(--zyra-color-chip-success-border);
     }
 
     &--warning {
-        background: var(--zyra-color-warning-muted);
-        color: var(--zyra-color-warning);
-        border-color: var(--zyra-color-warning-border);
+        background: var(--zyra-color-chip-warning-bg);
+        color: var(--zyra-color-chip-warning-text);
+        border-color: var(--zyra-color-chip-warning-border);
     }
 
     &--danger {
-        background: var(--zyra-color-danger-muted);
-        color: var(--zyra-color-danger);
-        border-color: var(--zyra-color-danger-border);
+        background: var(--zyra-color-chip-danger-bg);
+        color: var(--zyra-color-chip-danger-text);
+        border-color: var(--zyra-color-chip-danger-border);
     }
 
     &--info {
-        background: var(--zyra-color-info-muted);
-        color: var(--zyra-color-info);
-        border-color: var(--zyra-color-info-border);
+        background: var(--zyra-color-chip-info-bg);
+        color: var(--zyra-color-chip-info-text);
+        border-color: var(--zyra-color-chip-info-border);
     }
 
     &--purple {
-        background: var(--zyra-color-accent-tertiary-muted);
-        color: var(--zyra-color-accent-tertiary);
-        border-color: var(--zyra-color-accent-tertiary-border);
+        background: var(--zyra-color-chip-purple-bg);
+        color: var(--zyra-color-chip-purple-text);
+        border-color: var(--zyra-color-chip-purple-border);
     }
 
     &--selectable {
         cursor: pointer;
 
         &:hover:not(.zyr-chip--disabled) {
-            border-color: var(--zyra-color-accent);
-            box-shadow: 0 0 0 2px var(--zyra-color-accent-muted);
+            border-color: var(--zyra-color-primary);
+            box-shadow: 0 0 0 2px var(--zyra-color-chip-selectable-ring);
         }
 
         &:focus-visible {
             outline: none;
-            box-shadow: 0 0 0 3px var(--zyra-color-accent-muted);
+            box-shadow: 0 0 0 3px var(--zyra-color-chip-selectable-ring);
         }
     }
 
     &--selected {
-        background: var(--zyra-color-accent-muted);
-        color: var(--zyra-color-accent);
-        border-color: var(--zyra-color-accent);
+        background: var(--zyra-color-chip-selected-bg);
+        color: var(--zyra-color-chip-selected-text);
+        border-color: var(--zyra-color-chip-selected-border);
     }
 
     &--disabled {
@@ -106,7 +106,7 @@
         border: none;
         padding: 0;
         margin-left: 2px;
-        color: currentColor;
+        color: currentcolor;
         opacity: 0.6;
         cursor: pointer;
         line-height: 1;

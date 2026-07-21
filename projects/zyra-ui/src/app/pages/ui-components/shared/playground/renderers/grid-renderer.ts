@@ -8,6 +8,8 @@ import { ZyraGrid } from 'zyra-ng-ui';
     imports: [ZyraGrid],
     styles: [
         `
+            :host { display: block; width: 100%; }
+
             .pg-grid-renderer__cell {
                 display: flex;
                 align-items: center;

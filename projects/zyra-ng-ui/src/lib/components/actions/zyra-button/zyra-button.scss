@@ -56,7 +56,7 @@
     // (below) can retint them without each variant needing its own override block.
     &--primary {
         background: var(--zyr-c-solid-bg, var(--zyra-color-btn-primary-bg));
-        color: var(--zyr-c-solid-text, var(--zyra-color-btn-primary-text));
+        color: var(--zyr-c-solid-text, var(--zyra-color-on-brand));
         border: 1px solid var(--zyr-c-solid-border, var(--zyra-color-btn-primary-border));
 
         &:hover:not(:disabled) {
@@ -112,63 +112,63 @@
 
     // ── Color overrides (independent of variant) ─────────────
     &--color-accent {
-        --zyr-c-solid-bg: var(--zyra-color-accent);
-        --zyr-c-solid-hover-bg: var(--zyra-color-accent-hover);
+        --zyr-c-solid-bg: var(--zyra-color-primary);
+        --zyr-c-solid-hover-bg: var(--zyra-color-primary-hover);
         --zyr-c-solid-text: var(--zyra-color-on-brand);
-        --zyr-c-solid-border: var(--zyra-color-accent);
-        --zyr-c-soft-text: var(--zyra-color-accent);
-        --zyr-c-soft-border: var(--zyra-color-accent-border);
-        --zyr-c-soft-bg: var(--zyra-color-accent-muted);
-        --zyr-c-soft-hover-bg: var(--zyra-color-accent-muted);
-        --zyr-c-soft-hover-border: var(--zyra-color-accent);
+        --zyr-c-solid-border: var(--zyra-color-primary);
+        --zyr-c-soft-text: var(--zyra-color-primary);
+        --zyr-c-soft-border: var(--zyra-color-primary-border);
+        --zyr-c-soft-bg: var(--zyra-color-primary-subtle);
+        --zyr-c-soft-hover-bg: var(--zyra-color-primary-subtle);
+        --zyr-c-soft-hover-border: var(--zyra-color-primary);
     }
 
     &--color-success {
-        --zyr-c-solid-bg: var(--zyra-color-success);
-        --zyr-c-solid-hover-bg: var(--zyra-color-success);
+        --zyr-c-solid-bg: var(--zyra-color-success-foreground);
+        --zyr-c-solid-hover-bg: var(--zyra-color-success-foreground);
         --zyr-c-solid-text: var(--zyra-color-on-success);
-        --zyr-c-solid-border: var(--zyra-color-success);
-        --zyr-c-soft-text: var(--zyra-color-success);
-        --zyr-c-soft-border: var(--zyra-color-success-border);
-        --zyr-c-soft-bg: var(--zyra-color-success-muted);
-        --zyr-c-soft-hover-bg: var(--zyra-color-success-muted);
-        --zyr-c-soft-hover-border: var(--zyra-color-success);
+        --zyr-c-solid-border: var(--zyra-color-success-foreground);
+        --zyr-c-soft-text: var(--zyra-color-success-foreground);
+        --zyr-c-soft-border: var(--zyra-color-success-border-color);
+        --zyr-c-soft-bg: var(--zyra-color-success-subtle);
+        --zyr-c-soft-hover-bg: var(--zyra-color-success-subtle);
+        --zyr-c-soft-hover-border: var(--zyra-color-success-foreground);
     }
 
     &--color-warning {
-        --zyr-c-solid-bg: var(--zyra-color-warning);
-        --zyr-c-solid-hover-bg: var(--zyra-color-warning);
+        --zyr-c-solid-bg: var(--zyra-color-warning-foreground);
+        --zyr-c-solid-hover-bg: var(--zyra-color-warning-foreground);
         --zyr-c-solid-text: var(--zyra-color-on-warning);
-        --zyr-c-solid-border: var(--zyra-color-warning);
-        --zyr-c-soft-text: var(--zyra-color-warning);
-        --zyr-c-soft-border: var(--zyra-color-warning-border);
-        --zyr-c-soft-bg: var(--zyra-color-warning-muted);
-        --zyr-c-soft-hover-bg: var(--zyra-color-warning-muted);
-        --zyr-c-soft-hover-border: var(--zyra-color-warning);
+        --zyr-c-solid-border: var(--zyra-color-warning-foreground);
+        --zyr-c-soft-text: var(--zyra-color-warning-foreground);
+        --zyr-c-soft-border: var(--zyra-color-warning-border-color);
+        --zyr-c-soft-bg: var(--zyra-color-warning-subtle);
+        --zyr-c-soft-hover-bg: var(--zyra-color-warning-subtle);
+        --zyr-c-soft-hover-border: var(--zyra-color-warning-foreground);
     }
 
     &--color-danger {
-        --zyr-c-solid-bg: var(--zyra-color-danger);
-        --zyr-c-solid-hover-bg: var(--zyra-color-danger);
+        --zyr-c-solid-bg: var(--zyra-color-danger-foreground);
+        --zyr-c-solid-hover-bg: var(--zyra-color-danger-foreground);
         --zyr-c-solid-text: var(--zyra-color-on-danger);
-        --zyr-c-solid-border: var(--zyra-color-danger);
-        --zyr-c-soft-text: var(--zyra-color-danger);
-        --zyr-c-soft-border: var(--zyra-color-danger-border);
-        --zyr-c-soft-bg: var(--zyra-color-danger-muted);
-        --zyr-c-soft-hover-bg: var(--zyra-color-danger-muted);
-        --zyr-c-soft-hover-border: var(--zyra-color-danger);
+        --zyr-c-solid-border: var(--zyra-color-danger-foreground);
+        --zyr-c-soft-text: var(--zyra-color-danger-foreground);
+        --zyr-c-soft-border: var(--zyra-color-danger-border-color);
+        --zyr-c-soft-bg: var(--zyra-color-danger-subtle);
+        --zyr-c-soft-hover-bg: var(--zyra-color-danger-subtle);
+        --zyr-c-soft-hover-border: var(--zyra-color-danger-foreground);
     }
 
     &--color-info {
-        --zyr-c-solid-bg: var(--zyra-color-info);
-        --zyr-c-solid-hover-bg: var(--zyra-color-info);
+        --zyr-c-solid-bg: var(--zyra-color-info-foreground);
+        --zyr-c-solid-hover-bg: var(--zyra-color-info-foreground);
         --zyr-c-solid-text: var(--zyra-color-on-info);
-        --zyr-c-solid-border: var(--zyra-color-info);
-        --zyr-c-soft-text: var(--zyra-color-info);
-        --zyr-c-soft-border: var(--zyra-color-info-border);
-        --zyr-c-soft-bg: var(--zyra-color-info-muted);
-        --zyr-c-soft-hover-bg: var(--zyra-color-info-muted);
-        --zyr-c-soft-hover-border: var(--zyra-color-info);
+        --zyr-c-solid-border: var(--zyra-color-info-foreground);
+        --zyr-c-soft-text: var(--zyra-color-info-foreground);
+        --zyr-c-soft-border: var(--zyra-color-info-border-color);
+        --zyr-c-soft-bg: var(--zyra-color-info-subtle);
+        --zyr-c-soft-hover-bg: var(--zyra-color-info-subtle);
+        --zyr-c-soft-hover-border: var(--zyra-color-info-foreground);
     }
 
     // ── Radius overrides ──────────────────────────────────────
@@ -180,7 +180,7 @@
 
     // ── Selected / pressed state ──────────────────────────────
     &--selected {
-        box-shadow: inset 0 0 0 2px var(--zyr-c-solid-bg, var(--zyra-color-accent));
+        box-shadow: inset 0 0 0 2px var(--zyr-c-solid-bg, var(--zyra-color-primary));
     }
 
     &--loading { cursor: wait; pointer-events: none; }

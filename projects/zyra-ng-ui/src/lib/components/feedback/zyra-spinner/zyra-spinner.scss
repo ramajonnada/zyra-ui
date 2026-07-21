@@ -11,8 +11,8 @@
     &--lg { border-width: 3px; }
 
     &--accent {
-        border-color: var(--zyra-color-accent-muted);
-        border-top-color: var(--zyra-color-accent);
+        border-color: var(--zyra-color-primary-subtle);
+        border-top-color: var(--zyra-color-primary);
     }
 
     &--accent-2 {
@@ -27,7 +27,7 @@
 
     &--current {
         border-color: transparent;
-        border-top-color: currentColor;
+        border-top-color: currentcolor;
         opacity: 0.85;
     }
 }

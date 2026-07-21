@@ -10,7 +10,7 @@
 }
 
 .zyr-breadcrumb__link {
-    color: var(--zyra-color-text-muted);
+    color: var(--zyra-color-foreground-muted);
     text-decoration: none;
     white-space: nowrap;
     overflow: hidden;
@@ -18,17 +18,17 @@
     transition: color var(--zyra-transition-base);
 
     &:hover {
-        color: var(--zyra-color-accent);
+        color: var(--zyra-color-primary);
         text-decoration: underline;
     }
 
     &--current {
-        color: var(--zyra-color-text);
+        color: var(--zyra-color-foreground);
         font-weight: 500;
         pointer-events: none;
 
         &:hover {
-            color: var(--zyra-color-text);
+            color: var(--zyra-color-foreground);
             text-decoration: none;
         }
     }
@@ -36,7 +36,7 @@
 
 .zyr-breadcrumb__sep {
     display: inline-flex;
-    color: var(--zyra-color-text-dim);
+    color: var(--zyra-color-foreground-subtle);
     flex-shrink: 0;
 }
 

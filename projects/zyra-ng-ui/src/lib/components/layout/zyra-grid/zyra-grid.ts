@@ -19,6 +19,19 @@ function columnsToTemplate(value: GridColumnsValue, minTrackSize: string): strin
     return typeof value === 'number' ? `repeat(${value}, minmax(0, 1fr))` : value;
 }
 
+// `autoFlow="column"` (or a row/column count too small for the item count)
+// makes the browser generate implicit tracks beyond the explicit template.
+// Without a matching `grid-auto-*` size, those implicit tracks default to
+// `auto` (content-sized) instead of the explicit tracks' equal `1fr` share,
+// so overflow items collapse to their own content width. Only number and
+// auto-fit/auto-fill inputs map onto a single equal-share track — a custom
+// template string is left alone since there's no way to infer its intent.
+function implicitTrackSize(value: GridColumnsValue, minTrackSize: string): string | undefined {
+    if (value === 'auto-fit' || value === 'auto-fill') return `minmax(${minTrackSize}, 1fr)`;
+    if (typeof value === 'number') return 'minmax(0, 1fr)';
+    return undefined;
+}
+
 @Component({
     selector: 'zyra-grid',
     standalone: true,
@@ -94,6 +107,16 @@ export class ZyraGrid {
         const rowGap = this.rowGap();
         const areas = this.areas();
 
+        const gridAutoColumns = isResponsiveCols
+            ? 'minmax(0, 1fr)'
+            : implicitTrackSize(columns as GridColumnsValue, minTrackSize);
+        const gridAutoRows =
+            rows === undefined
+                ? undefined
+                : isResponsiveRows
+                  ? 'minmax(0, 1fr)'
+                  : implicitTrackSize(rows as GridColumnsValue, minTrackSize);
+
         return {
             display: 'grid',
             // When responsive, the resolved property is left to the stylesheet
@@ -111,6 +134,11 @@ export class ZyraGrid {
                   }
                 : {}),
             ...(areas !== undefined ? { 'grid-template-areas': areas.map((row) => `"${row}"`).join(' ') } : {}),
+            // Implicit tracks created by autoFlow (or an item count that
+            // outgrows the explicit template) match the explicit tracks'
+            // equal-share sizing instead of the browser's `auto` default.
+            ...(gridAutoColumns !== undefined ? { 'grid-auto-columns': gridAutoColumns } : {}),
+            ...(gridAutoRows !== undefined ? { 'grid-auto-rows': gridAutoRows } : {}),
             'grid-auto-flow': this.autoFlow(),
             'justify-items': this.justifyItems(),
             'align-items': this.alignItems(),

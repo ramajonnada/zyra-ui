@@ -281,6 +281,26 @@ brown (`#1a0e00`) that passes AA. Always use it.
 --zyra-color-my-comp-bg: var(--zyra-color-surface-inset);
 ```
 
+### Rule T-7 · Run the raw-token self-check before committing a new/touched component
+
+A full-library audit (2026-07-20) found raw-token usage in **30 of 56 components** —
+mostly components nobody had touched since they were first written. `new-component.ps1`
+scaffolds correctly, but nothing enforces the rule on every subsequent edit. Before
+committing, grep the component's own `.scss` file(s):
+
+```bash
+grep -nE "var\(--zyra-color-(accent|text|border|bg-app|bg-panel|bg-surface|bg-raised|card-bg|card-border|card-section-bg|danger|success|warning|info|text-muted|text-dim|text-inverse|border-strong)\)" \
+  path/to/zyra-my-component.scss
+```
+
+Any match is a bug — replace it with the Tier 2/3 equivalent (see the quick reference
+table in §7). Known accepted exceptions that will still match and are **not** bugs:
+`--zyra-color-accent-secondary`/`-tertiary` (no Tier 2 alias exists — same status as
+Badge's `purple` variant), and a small set of tokens deliberately tuned per-theme with no
+separate Tier 3 name (`--zyra-card-shadow`, `--zyra-color-toast-bg`/`-border`,
+`--zyra-color-tooltip-*`, `--zyra-color-btn-primary-text`) — these are documented inline
+in `_tokens-components.scss` where they're referenced.
+
 ---
 
 ## 3. Cross-theme rule — always test all 5 themes
@@ -341,6 +361,26 @@ templates, in any documentation. Never call dimension "Tier 0" or "Tier 2."
 `docs/ARCHITECTURE.md` has a mermaid diagram that lists components. When adding components,
 update the diagram so it reflects the current component tree. Stale counts mislead contributors.
 
+### Rule D-4 · Every component with color tokens needs a "Tokens" section on its doc page
+
+There are no per-component doc page files — every component's page is one entry in the
+`UI_COMPONENT_SHOWCASE` array in
+`projects/zyra-ui/src/app/pages/ui-components/ui-components.data.ts`, rendered by the single
+shared `ui-component-detail.html`/`.ts`. To document a component's tokens:
+
+1. Add a `tokens: TokenEntry[]` array to that component's entry (shape: `{ name, variable,
+   defaultValue, description }`) — the shared template renders it automatically after the
+   API props table. No HTML/template changes needed.
+2. Only list Tier 2 semantic or Tier 3 component tokens the component's SCSS actually reads
+   — verify by grepping the real `.scss` file first. Never list a raw per-theme token, and
+   never list a token whose default you're guessing at (read `_tokens-components.scss` for
+   the real current value).
+3. If a token has no real fix available yet (e.g. `accent-secondary`/`-tertiary` with no
+   Tier 2 alias), leave it **out** of the doc entirely rather than showing something
+   inaccurate or forbidden — same treatment as Badge's `purple` variant.
+4. Components with zero color tokens (pure layout primitives like `zyra-aspect-ratio`,
+   `zyra-stack`) don't need a `tokens` array at all — the field is optional.
+
 ---
 
 ## 6. What never to do — summary checklist
@@ -353,12 +393,15 @@ Before committing any SCSS change to the library, confirm:
 - [ ] `on-*` tokens used for text on filled semantic backgrounds (especially warning)
 - [ ] All 5 themes verified visually
 - [ ] Any new color adds a Tier 3 stub to `_tokens-components.scss` first
+- [ ] Ran the Rule T-7 raw-token grep against the component's own `.scss` file(s)
 
 Before committing any doc/site change, confirm:
 
 - [ ] Token examples shown to consumers are Tier 2 semantic, not raw internal
 - [ ] Tier numbers match `docs/THEME_SYSTEM.md` exactly
 - [ ] No new dead-code pages added without a route entry
+- [ ] New or newly-fixed components have a `tokens` array on their `ui-components.data.ts`
+      entry (Rule D-4), sourced from the real `.scss` file, not guessed
 
 ---
 

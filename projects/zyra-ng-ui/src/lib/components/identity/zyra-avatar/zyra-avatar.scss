@@ -34,7 +34,7 @@
     }
 
     &--warm {
-        background: linear-gradient(135deg, var(--zyra-color-warning), var(--zyra-color-avatar-warm-end));
+        background: linear-gradient(135deg, var(--zyra-color-warning-foreground), var(--zyra-color-avatar-warm-end));
         color: var(--zyra-color-avatar-contrast);
     }
 
@@ -65,10 +65,10 @@
         min-width: 7px;
         min-height: 7px;
         border-radius: 50%;
-        border: 2px solid var(--zyra-color-bg-panel);
+        border: 2px solid var(--zyra-color-background-elevated);
         transition: background var(--zyra-transition-slow);
 
-        &--online { background: var(--zyra-color-success); }
-        &--offline { background: var(--zyra-color-text-dim); }
+        &--online { background: var(--zyra-color-success-foreground); }
+        &--offline { background: var(--zyra-color-foreground-subtle); }
     }
 }

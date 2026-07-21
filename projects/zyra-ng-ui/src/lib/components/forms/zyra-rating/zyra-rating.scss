@@ -15,18 +15,18 @@
         border: none;
         padding: 2px;
         cursor: pointer;
-        color: var(--zyra-color-border-strong);
+        color: var(--zyra-color-border-strong-color);
         transition: color var(--zyra-transition-fast), transform var(--zyra-transition-fast);
 
         &:focus { outline: none; }
         &:focus-visible {
-            outline: 2px solid var(--zyra-color-accent);
+            outline: 2px solid var(--zyra-color-primary);
             outline-offset: 2px;
             border-radius: var(--zyra-radius-xs);
         }
 
         &--filled {
-            color: var(--zyra-color-warning);
+            color: var(--zyra-color-warning-foreground);
         }
     }
 

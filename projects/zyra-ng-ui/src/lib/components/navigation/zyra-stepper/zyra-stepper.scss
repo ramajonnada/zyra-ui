@@ -30,9 +30,9 @@
         width: 28px;
         height: 28px;
         border-radius: 50%;
-        border: 1px solid var(--zyra-color-border);
+        border: 1px solid var(--zyra-color-border-color);
         background: var(--zyra-color-surface-inset);
-        color: var(--zyra-color-text-muted);
+        color: var(--zyra-color-foreground-muted);
         font-family: var(--zyra-font-mono);
         font-size: 12px;
         font-weight: 600;
@@ -43,20 +43,20 @@
             border-color var(--zyra-transition-base);
 
         &:focus-visible {
-            outline: 2px solid var(--zyra-color-accent);
+            outline: 2px solid var(--zyra-ring);
             outline-offset: 2px;
         }
 
         &--active {
-            background: var(--zyra-color-accent-muted);
-            color: var(--zyra-color-accent);
-            border-color: var(--zyra-color-accent);
+            background: var(--zyra-color-primary-subtle);
+            color: var(--zyra-color-primary);
+            border-color: var(--zyra-color-primary);
         }
 
         &--completed {
-            background: var(--zyra-color-accent);
-            color: var(--zyra-color-text-inverse);
-            border-color: var(--zyra-color-accent);
+            background: var(--zyra-color-primary);
+            color: var(--zyra-color-on-brand);
+            border-color: var(--zyra-color-primary);
         }
 
         &--disabled {
@@ -75,13 +75,13 @@
     &__label {
         font-size: 13px;
         font-weight: 500;
-        color: var(--zyra-color-text);
+        color: var(--zyra-color-foreground);
         white-space: nowrap;
     }
 
     &__description {
         font-size: 12px;
-        color: var(--zyra-color-text-muted);
+        color: var(--zyra-color-foreground-muted);
         white-space: nowrap;
     }
 
@@ -90,13 +90,13 @@
         height: 1px;
         min-width: 20px;
         margin: 0 12px;
-        background: var(--zyra-color-border);
+        background: var(--zyra-color-border-color);
     }
 
     &__body {
         font-size: 14px;
         line-height: 1.7;
-        color: var(--zyra-color-text-muted);
+        color: var(--zyra-color-foreground-muted);
     }
 
     // ── Vertical orientation ──────────────────────────────────

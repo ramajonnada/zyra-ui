@@ -9,11 +9,11 @@
     border: none;
     outline: none;
     font-family: var(--zyra-font-body);
-    color: var(--zyra-color-text);
+    color: var(--zyra-color-foreground);
     line-height: 1.6;
     transition: color var(--zyra-transition-slow);
 
-    &::placeholder { color: var(--zyra-color-text-dim); }
+    &::placeholder { color: var(--zyra-color-foreground-subtle); }
 
     &--sm { font-size: 12.5px; padding: 0; }
     &--md { font-size: 13.5px; padding: 0; }
@@ -28,7 +28,7 @@
 
     &:-webkit-autofill {
         -webkit-box-shadow: 0 0 0 1000px transparent inset;
-        -webkit-text-fill-color: var(--zyra-color-text);
+        -webkit-text-fill-color: var(--zyra-color-foreground);
         transition: background-color 5000s ease-in-out 0s;
     }
 }

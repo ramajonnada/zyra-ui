@@ -6,20 +6,39 @@
 
     &--wrap { flex-wrap: wrap; }
 
-    // Equalizes button widths (flex-basis 0 + equal grow spreads the combined
-    // content width evenly). --full additionally stretches the group itself.
-    &--full,
+    // Equalizes button widths. A shrink-to-fit flex container has no free
+    // space to redistribute via `flex: 1 1 0`, so items just render at their
+    // own content width — CSS Grid's `1fr` tracks don't have that limitation:
+    // in an auto-sized grid, equal-`fr` tracks resolve to the widest track's
+    // max-content size, giving true equal columns without stretching the
+    // group. Vertical orientation is a single grid column, which already
+    // auto-sizes every row to the widest item's width.
     &--equal {
+        display: inline-grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+
+        ::ng-deep > zyra-button {
+            min-width: 0;
+
+            .zyr-btn { width: 100%; }
+        }
+
+        &.zyr-btn-group--vertical {
+            grid-auto-flow: row;
+        }
+    }
+
+    // --full additionally stretches the group to its container's width.
+    &--full {
+        display: flex;
+        width: 100%;
+
         ::ng-deep > zyra-button {
             flex: 1 1 0;
 
             .zyr-btn { width: 100%; }
         }
-    }
-
-    &--full {
-        display: flex;
-        width: 100%;
     }
 
     // ── Separated (default): normal spacing, buttons keep their own radius ──
@@ -31,6 +50,26 @@
     }
 
     // ── Attached: segmented control, no gap, joined borders ──────────────
+    // Uneven button widths read as broken in a segmented control, so attached
+    // groups default to equal-width sizing (same grid technique as --equal
+    // above) unless --equal/--full already opted into their own sizing —
+    // those win via the higher specificity of the :not() guards below.
+    &--attached:not(.zyr-btn-group--equal):not(.zyr-btn-group--full) {
+        display: inline-grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+
+        ::ng-deep > zyra-button {
+            min-width: 0;
+
+            .zyr-btn { width: 100%; }
+        }
+
+        &.zyr-btn-group--vertical {
+            grid-auto-flow: row;
+        }
+    }
+
     &--attached {
         gap: 0;
 

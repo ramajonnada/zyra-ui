@@ -7,6 +7,20 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [3.4.4] — 2026-07-20
+
+### Added
+
+- New semantic token `--zyra-color-surface-raised`, for surfaces that sit visually above the default surface (e.g. hover backgrounds), replacing direct reaches into the raw per-theme `--zyra-color-bg-raised`.
+- New Tier 3 component tokens for `zyra-chip` (full color-variant set, selected/selectable states) and `zyra-code-block` (background, border, header background) — both previously had no dedicated tokens at all.
+
+### Fixed
+
+- Full audit of every component's SCSS against the token-tier rules found and fixed raw per-theme token usage (bypassing the semantic re-theming layer) across ~30 components, including `zyra-button` (its color-modifier system), `zyra-chip`, `zyra-code-block`, `zyra-toast`, `zyra-spinner`, `zyra-table`, `zyra-tree-view`, `zyra-calendar`, `zyra-carousel`, `zyra-avatar`, `zyra-accordion`, `zyra-divider`, `zyra-dropdown-menu`, `zyra-header`, `zyra-pagination`, `zyra-drawer`, `zyra-popover`, `zyra-breadcrumb`, `zyra-theme-switch`, `zyra-timeline`, `zyra-stepper`, `zyra-skeleton`, `zyra-modal`, `zyra-rating`, `zyra-select`, `zyra-textarea`, `zyra-clipboard`, and `zyra-scroll-area`. Overriding a semantic token (e.g. `--zyra-color-primary`, `--zyra-color-foreground`) now reliably affects every component that's supposed to follow it.
+- `--zyra-color-theme-switch-bg-hover` now correctly points at `--zyra-color-surface-raised` instead of the raw `--zyra-color-bg-raised`.
+
+Components intentionally left unchanged: a handful of raw-token reaches remain by design — `accent-secondary`/`accent-tertiary` (Avatar gradients, Spinner's second color, Chip/Badge `purple`) have no Tier 2 semantic alias, and `zyra-toast`/`zyra-tooltip`/`zyra-card`'s shadow tokens are deliberately tuned per-theme values consumed directly (documented in `_tokens-components.scss`) — both are pre-existing, intentional patterns, not bugs.
+
 ## [3.4.3] — 2026-07-19
 
 ### Added

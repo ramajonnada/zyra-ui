@@ -34,7 +34,7 @@
     &:hover:not(.zyr-tabs__trigger--disabled) { color: var(--zyra-color-tabs-text-hover); }
 
     &:focus-visible {
-        outline: 2px solid var(--zyra-color-accent);
+        outline: 2px solid var(--zyra-ring);
         outline-offset: -2px;
     }
 
@@ -83,15 +83,15 @@
     border-radius: 4px;
     font-size: 15px;
     line-height: 1;
-    color: var(--zyra-color-text-dim);
+    color: var(--zyra-color-foreground-subtle);
     flex-shrink: 0;
     transition:
         background var(--zyra-transition-fast),
         color var(--zyra-transition-fast);
 
     &:hover {
-        background: color-mix(in srgb, var(--zyra-color-danger) 14%, transparent);
-        color: var(--zyra-color-danger);
+        background: color-mix(in srgb, var(--zyra-color-danger-foreground) 14%, transparent);
+        color: var(--zyra-color-danger-foreground);
     }
 }
 
@@ -146,12 +146,12 @@
             box-shadow var(--zyra-transition-spring);
 
         &:hover:not(.zyr-tabs__trigger--disabled) {
-            background: color-mix(in srgb, var(--zyra-color-text) 7%, transparent);
+            background: color-mix(in srgb, var(--zyra-color-foreground) 7%, transparent);
         }
 
         &.zyr-tabs__trigger--active {
             background: var(--zyra-color-tabs-pill-active-bg);
-            color: var(--zyra-color-text);
+            color: var(--zyra-color-foreground);
             font-weight: 600;
             box-shadow: var(--zyra-tabs-pill-active-shadow);
         }
@@ -184,7 +184,7 @@
         &:last-child { border-right: none; }
 
         &:hover:not(.zyr-tabs__trigger--disabled):not(.zyr-tabs__trigger--active) {
-            background: color-mix(in srgb, var(--zyra-color-accent) 8%, transparent);
+            background: color-mix(in srgb, var(--zyra-color-primary) 8%, transparent);
         }
 
         &.zyr-tabs__trigger--active {

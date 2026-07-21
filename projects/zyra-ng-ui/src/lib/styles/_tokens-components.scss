@@ -13,7 +13,7 @@
 	--zyra-color-btn-secondary-bg: var(--zyra-color-surface-inset);
 	--zyra-color-btn-secondary-text: var(--zyra-color-foreground);
 	--zyra-color-btn-secondary-border: var(--zyra-color-border-color);
-	--zyra-color-btn-secondary-hover-bg: var(--zyra-color-bg-raised);
+	--zyra-color-btn-secondary-hover-bg: var(--zyra-color-surface-raised);
 	--zyra-color-btn-secondary-hover-border: var(--zyra-color-border-hover);
 	--zyra-color-btn-ghost-text: var(--zyra-color-foreground-muted);
 	--zyra-color-btn-ghost-hover-bg: transparent;
@@ -22,7 +22,7 @@
 	--zyra-color-btn-danger-text: var(--zyra-color-danger-foreground);
 	--zyra-color-btn-danger-border: var(--zyra-color-danger-border-color);
 	--zyra-color-btn-danger-hover-bg: var(--zyra-color-danger-foreground);
-	--zyra-color-btn-danger-hover-text: var(--zyra-color-text-inverse);
+	--zyra-color-btn-danger-hover-text: var(--zyra-color-on-danger);
 	--zyra-color-btn-danger-hover-border: var(--zyra-color-danger-foreground);
 	--zyra-color-btn-outline-hover-bg: var(--zyra-color-primary-subtle);
 	--zyra-color-btn-outline-hover-border: var(--zyra-color-primary);
@@ -76,6 +76,9 @@
 	--zyra-drawer-footer-gap: var(--zyra-space-2);
 	--zyra-drawer-shadow: var(--zyra-shadow-md);
 
+	// ── Modal ────────────────────────────────────────────────────────────
+	--zyra-modal-shadow: var(--zyra-shadow-md);
+
 	// ── Tabs ─────────────────────────────────────────────────────────────
 	--zyra-color-tabs-text: var(--zyra-color-foreground-muted);
 	--zyra-color-tabs-text-hover: var(--zyra-color-foreground);
@@ -99,7 +102,7 @@
 	--zyra-checkbox-focus-shadow: var(--zyra-input-shadow-focus);
 	--zyra-color-checkbox-checked-bg: var(--zyra-color-primary);
 	--zyra-color-checkbox-checked-border: var(--zyra-color-primary);
-	--zyra-color-checkbox-mark: var(--zyra-color-text-inverse);
+	--zyra-color-checkbox-mark: var(--zyra-color-foreground-inverse);
 
 	// ── Radio ────────────────────────────────────────────────────────────
 	--zyra-color-radio-bg: var(--zyra-color-input-bg);
@@ -113,6 +116,7 @@
 	--zyra-color-switch-track-off: var(--zyra-color-border-strong-color);
 	--zyra-color-switch-track-on:  var(--zyra-color-primary);
 	--zyra-switch-ring:            var(--zyra-color-primary-subtle);
+
 	// foreground-inverse resolves to white on dark themes, dark on light —
 	// correct "lifted knob" appearance without hardcoding #ffffff.
 	--zyra-color-switch-thumb:     var(--zyra-color-foreground-inverse);
@@ -142,6 +146,13 @@
 	--zyra-field-success-shadow: 0 0 0 3px var(--zyra-color-success-subtle);
 	--zyra-color-field-error-color: var(--zyra-color-danger-foreground);
 	--zyra-field-error-shadow: 0 0 0 3px var(--zyra-color-danger-subtle);
+
+	// ── Input ────────────────────────────────────────────────────────────
+	// Field chrome (bg/border/focus) is shared with Form-field's --zyra-color-field-*
+	// tokens above — these two are specific to the text/placeholder color of
+	// the input element itself.
+	--zyra-color-input-text: var(--zyra-color-foreground);
+	--zyra-color-input-placeholder: var(--zyra-color-foreground-subtle);
 
 	// ── Select ───────────────────────────────────────────────────────────
 	--zyra-color-select-text: var(--zyra-color-foreground);
@@ -187,12 +198,75 @@
 	// Inset top-edge highlight — a subtle 1 px alpha line that lifts the card
 	// visually. Uses foreground-inverse (≈ white on dark, dark on light) so it
 	// adapts per-theme. Themes can override to transparent for flat surfaces.
-	--zyra-card-inset-highlight:       color-mix(in srgb, var(--zyra-color-foreground-inverse) 5%, transparent);
-	--zyra-card-inset-highlight-hover: color-mix(in srgb, var(--zyra-color-foreground-inverse) 8%, transparent);
+	--zyra-card-inset-highlight:        color-mix(in srgb, var(--zyra-color-foreground-inverse) 5%, transparent);
+	--zyra-card-inset-highlight-hover:  color-mix(in srgb, var(--zyra-color-foreground-inverse) 8%, transparent);
+	--zyra-card-inset-highlight-active: color-mix(in srgb, var(--zyra-color-foreground-inverse) 4%, transparent);
 	--zyra-color-glow-border: rgba(var(--zyra-color-glow), 0.46);
 	--zyra-color-glow-shadow: 0 24px 70px rgba(var(--zyra-color-glow), 0.18);
 	--zyra-color-glow-shadow-strong: 0 18px 46px rgba(var(--zyra-color-glow), 0.26);
 	--zyra-color-glow-surface: rgba(var(--zyra-color-glow), 0.1);
+
+	// ── Badge ────────────────────────────────────────────────────────────
+	--zyra-color-badge-default-bg: var(--zyra-color-surface-inset);
+	--zyra-color-badge-default-text: var(--zyra-color-foreground-muted);
+	--zyra-color-badge-default-border: var(--zyra-color-border-color);
+	--zyra-color-badge-success-bg: var(--zyra-color-success-subtle);
+	--zyra-color-badge-success-text: var(--zyra-color-success-foreground);
+	--zyra-color-badge-success-border: var(--zyra-color-success-border-color);
+	--zyra-color-badge-warning-bg: var(--zyra-color-warning-subtle);
+	--zyra-color-badge-warning-text: var(--zyra-color-warning-foreground);
+	--zyra-color-badge-warning-border: var(--zyra-color-warning-border-color);
+	--zyra-color-badge-danger-bg: var(--zyra-color-danger-subtle);
+	--zyra-color-badge-danger-text: var(--zyra-color-danger-foreground);
+	--zyra-color-badge-danger-border: var(--zyra-color-danger-border-color);
+	--zyra-color-badge-info-bg: var(--zyra-color-info-subtle);
+	--zyra-color-badge-info-text: var(--zyra-color-info-foreground);
+	--zyra-color-badge-info-border: var(--zyra-color-info-border-color);
+	--zyra-color-badge-purple-bg: var(--zyra-color-purple-subtle);
+	--zyra-color-badge-purple-text: var(--zyra-color-purple-foreground);
+	--zyra-color-badge-purple-border: var(--zyra-color-purple-border-color);
+
+	// ── Alert ────────────────────────────────────────────────────────────
+	// One "-color" var per variant drives both the title/content/dismiss
+	// text color and the icon fill background (zyra-alert.scss reuses it for
+	// both) — the icon's own foreground uses the matching on-* token so it
+	// always passes contrast against that fill, per Rule T-5.
+	--zyra-color-alert-success-bg: var(--zyra-color-success-subtle);
+	--zyra-color-alert-success-border: var(--zyra-color-success-border-color);
+	--zyra-color-alert-success-color: var(--zyra-color-success-foreground);
+	--zyra-color-alert-warning-bg: var(--zyra-color-warning-subtle);
+	--zyra-color-alert-warning-border: var(--zyra-color-warning-border-color);
+	--zyra-color-alert-warning-color: var(--zyra-color-warning-foreground);
+	--zyra-color-alert-danger-bg: var(--zyra-color-danger-subtle);
+	--zyra-color-alert-danger-border: var(--zyra-color-danger-border-color);
+	--zyra-color-alert-danger-color: var(--zyra-color-danger-foreground);
+	--zyra-color-alert-info-bg: var(--zyra-color-info-subtle);
+	--zyra-color-alert-info-border: var(--zyra-color-info-border-color);
+	--zyra-color-alert-info-color: var(--zyra-color-info-foreground);
+
+	// ── Chip ─────────────────────────────────────────────────────────────
+	--zyra-color-chip-default-bg: var(--zyra-color-surface-inset);
+	--zyra-color-chip-default-text: var(--zyra-color-foreground-muted);
+	--zyra-color-chip-default-border: var(--zyra-color-border-color);
+	--zyra-color-chip-success-bg: var(--zyra-color-success-subtle);
+	--zyra-color-chip-success-text: var(--zyra-color-success-foreground);
+	--zyra-color-chip-success-border: var(--zyra-color-success-border-color);
+	--zyra-color-chip-warning-bg: var(--zyra-color-warning-subtle);
+	--zyra-color-chip-warning-text: var(--zyra-color-warning-foreground);
+	--zyra-color-chip-warning-border: var(--zyra-color-warning-border-color);
+	--zyra-color-chip-danger-bg: var(--zyra-color-danger-subtle);
+	--zyra-color-chip-danger-text: var(--zyra-color-danger-foreground);
+	--zyra-color-chip-danger-border: var(--zyra-color-danger-border-color);
+	--zyra-color-chip-info-bg: var(--zyra-color-info-subtle);
+	--zyra-color-chip-info-text: var(--zyra-color-info-foreground);
+	--zyra-color-chip-info-border: var(--zyra-color-info-border-color);
+	--zyra-color-chip-selected-bg: var(--zyra-color-primary-subtle);
+	--zyra-color-chip-selected-text: var(--zyra-color-primary);
+	--zyra-color-chip-selected-border: var(--zyra-color-primary);
+	--zyra-color-chip-selectable-ring: var(--zyra-color-primary-subtle);
+	--zyra-color-chip-purple-bg: var(--zyra-color-purple-subtle);
+	--zyra-color-chip-purple-text: var(--zyra-color-purple-foreground);
+	--zyra-color-chip-purple-border: var(--zyra-color-purple-border-color);
 
 	// ── Avatar ───────────────────────────────────────────────────────────
 	--zyra-color-avatar-primary-end: var(--zyra-color-accent-secondary);
@@ -202,6 +276,12 @@
 	--zyra-color-avatar-contrast: var(--zyra-color-on-brand);
 
 	// ── Code block ───────────────────────────────────────────────────────
+	// --zyra-color-surface-code (Tier 2) is its own tuned-per-theme value
+	// (deeper than --zyra-color-surface-inset) — routed through the semantic
+	// layer so overrides of the Tier 2 token still reach this component.
+	--zyra-color-code-block-bg: var(--zyra-color-surface-code);
+	--zyra-color-code-block-border: var(--zyra-color-primary-border);
+	--zyra-color-code-block-header-bg: var(--zyra-color-surface-inset);
 	--zyra-color-code-keyword: var(--zyra-color-accent-secondary);
 	--zyra-color-code-tag: var(--zyra-color-primary);
 	--zyra-color-code-attr: var(--zyra-color-accent-tertiary);
@@ -228,6 +308,9 @@
 	// ── Table ────────────────────────────────────────────────────────────
 	--zyra-color-table-row-hover-bg: var(--zyra-color-surface-inset);
 
+	// ── Tree View ────────────────────────────────────────────────────────
+	--zyra-color-tree-view-hover-bg: var(--zyra-color-surface-inset);
+
 	// ════════════════════════════════════════════════════════════════════
 	// Feedback
 	// ════════════════════════════════════════════════════════════════════
@@ -241,6 +324,26 @@
 	--zyra-color-progress-warning: var(--zyra-color-warning-foreground);
 	--zyra-color-progress-danger: var(--zyra-color-danger-foreground);
 	--zyra-color-progress-info: var(--zyra-color-info-foreground);
+
+	// ── Toast ────────────────────────────────────────────────────────────
+	// --zyra-color-toast-bg / -border are consumed directly from the theme
+	// files (deliberately tuned per-theme, near-opaque dark, not the same as
+	// --zyra-color-surface) — same "Tier 3 contract resolved per theme"
+	// pattern as --zyra-card-shadow; no separate alias needed here.
+	--zyra-color-toast-default-icon-bg: var(--zyra-color-surface-inset);
+	--zyra-color-toast-default-icon-text: var(--zyra-color-foreground);
+	--zyra-color-toast-success-icon-bg: var(--zyra-color-success-foreground);
+	--zyra-color-toast-success-icon-text: var(--zyra-color-on-success);
+	--zyra-color-toast-danger-icon-bg: var(--zyra-color-danger-foreground);
+	--zyra-color-toast-danger-icon-text: var(--zyra-color-on-danger);
+	--zyra-color-toast-warning-icon-bg: var(--zyra-color-warning-foreground);
+	--zyra-color-toast-warning-icon-text: var(--zyra-color-on-warning);
+	--zyra-color-toast-info-icon-bg: var(--zyra-color-info-foreground);
+	--zyra-color-toast-info-icon-text: var(--zyra-color-on-info);
+
+	// ── Tooltip ──────────────────────────────────────────────────────────
+	// --zyra-color-tooltip-bg / -text / -border / --zyra-tooltip-shadow are
+	// likewise consumed directly from the theme files — same pattern.
 
 	// ════════════════════════════════════════════════════════════════════
 	// Overlay (generic — reusable scrim for Drawer, Modal, Command Palette,
@@ -261,7 +364,7 @@
 
 	// ── ZyraThemeSwitch ──────────────────────────────────────────────────
 	--zyra-color-theme-switch-bg: var(--zyra-color-surface-inset);
-	--zyra-color-theme-switch-bg-hover: var(--zyra-color-bg-raised);
+	--zyra-color-theme-switch-bg-hover: var(--zyra-color-surface-raised);
 	--zyra-color-theme-switch-text: var(--zyra-color-foreground);
 	--zyra-color-theme-switch-border: var(--zyra-color-border-color);
 	--zyra-color-theme-switch-panel-bg: var(--zyra-color-surface);

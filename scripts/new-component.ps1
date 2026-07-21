@@ -4,7 +4,8 @@
 
 .DESCRIPTION
     Creates the 4 component files (.ts, .html, .scss, .spec.ts), adds the
-    public-api.ts export, and inserts CSS token stubs into both theme files.
+    public-api.ts export, and inserts a Tier 3 token stub into
+    _tokens-components.scss.
 
 .PARAMETER Name
     Kebab-case component name WITHOUT the "zyra-" prefix.
@@ -272,6 +273,21 @@ Write-Host "  3. Adjust the --zyra-color-$Name-* token stub in _tokens-component
 Write-Host "     if the defaults (surface-inset/foreground/border-color) aren't right"
 Write-Host "  4. Style with real token values in           $fullName.scss"
 Write-Host "  5. Run:  ng build zyra-ng-ui"
+Write-Host ""
+Write-Host "MANDATORY token-tier rules (see CLAUDE.md) — verify before committing:" -ForegroundColor Yellow
+Write-Host "  - Never read a raw per-theme token directly (--zyra-color-accent, -text," -ForegroundColor Yellow
+Write-Host "    -border, -bg-app/panel/surface/raised, bare -success/-warning/-danger/-info," -ForegroundColor Yellow
+Write-Host "    -text-inverse). Use the Tier 2/3 alias instead. Quick self-check:" -ForegroundColor Yellow
+Write-Host "      grep -nE ""var\(--zyra-color-(accent|text|border|bg-app|bg-panel|bg-surface|" -ForegroundColor DarkGray
+Write-Host "      bg-raised|card-bg|card-border|card-section-bg|danger|success|warning|info|" -ForegroundColor DarkGray
+Write-Host "      text-muted|text-dim|text-inverse|border-strong)\)"" $fullName.scss" -ForegroundColor DarkGray
+Write-Host "  - Never reference another component's Tier 3 token (e.g. a new component" -ForegroundColor Yellow
+Write-Host "    must NOT use --zyra-color-sidebar-hover-bg) — add your own stub instead." -ForegroundColor Yellow
+Write-Host "  - No hardcoded #hex / rgba() color values — tokens only." -ForegroundColor Yellow
+Write-Host "  - Add a 'Tokens' entry for this component in:" -ForegroundColor Yellow
+Write-Host "      projects/zyra-ui/src/app/pages/ui-components/ui-components.data.ts" -ForegroundColor Yellow
+Write-Host "    (add a 'tokens: TokenEntry[]' array to its UiComponentShowcaseCard entry —" -ForegroundColor Yellow
+Write-Host "    the shared doc-page template renders it automatically, no HTML changes needed)." -ForegroundColor Yellow
 Write-Host ""
 Write-Host "Tip: after adding inputs/signals, regenerate the spec:" -ForegroundColor DarkCyan
 Write-Host "  node scripts/gen-spec.js projects/zyra-ng-ui/src/lib/components/$fullName/$fullName.ts --force"

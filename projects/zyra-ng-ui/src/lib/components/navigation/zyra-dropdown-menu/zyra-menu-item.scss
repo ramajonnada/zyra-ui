@@ -6,7 +6,7 @@
     border: none;
     border-radius: var(--zyra-radius-sm);
     background: transparent;
-    color: var(--zyra-color-text);
+    color: var(--zyra-color-foreground);
     font-family: var(--zyra-font-body);
     font-size: 13.5px;
     text-align: left;
@@ -16,20 +16,20 @@
         color var(--zyra-transition-fast);
 
     &:hover:not(:disabled) {
-        background: color-mix(in srgb, var(--zyra-color-accent) 8%, transparent);
+        background: color-mix(in srgb, var(--zyra-color-primary) 8%, transparent);
     }
 
     &:disabled {
-        color: var(--zyra-color-text-dim);
+        color: var(--zyra-color-foreground-subtle);
         cursor: not-allowed;
         opacity: 0.6;
     }
 
     &--danger {
-        color: var(--zyra-color-danger);
+        color: var(--zyra-color-danger-foreground);
 
         &:hover:not(:disabled) {
-            background: color-mix(in srgb, var(--zyra-color-danger) 10%, transparent);
+            background: color-mix(in srgb, var(--zyra-color-danger-foreground) 10%, transparent);
         }
     }
 }

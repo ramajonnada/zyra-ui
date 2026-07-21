@@ -2154,6 +2154,7 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
 
     grid: {
         renderer: GridRenderer,
+        stageClass: 'column',
         controls: [
             {
                 type: 'button-group',

@@ -1,7 +1,7 @@
 ﻿.zyr-accordion {
-    border: 1px solid var(--zyra-color-border);
+    border: 1px solid var(--zyra-color-border-color);
     border-radius: var(--zyra-radius-md);
     overflow: hidden;
-    background: var(--zyra-color-bg-panel);
+    background: var(--zyra-color-background-elevated);
     transition: background var(--zyra-transition-slow);
 }

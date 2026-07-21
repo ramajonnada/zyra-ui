@@ -15,6 +15,79 @@ export interface ApiProp {
     description: string;
 }
 
+/**
+ * A Tier 2 (semantic) or Tier 3 (component) CSS custom property this
+ * component reads at runtime — never a raw per-theme token (see Rule D-1 /
+ * T-1 in CLAUDE.md). `variable` is the token name; `defaultValue` is what it
+ * points to today, read directly from _tokens-components.scss so it stays
+ * accurate as the token's alias changes.
+ */
+export interface TokenEntry {
+    name: string;
+    variable: string;
+    defaultValue: string;
+    description: string;
+}
+
+// Shared by Select, Multi Select, and Autocomplete — all three read the same
+// --zyra-color-select-* Tier 3 tokens (see _tokens-components.scss).
+const SELECT_TOKENS: readonly TokenEntry[] = [
+    {
+        name: 'Text',
+        variable: '--zyra-color-select-text',
+        defaultValue: 'var(--zyra-color-foreground)',
+        description: 'Color of the selected value / chip text in the trigger.',
+    },
+    {
+        name: 'Placeholder',
+        variable: '--zyra-color-select-placeholder',
+        defaultValue: 'var(--zyra-color-foreground-subtle)',
+        description: 'Color of the placeholder text when nothing is selected.',
+    },
+    {
+        name: 'Icon',
+        variable: '--zyra-color-select-icon',
+        defaultValue: 'var(--zyra-color-foreground-subtle)',
+        description: 'Color of the chevron/caret icon.',
+    },
+    {
+        name: 'Background',
+        variable: '--zyra-color-select-bg',
+        defaultValue: 'var(--zyra-color-input-bg)',
+        description: 'Fill color of the trigger in the outline/filled appearances.',
+    },
+    {
+        name: 'Border',
+        variable: '--zyra-color-select-border',
+        defaultValue: 'var(--zyra-color-input-border)',
+        description: 'Border color of the trigger in its resting state.',
+    },
+    {
+        name: 'Filled background',
+        variable: '--zyra-color-select-filled-bg',
+        defaultValue: 'var(--zyra-color-surface-inset)',
+        description: 'Fill color specific to the filled appearance.',
+    },
+    {
+        name: 'Focus border',
+        variable: '--zyra-color-select-focus-border',
+        defaultValue: 'var(--zyra-color-primary)',
+        description: 'Border/underline color of the trigger when focused or open.',
+    },
+    {
+        name: 'Panel background',
+        variable: '--zyra-color-select-panel-bg',
+        defaultValue: 'var(--zyra-color-surface-dropdown)',
+        description: 'Fill color of the options panel.',
+    },
+    {
+        name: 'Panel border',
+        variable: '--zyra-color-select-panel-border',
+        defaultValue: 'var(--zyra-color-border-color)',
+        description: 'Border color of the options panel.',
+    },
+];
+
 export interface UiComponentShowcaseCard {
     slug: string;
     title: string;
@@ -32,6 +105,7 @@ export interface UiComponentShowcaseCard {
     apiProps?: readonly ApiProp[];
     a11yNotes?: readonly string[];
     relatedSlugs?: readonly string[];
+    tokens?: readonly TokenEntry[];
 }
 
 const BUTTON_EXAMPLE_CODE = `import { Component } from '@angular/core';
@@ -870,6 +944,122 @@ export const UI_COMPONENT_SHOWCASE = [
             'disabled state communicates unavailability without removing focusability',
             'All variants maintain a visible 2px focus ring for keyboard navigation',
         ],
+        tokens: [
+            {
+                name: 'Primary background',
+                variable: '--zyra-color-btn-primary-bg',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Fill color of the primary variant.',
+            },
+            {
+                name: 'Primary border',
+                variable: '--zyra-color-btn-primary-border',
+                defaultValue: 'var(--zyra-color-primary-border)',
+                description: 'Border color of the primary variant.',
+            },
+            {
+                name: 'Primary hover background',
+                variable: '--zyra-color-btn-primary-hover-bg',
+                defaultValue: 'var(--zyra-color-primary-hover)',
+                description: 'Fill color of the primary variant on hover.',
+            },
+            {
+                name: 'Secondary background',
+                variable: '--zyra-color-btn-secondary-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color of the secondary variant.',
+            },
+            {
+                name: 'Secondary text',
+                variable: '--zyra-color-btn-secondary-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Label color of the secondary variant.',
+            },
+            {
+                name: 'Secondary border',
+                variable: '--zyra-color-btn-secondary-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color of the secondary variant.',
+            },
+            {
+                name: 'Secondary hover background',
+                variable: '--zyra-color-btn-secondary-hover-bg',
+                defaultValue: 'var(--zyra-color-surface-raised)',
+                description: 'Fill color of the secondary variant on hover.',
+            },
+            {
+                name: 'Secondary hover border',
+                variable: '--zyra-color-btn-secondary-hover-border',
+                defaultValue: 'var(--zyra-color-border-hover)',
+                description: 'Border color of the secondary variant on hover.',
+            },
+            {
+                name: 'Ghost text',
+                variable: '--zyra-color-btn-ghost-text',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Label color of the ghost variant.',
+            },
+            {
+                name: 'Ghost hover text',
+                variable: '--zyra-color-btn-ghost-hover-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Label color of the ghost variant on hover.',
+            },
+            {
+                name: 'Danger background',
+                variable: '--zyra-color-btn-danger-bg',
+                defaultValue: 'var(--zyra-color-danger-subtle)',
+                description: 'Fill color of the danger variant.',
+            },
+            {
+                name: 'Danger text',
+                variable: '--zyra-color-btn-danger-text',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'Label color of the danger variant.',
+            },
+            {
+                name: 'Danger border',
+                variable: '--zyra-color-btn-danger-border',
+                defaultValue: 'var(--zyra-color-danger-border-color)',
+                description: 'Border color of the danger variant.',
+            },
+            {
+                name: 'Danger hover background',
+                variable: '--zyra-color-btn-danger-hover-bg',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'Fill color of the danger variant on hover — inverts with its resting text color.',
+            },
+            {
+                name: 'Danger hover text',
+                variable: '--zyra-color-btn-danger-hover-text',
+                defaultValue: 'var(--zyra-color-foreground-inverse)',
+                description: 'Label color of the danger variant on hover, kept readable against the inverted fill.',
+            },
+            {
+                name: 'Outline hover background',
+                variable: '--zyra-color-btn-outline-hover-bg',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Fill color of the outline variant on hover.',
+            },
+            {
+                name: 'Outline hover border',
+                variable: '--zyra-color-btn-outline-hover-border',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Border color of the outline variant on hover.',
+            },
+            {
+                name: 'Disabled opacity',
+                variable: '--zyra-btn-disabled-opacity',
+                defaultValue: '0.42',
+                description: 'Opacity applied to any variant when disabled.',
+            },
+            {
+                name: 'Focus ring',
+                variable: '--zyra-btn-focus-ring',
+                defaultValue: 'var(--zyra-ring)',
+                description: 'Focus-visible ring shadow shown on keyboard focus.',
+            },
+        ],
         relatedSlugs: ['badge', 'chip', 'switch', 'button-group'],
     },
     {
@@ -1021,6 +1211,98 @@ export const UI_COMPONENT_SHOWCASE = [
             'When used for live counts (e.g. notifications), add aria-live="polite" to the parent',
             'Dot mode does not convey meaning through color alone; pair with visible text',
         ],
+        tokens: [
+            {
+                name: 'Default background',
+                variable: '--zyra-color-badge-default-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color of the default (neutral) variant.',
+            },
+            {
+                name: 'Default text',
+                variable: '--zyra-color-badge-default-text',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Label color of the default variant.',
+            },
+            {
+                name: 'Default border',
+                variable: '--zyra-color-badge-default-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color of the default variant.',
+            },
+            {
+                name: 'Success background',
+                variable: '--zyra-color-badge-success-bg',
+                defaultValue: 'var(--zyra-color-success-subtle)',
+                description: 'Fill color of the success variant.',
+            },
+            {
+                name: 'Success text',
+                variable: '--zyra-color-badge-success-text',
+                defaultValue: 'var(--zyra-color-success-foreground)',
+                description: 'Label and dot color of the success variant.',
+            },
+            {
+                name: 'Success border',
+                variable: '--zyra-color-badge-success-border',
+                defaultValue: 'var(--zyra-color-success-border-color)',
+                description: 'Border color of the success variant.',
+            },
+            {
+                name: 'Warning background',
+                variable: '--zyra-color-badge-warning-bg',
+                defaultValue: 'var(--zyra-color-warning-subtle)',
+                description: 'Fill color of the warning variant.',
+            },
+            {
+                name: 'Warning text',
+                variable: '--zyra-color-badge-warning-text',
+                defaultValue: 'var(--zyra-color-warning-foreground)',
+                description: 'Label and dot color of the warning variant.',
+            },
+            {
+                name: 'Warning border',
+                variable: '--zyra-color-badge-warning-border',
+                defaultValue: 'var(--zyra-color-warning-border-color)',
+                description: 'Border color of the warning variant.',
+            },
+            {
+                name: 'Danger background',
+                variable: '--zyra-color-badge-danger-bg',
+                defaultValue: 'var(--zyra-color-danger-subtle)',
+                description: 'Fill color of the danger variant.',
+            },
+            {
+                name: 'Danger text',
+                variable: '--zyra-color-badge-danger-text',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'Label and dot color of the danger variant.',
+            },
+            {
+                name: 'Danger border',
+                variable: '--zyra-color-badge-danger-border',
+                defaultValue: 'var(--zyra-color-danger-border-color)',
+                description: 'Border color of the danger variant.',
+            },
+            {
+                name: 'Info background',
+                variable: '--zyra-color-badge-info-bg',
+                defaultValue: 'var(--zyra-color-info-subtle)',
+                description: 'Fill color of the info variant.',
+            },
+            {
+                name: 'Info text',
+                variable: '--zyra-color-badge-info-text',
+                defaultValue: 'var(--zyra-color-info-foreground)',
+                description: 'Label and dot color of the info variant.',
+            },
+            {
+                name: 'Info border',
+                variable: '--zyra-color-badge-info-border',
+                defaultValue: 'var(--zyra-color-info-border-color)',
+                description: 'Border color of the info variant.',
+            },
+        ],
         relatedSlugs: ['chip', 'alert', 'button'],
     },
     {
@@ -1092,6 +1374,75 @@ export const UI_COMPONENT_SHOWCASE = [
             'Use semantic headings inside the header slot for proper document outline',
             'Avoid placing interactive elements inside a clickable card — creates nested interactives',
         ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-card-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description:
+                    'Border color for the default, outlined, and elevated variants. Falls back to this Tier 2 token, but every theme redeclares it with a tuned value that wins in practice — your own override still applies normally since it loads after the theme.',
+            },
+            {
+                name: 'Radius',
+                variable: '--zyra-card-radius',
+                defaultValue: '20px',
+                description: 'Corner radius of the card surface. Same across all themes.',
+            },
+            {
+                name: 'Focus ring',
+                variable: '--zyra-card-focus-ring',
+                defaultValue: 'var(--zyra-ring)',
+                description: 'Focus-visible ring shadow shown when a clickable card is keyboard-focused.',
+            },
+            {
+                name: 'Inset highlight',
+                variable: '--zyra-card-inset-highlight',
+                defaultValue: 'color-mix(in srgb, var(--zyra-color-foreground-inverse) 5%, transparent)',
+                description: 'Subtle 1px top-edge highlight line in the resting state.',
+            },
+            {
+                name: 'Inset highlight (hover)',
+                variable: '--zyra-card-inset-highlight-hover',
+                defaultValue: 'color-mix(in srgb, var(--zyra-color-foreground-inverse) 8%, transparent)',
+                description: 'Top-edge highlight line on hover and keyboard focus — slightly brighter.',
+            },
+            {
+                name: 'Inset highlight (active)',
+                variable: '--zyra-card-inset-highlight-active',
+                defaultValue: 'color-mix(in srgb, var(--zyra-color-foreground-inverse) 4%, transparent)',
+                description: 'Top-edge highlight line while a clickable card is being pressed — slightly dimmer.',
+            },
+            {
+                name: 'Shadow',
+                variable: '--zyra-card-shadow',
+                defaultValue: 'var(--zyra-shadow-sm)',
+                description: 'Resting drop shadow. Tuned per theme; falls back to the generic small shadow if unset.',
+            },
+            {
+                name: 'Elevated shadow',
+                variable: '--zyra-card-elevated-shadow',
+                defaultValue: 'var(--zyra-shadow-md)',
+                description: 'Drop shadow on hover, keyboard focus, and the elevated variant. Tuned per theme.',
+            },
+            {
+                name: 'Glow border',
+                variable: '--zyra-color-glow-border',
+                defaultValue: 'rgba(var(--zyra-color-glow), 0.46)',
+                description: 'Border color on hover and keyboard focus.',
+            },
+            {
+                name: 'Glow shadow',
+                variable: '--zyra-color-glow-shadow',
+                defaultValue: '0 24px 70px rgba(var(--zyra-color-glow), 0.18)',
+                description: 'Extra ambient glow shadow shown on keyboard focus.',
+            },
+            {
+                name: 'Glow surface',
+                variable: '--zyra-color-glow-surface',
+                defaultValue: 'rgba(var(--zyra-color-glow), 0.1)',
+                description: 'Radial gradient tint that fades in behind the card on hover/focus.',
+            },
+        ],
         relatedSlugs: ['divider', 'accordion', 'avatar'],
     },
     {
@@ -1152,6 +1503,68 @@ export const UI_COMPONENT_SHOWCASE = [
             'The copy button updates its aria-label between "Copy code" and "Copied" as state changes',
             'Code is rendered in a <pre><code> block so screen readers announce it as preformatted text',
         ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-code-block-bg',
+                defaultValue: 'var(--zyra-color-code-bg)',
+                description: 'Fill color of the code area. Tuned per theme, deliberately darker than the default surface.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-code-block-border',
+                defaultValue: 'var(--zyra-color-primary-border)',
+                description: 'Border color of the whole block.',
+            },
+            {
+                name: 'Header background',
+                variable: '--zyra-color-code-block-header-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color of the filename/language/copy-button header row.',
+            },
+            {
+                name: 'Keyword',
+                variable: '--zyra-color-code-keyword',
+                defaultValue: 'var(--zyra-color-accent-secondary)',
+                description: 'Syntax color for language keywords.',
+            },
+            {
+                name: 'Tag',
+                variable: '--zyra-color-code-tag',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Syntax color for markup tags.',
+            },
+            {
+                name: 'Attribute',
+                variable: '--zyra-color-code-attr',
+                defaultValue: 'var(--zyra-color-accent-tertiary)',
+                description: 'Syntax color for HTML/JSX attributes.',
+            },
+            {
+                name: 'String',
+                variable: '--zyra-color-code-string',
+                defaultValue: 'var(--zyra-color-success-foreground)',
+                description: 'Syntax color for string literals.',
+            },
+            {
+                name: 'Number',
+                variable: '--zyra-color-code-number',
+                defaultValue: 'var(--zyra-color-warning-foreground)',
+                description: 'Syntax color for numeric literals.',
+            },
+            {
+                name: 'Comment',
+                variable: '--zyra-color-code-comment',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Syntax color for comments.',
+            },
+            {
+                name: 'Punctuation',
+                variable: '--zyra-color-code-punct',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Syntax color for brackets, semicolons, and other punctuation.',
+            },
+        ],
         relatedSlugs: ['card', 'badge'],
     },
     {
@@ -1198,6 +1611,32 @@ export const UI_COMPONENT_SHOWCASE = [
             'Rendered as a <nav> landmark with an ol/li list structure',
             'The current item gets aria-current="page" and no href, so it is not focusable',
             'Separator icons are aria-hidden and purely decorative',
+        ],
+        tokens: [
+            {
+                name: 'Link text',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Color of non-current, non-hovered link items.',
+            },
+            {
+                name: 'Link text (hover)',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Color of a link item on hover.',
+            },
+            {
+                name: 'Current item text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Color of the current-page item, and of a link item while focused.',
+            },
+            {
+                name: 'Separator',
+                variable: '--zyra-color-foreground-subtle',
+                defaultValue: 'var(--zyra-color-text-dim)',
+                description: 'Color of the decorative separator between items.',
+            },
         ],
         relatedSlugs: ['card', 'divider'],
     },
@@ -1252,6 +1691,44 @@ export const UI_COMPONENT_SHOWCASE = [
             'Panel is rendered with role="menu" and items with role="menuitem"',
             'Closes on outside click and on Escape',
             'The trigger slot accepts any focusable element, typically a button',
+        ],
+        tokens: [
+            {
+                name: 'Panel background',
+                variable: '--zyra-color-background-elevated',
+                defaultValue: 'var(--zyra-color-bg-panel)',
+                description: 'Fill color of the dropdown panel.',
+            },
+            {
+                name: 'Panel border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color of the dropdown panel.',
+            },
+            {
+                name: 'Item text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Text color of a default menu item.',
+            },
+            {
+                name: 'Item hover background',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Used at 8% opacity as the hover background for a default item.',
+            },
+            {
+                name: 'Item disabled text',
+                variable: '--zyra-color-foreground-subtle',
+                defaultValue: 'var(--zyra-color-text-dim)',
+                description: 'Text color of a disabled menu item.',
+            },
+            {
+                name: 'Danger item text',
+                variable: '--zyra-color-danger-foreground',
+                defaultValue: 'var(--zyra-color-danger)',
+                description: 'Text color of a danger-variant item, and (at 10% opacity) its hover background.',
+            },
         ],
         relatedSlugs: ['button', 'tooltip'],
     },
@@ -1316,6 +1793,68 @@ export const UI_COMPONENT_SHOWCASE = [
             'The name prop is used as the accessible aria-label for screen readers',
             'Image avatars include a meaningful alt attribute derived from name',
             'Presence indicator dot is decorative; status should be conveyed in text elsewhere',
+        ],
+        tokens: [
+            {
+                name: 'Teal gradient end',
+                variable: '--zyra-color-avatar-primary-end',
+                defaultValue: 'var(--zyra-color-accent-secondary)',
+                description: 'End color of the diagonal gradient for the teal (default) variant.',
+            },
+            {
+                name: 'Blue gradient end',
+                variable: '--zyra-color-avatar-blue-end',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'End color of the diagonal gradient for the blue variant.',
+            },
+            {
+                name: 'Purple gradient end',
+                variable: '--zyra-color-avatar-purple-end',
+                defaultValue: 'var(--zyra-color-accent-secondary)',
+                description: 'End color of the diagonal gradient for the purple variant.',
+            },
+            {
+                name: 'Warm gradient end',
+                variable: '--zyra-color-avatar-warm-end',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'End color of the diagonal gradient for the warm variant.',
+            },
+            {
+                name: 'Initials contrast',
+                variable: '--zyra-color-avatar-contrast',
+                defaultValue: 'var(--zyra-color-on-brand)',
+                description: 'Text color of the initials fallback on any gradient variant.',
+            },
+            {
+                name: 'Neutral background',
+                variable: '--zyra-color-surface-inset',
+                defaultValue: 'var(--zyra-color-bg-surface)',
+                description: 'Fill color of the neutral variant (flat, not a gradient).',
+            },
+            {
+                name: 'Neutral text',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Initials color of the neutral variant.',
+            },
+            {
+                name: 'Presence ring',
+                variable: '--zyra-color-background-elevated',
+                defaultValue: 'var(--zyra-color-bg-panel)',
+                description: 'Border color around the presence dot, matching the surface the avatar sits on.',
+            },
+            {
+                name: 'Online dot',
+                variable: '--zyra-color-success-foreground',
+                defaultValue: 'var(--zyra-color-success)',
+                description: 'Fill color of the presence dot when online is true.',
+            },
+            {
+                name: 'Offline dot',
+                variable: '--zyra-color-foreground-subtle',
+                defaultValue: 'var(--zyra-color-text-dim)',
+                description: 'Fill color of the presence dot when online is explicitly false.',
+            },
         ],
         relatedSlugs: ['badge', 'card', 'tooltip'],
     },
@@ -1441,6 +1980,44 @@ export const UI_COMPONENT_SHOWCASE = [
             'Error state sets aria-invalid="true"; pair with an error message element using aria-describedby',
             'type="search" fields clear on Escape, matching native browser search inputs',
         ],
+        tokens: [
+            {
+                name: 'Text',
+                variable: '--zyra-color-input-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Color of the typed value, including autofilled text.',
+            },
+            {
+                name: 'Placeholder',
+                variable: '--zyra-color-input-placeholder',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Color of the placeholder text shown when empty.',
+            },
+            {
+                name: 'OTP box background',
+                variable: '--zyra-color-field-bg',
+                defaultValue: 'var(--zyra-color-input-bg)',
+                description: 'Fill color of each OTP box. Shared with ZyraFormField — see its Tokens section.',
+            },
+            {
+                name: 'OTP box border',
+                variable: '--zyra-color-field-border',
+                defaultValue: 'var(--zyra-color-input-border)',
+                description: 'Border color of each OTP box in its resting state.',
+            },
+            {
+                name: 'OTP box focus border',
+                variable: '--zyra-color-field-focus-border',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Border color of an OTP box on focus, or once filled.',
+            },
+            {
+                name: 'OTP box focus shadow',
+                variable: '--zyra-field-focus-shadow',
+                defaultValue: 'var(--zyra-input-shadow-focus)',
+                description: 'Ring shadow shown on a focused OTP box.',
+            },
+        ],
         relatedSlugs: ['form-field', 'switch', 'button'],
     },
     {
@@ -1517,6 +2094,38 @@ export const UI_COMPONENT_SHOWCASE = [
             'Native <input type="range"> under the hood — Arrow keys, Home/End, and Page Up/Down all work out of the box',
             'aria-valuetext reflects the formatted (valueLabel) display value for screen readers',
         ],
+        tokens: [
+            {
+                name: 'Track',
+                variable: '--zyra-color-slider-track',
+                defaultValue: 'var(--zyra-color-border-strong-color)',
+                description: 'Color of the unfilled portion of the track.',
+            },
+            {
+                name: 'Fill',
+                variable: '--zyra-color-slider-fill',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Color of the filled portion of the track, and the thumb’s outer ring.',
+            },
+            {
+                name: 'Thumb',
+                variable: '--zyra-color-slider-thumb',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Fill color of the draggable thumb.',
+            },
+            {
+                name: 'Thumb ring',
+                variable: '--zyra-color-slider-thumb-ring',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Ring shadow shown on hover/focus.',
+            },
+            {
+                name: 'Value text',
+                variable: '--zyra-color-slider-text',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Color of the formatted value label.',
+            },
+        ],
         relatedSlugs: ['input', 'rating', 'switch'],
     },
     {
@@ -1581,6 +2190,26 @@ export const UI_COMPONENT_SHOWCASE = [
         a11yNotes: [
             'Dropzone is a role="button" with tabindex="0" — Enter/Space opens the file picker',
             'Each file in the list has a labeled, keyboard-accessible remove button',
+        ],
+        tokens: [
+            {
+                name: 'Dropzone background',
+                variable: '--zyra-color-file-upload-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color of the dropzone and each listed file row.',
+            },
+            {
+                name: 'Dropzone border',
+                variable: '--zyra-color-file-upload-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Dashed border color of the dropzone, and the border of each file row.',
+            },
+            {
+                name: 'Text',
+                variable: '--zyra-color-file-upload-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Primary text color for dropzone copy and file names.',
+            },
         ],
         relatedSlugs: ['input', 'button', 'form-field'],
     },
@@ -1686,6 +2315,98 @@ export const UI_COMPONENT_SHOWCASE = [
             'hint and error text are linked via aria-describedby on the input',
             'When error is set, the child input receives aria-invalid="true"',
         ],
+        tokens: [
+            {
+                name: 'Label',
+                variable: '--zyra-color-field-label-color',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Color of the field label.',
+            },
+            {
+                name: 'Required mark',
+                variable: '--zyra-color-field-required-mark',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'Color of the required-field asterisk.',
+            },
+            {
+                name: 'Icon',
+                variable: '--zyra-color-field-icon-color',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Color of the prefix/suffix icon, clear button, and loading spinner.',
+            },
+            {
+                name: 'Background',
+                variable: '--zyra-color-field-bg',
+                defaultValue: 'var(--zyra-color-input-bg)',
+                description: 'Fill color of the field in the outline/filled appearances.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-field-border',
+                defaultValue: 'var(--zyra-color-input-border)',
+                description: 'Border color of the field in its resting state.',
+            },
+            {
+                name: 'Filled background',
+                variable: '--zyra-color-field-filled-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color specific to the filled appearance.',
+            },
+            {
+                name: 'Focus border',
+                variable: '--zyra-color-field-focus-border',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Border/underline color and label color when the field is focused.',
+            },
+            {
+                name: 'Hint',
+                variable: '--zyra-color-field-hint-color',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Color of the helper text below the field.',
+            },
+            {
+                name: 'Counter',
+                variable: '--zyra-color-field-counter-color',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Color of the character counter.',
+            },
+            {
+                name: 'Counter (warn)',
+                variable: '--zyra-color-field-counter-warn',
+                defaultValue: 'var(--zyra-color-warning-foreground)',
+                description: 'Counter color when approaching the character limit.',
+            },
+            {
+                name: 'Counter (error)',
+                variable: '--zyra-color-field-counter-error',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'Counter color when over the character limit.',
+            },
+            {
+                name: 'Success color',
+                variable: '--zyra-color-field-success-color',
+                defaultValue: 'var(--zyra-color-success-foreground)',
+                description: 'Border, label, and hint color in the success state.',
+            },
+            {
+                name: 'Success shadow',
+                variable: '--zyra-field-success-shadow',
+                defaultValue: '0 0 0 3px var(--zyra-color-success-subtle)',
+                description: 'Focus ring shadow in the success state.',
+            },
+            {
+                name: 'Error color',
+                variable: '--zyra-color-field-error-color',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'Border, label, and hint color in the error state.',
+            },
+            {
+                name: 'Error shadow',
+                variable: '--zyra-field-error-shadow',
+                defaultValue: '0 0 0 3px var(--zyra-color-danger-subtle)',
+                description: 'Focus ring shadow in the error state.',
+            },
+        ],
         relatedSlugs: ['input', 'switch', 'button'],
     },
     {
@@ -1737,6 +2458,32 @@ export const UI_COMPONENT_SHOWCASE = [
             'Renders with role="status" so screen readers announce the loading state',
             'label is visually hidden but announced to screen readers',
             'When embedding in a button, set button aria-busy="true" alongside the spinner',
+        ],
+        tokens: [
+            {
+                name: 'Accent track',
+                variable: '--zyra-color-primary-subtle',
+                defaultValue: 'var(--zyra-color-accent-muted)',
+                description: 'Ring color of the accent variant.',
+            },
+            {
+                name: 'Accent head',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Spinning-tip color of the accent variant.',
+            },
+            {
+                name: 'Inverse track',
+                variable: '--zyra-color-spinner-inverse-track',
+                defaultValue: 'tuned per theme',
+                description: 'Ring color of the white variant. Always light regardless of app theme, not tied to text color.',
+            },
+            {
+                name: 'Inverse head',
+                variable: '--zyra-color-spinner-inverse-head',
+                defaultValue: 'tuned per theme',
+                description: 'Spinning-tip color of the white variant.',
+            },
         ],
         relatedSlugs: ['button', 'progress', 'toast'],
     },
@@ -1806,6 +2553,56 @@ export const UI_COMPONENT_SHOWCASE = [
             'Each toast includes a visible dismiss button with an accessible label',
             'Toasts do not auto-dismiss during keyboard navigation to prevent losing context',
         ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-toast-bg',
+                defaultValue: 'tuned per theme',
+                description: 'Fill color of every toast, regardless of variant.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-toast-border',
+                defaultValue: 'tuned per theme',
+                description: 'Border color of the default variant (non-status toasts).',
+            },
+            {
+                name: 'Default icon background',
+                variable: '--zyra-color-toast-default-icon-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Icon fill color for the default (non-status) variant.',
+            },
+            {
+                name: 'Default icon text',
+                variable: '--zyra-color-toast-default-icon-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Icon glyph color for the default variant.',
+            },
+            {
+                name: 'Success border',
+                variable: '--zyra-color-success-border-color',
+                defaultValue: 'var(--zyra-color-success-border)',
+                description: 'Border color of a success toast, and its icon fill/text (subtle/foreground pair).',
+            },
+            {
+                name: 'Danger border',
+                variable: '--zyra-color-danger-border-color',
+                defaultValue: 'var(--zyra-color-danger-border)',
+                description: 'Border color of an error toast, and its icon fill/text (subtle/foreground pair).',
+            },
+            {
+                name: 'Warning border',
+                variable: '--zyra-color-warning-border-color',
+                defaultValue: 'var(--zyra-color-warning-border)',
+                description: 'Border color of a warning toast, and its icon fill/text (subtle/foreground pair).',
+            },
+            {
+                name: 'Info border',
+                variable: '--zyra-color-info-border-color',
+                defaultValue: 'var(--zyra-color-info-border)',
+                description: 'Border color of an info toast, and its icon fill/text (subtle/foreground pair).',
+            },
+        ],
         relatedSlugs: ['alert', 'spinner', 'button'],
     },
     {
@@ -1850,6 +2647,32 @@ export const UI_COMPONENT_SHOWCASE = [
             'Tooltip renders with role="tooltip" — the trigger element must be focusable',
             'Tooltip is shown on both hover and focus so keyboard users get the same information',
             'Never put interactive content inside a tooltip',
+        ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-tooltip-bg',
+                defaultValue: 'tuned per theme',
+                description: 'Fill color of the tooltip bubble and its directional arrow.',
+            },
+            {
+                name: 'Text',
+                variable: '--zyra-color-tooltip-text',
+                defaultValue: 'tuned per theme',
+                description: 'Text color inside the tooltip.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-tooltip-border',
+                defaultValue: 'tuned per theme',
+                description: 'Border color of the tooltip bubble.',
+            },
+            {
+                name: 'Shadow',
+                variable: '--zyra-tooltip-shadow',
+                defaultValue: 'tuned per theme',
+                description: 'Drop shadow behind the tooltip bubble.',
+            },
         ],
         relatedSlugs: ['button', 'avatar', 'modal'],
     },
@@ -1912,6 +2735,44 @@ export const UI_COMPONENT_SHOWCASE = [
             'Focus is trapped inside the modal while it is open',
             'ESC key closes the modal; focus returns to the trigger element on close',
             'aria-labelledby links the title to the dialog for screen reader announcement',
+        ],
+        tokens: [
+            {
+                name: 'Backdrop',
+                variable: '--zyra-color-overlay-scrim',
+                defaultValue: 'var(--zyra-color-overlay-bg)',
+                description: 'Fill color of the scrim behind the dialog.',
+            },
+            {
+                name: 'Panel background',
+                variable: '--zyra-color-surface',
+                defaultValue: 'var(--zyra-color-card-bg)',
+                description: 'Fill color of the dialog panel.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color of the panel, header divider, and footer divider.',
+            },
+            {
+                name: 'Title text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Color of the dialog title, and of the close button on hover.',
+            },
+            {
+                name: 'Close button',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Color of the close × button in its resting state.',
+            },
+            {
+                name: 'Focus ring',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Outline color when the close button is keyboard-focused.',
+            },
         ],
         relatedSlugs: ['button', 'tooltip', 'accordion'],
     },
@@ -1997,6 +2858,14 @@ export const UI_COMPONENT_SHOWCASE = [
             'Focus is trapped inside the dialog while open, and ESC dismisses it',
             'Cancel and Confirm buttons are disabled while loading to prevent double submission',
         ],
+        tokens: [
+            {
+                name: 'Message text',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Color of the body message text. Everything else (panel, backdrop, title) comes from zyra-modal — see its Tokens section.',
+            },
+        ],
         relatedSlugs: ['modal', 'button', 'drawer'],
     },
     {
@@ -2044,6 +2913,50 @@ export const UI_COMPONENT_SHOWCASE = [
             'Trigger has a 44×44px hit-slop for touch targets (WCAG 2.5.5) despite a 36px visual size',
             'Menu options use role="menuitemradio" with aria-checked reflecting the active theme',
             'Dropdown panel repositions to stay inside the viewport on any screen size',
+        ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-theme-switch-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color of the trigger button.',
+            },
+            {
+                name: 'Background (hover)',
+                variable: '--zyra-color-theme-switch-bg-hover',
+                defaultValue: 'var(--zyra-color-surface-raised)',
+                description: 'Fill color of the trigger button, and of a menu option, on hover.',
+            },
+            {
+                name: 'Text',
+                variable: '--zyra-color-theme-switch-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Text/icon color of the trigger and menu options.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-theme-switch-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color of the trigger button.',
+            },
+            {
+                name: 'Panel background',
+                variable: '--zyra-color-theme-switch-panel-bg',
+                defaultValue: 'var(--zyra-color-surface)',
+                description: 'Fill color of the menu panel (menu mode).',
+            },
+            {
+                name: 'Panel shadow',
+                variable: '--zyra-color-theme-switch-panel-shadow',
+                defaultValue: 'var(--zyra-card-elevated-shadow)',
+                description: 'Drop shadow behind the menu panel.',
+            },
+            {
+                name: 'Active check',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Color of the checkmark on the active theme, and the focus outline.',
+            },
         ],
         relatedSlugs: ['dropdown-menu', 'switch'],
     },
@@ -2111,6 +3024,44 @@ export const UI_COMPONENT_SHOWCASE = [
             'Focus is trapped inside the panel while open; ESC closes it',
             'Panel width is capped with max-width and falls back to 100% on narrow viewports',
         ],
+        tokens: [
+            {
+                name: 'Backdrop',
+                variable: '--zyra-color-overlay-scrim',
+                defaultValue: 'var(--zyra-color-overlay-bg)',
+                description: 'Fill color of the scrim behind the panel.',
+            },
+            {
+                name: 'Panel background',
+                variable: '--zyra-color-drawer-bg',
+                defaultValue: 'var(--zyra-color-surface)',
+                description: 'Fill color of the slide-in panel.',
+            },
+            {
+                name: 'Panel text',
+                variable: '--zyra-color-drawer-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Base text color inside the panel.',
+            },
+            {
+                name: 'Panel border',
+                variable: '--zyra-color-drawer-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color of the panel edge, header divider, and footer divider.',
+            },
+            {
+                name: 'Close button',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Color of the close × button in its resting state.',
+            },
+            {
+                name: 'Focus ring',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Outline color when the close button is keyboard-focused.',
+            },
+        ],
         relatedSlugs: ['modal', 'sidebar', 'confirm-dialog'],
     },
     {
@@ -2159,6 +3110,80 @@ export const UI_COMPONENT_SHOWCASE = [
             'Renders with role="alert" so the message is announced immediately by screen readers',
             'For non-urgent messages, use role="status" via a custom wrapper instead',
             'Dismiss button has an accessible aria-label="Dismiss alert"',
+        ],
+        tokens: [
+            {
+                name: 'Success background',
+                variable: '--zyra-color-alert-success-bg',
+                defaultValue: 'var(--zyra-color-success-subtle)',
+                description: 'Fill color of the success variant.',
+            },
+            {
+                name: 'Success border',
+                variable: '--zyra-color-alert-success-border',
+                defaultValue: 'var(--zyra-color-success-border-color)',
+                description: 'Border color of the success variant.',
+            },
+            {
+                name: 'Success color',
+                variable: '--zyra-color-alert-success-color',
+                defaultValue: 'var(--zyra-color-success-foreground)',
+                description: 'Title, body, and dismiss-button color for the success variant; also the icon’s fill background.',
+            },
+            {
+                name: 'Warning background',
+                variable: '--zyra-color-alert-warning-bg',
+                defaultValue: 'var(--zyra-color-warning-subtle)',
+                description: 'Fill color of the warning variant.',
+            },
+            {
+                name: 'Warning border',
+                variable: '--zyra-color-alert-warning-border',
+                defaultValue: 'var(--zyra-color-warning-border-color)',
+                description: 'Border color of the warning variant.',
+            },
+            {
+                name: 'Warning color',
+                variable: '--zyra-color-alert-warning-color',
+                defaultValue: 'var(--zyra-color-warning-foreground)',
+                description: 'Title, body, and dismiss-button color for the warning variant; also the icon’s fill background.',
+            },
+            {
+                name: 'Danger background',
+                variable: '--zyra-color-alert-danger-bg',
+                defaultValue: 'var(--zyra-color-danger-subtle)',
+                description: 'Fill color of the danger variant.',
+            },
+            {
+                name: 'Danger border',
+                variable: '--zyra-color-alert-danger-border',
+                defaultValue: 'var(--zyra-color-danger-border-color)',
+                description: 'Border color of the danger variant.',
+            },
+            {
+                name: 'Danger color',
+                variable: '--zyra-color-alert-danger-color',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'Title, body, and dismiss-button color for the danger variant; also the icon’s fill background.',
+            },
+            {
+                name: 'Info background',
+                variable: '--zyra-color-alert-info-bg',
+                defaultValue: 'var(--zyra-color-info-subtle)',
+                description: 'Fill color of the info variant.',
+            },
+            {
+                name: 'Info border',
+                variable: '--zyra-color-alert-info-border',
+                defaultValue: 'var(--zyra-color-info-border-color)',
+                description: 'Border color of the info variant.',
+            },
+            {
+                name: 'Info color',
+                variable: '--zyra-color-alert-info-color',
+                defaultValue: 'var(--zyra-color-info-foreground)',
+                description: 'Title, body, and dismiss-button color for the info variant; also the icon’s fill background.',
+            },
         ],
         relatedSlugs: ['toast', 'badge', 'chip'],
     },
@@ -2240,6 +3265,122 @@ export const UI_COMPONENT_SHOWCASE = [
             'Selectable chips use aria-pressed to communicate toggle state',
             'Use a group element with role="group" and an aria-label when listing multiple chips',
         ],
+        tokens: [
+            {
+                name: 'Default background',
+                variable: '--zyra-color-chip-default-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color of the default (neutral) variant.',
+            },
+            {
+                name: 'Default text',
+                variable: '--zyra-color-chip-default-text',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Label color of the default variant.',
+            },
+            {
+                name: 'Default border',
+                variable: '--zyra-color-chip-default-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color of the default variant.',
+            },
+            {
+                name: 'Success background',
+                variable: '--zyra-color-chip-success-bg',
+                defaultValue: 'var(--zyra-color-success-subtle)',
+                description: 'Fill color of the success variant.',
+            },
+            {
+                name: 'Success text',
+                variable: '--zyra-color-chip-success-text',
+                defaultValue: 'var(--zyra-color-success-foreground)',
+                description: 'Label color of the success variant.',
+            },
+            {
+                name: 'Success border',
+                variable: '--zyra-color-chip-success-border',
+                defaultValue: 'var(--zyra-color-success-border-color)',
+                description: 'Border color of the success variant.',
+            },
+            {
+                name: 'Warning background',
+                variable: '--zyra-color-chip-warning-bg',
+                defaultValue: 'var(--zyra-color-warning-subtle)',
+                description: 'Fill color of the warning variant.',
+            },
+            {
+                name: 'Warning text',
+                variable: '--zyra-color-chip-warning-text',
+                defaultValue: 'var(--zyra-color-warning-foreground)',
+                description: 'Label color of the warning variant.',
+            },
+            {
+                name: 'Warning border',
+                variable: '--zyra-color-chip-warning-border',
+                defaultValue: 'var(--zyra-color-warning-border-color)',
+                description: 'Border color of the warning variant.',
+            },
+            {
+                name: 'Danger background',
+                variable: '--zyra-color-chip-danger-bg',
+                defaultValue: 'var(--zyra-color-danger-subtle)',
+                description: 'Fill color of the danger variant.',
+            },
+            {
+                name: 'Danger text',
+                variable: '--zyra-color-chip-danger-text',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'Label color of the danger variant.',
+            },
+            {
+                name: 'Danger border',
+                variable: '--zyra-color-chip-danger-border',
+                defaultValue: 'var(--zyra-color-danger-border-color)',
+                description: 'Border color of the danger variant.',
+            },
+            {
+                name: 'Info background',
+                variable: '--zyra-color-chip-info-bg',
+                defaultValue: 'var(--zyra-color-info-subtle)',
+                description: 'Fill color of the info variant.',
+            },
+            {
+                name: 'Info text',
+                variable: '--zyra-color-chip-info-text',
+                defaultValue: 'var(--zyra-color-info-foreground)',
+                description: 'Label color of the info variant.',
+            },
+            {
+                name: 'Info border',
+                variable: '--zyra-color-chip-info-border',
+                defaultValue: 'var(--zyra-color-info-border-color)',
+                description: 'Border color of the info variant.',
+            },
+            {
+                name: 'Selected background',
+                variable: '--zyra-color-chip-selected-bg',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Fill color when selectable and selected.',
+            },
+            {
+                name: 'Selected text',
+                variable: '--zyra-color-chip-selected-text',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Label color when selectable and selected.',
+            },
+            {
+                name: 'Selected border',
+                variable: '--zyra-color-chip-selected-border',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Border color when selectable and selected.',
+            },
+            {
+                name: 'Selectable ring',
+                variable: '--zyra-color-chip-selectable-ring',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Ring shadow shown on hover/focus when selectable.',
+            },
+        ],
         relatedSlugs: ['badge', 'button', 'alert'],
     },
     {
@@ -2306,6 +3447,44 @@ export const UI_COMPONENT_SHOWCASE = [
             'label is linked via aria-labelledby — always provide a label for screen readers',
             'Keyboard-operable via Space to toggle and Tab to focus',
         ],
+        tokens: [
+            {
+                name: 'Track (off)',
+                variable: '--zyra-color-switch-track-off',
+                defaultValue: 'var(--zyra-color-border-strong-color)',
+                description: 'Background color of the track when unchecked.',
+            },
+            {
+                name: 'Track (on)',
+                variable: '--zyra-color-switch-track-on',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Background color of the track when checked.',
+            },
+            {
+                name: 'Focus/checked ring',
+                variable: '--zyra-switch-ring',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Ring shadow shown when checked and on keyboard focus.',
+            },
+            {
+                name: 'Thumb',
+                variable: '--zyra-color-switch-thumb',
+                defaultValue: 'var(--zyra-color-foreground-inverse)',
+                description: 'Fill color of the sliding knob.',
+            },
+            {
+                name: 'Thumb shadow',
+                variable: '--zyra-switch-thumb-shadow',
+                defaultValue: 'var(--zyra-shadow-sm)',
+                description: 'Drop shadow that lifts the knob off the track.',
+            },
+            {
+                name: 'Focus glow',
+                variable: '--zyra-color-glow-shadow-strong',
+                defaultValue: '0 18px 46px rgba(var(--zyra-color-glow), 0.26)',
+                description: 'Extra ambient glow shadow shown on keyboard focus, alongside the ring.',
+            },
+        ],
         relatedSlugs: ['toggle', 'input', 'form-field', 'button'],
     },
     {
@@ -2365,6 +3544,32 @@ export const UI_COMPONENT_SHOWCASE = [
             'Renders as a native <button> with aria-pressed to communicate state',
             'Provide aria-label when the projected content is icon-only',
             'Keyboard-operable via Space/Enter and Tab to focus',
+        ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-toggle-border',
+                defaultValue: 'var(--zyra-color-border-strong-color)',
+                description: 'Border color when unpressed.',
+            },
+            {
+                name: 'Background (pressed)',
+                variable: '--zyra-color-toggle-bg-on',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Fill color when pressed.',
+            },
+            {
+                name: 'Foreground (pressed)',
+                variable: '--zyra-color-toggle-fg-on',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Text/border color when pressed, and border color on hover while unpressed.',
+            },
+            {
+                name: 'Focus ring',
+                variable: '--zyra-toggle-ring',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Ring shadow shown on keyboard focus.',
+            },
         ],
         relatedSlugs: ['switch', 'button', 'chip'],
     },
@@ -2436,6 +3641,56 @@ export const UI_COMPONENT_SHOWCASE = [
             'Indeterminate mode omits aria-valuenow to signal unknown progress',
             'Pair with a visible or visually-hidden label describing what is loading',
         ],
+        tokens: [
+            {
+                name: 'Track background',
+                variable: '--zyra-color-progress-track-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Background color of the unfilled track.',
+            },
+            {
+                name: 'Track border',
+                variable: '--zyra-color-progress-track-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color of the track.',
+            },
+            {
+                name: 'Label color',
+                variable: '--zyra-color-progress-label-color',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Color of the percentage/custom label above the bar.',
+            },
+            {
+                name: 'Default fill',
+                variable: '--zyra-color-progress-default',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Bar fill color for the default variant.',
+            },
+            {
+                name: 'Success fill',
+                variable: '--zyra-color-progress-success',
+                defaultValue: 'var(--zyra-color-success-foreground)',
+                description: 'Bar fill color for the success variant.',
+            },
+            {
+                name: 'Warning fill',
+                variable: '--zyra-color-progress-warning',
+                defaultValue: 'var(--zyra-color-warning-foreground)',
+                description: 'Bar fill color for the warning variant.',
+            },
+            {
+                name: 'Danger fill',
+                variable: '--zyra-color-progress-danger',
+                defaultValue: 'var(--zyra-color-danger-foreground)',
+                description: 'Bar fill color for the danger variant.',
+            },
+            {
+                name: 'Info fill',
+                variable: '--zyra-color-progress-info',
+                defaultValue: 'var(--zyra-color-info-foreground)',
+                description: 'Bar fill color for the info variant.',
+            },
+        ],
         relatedSlugs: ['spinner', 'toast', 'badge'],
     },
     {
@@ -2496,6 +3751,14 @@ export const UI_COMPONENT_SHOWCASE = [
             'Renders with role="separator" for screen reader context',
             'Vertical dividers should have aria-orientation="vertical"',
             'When used decoratively, add aria-hidden="true"',
+        ],
+        tokens: [
+            {
+                name: 'Line & label color',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Color of the line itself and the optional centered label.',
+            },
         ],
         relatedSlugs: ['card', 'accordion', 'form-field'],
     },
@@ -2562,6 +3825,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Arrow keys navigate options; Enter/Space selects; Escape closes; Tab dismisses',
             'Disabled options are marked aria-disabled and skipped by keyboard navigation',
         ],
+        tokens: SELECT_TOKENS,
         relatedSlugs: ['input', 'form-field', 'switch'],
     },
     {
@@ -2618,6 +3882,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Arrow keys navigate options; Enter/Space toggles; Escape closes; Tab dismisses',
             'Each chip\'s dismiss button is independently focusable and keyboard-operable',
         ],
+        tokens: SELECT_TOKENS,
         relatedSlugs: ['select', 'autocomplete', 'chip'],
     },
     {
@@ -2673,6 +3938,7 @@ export const UI_COMPONENT_SHOWCASE = [
             'Panel uses role="listbox"; aria-activedescendant tracks the highlighted match',
             'Arrow keys move the highlight; Enter selects; Escape closes; Tab dismisses',
         ],
+        tokens: SELECT_TOKENS,
         relatedSlugs: ['select', 'multi-select', 'input'],
     },
     {
@@ -2733,6 +3999,20 @@ export const UI_COMPONENT_SHOWCASE = [
         a11yNotes: [
             'Always pair with ZyraFormField or a native <label> for accessible labelling',
             'Character counter in ZyraFormField is linked via aria-describedby',
+        ],
+        tokens: [
+            {
+                name: 'Text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Color of the typed value, including autofilled text.',
+            },
+            {
+                name: 'Placeholder',
+                variable: '--zyra-color-foreground-subtle',
+                defaultValue: 'var(--zyra-color-text-dim)',
+                description: 'Color of the placeholder text shown when empty.',
+            },
         ],
         relatedSlugs: ['input', 'form-field', 'checkbox'],
     },
@@ -2795,6 +4075,44 @@ export const UI_COMPONENT_SHOWCASE = [
             'Indeterminate state sets aria-checked="mixed"',
             'Keyboard: Space or Enter to toggle; Tab to focus',
         ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-checkbox-bg',
+                defaultValue: 'var(--zyra-color-input-bg)',
+                description: 'Fill color of the box when unchecked.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-checkbox-border',
+                defaultValue: 'var(--zyra-color-input-border)',
+                description: 'Border color of the box when unchecked.',
+            },
+            {
+                name: 'Focus shadow',
+                variable: '--zyra-checkbox-focus-shadow',
+                defaultValue: 'var(--zyra-input-shadow-focus)',
+                description: 'Ring shadow shown on keyboard focus.',
+            },
+            {
+                name: 'Checked background',
+                variable: '--zyra-color-checkbox-checked-bg',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Fill color of the box when checked or indeterminate.',
+            },
+            {
+                name: 'Checked border',
+                variable: '--zyra-color-checkbox-checked-border',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Border color of the box when checked, indeterminate, or hovered.',
+            },
+            {
+                name: 'Mark',
+                variable: '--zyra-color-checkbox-mark',
+                defaultValue: 'var(--zyra-color-foreground-inverse)',
+                description: 'Color of the check/dash icon drawn inside the box.',
+            },
+        ],
         relatedSlugs: ['switch', 'radio', 'form-field'],
     },
     {
@@ -2855,6 +4173,44 @@ export const UI_COMPONENT_SHOWCASE = [
             'Group uses role="radiogroup"; each option uses role="radio" with aria-checked',
             'Arrow keys navigate between options within the group',
             'Tab moves focus to the selected radio (or first if none selected)',
+        ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-radio-bg',
+                defaultValue: 'var(--zyra-color-input-bg)',
+                description: 'Fill color of each radio circle when unselected.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-radio-border',
+                defaultValue: 'var(--zyra-color-input-border)',
+                description: 'Border color of each radio circle when unselected.',
+            },
+            {
+                name: 'Focus shadow',
+                variable: '--zyra-radio-focus-shadow',
+                defaultValue: 'var(--zyra-input-shadow-focus)',
+                description: 'Ring shadow shown on keyboard focus.',
+            },
+            {
+                name: 'Checked border',
+                variable: '--zyra-color-radio-checked-border',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Border color when selected, or hovered while unselected.',
+            },
+            {
+                name: 'Checked background',
+                variable: '--zyra-color-radio-checked-bg',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Fill color of the circle when selected.',
+            },
+            {
+                name: 'Dot',
+                variable: '--zyra-color-radio-dot',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Color of the inner dot shown when selected.',
+            },
         ],
         relatedSlugs: ['checkbox', 'switch', 'select'],
     },
@@ -2982,6 +4338,74 @@ export const UI_COMPONENT_SHOWCASE = [
             'Delete or Backspace closes the focused tab when it has closeable set',
             'Close button has aria-label="Close <label>" for screen reader support',
         ],
+        tokens: [
+            {
+                name: 'Text',
+                variable: '--zyra-color-tabs-text',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Label color of an inactive, enabled trigger.',
+            },
+            {
+                name: 'Text (hover)',
+                variable: '--zyra-color-tabs-text-hover',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Label color of a trigger on hover.',
+            },
+            {
+                name: 'Text (active)',
+                variable: '--zyra-color-tabs-text-active',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Label color of the active trigger.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-tabs-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color used by the list, panels, and (in outlined/filled/pill variants) each trigger.',
+            },
+            {
+                name: 'Indicator',
+                variable: '--zyra-color-tabs-indicator',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Color of the underline (underline variant) or fill (filled variant) marking the active tab.',
+            },
+            {
+                name: 'Badge background',
+                variable: '--zyra-color-tabs-badge-bg',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Fill color of the count badge on an inactive tab.',
+            },
+            {
+                name: 'Badge text',
+                variable: '--zyra-color-tabs-badge-text',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Text color of the count badge on an inactive tab.',
+            },
+            {
+                name: 'Badge background (active)',
+                variable: '--zyra-color-tabs-badge-active-bg',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Fill color of the count badge on the active tab.',
+            },
+            {
+                name: 'Badge text (active)',
+                variable: '--zyra-color-tabs-badge-active-text',
+                defaultValue: 'var(--zyra-color-on-brand)',
+                description: 'Text color of the count badge on the active tab, and of the active trigger in the filled variant.',
+            },
+            {
+                name: 'Pill active background',
+                variable: '--zyra-color-tabs-pill-active-bg',
+                defaultValue: 'var(--zyra-color-pill-active-bg)',
+                description: 'Fill color of the active trigger in the pill variant. Tuned per theme.',
+            },
+            {
+                name: 'Pill active shadow',
+                variable: '--zyra-tabs-pill-active-shadow',
+                defaultValue: 'var(--zyra-pill-active-shadow)',
+                description: 'Drop shadow lifting the active trigger in the pill variant. Tuned per theme.',
+            },
+        ],
         relatedSlugs: ['accordion', 'card', 'button'],
     },
     {
@@ -3063,6 +4487,44 @@ export const UI_COMPONENT_SHOWCASE = [
             'Skeleton is purely decorative — wrap in an aria-busy="true" container while loading',
             'Remove skeletons and announce content arrival with aria-live="polite"',
         ],
+        tokens: [
+            {
+                name: 'Base fill',
+                variable: '--zyra-color-surface-inset',
+                defaultValue: 'var(--zyra-color-bg-surface)',
+                description: 'Base fill color of every shape, and the shimmer gradient\'s start/end stop.',
+            },
+            {
+                name: 'Shimmer highlight',
+                variable: '--zyra-color-surface-raised',
+                defaultValue: 'var(--zyra-color-bg-raised)',
+                description: 'Bright midpoint of the animated shimmer sweep.',
+            },
+            {
+                name: 'Icon watermark',
+                variable: '--zyra-color-foreground-subtle',
+                defaultValue: 'var(--zyra-color-text-dim)',
+                description: 'Color of the subtle icon watermark in the image variant.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color used by frame-style variants (video, chart, calendar, product, etc).',
+            },
+            {
+                name: 'Strong border',
+                variable: '--zyra-color-border-strong-color',
+                defaultValue: 'var(--zyra-color-border-strong)',
+                description: 'Heavier border/divider color used inside compound layouts (e.g. table headers).',
+            },
+            {
+                name: 'Frame background',
+                variable: '--zyra-color-background-elevated',
+                defaultValue: 'var(--zyra-color-bg-panel)',
+                description: 'Background of card-style frames in compound layouts.',
+            },
+        ],
         relatedSlugs: ['spinner', 'card', 'progress'],
     },
     {
@@ -3116,6 +4578,38 @@ export const UI_COMPONENT_SHOWCASE = [
             'Content panels are linked to their headers via aria-controls / aria-labelledby',
             'Keyboard: Enter/Space toggles item; Tab moves to next focusable element',
             'Animation uses CSS grid — respects prefers-reduced-motion',
+        ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Outer border of the accordion, and the divider between items.',
+            },
+            {
+                name: 'Background',
+                variable: '--zyra-color-background-elevated',
+                defaultValue: 'var(--zyra-color-bg-panel)',
+                description: 'Fill color of the accordion container.',
+            },
+            {
+                name: 'Header text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Text color of an item header, resting and expanded.',
+            },
+            {
+                name: 'Header icon (expanded)',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Chevron color when the item is expanded, and the focus outline color.',
+            },
+            {
+                name: 'Body text',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Text color of the collapsible content and the header subtitle.',
+            },
         ],
         relatedSlugs: ['card', 'divider', 'modal'],
     },
@@ -3197,6 +4691,20 @@ export class DemoTypographyComponent {}
             'Headings render as real h1-h6 elements — do not skip levels in a page outline',
             'Use `as` to restyle a heading visually without breaking the document outline',
         ],
+        tokens: [
+            {
+                name: 'Text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Default text color for all variants.',
+            },
+            {
+                name: 'Muted text',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Text color when the muted input is true.',
+            },
+        ],
         relatedSlugs: ['card', 'divider', 'accordion'],
     },
     {
@@ -3263,6 +4771,26 @@ export class DemoEmptyStateComponent {}
         a11yNotes: [
             'Presentational — pair with an aria-live region if it appears after an async search',
             'Action buttons inside the actions slot remain fully keyboard accessible',
+        ],
+        tokens: [
+            {
+                name: 'Icon',
+                variable: '--zyra-color-foreground-subtle',
+                defaultValue: 'var(--zyra-color-text-dim)',
+                description: 'Color of the icon slot content.',
+            },
+            {
+                name: 'Title',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Color of the title text.',
+            },
+            {
+                name: 'Description',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Color of the supporting description text.',
+            },
         ],
         relatedSlugs: ['skeleton', 'card', 'button'],
     },
@@ -3334,6 +4862,44 @@ export class DemoClipboardComponent {}
         a11yNotes: [
             'Icon-only variant sets aria-label to the current label so the action is announced',
             'The copied confirmation is visual + textual, not color-only',
+        ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-btn-secondary-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Resting fill color. Shared with zyra-button\'s secondary variant — see its Tokens section.',
+            },
+            {
+                name: 'Text',
+                variable: '--zyra-color-btn-secondary-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Resting text/icon color.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-btn-secondary-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Resting border color.',
+            },
+            {
+                name: 'Hover background',
+                variable: '--zyra-color-btn-secondary-hover-bg',
+                defaultValue: 'var(--zyra-color-surface-raised)',
+                description: 'Fill color on hover.',
+            },
+            {
+                name: 'Hover border',
+                variable: '--zyra-color-btn-secondary-hover-border',
+                defaultValue: 'var(--zyra-color-border-hover)',
+                description: 'Border color on hover.',
+            },
+            {
+                name: 'Copied text',
+                variable: '--zyra-color-success-foreground',
+                defaultValue: 'var(--zyra-color-success)',
+                description: 'Text/icon and border/background color (foreground/border-color/subtle) while showing the copied confirmation.',
+            },
         ],
         relatedSlugs: ['code-block', 'input', 'toast'],
     },
@@ -3407,6 +4973,26 @@ export class DemoRatingComponent {
         a11yNotes: [
             'Container uses role="radiogroup"; each star is role="radio" with aria-checked',
             'Arrow Left/Down and Right/Up adjust the value by one star',
+        ],
+        tokens: [
+            {
+                name: 'Unfilled star',
+                variable: '--zyra-color-border-strong-color',
+                defaultValue: 'var(--zyra-color-border-strong)',
+                description: 'Color of an unfilled star.',
+            },
+            {
+                name: 'Filled star',
+                variable: '--zyra-color-warning-foreground',
+                defaultValue: 'var(--zyra-color-warning)',
+                description: 'Color of a filled/hovered star.',
+            },
+            {
+                name: 'Focus ring',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Outline color when a star is keyboard-focused.',
+            },
         ],
         relatedSlugs: ['input', 'chip', 'progress'],
     },
@@ -3556,6 +5142,62 @@ export class DemoPaginationComponent {
             'Rendered inside a nav element with aria-label="Pagination"',
             'The active page button has aria-current="page"',
         ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color of each page button in its resting state.',
+            },
+            {
+                name: 'Background',
+                variable: '--zyra-color-surface-inset',
+                defaultValue: 'var(--zyra-color-bg-surface)',
+                description: 'Fill color of each page button in its resting state.',
+            },
+            {
+                name: 'Text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Label color of a resting page button.',
+            },
+            {
+                name: 'Hover background',
+                variable: '--zyra-color-surface-raised',
+                defaultValue: 'var(--zyra-color-bg-raised)',
+                description: 'Fill color of a page button on hover.',
+            },
+            {
+                name: 'Hover border',
+                variable: '--zyra-color-border-hover',
+                defaultValue: 'tuned per theme',
+                description: 'Border color of a page button on hover.',
+            },
+            {
+                name: 'Active background',
+                variable: '--zyra-color-primary-subtle',
+                defaultValue: 'var(--zyra-color-accent-muted)',
+                description: 'Fill color of the current page button.',
+            },
+            {
+                name: 'Active text/border',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Text, border, and focus-outline color of the current page button.',
+            },
+            {
+                name: 'Active border',
+                variable: '--zyra-color-primary-border',
+                defaultValue: 'var(--zyra-color-accent-border)',
+                description: 'Border color of the current page button.',
+            },
+            {
+                name: 'Ellipsis',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Color of the collapsed-range ellipsis.',
+            },
+        ],
         relatedSlugs: ['tabs', 'breadcrumb', 'button'],
     },
     {
@@ -3639,6 +5281,62 @@ export class DemoStepperComponent {
             'Step indicators are focusable buttons so keyboard users can jump between steps',
             'Completed steps expose a checkmark icon, not color alone',
         ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color of an upcoming step\'s indicator.',
+            },
+            {
+                name: 'Background',
+                variable: '--zyra-color-surface-inset',
+                defaultValue: 'var(--zyra-color-bg-surface)',
+                description: 'Fill color of an upcoming step\'s indicator.',
+            },
+            {
+                name: 'Upcoming text',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Label/description color of an upcoming or completed step.',
+            },
+            {
+                name: 'Active fill',
+                variable: '--zyra-color-primary-subtle',
+                defaultValue: 'var(--zyra-color-accent-muted)',
+                description: 'Indicator fill color of the active step.',
+            },
+            {
+                name: 'Active accent',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Indicator text/border color of the active step, and focus-outline color.',
+            },
+            {
+                name: 'Completed fill',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Indicator background/border color of a completed step.',
+            },
+            {
+                name: 'Completed check',
+                variable: '--zyra-color-foreground-inverse',
+                defaultValue: 'var(--zyra-color-text-inverse)',
+                description: 'Checkmark color inside a completed step\'s indicator.',
+            },
+            {
+                name: 'Active label',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Label color of the active step.',
+            },
+            {
+                name: 'Connector line',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Color of the line connecting steps.',
+            },
+        ],
         relatedSlugs: ['tabs', 'accordion', 'progress'],
     },
     {
@@ -3703,6 +5401,26 @@ export class DemoPopoverComponent {}
         a11yNotes: [
             'Panel is rendered with role="dialog" and a unique id',
             'Escape and outside-click both dismiss the panel when using the click trigger',
+        ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-surface-dropdown',
+                defaultValue: 'var(--zyra-color-card-bg)',
+                description: 'Fill color of the panel and its directional arrow.',
+            },
+            {
+                name: 'Text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Base text color inside the panel.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color of the panel.',
+            },
         ],
         relatedSlugs: ['tooltip', 'dropdown-menu', 'modal'],
     },
@@ -3770,6 +5488,56 @@ export class DemoTimelineComponent {}
             },
         ],
         a11yNotes: ['Rendered as a plain list of entries — wrap in an ordered list context if sequence matters for assistive tech'],
+        tokens: [
+            {
+                name: 'Default marker',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Marker dot color for the default variant, and the ring around every marker.',
+            },
+            {
+                name: 'Success marker',
+                variable: '--zyra-color-success-foreground',
+                defaultValue: 'var(--zyra-color-success)',
+                description: 'Marker dot color for the success variant.',
+            },
+            {
+                name: 'Warning marker',
+                variable: '--zyra-color-warning-foreground',
+                defaultValue: 'var(--zyra-color-warning)',
+                description: 'Marker dot color for the warning variant.',
+            },
+            {
+                name: 'Danger marker',
+                variable: '--zyra-color-danger-foreground',
+                defaultValue: 'var(--zyra-color-danger)',
+                description: 'Marker dot color for the danger variant.',
+            },
+            {
+                name: 'Info marker',
+                variable: '--zyra-color-info-foreground',
+                defaultValue: 'var(--zyra-color-info)',
+                description: 'Marker dot color for the info variant.',
+            },
+            {
+                name: 'Connecting line',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Color of the vertical line connecting entries.',
+            },
+            {
+                name: 'Title',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Color of each entry\'s title.',
+            },
+            {
+                name: 'Date / body text',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Color of the date label and projected body content.',
+            },
+        ],
         relatedSlugs: ['card', 'accordion', 'skeleton'],
     },
     {
@@ -3909,6 +5677,44 @@ export class DemoTableComponent {
             'Select-all and per-row checkboxes reuse the accessible Checkbox component',
             'Single-selection mode uses native radio inputs grouped per table instance',
         ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Outer border, and the divider under each header/row.',
+            },
+            {
+                name: 'Header background',
+                variable: '--zyra-color-surface',
+                defaultValue: 'var(--zyra-color-card-bg)',
+                description: 'Fill color of the header row.',
+            },
+            {
+                name: 'Header text',
+                variable: '--zyra-color-foreground-subtle',
+                defaultValue: 'var(--zyra-color-text-dim)',
+                description: 'Label color of column headers, and the sort icon.',
+            },
+            {
+                name: 'Cell text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Text color of a data cell.',
+            },
+            {
+                name: 'Row hover / selected',
+                variable: '--zyra-color-table-row-hover-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Background of a hovered or selected row.',
+            },
+            {
+                name: 'Focus ring',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Outline color when a header or row is keyboard-focused, and the radio accent-color.',
+            },
+        ],
         relatedSlugs: ['pagination', 'checkbox', 'empty-state', 'skeleton'],
     },
     {
@@ -4014,6 +5820,38 @@ export class DemoTreeViewComponent {
             'Home/End jump to the first/last visible row',
             'Enter/Space toggles selection (if enabled) or expansion',
         ],
+        tokens: [
+            {
+                name: 'Text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Label color of a row.',
+            },
+            {
+                name: 'Hover / selected background',
+                variable: '--zyra-color-tree-view-hover-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Background of a hovered row.',
+            },
+            {
+                name: 'Selected background',
+                variable: '--zyra-color-primary-subtle',
+                defaultValue: 'var(--zyra-color-accent-muted)',
+                description: 'Background of a selected row.',
+            },
+            {
+                name: 'Selected text',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Label color of a selected row, and the focus-outline color.',
+            },
+            {
+                name: 'Muted text',
+                variable: '--zyra-color-foreground-subtle',
+                defaultValue: 'var(--zyra-color-text-dim)',
+                description: 'Color of the expand/collapse chevron and disabled-row label.',
+            },
+        ],
         relatedSlugs: ['sidebar', 'accordion', 'calendar'],
     },
     {
@@ -4080,6 +5918,50 @@ export class DemoTreeViewComponent {
             'Each slide has role="group" with aria-roledescription="slide"',
             'Arrow Left/Right keys navigate; dots use role="tab" with aria-selected reflecting the active slide',
             'Autoplay pauses on mouseenter and resumes on mouseleave so it never fights a reading user',
+        ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-carousel-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color of the carousel viewport.',
+            },
+            {
+                name: 'Text',
+                variable: '--zyra-color-carousel-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Base text color inside the viewport.',
+            },
+            {
+                name: 'Dots track',
+                variable: '--zyra-color-carousel-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Fill color of an inactive dot.',
+            },
+            {
+                name: 'Arrow background',
+                variable: '--zyra-color-surface',
+                defaultValue: 'var(--zyra-color-card-bg)',
+                description: 'Fill color of the previous/next arrow buttons.',
+            },
+            {
+                name: 'Arrow text',
+                variable: '--zyra-color-foreground',
+                defaultValue: 'var(--zyra-color-text)',
+                description: 'Icon color of the arrow buttons.',
+            },
+            {
+                name: 'Arrow border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color of the arrow buttons.',
+            },
+            {
+                name: 'Active accent',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Fill color of the active dot, arrow hover state, and focus outlines.',
+            },
         ],
         relatedSlugs: ['card', 'timeline', 'empty-state'],
     },
@@ -4163,6 +6045,62 @@ export class DemoTreeViewComponent {
             'Only the focused day is in the tab order (roving tabindex) — Arrow keys move focus between days',
             'Today\'s date is marked with aria-current="date"',
             'The month label is a button with aria-haspopup for the month/year picker view',
+        ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-calendar-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color of the calendar panel.',
+            },
+            {
+                name: 'Text',
+                variable: '--zyra-color-calendar-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Base text color: month/year label, weekday header, and in-month day numbers.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-calendar-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color of the panel.',
+            },
+            {
+                name: 'Hover background',
+                variable: '--zyra-color-surface-raised',
+                defaultValue: 'var(--zyra-color-bg-raised)',
+                description: 'Fill color of a day cell, or the prev/next month buttons, on hover.',
+            },
+            {
+                name: 'Outside-month text',
+                variable: '--zyra-color-foreground-subtle',
+                defaultValue: 'var(--zyra-color-text-dim)',
+                description: 'Text color for days outside the current month.',
+            },
+            {
+                name: 'Today ring',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Inset ring around today\'s date, and focus-outline color.',
+            },
+            {
+                name: 'Selected background',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Fill color of a selected date (or range endpoint).',
+            },
+            {
+                name: 'Selected text',
+                variable: '--zyra-color-on-brand',
+                defaultValue: 'var(--zyra-color-btn-primary-text)',
+                description: 'Text color of a selected date, kept readable against the accent fill.',
+            },
+            {
+                name: 'Range background',
+                variable: '--zyra-color-primary-subtle',
+                defaultValue: 'var(--zyra-color-accent-muted)',
+                description: 'Fill color of days between a selected range\'s two endpoints.',
+            },
         ],
         relatedSlugs: ['date-picker', 'carousel', 'input', 'form-field'],
     },
@@ -4271,6 +6209,10 @@ export class DemoTreeViewComponent {
             'Clicking outside the trigger and panel closes it',
             'Calendar\'s own keyboard grid navigation (arrow keys, roving tabindex) applies inside the panel',
         ],
+        // Trigger reuses the same --zyra-color-select-* tokens as Select/Multi
+        // Select/Autocomplete (see SELECT_TOKENS) — the calendar panel itself
+        // is styled by ZyraCalendar's own tokens, documented on its own page.
+        tokens: SELECT_TOKENS,
         relatedSlugs: ['calendar', 'select', 'form-field'],
     },
     {
@@ -4470,6 +6412,68 @@ export class DemoHeaderComponent {}
             'Focus moves into the drawer on open and returns to the toggle button on close',
             'Desktop and mobile nav landmarks are mutually exclusive in the accessibility tree — only the currently relevant one is ever exposed to assistive tech',
         ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-header-bg',
+                defaultValue: 'var(--zyra-color-background)',
+                description: 'Fill color once opaque (scrolled past the threshold, or transparent is false).',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-header-border',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Bottom border color, tinted with the primary color on hover regions.',
+            },
+            {
+                name: 'Glass background',
+                variable: '--zyra-header-glass-bg',
+                defaultValue: 'var(--zyra-color-header-glass-bg)',
+                description: 'Translucent fill used with the backdrop blur while transparent and not yet scrolled.',
+            },
+            {
+                name: 'Backdrop blur',
+                variable: '--zyra-header-backdrop',
+                defaultValue: 'var(--zyra-header-backdrop-base)',
+                description: 'backdrop-filter value for the glass effect.',
+            },
+            {
+                name: 'Elevation shadow',
+                variable: '--zyra-header-shadow',
+                defaultValue: 'var(--zyra-header-shadow-base)',
+                description: 'Drop shadow applied once elevateOnScroll triggers.',
+            },
+            {
+                name: 'Divider',
+                variable: '--zyra-header-divider-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Color of the section dividers inside the mobile drawer.',
+            },
+            {
+                name: 'Burger background',
+                variable: '--zyra-color-background-elevated',
+                defaultValue: 'var(--zyra-color-bg-panel)',
+                description: 'Fill color of the mobile menu toggle button.',
+            },
+            {
+                name: 'Burger icon',
+                variable: '--zyra-color-foreground-muted',
+                defaultValue: 'var(--zyra-color-text-muted)',
+                description: 'Icon/border color of the toggle button, resting state.',
+            },
+            {
+                name: 'Drawer background',
+                variable: '--zyra-color-drawer-bg',
+                defaultValue: 'var(--zyra-color-surface)',
+                description: 'Fill color of the mobile nav drawer panel.',
+            },
+            {
+                name: 'Focus / active accent',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Border-tint on scroll, and the toggle button\'s focus outline.',
+            },
+        ],
         relatedSlugs: ['sidebar', 'tabs', 'breadcrumb'],
     },
     {
@@ -4568,6 +6572,68 @@ export class DemoSidebarComponent {
             'Disabled items get aria-disabled and are removed from tab order',
             'Header and footer slots collapse to nothing in the DOM when left empty',
         ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-sidebar-bg',
+                defaultValue: 'var(--zyra-color-background-elevated)',
+                description: 'Fill color of the sidebar panel.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-sidebar-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color of the panel edge, and the header/footer dividers.',
+            },
+            {
+                name: 'Section heading',
+                variable: '--zyra-color-sidebar-heading',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Color of a section label above a group of items.',
+            },
+            {
+                name: 'Item text',
+                variable: '--zyra-color-sidebar-text',
+                defaultValue: 'var(--zyra-color-foreground-muted)',
+                description: 'Text color of a resting, inactive item.',
+            },
+            {
+                name: 'Item text (hover)',
+                variable: '--zyra-color-sidebar-text-hover',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Text color of an item on hover.',
+            },
+            {
+                name: 'Item background (hover)',
+                variable: '--zyra-color-sidebar-hover-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Fill color of an item on hover.',
+            },
+            {
+                name: 'Item text (active)',
+                variable: '--zyra-color-sidebar-text-active',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Text color of the active (current-page) item.',
+            },
+            {
+                name: 'Item background (active)',
+                variable: '--zyra-color-sidebar-active-bg',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Fill color of the active item.',
+            },
+            {
+                name: 'Badge background',
+                variable: '--zyra-color-sidebar-badge-bg',
+                defaultValue: 'var(--zyra-color-primary-subtle)',
+                description: 'Fill color of a count badge next to an item.',
+            },
+            {
+                name: 'Badge text',
+                variable: '--zyra-color-sidebar-badge-text',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Text color of a count badge.',
+            },
+        ],
         relatedSlugs: ['header', 'tabs', 'breadcrumb'],
     },
     {
@@ -4622,6 +6688,14 @@ export class DemoBoxComponent {}
         a11yNotes: [
             'Box is a plain, non-semantic wrapper — use it for visual grouping, not in place of semantic HTML',
         ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color shown when the border input is enabled.',
+            },
+        ],
         relatedSlugs: ['flex', 'grid', 'container'],
     },
     {
@@ -4670,6 +6744,14 @@ export class DemoFlexComponent {}
         ],
         a11yNotes: [
             'Purely visual layout — doesn’t change the tab order of projected content',
+        ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color shown when the border input is enabled.',
+            },
         ],
         relatedSlugs: ['box', 'grid', 'stack'],
     },
@@ -4720,6 +6802,14 @@ export class DemoGridComponent {}
         a11yNotes: [
             'Visual reflow via grid-auto-flow doesn’t change DOM/tab order — keep source order meaningful',
         ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color shown when the border input is enabled.',
+            },
+        ],
         relatedSlugs: ['box', 'flex', 'container'],
     },
     {
@@ -4764,6 +6854,14 @@ export class DemoContainerComponent {}
         ],
         a11yNotes: [
             'Purely visual layout — has no semantic role of its own',
+        ],
+        tokens: [
+            {
+                name: 'Border',
+                variable: '--zyra-color-border-color',
+                defaultValue: 'var(--zyra-color-border)',
+                description: 'Border color shown when the border input is enabled.',
+            },
         ],
         relatedSlugs: ['box', 'grid', 'flex'],
     },
@@ -4854,6 +6952,38 @@ export class DemoScrollAreaComponent {}
         a11yNotes: [
             'Focusable via tabindex="0" with role="region" and an aria-label',
             'Arrow/Home/End/PageUp/PageDown keys move the scroll position when focused',
+        ],
+        tokens: [
+            {
+                name: 'Focus ring',
+                variable: '--zyra-color-primary',
+                defaultValue: 'var(--zyra-color-accent)',
+                description: 'Inset focus ring shown when the scroll region itself is keyboard-focused.',
+            },
+            {
+                name: 'Scrollbar thumb',
+                variable: '--zyra-color-scrollbar-thumb',
+                defaultValue: 'var(--zyra-color-scrollbar-thumb-base)',
+                description: 'Color of the draggable scrollbar thumb.',
+            },
+            {
+                name: 'Scrollbar thumb (hover)',
+                variable: '--zyra-color-scrollbar-thumb-hover',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Thumb color on hover.',
+            },
+            {
+                name: 'Scrollbar track',
+                variable: '--zyra-color-scrollbar-track',
+                defaultValue: 'var(--zyra-color-scrollbar-track-base)',
+                description: 'Color of the scrollbar track/gutter.',
+            },
+            {
+                name: 'Edge fade',
+                variable: '--zyra-scroll-area-fade-color',
+                defaultValue: 'var(--zyra-color-surface)',
+                description: 'Color the shadow-fade indicators blend into — should match the surface the scroll area sits on.',
+            },
         ],
         relatedSlugs: ['box', 'sidebar'],
     },

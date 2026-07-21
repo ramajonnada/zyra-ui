@@ -43,9 +43,9 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: var(--zyra-color-card-bg);
-    color: var(--zyra-color-text);
-    border: 1px solid var(--zyra-color-border);
+    background: var(--zyra-color-surface);
+    color: var(--zyra-color-foreground);
+    border: 1px solid var(--zyra-color-border-color);
     box-shadow: var(--zyra-shadow-md);
     cursor: pointer;
     z-index: 2;

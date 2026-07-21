@@ -1,6 +1,6 @@
 ﻿:host {
     display: block;
-    border-bottom: 1px solid var(--zyra-color-border);
+    border-bottom: 1px solid var(--zyra-color-border-color);
 
     &:last-child {
         border-bottom: none;
@@ -21,7 +21,7 @@
         background: none;
         border: none;
         cursor: pointer;
-        color: var(--zyra-color-text);
+        color: var(--zyra-color-foreground);
         font-family: var(--zyra-font-body);
         font-size: 14px;
         font-weight: 500;
@@ -30,7 +30,7 @@
         transition: color var(--zyra-transition-base);
 
         &:hover {
-            color: var(--zyra-color-accent);
+            color: var(--zyra-color-primary);
         }
 
         &--disabled {
@@ -38,12 +38,12 @@
             cursor: not-allowed;
 
             &:hover {
-                color: var(--zyra-color-text);
+                color: var(--zyra-color-foreground);
             }
         }
 
         &:focus-visible {
-            outline: 2px solid var(--zyra-color-accent);
+            outline: 2px solid var(--zyra-ring);
             outline-offset: 2px;
             border-radius: var(--zyra-radius-xs);
         }
@@ -55,7 +55,7 @@
 
     &__chevron {
         flex-shrink: 0;
-        color: var(--zyra-color-text-muted);
+        color: var(--zyra-color-foreground-muted);
         transition: transform var(--zyra-transition-base);
         display: flex;
         align-items: center;
@@ -73,7 +73,7 @@
         overflow: hidden;
         font-size: 14px;
         line-height: 1.7;
-        color: var(--zyra-color-text-muted);
+        color: var(--zyra-color-foreground-muted);
     }
 
     // ── Open state ────────────────────────────────────────────

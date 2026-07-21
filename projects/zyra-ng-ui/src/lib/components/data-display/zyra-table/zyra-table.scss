@@ -10,7 +10,7 @@
     &__scroll {
         width: 100%;
         overflow-x: auto;
-        border: 1px solid var(--zyra-color-border);
+        border: 1px solid var(--zyra-color-border-color);
         border-radius: var(--zyra-radius-md);
     }
 
@@ -20,7 +20,7 @@
     }
 
     thead {
-        background: var(--zyra-color-card-bg);
+        background: var(--zyra-color-surface);
     }
 
     &__head--sticky {
@@ -32,14 +32,14 @@
     th {
         text-align: left;
         font-weight: 600;
-        color: var(--zyra-color-text-dim);
-        border-bottom: 1px solid var(--zyra-color-border);
+        color: var(--zyra-color-foreground-subtle);
+        border-bottom: 1px solid var(--zyra-color-border-color);
         white-space: nowrap;
     }
 
     td {
-        color: var(--zyra-color-text);
-        border-bottom: 1px solid var(--zyra-color-border);
+        color: var(--zyra-color-foreground);
+        border-bottom: 1px solid var(--zyra-color-border-color);
     }
 
     tbody tr:last-child td {
@@ -92,7 +92,7 @@
     }
 
     &__sort-icon {
-        color: var(--zyra-color-text-dim);
+        color: var(--zyra-color-foreground-subtle);
         opacity: 0.4;
         transition: transform var(--zyra-transition-fast), opacity var(--zyra-transition-fast);
 

@@ -14,8 +14,8 @@ const EXPECTED_SLUGS = [
 describe('PLAYGROUND_REGISTRY', () => {
 
     // ── coverage ──────────────────────────────────────────────────────────────
-    it('has exactly 44 entries', () => {
-        expect(Object.keys(PLAYGROUND_REGISTRY).length).toBe(44);
+    it('has exactly 56 entries', () => {
+        expect(Object.keys(PLAYGROUND_REGISTRY).length).toBe(56);
     });
 
     it('contains every expected component slug', () => {

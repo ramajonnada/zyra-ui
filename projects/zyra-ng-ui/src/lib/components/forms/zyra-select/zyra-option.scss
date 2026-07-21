@@ -13,11 +13,11 @@
     user-select: none;
 
     &:hover:not(&--disabled) {
-        background: var(--zyra-color-bg-raised);
+        background: var(--zyra-color-surface-raised);
     }
 
     &--active {
-        background: var(--zyra-color-bg-raised);
+        background: var(--zyra-color-surface-raised);
     }
 
     &--selected {

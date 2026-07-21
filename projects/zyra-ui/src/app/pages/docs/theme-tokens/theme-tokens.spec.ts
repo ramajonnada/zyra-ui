@@ -22,30 +22,34 @@ describe('DocsThemeTokens', () => {
         expect(component).toBeTruthy();
     });
 
-    it('exposes 5 token tiers', () => {
-        expect(component.tiers.length).toBe(5);
+    it('exposes color swatches', () => {
+        expect(component.colorSwatches.length).toBeGreaterThan(0);
     });
 
-    it('first tier is Primitives', () => {
-        expect(component.tiers[0].title).toContain('Primitives');
+    it('color swatches are semantic tokens only, never raw per-theme tokens', () => {
+        const rawTokens = [
+            '--zyra-color-accent',
+            '--zyra-color-bg-app',
+            '--zyra-color-bg-panel',
+            '--zyra-color-bg-surface',
+            '--zyra-color-bg-raised',
+            '--zyra-color-text',
+            '--zyra-color-border',
+        ];
+        const variables = component.colorSwatches.map((s) => s.variable);
+        for (const raw of rawTokens) {
+            expect(variables).not.toContain(raw);
+        }
     });
 
-    it('per-theme tier includes --zyra-color-accent and --zyra-color-bg-app', () => {
-        const perTheme = component.tiers.find((t) => t.id === 'per-theme');
-        const allTokens = perTheme?.groups.flatMap((g) => g.tokens) ?? [];
-        expect(allTokens).toContain('--zyra-color-accent');
-        expect(allTokens).toContain('--zyra-color-bg-app');
+    it('exposes shape/font token groups including Typography', () => {
+        const typography = component.shapeTokens.find((g) => g.label === 'Font families');
+        expect(typography?.tokens).toContain('--zyra-font-body');
+        expect(typography?.tokens).toContain('--zyra-font-display');
     });
 
-    it('dimension tier Typography group includes font tokens', () => {
-        const dimension = component.tiers.find((t) => t.id === 'dimension');
-        const typo = dimension?.groups.find((g) => g.label === 'Typography');
-        expect(typo?.tokens).toContain('--zyra-font-body');
-        expect(typo?.tokens).toContain('--zyra-font-display');
-    });
-
-    it('separates overridable tokens from internal tokens', () => {
-        expect(component.overridableTokens.length).toBeGreaterThan(0);
-        expect(component.internalTokens.length).toBeGreaterThan(0);
+    it('overrideCode shows a copy-pasteable :root override block', () => {
+        expect(component.overrideCode).toContain(':root');
+        expect(component.overrideCode).toContain('--zyra-color-primary');
     });
 });
