@@ -1,0 +1,30 @@
+@if (visible()) {
+    <div class="ann-bar" [class.ann-bar--collapsed]="collapsed()" role="region" aria-label="Announcement">
+        <div class="ann-bar__container">
+            <div class="ann-bar__inner">
+                <p class="ann-bar__message">
+                    <zyra-icon [img]="icons.rocket" [size]="14" />
+                    <span>{{ highlight.message }} <a [routerLink]="highlight.link">{{ highlight.linkLabel }}</a></span>
+                </p>
+
+                <a
+                    class="ann-bar__star"
+                    href="https://github.com/ramajonnada/zyra-ui"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <zyra-icon [img]="icons.star" [size]="14" />
+                    <span class="ann-bar__star-label ann-bar__star-label--full">If Zyra UI is useful to you, a star on GitHub helps others find it</span>
+                    <span class="ann-bar__star-label ann-bar__star-label--short">Star on GitHub</span>
+                    @if (githubStars() !== null) {
+                        <span class="ann-bar__star-count">{{ githubStars() }}</span>
+                    }
+                </a>
+            </div>
+
+            <button type="button" class="ann-bar__close" (click)="dismiss()" aria-label="Dismiss announcement">
+                <zyra-icon [img]="icons.xmark" [size]="14" />
+            </button>
+        </div>
+    </div>
+}

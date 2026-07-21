@@ -4,18 +4,18 @@
 }
 
 .article-page {
-	--article-surface: color-mix(in srgb, var(--zyra-color-bg-panel) 94%, transparent);
-	--article-surface-soft: color-mix(in srgb, var(--zyra-color-bg-surface) 74%, transparent);
+	--article-surface: color-mix(in srgb, var(--zyra-color-background-elevated) 94%, transparent);
+	--article-surface-soft: color-mix(in srgb, var(--zyra-color-surface-inset) 74%, transparent);
 	--article-shadow: var(--zyra-shadow-lg);
-	--article-heading: var(--zyra-color-text);
-	--article-copy: var(--zyra-color-text-muted);
-	--article-copy-strong: var(--zyra-color-text);
-	--article-muted: var(--zyra-color-text-dim);
-	--article-tag-text: var(--zyra-color-text-muted);
-	--article-link: var(--zyra-color-accent);
-	--article-code-bg: var(--zyra-color-bg-surface);
-	--article-inline-code-bg: var(--zyra-color-bg-surface);
-	--article-inline-code-border: var(--zyra-color-border);
+	--article-heading: var(--zyra-color-foreground);
+	--article-copy: var(--zyra-color-foreground-muted);
+	--article-copy-strong: var(--zyra-color-foreground);
+	--article-muted: var(--zyra-color-foreground-subtle);
+	--article-tag-text: var(--zyra-color-foreground-muted);
+	--article-link: var(--zyra-color-primary);
+	--article-code-bg: var(--zyra-color-surface-inset);
+	--article-inline-code-bg: var(--zyra-color-surface-inset);
+	--article-inline-code-border: var(--zyra-color-border-color);
 	position: relative;
 	max-width: 1220px;
 	margin: 0 auto;
@@ -59,13 +59,13 @@
 	align-items: center;
 	gap: 10px;
 	margin-bottom: 14px;
-	color: var(--zyra-color-accent);
+	color: var(--zyra-color-primary);
 
 	&::before {
 		content: '';
 		width: 18px;
 		height: 1px;
-		background: currentColor;
+		background: currentcolor;
 		opacity: 0.6;
 	}
 }
@@ -95,9 +95,9 @@
 }
 
 .article-chip {
-	background: var(--zyra-color-accent-muted);
-	border-color: var(--zyra-color-accent-border);
-	color: var(--zyra-color-accent);
+	background: var(--zyra-color-primary-subtle);
+	border-color: var(--zyra-color-primary-border);
+	color: var(--zyra-color-primary);
 	font-family: var(--zyra-font-mono);
 }
 
@@ -124,8 +124,8 @@
 }
 
 .tag {
-	background: var(--zyra-color-bg-surface);
-	border-color: var(--zyra-color-border);
+	background: var(--zyra-color-surface-inset);
+	border-color: var(--zyra-color-border-color);
 	color: var(--article-tag-text);
 }
 
@@ -197,7 +197,7 @@
 	position: relative;
 	overflow: hidden;
 	border-radius: 999px;
-	background: color-mix(in srgb, var(--zyra-color-text-muted) 14%, transparent);
+	background: color-mix(in srgb, var(--zyra-color-foreground-muted) 14%, transparent);
 	margin-bottom: 14px;
 
 	&::after {
@@ -207,7 +207,7 @@
 		transform: translateX(-100%);
 		background: linear-gradient(90deg,
 				transparent,
-				color-mix(in srgb, var(--zyra-color-text-inverse) 18%, transparent),
+				color-mix(in srgb, var(--zyra-color-foreground-inverse) 18%, transparent),
 				transparent);
 		animation: shimmer 1.3s infinite;
 	}

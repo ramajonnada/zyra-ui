@@ -1,0 +1,134 @@
+:host {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    max-height: 80px;
+    overflow: hidden;
+    transition: max-height var(--zyra-transition-base);
+}
+
+// Collapsing max-height (rather than just translating the bar out of view)
+// actually reclaims the vertical space, so content shifts up smoothly
+// instead of leaving a blank sticky gap while scrolled down — same
+// behavior on mobile and desktop, since it's driven by scroll position,
+// not viewport width.
+:host.is-collapsed {
+    max-height: 0;
+}
+
+// Full-bleed colored strip — matches zyra-header's own :host, which paints
+// edge-to-edge while its *content* (.zyr-header__bar) is what's capped and
+// centered. See .ann-bar__container below for the matching inner cap.
+.ann-bar {
+    background: var(--zyra-color-primary-subtle);
+    border-bottom: 1px solid var(--zyra-color-primary-border);
+    color: var(--zyra-color-foreground);
+    font-size: 13px;
+}
+
+// zyra-header defaults to variant="contained": its inner bar is capped at
+// max-width: 1280px (border-box, so padding is included) and centered with
+// margin: 0 auto. Mirroring that exactly here — rather than just matching
+// the padding value — is what actually keeps this content's left/right
+// edges aligned with the header's logo and actions on wide viewports;
+// padding alone only matches them below the 1280px cap.
+.ann-bar__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 8px var(--zyra-header-padding-x, var(--zyra-space-6));
+}
+
+.ann-bar__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 24px;
+    min-width: 0;
+}
+
+.ann-bar__message,
+.ann-bar__star {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    white-space: nowrap;
+
+    zyra-icon {
+        flex-shrink: 0;
+        color: var(--zyra-color-primary);
+    }
+}
+
+.ann-bar__message a {
+    color: var(--zyra-color-primary);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.ann-bar__star {
+    color: var(--zyra-color-foreground-muted);
+    text-decoration: none;
+    white-space: normal;
+
+    &:hover {
+        color: var(--zyra-color-foreground);
+    }
+}
+
+.ann-bar__star-count {
+    padding: 1px 6px;
+    border-radius: var(--zyra-radius-full);
+    background: var(--zyra-color-surface-inset);
+    color: var(--zyra-color-foreground-muted);
+    font-family: var(--zyra-font-mono);
+    font-size: 11px;
+}
+
+.ann-bar__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: var(--zyra-radius-sm);
+    background: transparent;
+    color: var(--zyra-color-foreground-muted);
+    cursor: pointer;
+    transition: background var(--zyra-transition-fast), color var(--zyra-transition-fast);
+
+    &:hover {
+        background: var(--zyra-color-surface-inset);
+        color: var(--zyra-color-foreground);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--zyra-ring);
+        outline-offset: 1px;
+    }
+}
+
+.ann-bar__star-label--short {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .ann-bar__star-label--full {
+        display: none;
+    }
+
+    .ann-bar__star-label--short {
+        display: inline;
+    }
+}

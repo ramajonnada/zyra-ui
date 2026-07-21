@@ -2,8 +2,8 @@
 	display: block;
 	min-height: 100vh;
 	padding: 40px 0 56px;
-	background: var(--zyra-color-bg-app);
-	color: var(--zyra-color-text);
+	background: var(--zyra-color-background);
+	color: var(--zyra-color-foreground);
 }
 
 .blog-page {
@@ -20,7 +20,7 @@
 	align-items: flex-start;
 	gap: 24px;
 	padding-bottom: 24px;
-	border-bottom: 1px solid var(--zyra-color-border);
+	border-bottom: 1px solid var(--zyra-color-border-color);
 	text-align: left;
 }
 
@@ -30,7 +30,7 @@
 
 .blog-page__eyebrow {
 	margin: 0 0 10px;
-	color: var(--zyra-color-accent);
+	color: var(--zyra-color-primary);
 	font-family: var(--zyra-font-mono);
 	font-size: 0.75rem;
 	letter-spacing: 0.12em;
@@ -47,7 +47,7 @@
 
 .blog-page__intro {
 	margin: 14px 0 0;
-	color: var(--zyra-color-text-muted);
+	color: var(--zyra-color-foreground-muted);
 	line-height: 1.75;
 }
 
@@ -73,9 +73,9 @@
 }
 
 .blog-page__meta-pill {
-	background: var(--zyra-color-bg-surface);
-	border-color: var(--zyra-color-border);
-	color: var(--zyra-color-text-muted);
+	background: var(--zyra-color-surface-inset);
+	border-color: var(--zyra-color-border-color);
+	color: var(--zyra-color-foreground-muted);
 }
 
 .blog-page__section-head h2 {
@@ -87,10 +87,10 @@
 
 .blog-page__state {
 	padding: 28px;
-	border: 1px solid var(--zyra-color-border);
+	border: 1px solid var(--zyra-color-border-color);
 	border-radius: var(--zyra-radius-xl);
-	background: var(--zyra-color-bg-panel);
-	color: var(--zyra-color-text-muted);
+	background: var(--zyra-color-background-elevated);
+	color: var(--zyra-color-foreground-muted);
 	text-align: center;
 }
 
@@ -133,15 +133,15 @@
 }
 
 .blog-card__category {
-	background: var(--zyra-color-accent-muted);
-	border-color: var(--zyra-color-accent-border);
-	color: var(--zyra-color-accent);
-	box-shadow: inset 0 1px 0 color-mix(in srgb, var(--zyra-color-text-inverse) 6%, transparent);
+	background: var(--zyra-color-primary-subtle);
+	border-color: var(--zyra-color-primary-border);
+	color: var(--zyra-color-primary);
+	box-shadow: inset 0 1px 0 color-mix(in srgb, var(--zyra-color-foreground-inverse) 6%, transparent);
 }
 
 .blog-card__date,
 .blog-card__meta {
-	color: var(--zyra-color-text-dim);
+	color: var(--zyra-color-foreground-subtle);
 	font-size: 0.8rem;
 }
 
@@ -151,13 +151,13 @@
 	font-size: 1.45rem;
 	line-height: 1.22;
 	letter-spacing: 0;
-	color: var(--zyra-color-text);
+	color: var(--zyra-color-foreground);
 	transition: color var(--zyra-transition-base);
 }
 
 .blog-card__description {
 	margin: 0;
-	color: var(--zyra-color-text-muted);
+	color: var(--zyra-color-foreground-muted);
 	font-size: 1rem;
 	line-height: 1.8;
 	min-height: calc(1.8em * 3);
@@ -186,7 +186,7 @@
 	width: 4px;
 	height: 4px;
 	border-radius: 999px;
-	background: currentColor;
+	background: currentcolor;
 	opacity: 0.7;
 }
 
@@ -194,16 +194,16 @@
 	min-height: 28px;
 	padding: 0 10px;
 	border-radius: 999px;
-	border: 1px solid color-mix(in srgb, var(--zyra-color-border) 88%, transparent);
-	background: color-mix(in srgb, var(--zyra-color-bg-surface) 75%, transparent);
-	color: var(--zyra-color-text-muted);
+	border: 1px solid color-mix(in srgb, var(--zyra-color-border-color) 88%, transparent);
+	background: color-mix(in srgb, var(--zyra-color-surface-inset) 75%, transparent);
+	color: var(--zyra-color-foreground-muted);
 }
 
 .blog-card__cta {
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
-	color: var(--zyra-color-accent);
+	color: var(--zyra-color-primary);
 	font-size: 0.86rem;
 	font-weight: 600;
 	letter-spacing: 0.01em;
@@ -218,7 +218,7 @@
 
 .blog-card:hover .blog-card__title,
 .blog-card:focus-visible .blog-card__title {
-	color: color-mix(in srgb, var(--zyra-color-text) 86%, var(--zyra-color-accent));
+	color: color-mix(in srgb, var(--zyra-color-foreground) 86%, var(--zyra-color-primary));
 }
 
 .blog-card:hover .blog-card__cta,

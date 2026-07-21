@@ -1,0 +1,32 @@
+<main class="changelog-page">
+    <zyra-breadcrumb>
+        @for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+            <zyra-breadcrumb-item [href]="crumb.url" [current]="last" [routerLink]="last ? null : crumbPath(crumb.url)">{{ crumb.label }}</zyra-breadcrumb-item>
+        }
+    </zyra-breadcrumb>
+
+    <header class="changelog-page__header">
+        <h1>Changelog</h1>
+        <p class="changelog-page__lead">
+            Every release of <code>zyra-ng-ui</code>, straight from
+            <a href="https://github.com/ramajonnada/zyra-ui/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">CHANGELOG.md</a>.
+        </p>
+    </header>
+
+    @if (loading()) {
+        <zyra-card variant="elevated" class="changelog-page__loading">
+            <div class="skeleton skeleton--title"></div>
+            <div class="skeleton skeleton--line"></div>
+            <div class="skeleton skeleton--line"></div>
+            <div class="skeleton skeleton--line skeleton--short"></div>
+        </zyra-card>
+    } @else if (error()) {
+        <zyra-card variant="outlined" class="changelog-page__error">
+            <p>{{ error() }}</p>
+        </zyra-card>
+    } @else {
+        <div class="zyra-markdown changelog-page__content">
+            <markdown [data]="markdownContent()"></markdown>
+        </div>
+    }
+</main>
