@@ -23,6 +23,9 @@ The daily blog task reads this file before picking a topic and appends to it aft
 | 2026-06-29 | angular-resource-api-httpresouce-signals-2026 | resource() API, httpResource(), reactive HTTP with signals, optimistic updates, SSR with resource |
 | 2026-07-23 | angular-input-output-signal-api-replace-decorators | input(), output(), InputSignal, input.required(), signal inputs, OutputEmitterRef, replacing @Input/@Output, transform option, ngOnChanges replacement |
 | 2026-07-23 | angular-linked-signal-derived-writable-signals-2026 | linkedSignal(), derived writable signals, linkedSignal vs computed(), source/computation form, resetting state on input change |
+| 2026-07-23 | angular-effect-cleanup-destroyref-memory-leaks-2026 | effect() onCleanup, DestroyRef, DestroyRef.onDestroy(), memory leak prevention, setInterval/ResizeObserver cleanup |
+| 2026-07-23 | angular-let-template-syntax-2026 | @let template syntax, replacing *ngIf as workaround, template variable scoping, combining @let with @if/@for |
+| 2026-07-23 | angular-tosignal-toobservable-rxjs-interop-2026 | toSignal(), toObservable(), RxJS/signals interop, initialValue, requireSync, injection context rules |
 
 ---
 
@@ -47,6 +50,9 @@ Before writing a new post, scan this list. If your concept appears here, **pick 
 - replacing @Input/@Output with function API — covered (2026-07-23)
 - ngOnChanges replacement with computed()/effect() — covered (2026-07-23)
 - linkedSignal(), derived writable signals — covered (2026-07-23)
+- effect() onCleanup, DestroyRef — covered (2026-07-23)
+- @let template syntax — covered (2026-07-23)
+- toSignal(), toObservable(), RxJS interop — covered (2026-07-23)
 
 **AI & Tooling**
 - Angular CLI MCP server, ng mcp — covered (2026-05-21)

@@ -2,6 +2,135 @@
 	{
 		"imageUrl": "",
 		"readTime": "6 mins",
+		"slug": "angular-tosignal-toobservable-rxjs-interop-2026",
+		"title": "Angular toSignal() and toObservable(): RxJS ↔ Signals Interop",
+		"description": "Learn Angular's toSignal() and toObservable() rxjs-interop functions: converting Observables to signals and back, with initialValue, error handling, and injection context rules.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"rxjs",
+			"tosignal",
+			"toobservable",
+			"signals"
+		],
+		"keywords": [
+			"angular toSignal",
+			"angular toObservable",
+			"rxjs interop angular signals",
+			"angular signals and rxjs",
+			"angular 21 rxjs interop"
+		],
+		"date": "2026-07-23",
+		"faq": [
+			{
+				"q": "Do I need toObservable() if I'm not using RxJS operators?",
+				"a": "No — if you just need to react to a signal changing with plain logic, effect() is simpler and doesn't need the conversion at all. Reach for toObservable() specifically when you need an RxJS operator that has no signal-based equivalent, such as debounceTime, switchMap, or combineLatestWith."
+			},
+			{
+				"q": "What happens if the Observable passed to toSignal() errors?",
+				"a": "By default, the error propagates to Angular's global error handler and the signal keeps its last value — it does not throw when read. If you need in-template error state, catch the error inside the Observable pipeline (e.g. with catchError) and map it to a value your signal's type can represent."
+			},
+			{
+				"q": "Can toSignal() be used outside a component, like in a plain service?",
+				"a": "Yes, but since services aren't always constructed within a component's injection context, pass an explicit injector (via inject(Injector) in the service's constructor) if there's any chance the call happens outside one — otherwise you'll hit the same \"must be called within an injection context\" error as any other injection-context-dependent API."
+			},
+			{
+				"q": "Is toObservable() eager or lazy?",
+				"a": "It's eager relative to construction — it starts observing the signal's changes as soon as it's called, independent of whether anything has subscribed to the resulting Observable yet, so the first emission reflects the signal's value at conversion time, not just future changes."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "angular-let-template-syntax-2026",
+		"title": "Angular @let: Template Variables Without a Directive Hack",
+		"description": "Learn Angular's @let template syntax: declare local template variables cleanly, replacing the *ngIf=\"value as x\" workaround, with scoping rules and practical examples.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"@let",
+			"templates",
+			"angular control flow",
+			"angular 21"
+		],
+		"keywords": [
+			"angular @let syntax",
+			"angular template variable",
+			"angular let directive",
+			"ngIf as workaround replacement",
+			"angular 21 templates"
+		],
+		"date": "2026-07-23",
+		"faq": [
+			{
+				"q": "Does @let replace *ngIf entirely?",
+				"a": "No — only the specific pattern of using *ngIf=\"expr as x\" purely to create a variable, with no actual conditional rendering intent. If you genuinely need to conditionally show or hide content, use @if, which is the built-in control-flow replacement for real *ngIf use cases."
+			},
+			{
+				"q": "Can I use @let with async values?",
+				"a": "Yes, combine it with the async pipe exactly like you would in an interpolation: @let user = user$ | async;. If the source can emit null before resolving, guard downstream bindings with @if (user) as usual."
+			},
+			{
+				"q": "Is @let available in Angular 21?",
+				"a": "Yes. @let shipped as a developer preview in Angular 17.2 and has been stable since Angular 18, so it's fully available and safe to use in Angular 21 projects without any preview flags."
+			},
+			{
+				"q": "Does @let hurt performance if declared but never used far down the template?",
+				"a": "No meaningful cost — it's evaluated once per change-detection pass for the enclosing block, the same as any other template expression would be if written inline. The benefit is avoiding redundant evaluations of the same expression, not avoiding evaluation altogether."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "7 mins",
+		"slug": "angular-effect-cleanup-destroyref-memory-leaks-2026",
+		"title": "Angular effect() Cleanup: Preventing Memory Leaks with DestroyRef",
+		"description": "Learn how to clean up side effects inside Angular's effect() function using the onCleanup callback and DestroyRef, and avoid the most common signal-based memory leaks.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"effect",
+			"destroyref",
+			"signals",
+			"memory leaks"
+		],
+		"keywords": [
+			"angular effect cleanup",
+			"angular destroyref",
+			"angular effect memory leak",
+			"angular oncleanup effect",
+			"angular 21 effect api"
+		],
+		"date": "2026-07-23",
+		"faq": [
+			{
+				"q": "Does every effect() need onCleanup?",
+				"a": "No — only effects that start something with a lifetime (a timer, a listener, a subscription, an observer). An effect that just recomputes a value, updates a DOM property directly, or calls console.log() has nothing to clean up, since there's no ongoing resource left running after the callback returns."
+			},
+			{
+				"q": "What's the difference between onCleanup and DestroyRef.onDestroy()?",
+				"a": "onCleanup() is scoped to a single effect() — it runs before every re-run of that specific effect and once when the effect is destroyed. DestroyRef.onDestroy() is scoped to the entire injection context (usually the component) and runs exactly once, when that context is destroyed — it has no concept of \"re-running.\""
+			},
+			{
+				"q": "Can I call onCleanup() more than once inside the same effect run?",
+				"a": "Yes. Each call registers an additional cleanup callback, and Angular runs all of them, in registration order, before the next effect run or on final destroy. This is useful when a single effect run starts more than one resource (e.g. two separate listeners)."
+			},
+			{
+				"q": "Does forgetting cleanup cause an error, or just a silent leak?",
+				"a": "Silent leak, which is what makes it dangerous — there's no thrown exception or console warning by default. The symptom is usually degraded performance or duplicated side effects (multiple network requests, multiple DOM class toggles) that only becomes obvious after the affected signal has changed several times, which is often well into normal usage rather than during initial testing."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
 		"slug": "angular-linked-signal-derived-writable-signals-2026",
 		"title": "Angular linkedSignal(): Derived Writable Signals Explained",
 		"description": "Learn Angular's linkedSignal() API: writable signals that reset automatically when a source signal changes. Practical examples for selection state, pagination, and draft forms.",
