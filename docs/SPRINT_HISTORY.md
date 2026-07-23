@@ -20,6 +20,20 @@ Archive of completed sprints, condensed from [SPRINT.md](SPRINT.md) at the point
 
 ---
 
+## Sprint 7 — Utilities (Done) — closes Phase 1
+
+**Goal:** ship Image, JSON Viewer, Markdown Viewer, and Command Palette — the last four components in the Phase 1 free-component target, closing out Phase 1 (60+ free components).
+
+**Shipped:** Image (P0, Low, standalone loading/fallback/aspect-ratio-aware `<img>` wrapper), JSON Viewer (P1, Medium, reused Code Block's syntax-highlighting/rendering pieces), Markdown Viewer (P2, Medium, reused Code Block's rendering for embedded code fences), Command Palette (P3, High, reused zyra-modal's focus-trap/scroll-lock/backdrop pattern — self-contained, no CDK portal, consistent with every other overlay in the library).
+
+**Out of scope:** Code Editor, JSON Editor, Markdown Editor (Phase 2, Sprint 13 — these were read-only Viewers, no editing), and every other Phase 2+ category.
+
+**Key notes:**
+- All 4 components cleared the full Development Checklist (accessibility, keyboard, all 5 themes, responsive, SSR, zoneless, tests, playground, docs, examples, final review).
+- This sprint closes **Phase 1 — Free Foundation** in full.
+
+---
+
 ## Maintaining this file
 
 When a sprint closes, add a new section above using the same shape as Sprint 6: goal, what shipped (priority/complexity/dependency), what was explicitly out of scope, and only the risks/notes that are still useful context later (not the full blow-by-blow from `SPRINT.md`). Newest sprint first is not required — appending chronologically is fine since this file is for archival lookup, not active tracking.
