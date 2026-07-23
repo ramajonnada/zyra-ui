@@ -5,7 +5,7 @@
 // chunks. Sidebar/header are part of the eager app shell, so importing the
 // full data file here would drag that ~170KB into every page's initial
 // bundle. Keep this list in sync with ui-components.data.ts's slugs/titles
-// when components are added, renamed, or removed. (56 components as of
+// when components are added, renamed, or removed. (60 components as of
 // this writing — see COMPONENT_COUNT in ui-components.data.ts.)
 export interface ComponentNavItem {
 	label: string;
@@ -30,6 +30,7 @@ export const COMPONENT_NAV_ITEMS: readonly ComponentNavItem[] = [
 	{ label: 'Chip', route: '/docs/components/chip' },
 	{ label: 'Clipboard', route: '/docs/components/clipboard' },
 	{ label: 'Code Block', route: '/docs/components/code-block' },
+	{ label: 'Command Palette', route: '/docs/components/command-palette' },
 	{ label: 'Confirm Dialog', route: '/docs/components/confirm-dialog' },
 	{ label: 'Container', route: '/docs/components/container' },
 	{ label: 'Date Picker', route: '/docs/components/date-picker' },
@@ -42,7 +43,10 @@ export const COMPONENT_NAV_ITEMS: readonly ComponentNavItem[] = [
 	{ label: 'Form Field', route: '/docs/components/form-field' },
 	{ label: 'Grid', route: '/docs/components/grid' },
 	{ label: 'Header', route: '/docs/components/header' },
+	{ label: 'Image', route: '/docs/components/image' },
 	{ label: 'Input', route: '/docs/components/input' },
+	{ label: 'JSON Viewer', route: '/docs/components/json-viewer' },
+	{ label: 'Markdown Viewer', route: '/docs/components/markdown-viewer' },
 	{ label: 'Modal', route: '/docs/components/modal' },
 	{ label: 'Multi Select', route: '/docs/components/multi-select' },
 	{ label: 'Pagination', route: '/docs/components/pagination' },

@@ -9,13 +9,14 @@ const EXPECTED_SLUGS = [
     'typography', 'empty-state', 'clipboard', 'rating', 'stack',
     'pagination', 'stepper', 'popover', 'timeline', 'header',
     'box', 'flex', 'grid', 'container', 'aspect-ratio', 'scroll-area',
+    'image', 'json-viewer', 'markdown-viewer', 'command-palette',
 ] as const;
 
 describe('PLAYGROUND_REGISTRY', () => {
 
     // ── coverage ──────────────────────────────────────────────────────────────
-    it('has exactly 56 entries', () => {
-        expect(Object.keys(PLAYGROUND_REGISTRY).length).toBe(56);
+    it('has exactly 60 entries', () => {
+        expect(Object.keys(PLAYGROUND_REGISTRY).length).toBe(60);
     });
 
     it('contains every expected component slug', () => {

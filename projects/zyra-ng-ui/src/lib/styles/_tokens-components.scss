@@ -369,4 +369,43 @@
 	--zyra-color-theme-switch-border: var(--zyra-color-border-color);
 	--zyra-color-theme-switch-panel-bg: var(--zyra-color-surface);
 	--zyra-color-theme-switch-panel-shadow: var(--zyra-card-elevated-shadow);
+
+	// ── ZyraImage ────────────────────────────────────────────────────────
+	--zyra-color-image-placeholder-bg: var(--zyra-color-surface-inset);
+	--zyra-color-image-placeholder-icon: var(--zyra-color-foreground-subtle);
+	--zyra-color-image-caption-text: var(--zyra-color-foreground-subtle);
+
+	// ── ZyraJsonViewer ───────────────────────────────────────────────────
+	// Reuses --zyra-color-code-* syntax tokens (Code Block) for value coloring.
+	--zyra-color-json-viewer-bg: var(--zyra-color-surface-code);
+	--zyra-color-json-viewer-border: var(--zyra-color-border-color);
+	--zyra-color-json-viewer-key: var(--zyra-color-foreground);
+	--zyra-color-json-viewer-punct: var(--zyra-color-code-punct);
+	--zyra-color-json-viewer-toggle: var(--zyra-color-foreground-subtle);
+	--zyra-color-json-viewer-toggle-hover-bg: var(--zyra-color-surface-inset);
+
+	// ── ZyraMarkdownViewer ───────────────────────────────────────────────
+	--zyra-color-markdown-viewer-text: var(--zyra-color-foreground);
+	--zyra-color-markdown-viewer-heading: var(--zyra-color-foreground);
+	--zyra-color-markdown-viewer-link: var(--zyra-color-primary);
+	--zyra-color-markdown-viewer-border: var(--zyra-color-border-color);
+	--zyra-color-markdown-viewer-blockquote-border: var(--zyra-color-primary-border);
+	--zyra-color-markdown-viewer-blockquote-text: var(--zyra-color-foreground-muted);
+	--zyra-color-markdown-viewer-inline-code-bg: var(--zyra-color-surface-inset);
+	--zyra-color-markdown-viewer-inline-code-text: var(--zyra-color-code-string);
+
+	// ── ZyraCommandPalette ───────────────────────────────────────────────
+	// --zyra-overlay-bg / --zyra-overlay-z-index reused for the scrim; see the
+	// generic Overlay block above.
+	--zyra-color-command-palette-bg: var(--zyra-color-surface-dropdown);
+	--zyra-color-command-palette-border: var(--zyra-color-border-color);
+	--zyra-color-command-palette-shadow: var(--zyra-card-elevated-shadow);
+	--zyra-color-command-palette-input-text: var(--zyra-color-foreground);
+	--zyra-color-command-palette-placeholder: var(--zyra-color-foreground-subtle);
+	--zyra-color-command-palette-group-label: var(--zyra-color-foreground-subtle);
+	--zyra-color-command-palette-item-text: var(--zyra-color-foreground);
+	--zyra-color-command-palette-item-icon: var(--zyra-color-foreground-subtle);
+	--zyra-color-command-palette-item-active-bg: var(--zyra-color-surface-inset);
+	--zyra-color-command-palette-item-shortcut: var(--zyra-color-foreground-subtle);
+	--zyra-color-command-palette-empty-text: var(--zyra-color-foreground-subtle);
 }

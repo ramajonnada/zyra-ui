@@ -38,18 +38,19 @@ graph TD
     SCSS --> MX["_mixins.scss"]
     SCSS --> B["_base.scss"]
 
-    LIB --> COMP["🧩 Components (22)"]
+    LIB --> COMP["🧩 Components (60 — Phase 1 free tier complete)"]
 
-    COMP --> FORM["Form Controls"]
+    COMP --> FORM["Forms"]
     FORM --> c1["ZyraInput"]
     FORM --> c2["ZyraFormField\n+ ZyrPrefix / ZyrSuffix"]
-    FORM --> c3["ZyraSelect + ZyraOption"]
+    FORM --> c3["ZyraSelect + ZyraOption\n+ ZyraMultiSelect + ZyraAutocomplete"]
     FORM --> c4["ZyraTextarea"]
     FORM --> c5["ZyraCheckbox"]
     FORM --> c6["ZyraRadio + ZyraRadioGroup"]
-    FORM --> c7["ZyraToggle"]
+    FORM --> c7["ZyraToggle + ZyraSwitch"]
+    FORM --> c8["ZyraSlider, ZyraRating,\nZyraOtpInput, ZyraPasswordInput,\nZyraFileUpload, ZyraDatePicker"]
 
-    COMP --> DISPLAY["Display / Layout"]
+    COMP --> DISPLAY["Data Display"]
     DISPLAY --> d1["ZyraCard"]
     DISPLAY --> d2["ZyraAvatar"]
     DISPLAY --> d3["ZyraBadge"]
@@ -57,19 +58,31 @@ graph TD
     DISPLAY --> d5["ZyraDivider"]
     DISPLAY --> d6["ZyraSkeleton"]
     DISPLAY --> d7["ZyraProgress"]
+    DISPLAY --> d8["ZyraTable, ZyraTreeView,\nZyraCalendar, ZyraCarousel,\nZyraTimeline, ZyraEmptyState,\nZyraCodeBlock"]
+    DISPLAY --> d9["🆕 ZyraImage, ZyraJsonViewer,\nZyraMarkdownViewer\n(Sprint 7)"]
 
-    COMP --> OVERLAY["Overlay / Feedback"]
-    OVERLAY --> o1["ZyraModal"]
+    COMP --> OVERLAY["Overlays / Feedback"]
+    OVERLAY --> o1["ZyraModal, ZyraDrawer,\nZyraConfirmDialog, ZyraPopover"]
     OVERLAY --> o2["ZyraToast\n+ ZyraToastContainer\n+ ZyraToastService"]
-    OVERLAY --> o3["ZyraTooltip"]
+    OVERLAY --> o3["ZyraTooltip, ZyraThemeSwitch"]
     OVERLAY --> o4["ZyraAlert"]
     OVERLAY --> o5["ZyraSpinner"]
+    OVERLAY --> o6["🆕 ZyraCommandPalette\n(Sprint 7 — Ctrl/Cmd+K)"]
 
     COMP --> NAV["Navigation"]
     NAV --> n1["ZyraTabs + ZyraTab"]
     NAV --> n2["ZyraAccordion\n+ ZyraAccordionItem"]
-    NAV --> n3["ZyraButton"]
+    NAV --> n3["ZyraButton + ZyraButtonGroup"]
+    NAV --> n4["ZyraHeader, ZyraSidebar,\nZyraBreadcrumb, ZyraPagination,\nZyraStepper, ZyraDropdownMenu"]
+
+    COMP --> LAYOUTP["Layout"]
+    LAYOUTP --> l1["ZyraBox, ZyraFlex, ZyraGrid,\nZyraContainer, ZyraAspectRatio,\nZyraScrollArea, ZyraStack,\nZyraTypography"]
+
+    COMP --> UTIL["Utilities / Actions"]
+    UTIL --> u1["ZyraClipboard"]
 ```
+
+*This diagram groups components by category with representative examples, not an exhaustive per-component list — see `projects/zyra-ui/src/app/pages/ui-components/ui-components.data.ts` (`UI_COMPONENT_SHOWCASE` / `COMPONENT_COUNT`) for the authoritative, always-current full list and count.*
 
 ---
 

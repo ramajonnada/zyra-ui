@@ -1,0 +1,176 @@
+@keyframes zyr-cmdk-in {
+    from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes zyr-cmdk-backdrop-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.zyr-cmdk {
+    position: fixed;
+    inset: 0;
+    z-index: var(--zyra-z-modal);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 12vh var(--zyra-space-4) var(--zyra-space-4);
+    background: var(--zyra-color-overlay-scrim);
+    backdrop-filter: blur(4px);
+    animation: zyr-cmdk-backdrop-in var(--zyra-transition-fast) ease;
+
+    &__panel {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 560px;
+        max-height: min(480px, calc(100vh - 24vh));
+        background: var(--zyra-color-command-palette-bg);
+        border: 1px solid var(--zyra-color-command-palette-border);
+        border-radius: var(--zyra-radius-xl);
+        box-shadow: var(--zyra-color-command-palette-shadow);
+        overflow: hidden;
+        animation: zyr-cmdk-in var(--zyra-transition-base) var(--zyra-ease-standard);
+    }
+
+    &__search {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--zyra-color-command-palette-border);
+        flex-shrink: 0;
+    }
+
+    &__search-icon {
+        color: var(--zyra-color-command-palette-placeholder);
+        flex-shrink: 0;
+    }
+
+    &__input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 15px;
+        color: var(--zyra-color-command-palette-input-text);
+
+        &::placeholder {
+            color: var(--zyra-color-command-palette-placeholder);
+        }
+    }
+
+    &__results {
+        overflow-y: auto;
+        padding: 6px;
+        flex: 1;
+    }
+
+    &__empty {
+        padding: 28px 16px;
+        text-align: center;
+        font-size: 13.5px;
+        color: var(--zyra-color-command-palette-empty-text);
+    }
+
+    &__group-label {
+        padding: 8px 10px 4px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--zyra-color-command-palette-group-label);
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 10px;
+        border-radius: var(--zyra-radius-md);
+        cursor: pointer;
+        color: var(--zyra-color-command-palette-item-text);
+
+        &--active {
+            background: var(--zyra-color-command-palette-item-active-bg);
+        }
+
+        &--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    &__item-icon {
+        flex-shrink: 0;
+        color: var(--zyra-color-command-palette-item-icon);
+    }
+
+    &__item-text {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        flex: 1;
+    }
+
+    &__item-label {
+        font-size: 13.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__item-description {
+        font-size: 12px;
+        color: var(--zyra-color-foreground-subtle);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__item-shortcut {
+        flex-shrink: 0;
+        font-size: 11px;
+        font-family: var(--zyra-font-mono);
+        color: var(--zyra-color-command-palette-item-shortcut);
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 8px 16px;
+        border-top: 1px solid var(--zyra-color-command-palette-border);
+        flex-shrink: 0;
+    }
+
+    &__hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--zyra-color-foreground-subtle);
+
+        kbd {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 16px;
+            height: 16px;
+            padding: 0 4px;
+            border-radius: var(--zyra-radius-sm);
+            border: 1px solid var(--zyra-color-command-palette-border);
+            font-family: var(--zyra-font-mono);
+            font-size: 10px;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zyr-cmdk,
+    .zyr-cmdk__panel {
+        animation-duration: 1ms;
+        animation-delay: 0ms;
+    }
+}

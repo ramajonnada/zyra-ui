@@ -7,8 +7,11 @@
 }
 
 .zyr-sidebar-section__heading {
+    // Reset browser default <h2> margin — this became a real heading element
+    // (was a plain div) so screen readers get proper document-outline
+    // semantics; margin is still fully controlled below, not by the tag.
+    margin: 0 0 var(--zyra-space-1);
     padding: 0 var(--zyra-space-3);
-    margin-bottom: var(--zyra-space-1);
     color: var(--zyra-color-sidebar-heading);
     font-family: var(--zyra-font-mono);
     font-size: 11px;

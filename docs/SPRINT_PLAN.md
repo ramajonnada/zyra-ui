@@ -28,7 +28,7 @@ Phase 3–5 are **initiative sprints** — Templates, AI generation, and the Stu
 | 4 | 1 — Free Foundation | **Forms — Input family** (OTP Input, Password Input, Slider, File Upload) + Carousel pulled forward from Sprint 5 | Component | Done |
 | 5 | 1 — Free Foundation | **Data Display — foundational** (Calendar) — Carousel shipped early in Sprint 4 | Component | Done |
 | 6 | 1 — Free Foundation | **Data Display — complex** (Table, Tree View, Date Picker) | Component | Done |
-| 7 | 1 — Free Foundation | **Utilities** (Image, JSON Viewer, Markdown Viewer, Command Palette) — closes out Phase 1 | Component | In Progress |
+| 7 | 1 — Free Foundation | **Utilities** (Image, JSON Viewer, Markdown Viewer, Command Palette) — closes out Phase 1 | Component | Done |
 | 8 | 2 — ZyraUI Pro | **Charts — foundation** (shared charting engine + Line, Bar, Pie) | Component | Not Started |
 | 9 | 2 — ZyraUI Pro | **Charts — advanced** (Area, Radar, Heatmap, Treemap) | Component | Not Started |
 | 10 | 2 — ZyraUI Pro | **Dashboard** (Dashboard Widgets, KPI Cards, Analytics Components) | Component | Not Started |

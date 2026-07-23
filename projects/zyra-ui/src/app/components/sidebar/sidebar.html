@@ -1,4 +1,4 @@
-<zyra-sidebar width="240px" (click)="onNavClick($event)">
+<zyra-sidebar width="240px" navLabel="Docs navigation" (click)="onNavClick($event)">
 	@for (item of navItems; track item.route) {
 		@if (item.heading) {
 			<zyra-sidebar-section [heading]="item.heading">
@@ -7,6 +7,7 @@
 					[routerLink]="item.route"
 					routerLinkActive="zyr-sidebar-item--active"
 					[routerLinkActiveOptions]="{ exact: true }"
+					ariaCurrentWhenActive="page"
 					[attr.aria-label]="item.label"
 				>
 					{{ item.label }}
@@ -18,6 +19,7 @@
 				[routerLink]="item.route"
 				routerLinkActive="zyr-sidebar-item--active"
 				[routerLinkActiveOptions]="{ exact: true }"
+				ariaCurrentWhenActive="page"
 				[attr.aria-label]="item.label"
 			>
 				{{ item.label }}
@@ -25,7 +27,7 @@
 		}
 
 		@if (item.children) {
-			<div class="sidebar__children">
+			<div class="sidebar__children" role="group" [attr.aria-label]="item.label">
 				@for (child of item.children; track child.route) {
 					<a
 						zyra-sidebar-item
@@ -33,6 +35,7 @@
 						[routerLink]="child.route"
 						routerLinkActive="zyr-sidebar-item--active"
 						[routerLinkActiveOptions]="{ exact: true }"
+						ariaCurrentWhenActive="page"
 						[attr.aria-label]="child.label"
 					>
 						{{ child.label }}

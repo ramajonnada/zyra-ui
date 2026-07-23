@@ -48,6 +48,7 @@ export class Footer {
 				{ label: 'GitHub', href: 'https://github.com/ramajonnada/zyra-ui', icon: github },
 				{ label: 'npm', href: 'https://www.npmjs.com/package/zyra-ng-ui', icon: npmIcon },
 				{ label: 'Examples', route: '/docs/components' },
+				{ label: 'Changelog', route: '/changelog' },
 			],
 		},
 		{

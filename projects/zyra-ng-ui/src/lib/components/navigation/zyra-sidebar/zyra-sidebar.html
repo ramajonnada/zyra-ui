@@ -7,7 +7,7 @@
     <div class="zyr-sidebar__header">
         <ng-content select="[sidebar-header]" />
     </div>
-    <nav class="zyr-sidebar__nav">
+    <nav class="zyr-sidebar__nav" [attr.aria-label]="navLabel()">
         <ng-content />
     </nav>
     <div class="zyr-sidebar__footer">

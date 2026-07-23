@@ -1,4 +1,6 @@
 <main (scroll)="onMainScroll($event)">
-    <app-announcement-bar [collapsed]="bannerCollapsed()" />
+    @if (isHomePage()) {
+        <app-announcement-bar [collapsed]="bannerCollapsed()" />
+    }
     <router-outlet></router-outlet>
 </main>

@@ -55,6 +55,10 @@ import { CalendarRenderer } from './renderers/calendar-renderer';
 import { DatePickerRenderer } from './renderers/date-picker-renderer';
 import { TableRenderer } from './renderers/table-renderer';
 import { TreeViewRenderer } from './renderers/tree-view-renderer';
+import { ImageRenderer } from './renderers/image-renderer';
+import { JsonViewerRenderer } from './renderers/json-viewer-renderer';
+import { MarkdownViewerRenderer } from './renderers/markdown-viewer-renderer';
+import { CommandPaletteRenderer } from './renderers/command-palette-renderer';
 
 export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
     button: {
@@ -368,6 +372,104 @@ export const PLAYGROUND_REGISTRY: Record<string, PlaygroundConfig> = {
             const header = s['hasHeader'] ? `\n  <div slot="header"><!-- header --></div>` : '';
             const footer = s['hasFooter'] ? `\n  <div slot="footer"><!-- footer --></div>` : '';
             return `${open}${header}\n  <!-- body content -->${footer}\n</zyra-card>`;
+        },
+    },
+
+    image: {
+        renderer: ImageRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'objectFit',
+                label: 'objectFit',
+                options: ['cover', 'contain', 'fill', 'none', 'scale-down'],
+                defaultValue: 'cover',
+            },
+            {
+                type: 'button-group',
+                key: 'radius',
+                label: 'radius',
+                options: ['none', 'sm', 'md', 'lg', 'full'],
+                defaultValue: 'md',
+            },
+            {
+                type: 'toggle',
+                key: 'caption',
+                label: 'caption',
+                toggleLabel: 'show caption',
+                defaultValue: true,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  src="/mountains.jpg"`, `  alt="Mountain landscape at sunrise"`, `  ratio="16/9"`];
+            if (s['objectFit'] !== 'cover') a.push(`  objectFit="${s['objectFit']}"`);
+            if (s['radius'] !== 'none') a.push(`  radius="${s['radius']}"`);
+            if (s['caption']) a.push(`  caption="Sunrise over the mountains"`);
+            return `<zyra-image\n${a.join('\n')}\n/>`;
+        },
+    },
+
+    'json-viewer': {
+        renderer: JsonViewerRenderer,
+        controls: [
+            {
+                type: 'button-group',
+                key: 'expandDepth',
+                label: 'expandDepth',
+                options: ['0', '1', '2'],
+                defaultValue: '1',
+            },
+            {
+                type: 'toggle',
+                key: 'copyable',
+                label: 'copy button',
+                toggleLabel: 'show copy',
+                defaultValue: true,
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [data]="user"`];
+            if (s['expandDepth'] !== '1') a.push(`  [expandDepth]="${s['expandDepth']}"`);
+            if (!s['copyable']) a.push(`  [copyable]="false"`);
+            return `<zyra-json-viewer\n${a.join('\n')}\n/>`;
+        },
+    },
+
+    'markdown-viewer': {
+        renderer: MarkdownViewerRenderer,
+        stageClass: 'column',
+        controls: [
+            {
+                type: 'button-group',
+                key: 'linkTarget',
+                label: 'linkTarget',
+                options: ['_blank', '_self'],
+                defaultValue: '_blank',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [content]="readme"`];
+            if (s['linkTarget'] !== '_blank') a.push(`  linkTarget="${s['linkTarget']}"`);
+            return `<zyra-markdown-viewer\n${a.join('\n')}\n/>`;
+        },
+    },
+
+    'command-palette': {
+        renderer: CommandPaletteRenderer,
+        controls: [
+            {
+                type: 'text',
+                key: 'placeholder',
+                label: 'placeholder',
+                placeholder: 'Search commands…',
+                defaultValue: 'Search commands…',
+            },
+        ],
+        codeTemplate: (s) => {
+            const a: string[] = [`  [items]="commands"`, `  [(open)]="paletteOpen"`];
+            if (s['placeholder'] !== 'Search commands…') a.push(`  placeholder="${s['placeholder']}"`);
+            a.push(`  (selected)="onSelected($event)"`);
+            return `<zyra-command-palette\n${a.join('\n')}\n/>`;
         },
     },
 

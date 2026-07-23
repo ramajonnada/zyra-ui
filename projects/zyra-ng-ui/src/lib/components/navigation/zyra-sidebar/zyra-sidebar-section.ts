@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
+let sectionIdCounter = 0;
+
 @Component({
     selector: 'zyra-sidebar-section',
     standalone: true,
@@ -10,4 +12,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 export class ZyraSidebarSection {
     // ── Inputs ────────────────────────────────────────────────
     heading = input<string>('');
+
+    readonly headingId = `zyr-sidebar-section-heading-${++sectionIdCounter}`;
 }

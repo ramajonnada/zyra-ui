@@ -1,0 +1,58 @@
+<div class="zyr-json-viewer">
+    @if (copyable() && parseError() === null) {
+        <button
+            type="button"
+            class="zyr-json-viewer__copy"
+            [class.zyr-json-viewer__copy--copied]="copied()"
+            [attr.aria-label]="copied() ? 'Copied' : 'Copy JSON'"
+            (click)="copyToClipboard()"
+        >
+            <zyra-icon [img]="copied() ? checkIcon : copyIcon" [size]="14" />
+            {{ copied() ? 'Copied' : 'Copy' }}
+        </button>
+    }
+
+    @if (parseError(); as err) {
+        <div class="zyr-json-viewer__error" role="alert">Invalid JSON: {{ err }}</div>
+    } @else {
+        <div class="zyr-json-viewer__tree" role="tree">
+            @for (row of rows(); track row.id) {
+                <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
+                <div
+                    class="zyr-json-viewer__row"
+                    role="treeitem"
+                    [style.paddingLeft.px]="row.depth * 16 + 10"
+                    [attr.aria-expanded]="row.isContainer && row.itemCount > 0 ? row.expanded : null"
+                    [attr.aria-level]="row.depth + 1"
+                >
+                    @if (row.isContainer && row.itemCount > 0) {
+                        <button
+                            type="button"
+                            class="zyr-json-viewer__toggle"
+                            [attr.aria-label]="row.expanded ? 'Collapse' : 'Expand'"
+                            (click)="toggle(row.id)"
+                        >
+                            <zyra-icon
+                                class="zyr-json-viewer__toggle-icon"
+                                [class.zyr-json-viewer__toggle-icon--expanded]="row.expanded"
+                                [img]="chevronIcon"
+                                [size]="12"
+                            />
+                        </button>
+                    } @else {
+                        <span class="zyr-json-viewer__toggle-spacer"></span>
+                    }
+
+                    @if (row.key !== null) {
+                        <span class="zyr-json-viewer__key">{{ row.key }}</span
+                        ><span class="zyr-json-viewer__punct">:</span>
+                    }
+
+                    <span class="zyr-json-viewer__value zyr-json-viewer__value--{{ row.valueType }}">{{
+                        row.preview
+                    }}</span>
+                </div>
+            }
+        </div>
+    }
+</div>

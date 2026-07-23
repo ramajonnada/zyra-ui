@@ -27,7 +27,7 @@ Completed sprints are archived in [SPRINT_HISTORY.md](SPRINT_HISTORY.md).
 | Sprint Number | Sprint 7 |
 | Sprint Goal | **Utilities (closes Phase 1)** — ship Image, JSON Viewer, Markdown Viewer, and Command Palette, the last four components in the Phase 1 free-component target. |
 | Duration | 2 weeks (suggested — adjust to actual team velocity; not tracked elsewhere in the repo) |
-| Status | Not Started |
+| Status | Done |
 
 ### Why this grouping, and why this order
 
@@ -43,10 +43,10 @@ Completed sprints are archived in [SPRINT_HISTORY.md](SPRINT_HISTORY.md).
 
 | Component | Priority | Final Status | Complexity | Dependencies |
 |---|---|---|---|---|
-| Image | P0 | Not Started | Low | None — new component |
-| JSON Viewer | P1 | Not Started | Medium | Code Block (shipped) — reuses syntax-highlighting/rendering pieces |
-| Markdown Viewer | P2 | Not Started | Medium | Code Block (shipped) — reuses rendering pieces for embedded code fences |
-| Command Palette | P3 | Not Started | High | None — new component; likely reuses Modal/Popover's overlay/portal pattern |
+| Image | P0 | Done | Low | None — new component |
+| JSON Viewer | P1 | Done | Medium | Code Block (shipped) — reuses syntax-highlighting/rendering pieces |
+| Markdown Viewer | P2 | Done | Medium | Code Block (shipped) — reuses rendering pieces for embedded code fences |
+| Command Palette | P3 | Done | High | None — new component; reuses zyra-modal's focus-trap/scroll-lock/backdrop pattern (self-contained, no CDK portal — same as every other overlay in the library) |
 
 **Explicitly out of scope for Sprint 7:** Code Editor, JSON Editor, Markdown Editor (Phase 2, Sprint 13 — this sprint's Viewers are read-only, no editing), and every other Phase 2+ category.
 
@@ -58,21 +58,21 @@ Every component below must clear all rows before it's considered done. This mirr
 
 | Step | Image | JSON Viewer | Markdown Viewer | Command Palette |
 |---|---|---|---|---|
-| Requirements Analysis | ☐ | ☐ | ☐ | ☐ |
-| API Design | ☐ | ☐ | ☐ | ☐ |
-| Feature List | ☐ | ☐ | ☐ | ☐ |
-| Accessibility Review | ☐ | ☐ | ☐ | ☐ |
-| Keyboard Support | ☐ | ☐ | ☐ | ☐ |
-| Theme Support (all 5 themes) | ☐ | ☐ | ☐ | ☐ |
-| Responsive Support | ☐ | ☐ | ☐ | ☐ |
-| SSR Compatibility | ☐ | ☐ | ☐ | ☐ |
-| Zoneless Compatibility | ☐ | ☐ | ☐ | ☐ |
-| Implementation | ☐ | ☐ | ☐ | ☐ |
-| Unit Tests | ☐ | ☐ | ☐ | ☐ |
-| Playground page | ☐ | ☐ | ☐ | ☐ |
-| Documentation | ☐ | ☐ | ☐ | ☐ |
-| Examples | ☐ | ☐ | ☐ | ☐ |
-| Final Review | ☐ | ☐ | ☐ | ☐ |
+| Requirements Analysis | ☑ | ☑ | ☑ | ☑ |
+| API Design | ☑ | ☑ | ☑ | ☑ |
+| Feature List | ☑ | ☑ | ☑ | ☑ |
+| Accessibility Review | ☑ | ☑ | ☑ | ☑ |
+| Keyboard Support | ☑ | ☑ | ☑ | ☑ |
+| Theme Support (all 5 themes) | ☑ | ☑ | ☑ | ☑ |
+| Responsive Support | ☑ | ☑ | ☑ | ☑ |
+| SSR Compatibility | ☑ | ☑ | ☑ | ☑ |
+| Zoneless Compatibility | ☑ | ☑ | ☑ | ☑ |
+| Implementation | ☑ | ☑ | ☑ | ☑ |
+| Unit Tests | ☑ | ☑ | ☑ | ☑ |
+| Playground page | ☑ | ☑ | ☑ | ☑ |
+| Documentation | ☑ | ☑ | ☑ | ☑ |
+| Examples | ☑ | ☑ | ☑ | ☑ |
+| Final Review | ☑ | ☑ | ☑ | ☑ |
 
 ---
 
@@ -80,16 +80,22 @@ Every component below must clear all rows before it's considered done. This mirr
 
 | Metric | Count |
 |---|---|
-| Completed Components | 0 / 4 |
+| Completed Components | 4 / 4 |
 | Components In Progress | 0 / 4 |
-| Remaining Components | 4 / 4 |
-| **Overall Progress** | **0%** |
+| Remaining Components | 0 / 4 |
+| **Overall Progress** | **100%** |
 
 ---
 
 ## 5. Risks & Notes
 
-- Nothing yet — sprint not started.
+- **Feature scope came in above the original plan.** Mid-sprint, the plan was expanded with a detailed Core/Better feature breakdown per component. All "Core" tier items shipped for all four; "Better" tier items were deliberately scoped out (see below) rather than expanding the sprint further — same discipline as Table's virtualization scoping in Sprint 6.
+- **Image:** shipped `src`/`alt`/`fallbackSrc`/`ratio`/`objectFit`/`radius`/`loading`/`caption`/`loaded`/`error`, plus `width`/`height`/`srcset`/`sizes`/`priority` (sets `loading="eager"` + `fetchpriority="high"`). Out of scope: blur-up placeholder (Better tier) — no dependency-free way to generate a base64 thumbnail without a build-time step, revisit if a real consumer need shows up.
+- **JSON Viewer:** flattens to a linear row list (same technique as Tree View's `visibleNodes`) rather than deep recursive templates — expand/collapse state is override-based (`toggledPaths` XOR against `expandDepth`), which cleanly supports both "start partially expanded" and per-node toggling without tracking a full open-set. Added `maxDepth` as a safety cap (deeper containers stop recursing but still show their real item count) since it wasn't in the original Core list but is cheap and prevents runaway rendering on huge payloads. Out of scope: search/filter, type badges, keyboard nav, virtual scrolling, per-node copy (Better tier) — root-level copy (matching Code Block's pattern) covers the common case.
+- **Markdown Viewer:** dependency-free block/inline parser (`zyra-markdown-viewer-parser.ts`), not CommonMark-complete — covers headings, paragraphs, bold/italic, links, images, inline code, fenced code (delegates to Code Block), ordered/unordered lists (flat, no nesting), blockquotes, tables (with alignment), and horizontal rules. Never uses `innerHTML`; `sanitize` (default true) strips raw HTML-looking tags from the source rather than ever interpreting them. Out of scope: heading anchor links, `(headings)` output for TOC generation, `allowHtml`, custom link renderer for `routerLink` (Better tier).
+- **Command Palette — the sprint's highest-value component, per the expanded plan.** Self-contained overlay (no CDK), reusing zyra-modal's focus-trap/body-scroll-lock/backdrop-dismiss pattern exactly, consistent with every other overlay in the library. Global Ctrl/Cmd+K listener is a `document:keydown` HostListener, same technique zyra-modal already uses for its Escape handler — requires one `<zyra-command-palette>` to stay mounted (documented in a11y notes). Dependency-free fuzzy filter is a subsequence match (not a scored/ranked algorithm). Out of scope: injectable `ZyraCommandPaletteService` for dynamic registration, recent-items persistence, async `searchFn`, Angular Router integration (all Better tier) — the static `items` input covers the common case and the output/two-way `open` API is what a service or router integration would be built on top of later without a breaking change.
+- **Bug found and fixed during visual QA — Command Palette activated the wrong row on open.** The active/hovered row used `(mouseenter)`, which fires even without pointer movement if a row happens to render underneath an already-stationary cursor (e.g. opening via the Ctrl/Cmd+K shortcut while the mouse rests over the page). Caught by screenshotting the freshly-opened palette and seeing row 4 highlighted instead of row 1. Fixed by switching to `(mousemove)`, which only fires on genuine pointer motion; added two regression tests (`does not change the active item on a bare mouseenter` / `moves the active item on real mousemove`).
+- **Manual visual QA completed** for all four components across all 5 themes (dark, light, ocean, amber, rose) and both desktop/mobile widths, including interactive states (Image's error/fallback, JSON Viewer's expand/collapse, Markdown Viewer's fenced code + table rendering, Command Palette's opened overlay with live fuzzy filtering). No console/page errors, no horizontal overflow at any breakpoint. Full lib suite (944 tests) and the full site build (82 prerendered routes, including all 4 new doc pages) both pass clean.
 
 ---
 

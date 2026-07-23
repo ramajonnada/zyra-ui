@@ -1,0 +1,124 @@
+:host {
+    display: block;
+}
+
+.zyr-json-viewer {
+    position: relative;
+    border-radius: var(--zyra-radius-md);
+    border: 1px solid var(--zyra-color-json-viewer-border);
+    background: var(--zyra-color-json-viewer-bg);
+    padding: 10px 0;
+    font-family: var(--zyra-font-mono);
+    font-size: 13px;
+
+    &__copy {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 9px;
+        border-radius: var(--zyra-radius-sm);
+        border: 1px solid var(--zyra-color-border-color);
+        background: transparent;
+        color: var(--zyra-color-foreground-muted);
+        font-family: var(--zyra-font-mono);
+        font-size: 11.5px;
+        cursor: pointer;
+        transition:
+            background var(--zyra-transition-base),
+            color var(--zyra-transition-base),
+            border-color var(--zyra-transition-base);
+
+        &:hover {
+            background: color-mix(in srgb, var(--zyra-color-primary) 8%, transparent);
+            color: var(--zyra-color-foreground);
+            border-color: var(--zyra-color-primary-border);
+        }
+
+        &--copied {
+            color: var(--zyra-color-success-foreground);
+            border-color: var(--zyra-color-success-border-color);
+        }
+    }
+
+    &__error {
+        padding: 10px 14px;
+        color: var(--zyra-color-danger-foreground);
+    }
+
+    &__row {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        line-height: 1.7;
+        white-space: nowrap;
+    }
+
+    &__toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: var(--zyra-color-json-viewer-toggle);
+        cursor: pointer;
+        border-radius: var(--zyra-radius-sm);
+
+        &:hover {
+            background: var(--zyra-color-json-viewer-toggle-hover-bg);
+        }
+    }
+
+    &__toggle-spacer {
+        display: inline-block;
+        width: 16px;
+        flex-shrink: 0;
+    }
+
+    &__toggle-icon {
+        transition: transform var(--zyra-transition-fast);
+        transform: rotate(-90deg);
+
+        &--expanded {
+            transform: rotate(0deg);
+        }
+    }
+
+    &__key {
+        color: var(--zyra-color-json-viewer-key);
+    }
+
+    &__punct {
+        color: var(--zyra-color-json-viewer-punct);
+        margin-right: 6px;
+    }
+
+    &__value {
+        &--string {
+            color: var(--zyra-color-code-string);
+        }
+
+        &--number {
+            color: var(--zyra-color-code-number);
+        }
+
+        &--boolean {
+            color: var(--zyra-color-code-keyword);
+        }
+
+        &--null {
+            color: var(--zyra-color-code-comment);
+        }
+
+        &--object,
+        &--array {
+            color: var(--zyra-color-json-viewer-punct);
+        }
+    }
+}

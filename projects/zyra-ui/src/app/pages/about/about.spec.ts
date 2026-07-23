@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
 import { About } from './about';
+import { COMPONENT_COUNT } from '../ui-components/ui-components.data';
 
 describe('About', () => {
     let component: About;
@@ -27,8 +28,8 @@ describe('About', () => {
         expect(component.stats.length).toBe(4);
     });
 
-    it('first stat value is "56" (component count)', () => {
-        expect(component.stats[0].value).toBe('56');
+    it('first stat value matches the live component count', () => {
+        expect(component.stats[0].value).toBe(String(COMPONENT_COUNT));
     });
 
     it('first stat label is "Components"', () => {

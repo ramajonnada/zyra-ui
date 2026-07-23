@@ -21,9 +21,9 @@
 			Tokens are split into four tiers. Each tier references the one above it —
 			change a token high up and everything below it updates automatically.
 		</p>
-		<div class="tier-list">
+		<ul class="tier-list">
 			@for (t of tiers; track t.tier) {
-				<div class="tier-row">
+				<li class="tier-row">
 					<span class="tier-badge">Tier {{ t.tier }}</span>
 					<div class="tier-body">
 						<p class="tier-name">{{ t.name }}</p>
@@ -31,9 +31,9 @@
 						<code class="tier-example">{{ t.example }}</code>
 					</div>
 					<p class="tier-action">{{ t.action }}</p>
-				</div>
+				</li>
 			}
-		</div>
+		</ul>
 	</section>
 
 	<!-- ── 1. How to override ────────────────────────────────────── -->

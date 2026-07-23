@@ -28,10 +28,6 @@ describe('Home', () => {
         expect(component.componentCount).toBe(UI_COMPONENT_SHOWCASE.length);
     });
 
-    it('componentCount is 56', () => {
-        expect(component.componentCount).toBe(56);
-    });
-
     it('installCommand is the npm install command', () => {
         expect(component.installCommand).toBe('npm install zyra-ng-ui');
     });

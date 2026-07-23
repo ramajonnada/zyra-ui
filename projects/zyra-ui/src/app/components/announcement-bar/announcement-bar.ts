@@ -19,8 +19,8 @@ interface Highlight {
 // Maintainer-curated — update by hand when there's something worth
 // announcing. See the `Highlight` doc comment above for when to bump `id`.
 const LATEST_HIGHLIGHT: Highlight = {
-    id: 'components-56',
-    message: 'Zyra UI now ships 56 accessible, token-driven components.',
+    id: 'components-60',
+    message: 'Zyra UI now ships 60 accessible, token-driven components.',
     linkLabel: 'Browse components',
     link: '/docs/components',
 };

@@ -1,8 +1,8 @@
 <div class="zyr-sidebar-section">
     @if (heading()) {
-        <div class="zyr-sidebar-section__heading">{{ heading() }}</div>
+        <h2 class="zyr-sidebar-section__heading" [id]="headingId">{{ heading() }}</h2>
     }
-    <div class="zyr-sidebar-section__items">
+    <div class="zyr-sidebar-section__items" role="group" [attr.aria-labelledby]="heading() ? headingId : null">
         <ng-content />
     </div>
 </div>

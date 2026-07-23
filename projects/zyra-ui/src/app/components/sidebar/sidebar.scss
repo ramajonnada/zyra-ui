@@ -1,79 +1,3 @@
-// :host {
-// 	display: flex;
-// 	flex-shrink: 0;
-// 	position: sticky;
-// 	top: 60px;
-// 	height: calc(100dvh - 60px);
-// 	min-height: 0;
-// 	margin-right: 32px;
-// }
-
-// .sidebar__footer {
-// 	display: flex;
-// 	align-items: center;
-// 	gap: 10px;
-// 	padding: 14px 12px;
-// 	background: var(--zyra-color-surface-subtle);
-// }
-
-// .sidebar__footer-dot {
-// 	width: 7px;
-// 	height: 7px;
-// 	border-radius: 50%;
-// 	background: var(--zyra-color-accent);
-// 	flex-shrink: 0;
-// }
-
-// .sidebar__footer-text {
-// 	font-family: var(--zyra-font-display);
-// 	font-size: 0.78rem;
-// 	font-weight: 700;
-// 	color: var(--zyra-color-text-muted);
-
-// 	span {
-// 		color: var(--zyra-color-accent);
-// 	}
-// }
-
-// @media (max-width: 900px) {
-// 	// Off-canvas drawer: fixed to the viewport (not sticky) so it stays put
-// 	// under the header regardless of page scroll, and slides in from the left.
-// 	:host {
-// 		position: fixed;
-// 		top: 60px;
-// 		left: 0;
-// 		bottom: 0;
-// 		z-index: 90;
-// 		width: min(84vw, 240px);
-// 		height: auto;
-// 		margin-right: 0;
-// 		transform: translateX(-100%);
-// 		transition: transform var(--zyra-transition-base);
-// 		pointer-events: none;
-// 	}
-
-// 	:host(.sidebar--open) {
-// 		transform: translateX(0);
-// 		pointer-events: auto;
-// 	}
-
-// 	::ng-deep .zyr-sidebar {
-// 		width: 100%;
-// 		height: 100%;
-// 		box-shadow: var(--zyra-shadow-md);
-// 	}
-
-// 	.sidebar__footer {
-// 		display: flex;
-// 	}
-// }
-
-// @media (prefers-reduced-motion: reduce) {
-// 	:host {
-// 		transition: none;
-// 	}
-// }
-
 :host {
 	display: flex;
 	flex-shrink: 0;
@@ -84,10 +8,42 @@
 	margin-right: 32px;
 }
 
-// Children list (e.g. the 53 component links under "Components") — capped
-// height with its own scroll so a long child list doesn't push the rest of
-// the nav (Theming, Blog, footer, ...) out of view. Uses the library's
-// global thin-scrollbar styling (see zyra-ng-ui _base.scss) automatically.
+// Top-level items (Overview, Installation, Theming, ...) default to the
+// library's roomy 38px row height, which reads noticeably looser than the
+// 30px child rows right below "Components" — tightened here to bring the
+// whole rail to one consistent, denser rhythm (closer to Linear/Vercel-style
+// docs nav) without changing ZyraSidebarItem's public default for every
+// other consumer.
+//
+// Two selectors, not one: "Overview" is the only item wrapped in a
+// <zyra-sidebar-section> (for its "Getting started" heading), so it's nested
+// inside that section's own __items wrapper rather than being a direct child
+// of .zyr-sidebar__nav like every other top-level item. Only targeting the
+// direct-child case left "Overview" at the library's default 38px while
+// everything else shrank to 34px — the exact mismatch this covers.
+::ng-deep .zyr-sidebar__nav > a[zyra-sidebar-item],
+::ng-deep .zyr-sidebar__nav .zyr-sidebar-section__items > a[zyra-sidebar-item] {
+	height: 34px;
+}
+
+// .zyr-sidebar__nav is a flex column with overflow-y:auto — once the child
+// component list grew past the nav's own box (it no longer has its own
+// capped scroll region, see .sidebar__children below), every direct flex
+// child's default flex-shrink:1 let the browser compress each row to fit
+// the visible height instead of actually scrolling, squashing every item
+// except "Overview" (which sizes independently inside its own nested
+// section flex container) down to ~23px. flex-shrink:0 here is what makes
+// "scroll instead of shrink" actually true for a flex column.
+::ng-deep .zyr-sidebar__nav > * {
+	flex-shrink: 0;
+}
+
+// Children list (e.g. the 56+ component links under "Components"). No scroll
+// of its own — .zyr-sidebar__nav (the library's own nav container) already
+// scrolls as a single region, so this just flows inside it. A separate
+// max-height + overflow-y here used to create a second, nested scrollbar for
+// just the child list, which felt broken next to the outer nav's scroll —
+// one scroll region for the whole rail reads much more natural.
 // A left border + indent reads as a tree/nesting guide connecting each
 // child back to its parent link, since plain indentation alone read as
 // just "smaller text" rather than a clear parent/child relationship.
@@ -95,11 +51,9 @@
 	display: flex;
 	flex-direction: column;
 	gap: 1px;
-	max-height: 320px;
-	overflow-y: auto;
 	margin: 2px 0 4px 28px;
 	padding-left: 10px;
-	border-left: 1px solid var(--zyra-color-border);
+	border-left: 1px solid var(--zyra-color-border-color);
 }
 
 // Higher-specificity selector (tag + attribute + class) so this reliably
@@ -109,7 +63,7 @@ a.sidebar__child-item[zyra-sidebar-item] {
 	height: 30px;
 	padding-left: var(--zyra-space-2);
 	font-size: 13px;
-	color: var(--zyra-color-text-muted);
+	color: var(--zyra-color-foreground-muted);
 
 	&:hover:not(.zyr-sidebar-item--disabled) {
 		color: var(--zyra-color-sidebar-text-hover);
@@ -125,22 +79,20 @@ a.sidebar__child-item[zyra-sidebar-item] {
 	display: flex;
 	align-items: center;
 	gap: 10px;
-
 }
 
 .sidebar__footer-text {
 	font-family: var(--zyra-font-display);
 	font-size: 0.78rem;
 	font-weight: 700;
-	color: var(--zyra-color-text-muted);
+	color: var(--zyra-color-foreground-muted);
 
 	span {
-		color: var(--zyra-color-accent);
+		color: var(--zyra-color-primary);
 	}
 }
 
 @media (max-width: 900px) {
-
 	// This instance (rendered in app-body, beside app-main) is desktop-only.
 	// Below 900px, the mobile drawer (zyra-header's zyraHeaderMobileNav,
 	// see header.html) renders the same links directly — display:none here

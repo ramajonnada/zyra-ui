@@ -1,5 +1,81 @@
 import type { ZyraIconData } from 'zyra-ng-ui';
-import { cubes, message, palette, bolt, code, swatchbook, boxOpen, waveSquare, check, circleInfo, triangleExclamation, alignLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced, menu, copy, star, panelLeft, calendarIcon } from 'zyra-ng-ui';
+import { cubes, message, palette, bolt, code, swatchbook, boxOpen, waveSquare, check, circleInfo, triangleExclamation, alignLeft, caretRight, handPointer, certificate, square, circleUser, keyboard, spinner, scaleBalanced, menu, copy, star, panelLeft, calendarIcon, imageIcon, search } from 'zyra-ng-ui';
+
+const COMMAND_PALETTE_EXAMPLE_CODE = `import { Component, signal } from '@angular/core';
+import { CommandPaletteItem, ZyraCommandPalette } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-command-palette',
+  standalone: true,
+  imports: [ZyraCommandPalette],
+  template: \`
+    <zyra-command-palette
+      [items]="commands"
+      [(open)]="paletteOpen"
+      (selected)="onSelected($event)"
+    />
+  \`,
+})
+export class DemoCommandPaletteComponent {
+  paletteOpen = signal(false);
+
+  commands: CommandPaletteItem[] = [
+    { id: 'home', label: 'Go to Home', group: 'Navigation', shortcut: 'G H' },
+    { id: 'new-file', label: 'Create new file', group: 'Actions' },
+  ];
+
+  onSelected(item: CommandPaletteItem) {
+    // route, run the action, etc.
+  }
+}
+`;
+
+const MARKDOWN_VIEWER_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraMarkdownViewer } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-markdown-viewer',
+  standalone: true,
+  imports: [ZyraMarkdownViewer],
+  template: \`
+    <zyra-markdown-viewer [content]="readme" />
+  \`,
+})
+export class DemoMarkdownViewerComponent {
+  readme = \`# Release notes
+
+Zyra UI now ships **60 accessible** components.
+
+- Copy-paste friendly
+- Token-driven theming
+
+\\\`\\\`\\\`ts
+const greeting = 'hello world';
+\\\`\\\`\\\`
+\`;
+}
+`;
+
+const JSON_VIEWER_EXAMPLE_CODE = `import { Component } from '@angular/core';
+import { ZyraJsonViewer } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-json-viewer',
+  standalone: true,
+  imports: [ZyraJsonViewer],
+  template: \`
+    <zyra-json-viewer [data]="user" [expandDepth]="1" />
+  \`,
+})
+export class DemoJsonViewerComponent {
+  user = {
+    id: 'usr_1a2b3c',
+    name: 'Ava Patel',
+    active: true,
+    roles: ['admin', 'editor'],
+  };
+}
+`;
 
 export type UiComponentAccent = 'teal' | 'blue' | 'purple' | 'amber' | 'green';
 
@@ -3119,6 +3195,111 @@ export const UI_COMPONENT_SHOWCASE = [
         relatedSlugs: ['modal', 'sidebar', 'confirm-dialog'],
     },
     {
+        slug: 'command-palette',
+        title: 'Command Palette',
+        selector: 'zyra-command-palette',
+        importName: 'ZyraCommandPalette',
+        category: 'Overlays',
+        description:
+            'A Ctrl/Cmd+K-activated overlay for fuzzy-searching and running commands, with grouped results and full keyboard navigation.',
+        icon: search,
+        accent: 'purple',
+        status: 'new',
+        highlights: [
+            'Global Ctrl/Cmd+K shortcut opens it from anywhere it\'s mounted',
+            'Instant fuzzy filter over a flat items list, grouped by section',
+            'Arrow keys navigate, Enter selects, Escape closes',
+        ],
+        exampleCode: COMMAND_PALETTE_EXAMPLE_CODE,
+        variants: [
+            { name: 'grouped', description: 'Items with a group set render under a section header' },
+            { name: 'ungrouped', description: 'Items with no group render in a single flat list' },
+        ],
+        apiProps: [
+            {
+                name: 'items',
+                type: 'CommandPaletteItem[]',
+                default: '[]',
+                description: '{ id, label, description?, icon?, shortcut?, group?, disabled? } per command',
+            },
+            {
+                name: 'open',
+                type: 'boolean',
+                default: 'false',
+                description: 'Two-way bound visibility state via [(open)]',
+            },
+            {
+                name: 'placeholder',
+                type: 'string',
+                default: "'Search commands…'",
+                description: 'Search input placeholder',
+            },
+            {
+                name: 'emptyText',
+                type: 'string',
+                default: "'No matching commands'",
+                description: 'Shown when the query matches nothing',
+            },
+            {
+                name: 'globalShortcut',
+                type: 'boolean',
+                default: 'true',
+                description: 'Disables the document-level Ctrl/Cmd+K listener when false',
+            },
+            {
+                name: 'opened (output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits when the palette opens',
+            },
+            {
+                name: 'closed (output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits when the palette closes, for any reason (Escape, backdrop, selection, shortcut)',
+            },
+            {
+                name: 'selected (output)',
+                type: 'CommandPaletteItem',
+                default: '-',
+                description: 'Emits the chosen item; the palette also closes itself on selection',
+            },
+        ],
+        a11yNotes: [
+            'Search input uses role="combobox" with aria-controls/aria-activedescendant pointing at the active result',
+            'Results list uses role="listbox" / role="option", with aria-selected reflecting the active item',
+            'Same focus trap and Escape/backdrop dismiss behavior as zyra-modal',
+            'The global Ctrl/Cmd+K shortcut requires one <zyra-command-palette> to stay mounted (typically once, near the app root) — it listens on document even while closed',
+        ],
+        tokens: [
+            {
+                name: 'Panel background',
+                variable: '--zyra-color-command-palette-bg',
+                defaultValue: 'var(--zyra-color-surface-dropdown)',
+                description: 'Fill color of the palette panel.',
+            },
+            {
+                name: 'Panel shadow',
+                variable: '--zyra-color-command-palette-shadow',
+                defaultValue: 'var(--zyra-card-elevated-shadow)',
+                description: 'Drop shadow behind the panel.',
+            },
+            {
+                name: 'Active item background',
+                variable: '--zyra-color-command-palette-item-active-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Background of the keyboard/mouse-active result row.',
+            },
+            {
+                name: 'Group label',
+                variable: '--zyra-color-command-palette-group-label',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Color of section header text above each group.',
+            },
+        ],
+        relatedSlugs: ['modal', 'select', 'autocomplete'],
+    },
+    {
         slug: 'alert',
         title: 'Alert',
         selector: 'zyra-alert',
@@ -4865,6 +5046,294 @@ export class DemoEmptyStateComponent {}
             },
         ],
         relatedSlugs: ['skeleton', 'card', 'button'],
+    },
+    {
+        slug: 'image',
+        title: 'Image',
+        selector: 'zyra-image',
+        importName: 'ZyraImage',
+        category: 'Data Display',
+        description:
+            'A loading/error-aware image wrapper with skeleton placeholders, fallback sources, aspect-ratio boxes, and an optional caption.',
+        icon: imageIcon,
+        accent: 'blue',
+        status: 'new',
+        highlights: [
+            'Skeleton placeholder while loading',
+            'Optional fallback source, then an icon placeholder',
+            'Aspect-ratio boxes with object-fit control',
+        ],
+        exampleCode: `import { Component } from '@angular/core';
+import { ZyraImage } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-demo-image',
+  standalone: true,
+  imports: [ZyraImage],
+  template: \`
+    <zyra-image
+      src="/mountains.jpg"
+      alt="Mountain landscape at sunrise"
+      ratio="16/9"
+      radius="md"
+      caption="Sunrise over the mountains"
+    />
+  \`,
+})
+export class DemoImageComponent {}
+`,
+        variants: [
+            { name: 'cover', description: 'Default object-fit — crops to fill the box' },
+            { name: 'contain', description: 'Scales to fit inside the box without cropping' },
+            { name: 'ratio', description: 'Fixed aspect-ratio box (e.g. 16/9, 1/1)' },
+        ],
+        apiProps: [
+            {
+                name: 'src',
+                type: 'string',
+                default: 'required',
+                description: 'Image URL',
+            },
+            {
+                name: 'alt',
+                type: 'string',
+                default: "''",
+                description: 'Accessible alt text, also shown under the fallback icon on error',
+            },
+            {
+                name: 'fallbackSrc',
+                type: 'string',
+                default: "''",
+                description: 'Second URL to try if src fails to load, before showing the placeholder',
+            },
+            {
+                name: 'ratio',
+                type: 'number | string | null',
+                default: 'null',
+                description: 'Locks a fixed aspect ratio (e.g. "16/9", "1/1"); null sizes to the image itself',
+            },
+            {
+                name: 'objectFit',
+                type: "'cover' | 'contain' | 'fill' | 'none' | 'scale-down'",
+                default: "'cover'",
+                description: 'CSS object-fit applied to the image',
+            },
+            {
+                name: 'radius',
+                type: "'none' | 'sm' | 'md' | 'lg' | 'full'",
+                default: "'none'",
+                description: 'Corner rounding',
+            },
+            {
+                name: 'loading',
+                type: "'lazy' | 'eager'",
+                default: "'lazy'",
+                description: 'Native img loading attribute',
+            },
+            {
+                name: 'caption',
+                type: 'string',
+                default: "''",
+                description: 'Optional caption rendered below the image',
+            },
+            {
+                name: 'loaded (output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits once the image has finished loading successfully',
+            },
+            {
+                name: 'error (output)',
+                type: 'void',
+                default: '-',
+                description: 'Emits when the image (and fallbackSrc, if any) both fail to load',
+            },
+        ],
+        a11yNotes: [
+            'alt is applied to the underlying <img>, and reused as the label under the fallback icon on error',
+            'The fallback placeholder uses role="img" with an aria-label so screen readers still get a description when the image fails',
+            'The loading skeleton is purely decorative and does not interfere with the accessibility tree',
+        ],
+        tokens: [
+            {
+                name: 'Placeholder background',
+                variable: '--zyra-color-image-placeholder-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Background of the box while loading and behind the fallback icon.',
+            },
+            {
+                name: 'Placeholder icon',
+                variable: '--zyra-color-image-placeholder-icon',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Color of the broken-image icon shown on error.',
+            },
+            {
+                name: 'Caption text',
+                variable: '--zyra-color-image-caption-text',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Color of the caption text and the fallback label under the icon.',
+            },
+        ],
+        relatedSlugs: ['aspect-ratio', 'skeleton', 'avatar'],
+    },
+    {
+        slug: 'json-viewer',
+        title: 'JSON Viewer',
+        selector: 'zyra-json-viewer',
+        importName: 'ZyraJsonViewer',
+        category: 'Data Display',
+        description:
+            'A collapsible, syntax-colored tree view for inspecting JSON data — objects, arrays, and raw JSON strings alike.',
+        icon: code,
+        accent: 'purple',
+        status: 'new',
+        highlights: [
+            'Accepts a parsed value or a raw JSON string',
+            'Per-node expand/collapse, reusing Tree View’s interaction pattern',
+            'Copy-to-clipboard for the full formatted document',
+        ],
+        exampleCode: JSON_VIEWER_EXAMPLE_CODE,
+        variants: [
+            { name: 'expandDepth=0', description: 'Everything starts collapsed' },
+            { name: 'expandDepth=1', description: 'Default — root level open, nested objects collapsed' },
+        ],
+        apiProps: [
+            {
+                name: 'data',
+                type: 'unknown',
+                default: 'null',
+                description: 'A parsed object/array/primitive, or a raw JSON string to parse',
+            },
+            {
+                name: 'expandDepth',
+                type: 'number',
+                default: '1',
+                description: 'Depth (0 = root) below which nodes start out collapsed',
+            },
+            {
+                name: 'maxDepth',
+                type: 'number',
+                default: '20',
+                description: 'Hard cap on render depth — deeper nodes stop recursing, guarding against huge/circular-looking payloads',
+            },
+            {
+                name: 'copyable',
+                type: 'boolean',
+                default: 'true',
+                description: 'Shows a "Copy" button that copies the full formatted JSON',
+            },
+        ],
+        a11yNotes: [
+            'Rows use role="treeitem" inside a role="tree" container, with aria-level and aria-expanded on container nodes',
+            'Expand/collapse toggles are real <button> elements with an aria-label that reflects the current state',
+            'Invalid JSON strings render an inline role="alert" message instead of a silently empty tree',
+        ],
+        tokens: [
+            {
+                name: 'Background',
+                variable: '--zyra-color-json-viewer-bg',
+                defaultValue: 'var(--zyra-color-surface-code)',
+                description: 'Fill color of the viewer panel — the same tuned code-surface tone Code Block uses.',
+            },
+            {
+                name: 'Border',
+                variable: '--zyra-color-json-viewer-border',
+                defaultValue: 'var(--zyra-color-border-color)',
+                description: 'Border color of the viewer panel.',
+            },
+            {
+                name: 'Key',
+                variable: '--zyra-color-json-viewer-key',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Color of object property keys and array indices.',
+            },
+            {
+                name: 'Toggle icon',
+                variable: '--zyra-color-json-viewer-toggle',
+                defaultValue: 'var(--zyra-color-foreground-subtle)',
+                description: 'Color of the expand/collapse chevron.',
+            },
+        ],
+        relatedSlugs: ['code-block', 'tree-view', 'markdown-viewer'],
+    },
+    {
+        slug: 'markdown-viewer',
+        title: 'Markdown Viewer',
+        selector: 'zyra-markdown-viewer',
+        importName: 'ZyraMarkdownViewer',
+        category: 'Data Display',
+        description:
+            'Renders markdown content — headings, lists, tables, blockquotes, links, and fenced code — as styled, themed HTML.',
+        icon: alignLeft,
+        accent: 'green',
+        status: 'new',
+        highlights: [
+            'Fenced code blocks render through Code Block for syntax highlighting',
+            'Headings, lists, tables, blockquotes, links, and images',
+            'sanitize input strips raw HTML out of the source by default',
+        ],
+        exampleCode: MARKDOWN_VIEWER_EXAMPLE_CODE,
+        variants: [
+            { name: 'default', description: 'sanitize=true, linkTarget="_blank" — safe for user-authored content' },
+        ],
+        apiProps: [
+            {
+                name: 'content',
+                type: 'string',
+                default: "''",
+                description: 'The markdown source to render',
+            },
+            {
+                name: 'sanitize',
+                type: 'boolean',
+                default: 'true',
+                description: 'Strips raw HTML-looking tags out of the source instead of showing them literally',
+            },
+            {
+                name: 'linkTarget',
+                type: "'_blank' | '_self'",
+                default: "'_blank'",
+                description: 'Target for generated links; _blank also adds rel="noopener noreferrer"',
+            },
+        ],
+        a11yNotes: [
+            'Headings render as real h1–h6 elements, preserving document outline/landmark navigation',
+            'Links opened in a new tab (_blank) automatically get rel="noopener noreferrer"',
+            'Never uses innerHTML — markdown is parsed into a typed block/inline structure and rendered through normal Angular bindings, so it cannot execute embedded scripts',
+        ],
+        tokens: [
+            {
+                name: 'Text',
+                variable: '--zyra-color-markdown-viewer-text',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Body text color.',
+            },
+            {
+                name: 'Heading',
+                variable: '--zyra-color-markdown-viewer-heading',
+                defaultValue: 'var(--zyra-color-foreground)',
+                description: 'Color of h1–h6 elements.',
+            },
+            {
+                name: 'Link',
+                variable: '--zyra-color-markdown-viewer-link',
+                defaultValue: 'var(--zyra-color-primary)',
+                description: 'Color of rendered links.',
+            },
+            {
+                name: 'Blockquote border',
+                variable: '--zyra-color-markdown-viewer-blockquote-border',
+                defaultValue: 'var(--zyra-color-primary-border)',
+                description: 'Left border color of blockquotes.',
+            },
+            {
+                name: 'Inline code background',
+                variable: '--zyra-color-markdown-viewer-inline-code-bg',
+                defaultValue: 'var(--zyra-color-surface-inset)',
+                description: 'Background of inline `code` spans (fenced blocks use Code Block’s own tokens).',
+            },
+        ],
+        relatedSlugs: ['code-block', 'json-viewer', 'typography'],
     },
     {
         slug: 'clipboard',

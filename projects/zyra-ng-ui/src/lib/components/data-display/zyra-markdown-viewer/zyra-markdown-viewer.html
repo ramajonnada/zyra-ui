@@ -1,0 +1,124 @@
+<ng-template #spanTpl let-list>
+    @for (span of list; track $index) {
+        @switch (span.type) {
+            @case ('bold') {
+                <strong>{{ span.text }}</strong>
+            }
+            @case ('italic') {
+                <em>{{ span.text }}</em>
+            }
+            @case ('code') {
+                <code class="zyr-md__code-inline">{{ span.text }}</code>
+            }
+            @case ('link') {
+                <a [href]="span.href" [target]="linkTarget()" [attr.rel]="linkRel()">{{ span.text }}</a>
+            }
+            @case ('image') {
+                <img class="zyr-md__img" [src]="span.src" [alt]="span.alt" />
+            }
+            @default {
+                {{ span.text }}
+            }
+        }
+    }
+</ng-template>
+
+<div class="zyr-md">
+    @for (block of blocks(); track $index) {
+        @switch (block.type) {
+            @case ('heading') {
+                @switch (block.level) {
+                    @case (1) {
+                        <h1 class="zyr-md__h1">
+                            <ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: block.spans }" />
+                        </h1>
+                    }
+                    @case (2) {
+                        <h2 class="zyr-md__h2">
+                            <ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: block.spans }" />
+                        </h2>
+                    }
+                    @case (3) {
+                        <h3 class="zyr-md__h3">
+                            <ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: block.spans }" />
+                        </h3>
+                    }
+                    @case (4) {
+                        <h4 class="zyr-md__h4">
+                            <ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: block.spans }" />
+                        </h4>
+                    }
+                    @case (5) {
+                        <h5 class="zyr-md__h5">
+                            <ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: block.spans }" />
+                        </h5>
+                    }
+                    @case (6) {
+                        <h6 class="zyr-md__h6">
+                            <ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: block.spans }" />
+                        </h6>
+                    }
+                }
+            }
+            @case ('paragraph') {
+                <p class="zyr-md__p">
+                    <ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: block.spans }" />
+                </p>
+            }
+            @case ('blockquote') {
+                <blockquote class="zyr-md__blockquote">
+                    <ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: block.spans }" />
+                </blockquote>
+            }
+            @case ('hr') {
+                <hr class="zyr-md__hr" />
+            }
+            @case ('code') {
+                <zyra-code-block class="zyr-md__code-block" [code]="block.code" [language]="block.language" />
+            }
+            @case ('list') {
+                @if (block.ordered) {
+                    <ol class="zyr-md__list">
+                        @for (item of block.items; track $index) {
+                            <li><ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: item }" /></li>
+                        }
+                    </ol>
+                } @else {
+                    <ul class="zyr-md__list">
+                        @for (item of block.items; track $index) {
+                            <li><ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: item }" /></li>
+                        }
+                    </ul>
+                }
+            }
+            @case ('table') {
+                <div class="zyr-md__table-wrap">
+                    <table class="zyr-md__table">
+                        <thead>
+                            <tr>
+                                @for (cell of block.header; track $index; let ci = $index) {
+                                    <th [style.text-align]="block.align[ci]">
+                                        <ng-container *ngTemplateOutlet="spanTpl; context: { $implicit: cell }" />
+                                    </th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (row of block.rows; track $index) {
+                                <tr>
+                                    @for (cell of row; track $index; let ci = $index) {
+                                        <td [style.text-align]="block.align[ci]">
+                                            <ng-container
+                                                *ngTemplateOutlet="spanTpl; context: { $implicit: cell }"
+                                            />
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+    }
+</div>

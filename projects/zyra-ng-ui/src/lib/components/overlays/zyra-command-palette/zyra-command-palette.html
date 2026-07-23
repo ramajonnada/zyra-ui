@@ -1,0 +1,74 @@
+@if (open()) {
+    <div class="zyr-cmdk" role="presentation" (click)="onBackdropClick($event)">
+        <div
+            #panel
+            class="zyr-cmdk__panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Command palette"
+        >
+            <div class="zyr-cmdk__search">
+                <zyra-icon class="zyr-cmdk__search-icon" [img]="searchIcon" [size]="16" />
+                <input
+                    #searchInput
+                    type="text"
+                    class="zyr-cmdk__input"
+                    role="combobox"
+                    aria-expanded="true"
+                    [attr.aria-activedescendant]="resultCount() > 0 ? 'zyr-cmdk-item-' + activeIndex() : null"
+                    aria-controls="zyr-cmdk-listbox"
+                    autocomplete="off"
+                    [placeholder]="placeholder()"
+                    [value]="query()"
+                    (input)="onQueryChange($any($event.target).value)"
+                    (keydown)="onKeydown($event)"
+                />
+            </div>
+
+            <div class="zyr-cmdk__results" id="zyr-cmdk-listbox" role="listbox">
+                @if (resultCount() === 0) {
+                    <div class="zyr-cmdk__empty">{{ emptyText() }}</div>
+                } @else {
+                    @for (group of groups(); track group.name) {
+                        @if (group.name) {
+                            <div class="zyr-cmdk__group-label">{{ group.name }}</div>
+                        }
+                        @for (flat of group.items; track flat.item.id) {
+                            <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
+                            <div
+                                [id]="'zyr-cmdk-item-' + flat.flatIndex"
+                                class="zyr-cmdk__item"
+                                role="option"
+                                [attr.aria-selected]="isActive(flat.flatIndex)"
+                                [attr.aria-disabled]="flat.item.disabled ? true : null"
+                                [class.zyr-cmdk__item--active]="isActive(flat.flatIndex)"
+                                [class.zyr-cmdk__item--disabled]="flat.item.disabled"
+                                (mousemove)="activeIndex.set(flat.flatIndex)"
+                                (click)="selectItem(flat.item)"
+                            >
+                                @if (flat.item.icon) {
+                                    <zyra-icon class="zyr-cmdk__item-icon" [img]="flat.item.icon" [size]="16" />
+                                }
+                                <span class="zyr-cmdk__item-text">
+                                    <span class="zyr-cmdk__item-label">{{ flat.item.label }}</span>
+                                    @if (flat.item.description) {
+                                        <span class="zyr-cmdk__item-description">{{ flat.item.description }}</span>
+                                    }
+                                </span>
+                                @if (flat.item.shortcut) {
+                                    <span class="zyr-cmdk__item-shortcut">{{ flat.item.shortcut }}</span>
+                                }
+                            </div>
+                        }
+                    }
+                }
+            </div>
+
+            <div class="zyr-cmdk__footer">
+                <span class="zyr-cmdk__hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span class="zyr-cmdk__hint"><kbd>↵</kbd> select</span>
+                <span class="zyr-cmdk__hint"><kbd>esc</kbd> close</span>
+            </div>
+        </div>
+    </div>
+}

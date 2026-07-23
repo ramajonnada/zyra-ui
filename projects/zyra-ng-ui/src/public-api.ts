@@ -38,6 +38,11 @@ export * from './lib/components/layout/zyra-scroll-area/zyra-scroll-area';
 // ── Data Display ────────────────────────────────────────────────────────
 export * from './lib/components/data-display/zyra-code-block/zyra-code-block';
 export * from './lib/components/data-display/zyra-empty-state/zyra-empty-state';
+export * from './lib/components/data-display/zyra-image/zyra-image';
+export * from './lib/components/data-display/zyra-json-viewer/zyra-json-viewer';
+export * from './lib/components/data-display/zyra-markdown-viewer/zyra-markdown-viewer';
+export * from './lib/components/data-display/zyra-markdown-viewer/zyra-markdown-viewer-parser';
+export * from './lib/components/overlays/zyra-command-palette/zyra-command-palette';
 export * from './lib/components/data-display/zyra-timeline/zyra-timeline';
 export * from './lib/components/data-display/zyra-timeline/zyra-timeline-item';
 export * from './lib/components/data-display/zyra-carousel/zyra-carousel';

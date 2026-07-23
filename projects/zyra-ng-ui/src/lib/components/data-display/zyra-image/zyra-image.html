@@ -1,0 +1,36 @@
+<div [class]="hostClass()" [style]="hostStyle()">
+    @if (status() !== 'error') {
+        <img
+            class="zyr-image__img"
+            [class.zyr-image__img--loaded]="status() === 'loaded'"
+            [src]="resolvedSrc()"
+            [alt]="alt()"
+            [loading]="resolvedLoading()"
+            [attr.fetchpriority]="fetchPriority()"
+            [attr.width]="width()"
+            [attr.height]="height()"
+            [attr.srcset]="srcset() || null"
+            [attr.sizes]="sizes() || null"
+            [style]="imgStyle()"
+            (load)="onLoad()"
+            (error)="onError()"
+        />
+    }
+
+    @if (status() === 'loading') {
+        <zyra-skeleton class="zyr-image__skeleton" variant="image" />
+    }
+
+    @if (status() === 'error') {
+        <div class="zyr-image__fallback" role="img" [attr.aria-label]="alt() || 'Image failed to load'">
+            <zyra-icon [img]="imageIcon" [size]="28" />
+            @if (alt()) {
+                <span class="zyr-image__fallback-text">{{ alt() }}</span>
+            }
+        </div>
+    }
+</div>
+
+@if (caption()) {
+    <p class="zyr-image__caption">{{ caption() }}</p>
+}

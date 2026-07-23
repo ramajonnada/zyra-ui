@@ -1,5 +1,7 @@
-import { Component, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { filter, map, startWith } from 'rxjs';
 import { AnnouncementBar } from '../announcement-bar/announcement-bar';
 
 const SCROLL_HIDE_THRESHOLD = 40;
@@ -11,6 +13,21 @@ const SCROLL_HIDE_THRESHOLD = 40;
     styleUrl: './main.scss',
 })
 export class Main {
+    private readonly router = inject(Router);
+
+    // Announcement banner is a home-page-only marketing element — every other
+    // page (docs, components, blog) has its own breadcrumb/heading right at
+    // the top, and the banner just pushed that down without adding value there.
+    private readonly url = toSignal(
+        this.router.events.pipe(
+            filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+            map((e) => e.urlAfterRedirects),
+            startWith(this.router.url),
+        ),
+        { initialValue: this.router.url },
+    );
+    readonly isHomePage = computed(() => this.url().split(/[?#]/)[0] === '/');
+
     // Hides the announcement bar while the user is scrolling down through
     // page content (mirrors the common "hide on scroll down, reveal on
     // scroll up" pattern) so it doesn't permanently eat into the reading
