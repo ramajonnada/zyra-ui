@@ -1,12 +1,12 @@
 // Lightweight slug/title list for nav purposes only — deliberately NOT
 // derived from ui-components.data.ts at runtime. That file carries example
-// code, API prop tables, and icons for all 53 components (~170KB) and is
+// code, API prop tables, and icons for every component (~170KB) and is
 // only ever pulled into the lazy-loaded ui-components/ui-component-detail
 // chunks. Sidebar/header are part of the eager app shell, so importing the
 // full data file here would drag that ~170KB into every page's initial
 // bundle. Keep this list in sync with ui-components.data.ts's slugs/titles
-// when components are added, renamed, or removed. (60 components as of
-// this writing — see COMPONENT_COUNT in ui-components.data.ts.)
+// when components are added, renamed, or removed — see COMPONENT_COUNT in
+// ui-components.data.ts for the current, always-accurate total.
 export interface ComponentNavItem {
 	label: string;
 	route: string;

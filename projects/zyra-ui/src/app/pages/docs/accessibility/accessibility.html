@@ -1,0 +1,67 @@
+<main class="docs-page">
+	<zyra-breadcrumb>
+		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+			<zyra-breadcrumb-item [href]="crumb.url" [current]="last" [routerLink]="last ? null : crumbPath(crumb.url)">{{ crumb.label }}</zyra-breadcrumb-item>
+		}
+	</zyra-breadcrumb>
+
+	<header class="docs-page__header">
+		<h1>Accessibility</h1>
+		<p class="docs-page__lead">
+			Accessibility isn't a checkbox we tick after a component ships — it's part of the same
+			review every component goes through before it's considered done, alongside keyboard
+			support and cross-theme checks.
+		</p>
+	</header>
+
+	<section class="docs-section docs-section--first">
+		<div class="docs-section__header">
+			<h2>What's covered</h2>
+		</div>
+		<div class="conventions-grid">
+			@for (item of coverage; track item.title) {
+				<div class="convention-card">
+					<h3>{{ item.title }}</h3>
+					<p>{{ item.description }}</p>
+				</div>
+			}
+		</div>
+	</section>
+
+	<section class="docs-section">
+		<div class="docs-section__header">
+			<h2>Verify it yourself</h2>
+			<p>
+				Don't take our word for it. Every component's live playground on
+				<a routerLink="/docs/components">the components page</a> can be tabbed through with a
+				keyboard, and inspected with your browser's accessibility tree or a screen reader
+				(VoiceOver, NVDA). If something doesn't behave the way this page describes, that's a
+				bug — open an issue.
+			</p>
+		</div>
+	</section>
+
+	<section class="docs-section">
+		<div class="docs-section__header">
+			<h2>Known limitations</h2>
+			<p>
+				This is a solo-maintained, actively developed library. Accessibility review happens
+				per-component as it ships rather than through a formal third-party audit — so treat
+				this page as "how we build," not a certification. If you rely on ZyraUI in a context
+				with strict compliance requirements (e.g. WCAG conformance reporting), test the
+				specific components you use against your own requirements before shipping.
+			</p>
+		</div>
+	</section>
+
+	<section class="docs-cta">
+		<div class="docs-cta__inner">
+			<h2>See the token contrast rules</h2>
+			<p>How on-* tokens keep text readable on every filled background, in every theme.</p>
+			<div class="docs-cta__actions">
+				<zyra-button size="lg" routerLink="/docs/theme-tokens">Theme tokens</zyra-button>
+				<zyra-button size="lg" variant="outline" routerLink="/docs/components">Explore components</zyra-button>
+			</div>
+		</div>
+	</section>
+</main>

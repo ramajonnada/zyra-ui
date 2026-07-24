@@ -11,6 +11,7 @@
 }
 
 .docs-page__header {
+	max-width: 660px;
 	margin-bottom: 40px;
 
 	h1 {
@@ -39,7 +40,6 @@
 	border-top: none;
 	padding-top: 0;
 	margin-top: 0;
-	margin-bottom: 48px;
 }
 
 .docs-section__header {
@@ -57,10 +57,14 @@
 		line-height: 1.75;
 		margin: 0;
 		font-size: 0.95rem;
+
+		a {
+			color: var(--zyra-color-primary);
+		}
 	}
 }
 
-// ── Conventions grid ─────────────────────────────────────────────
+// ── Coverage grid ─────────────────────────────────────────────────
 .conventions-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -85,52 +89,9 @@
 		font-size: 0.88rem;
 		line-height: 1.65;
 	}
-
-	code {
-		font-family: var(--zyra-font-mono);
-		font-size: 0.85em;
-		color: var(--zyra-color-primary);
-	}
 }
 
-// ── Install steps (blog-article prose style) ───────────────────
-.docs-steps {
-	max-width: 760px;
-	margin: 0 0 40px;
-}
-
-.docs-step {
-	margin-bottom: 40px;
-
-	&:last-child {
-		margin-bottom: 0;
-	}
-
-	h2 {
-		margin: 0 0 12px;
-		font-family: var(--zyra-font-display);
-		font-size: 2.05rem;
-		line-height: 1.08;
-	}
-}
-
-.docs-step__eyebrow {
-	margin: 0 0 10px;
-	color: var(--zyra-color-primary);
-	font-family: var(--zyra-font-mono);
-	font-size: 0.72rem;
-	letter-spacing: 0.16em;
-	text-transform: uppercase;
-}
-
-.docs-step__desc {
-	margin: 0 0 18px;
-	color: var(--zyra-color-foreground-muted);
-	font-size: 1rem;
-	line-height: 1.9;
-}
-
-// ── CTA ───────────────────────────────────────────────────────
+// ── CTA ───────────────────────────────────────────────────────────
 .docs-cta {
 	margin-top: 56px;
 	border-top: 1px solid var(--zyra-color-border-color);

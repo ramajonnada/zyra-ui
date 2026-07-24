@@ -141,7 +141,7 @@
                             <h3>{{ step.title }}</h3>
                             <p class="setup-step__desc">{{ step.description }}</p>
                         </div>
-                        <pre class="setup-step__code"><code>{{ step.code }}</code></pre>
+                        <zyra-code-block [code]="step.code" [language]="step.language" [filename]="step.filename ?? ''" />
                     </div>
                 </li>
             }

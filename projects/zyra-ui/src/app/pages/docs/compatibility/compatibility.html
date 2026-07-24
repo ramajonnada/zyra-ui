@@ -1,0 +1,42 @@
+<main class="docs-page">
+	<zyra-breadcrumb>
+		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+			<zyra-breadcrumb-item [href]="crumb.url" [current]="last" [routerLink]="last ? null : crumbPath(crumb.url)">{{ crumb.label }}</zyra-breadcrumb-item>
+		}
+	</zyra-breadcrumb>
+
+	<header class="docs-page__header">
+		<h1>Compatibility</h1>
+		<p class="docs-page__lead">
+			What Zyra UI requires, and what it supports out of the box — Angular version, SSR,
+			zoneless change detection, and browser support.
+		</p>
+	</header>
+
+	<section class="docs-section docs-section--first">
+		<table class="compat-table">
+			<tbody>
+				@for (row of rows; track row.label) {
+					<tr>
+						<th scope="row">{{ row.label }}</th>
+						<td>
+							<span class="compat-table__value">{{ row.value }}</span>
+							<p class="compat-table__note">{{ row.note }}</p>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</section>
+
+	<section class="docs-cta">
+		<div class="docs-cta__inner">
+			<h2>Ready to install</h2>
+			<p>Four steps to a working component in an Angular 21 workspace.</p>
+			<div class="docs-cta__actions">
+				<zyra-button size="lg" routerLink="/docs/installation">Installation</zyra-button>
+				<zyra-button size="lg" variant="outline" routerLink="/docs/components">Explore components</zyra-button>
+			</div>
+		</div>
+	</section>
+</main>

@@ -5,6 +5,7 @@ import {
     ZyraBadge,
     ZyraButton,
     ZyraCard,
+    ZyraCodeBlock,
     ZyraFormField,
     ZyraInput,
     ZyraToastService,
@@ -14,7 +15,6 @@ import { github, envelope, cubes, palette, codeBranch, universalAccess, swatchbo
 import { LIBRARY_VERSION } from '../../shared/version';
 import { COMPONENT_COUNT } from '../ui-components/ui-components.data';
 
-type AvatarVariant = 'teal' | 'blue' | 'purple' | 'warm' | 'neutral';
 type FeatureTone = 'accent' | 'blue' | 'purple' | 'green' | 'warning' | 'neutral';
 type MetricTone = 'accent' | 'blue' | 'warning';
 type SystemTone = 'accent' | 'blue' | 'purple';
@@ -39,13 +39,6 @@ interface SystemCard {
     icon: ZyraIconData;
     tone: SystemTone;
     points: readonly string[];
-}
-
-interface Testimonial {
-    quote: string;
-    author: string;
-    role: string;
-    avatarVariant?: AvatarVariant;
 }
 
 export interface InstallStep {
@@ -74,9 +67,40 @@ const RATING_MARKS = [1, 2, 3, 4, 5] as const;
 
 const HERO_META = ['Open source', 'MIT Licensed', 'TypeScript ready', 'Angular 21+'] as const;
 
+const SIGNUP_CARD_CODE = `import { Component, signal } from '@angular/core';
+import { ZyraButton, ZyraCard, ZyraInput } from 'zyra-ng-ui';
+
+@Component({
+  selector: 'app-signup-card',
+  imports: [ZyraCard, ZyraInput, ZyraButton],
+  template: \`
+    <zyra-card>
+      <h2>Join the waitlist</h2>
+      <zyra-input placeholder="you@company.dev"
+        (valueChange)="email.set($event)" />
+      <zyra-button variant="ghost">Reserve your spot</zyra-button>
+    </zyra-card>
+  \`,
+})
+export class SignupCard {
+  email = signal('');
+}
+// No NgModule. No @Input()/@Output(). No RxJS required.`;
+
+const THEME_TOKENS_CODE = `:root {
+  /* Brand — override these to re-skin everything */
+  --zyra-color-primary: #00eaff;        /* primary CTA, focus rings, glows */
+  --zyra-color-primary-hover: #4f8cff;  /* hover state */
+  --zyra-color-primary-subtle: #b57cff; /* subtle backgrounds */
+
+  /* Shape & type */
+  --zyra-radius-lg: 12px;
+  --zyra-font-body: 'Inter', sans-serif;
+}`;
+
 const DEVELOPER_CHECKS = [
-    'Framework-agnostic: Next.js, Remix, Vite, Astro',
-    '100% ownership – copy the code, tweak forever',
+    'Standalone-only — no NgModules to wire up, anywhere in the API',
+    'Signals-first — input(), output(), and model() throughout, no RxJS required to use a component',
     'CSS variables for effortless theming',
     'A11y-first – tested with ARIA + VoiceOver',
 ] as const;
@@ -136,9 +160,9 @@ const FEATURE_CARDS: readonly IconCard[] = [
         tone: 'purple',
     },
     {
-        title: 'Framework-agnostic',
+        title: 'Standalone-only',
         description:
-            'Works with Angular standalone, signals, SSR, and Vite. No bundler magic required.',
+            'Every component is a standalone Angular component. No NgModules, anywhere in the public API.',
         icon: codeBranch,
         tone: 'blue',
     },
@@ -207,26 +231,6 @@ const TOKEN_SWATCHES: readonly TokenSwatch[] = [
     { name: 'Warning', token: '--zyra-color-warning', tone: 'warning' },
 ] as const;
 
-const TESTIMONIALS: readonly Testimonial[] = [
-    {
-        quote: "ZyraUI is the first library that doesn't make my designer cry. We rebuilt our entire dashboard in two days.",
-        author: 'Maya Chen',
-        role: 'Staff engineer, Superhuman',
-    },
-    {
-        quote: "The motion system alone is worth it. Every interaction feels considered. It's the Linear of UI libraries.",
-        author: 'Dev Patel',
-        role: 'Founding eng, @Orbital',
-        avatarVariant: 'blue',
-    },
-    {
-        quote: "Finally a dark theme I don't want to tear apart. The neon cyan is tasteful — it whispers instead of shouting.",
-        author: 'Ines Müller',
-        role: 'Design engineer, Lumen',
-        avatarVariant: 'purple',
-    },
-] as const;
-
 @Component({
     selector: 'app-home',
     imports: [
@@ -235,6 +239,7 @@ const TESTIMONIALS: readonly Testimonial[] = [
         ZyraBadge,
         ZyraButton,
         ZyraCard,
+        ZyraCodeBlock,
         ZyraFormField,
         ZyraInput,
     ],
@@ -260,15 +265,15 @@ export class Home implements OnInit, OnDestroy {
     readonly featureCards = FEATURE_CARDS;
     readonly metrics = METRICS;
     readonly installSteps = INSTALL_STEPS;
-    readonly testimonials = TESTIMONIALS;
     readonly blockStats = BLOCK_STATS;
+    readonly signupCardCode = SIGNUP_CARD_CODE;
+    readonly themeTokensCode = THEME_TOKENS_CODE;
     readonly tokenSwatches = TOKEN_SWATCHES;
 
     ngOnInit() {
         this.seo.setSEO({
-            title: 'Zyra UI — Angular Component Library with Design Tokens',
-            description:
-                'Zyra UI is a modern Angular component library and UI kit with design tokens, dark-mode-first theming, and accessible primitives. Built for Angular 21, signals, and SSR.',
+            title: 'Zyra UI — Signals-First Angular Components, No NgModules',
+            description: `Zyra UI is a signals-first, standalone-only Angular component library — ${this.componentCount} typed, accessible components, no NgModules, no RxJS required to use them. Built for Angular 21+.`,
             url: 'https://www.zyraui.dev/',
         });
 
@@ -280,10 +285,9 @@ export class Home implements OnInit, OnDestroy {
             operatingSystem: 'Web',
             url: 'https://www.zyraui.dev/',
             image: 'https://www.zyraui.dev/og-preview.png',
-            description:
-                'A modern Angular component library and design system with design tokens, accessible UI primitives, polished motion, and dark-mode-first theming.',
+            description: `A signals-first, standalone-only Angular component library — ${this.componentCount} typed, token-themed, accessible components. No NgModules, no RxJS required to use them.`,
             keywords:
-                'Angular component library, Angular UI kit, Angular design system, Angular components, Angular 21 UI',
+                'Angular signals component library, standalone Angular components, Angular design tokens, Angular 21 UI library, no NgModule Angular components',
             offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
             author: { '@type': 'Person', name: 'Rama Jonnada' },
         });
@@ -296,7 +300,7 @@ export class Home implements OnInit, OnDestroy {
             description: 'Angular component library and UI design system.',
             potentialAction: {
                 '@type': 'SearchAction',
-                target: 'https://www.zyraui.dev/components?q={search_term_string}',
+                target: 'https://www.zyraui.dev/docs/components?q={search_term_string}',
                 'query-input': 'required name=search_term_string',
             },
         });

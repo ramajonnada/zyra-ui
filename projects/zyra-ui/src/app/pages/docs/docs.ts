@@ -53,6 +53,21 @@ export class Docs implements OnInit, OnDestroy {
             description: 'The full design token reference and what is safe to override.',
             route: '/docs/theme-tokens',
         },
+        {
+            title: 'Accessibility',
+            description: 'Keyboard support, focus management, ARIA roles, and contrast, verified per component.',
+            route: '/docs/accessibility',
+        },
+        {
+            title: 'Compatibility',
+            description: 'Angular version support, SSR, zoneless change detection, and browser support.',
+            route: '/docs/compatibility',
+        },
+        {
+            title: 'Roadmap',
+            description: 'Where Zyra UI is headed — Pro components, templates, and beyond.',
+            route: '/docs/roadmap',
+        },
     ];
 
     protected readonly crumbPath = internalPath;

@@ -39,9 +39,32 @@ export const routes: Routes = [
 			import('./pages/docs/theme-tokens/theme-tokens').then((m) => m.DocsThemeTokens),
 	},
 	{
+		path: 'docs/accessibility',
+		loadComponent: () =>
+			import('./pages/docs/accessibility/accessibility').then((m) => m.DocsAccessibility),
+	},
+	{
+		path: 'docs/compatibility',
+		loadComponent: () =>
+			import('./pages/docs/compatibility/compatibility').then((m) => m.DocsCompatibility),
+	},
+	{
+		path: 'docs/roadmap',
+		loadComponent: () => import('./pages/docs/roadmap/roadmap').then((m) => m.DocsRoadmap),
+	},
+	{
 		path: 'theming',
 		redirectTo: 'docs/theming',
 		pathMatch: 'full',
+	},
+	{
+		path: 'components',
+		redirectTo: 'docs/components',
+		pathMatch: 'full',
+	},
+	{
+		path: 'components/:component',
+		redirectTo: 'docs/components/:component',
 	},
 	{
 		path: 'about',

@@ -10,6 +10,7 @@ import {
     ZyraCard,
     ZyraCheckbox,
     ZyraChip,
+    ZyraCodeBlock,
     ZyraFormField,
     ZyraInput,
     ZyraProgress,
@@ -32,6 +33,8 @@ interface SetupStep {
     title: string;
     description: string;
     code: string;
+    language: string;
+    filename?: string;
 }
 
 interface ApiMethod {
@@ -58,6 +61,7 @@ interface ConfigOption {
         ZyraCard,
         ZyraCheckbox,
         ZyraChip,
+        ZyraCodeBlock,
         ZyraFormField,
         ZyraInput,
         ZyraProgress,
@@ -95,19 +99,21 @@ export class DocsTheming implements OnInit, OnDestroy {
             step: '01',
             title: 'Import global styles',
             description: 'Loads every token tier and all five theme definitions in one line.',
-            code: `// styles.scss
-@use 'zyra-ng-ui';`,
+            code: `@use 'zyra-ng-ui';`,
+            language: 'scss',
+            filename: 'styles.scss',
         },
         {
             step: '02',
             title: 'Register the theme provider',
             description: 'Picks the initial theme and wires up ZyraThemeService before first render.',
-            code: `// app.config.ts
-import { provideZyra } from 'zyra-ng-ui';
+            code: `import { provideZyra } from 'zyra-ng-ui';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZyra({ theme: 'dark' })],
 };`,
+            language: 'ts',
+            filename: 'app.config.ts',
         },
         {
             step: '03',
@@ -118,16 +124,18 @@ import { ZyraThemeService } from 'zyra-ng-ui';
 
 const theme = inject(ZyraThemeService);
 theme.setTheme('ocean'); // 'dark' | 'light' | 'ocean' | 'amber' | 'rose'`,
+            language: 'ts',
         },
         {
             step: '04',
             title: 'Override tokens (optional)',
             description: 'Set any token after the Zyra import to customize without forking a theme file.',
-            code: `// styles.scss — after @use 'zyra-ng-ui'
-:root {
+            code: `:root {
   --zyra-color-primary: #7c3aed; /* semantic Tier 2 — propagates everywhere */
   --zyra-radius-md: 6px;         /* dimension Tier 1 — affects all md-radius components */
 }`,
+            language: 'scss',
+            filename: 'styles.scss',
         },
     ];
 

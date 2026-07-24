@@ -1,24 +1,29 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraButton } from 'zyra-ng-ui';
+import { ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraButton, ZyraCodeBlock } from 'zyra-ng-ui';
 import { SeoService } from '../../../../seo/seo.service';
 import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../../shared/breadcrumb-jsonld';
+import { COMPONENT_COUNT } from '../../ui-components/ui-components.data';
 
 interface InstallStep {
     step: string;
     title: string;
     description: string;
     code: string;
+    language: string;
+    filename?: string;
 }
 
 @Component({
     selector: 'app-docs-installation',
-    imports: [RouterLink, ZyraButton, ZyraBreadcrumb, ZyraBreadcrumbItem],
+    imports: [RouterLink, ZyraButton, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraCodeBlock],
     templateUrl: './installation.html',
     styleUrl: './installation.scss',
 })
 export class DocsInstallation implements OnInit, OnDestroy {
     private readonly seo = inject(SeoService);
+
+    readonly componentCount = COMPONENT_COUNT;
 
     readonly installSteps: readonly InstallStep[] = [
         {
@@ -27,21 +32,22 @@ export class DocsInstallation implements OnInit, OnDestroy {
             description:
                 'Add zyra-ng-ui and its peer dependencies to your Angular workspace. Requires Angular 21+ and @angular/forms.',
             code: `npm install zyra-ng-ui`,
+            language: 'bash',
         },
         {
             step: '02',
             title: 'Import global styles',
             description:
                 'Add one line to your global stylesheet. This loads all design tokens, theme variables, animations, and base resets.',
-            code: `// styles.scss (or styles.css)
-@use 'zyra-ng-ui';`,
+            code: `@use 'zyra-ng-ui';`,
+            language: 'scss',
+            filename: 'styles.scss',
         },
         {
             step: '03',
             title: 'Register the provider',
             description: 'Enable the token-driven theme service once during app bootstrap.',
-            code: `// app.config.ts
-import { provideZyra } from 'zyra-ng-ui';
+            code: `import { provideZyra } from 'zyra-ng-ui';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -49,6 +55,8 @@ export const appConfig: ApplicationConfig = {
     provideZyra({ theme: 'light' }),
   ],
 };`,
+            language: 'ts',
+            filename: 'app.config.ts',
         },
         {
             step: '04',
@@ -57,7 +65,6 @@ export const appConfig: ApplicationConfig = {
             code: `import { ZyraButton, ZyraCard } from 'zyra-ng-ui';
 
 @Component({
-  standalone: true,
   imports: [ZyraButton, ZyraCard],
   template: \`
     <zyra-card padding="lg">
@@ -66,6 +73,8 @@ export const appConfig: ApplicationConfig = {
   \`,
 })
 export class MyComponent {}`,
+            language: 'ts',
+            filename: 'my-component.ts',
         },
     ];
 

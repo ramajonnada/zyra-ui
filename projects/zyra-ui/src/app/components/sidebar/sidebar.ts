@@ -16,9 +16,12 @@ export interface NavItem {
 export const DOCS_NAV_ITEMS: readonly NavItem[] = [
 	{ label: 'Overview', route: '/docs', heading: 'Getting started' },
 	{ label: 'Installation', route: '/docs/installation' },
+	{ label: 'Compatibility', route: '/docs/compatibility' },
 	{ label: 'Theming', route: '/docs/theming' },
 	{ label: 'Theme tokens', route: '/docs/theme-tokens' },
+	{ label: 'Accessibility', route: '/docs/accessibility' },
 	{ label: 'Components', route: '/docs/components', children: COMPONENT_NAV_ITEMS },
+	{ label: 'Roadmap', route: '/docs/roadmap' },
 	{ label: 'Blog', route: '/blog' },
 ];
 

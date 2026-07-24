@@ -61,7 +61,7 @@ export class About implements OnInit, OnDestroy {
         {
             title: 'Signals-first DX',
             description:
-                'Built for Angular 17+ with model(), input(), and output() — reactive by default, no RxJS required for component inputs.',
+                'Built for Angular 21+ with model(), input(), and output() — reactive by default, no RxJS required for component inputs.',
             icon: bolt,
         },
         {

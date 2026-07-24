@@ -1,0 +1,105 @@
+:host {
+	display: block;
+	background: var(--zyra-color-background);
+	color: var(--zyra-color-foreground);
+}
+
+.docs-page {
+	width: min(1080px, calc(100% - 32px));
+	margin: 0 auto;
+	padding: 56px 0 80px;
+}
+
+.docs-page__header {
+	max-width: 660px;
+	margin-bottom: 40px;
+
+	h1 {
+		margin: 10px 0 12px;
+		font-family: var(--zyra-font-display);
+		font-size: 2.4rem;
+		line-height: 1.1;
+	}
+}
+
+.docs-page__lead {
+	color: var(--zyra-color-foreground-muted);
+	line-height: 1.75;
+	margin: 0;
+	font-size: 1rem;
+}
+
+.docs-section--first {
+	margin-top: 0;
+}
+
+// ── Compatibility table ────────────────────────────────────────────
+.compat-table {
+	width: 100%;
+	border-collapse: collapse;
+
+	tr {
+		border-top: 1px solid var(--zyra-color-border-color);
+
+		&:first-child {
+			border-top: none;
+		}
+	}
+
+	th,
+	td {
+		padding: 18px 0;
+		text-align: left;
+		vertical-align: top;
+	}
+
+	th {
+		width: 220px;
+		padding-right: 24px;
+		font-family: var(--zyra-font-display);
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: var(--zyra-color-foreground);
+	}
+}
+
+.compat-table__value {
+	display: inline-block;
+	margin-bottom: 6px;
+	padding: 2px 10px;
+	border-radius: var(--zyra-radius-full, 999px);
+	background: var(--zyra-color-primary-subtle);
+	color: var(--zyra-color-primary);
+	font-family: var(--zyra-font-mono);
+	font-size: 0.8rem;
+}
+
+.compat-table__note {
+	margin: 0;
+	color: var(--zyra-color-foreground-muted);
+	font-size: 0.9rem;
+	line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+	.docs-page__header h1 {
+		font-size: 1.9rem;
+	}
+
+	.compat-table {
+		th,
+		td {
+			display: block;
+			width: 100%;
+			padding: 4px 0;
+		}
+
+		th {
+			padding-top: 18px;
+		}
+
+		td {
+			padding-bottom: 18px;
+		}
+	}
+}

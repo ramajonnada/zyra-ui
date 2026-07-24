@@ -33,17 +33,20 @@ describe('Sidebar', () => {
     });
 
     // ── navItems data ─────────────────────────────────────────────────────────
-    it('exposes 6 nav items', () => {
-        expect(component.navItems.length).toBe(6);
+    it('exposes 9 nav items', () => {
+        expect(component.navItems.length).toBe(9);
     });
 
     it('navItems contains the docs group, Components, and Blog', () => {
         const labels = component.navItems.map((n) => n.label);
         expect(labels).toContain('Overview');
         expect(labels).toContain('Installation');
+        expect(labels).toContain('Compatibility');
         expect(labels).toContain('Theming');
         expect(labels).toContain('Theme tokens');
+        expect(labels).toContain('Accessibility');
         expect(labels).toContain('Components');
+        expect(labels).toContain('Roadmap');
         expect(labels).toContain('Blog');
     });
 
@@ -68,11 +71,11 @@ describe('Sidebar', () => {
         );
     });
 
-    it('Components sits right before Blog', () => {
+    it('Roadmap sits right before Blog, and Blog is last', () => {
         const labels = component.navItems.map((n) => n.label);
-        const componentsIndex = labels.indexOf('Components');
+        const roadmapIndex = labels.indexOf('Roadmap');
         const blogIndex = labels.indexOf('Blog');
-        expect(blogIndex).toBe(componentsIndex + 1);
+        expect(blogIndex).toBe(roadmapIndex + 1);
         expect(blogIndex).toBe(labels.length - 1);
     });
 });

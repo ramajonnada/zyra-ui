@@ -13,13 +13,34 @@
 		</p>
 	</header>
 
+	<section class="docs-section docs-section--first">
+		<div class="docs-section__header">
+			<h2>Why this is faster than older Angular UI libraries</h2>
+			<p>Most Angular component libraries predate standalone components and signals. Adopting one usually means:</p>
+		</div>
+		<div class="conventions-grid">
+			<div class="convention-card">
+				<h3>No NgModule to register</h3>
+				<p>Older libraries require importing a <code>SomeModule</code> into your app's module graph before a single component works. Zyra UI components are standalone — import the one you need directly into your component's <code>imports</code> array.</p>
+			</div>
+			<div class="convention-card">
+				<h3>No RxJS just to use a component</h3>
+				<p>Older libraries often expose state as <code>Observable</code>s, forcing <code>| async</code> pipes or manual subscriptions for basic component usage. Zyra UI's inputs, outputs, and internal state are signal-based — no RxJS required to use a component.</p>
+			</div>
+			<div class="convention-card">
+				<h3>No decorator boilerplate</h3>
+				<p>No <code>@Input()</code>/<code>@Output()</code> decorator pairs to keep in sync. Every component uses <code>input()</code>, <code>output()</code>, and <code>model()</code> — typed, and consistent across all {{ componentCount }} components.</p>
+			</div>
+		</div>
+	</section>
+
 	<section class="docs-steps" aria-label="Installation steps">
 		@for (step of installSteps; track step.step) {
 		<article class="docs-step">
 			<p class="docs-step__eyebrow">Step {{ step.step }}</p>
 			<h2>{{ step.title }}</h2>
 			<p class="docs-step__desc">{{ step.description }}</p>
-			<pre><code>{{ step.code }}</code></pre>
+			<zyra-code-block [code]="step.code" [language]="step.language" [filename]="step.filename ?? ''" />
 		</article>
 		}
 	</section>

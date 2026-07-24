@@ -300,28 +300,6 @@
     line-height: 1.65;
 }
 
-.setup-step__code {
-    margin: 0;
-    padding: 18px 20px;
-    overflow-x: auto;
-    border: 1px solid var(--zyra-color-border-color);
-    border-radius: var(--zyra-radius-lg);
-    background: var(--zyra-color-surface-inset);
-    color: var(--zyra-color-foreground);
-
-    code {
-        display: block;
-        padding: 0;
-        background: none;
-        border: none;
-        color: var(--zyra-color-foreground-muted);
-        font-family: var(--zyra-font-mono);
-        font-size: 0.83rem;
-        line-height: 1.7;
-        white-space: pre;
-    }
-}
-
 // ── API tables ────────────────────────────────────────────────
 .api-table-wrap {
     overflow-x: auto;

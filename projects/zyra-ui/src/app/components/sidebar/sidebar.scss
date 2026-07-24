@@ -38,7 +38,7 @@
 	flex-shrink: 0;
 }
 
-// Children list (e.g. the 56+ component links under "Components"). No scroll
+// Children list (e.g. the many component links under "Components"). No scroll
 // of its own — .zyr-sidebar__nav (the library's own nav container) already
 // scrolls as a single region, so this just flows inside it. A separate
 // max-height + overflow-y here used to create a second, nested scrollbar for
