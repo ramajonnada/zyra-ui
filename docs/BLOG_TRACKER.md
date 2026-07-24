@@ -26,6 +26,7 @@ The daily blog task reads this file before picking a topic and appends to it aft
 | 2026-07-23 | angular-effect-cleanup-destroyref-memory-leaks-2026 | effect() onCleanup, DestroyRef, DestroyRef.onDestroy(), memory leak prevention, setInterval/ResizeObserver cleanup |
 | 2026-07-23 | angular-let-template-syntax-2026 | @let template syntax, replacing *ngIf as workaround, template variable scoping, combining @let with @if/@for |
 | 2026-07-23 | angular-tosignal-toobservable-rxjs-interop-2026 | toSignal(), toObservable(), RxJS/signals interop, initialValue, requireSync, injection context rules |
+| 2026-07-24 | angular-afterrendereffect-dom-safe-side-effects-2026 | afterRenderEffect(), DOM-safe side effects, afterRenderEffect vs effect(), afterRenderEffect vs ngAfterViewInit, afterNextRender(), SSR-safe DOM access, ngxtension |
 
 ---
 
@@ -53,6 +54,9 @@ Before writing a new post, scan this list. If your concept appears here, **pick 
 - effect() onCleanup, DestroyRef — covered (2026-07-23)
 - @let template syntax — covered (2026-07-23)
 - toSignal(), toObservable(), RxJS interop — covered (2026-07-23)
+- afterRenderEffect(), DOM-safe reactive side effects — covered (2026-07-24)
+- afterRenderEffect vs effect() vs ngAfterViewInit vs afterNextRender() — covered (2026-07-24)
+- ngxtension utility library — covered (2026-07-24)
 
 **AI & Tooling**
 - Angular CLI MCP server, ng mcp — covered (2026-05-21)
@@ -70,10 +74,7 @@ Before writing a new post, scan this list. If your concept appears here, **pick 
 
 Use these as inspiration — they are NOT reserved, first run wins:
 
-- `effect()` cleanup and `DestroyRef` — memory leak prevention
 - `computed()` advanced patterns — chaining, lazy evaluation
-- `toSignal()` / `toObservable()` — RxJS ↔ signals interop deep dive
-- `afterRenderEffect()` — DOM-safe side effects
 - Angular `@let` template variable syntax
 - `withComponentInputBinding()` — route params as signal inputs
 - `provideRouter` tree-shakeable routing patterns
@@ -104,4 +105,4 @@ Use these as inspiration — they are NOT reserved, first run wins:
 
 ---
 
-*Last updated: 2026-07-23*
+*Last updated: 2026-07-24*

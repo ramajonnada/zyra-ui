@@ -2,6 +2,49 @@
 	{
 		"imageUrl": "",
 		"readTime": "6 mins",
+		"slug": "angular-afterrendereffect-dom-safe-side-effects-2026",
+		"title": "afterRenderEffect() in Angular 21: DOM-Safe Reactive Side Effects",
+		"description": "Learn how afterRenderEffect() solves the DOM access problem in Angular 21 — reactive, SSR-safe, and signal-aware without lifecycle hook workarounds.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"signals",
+			"afterRenderEffect",
+			"DOM",
+			"performance"
+		],
+		"keywords": [
+			"afterRenderEffect Angular 21",
+			"Angular DOM-safe side effects",
+			"Angular signals DOM access",
+			"afterRenderEffect vs ngAfterViewInit",
+			"Angular SSR safe DOM manipulation"
+		],
+		"date": "2026-07-24",
+		"faq": [
+			{
+				"q": "What is the difference between afterRenderEffect() and effect()?",
+				"a": "effect() runs during Angular's change detection phase, before the DOM is updated. afterRenderEffect() runs after Angular has committed changes to the DOM. Both track signal dependencies reactively, but only afterRenderEffect() guarantees the DOM is stable when your callback fires, which makes it safe for third-party library initialization, canvas operations, and measurements that depend on layout."
+			},
+			{
+				"q": "Does afterRenderEffect() work with Angular SSR?",
+				"a": "Yes. afterRenderEffect() does not run on the server during SSR. Angular's server-side renderer operates in a headless mode and skips all afterRender* callbacks automatically. You do not need to add isPlatformBrowser() guards inside your callback, which reduces boilerplate compared to ngAfterViewInit-based approaches."
+			},
+			{
+				"q": "Can I use afterRenderEffect() outside a component?",
+				"a": "afterRenderEffect() must be called in an injection context — inside a constructor, a field initializer, or a function called with runInInjectionContext(). It cannot be called from an arbitrary async callback. This is the same constraint as effect() and inject(). If you need to call it outside a component, pass the Injector explicitly as an option: afterRenderEffect(fn, { injector: this.injector })."
+			},
+			{
+				"q": "When should I use afterNextRender() instead?",
+				"a": "Use afterNextRender() for one-time setup that only needs to happen once after the component's first render — for example, measuring initial element dimensions, setting an autofocus, or initializing a library that does not need to respond to signal changes. Use afterRenderEffect() when the initialization needs to repeat whenever reactive state changes after a render cycle."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
 		"slug": "angular-tosignal-toobservable-rxjs-interop-2026",
 		"title": "Angular toSignal() and toObservable(): RxJS ↔ Signals Interop",
 		"description": "Learn Angular's toSignal() and toObservable() rxjs-interop functions: converting Observables to signals and back, with initialValue, error handling, and injection context rules.",
