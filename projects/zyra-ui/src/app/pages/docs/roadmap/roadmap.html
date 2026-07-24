@@ -1,0 +1,45 @@
+<main class="docs-page">
+	<zyra-breadcrumb>
+		@for (crumb of breadcrumbItems; track crumb.label; let last = $last) {
+			<zyra-breadcrumb-item [href]="crumb.url" [current]="last" [routerLink]="last ? null : crumbPath(crumb.url)">{{ crumb.label }}</zyra-breadcrumb-item>
+		}
+	</zyra-breadcrumb>
+
+	<header class="docs-page__header">
+		<h1>Roadmap</h1>
+		<p class="docs-page__lead">
+			Where Zyra UI is headed. No fixed dates — phases complete when the work in them does. See
+			<a routerLink="/changelog">the changelog</a> for what's already shipped, release by release.
+		</p>
+	</header>
+
+	<section class="docs-section docs-section--first">
+		<ol class="phase-list">
+			@for (phase of phases; track phase.title) {
+				<li class="phase-item" [class]="'phase-item--' + phase.status">
+					<div class="phase-item__marker" aria-hidden="true"></div>
+					<div class="phase-item__body">
+						<zyra-badge size="sm" [variant]="phase.status === 'done' ? 'success' : phase.status === 'next' ? 'info' : 'default'">
+							{{ phase.statusLabel }}
+						</zyra-badge>
+						<h2>{{ phase.title }}</h2>
+						<p>{{ phase.description }}</p>
+					</div>
+				</li>
+			}
+		</ol>
+
+		<p class="roadmap-note">What's beyond this is still being scoped — check back for updates.</p>
+	</section>
+
+	<section class="docs-cta">
+		<div class="docs-cta__inner">
+			<h2>See what's already shipped</h2>
+			<p>{{ componentCount }} components, release by release.</p>
+			<div class="docs-cta__actions">
+				<zyra-button size="lg" routerLink="/changelog">Changelog</zyra-button>
+				<zyra-button size="lg" variant="outline" routerLink="/docs/components">Explore components</zyra-button>
+			</div>
+		</div>
+	</section>
+</main>

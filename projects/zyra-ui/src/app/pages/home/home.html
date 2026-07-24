@@ -16,14 +16,15 @@
             </div>
 
             <h1 class="hero__title">
-                Build interfaces
+                Built for the Angular
                 <br />
-                that feel <span class="zyra-gradient-text">alive</span>.
+                you use <span class="zyra-gradient-text">now</span>.
             </h1>
 
             <p class="hero__copy">
-                A premium, developer-first component library. Copy-paste the parts you need, own the
-                code, ship a product that feels like it was designed by the whole team.
+                Signals-first. Standalone-only. Typed end to end. No NgModules to wire up, no RxJS
+                required to use a single component — {{ componentCount }} components built after
+                Angular's modern primitives existed, not retrofitted onto them.
             </p>
 
             <div class="hero__actions">
@@ -51,7 +52,7 @@
                 <a routerLink="/changelog">Changelog</a>
                 <span aria-hidden="true">·</span>
                 <a
-                    href="https://github.com/ramajonnada/zyra-ui/blob/main/docs/ROADMAP.md"
+                    href="https://github.com/ramajonnada/zyra-ui/blob/main/docs/PRODUCT_ROADMAP.md"
                     target="_blank"
                     rel="noopener noreferrer"
                 >Roadmap</a>
@@ -182,34 +183,7 @@
         </div>
 
         <div class="editor">
-            <div class="editor__bar">
-                <div class="editor__dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-                <span>signup-card.tsx</span>
-                <zyra-button variant="ghost" size="sm">Copy</zyra-button>
-            </div>
-
-            <div class="editor__body">
-                <pre><span class="kw">import</span> &#123; <span class="ty">Button</span>, <span class="ty">Card</span>, <span class="ty">Input</span> &#125; <span class="kw">from</span> <span class="str">'zyra-ui'</span>;
-
-<span class="kw">export</span> <span class="kw">function</span> <span class="fn">SignupCard</span>() &#123;
-  <span class="kw">return</span> (
-    &lt;<span class="ty">Card</span> <span class="at">className</span>=<span class="str">"p-6 text-xl font-display"</span>&gt;
-      &lt;<span class="ty">h2</span> <span class="at">className</span>=<span class="str">"text-xl font-display"</span>&gt;
-        Join the waitlist
-      &lt;/<span class="ty">h2</span>&gt;
-      &lt;<span class="ty">Input</span> <span class="at">placeholder</span>=<span class="str">"you@company.dev"</span> /&gt;
-      &lt;<span class="ty">Button</span> <span class="at">variant</span>=<span class="str">"ghost"</span>&gt;
-        Reserve your spot
-      &lt;/<span class="ty">Button</span>&gt;
-    &lt;/<span class="ty">Card</span>&gt;
-  )
-&#125;</pre>
-            </div>
+            <zyra-code-block [code]="signupCardCode" language="ts" filename="signup-card.ts" />
         </div>
     </div>
 </section>
@@ -347,22 +321,7 @@
         </div>
 
         <div class="editor editor--theming">
-            <div class="editor__bar">
-                <div class="editor__dots"><span></span><span></span><span></span></div>
-                <span>theme.css</span>
-            </div>
-            <div class="editor__body">
-                <pre><span class="kw">:root</span> &#123;
-  <span class="co">/* Brand — swap these three to re-skin everything */</span>
-  <span class="at">--zyra-color-accent</span>:           <span class="str">#00eaff</span>;  <span class="co">/* primary CTA, focus rings, glows */</span>
-  <span class="at">--zyra-color-accent-secondary</span>: <span class="str">#4f8cff</span>;  <span class="co">/* links, info badges */</span>
-  <span class="at">--zyra-color-accent-tertiary</span>:  <span class="str">#b57cff</span>;  <span class="co">/* secondary labels */</span>
-
-  <span class="co">/* Shape &amp; type */</span>
-  <span class="at">--zyra-radius-lg</span>: <span class="str">12px</span>;
-  <span class="at">--zyra-font-body</span>: <span class="str">'Inter'</span>, sans-serif;
-&#125;</pre>
-            </div>
+            <zyra-code-block [code]="themeTokensCode" language="scss" filename="theme.css" />
         </div>
     </div>
 </section>

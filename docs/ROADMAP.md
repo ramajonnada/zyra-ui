@@ -1,5 +1,8 @@
 # 🚀 ZyraUI Product Roadmap
 
+> **Superseded by [PRODUCT_ROADMAP.md](PRODUCT_ROADMAP.md).** This file is kept for historical
+> reference and is no longer updated.
+
 ## 🎯 Vision
 
 Build ZyraUI into a complete Angular ecosystem that helps developers design, build, and ship modern applications faster.

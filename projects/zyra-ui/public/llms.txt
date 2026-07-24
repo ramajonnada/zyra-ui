@@ -50,7 +50,7 @@ ZyraUI ships 23 standalone, tree-shakeable Angular components:
 - [Documentation](https://www.zyraui.dev/docs): Install guide, provider setup, and token reference.
 - [Blog index](https://www.zyraui.dev/blog): All ZyraUI articles.
 - [Changelog](https://github.com/ramajonnada/zyra-ui/blob/main/CHANGELOG.md): Release history and what changed per version.
-- [Roadmap](https://github.com/ramajonnada/zyra-ui/blob/main/docs/ROADMAP.md): Planned components and features.
+- [Roadmap](https://github.com/ramajonnada/zyra-ui/blob/main/docs/PRODUCT_ROADMAP.md): Planned components and features.
 - [npm package](https://www.npmjs.com/package/zyra-ng-ui): `npm install zyra-ng-ui`
 - [GitHub](https://github.com/ramajonnada/zyra-ui): Source code and issue tracker.
 - [Sitemap](https://www.zyraui.dev/sitemap.xml): Full site URL index.

@@ -1,8 +1,8 @@
 # ZyraUI Sprint Plan
 
-This document is the working, sprint-by-sprint execution plan for building ZyraUI. It sits **alongside** [ROADMAP.md](ROADMAP.md), never replaces it:
+This document is the working, sprint-by-sprint execution plan for building ZyraUI. It sits **alongside** [PRODUCT_ROADMAP.md](PRODUCT_ROADMAP.md), never replaces it:
 
-- **ROADMAP.md** = long-term vision, phases, and the full component list. Don't edit it here.
+- **PRODUCT_ROADMAP.md** = long-term vision, phases, and the full component list. Don't edit it here.
 - **SPRINT.md** = "what are we building right now, in what order, and how do we know a component is actually done." Rewritten/reset at the start of every sprint.
 
 A component only counts as shipped when it clears every row of the [Development Checklist](#3-development-checklist) below — matching what `npm run audit:components` and the [Component Guidelines](COMPONENT_GUIDELINES.md) already enforce for lib spec / playground / showcase entries, plus the non-negotiables from that doc (accessibility, keyboard support, cross-theme review).

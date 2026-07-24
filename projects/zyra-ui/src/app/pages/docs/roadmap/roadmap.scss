@@ -1,0 +1,158 @@
+:host {
+	display: block;
+	background: var(--zyra-color-background);
+	color: var(--zyra-color-foreground);
+}
+
+.docs-page {
+	width: min(1080px, calc(100% - 32px));
+	margin: 0 auto;
+	padding: 56px 0 80px;
+}
+
+.docs-page__header {
+	max-width: 660px;
+	margin-bottom: 40px;
+
+	h1 {
+		margin: 10px 0 12px;
+		font-family: var(--zyra-font-display);
+		font-size: 2.4rem;
+		line-height: 1.1;
+	}
+}
+
+.docs-page__lead {
+	color: var(--zyra-color-foreground-muted);
+	line-height: 1.75;
+	margin: 0;
+	font-size: 1rem;
+
+	a {
+		color: var(--zyra-color-primary);
+	}
+}
+
+.docs-section--first {
+	margin-top: 0;
+}
+
+// ── Phase timeline ─────────────────────────────────────────────────
+.phase-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	max-width: 720px;
+}
+
+.phase-item {
+	position: relative;
+	display: flex;
+	gap: 20px;
+	padding-bottom: 40px;
+	padding-left: 8px;
+
+	&:last-child {
+		padding-bottom: 0;
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 15px;
+		top: 22px;
+		bottom: -18px;
+		width: 1px;
+		background: var(--zyra-color-border-color);
+	}
+
+	&:last-child::before {
+		display: none;
+	}
+}
+
+.phase-item__marker {
+	flex: none;
+	width: 15px;
+	height: 15px;
+	margin-top: 4px;
+	border-radius: 50%;
+	border: 2px solid var(--zyra-color-border-color);
+	background: var(--zyra-color-surface);
+}
+
+.phase-item--done .phase-item__marker {
+	border-color: var(--zyra-color-success);
+	background: var(--zyra-color-success);
+}
+
+.phase-item--next .phase-item__marker {
+	border-color: var(--zyra-color-primary);
+	background: var(--zyra-color-primary-subtle);
+}
+
+.phase-item__body {
+	zyra-badge {
+		margin-bottom: 10px;
+	}
+
+	h2 {
+		margin: 0 0 10px;
+		font-family: var(--zyra-font-display);
+		font-size: 1.4rem;
+	}
+
+	p {
+		margin: 0;
+		color: var(--zyra-color-foreground-muted);
+		font-size: 0.95rem;
+		line-height: 1.7;
+	}
+}
+
+.roadmap-note {
+	max-width: 720px;
+	margin: 8px 0 0;
+	padding-left: 28px;
+	color: var(--zyra-color-foreground-subtle);
+	font-size: 0.9rem;
+	font-style: italic;
+}
+
+// ── CTA ───────────────────────────────────────────────────────────
+.docs-cta {
+	margin-top: 56px;
+	border-top: 1px solid var(--zyra-color-border-color);
+	padding-top: 56px;
+	text-align: center;
+
+	&__inner {
+		max-width: 540px;
+		margin: 0 auto;
+
+		h2 {
+			font-family: var(--zyra-font-display);
+			font-size: 2.2rem;
+			margin: 0 0 12px;
+		}
+
+		p {
+			color: var(--zyra-color-foreground-muted);
+			line-height: 1.7;
+			margin: 0 0 24px;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 12px;
+	}
+}
+
+@media (max-width: 640px) {
+	.docs-page__header h1 {
+		font-size: 1.9rem;
+	}
+}

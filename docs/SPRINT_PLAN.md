@@ -1,8 +1,8 @@
 # ZyraUI — Total Sprint Plan (Phase 1 → Phase 5)
 
-Master index of every sprint needed to carry ZyraUI from its current state through the full [ROADMAP.md](ROADMAP.md) vision. This file is the **table of contents**; it does not replace either of the other two planning docs:
+Master index of every sprint needed to carry ZyraUI from its current state through the full [PRODUCT_ROADMAP.md](PRODUCT_ROADMAP.md) vision. This file is the **table of contents**; it does not replace either of the other two planning docs:
 
-- **[ROADMAP.md](ROADMAP.md)** — long-term product vision, phases, full component/feature list. Never edited by sprint planning.
+- **[PRODUCT_ROADMAP.md](PRODUCT_ROADMAP.md)** — long-term product vision, phases, full component/feature list. Never edited by sprint planning.
 - **[SPRINT.md](SPRINT.md)** — the *active* sprint only, with the full per-component Development Checklist. Reset at the start of every sprint to whichever sprint is current.
 - **SPRINT_PLAN.md (this file)** — the durable, full list of sprints across the whole roadmap: what's in each one, in what order, and why. Updated as sprints complete or get re-prioritized; not reset.
 
@@ -54,7 +54,7 @@ Phase 3–5 are **initiative sprints** — Templates, AI generation, and the Stu
 
 ## Phase 1 — Free Foundation (Sprints 1–7)
 
-Goal: reach ROADMAP.md's 60+ free-component target with every component clearing the full Development Checklist. Sprint 1 is fully detailed in [SPRINT.md](SPRINT.md); Sprints 2–7 below are the same reasoning applied to the rest of the remaining free-tier gap.
+Goal: reach PRODUCT_ROADMAP.md's 60+ free-component target with every component clearing the full Development Checklist. Sprint 1 is fully detailed in [SPRINT.md](SPRINT.md); Sprints 2–7 below are the same reasoning applied to the rest of the remaining free-tier gap.
 
 | Sprint | Components | Why this grouping / order |
 |---|---|---|
@@ -89,7 +89,7 @@ Goal: ship the enterprise-grade component set. Same Development Checklist format
 
 ## Phase 3 — ZyraUI Templates (Sprints 18–22)
 
-Goal: ship the 15 starter templates from ROADMAP.md. These are **initiative sprints**, not component sprints — deliverables are full page/route compositions built from Phase 1/2 components, not new library components with their own accessibility/SSR checklist.
+Goal: ship the 15 starter templates from PRODUCT_ROADMAP.md. These are **initiative sprints**, not component sprints — deliverables are full page/route compositions built from Phase 1/2 components, not new library components with their own accessibility/SSR checklist.
 
 | Sprint | Templates | Why this grouping / order |
 |---|---|---|
@@ -103,7 +103,7 @@ Goal: ship the 15 starter templates from ROADMAP.md. These are **initiative spri
 
 ## Phase 4 — ZyraAI (Sprints 23–26)
 
-Goal: ship the AI-assisted generation features from ROADMAP.md. This phase depends on infrastructure (model access, prompt pipelines) outside this repo's current scope — treat every sprint below as provisional until that infra decision is made.
+Goal: ship the AI-assisted generation features from PRODUCT_ROADMAP.md. This phase depends on infrastructure (model access, prompt pipelines) outside this repo's current scope — treat every sprint below as provisional until that infra decision is made.
 
 | Sprint | Scope | Why this grouping / order |
 |---|---|---|
@@ -116,7 +116,7 @@ Goal: ship the AI-assisted generation features from ROADMAP.md. This phase depen
 
 ## Phase 5 — Zyra Studio (Sprints 27+)
 
-Goal: the prompt-to-application platform described in ROADMAP.md. This is the largest, least-defined phase — it depends on Phase 4's generation engine plus the full Phase 1–3 component/template library, and its own scope (routing, state management, auth, theming, export) is really a multi-sprint program rather than a handful of sprints.
+Goal: the prompt-to-application platform described in PRODUCT_ROADMAP.md. This is the largest, least-defined phase — it depends on Phase 4's generation engine plus the full Phase 1–3 component/template library, and its own scope (routing, state management, auth, theming, export) is really a multi-sprint program rather than a handful of sprints.
 
 **Do not pre-plan this phase in detail now.** Revisit and break it into concrete sprints (following the same component/initiative format split used above) once Phase 4 has shipped a working generation engine — planning further than that today would be speculation, not a plan. At a minimum it will need:
 
