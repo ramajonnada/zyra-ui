@@ -18,7 +18,7 @@ import { ZyraImage } from './zyra-image';
             [width]="width()"
             [height]="height()"
             (loaded)="onLoaded()"
-            (error)="onError()"
+            (imageError)="onError()"
         />
     `,
 })

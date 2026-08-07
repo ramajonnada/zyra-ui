@@ -14,7 +14,7 @@
     // ── Text ─────────────────────────────────────────────────────────────────
     --zyra-color-text:         #1a1208;
     --zyra-color-text-muted:   #6a5038;
-    --zyra-color-text-dim:     #b09878;
+    --zyra-color-text-dim:     #766650;
     --zyra-color-text-inverse: #fef8f0;
 
     --zyra-color-surface-inverse: #1a1208;
@@ -84,6 +84,13 @@
 
     // ── Misc ──────────────────────────────────────────────────────────────────
     --zyra-color-code-bg: #f0e8d8;
+
+    // Dedicated syntax-highlight text colors — tuned for contrast against
+    // --zyra-color-code-bg; see _dark-theme.scss for why these aren't aliased
+    // to the brand/status tokens.
+    --zyra-color-code-keyword-text: #1969bb;
+    --zyra-color-code-string-text: #0a7854;
+    --zyra-color-code-number-text: #98580d;
 
     --zyra-color-scrollbar-thumb-base: rgba(80, 50, 10, 0.14);
     --zyra-color-scrollbar-track-base: transparent;

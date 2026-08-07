@@ -43,3 +43,11 @@
 :host(:last-child) .zyr-breadcrumb__sep {
     display: none;
 }
+
+// On mobile, hide the current-page crumb — it duplicates the <h1> below
+// and wraps badly at narrow widths. Parent crumbs ("Blog") remain visible.
+@media (max-width: 720px) {
+    :host([current]) {
+        display: none;
+    }
+}

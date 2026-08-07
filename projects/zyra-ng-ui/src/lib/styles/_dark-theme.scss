@@ -15,7 +15,7 @@
 	// ── Text ─────────────────────────────────────────────────────────────────
 	--zyra-color-text: #f3f7fb;
 	--zyra-color-text-muted: #98a8bb;
-	--zyra-color-text-dim: #5a6778;
+	--zyra-color-text-dim: #76818f;
 	--zyra-color-text-inverse: #060a10;
 
 	--zyra-color-surface-inverse: #f5f7f9;
@@ -86,6 +86,15 @@
 
 	// ── Misc ──────────────────────────────────────────────────────────────────
 	--zyra-color-code-bg: #0a0f15;
+
+	// Dedicated syntax-highlight text colors — tuned for contrast against
+	// --zyra-color-code-bg specifically, not aliased to the brand/status tokens
+	// (which are tuned for fills/accents on the app background, not small text
+	// on the code background — see the light/ocean/amber/rose values, where
+	// aliasing to the raw brand colors failed WCAG AA as small text).
+	--zyra-color-code-keyword-text: #2491e8;
+	--zyra-color-code-string-text: #2ea85b;
+	--zyra-color-code-number-text: #e8aa3a;
 	--zyra-color-overlay-bg: rgba(4, 8, 12, 0.72);
 
 	--zyra-color-scrollbar-thumb-base: rgba(255, 255, 255, 0.07);

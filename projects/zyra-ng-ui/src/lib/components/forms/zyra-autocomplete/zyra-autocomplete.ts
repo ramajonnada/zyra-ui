@@ -19,8 +19,9 @@ import { isPlatformBrowser } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { ZyraOption, type SelectValue } from '../zyra-select/zyra-option';
 import { ZYRA_SELECT, type ZyraSelectRef } from '../zyra-select/zyra-select-token';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type AutocompleteSize = 'sm' | 'md' | 'lg';
+export type AutocompleteSize = ZyraSize;
 export type AutocompleteAppearance = 'outline' | 'filled' | 'underline';
 
 let autocompleteIdCounter = 0;

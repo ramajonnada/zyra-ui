@@ -12,9 +12,10 @@ import { ZyraSpinner, SpinnerColor } from '../../feedback/zyra-spinner/zyra-spin
 import { ZyraIcon as ZyraIconComponent, type ZyraIconData } from '../../../internal/zyra-icon/zyra-icon';
 import { isLucideIcon, asIconText, type ZyraIconInput } from '../../../shared/zyra-icons';
 import { ZYRA_BUTTON_GROUP } from './zyra-button-group-token';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'outline';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonSize = ZyraSize;
 export type ButtonType = 'button' | 'submit' | 'reset';
 export type ButtonColor = 'neutral' | 'accent' | 'success' | 'warning' | 'danger' | 'info';
 export type ButtonRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';

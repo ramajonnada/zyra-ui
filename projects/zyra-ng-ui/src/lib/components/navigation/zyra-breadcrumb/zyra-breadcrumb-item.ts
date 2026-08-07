@@ -7,6 +7,7 @@ import { chevronRight } from '../../../shared/zyra-icons';
     standalone: true,
     imports: [ZyraIcon],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { role: 'listitem' },
     templateUrl: './zyra-breadcrumb-item.html',
     styleUrl: './zyra-breadcrumb-item.scss',
 })

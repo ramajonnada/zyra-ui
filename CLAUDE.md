@@ -12,166 +12,10 @@ that have already happened and rules to prevent repeats.
 These are confirmed issues found via a full codebase audit. Fix them when you touch the
 relevant file, or in a dedicated cleanup pass. Do NOT introduce new code with the same patterns.
 
-### BUG-01 · WCAG failure — `zyra-alert` warning icon (HIGH — fix immediately)
-
-**File:** `projects/zyra-ng-ui/src/lib/components/feedback/zyra-alert/zyra-alert.scss`
-
-Lines ~95, 103, 111, 119 use `color: #fff` for the icon inside every alert variant. The
-warning variant puts white text on `--zyra-color-warning` (amber/yellow), which fails WCAG AA.
-The semantic token `--zyra-color-on-warning: #1a0e00` already exists for exactly this purpose.
-
-**Fix:** Replace every `color: #fff` inside alert icon variants with the correct `on-*` token:
-
-```scss
-// ❌ Wrong — already in the file
-.zyr-alert__icon { background: var(--zyra-color-warning); color: #fff; }
-
-// ✅ Correct
-.zyr-alert__icon { background: var(--zyra-color-warning); color: var(--zyra-color-on-warning); }
-.zyr-alert__icon { background: var(--zyra-color-success); color: var(--zyra-color-on-success); }
-.zyr-alert__icon { background: var(--zyra-color-danger);  color: var(--zyra-color-on-danger); }
-.zyr-alert__icon { background: var(--zyra-color-info);    color: var(--zyra-color-on-info); }
-```
-
----
-
-### BUG-02 · Hardcoded shadows in `zyra-card` break on light theme (MEDIUM)
-
-**File:** `projects/zyra-ng-ui/src/lib/components/layout/zyra-card/zyra-card.scss`
-
-The base shadow (`0 2px 8px rgba(0,0,0,0.12)`) and the hover shadow
-(`0 8px 24px rgba(0,0,0,0.32), 0 4px 12px rgba(0,0,0,0.16)`) are hardcoded black-alpha values
-that look correct in dark mode but too heavy in light mode. The theme files already define
-`--zyra-card-shadow` and `--zyra-card-elevated-shadow` per-theme for exactly this.
-
-**Fix:**
-
-```scss
-// ❌ Wrong
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-
-// ✅ Correct — use the per-theme token
-box-shadow: var(--zyra-card-shadow);
-
-// ❌ Wrong (hover state)
-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32), 0 4px 12px rgba(0, 0, 0, 0.16);
-
-// ✅ Correct
-box-shadow: var(--zyra-card-elevated-shadow);
-```
-
----
-
-### BUG-03 · Hardcoded scroll-fade indicators in `zyra-scroll-area` (MEDIUM)
-
-**File:** `projects/zyra-ng-ui/src/lib/components/layout/zyra-scroll-area/zyra-scroll-area.scss`
-
-Lines ~89-106: scroll shadow fade indicators use hardcoded `rgba(0, 0, 0, 0.18)`. These are
-invisible on light theme surfaces (the fade is dark on a dark bg — fine; dark on a white bg —
-disappears).
-
-**Fix:** Add `--zyra-scroll-area-fade-color` to `_tokens-components.scss` pointing at
-`var(--zyra-color-surface)` — the same surface color used as the scroll container background.
-Using the surface token (not `--zyra-color-border-color`) makes the fade blend into the
-container background correctly on every theme, including light.
-
----
-
-### BUG-04 · `zyra-table` row hover borrows sidebar's token (MEDIUM)
-
-**File:** `projects/zyra-ng-ui/src/lib/components/data-display/zyra-table/zyra-table.scss`
-
-Row hover and selected state use `--zyra-color-sidebar-hover-bg` — a token from a completely
-different component. Overriding sidebar styles will break table appearance silently.
-
-**Fix:** Add `--zyra-color-table-row-hover-bg` to `_tokens-components.scss` pointing at
-`var(--zyra-color-surface-inset)`. Use that in the table instead.
-
----
-
-### BUG-05 · Swapped tier comments in SCSS token files (MEDIUM)
-
-**Files:**
-- `projects/zyra-ng-ui/src/lib/styles/_tokens-dimension.scss` — header says **"Tier 2"** (wrong, it's Tier 1)
-- `projects/zyra-ng-ui/src/lib/styles/_tokens-semantic.scss` — header says **"Tier 1"** (wrong, it's Tier 2)
-
-The correct tier numbering per `docs/THEME_SYSTEM.md`:
-
-| File | Correct tier |
-|---|---|
-| `_tokens-primitives.scss` | Tier 0 — Primitives |
-| `_tokens-dimension.scss` | **Tier 1 — Dimension** |
-| `_tokens-semantic.scss` | **Tier 2 — Semantic** |
-| `_tokens-components.scss` | Tier 3 — Component |
-
-**Fix:** Correct the header comment in each file to match the table above.
-
----
-
-### BUG-06 · Hardcoded `#ffffff` switch thumb breaks theming (LOW)
-
-**File:** `projects/zyra-ng-ui/src/lib/components/forms/zyra-switch/zyra-switch.scss` line ~35
-
-`background: #ffffff` for the thumb knob. Add `--zyra-color-switch-thumb` to component tokens
-pointing at `var(--zyra-color-text-inverse)`, which resolves correctly per-theme.
-
----
-
-### BUG-07 · Login page is dead code — no route (LOW)
-
-**File:** `projects/zyra-ui/src/app/pages/login/login.ts` — exists but has no entry in
-`projects/zyra-ui/src/app/app.routes.ts`. Either add the route or delete the page.
-
----
-
-### BUG-08 · Theming page shows internal tokens in "Active theme tokens" swatch (MEDIUM)
-
-**File:** `projects/zyra-ui/src/app/pages/docs/theming/theming.ts`
-
-`tokenSwatches` array shows raw per-theme tokens (`--zyra-color-bg-app`, `--zyra-color-accent`,
-`--zyra-color-text`, `--zyra-color-border`) — these are marked **internal** on the theme-tokens
-page. The page teaches consumers the wrong token names to copy.
-
-**Fix:** Replace with the semantic equivalents:
-
-```ts
-// ❌ Wrong — internal tokens
-{ name: 'Background', variable: '--zyra-color-bg-app' },
-{ name: 'Primary',    variable: '--zyra-color-accent' },
-{ name: 'Text',       variable: '--zyra-color-text' },
-{ name: 'Border',     variable: '--zyra-color-border' },
-
-// ✅ Correct — public semantic tokens
-{ name: 'Background', variable: '--zyra-color-background' },
-{ name: 'Primary',    variable: '--zyra-color-primary' },
-{ name: 'Text',       variable: '--zyra-color-foreground' },
-{ name: 'Border',     variable: '--zyra-color-border-color' },
-```
-
----
-
-### BUG-09 · Theme-tokens page labels dimension tier inconsistently (LOW)
-
-**File:** `projects/zyra-ui/src/app/pages/docs/theme-tokens/theme-tokens.ts`
-
-The dimension tier object is titled `"Tier 0 — Primitives (Dimension)"` in the UI but
-documented as Tier 1 in `docs/THEME_SYSTEM.md` and Tier 2 in its own SCSS file comment.
-Fix the title to `"Tier 1 — Dimension"` to match `THEME_SYSTEM.md`.
-
----
-
-### BUG-10 · Missing `data-theme` on `<html>` in `index.html` (LOW)
-
-**File:** `projects/zyra-ui/src/index.html`
-
-`<html lang="en">` has no `data-theme` attribute. Dark theme only works because
-`_dark-theme.scss` has a `:root` fallback. Add the default:
-
-```html
-<html lang="en" data-theme="dark">
-```
-
-This makes the SSR default explicit and prevents a potential flash if CSS load order changes.
+> **Audit note (2026-08-06):** BUG-01 through BUG-11 have all been resolved and removed from
+> this file. A re-audit confirmed zero remaining raw-token violations across the library (see
+> Rule T-7). No open known bugs at this time — this section is kept as a placeholder for future
+> audit findings.
 
 ---
 
@@ -283,13 +127,15 @@ brown (`#1a0e00`) that passes AA. Always use it.
 
 ### Rule T-7 · Run the raw-token self-check before committing a new/touched component
 
-A full-library audit (2026-07-20) found raw-token usage in **30 of 56 components** —
-mostly components nobody had touched since they were first written. `new-component.ps1`
-scaffolds correctly, but nothing enforces the rule on every subsequent edit. Before
-committing, grep the component's own `.scss` file(s):
+A re-audit (2026-08-06) using the corrected grep above (previous versions of this pattern
+incorrectly flagged `--zyra-color-card-border`, which is a legitimate Tier 3 token — see
+`_tokens-components.scss` — not a raw one) found **zero remaining raw-token violations**
+across the library. The 21/56 (and earlier 30/56) counts in prior versions of this file are
+stale. `new-component.ps1` scaffolds correctly, but nothing enforces the rule on every
+subsequent edit — still run this grep before committing:
 
 ```bash
-grep -nE "var\(--zyra-color-(accent|text|border|bg-app|bg-panel|bg-surface|bg-raised|card-bg|card-border|card-section-bg|danger|success|warning|info|text-muted|text-dim|text-inverse|border-strong)\)" \
+grep -nE "var\(--zyra-color-(accent|text|border|bg-app|bg-panel|bg-surface|bg-raised|card-bg|card-section-bg|danger|success|warning|info|text-muted|text-dim|text-inverse|border-strong)\)" \
   path/to/zyra-my-component.scss
 ```
 

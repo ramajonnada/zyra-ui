@@ -1,13 +1,7 @@
 <div [class]="hostClass()">
-    <div
+    <label
         class="zyr-file-upload__dropzone"
-        role="button"
-        tabindex="0"
-        [attr.aria-disabled]="isDisabled() || null"
-        [attr.aria-labelledby]="resolvedId() + '-label'"
-        (click)="openPicker()"
-        (keydown.enter)="openPicker()"
-        (keydown.space)="openPicker()"
+        [for]="resolvedId()"
         (dragover)="onDragOver($event)"
         (dragleave)="onDragLeave($event)"
         (drop)="onDrop($event)"
@@ -20,7 +14,6 @@
             [multiple]="multiple()"
             [accept]="accept()"
             [disabled]="isDisabled()"
-            tabindex="-1"
             (change)="onFileInputChange($event)"
         />
 
@@ -29,7 +22,7 @@
             <span class="zyr-file-upload__label-strong">Click to upload</span> or drag and drop
         </p>
         <ng-content />
-    </div>
+    </label>
 
     @if (files().length > 0) {
         <ul class="zyr-file-upload__list">

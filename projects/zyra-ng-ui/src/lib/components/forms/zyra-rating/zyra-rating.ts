@@ -1,6 +1,7 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type RatingSize = 'sm' | 'md' | 'lg';
+export type RatingSize = ZyraSize;
 
 @Component({
     selector: 'zyra-rating',

@@ -79,7 +79,7 @@ funds everything after it.
 
 ---
 
-## 4. Developer Workflow — CLI, Codegen, Docs Assistant — **Later**
+## 4. Developer Workflow — CLI, Codegen, Docs Assistant, MCP — **Later**
 
 **Goal:** Reduce the friction of using ZyraUI at scale, using plain tooling before reaching
 for AI.
@@ -89,10 +89,22 @@ for AI.
 * A docs assistant scoped strictly to ZyraUI's own documentation — answering "how do I use
   `zyra-data-grid` with server-side sorting," not open-ended app generation
 * VS Code extension, Figma integration
+* **ZyraUI MCP server** — exposes the full component catalog, props, usage examples, and
+  semantic search to AI-assisted editors (Cursor, Copilot, Claude Code, and any MCP-compatible
+  tool). When a developer's AI tool knows about ZyraUI, it suggests ZyraUI components
+  automatically instead of generating generic HTML — free adoption without any developer effort.
+* **`llms.txt`** — a structured file at `zyraui.dev/llms.txt` that teaches LLMs the correct,
+  current ZyraUI syntax, selector names, and API surface, so AI-generated Angular code uses
+  ZyraUI correctly rather than outdated patterns or invented APIs.
 
 This phase is where "AI" first appears on the roadmap — but scoped, grounded in ZyraUI's own
 docs and APIs, not a general-purpose code generator. It's an accelerator on existing tooling,
 not a new product identity.
+
+The MCP server and `llms.txt` are the lowest-cost, highest-reach additions in this phase:
+they require no user action — any developer who has ZyraUI installed and uses an AI editor
+benefits automatically. Shadcn/ui, Chakra UI, and Material UI have already shipped MCP servers;
+no Angular-native library has done this well yet.
 
 ---
 
@@ -157,7 +169,7 @@ AI's role here grows in stages, matching what's actually reliable at each point:
 | Design token system | Kanban, Gantt, Workflow Builder |
 | Documentation and examples | Scheduler and scheduling components |
 | Community support | Templates (Phase 3) |
-| — | ZyraAI / Zyra Studio (Phase 4/5) |
+| MCP server + `llms.txt` (Phase 4) | ZyraAI / Zyra Studio (Phase 4/5) |
 
 The free tier is not a trial — it keeps shipping and improving on its own. Pro is additive,
 for teams that need the advanced surface, not a gate on what already works today.

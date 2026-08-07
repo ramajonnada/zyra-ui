@@ -1,7 +1,8 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type ChipVariant = 'default' | 'success' | 'warning' | 'danger' | 'info' | 'purple';
-export type ChipSize = 'sm' | 'md' | 'lg';
+export type ChipSize = ZyraSize;
 
 @Component({
     selector: 'zyra-chip',
@@ -21,7 +22,6 @@ export class ZyraChip {
 
     // ── Outputs ───────────────────────────────────────────────
     dismissed = output<void>();
-    selectedChange = output<boolean>();
 
     // ── Computed ──────────────────────────────────────────────
     hostClass = computed(() => {
@@ -35,9 +35,9 @@ export class ZyraChip {
     // ── Methods ───────────────────────────────────────────────
     toggle(): void {
         if (!this.selectable() || this.disabled()) return;
-        const next = !this.selected();
-        this.selected.set(next);
-        this.selectedChange.emit(next);
+        // model()'s .set() already emits selectedChange automatically —
+        // no separate emit() call needed.
+        this.selected.set(!this.selected());
     }
 
     dismiss(event: MouseEvent): void {

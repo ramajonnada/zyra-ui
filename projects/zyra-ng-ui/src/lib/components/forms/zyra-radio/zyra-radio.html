@@ -5,7 +5,7 @@
         role="radio"
         class="zyr-radio__circle"
         [attr.aria-checked]="checked()"
-        [attr.aria-label]="label() || null"
+        [attr.aria-label]="effectiveAriaLabel()"
         [disabled]="isDisabled() || null"
         (click)="select()"
     >

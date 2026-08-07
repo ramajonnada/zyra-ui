@@ -89,10 +89,10 @@ describe('ZyraRadio (standalone, no group)', () => {
         expect(circle(fixture).getAttribute('aria-label')).toBe('Angular');
     });
 
-    it('has no aria-label when there is no label', () => {
+    it('falls back to the value as aria-label when there is no label', () => {
         host.label.set('');
         fixture.detectChanges();
-        expect(circle(fixture).getAttribute('aria-label')).toBeNull();
+        expect(circle(fixture).getAttribute('aria-label')).toBe('angular');
     });
 
     it('the outer label element points at the circle button via for/id', () => {

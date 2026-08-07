@@ -14,8 +14,9 @@ import {
     ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type TextareaSize = 'sm' | 'md' | 'lg';
+export type TextareaSize = ZyraSize;
 export type TextareaResize = 'none' | 'vertical' | 'auto';
 
 let textareaIdCounter = 0;

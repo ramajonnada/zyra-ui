@@ -23,11 +23,12 @@ import { DOCUMENT, isPlatformBrowser, NgTemplateOutlet } from '@angular/common';
 import { ZyraIcon as ZyraIconComponent } from '../../../internal/zyra-icon/zyra-icon';
 import { menu, xmark } from '../../../shared/zyra-icons';
 import { lockBodyScroll, unlockBodyScroll } from '../../../internal/body-scroll-lock';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type HeaderPosition = 'static' | 'sticky' | 'fixed';
 export type HeaderVariant = 'contained' | 'full-width';
 export type HeaderAlign = 'split' | 'center';
-export type HeaderSize = 'sm' | 'md' | 'lg';
+export type HeaderSize = ZyraSize;
 
 const FOCUSABLE = [
     'a[href]',

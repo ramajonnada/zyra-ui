@@ -22,8 +22,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ZyraIcon as ZyraIconComponent } from '../../../internal/zyra-icon/zyra-icon';
 import { calendarIcon } from '../../../shared/zyra-icons';
 import { CalendarValue, DateRange, ZyraCalendar } from '../../data-display/zyra-calendar/zyra-calendar';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type DatePickerSize = 'sm' | 'md' | 'lg';
+export type DatePickerSize = ZyraSize;
 export type DatePickerAppearance = 'outline' | 'filled' | 'underline';
 export type DatePickerSelectionMode = 'single' | 'range';
 export type DatePickerValue = Date | DateRange | null;

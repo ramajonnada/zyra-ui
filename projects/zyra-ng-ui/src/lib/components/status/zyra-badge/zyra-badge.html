@@ -1,4 +1,4 @@
-<span [class]="hostClass()" [attr.aria-label]="ariaLabel()">
+<span [class]="hostClass()" [attr.aria-label]="ariaLabel() || null">
     @if (dot()) {
         <span class="zyr-badge__dot" aria-hidden="true"></span>
     }

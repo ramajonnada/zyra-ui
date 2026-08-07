@@ -142,7 +142,11 @@ export class ZyraJsonViewer {
 
         if (expanded) {
             for (const [k, v] of entries) {
-                this._flatten(v, k, depth + 1, `${path}.${k}`, out);
+                // Bracket notation with a JSON-encoded key, not `${path}.${k}` —
+                // a plain dot join collides when a real object key contains a
+                // literal ".", e.g. {"a.b": 1, "a": {"b": 1}} would otherwise
+                // produce the same path for two different nodes.
+                this._flatten(v, k, depth + 1, `${path}[${JSON.stringify(k)}]`, out);
             }
         }
     }

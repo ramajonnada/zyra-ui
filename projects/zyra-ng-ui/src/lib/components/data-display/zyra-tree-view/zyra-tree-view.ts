@@ -15,9 +15,10 @@ import type { ZyraIconData } from '../../../internal/zyra-icon/zyra-icon';
 import { ZyraIcon as ZyraIconComponent } from '../../../internal/zyra-icon/zyra-icon';
 import { chevronDown } from '../../../shared/zyra-icons';
 import { ZyraCheckbox } from '../../forms/zyra-checkbox/zyra-checkbox';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type TreeSelectionMode = 'none' | 'single' | 'multiple';
-export type TreeSize = 'sm' | 'md' | 'lg';
+export type TreeSize = ZyraSize;
 export type TreeNodeId = string | number;
 
 export interface TreeNode {

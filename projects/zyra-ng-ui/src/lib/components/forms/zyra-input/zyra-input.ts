@@ -17,9 +17,10 @@ import {
     viewChildren,
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type InputType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url';
-export type InputSize = 'sm' | 'md' | 'lg';
+export type InputSize = ZyraSize;
 export type OtpType = 'numeric' | 'alphanumeric';
 
 let inputIdCounter = 0;

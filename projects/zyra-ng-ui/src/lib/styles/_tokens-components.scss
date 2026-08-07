@@ -57,7 +57,9 @@
 	--zyra-color-sidebar-heading: var(--zyra-color-foreground-subtle);
 	--zyra-color-sidebar-text: var(--zyra-color-foreground-muted);
 	--zyra-color-sidebar-text-hover: var(--zyra-color-foreground);
-	--zyra-color-sidebar-text-active: var(--zyra-color-primary);
+	// primary-hover, not primary — --zyra-color-primary fails WCAG AA against
+	// --zyra-color-sidebar-active-bg (primary-subtle) in light-family themes.
+	--zyra-color-sidebar-text-active: var(--zyra-color-primary-hover);
 	--zyra-color-sidebar-hover-bg: var(--zyra-color-surface-inset);
 	--zyra-color-sidebar-active-bg: var(--zyra-color-primary-subtle);
 	--zyra-color-sidebar-badge-bg: var(--zyra-color-primary-subtle);
@@ -282,11 +284,16 @@
 	--zyra-color-code-block-bg: var(--zyra-color-surface-code);
 	--zyra-color-code-block-border: var(--zyra-color-primary-border);
 	--zyra-color-code-block-header-bg: var(--zyra-color-surface-inset);
-	--zyra-color-code-keyword: var(--zyra-color-accent-secondary);
+	// code-keyword/-string/-number resolve to Tier 2 here as a fallback, but
+	// every theme file redeclares --zyra-color-code-{keyword,string,number}-text
+	// with a value tuned for contrast against --zyra-color-code-bg specifically
+	// (the raw brand tokens fail WCAG AA as small text in 4 of 5 themes) — same
+	// per-theme-override pattern as --zyra-color-card-border.
+	--zyra-color-code-keyword: var(--zyra-color-code-keyword-text, var(--zyra-color-accent-secondary));
 	--zyra-color-code-tag: var(--zyra-color-primary);
 	--zyra-color-code-attr: var(--zyra-color-accent-tertiary);
-	--zyra-color-code-string: var(--zyra-color-success-foreground);
-	--zyra-color-code-number: var(--zyra-color-warning-foreground);
+	--zyra-color-code-string: var(--zyra-color-code-string-text, var(--zyra-color-success-foreground));
+	--zyra-color-code-number: var(--zyra-color-code-number-text, var(--zyra-color-warning-foreground));
 	--zyra-color-code-comment: var(--zyra-color-foreground-subtle);
 	--zyra-color-code-punct: var(--zyra-color-foreground-muted);
 

@@ -1,7 +1,8 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type ProgressVariant = 'default' | 'success' | 'warning' | 'danger' | 'info';
-export type ProgressSize = 'sm' | 'md' | 'lg';
+export type ProgressSize = ZyraSize;
 
 @Component({
     selector: 'zyra-progress',

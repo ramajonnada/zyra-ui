@@ -10,8 +10,9 @@ import {
     signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type SwitchSize = 'sm' | 'md' | 'lg';
+export type SwitchSize = ZyraSize;
 
 @Component({
     selector: 'zyra-switch',

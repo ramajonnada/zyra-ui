@@ -1,7 +1,8 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type BadgeVariant = 'success' | 'warning' | 'danger' | 'info' | 'purple' | 'default';
-export type BadgeSize = 'sm' | 'md' | 'lg';
+export type BadgeSize = ZyraSize;
 
 @Component({
     selector: 'zyra-badge',

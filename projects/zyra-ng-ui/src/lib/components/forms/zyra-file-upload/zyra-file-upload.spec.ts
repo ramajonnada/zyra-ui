@@ -54,11 +54,16 @@ describe('ZyraFileUpload', () => {
         fixture.detectChanges();
     });
 
-    it('renders a dropzone with role="button"', () => {
-        expect(fixture.nativeElement.querySelector('.zyr-file-upload__dropzone')).not.toBeNull();
-        expect(
-            fixture.nativeElement.querySelector('[role="button"]'),
-        ).not.toBeNull();
+    it('renders a dropzone label pointing at the native file input', () => {
+        const dropzone: HTMLLabelElement = fixture.nativeElement.querySelector(
+            '.zyr-file-upload__dropzone',
+        );
+        const input: HTMLInputElement = fixture.nativeElement.querySelector(
+            '.zyr-file-upload__native-input',
+        );
+        expect(dropzone).not.toBeNull();
+        expect(dropzone.tagName).toBe('LABEL');
+        expect(dropzone.getAttribute('for')).toBe(input.id);
     });
 
     it('adds a file selected via the native input', () => {

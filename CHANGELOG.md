@@ -7,6 +7,13 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [3.5.1] — 2026-08-06
+
+### Fixed
+
+- **`zyra-alert`**: icon-to-title spacing tightened up visually — added `padding-left` to the body content instead of a margin on the icon itself, and switched the icon's background shape from a circle to a rounded square (`--zyra-radius-sm`) for a more consistent look across the four status colors. The `warning` triangle glyph's coordinates were also off-center within its viewBox (bounding box centered at y=7.75 instead of 8) compared to the other three icons — recentered and added `stroke-linejoin="round"` to match the rounded corners used elsewhere.
+- **`zyra-json-viewer`**: the tree row (`role="treeitem"`) was missing the `aria-selected` attribute required by the ARIA treeitem role spec — added `[attr.aria-selected]="false"` since the component has no selection state.
+
 ## [3.5.0] — 2026-07-23
 
 Closes out Phase 1 of the roadmap — 60 free components.

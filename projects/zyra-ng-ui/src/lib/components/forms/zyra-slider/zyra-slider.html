@@ -10,6 +10,7 @@
         [value]="value()"
         [style.--zyr-slider-fill.%]="fillPercent()"
         [attr.aria-valuetext]="displayValue()"
+        [attr.aria-label]="effectiveAriaLabel()"
         (input)="onInput($any($event.target).value)"
         (blur)="onBlur()"
     />

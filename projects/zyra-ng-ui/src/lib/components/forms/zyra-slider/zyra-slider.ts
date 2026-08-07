@@ -10,8 +10,9 @@ import {
     signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type SliderSize = 'sm' | 'md' | 'lg';
+export type SliderSize = ZyraSize;
 
 let sliderIdCounter = 0;
 
@@ -40,6 +41,7 @@ export class ZyraSlider implements ControlValueAccessor {
     /** Formats the displayed value, e.g. (v) => `${v}%`. */
     valueLabel = input<(value: number) => string>((v) => `${v}`);
     id = input<string>('');
+    ariaLabel = input<string>('', { alias: 'aria-label' });
 
     // ── Two-way state ─────────────────────────────────────────
     value = model<number>(0);
@@ -70,6 +72,9 @@ export class ZyraSlider implements ControlValueAccessor {
     });
 
     readonly displayValue = computed(() => this.valueLabel()(this.value()));
+
+    /** Falls back to a generic name so the slider always has an accessible label. */
+    readonly effectiveAriaLabel = computed(() => this.ariaLabel() || 'Slider');
 
     // ── CVA callbacks ─────────────────────────────────────────
     private _onChange: (val: number) => void = () => undefined;

@@ -17,9 +17,10 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { lockBodyScroll, unlockBodyScroll } from '../../../internal/body-scroll-lock';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type DrawerSide = 'left' | 'right' | 'top' | 'bottom';
-export type DrawerSize = 'sm' | 'md' | 'lg';
+export type DrawerSize = ZyraSize;
 
 const FOCUSABLE = [
     'a[href]',

@@ -31,9 +31,10 @@ import {
     xmark,
     type ZyraIconInput,
 } from '../../../shared/zyra-icons';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type FormFieldAppearance = 'outline' | 'filled' | 'underline';
-export type FormFieldSize = 'sm' | 'md' | 'lg';
+export type FormFieldSize = ZyraSize;
 
 @Component({
     selector: 'zyra-form-field',

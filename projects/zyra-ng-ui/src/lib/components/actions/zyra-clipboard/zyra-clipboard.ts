@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import { ZyraIcon } from '../../../internal/zyra-icon/zyra-icon';
 import { check, copy } from '../../../shared/zyra-icons';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type ClipboardSize = 'sm' | 'md' | 'lg';
+export type ClipboardSize = ZyraSize;
 export type ClipboardVariant = 'button' | 'icon';
 
 @Component({

@@ -18,8 +18,9 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { ZyraTab } from './zyra-tab';
 import { ZYRA_TABS, ZyraTabsRef } from './zyra-tabs-token';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type TabsSize = 'sm' | 'md' | 'lg';
+export type TabsSize = ZyraSize;
 export type TabsVariant = 'underline' | 'pill' | 'filled' | 'outlined';
 export type TabsOrientation = 'horizontal' | 'vertical';
 

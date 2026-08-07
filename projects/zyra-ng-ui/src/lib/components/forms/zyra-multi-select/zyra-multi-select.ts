@@ -20,8 +20,9 @@ import { chevronDown } from '../../../shared/zyra-icons';
 import { ZyraChip } from '../../actions/zyra-chip/zyra-chip';
 import { ZyraOption, type SelectValue } from '../zyra-select/zyra-option';
 import { ZYRA_SELECT, type ZyraSelectRef } from '../zyra-select/zyra-select-token';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type MultiSelectSize = 'sm' | 'md' | 'lg';
+export type MultiSelectSize = ZyraSize;
 export type MultiSelectAppearance = 'outline' | 'filled' | 'underline';
 
 let multiSelectIdCounter = 0;

@@ -1,4 +1,4 @@
-<span [class]="hostClass()" [attr.aria-label]="ariaLabel()">
+<span [class]="hostClass()" role="img" [attr.aria-label]="ariaLabel()">
     @if (src() && !imgError()) {
         <img
             [src]="src()"

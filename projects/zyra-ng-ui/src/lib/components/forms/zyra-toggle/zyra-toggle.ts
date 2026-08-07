@@ -10,8 +10,9 @@ import {
     signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type ToggleSize = 'sm' | 'md' | 'lg';
+export type ToggleSize = ZyraSize;
 
 @Component({
     selector: 'zyra-toggle',

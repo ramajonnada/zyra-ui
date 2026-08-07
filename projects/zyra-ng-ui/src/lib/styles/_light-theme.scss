@@ -14,7 +14,7 @@
     // Closer to Emergent's hsl(220 10% 5%) = #0b0c0e
     --zyra-color-text: #0b0c0e;
     --zyra-color-text-muted: #545e6e;
-    --zyra-color-text-dim: #98a6b8;
+    --zyra-color-text-dim: #636c78;
     --zyra-color-text-inverse: #ffffff;
     --zyra-color-surface-inverse: #0f151c;
 
@@ -82,6 +82,13 @@
 
     // ── Misc ──────────────────────────────────────────────────────────────────
     --zyra-color-code-bg: #ecedf1;
+
+    // Dedicated syntax-highlight text colors — tuned for contrast against
+    // --zyra-color-code-bg; see _dark-theme.scss for why these aren't aliased
+    // to the brand/status tokens.
+    --zyra-color-code-keyword-text: #196cc1;
+    --zyra-color-code-string-text: #0b7a55;
+    --zyra-color-code-number-text: #956007;
 
     --zyra-color-scrollbar-thumb-base: rgba(9, 19, 31, 0.14);
     --zyra-color-scrollbar-track-base: transparent;

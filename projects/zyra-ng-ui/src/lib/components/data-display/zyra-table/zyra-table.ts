@@ -18,11 +18,12 @@ import { ZyraCheckbox } from '../../forms/zyra-checkbox/zyra-checkbox';
 import { ZyraPagination } from '../../navigation/zyra-pagination/zyra-pagination';
 import { ZyraEmptyState } from '../zyra-empty-state/zyra-empty-state';
 import { ZyraSkeleton } from '../../feedback/zyra-skeleton/zyra-skeleton';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
 export type TableAlign = 'left' | 'center' | 'right';
 export type TableSortDirection = 'asc' | 'desc';
 export type TableSelectionMode = 'none' | 'single' | 'multiple';
-export type TableSize = 'sm' | 'md' | 'lg';
+export type TableSize = ZyraSize;
 export type TableRowKey = string | number;
 
 export interface TableColumn<T = Record<string, unknown>> {

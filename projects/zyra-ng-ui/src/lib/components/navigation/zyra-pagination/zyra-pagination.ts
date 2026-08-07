@@ -1,8 +1,9 @@
 import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { ZyraIcon as ZyraIconComponent } from '../../../internal/zyra-icon/zyra-icon';
 import { chevronLeft, chevronRight } from '../../../shared/zyra-icons';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type PaginationSize = 'sm' | 'md' | 'lg';
+export type PaginationSize = ZyraSize;
 export type PaginationItem = number | 'ellipsis';
 
 @Component({

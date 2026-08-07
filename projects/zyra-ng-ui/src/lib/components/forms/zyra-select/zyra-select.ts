@@ -19,8 +19,9 @@ import { ZyraIcon as ZyraIconComponent } from '../../../internal/zyra-icon/zyra-
 import { chevronDown } from '../../../shared/zyra-icons';
 import { ZyraOption, type SelectValue } from './zyra-option';
 import { ZYRA_SELECT, type ZyraSelectRef } from './zyra-select-token';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type SelectSize = 'sm' | 'md' | 'lg';
+export type SelectSize = ZyraSize;
 export type SelectAppearance = 'outline' | 'filled' | 'underline';
 
 let selectIdCounter = 0;

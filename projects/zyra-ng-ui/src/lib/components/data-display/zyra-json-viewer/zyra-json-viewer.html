@@ -24,6 +24,7 @@
                     [style.paddingLeft.px]="row.depth * 16 + 10"
                     [attr.aria-expanded]="row.isContainer && row.itemCount > 0 ? row.expanded : null"
                     [attr.aria-level]="row.depth + 1"
+                    [attr.aria-selected]="false"
                 >
                     @if (row.isContainer && row.itemCount > 0) {
                         <button

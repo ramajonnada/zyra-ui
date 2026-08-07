@@ -7,8 +7,9 @@ import {
     input,
 } from '@angular/core';
 import { ZYRA_RADIO_GROUP } from './zyra-radio-group-token';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type RadioSize = 'sm' | 'md' | 'lg';
+export type RadioSize = ZyraSize;
 
 let radioIdCounter = 0;
 
@@ -34,6 +35,9 @@ export class ZyraRadio {
     // ── Computed from group state ─────────────────────────────
     readonly checked = computed(() => this._group?.value() === this.value());
     readonly isDisabled = computed(() => this.disabled() || (this._group?.disabled() ?? false));
+
+    /** Falls back to `value` so the radio always has an accessible name, even without a visible label. */
+    readonly effectiveAriaLabel = computed(() => this.label() || String(this.value()));
 
     readonly hostClass = computed(() => {
         const parts = ['zyr-radio', `zyr-radio--${this.size()}`];

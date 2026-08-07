@@ -12,8 +12,9 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ZyraIcon as ZyraIconComponent } from '../../../internal/zyra-icon/zyra-icon';
 import { check, minus } from '../../../shared/zyra-icons';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type CheckboxSize = 'sm' | 'md' | 'lg';
+export type CheckboxSize = ZyraSize;
 
 let checkboxIdCounter = 0;
 

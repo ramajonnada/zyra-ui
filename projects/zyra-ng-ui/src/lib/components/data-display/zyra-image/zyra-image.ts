@@ -40,7 +40,7 @@ export class ZyraImage {
 
     // ── Outputs ───────────────────────────────────────────────
     loaded = output<void>();
-    error = output<void>();
+    imageError = output<void>();
 
     // ── Internal state ───────────────────────────────────────
     private readonly usedFallback = signal(false);
@@ -91,6 +91,6 @@ export class ZyraImage {
             return;
         }
         this.status.set('error');
-        this.error.emit();
+        this.imageError.emit();
     }
 }

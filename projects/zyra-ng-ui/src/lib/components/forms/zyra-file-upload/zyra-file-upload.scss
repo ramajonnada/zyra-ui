@@ -24,7 +24,7 @@
         border-color: var(--zyra-color-primary);
     }
 
-    &:focus-visible {
+    &:has(.zyr-file-upload__native-input:focus-visible) {
         outline: 2px solid var(--zyra-color-primary);
         outline-offset: 2px;
     }
@@ -61,7 +61,9 @@
 }
 
 .zyr-file-upload__label-strong {
-    color: var(--zyra-color-primary);
+    // primary-hover, not primary — at this font size/weight, --zyra-color-primary
+    // fails WCAG AA against the dropzone background in light-family themes.
+    color: var(--zyra-color-primary-hover);
     font-weight: 600;
 }
 

@@ -8,6 +8,7 @@ export * from './lib/theme/provide-zyra';
 
 export * from './lib/internal/zyra-icon/zyra-icon';
 export * from './lib/shared/zyra-icons';
+export * from './lib/shared/zyra-size';
 
 // ── Actions ─────────────────────────────────────────────────────────────
 export * from './lib/components/actions/zyra-button/zyra-button';

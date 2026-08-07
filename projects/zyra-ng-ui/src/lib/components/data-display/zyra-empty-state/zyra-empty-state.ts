@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import type { ZyraSize } from '../../../shared/zyra-size';
 
-export type EmptyStateSize = 'sm' | 'md' | 'lg';
+export type EmptyStateSize = ZyraSize;
 
 @Component({
     selector: 'zyra-empty-state',

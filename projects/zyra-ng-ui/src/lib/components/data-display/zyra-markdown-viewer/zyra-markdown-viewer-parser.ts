@@ -22,8 +22,11 @@ export type MdBlock =
     | { type: 'hr' }
     | { type: 'table'; align: MdTableAlign[]; header: MdInlineSpan[][]; rows: MdInlineSpan[][][] };
 
+// htmlTag requires a leading "/" or letter after "<" so plain comparison
+// prose ("x < 10 and y > 5") isn't mistaken for a tag — a bare `[^>]+` here
+// used to match (and, under sanitize, silently delete) that kind of text.
 const INLINE_RE =
-    /!\[(?<imgAlt>[^\]]*)\]\((?<imgSrc>[^)]+)\)|\[(?<linkText>[^\]]*)\]\((?<linkHref>[^)]+)\)|\*\*(?<boldStar>[^*]+)\*\*|__(?<boldUnd>[^_]+)__|\*(?<italStar>[^*]+)\*|_(?<italUnd>[^_]+)_|`(?<codeText>[^`]+)`|<(?<htmlTag>[^>]+)>/g;
+    /!\[(?<imgAlt>[^\]]*)\]\((?<imgSrc>[^)]+)\)|\[(?<linkText>[^\]]*)\]\((?<linkHref>[^)]+)\)|\*\*(?<boldStar>[^*]+)\*\*|__(?<boldUnd>[^_]+)__|\*(?<italStar>[^*]+)\*|_(?<italUnd>[^_]+)_|`(?<codeText>[^`]+)`|<(?<htmlTag>\/?[a-zA-Z][^>]*)>/g;
 
 export function parseInline(text: string, sanitize: boolean): MdInlineSpan[] {
     const spans: MdInlineSpan[] = [];
