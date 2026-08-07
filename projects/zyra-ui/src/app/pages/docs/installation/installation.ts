@@ -92,6 +92,14 @@ export class MyComponent {}`,
             description:
                 'Install zyra-ng-ui, import the global styles, register the theme provider, and start using components in your Angular app.',
             url: 'https://www.zyraui.dev/docs/installation',
+            keywords: [
+                'install zyra-ng-ui',
+                'angular component library installation',
+                'npm install zyra-ng-ui',
+                'angular ui library setup',
+                'zyra ui getting started',
+                'angular 21 ui kit install',
+            ],
         });
 
         this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems));

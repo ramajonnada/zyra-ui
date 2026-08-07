@@ -183,7 +183,7 @@ For wide browser support today, prefer the Angular CDK's `BidiModule` and overla
 
 ## 6. Animated number counters
 
-Dashboards feel alive when numbers count up instead of snapping into place. With signals this is clean — drive a signal with `requestAnimationFrame` and read it in the template.
+Dashboards feel alive when numbers count up instead of snapping into place. With [signals](/blog/angular-21-signals-explained-signals-signal-forms) this is clean — drive a signal with `requestAnimationFrame` and read it in the template.
 
 ```ts
 import { Component, signal } from '@angular/core';
@@ -213,7 +213,7 @@ Because `display` is a signal, the template updates with each frame and nothing 
 
 ## 7. Skeleton loaders instead of spinners
 
-A spinner says "wait." A skeleton says "your content is almost here." Skeletons reduce perceived load time and prevent layout shift, which also helps your Core Web Vitals.
+A spinner says "wait." A skeleton says "your content is almost here." Skeletons reduce perceived load time, and prevent layout shift *if* they're sized to match the real content's eventual dimensions — a skeleton that's a different width or height than what replaces it shifts layout just as much as a spinner popping in and out would. Get the sizing right and it helps your [Core Web Vitals](/blog/angular-ssr-seo-2026-core-web-vitals-component-library).
 
 ```css
 .skeleton {
@@ -276,7 +276,7 @@ Often not. Most common animations — hover effects, reveals, staggers, loaders 
 
 ### Which CSS properties are safe to animate for performance?
 
-Animate `transform` and `opacity`. They are GPU-composited and cheap. Avoid animating `width`, `height`, `top`, and `left`, which trigger layout and paint on every frame.
+Animate `transform` and `opacity`. They are GPU-composited and cheap. The [MDN View Transition API documentation](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API) explains the full `::view-transition-*` pseudo-element API. Avoid animating `width`, `height`, `top`, and `left`, which trigger layout and paint on every frame.
 
 ### How do I make Angular animations accessible?
 
@@ -291,3 +291,12 @@ To go deeper:
 - [Angular animations guide](https://angular.dev/guide/animations)
 - [Router view transitions](https://angular.dev/guide/routing/route-transition-animations)
 - [MDN: View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)
+
+---
+
+**Related reading:**
+- [Angular @defer Blocks: Lazy Load Any Component Instantly](/blog/angular-defer-blocks-lazy-loading-2026)
+- [Angular SSR & SEO in 2026: Core Web Vitals Done Right](/blog/angular-ssr-seo-2026-core-web-vitals-component-library)
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Container Queries in Angular: Build Truly Responsive Components](/blog/container-queries-angular-component-library-2026)
+- [MDN View Transitions API documentation](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)

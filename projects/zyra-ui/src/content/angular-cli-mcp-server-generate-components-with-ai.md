@@ -24,11 +24,11 @@ slug: 'angular-cli-mcp-server-generate-components-with-ai'
 
 # Angular CLI MCP Server: Generate Components with AI
 
-> **TL;DR:** The Angular CLI MCP server is an experimental tool, built into the Angular CLI, that lets AI assistants talk directly to the CLI and Angular's own best-practice examples. You start it with `ng mcp` and configure it in your editor (VS Code, Cursor, etc.) by pointing to `npx @angular/cli mcp`. It gives your AI tools like `find_examples` and `get_best_practices` so generated components use modern Angular — standalone, signals, `OnPush`, and native control flow — instead of outdated patterns.
+> **TL;DR:** The Angular CLI MCP server is an experimental tool, built into the Angular CLI, that lets AI assistants talk directly to the CLI and Angular's own best-practice examples. You start it with `ng mcp` and configure it in your editor (VS Code, Cursor, etc.) by pointing to `npx @angular/cli mcp`. It gives your AI tools like `find_examples` and `get_best_practices` so generated components use modern Angular — standalone, signals, `OnPush`, and native control flow (all patterns covered in the [Angular Signals Explained](/blog/angular-21-signals-explained-signals-signal-forms) guide) — instead of outdated patterns.
 
 AI assistants are good at writing code, but they are not always good at writing _modern Angular_ code. Ask a generic model for a component and you often get `NgModule` boilerplate, `*ngIf`, constructor injection, and other patterns that Angular has been moving away from for years.
 
-The Angular CLI MCP server fixes this at the source. Instead of hoping the model remembers current conventions, you give it a direct line into the Angular CLI and a curated set of best-practice examples.
+The Angular CLI MCP server fixes this at the source. Instead of hoping the model remembers current conventions, you give it a direct line into the Angular CLI and a curated set of best-practice examples. For additional techniques to improve AI-generated Angular code quality, see [Better AI-Generated Angular Code: llms.txt & Codegen Scorer](/blog/better-ai-generated-angular-code-llms-txt-web-codegen-scorer).
 
 In this guide you will learn:
 
@@ -59,6 +59,8 @@ By default, the MCP server registers a focused set of tools. The most useful one
 - `list_projects` — reads `angular.json` and lists the applications and libraries in your workspace.
 - `onpush_zoneless_migration` — analyzes code and produces a step-by-step plan to migrate it to `OnPush`, a prerequisite for going zoneless.
 - `search_documentation` — searches the official documentation at angular.dev for APIs, tutorials, and best practices.
+
+The [official Angular CLI MCP documentation](https://angular.dev/ai/mcp) covers all available tools and their options in detail.
 
 There are also experimental tools you can opt into, such as `build`, `test`, `e2e`, `modernize`, and a set of `devserver.*` tools for starting and inspecting a dev server. These are off by default and enabled individually with the `--experimental-tool` flag, since they are newer and less tested.
 
@@ -259,3 +261,12 @@ To go deeper, start with the official docs:
 - [Angular CLI MCP Server setup](https://angular.dev/ai/mcp)
 - [LLM prompts and AI IDE setup](https://angular.dev/ai/develop-with-ai)
 - [Build with AI overview](https://angular.dev/ai)
+
+---
+
+**Related reading:**
+- [Better AI-Generated Angular Code: llms.txt & Codegen Scorer](/blog/better-ai-generated-angular-code-llms-txt-web-codegen-scorer)
+- [Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals](/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals)
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [What's New in Angular 22](/blog/whats-new-in-angular-22)
+- [Angular CLI MCP Server setup guide](https://angular.dev/ai/mcp)

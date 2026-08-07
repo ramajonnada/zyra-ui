@@ -14,14 +14,15 @@
 // whole rail to one consistent, denser rhythm (closer to Linear/Vercel-style
 // docs nav) without changing ZyraSidebarItem's public default for every
 // other consumer.
-//
 // Two selectors, not one: "Overview" is the only item wrapped in a
 // <zyra-sidebar-section> (for its "Getting started" heading), so it's nested
 // inside that section's own __items wrapper rather than being a direct child
 // of .zyr-sidebar__nav like every other top-level item. Only targeting the
 // direct-child case left "Overview" at the library's default 38px while
 // everything else shrank to 34px — the exact mismatch this covers.
+/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
 ::ng-deep .zyr-sidebar__nav > a[zyra-sidebar-item],
+/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
 ::ng-deep .zyr-sidebar__nav .zyr-sidebar-section__items > a[zyra-sidebar-item] {
 	height: 34px;
 }
@@ -34,6 +35,7 @@
 // except "Overview" (which sizes independently inside its own nested
 // section flex container) down to ~23px. flex-shrink:0 here is what makes
 // "scroll instead of shrink" actually true for a flex column.
+/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
 ::ng-deep .zyr-sidebar__nav > * {
 	flex-shrink: 0;
 }

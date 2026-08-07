@@ -161,6 +161,7 @@
 	color: var(--zyra-color-foreground-subtle);
 	line-height: 1.5;
 	max-width: 240px;
+
 	// Left-aligned, not right — a ragged left edge on multi-line body text is
 	// a real readability/accessibility regression (harder to scan line
 	// starts), which is exactly why the mobile layout below already used

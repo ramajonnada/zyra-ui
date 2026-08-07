@@ -49,7 +49,7 @@ This only reads `product()` once, at signal construction. It does not react to l
 
 ## The effect() Workaround (and why it's worse)
 
-Before `linkedSignal()`, the fix was a writable signal plus an `effect()`:
+Before `linkedSignal()`, the fix was a writable signal plus an [`effect()` with cleanup](/blog/angular-effect-cleanup-destroyref-memory-leaks-2026):
 
 ```typescript
 export class VariantPickerComponent {
@@ -160,7 +160,7 @@ The test to apply: if the value should *only* ever be a pure function of other s
 
 ## Wrapping up
 
-`linkedSignal()` fills a real gap between `signal()` and `computed()` — writable state that still has a defined relationship to another signal, with automatic reset semantics you'd otherwise hand-roll with an `effect()`. Selected-item state, pagination pages, draft/edit-mode form values seeded from a record, and any "local override with an upstream default" pattern are the concrete cases to reach for it. If you find yourself writing an `effect()` whose only job is to call `.set()` on another signal in response to a change, that's the signal (no pun intended) to reach for `linkedSignal()` instead.
+`linkedSignal()` fills a real gap between `signal()` and `computed()` — writable state that still has a defined relationship to another signal, with automatic reset semantics you'd otherwise hand-roll with an `effect()`. Selected-item state, pagination pages, draft/edit-mode form values seeded from a record, and any "local override with an upstream default" pattern are the concrete cases to reach for it. If you find yourself writing an `effect()` whose only job is to call `.set()` on another signal in response to a change, that's the signal (no pun intended) to reach for `linkedSignal()` instead. The [official Angular linkedSignal documentation](https://angular.dev/api/core/linkedSignal) covers the full API.
 
 ---
 
@@ -172,7 +172,7 @@ Not quite — the writability is the headline feature, but the more important pa
 
 ### Does linkedSignal() work with input()?
 
-Yes — this is one of its most common use cases. Since `input()` returns a signal, a component's `input.required<T>()` can be read directly inside a `linkedSignal()` computation, giving you writable, per-render-cycle-resettable state derived from a parent-provided input, without an `ngOnChanges` or constructor `effect()`.
+Yes — this is one of its most common use cases. Since `input()` returns a signal, a component's `input.required<T>()` — covered in depth in [Angular input() and output()](/blog/angular-input-output-signal-api-replace-decorators) — can be read directly inside a `linkedSignal()` computation, giving you writable, per-render-cycle-resettable state derived from a parent-provided input, without an `ngOnChanges` or constructor `effect()`.
 
 ### What happens if I never call .set() on a linkedSignal?
 
@@ -181,3 +181,12 @@ It behaves exactly like a `computed()` — its value always tracks the latest co
 ### Can linkedSignal() cause an infinite loop if the computation reads its own value?
 
 No — the computation function only tracks the signals it reads for the *source*, not the linked signal's own current value (in the single-argument form). In the two-argument `{ source, computation }` form, the `computation` function explicitly receives the previous value as a parameter rather than through signal tracking, so reading it there doesn't create a circular dependency either.
+
+---
+
+**Related reading:**
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Angular effect() Cleanup: Preventing Memory Leaks with DestroyRef](/blog/angular-effect-cleanup-destroyref-memory-leaks-2026)
+- [Angular input() and output(): Replace @Input/@Output with the Signal API](/blog/angular-input-output-signal-api-replace-decorators)
+- [Angular resource() and httpResource(): Reactive HTTP with Signals](/blog/angular-resource-api-httpresouce-signals-2026)
+- [Official Angular linkedSignal documentation](https://angular.dev/api/core/linkedSignal)

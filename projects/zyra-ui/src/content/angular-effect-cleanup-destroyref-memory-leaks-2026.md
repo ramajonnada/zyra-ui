@@ -119,7 +119,7 @@ export class SocketStatusComponent {
 }
 ```
 
-The rule of thumb: if the side effect should restart whenever some signal changes, use `effect()` with `onCleanup`. If it's a one-time setup for the component's whole lifetime with no signal dependency, `DestroyRef.onDestroy()` alone is simpler and doesn't need the reactive machinery of `effect()` at all.
+The rule of thumb: if the side effect should restart whenever some signal changes, use `effect()` with `onCleanup`. See [Angular Signals Explained](/blog/angular-21-signals-explained-signals-signal-forms) for the full signal primitives overview including `computed()` and `effect()`. If it's a one-time setup for the component's whole lifetime with no signal dependency, `DestroyRef.onDestroy()` alone is simpler and doesn't need the reactive machinery of `effect()` at all.
 
 ---
 
@@ -161,7 +161,7 @@ Without the `onCleanup(() => observer.disconnect())` call, changing `threshold` 
 
 ## Wrapping up
 
-`effect()`'s automatic tie to `DestroyRef` handles the "stop running after the component dies" half of cleanup for free — that part genuinely needs no boilerplate. But it can't know what *you* started inside the callback. Any `setInterval`, `setTimeout`, `addEventListener`, `ResizeObserver`, `IntersectionObserver`, or subscription created inside an `effect()` needs an explicit `onCleanup()` call undoing it, or it leaks — both across re-runs of the same effect and, ultimately, past the component's own destruction. The fix is one line per resource; the bug it prevents is the kind that only shows up after your app has been open for a while.
+`effect()`'s automatic tie to `DestroyRef` handles the "stop running after the component dies" half of cleanup for free — that part genuinely needs no boilerplate. (The [official Angular signals guide](https://angular.dev/guide/signals) documents the full effect lifecycle.) But it can't know what *you* started inside the callback. Any `setInterval`, `setTimeout`, `addEventListener`, `ResizeObserver`, `IntersectionObserver`, or subscription created inside an `effect()` needs an explicit `onCleanup()` call undoing it, or it leaks — both across re-runs of the same effect and, ultimately, past the component's own destruction. For DOM-safe reactive side effects that run after rendering, see [afterRenderEffect() in Angular 21](/blog/angular-afterrendereffect-dom-safe-side-effects-2026). The fix is one line per resource; the bug it prevents is the kind that only shows up after your app has been open for a while.
 
 ---
 
@@ -182,3 +182,12 @@ Yes. Each call registers an additional cleanup callback, and Angular runs all of
 ### Does forgetting cleanup cause an error, or just a silent leak?
 
 Silent leak, which is what makes it dangerous — there's no thrown exception or console warning by default. The symptom is usually degraded performance or duplicated side effects (multiple network requests, multiple DOM class toggles) that only becomes obvious after the affected signal has changed several times, which is often well into normal usage rather than during initial testing.
+
+---
+
+**Related reading:**
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [afterRenderEffect() in Angular 21: DOM-Safe Reactive Side Effects](/blog/angular-afterrendereffect-dom-safe-side-effects-2026)
+- [Angular linkedSignal(): Derived Writable Signals Explained](/blog/angular-linked-signal-derived-writable-signals-2026)
+- [Angular toSignal() and toObservable(): RxJS ↔ Signals Interop](/blog/angular-tosignal-toobservable-rxjs-interop-2026)
+- [Official Angular signals guide](https://angular.dev/guide/signals)

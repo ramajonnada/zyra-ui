@@ -9,6 +9,7 @@ export interface SeoConfig {
     type?: 'website' | 'article';
     publishedTime?: string;
     tags?: string[];
+    keywords?: string[];
     noindex?: boolean;
 }
 
@@ -29,11 +30,21 @@ export class SeoService {
             type = 'website',
             publishedTime,
             tags,
+            keywords,
             noindex = false,
         } = config;
 
         this.title.setTitle(title);
         this.meta.updateTag({ name: 'description', content: description });
+
+        // Combine tags + keywords for the keywords meta (used by Bing/Yandex).
+        // Build only when either is present; remove when neither is available.
+        const allKeywords = [...(tags ?? []), ...(keywords ?? [])];
+        if (allKeywords.length) {
+            this.meta.updateTag({ name: 'keywords', content: allKeywords.join(', ') });
+        } else {
+            this.meta.removeTag('name="keywords"');
+        }
 
         if (noindex) {
             this.meta.updateTag({ name: 'robots', content: 'noindex, follow' });

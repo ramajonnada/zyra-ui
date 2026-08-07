@@ -24,7 +24,7 @@ slug: 'fix-ng0908-in-this-configuration-angular-requires-zonejs'
 
 # Fix NG0908: In This Configuration Angular Requires Zone.js
 
-> **TL;DR:** The error `NG0908: In this configuration Angular requires Zone.js` means your app is set up for zone-based change detection, but `zone.js` is not loaded. You have two fixes, and you must pick one deliberately. To **keep zones**, add `zone.js` back to the `polyfills` array in `angular.json` (or `import 'zone.js'` in your polyfills file). To **go zoneless**, remove zone-based change detection and provide `provideZonelessChangeDetection()` (Angular v20.2+); in Angular v21 zoneless is the default, so just make sure nothing is forcing zones back on.
+> **TL;DR:** The error `NG0908: In this configuration Angular requires Zone.js` means your app is set up for zone-based change detection, but `zone.js` is not loaded. You have two fixes, and you must pick one deliberately. To **keep zones**, add `zone.js` back to the `polyfills` array in `angular.json` (or `import 'zone.js'` in your polyfills file). To **go zoneless**, remove zone-based change detection and provide `provideZonelessChangeDetection()` (Angular v20.2+); in Angular v21 zoneless is the default, so just make sure nothing is forcing zones back on. Signals aren't a hard requirement for zoneless mode — `OnPush` plus explicit triggers (`markForCheck()`, the `async` pipe, host listeners) still work — but they're what makes it ergonomic and automatic, since a signal write notifies Angular directly instead of relying on Zone.js to detect that *something* changed. See [Angular Signals Explained](/blog/angular-21-signals-explained-signals-signal-forms) for how that notification path works.
 
 If you hit this error, your app usually shows a blank screen and the console prints:
 
@@ -170,3 +170,12 @@ To go deeper:
 - [Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals](/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals)
 - [Angular zoneless guide (official)](https://angular.dev/guide/zoneless)
 - [Angular error reference](https://angular.dev/errors)
+
+---
+
+**Related reading:**
+- [Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals](/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals)
+- [Angular UI Performance in Zoneless, AI-Streaming Apps](/blog/angular-ui-library-zoneless-ai-streaming-rerenders)
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [What's New in Angular 22](/blog/whats-new-in-angular-22)
+- [Official Angular NG0908 error reference](https://angular.dev/errors/NG0908)

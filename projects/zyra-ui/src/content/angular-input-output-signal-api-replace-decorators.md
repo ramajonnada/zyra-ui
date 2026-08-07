@@ -130,7 +130,7 @@ The `transform` option on `input.required()` is useful when working with attribu
 
 ## Using Inputs in computed() and effect()
 
-Because `input()` returns a real signal, it composes with the rest of Angular's reactive graph:
+Because `input()` returns a real signal, it composes with the rest of [Angular's reactive graph](/blog/angular-21-signals-explained-signals-signal-forms):
 
 ```typescript
 import { Component, ChangeDetectionStrategy, input, computed, effect } from '@angular/core';
@@ -255,7 +255,7 @@ The parent template syntax does not change — you still write `[label]="value"`
 
 ## Wrapping up
 
-`input()` and `output()` are a genuine quality-of-life improvement, not just a stylistic preference. Required inputs surface contract violations at the type level. Signal inputs compose directly with `computed()` and `effect()`, eliminating `ngOnChanges` for the vast majority of derived-state use cases. And `output()` drops the `EventEmitter` / RxJS dependency from the emitting side. If you're starting a new component today, there's no reason to reach for the decorator API. Pick one component in your codebase, apply the migration pattern above, and see how much lifecycle scaffolding disappears.
+`input()` and `output()` are a genuine quality-of-life improvement, not just a stylistic preference. Required inputs surface contract violations at the type level. Signal inputs compose directly with `computed()` and `effect()`, eliminating `ngOnChanges` for the vast majority of derived-state use cases. And `output()` drops the `EventEmitter` / RxJS dependency from the emitting side. If you're starting a new component today, there's no reason to reach for the decorator API. Pick one component in your codebase, apply the migration pattern above, and see how much lifecycle scaffolding disappears. The [official Angular signal inputs documentation](https://angular.dev/guide/components/inputs) covers all options including `transform` and `alias`.
 
 ---
 
@@ -275,4 +275,13 @@ Angular throws a runtime error and logs a clear message identifying the missing 
 
 ### Is output() compatible with RxJS when I need to subscribe?
 
-`OutputEmitterRef` is not an Observable. If you need Observable interop, use `outputToObservable(myOutput)` to convert it, or `outputFromObservable(myObservable$)` to create an output that emits whenever the source Observable emits. Both helpers ship with `@angular/core/rxjs-interop` and require no additional packages.
+`OutputEmitterRef` is not an Observable. If you need Observable interop, use `outputToObservable(myOutput)` to convert it, or `outputFromObservable(myObservable$)` to create an output that emits whenever the source Observable emits — see [Angular toSignal() and toObservable()](/blog/angular-tosignal-toobservable-rxjs-interop-2026) for the full RxJS interop guide. Both helpers ship with `@angular/core/rxjs-interop` and require no additional packages.
+
+---
+
+**Related reading:**
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Angular linkedSignal(): Derived Writable Signals Explained](/blog/angular-linked-signal-derived-writable-signals-2026)
+- [Angular toSignal() and toObservable(): RxJS ↔ Signals Interop](/blog/angular-tosignal-toobservable-rxjs-interop-2026)
+- [Route Params as Signals: withComponentInputBinding() in Angular 22](/blog/angular-withcomponentinputbinding-route-params-signals-2026)
+- [Official Angular signal inputs documentation](https://angular.dev/guide/components/inputs)

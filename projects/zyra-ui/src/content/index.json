@@ -2,6 +2,865 @@
 	{
 		"imageUrl": "",
 		"readTime": "6 mins",
+		"slug": "build-custom-mcp-server-angular-dev-workflows-2026",
+		"title": "Build a Custom MCP Server for Angular Dev Workflows in 2026",
+		"description": "Learn how to build a custom MCP server that gives AI assistants deep Angular workflow context — generate components, run schematics, and query your design system.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"mcp",
+			"angular",
+			"ai-tooling",
+			"developer-experience",
+			"typescript"
+		],
+		"keywords": [
+			"build custom MCP server Angular",
+			"Model Context Protocol Angular workflows",
+			"MCP tools for frontend developers",
+			"Angular AI tooling 2026",
+			"TypeScript MCP server tutorial"
+		],
+		"date": "2026-08-07",
+		"faq": [
+			{
+				"q": "What is an MCP server and why would an Angular developer build one?",
+				"a": "An MCP server is a small process that exposes tools, resources, and prompts to AI assistants via the Model Context Protocol. Angular developers build them to give AI tools structured access to project-specific context — component lists, CLI commands, team conventions — without pasting that context manually into every chat session."
+			},
+			{
+				"q": "Does my MCP server need to run continuously?",
+				"a": "Yes, the server process must be running whenever your AI assistant is active. In practice you add it to your editor's MCP config and the editor spawns it on startup. For CI or team-shared setups you can run it as a background service or inside a Docker container."
+			},
+			{
+				"q": "Can I use the Angular CLI MCP server instead of building my own?",
+				"a": "The official Angular CLI MCP server (ng mcp) exposes generic Angular CLI commands and best-practice lookups. Building a custom server is worthwhile when you need project-specific tools — your own schematics, your design system's token index, your team conventions file — that the generic CLI server doesn't know about."
+			},
+			{
+				"q": "Is @modelcontextprotocol/sdk production-ready?",
+				"a": "The SDK is actively maintained and widely used across Claude, VS Code Copilot, and other major AI tools. Its API stabilized with version 1.x. For production use, pin the version in package.json and watch the MCP changelog for breaking changes between minor versions."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "angular-computed-signal-advanced-patterns-2026",
+		"title": "Angular computed() Advanced Patterns: Chaining and Derived State in 2026",
+		"description": "Master Angular computed() advanced patterns — chaining signals, lazy memoization, derived state trees, and derivedAsync for async derivation in Angular 22.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"signals",
+			"computed",
+			"state management",
+			"performance"
+		],
+		"keywords": [
+			"Angular computed() advanced patterns",
+			"Angular signal derived state",
+			"computed signal chaining Angular",
+			"Angular signal memoization",
+			"derivedAsync Angular signals"
+		],
+		"date": "2026-08-06",
+		"faq": [
+			{
+				"q": "When should I use computed() versus effect() in Angular?",
+				"a": "Use computed() when you need a derived value — something you want to read from the template or pass to another computed. It is synchronous, memoized, and read-only. Use effect() when you need a side effect that reacts to signal changes — logging, DOM manipulation, syncing to localStorage, or calling an external API. A good rule of thumb: if you are producing a value, reach for computed(); if you are doing something, reach for effect()."
+			},
+			{
+				"q": "Does computed() work with OnPush change detection?",
+				"a": "Yes, and it is the recommended combination. Angular's template binding reads a computed signal, which marks the view as dirty only when the computed's value actually changes. With OnPush, Angular skips change detection for the component unless the view is dirty. The result is that templates re-render only when the derived output genuinely changes, not on every cycle."
+			},
+			{
+				"q": "Can I use derivedAsync without ngxtension?",
+				"a": "You can approximate it manually by combining effect() with a WritableSignal that holds the async result. However, derivedAsync from ngxtension handles cancellation, initial values, and error states out of the box. For new projects it is the right default. The ngxtension library is a zero-dependency collection of Angular utilities maintained by the Angular community."
+			},
+			{
+				"q": "How many computed() calls is too many?",
+				"a": "There is no hard limit, and computed signals are cheap when their dependencies have not changed. The practical concern is readability — a chain of ten computeds can be hard to trace. For very large derived state graphs, moving computeds into a shared service or an @ngrx/signals store gives you a cleaner boundary and optionally Angular DevTools signal graph visualization."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "7 mins",
+		"slug": "angular-design-tokens-theming-component-library-2026",
+		"title": "Angular Design Tokens: Theming Without Breaking on Override",
+		"description": "Learn the 3-tier design token architecture that lets Angular component libraries support multiple themes without any component ever hardcoding a color.",
+		"category": [
+			"Angular",
+			"Angular 21"
+		],
+		"tags": [
+			"design-tokens",
+			"theming",
+			"component-library",
+			"scss"
+		],
+		"keywords": [
+			"Angular design tokens",
+			"Angular component library theming",
+			"CSS custom properties Angular",
+			"semantic design tokens"
+		],
+		"date": "2026-08-06",
+		"faq": [
+			{
+				"q": "Why does overriding a CSS custom property not change my Angular component's color?",
+				"a": "The component is likely reading a raw, internal token instead of the semantic token you overrode. Check the compiled CSS for the property it actually references, and add or fix the semantic-to-component token reference so the override has a path to reach it."
+			},
+			{
+				"q": "What is the difference between a semantic token and a component token?",
+				"a": "A semantic token names an intent shared library-wide, like --color-primary. A component token is scoped to one component, like --button-primary-bg, and references the semantic token rather than duplicating its value, letting one component be tuned without affecting others."
+			},
+			{
+				"q": "Should design tokens be defined with SCSS variables or CSS custom properties?",
+				"a": "Use CSS custom properties for anything involved in theming. SCSS variables compile away at build time and cannot be overridden afterward; CSS custom properties can be reassigned per selector, per theme, or by a consumer without a rebuild."
+			},
+			{
+				"q": "How many token tiers does a component library actually need?",
+				"a": "Three is the practical minimum: primitives, semantic, and component-level. Two tiers works for very small libraries but breaks once two components need the same semantic concept at different shades or states."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "5 mins",
+		"slug": "angular-model-signal-two-way-binding-2026",
+		"title": "Angular model() Signal: The Modern Two-Way Binding API",
+		"description": "Learn how Angular model() replaces @Input/@Output two-way binding boilerplate with a clean signal-based API. Real-world examples for component library authors.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"signals",
+			"two-way binding",
+			"model signal",
+			"component library"
+		],
+		"keywords": [
+			"Angular model() signal two-way binding",
+			"ModelSignal Angular",
+			"replace @Input @Output Angular signals",
+			"Angular signals component API",
+			"Angular 21 model function"
+		],
+		"date": "2026-08-06",
+		"faq": [
+			{
+				"q": "What is Angular model() signal two-way binding and when should I use it?",
+				"a": "model() is a stable Angular API that creates a ModelSignal — a writable signal exposed as both a component input and an auto-emitting output. Use it any time you need two-way binding on a reusable component, especially in component libraries or custom form controls where the old @Input/@Output pattern creates maintainability overhead."
+			},
+			{
+				"q": "Does model() work with Angular reactive forms and ngModel?",
+				"a": "Yes. Because model() honors the same [(prop)] banana-in-a-box contract as the old @Input/@Output pair, it works wherever that syntax is valid. For full reactive forms integration with ControlValueAccessor, you still need to implement that interface, but model() can sit alongside it to handle display-only two-way state."
+			},
+			{
+				"q": "What is the difference between model() and input() in Angular signals?",
+				"a": "input() creates a read-only InputSignal — the component can only read it, not write it. model() creates a writable ModelSignal — the component can both read and write it, and writes are automatically emitted to the parent. Use input() for data flowing down, model() for data flowing both ways."
+			},
+			{
+				"q": "Can I use computed() and effect() with a ModelSignal?",
+				"a": "Yes — ModelSignal is a full signal, so computed(() => myModel()) and effect(() => console.log(myModel())) work exactly as they do with signal(). This is the key improvement over the old pattern: you can derive reactive values from a model input without converting it first."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "angular-lazy-routes-loadcomponent-code-splitting-2026",
+		"title": "Angular Lazy Routes with loadComponent: Route-Level Code Splitting in 2026",
+		"description": "Learn how to use Angular's loadComponent and loadChildren for route-level code splitting, smaller bundles, and faster initial load in standalone apps.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"lazy loading",
+			"code splitting",
+			"routing",
+			"performance"
+		],
+		"keywords": [
+			"angular lazy routes loadComponent",
+			"angular route-level code splitting",
+			"loadChildren angular standalone",
+			"angular bundle size optimization",
+			"provideRouter tree-shakeable routing"
+		],
+		"date": "2026-08-06",
+		"faq": [
+			{
+				"q": "What is the difference between loadComponent and loadChildren for angular lazy routes?",
+				"a": "loadComponent lazily loads a single standalone component for a specific route path. loadChildren lazily loads an entire route array (subtree), making it the right choice when a feature has multiple child routes that should all share a single chunk boundary. Use loadComponent for leaf routes and loadChildren for feature-level groups."
+			},
+			{
+				"q": "Does angular lazy routes loadComponent work with OnPush change detection?",
+				"a": "Yes — loadComponent has no impact on how a component detects changes. Components loaded lazily can and should use ChangeDetectionStrategy.OnPush. Because OnPush is the default in Angular 22, any newly scaffolded standalone component is already set up correctly."
+			},
+			{
+				"q": "How do I preload specific routes instead of all routes for angular bundle size optimization?",
+				"a": "Implement a custom PreloadingStrategy. Return Observable<void> from the preload() method — emit immediately for routes you want preloaded, return NEVER for the rest. You can use route data (e.g. data: { preload: true }) as the decision signal, giving you per-route control without a third-party library."
+			},
+			{
+				"q": "Will angular route-level code splitting work with SSR and Angular Universal?",
+				"a": "Yes. Angular's SSR renders each route on the server using the full route tree, so lazy chunks are resolved server-side at render time. On the client, Angular's hydration picks up where the server left off. The chunk for the hydrated route is typically already in the browser cache from the server-sent link preload headers — navigation feels instant."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "angular-for-track-expression-performance-2026",
+		"title": "Angular @for Track Expression Performance: The Silent Bug in Every List",
+		"description": "Using track $index in Angular @for is a silent performance killer. Learn the right track expression to prevent DOM churn, broken animations, and lost form state.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"performance",
+			"signals",
+			"control-flow",
+			"rendering"
+		],
+		"keywords": [
+			"Angular @for track expression performance",
+			"Angular @for track $index vs track id",
+			"Angular control flow performance tips 2026",
+			"Angular @for rendering optimization",
+			"how to use track in Angular @for"
+		],
+		"date": "2026-08-05",
+		"faq": [
+			{
+				"q": "Why does Angular @for require a track expression at all?",
+				"a": "Angular's modern control flow syntax makes track mandatory — the compiler enforces it and will not compile without it. The Angular team made this decision because omitting a track key was the single most common source of list performance regressions in legacy template code. Making it mandatory forces developers to make the identity decision explicitly rather than accidentally defaulting to undefined behaviour."
+			},
+			{
+				"q": "When is track $index actually the right choice?",
+				"a": "Use track $index when the array is definitively static — rendered once and never reordered, filtered, or updated in-place. Hardcoded navigation items, a fixed list of wizard steps, or a read-only enum list are all fine. The moment items can be added at arbitrary positions, removed, filtered, or sorted at runtime, switch to a stable domain identifier like id."
+			},
+			{
+				"q": "Does the track expression affect OnPush change detection?",
+				"a": "Yes, indirectly. With OnPush, Angular only enters a component's change detection when its signal dependencies change or a relevant event fires. But once inside, it still needs to reconcile the list. A wrong track expression forces full subtree destruction and creation regardless of the change detection strategy — you pay the cost of reconstructing DOM nodes and running all child component lifecycle hooks, which OnPush alone cannot prevent."
+			},
+			{
+				"q": "What if my API data has no stable unique identifier?",
+				"a": "Generate one before storing the data in a signal. A simple approach: map over the API response and add a composite key from a stable field plus index. The key just needs to be stable across re-renders for the same logical item. Do not use $index as a workaround — if the order changes, a composite key based on a field value will still match the right item while $index will not."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "analog-js-angular-meta-framework-2026",
+		"title": "Analog.js Angular Meta-Framework: Build Full-Stack Apps in 2026",
+		"description": "Learn how the Analog.js Angular meta-framework brings file-based routing, SSR, and API routes to Angular — with a Vite-powered dev experience.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"analog.js",
+			"angular",
+			"ssr",
+			"full-stack",
+			"vite"
+		],
+		"keywords": [
+			"Analog.js Angular meta-framework",
+			"Angular full-stack SSR 2026",
+			"Angular file-based routing Analog",
+			"Analog.js API routes",
+			"Angular Vite SSR"
+		],
+		"date": "2026-08-05",
+		"faq": [
+			{
+				"q": "What is the Analog.js Angular meta-framework and how does it differ from plain Angular SSR?",
+				"a": "Analog.js is a framework that sits on top of Angular and adds file-based routing, a Vite-native dev experience, and Nitro-based API routes. Plain @angular/ssr gives you server rendering but leaves routing, server entry configuration, and API handling entirely to you. Analog wires all of that up by convention, so you can start building features rather than infrastructure from day one."
+			},
+			{
+				"q": "Does Analog.js work with Angular 22 standalone components and signals?",
+				"a": "Yes. Analog is fully standalone-first and integrates with Angular 22's signal APIs out of the box. Page components use standard Angular standalone syntax, and you can use signal(), computed(), effect(), input(), and output() exactly as you would in any Angular 22 project. The injectLoad() helper returns a signal, so you can derive further reactive state from server-loaded data without any adapter code."
+			},
+			{
+				"q": "Can I deploy an Analog.js app to Cloudflare Workers or Vercel Edge?",
+				"a": "Yes. Analog uses Nitro as its server engine, and Nitro supports a wide range of deployment targets including Node.js, Vercel, Netlify, Cloudflare Workers, and AWS Lambda. You switch targets by changing the preset option in your vite.config.ts — no application code changes required."
+			},
+			{
+				"q": "How does Analog.js handle data fetching differently from Angular's resolve guards?",
+				"a": "Angular's resolve guards run before navigation and can block the route change until data is ready, but they run on the client. Analog's load functions run on the server during SSR, with the result serialised and transferred to the client to avoid a redundant fetch on hydration. On subsequent client-side navigations Analog calls the load function in the browser directly against your Nitro API routes — one contract for both environments."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "container-queries-angular-component-library-2026",
+		"title": "Container Queries in Angular: Build Truly Responsive Components",
+		"description": "CSS Container Queries let Angular components respond to their own space, not the viewport. Use :host, @container, and cqi units in standalone components.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"css",
+			"container-queries",
+			"component-library",
+			"responsive-design"
+		],
+		"keywords": [
+			"CSS container queries Angular",
+			"Angular responsive components",
+			"container-type inline-size Angular",
+			"Angular component library responsive",
+			"replace BreakpointObserver container queries"
+		],
+		"date": "2026-08-05",
+		"faq": [
+			{
+				"q": "Do container queries work with Angular's default View Encapsulation?",
+				"a": "Yes. With Emulated encapsulation (the default), declare container-type on :host. Angular renders :host as the component's actual DOM element, so the encapsulation attribute is applied to the same node that holds the container context. @container blocks inside the component's SCSS work exactly as expected. With ViewEncapsulation.None, scope your container declaration using the element selector instead of :host."
+			},
+			{
+				"q": "Why does container-type: inline-size require display: block on :host?",
+				"a": "Angular's :host defaults to display: inline because custom elements are inline by default in HTML. An inline box has no definitive width to measure for inline-size containment. Setting display: block (or flex, grid) on :host gives the element a block formatting context so the browser has a real width to report to @container queries."
+			},
+			{
+				"q": "What is the difference between container-type: inline-size and container-type: size?",
+				"a": "inline-size tracks only the element's inline dimension (width in horizontal writing modes). size tracks both width and height. Use inline-size in almost every case — tracking height requires the container to have a constrained height, which most component wrappers don't. inline-size also has fewer layout side effects and composes more predictably when containment contexts nest."
+			},
+			{
+				"q": "Should I still use BreakpointObserver at all?",
+				"a": "Yes, but for the right problems. BreakpointObserver is correct when logic depends on the actual device class — loading smaller images on Handset, disabling features on touch devices, or triggering different routing behavior. It is the wrong tool for layout decisions like stacking direction, which belong in CSS. Container queries handle those without subscription overhead."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "7 mins",
+		"slug": "ngrx-signal-store-angular-2026",
+		"title": "NgRx Signal Store: Lightweight, Signal-Based State Management for Angular",
+		"description": "Learn how @ngrx/signals SignalStore replaces boilerplate-heavy NgRx with composable, type-safe, signal-native state management for Angular apps.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"ngrx",
+			"signals",
+			"state management",
+			"angular",
+			"performance"
+		],
+		"keywords": [
+			"ngrx signal store angular",
+			"angular state management signals 2026",
+			"@ngrx/signals withState withMethods",
+			"signal store vs ngrx store",
+			"angular patchState signalStore"
+		],
+		"date": "2026-08-04",
+		"faq": [
+			{
+				"q": "Do I need to remove classic NgRx to use @ngrx/signals?",
+				"a": "No. The two packages are independent and can coexist in the same app. A common migration path is to leave existing NgRx slices in place and use Signal Store for all new features, gradually replacing the old slices as you touch them."
+			},
+			{
+				"q": "Can I use patchState outside of withMethods?",
+				"a": "Yes. patchState(store, partialState) is a standalone function you can call anywhere you have a reference to the store instance. In practice, keeping all mutations inside withMethods() is the recommended convention because it makes the store's public API explicit and testable."
+			},
+			{
+				"q": "How do I test a SignalStore?",
+				"a": "Inject the store directly in a TestBed setup using providers: [ProductsStore]. Because withMethods() uses inject() internally, you can provide mock services via { provide: ProductService, useValue: mockService } in the same providers array. Signal values are readable synchronously in tests, so no fakeAsync or tick() is required for pure state reads."
+			},
+			{
+				"q": "Does Signal Store work with Angular DevTools?",
+				"a": "Yes. Angular DevTools (the browser extension) surfaces signal values from injectable services including Signal Stores. You can inspect the current value of any signal in the store under the component injector tree. For full Redux-style action logging, you would need to add @ngrx/store-devtools with a classic NgRx store, which Signal Store does not plug into directly."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "storybook-9-angular-standalone-components-2026",
+		"title": "Storybook 9 with Angular Standalone Components: Setup, Stories, and Tests",
+		"description": "Learn how to set up Storybook 9 with Angular standalone components, write signal-aware stories, and run component tests inside a real browser.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"Storybook",
+			"Angular",
+			"standalone components",
+			"component testing",
+			"signals"
+		],
+		"keywords": [
+			"Storybook 9 Angular",
+			"Storybook Angular standalone components",
+			"Angular component testing Storybook",
+			"Storybook signals Angular",
+			"Storybook 9 setup Angular 2026"
+		],
+		"date": "2026-08-03",
+		"faq": [
+			{
+				"q": "Does Storybook 9 support Angular's input() and output() signals?",
+				"a": "Yes. The rewritten @storybook/angular renderer maps Storybook args to signal inputs automatically. You do not need any adapter or wrapper. output() emitters are surfaced as action args in the Actions panel, so every emission is logged without additional configuration."
+			},
+			{
+				"q": "Do I still need moduleMetadata in my stories?",
+				"a": "No. Storybook 9's Angular renderer bootstraps each story as a standalone component. If your component depends on other standalone components or directives, Angular resolves them through the component's own imports array — exactly as in production. moduleMetadata is no longer needed for new stories and can be removed from existing ones during an upgrade."
+			},
+			{
+				"q": "Can I run Storybook interaction tests in CI?",
+				"a": "Yes. Run npx storybook test in your CI pipeline. The command starts a headless Storybook dev server, launches Playwright, executes every play function, and exits with a non-zero code on any failure. The tests run in a real browser, so they catch CSS rendering issues and layout-dependent behavior that JSDOM misses."
+			},
+			{
+				"q": "What is the difference between Storybook interaction tests and Playwright CT?",
+				"a": "Both run in a real browser and use Playwright under the hood. The distinction is what the primary artifact is. Playwright CT makes the test file the primary artifact. Storybook makes the story file the primary artifact — the same file drives the visual sandbox, controls panel, autodocs, and tests. Use Storybook when the visual catalog and the test suite should share one source of truth; use Playwright CT when you want a lean test suite without the Storybook dev server overhead."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "css-layer-angular-component-library-2026",
+		"title": "CSS @layer in Angular Component Libraries: Take Control of the Cascade",
+		"description": "Learn how CSS cascade layers fix specificity wars between your Angular app styles and third-party UI libraries, with practical Angular examples.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"CSS",
+			"Angular",
+			"component library",
+			"cascade layers",
+			"ZyraUI"
+		],
+		"keywords": [
+			"CSS @layer Angular",
+			"cascade layers Angular component library",
+			"Angular CSS specificity",
+			"Angular style override",
+			"CSS @layer tutorial 2026"
+		],
+		"date": "2026-08-02",
+		"faq": [
+			{
+				"q": "Does @layer work with Angular's ViewEncapsulation?",
+				"a": "Yes. @layer operates in the global cascade, separate from Angular's attribute-based encapsulation (ViewEncapsulation.Emulated). Encapsulation scopes selectors; @layer controls which scoped selectors win when they conflict at the global level. The two mechanisms complement rather than interfere with each other."
+			},
+			{
+				"q": "Will @layer break my existing Angular styles?",
+				"a": "Only if you move existing styles into a lower-priority layer without adjusting the order. If you leave existing app styles unlayered and only wrap third-party library imports in a layer, you cannot break anything — unlayered styles always win over layered ones by default."
+			},
+			{
+				"q": "Can I use @layer inside Angular component SCSS files?",
+				"a": "Yes, Angular's SCSS compilation passes through @layer declarations untouched. The layer name ends up in the global cascade. Keep layer names namespaced (e.g., zyra-card rather than card) to avoid accidental collisions across libraries."
+			},
+			{
+				"q": "What happens in browsers that do not support @layer?",
+				"a": "All major browsers have supported @layer since early 2022 (Chrome 99, Firefox 97, Safari 15.4) with global support above 98% as of 2026. For rare edge cases, Lightning CSS can transpile @layer away, though the fallback resolves styles by specificity as before."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "5 mins",
+		"slug": "angular-web-workers-comlink-signals-2026",
+		"title": "Angular Web Workers with Comlink and Signals for Non-Blocking Heavy Tasks",
+		"description": "Run CPU-heavy tasks off the main thread in Angular using Web Workers and Comlink, then pipe results directly into signals for reactive, jank-free UIs.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"web workers",
+			"comlink",
+			"signals",
+			"performance"
+		],
+		"keywords": [
+			"Angular Web Workers tutorial",
+			"Comlink Angular integration",
+			"non-blocking Angular performance",
+			"Angular signals web worker",
+			"offload heavy computation Angular"
+		],
+		"date": "2026-08-01",
+		"faq": [
+			{
+				"q": "Can I use Angular services inside a Web Worker?",
+				"a": "No. Workers run in a separate global scope without access to the DOM or Angular's DI container. Keep worker code as plain TypeScript utilities — pure functions or classes with no Angular imports. If you need data from a service, fetch it on the main thread first and pass it to the worker as a plain object."
+			},
+			{
+				"q": "Does Comlink work with Angular's build system (esbuild)?",
+				"a": "Yes. Comlink is a pure ES module library and works with Angular's esbuild-based builder in Angular 17+. The ng generate web-worker command configures the build correctly. You just need to make sure you use { type: 'module' } in the Worker constructor so esbuild knows to bundle the worker as an ES module."
+			},
+			{
+				"q": "How many workers should I create?",
+				"a": "Create one worker instance per task type and reuse it — do not create a new Worker on every button click. Worker startup has overhead (parsing, initialization). The pattern shown in ScoringWorkerService creates one worker in the service constructor and terminates it only on ngOnDestroy. For parallel work, a worker pool is the next step."
+			},
+			{
+				"q": "What data types can be passed to a worker?",
+				"a": "Structured-cloneable types: plain objects, arrays, ArrayBuffer, TypedArray, Map, Set, Date, RegExp, and Error. You cannot pass functions, DOM nodes, or class instances with methods. Comlink handles serialization transparently for supported types, and the TypeScript compiler will surface type errors if you try to pass something that cannot be cloned."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "5 mins",
+		"slug": "playwright-component-testing-angular-2026",
+		"title": "Playwright CT for Angular: Component Testing in a Real Browser",
+		"description": "Learn how to use @playwright/experimental-ct-angular to test Angular standalone components in a real browser — no full app required.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"playwright",
+			"testing",
+			"component testing",
+			"standalone components"
+		],
+		"keywords": [
+			"playwright component testing angular",
+			"angular component testing real browser",
+			"playwright experimental ct angular",
+			"mount angular component playwright",
+			"angular standalone component testing 2026"
+		],
+		"date": "2026-07-31",
+		"faq": [
+			{
+				"q": "Is @playwright/experimental-ct-angular production-ready?",
+				"a": "The 'experimental' label reflects that the API may change between Playwright major versions, not that it is unstable in practice. Many teams ship with it in CI. Check the Playwright changelog before each major upgrade to catch any breaking changes to the mount() API."
+			},
+			{
+				"q": "How does mount() handle Angular providers?",
+				"a": "The mount() function accepts a providers array identical to what you would pass to TestBed.configureTestingModule. You can provide mock services, HttpClientTestingModule, signal-based stores, or any token your component needs. The component is bootstrapped in isolation with exactly those providers."
+			},
+			{
+				"q": "Can I test components that use the Angular router?",
+				"a": "Yes. Pass provideRouter([]) (or a route config) in the providers array of mount(). The router is available inside the component, and you can assert on outlet rendering or routerLink navigation state. Full multi-page navigation requires an E2E test, but single-component router-aware behavior is fully testable in CT."
+			},
+			{
+				"q": "How do I test a component that fetches data with httpResource()?",
+				"a": "Provide provideHttpClient() and provideHttpClientTesting() in the mount() providers, then use Angular's HttpTestingController to flush mock responses. Alternatively, use Mock Service Worker (MSW) at the network level — MSW works inside Playwright's browser context and intercepts real fetch calls, giving you more realistic test conditions."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "5 mins",
+		"slug": "vitest-angular-faster-unit-tests-2026",
+		"title": "Faster Angular Tests with Vitest: Drop Jest and Never Look Back",
+		"description": "Learn how to replace Jest with Vitest in your Angular project for dramatically faster test runs, native ESM support, and a much simpler config.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"vitest",
+			"testing",
+			"jest",
+			"unit tests"
+		],
+		"keywords": [
+			"vitest angular setup 2026",
+			"replace jest with vitest angular",
+			"angular vitest builder",
+			"faster angular unit tests",
+			"angular testing native esm"
+		],
+		"date": "2026-07-31",
+		"faq": [
+			{
+				"q": "Does Vitest support Angular's `TestBed` and component testing utilities?",
+				"a": "Yes. Vitest only replaces the test runner — the process that finds, executes, and reports on spec files. Angular's testing utilities (`TestBed`, `ComponentFixture`, `provideHttpClientTesting`, `provideRouter`) are part of the Angular framework and are completely runner-agnostic. They work identically under Vitest, Jest, or Karma."
+			},
+			{
+				"q": "Can I use Vitest with an Nx monorepo that has multiple Angular libraries?",
+				"a": "Yes, but each project needs its own `test` target in `project.json` pointing at `@angular/build:vitest`. Nx also maintains its own `@nx/vite:vitest` executor if you prefer to manage config centrally. Both approaches work; the `@angular/build:vitest` path is closer to the standard Angular CLI workflow and easier to keep in sync with Angular version upgrades."
+			},
+			{
+				"q": "What about code coverage?",
+				"a": "Vitest has built-in coverage via `@vitest/coverage-v8` or `@vitest/coverage-istanbul`. Pass `--coverage` to `ng test` and the `@angular/build:vitest` builder forwards it to Vitest's coverage provider. The output is the same Istanbul-format HTML report that most CI pipelines already know how to consume."
+			},
+			{
+				"q": "Do I need to change my CI pipeline?",
+				"a": "Your CI command stays `ng test` or `npx ng test --no-watch` for a single run. The only change is removing any Jest-specific environment variables or cache keys you may have set. Vitest respects `--reporter=junit` for JUnit XML output, which is the format most CI systems use to display test results in their dashboards."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "vercel-ai-sdk-angular-2026",
+		"title": "Streaming AI Responses in Angular with the Vercel AI SDK",
+		"description": "Learn how to use the Vercel AI SDK with Angular to stream LLM responses, generate structured data, and handle loading and error states with signals.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"vercel ai sdk",
+			"ai streaming",
+			"signals",
+			"llm"
+		],
+		"keywords": [
+			"vercel ai sdk angular",
+			"stream ai responses angular",
+			"angular llm integration",
+			"angular openai streaming",
+			"angular ai signals"
+		],
+		"date": "2026-07-29",
+		"faq": [
+			{
+				"q": "Does the Vercel AI SDK require Vercel hosting?",
+				"a": "No. The `ai` npm package is a standalone library with no Vercel infrastructure dependency. You can run it on any Node.js server — Express, Nitro, Analog.js API routes, Fastify, or a plain Node HTTP server. The name reflects where the project originated, but the package is fully open-source and works anywhere Node.js runs."
+			},
+			{
+				"q": "How do I cancel the stream when the user navigates away in Angular?",
+				"a": "Pass an `AbortSignal` to `fetch` and tie it to Angular's `DestroyRef`. Create an `AbortController` in the component, pass `signal: controller.signal` to the fetch options, and call `controller.abort()` inside a `DestroyRef.onDestroy()` callback. The AI SDK propagates the abort signal through to the underlying provider request, which stops generation and saves token costs."
+			},
+			{
+				"q": "Can I use the AI SDK without a backend proxy?",
+				"a": "For local prototyping you can call provider APIs directly from the browser by importing the provider package client-side, but this exposes your API key in the JavaScript bundle. For any production or shared deployment, always route AI calls through a backend endpoint so the key stays server-side. A minimal Express or Nitro handler adds very little overhead."
+			},
+			{
+				"q": "Is `readDataStream` compatible with Angular's `OnPush` change detection?",
+				"a": "Yes. Because `readDataStream` is an async generator consumed with `for await`, each iteration runs as a microtask and calls `signal.update()` synchronously within that tick. Signals trigger their own fine-grained scheduling in Angular, so `OnPush` components re-render correctly on each token without needing `ChangeDetectorRef.markForCheck()` or `NgZone.run()`."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "5 mins",
+		"slug": "css-anchor-positioning-angular-tooltips-2026",
+		"title": "CSS Anchor Positioning for Angular Tooltips",
+		"description": "Learn how to use the CSS Anchor Positioning API in Angular to build tooltips and popovers that auto-position without any JavaScript positioning library.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"css",
+			"angular",
+			"tooltips",
+			"popovers",
+			"web apis"
+		],
+		"keywords": [
+			"CSS anchor positioning Angular",
+			"Angular tooltip without JavaScript",
+			"CSS anchor() function Angular",
+			"popover API Angular component",
+			"position-anchor CSS Angular"
+		],
+		"date": "2026-07-28",
+		"faq": [
+			{
+				"q": "Does CSS Anchor Positioning work with Angular's OnPush change detection?",
+				"a": "Yes, because anchor positioning is entirely in CSS — the browser positions the floating element without triggering Angular's change detection at all. The directive only calls showPopover() and hidePopover() on the native DOM element, which are not change-detection events. OnPush components that host the directive work without any manual markForCheck() calls."
+			},
+			{
+				"q": "Can I use CSS Anchor Positioning with Angular CDK Overlay?",
+				"a": "You can use one or the other, but not both for the same element — CDK Overlay manages position: fixed and top/left offsets through JavaScript, which would conflict with anchor positioning's own layout. If you migrate to anchor positioning, you can remove the CDK Overlay dependency for tooltip and simple popover use cases. For complex cases like virtual scrolling or modals, CDK Overlay still makes sense."
+			},
+			{
+				"q": "What happens in browsers that do not support anchor-name yet?",
+				"a": "Wrap your anchor-positioning styles in @supports (anchor-name: --x) { ... }. In the fallback branch you can apply a basic position: fixed style or import Floating UI only when the feature is absent. As support is above 90 percent in mid-2026, most projects can skip the fallback entirely."
+			},
+			{
+				"q": "Is the Popover API required for anchor positioning?",
+				"a": "No. The popover attribute and anchor positioning are independent browser features that pair well together but do not depend on each other. You can use anchor positioning on any position: absolute or position: fixed element without using popover. The Popover API is recommended for tooltips because it renders in the top layer, avoiding z-index issues, but the positioning itself works regardless."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "7 mins",
+		"slug": "openai-structured-outputs-angular-services-2026",
+		"title": "OpenAI Structured Outputs in Angular: Type-Safe AI with Signals",
+		"description": "Stop parsing brittle LLM JSON by hand. Use OpenAI Structured Outputs with Zod schemas to get guaranteed, typed AI responses wired into Angular signals.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"openai",
+			"structured outputs",
+			"signals",
+			"ai"
+		],
+		"keywords": [
+			"openai structured outputs angular",
+			"type-safe AI responses angular signals",
+			"angular openai service 2026",
+			"zodResponseFormat angular",
+			"angular AI integration signals"
+		],
+		"date": "2026-07-27",
+		"faq": [
+			{
+				"q": "Which OpenAI models support Structured Outputs?",
+				"a": "Structured Outputs are supported on gpt-4o-2024-08-06 and later, and on the o1 and o3 series models. They are not available on gpt-3.5-turbo or older gpt-4 snapshots. Check the OpenAI documentation for the current model list, as new compatible versions are added regularly."
+			},
+			{
+				"q": "What happens if the model cannot fulfill the schema — for example, if a required field has no value in the source text?",
+				"a": "The model will still produce a valid JSON response that conforms to the schema. For required fields with no extractable value it will return an empty string or zero. If you want to allow absence explicitly, mark those fields as .nullable() or .optional() in your Zod schema. If the model hits a content filter or the prompt exceeds the context limit, parsed will be null."
+			},
+			{
+				"q": "Can I use this pattern with other AI providers, such as Anthropic or Google Gemini?",
+				"a": "Yes — both Anthropic (via tool_choice: required with a single tool schema) and Google Gemini (via response_mime_type with a schema) offer equivalent forced-schema output modes. The Angular service and signals pattern is identical regardless of provider — only the backend route changes to use the provider SDK."
+			},
+			{
+				"q": "Is it safe to call the OpenAI API directly from the Angular app in development?",
+				"a": "Technically it works, but it exposes your API key in the browser network tab. In development use Angular proxy config (proxy.conf.json) to route /api/* to a local Node server that holds the key. In production always use a server-side handler — Angular SSR routes, a Cloudflare Worker, or a dedicated backend."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "angular-inject-functional-guards-interceptors-2026",
+		"title": "Angular inject() in Functional Guards and Interceptors: A Complete 2026 Guide",
+		"description": "Learn how inject() unlocks composable functional guards, HTTP interceptors, and factory providers in Angular standalone apps — no class boilerplate needed.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"inject",
+			"functional guards",
+			"http interceptors",
+			"standalone"
+		],
+		"keywords": [
+			"angular inject function guards",
+			"angular functional guards 2026",
+			"angular http interceptors standalone",
+			"inject() outside constructor angular",
+			"angular composable guards inject"
+		],
+		"date": "2026-07-27",
+		"faq": [
+			{
+				"q": "Can inject() be called inside a setTimeout or Promise callback inside a guard?",
+				"a": "No — inject() must be called synchronously during the injection context setup phase. Calling it inside a setTimeout, a Promise .then(), or an RxJS operator callback throws a runtime error. The fix is to call inject() at the top of your functional guard or interceptor to capture the service reference, then use that captured reference inside any async callbacks."
+			},
+			{
+				"q": "Do functional guards cover every use case the old class-based guards did?",
+				"a": "Yes. CanActivateFn, CanActivateChildFn, CanDeactivateFn, CanMatchFn, and ResolveFn cover every case the old interface-based guards covered — Angular routes both to the same internal hooks. The only reason to keep a class-based guard today is if a large codebase is undergoing a phased migration."
+			},
+			{
+				"q": "What is the difference between withInterceptors() and the old HTTP_INTERCEPTORS token?",
+				"a": "withInterceptors() registers functional interceptors in a predictable order defined explicitly at provideHttpClient() call time. The old HTTP_INTERCEPTORS multi-token approach used provider registration order, which became unpredictable in large apps. The functional approach also tree-shakes unused interceptors automatically."
+			},
+			{
+				"q": "Does inject() work inside computed() or effect()?",
+				"a": "inject() works in any function Angular calls during an injection context, including computed() and effect() created inside a component constructor or an InjectionToken factory. For utility functions outside a component lifecycle, wrap the call in runInInjectionContext(injector, fn) and pass an Injector retrieved from within a valid context."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
+		"slug": "angular-withcomponentinputbinding-route-params-signals-2026",
+		"title": "Route Params as Signals: withComponentInputBinding() in Angular 22",
+		"description": "Stop subscribing to ActivatedRoute manually. withComponentInputBinding() maps route params, query params, and resolver data directly to signal inputs.",
+		"category": [
+			"Angular 21"
+		],
+		"tags": [
+			"angular",
+			"routing",
+			"signals",
+			"withComponentInputBinding",
+			"angular 22"
+		],
+		"keywords": [
+			"withComponentInputBinding angular",
+			"route params as signals angular",
+			"angular signal inputs routing",
+			"ActivatedRoute replacement angular 22",
+			"angular query params signals 2026"
+		],
+		"date": "2026-07-26",
+		"faq": [
+			{
+				"q": "Does withComponentInputBinding() work with lazy-loaded routes?",
+				"a": "Yes. It applies to all routed components regardless of whether the route is eagerly loaded or uses loadComponent / loadChildren. The binding happens at route activation time, after the module chunk has been fetched."
+			},
+			{
+				"q": "Can I use input.required() for route params?",
+				"a": "Yes, and it is the right choice for path params that are always present in the URL (like :id). For optional query params, use input(defaultValue) instead so the component has a sensible default when the query param is absent."
+			},
+			{
+				"q": "Does this replace ActivatedRoute entirely?",
+				"a": "For most components, yes. The main remaining use case for ActivatedRoute is reading the url or fragment observables, or reacting to URL changes inside a parent component that needs to observe child route changes. For anything param- or data-related in a leaf component, withComponentInputBinding() covers it completely."
+			},
+			{
+				"q": "What Angular version introduced this?",
+				"a": "withComponentInputBinding() was introduced as experimental in Angular 16 and stabilized in Angular 17. Angular 22 keeps the same API. If you are on Angular 17 or later, there is no reason not to enable it — it is a purely additive opt-in with no breaking changes."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "9 mins",
+		"slug": "whats-new-in-angular-22",
+		"title": "What's New in Angular 22: Signals, @Service, and the AI Era",
+		"description": "Angular 22 stabilizes Signal Forms and the Resource API, makes OnPush the default, and introduces @Service, injectAsync, and experimental WebMCP tools.",
+		"category": [
+			"Angular 22"
+		],
+		"tags": [
+			"angular",
+			"angular 22",
+			"signals",
+			"signal forms",
+			"resource api"
+		],
+		"keywords": [
+			"Angular 22 new features",
+			"Angular 22 Signal Forms stable",
+			"Angular 22 OnPush default",
+			"Angular @Service decorator",
+			"Angular 22 WebMCP injectAsync"
+		],
+		"date": "2026-07-25",
+		"faq": [
+			{
+				"q": "Do I need to update all my components to OnPush after upgrading to Angular 22?",
+				"a": "No. Running ng update automatically adds changeDetection: ChangeDetectionStrategy.Eager to every component that did not have an explicit strategy, preserving the previous runtime behavior. You can then opt individual components into OnPush at your own pace. Components already using signals will generally work correctly with OnPush without any changes."
+			},
+			{
+				"q": "Is @Injectable() deprecated now that @Service() exists?",
+				"a": "No. @Injectable() remains fully supported. @Service() is a shorthand for the most common case — providedIn: 'root' with inject()-based DI. Use @Injectable() when you need constructor injection for third-party library interop, providedIn: 'platform', or other configuration options that @Service() does not expose."
+			},
+			{
+				"q": "Can I use Signal Forms alongside existing Reactive Forms?",
+				"a": "Yes. The @angular/forms/signals/compat package provides compatForm and SignalFormControl to bridge the two worlds. A Signal Form can contain Reactive Form controls, and vice versa. Angular's documentation includes a migration guide with both top-down and bottom-up strategies for incremental adoption."
+			},
+			{
+				"q": "What does WebMCP actually enable that I couldn't do before?",
+				"a": "WebMCP lets browser-based AI agents interact with your app through declared, typed tool calls rather than DOM scraping or simulated user input. An agent can call search_books({ query: '...' }) and get a structured JSON response instead of clicking into a search field and parsing text. It's experimental in Angular 22 — aimed at developers building AI-assisted app experiences."
+			}
+		]
+	},
+	{
+		"imageUrl": "",
+		"readTime": "6 mins",
 		"slug": "angular-afterrendereffect-dom-safe-side-effects-2026",
 		"title": "afterRenderEffect() in Angular 21: DOM-Safe Reactive Side Effects",
 		"description": "Learn how afterRenderEffect() solves the DOM access problem in Angular 21 — reactive, SSR-safe, and signal-aware without lifecycle hook workarounds.",
@@ -676,7 +1535,7 @@
 		"title": "Angular 21 Signals Explained: Signals, Signal Forms",
 		"description": "In-depth Angular 21 Signals guide for 2026: learn signals, reactive forms with toSignal(), zoneless change detection, and how to use Angular Signals with RxJS and HttpClient.",
 		"category": [
-			"Angular 21 signals"
+			"Angular 21"
 		],
 		"tags": [
 			"angular 21",
@@ -685,19 +1544,21 @@
 			"zoneless change detection",
 			"angular 2026",
 			"angular reactivity",
-			"rxjs interop",
-			"angular seo"
+			"rxjs interop"
 		],
 		"keywords": [
-			"Angular 21 signals",
-			"Angular 21 new features",
-			"Angular signals tutorial",
-			"Signal Forms in Angular 21",
-			"Zoneless Angular change detection",
-			"Angular signals vs RxJS",
-			"Angular reactive programming 2026"
+			"angular 21 signals",
+			"angular signals tutorial",
+			"angular signal forms",
+			"angular computed signals",
+			"angular effect signal",
+			"toSignal angular",
+			"angular zoneless change detection",
+			"angular reactive state 2026",
+			"angular signals vs rxjs",
+			"angular signals example"
 		],
-		"date": " 2026-01-03",
+		"date": "2026-01-03",
 		"faq": [
 			{
 				"q": "What is a signal in Angular 21?",
@@ -734,11 +1595,16 @@
 			"scalable angular apps"
 		],
 		"keywords": [
-			"Angular folder structure",
-			"Angular best practices",
-			"Frontend architecture",
-			"Scalable Angular apps",
-			"Angular 2026 guide"
+			"angular folder structure",
+			"angular project structure 2026",
+			"angular app architecture",
+			"angular feature module structure",
+			"angular standalone components folder structure",
+			"angular core shared features pattern",
+			"scalable angular app",
+			"angular lazy loading folder structure",
+			"angular monorepo structure",
+			"angular best practices 2026"
 		],
 		"date": "2026-03-06",
 		"faq": [

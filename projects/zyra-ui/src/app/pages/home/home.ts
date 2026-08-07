@@ -275,6 +275,20 @@ export class Home implements OnInit, OnDestroy {
             title: 'Zyra UI — Signals-First Angular Components, No NgModules',
             description: `Zyra UI is a signals-first, standalone-only Angular component library — ${this.componentCount} typed, accessible components, no NgModules, no RxJS required to use them. Built for Angular 21+.`,
             url: 'https://www.zyraui.dev/',
+            keywords: [
+                'angular component library',
+                'angular ui components',
+                'angular 21 components',
+                'signals-first angular',
+                'angular design tokens',
+                'angular ui kit',
+                'angular standalone components',
+                'angular accessible components',
+                'angular dark mode theme',
+                'free angular components',
+                'zyra ui',
+                'angular ssr components',
+            ],
         });
 
         this.seo.injectJsonLd('home-software', {

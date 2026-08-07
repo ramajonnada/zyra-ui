@@ -11,7 +11,7 @@ import { ZyraBox } from 'zyra-ng-ui';
             .pg-box-renderer__label {
                 font-family: var(--zyra-font-mono);
                 font-size: 12px;
-                color: var(--zyra-color-accent);
+                color: var(--zyra-color-accent-hover);
             }
         `,
     ],

@@ -129,7 +129,7 @@ Every time `search` updates, `users` re-fetches. The previous value stays in `us
 
 ### Debouncing with RxJS interop
 
-For search inputs you'll want to debounce. Bridge through `toObservable` / `toSignal`:
+For search inputs you'll want to debounce. Bridge through `toObservable` / `toSignal` (see [Angular toSignal() and toObservable()](/blog/angular-tosignal-toobservable-rxjs-interop-2026) for the full interop guide):
 
 ```ts
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
@@ -320,7 +320,7 @@ Use `status()` to distinguish the first load from a re-fetch so the list stays v
 
 ## SSR and httpResource
 
-`httpResource()` works correctly with Angular SSR. On the server it fetches data before serializing the HTML, so crawlers and users receive real content — important for Core Web Vitals and SEO.
+`httpResource()` works correctly with Angular SSR. On the server it fetches data before serializing the HTML, so crawlers and users receive real content — important for Core Web Vitals and SEO (see [Angular SSR & SEO in 2026](/blog/angular-ssr-seo-2026-core-web-vitals-component-library) for the full guide).
 
 Pair it with `withHttpTransferCache()` so the server's fetched data is transferred to the browser, avoiding a double fetch on hydration:
 
@@ -389,7 +389,7 @@ data.set(newValue); // set local value (optimistic update)
 
 ---
 
-`resource()` and `httpResource()` are the clearest sign yet that Angular's signal story is complete. Data fetching — historically one of the most boilerplate-heavy parts of an Angular component — is now a one-liner that stays reactive, handles request cancellation, and plugs into SSR out of the box.
+`resource()` and `httpResource()` are the clearest sign yet that Angular's signal story is complete. The [official Angular resource() documentation](https://angular.dev/guide/signals/resource) covers all options including `defaultValue` and request cancellation. Data fetching — historically one of the most boilerplate-heavy parts of an Angular component — is now a one-liner that stays reactive, handles request cancellation, and plugs into SSR out of the box.
 
 ---
 
@@ -410,3 +410,12 @@ Return `undefined` from the URL function. When the URL function returns `undefin
 ### Does httpResource() work with Angular SSR?
 
 Yes. `httpResource()` fetches data on the server before the HTML is serialized, so crawlers and users receive fully-rendered content. Add `withHttpTransferCache()` to your `HttpClient` providers so the server result is transferred to the browser, avoiding a second request on hydration.
+
+---
+
+**Related reading:**
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Angular toSignal() and toObservable(): RxJS ↔ Signals Interop](/blog/angular-tosignal-toobservable-rxjs-interop-2026)
+- [Angular SSR & SEO in 2026: Core Web Vitals Done Right](/blog/angular-ssr-seo-2026-core-web-vitals-component-library)
+- [Route Params as Signals: withComponentInputBinding() in Angular 22](/blog/angular-withcomponentinputbinding-route-params-signals-2026)
+- [Official Angular resource() documentation](https://angular.dev/guide/signals/resource)

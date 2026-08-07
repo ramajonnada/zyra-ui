@@ -48,7 +48,7 @@ This works, but it's borrowing unrelated syntax — a structural directive meant
 <span>Member since {{ currentUser.joinedAt | date }}</span>
 ```
 
-No `<ng-container>`, no borrowed conditional, no `as`. `@let` declares exactly what it looks like it declares: a variable, computed once per change-detection pass, available to every binding after it in the same scope.
+No `<ng-container>`, no borrowed conditional, no `as`. For more on Angular's modern template syntax, the [`@defer` block guide](/blog/angular-defer-blocks-lazy-loading-2026) covers `@if`, `@for`, and lazy loading in templates. `@let` declares exactly what it looks like it declares: a variable, computed once per change-detection pass, available to every binding after it in the same scope.
 
 ---
 
@@ -127,13 +127,13 @@ If `calculateDiscount()` does anything nontrivial, this runs it three times per 
 <button (click)="count = count + 1">{{ count }}</button>
 ```
 
-For state that needs to change in response to user interaction, that state belongs in the component class as a `signal()` — `@let` is for *deriving* a template-local value from expressions, not for holding mutable UI state.
+For state that needs to change in response to user interaction, that state belongs in the component class as a [signal()](/blog/angular-21-signals-explained-signals-signal-forms) — `@let` is for *deriving* a template-local value from expressions, not for holding mutable UI state.
 
 ---
 
 ## Wrapping up
 
-`@let` is a small addition with an outsized readability payoff: it replaces a directive borrowed for a side effect it wasn't designed for, gives variables real, predictable block scoping, and avoids the "call the same expensive expression three times" trap that's easy to fall into in template-heavy components. If you have any `*ngIf="... as x"` left in your templates purely to get a variable — not to conditionally render anything — that's a direct, mechanical `@let` conversion.
+`@let` is a small addition with an outsized readability payoff: it replaces a directive borrowed for a side effect it wasn't designed for, gives variables real, predictable block scoping, and avoids the "call the same expensive expression three times" trap that's easy to fall into in template-heavy components. The [official Angular @let documentation](https://angular.dev/api/core/@let) covers scoping rules and edge cases. If you have any `*ngIf="... as x"` left in your templates purely to get a variable — not to conditionally render anything — that's a direct, mechanical `@let` conversion.
 
 ---
 
@@ -154,3 +154,12 @@ Yes. `@let` shipped as a developer preview in Angular 17.2 and has been stable s
 ### Does @let hurt performance if declared but never used far down the template?
 
 No meaningful cost — it's evaluated once per change-detection pass for the enclosing block, the same as any other template expression would be if written inline. The benefit is avoiding *redundant* evaluations of the same expression, not avoiding evaluation altogether.
+
+---
+
+**Related reading:**
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Angular @defer Blocks: Lazy Load Any Component Instantly](/blog/angular-defer-blocks-lazy-loading-2026)
+- [Angular input() and output(): Replace @Input/@Output with the Signal API](/blog/angular-input-output-signal-api-replace-decorators)
+- [What's New in Angular 22](/blog/whats-new-in-angular-22)
+- [Official Angular @let template syntax documentation](https://angular.dev/api/core/@let)

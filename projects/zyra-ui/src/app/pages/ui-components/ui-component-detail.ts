@@ -56,6 +56,14 @@ export class UiComponentDetail implements OnInit, OnDestroy {
             title: `${componentName} Component - Zyra UI`,
             description,
             url,
+            keywords: [
+                `angular ${componentName.toLowerCase()} component`,
+                `zyra ${componentName.toLowerCase()}`,
+                `angular ui ${componentName.toLowerCase()}`,
+                'angular component library',
+                'angular 21',
+                'signals-first angular',
+            ],
         });
 
         this.seo.injectJsonLd('component-page-jsonld', {

@@ -159,6 +159,41 @@
     min-height: 100%;
 }
 
+.component-card__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 96px;
+    padding: 16px;
+    border-radius: var(--zyra-radius-md);
+    background: var(--zyra-color-bg-panel);
+    border: 1px solid var(--zyra-color-border);
+    overflow: hidden;
+    pointer-events: none;
+
+    // Previews are decorative thumbnails, not interactive instances — freeze
+    // any looping/entrance CSS animation on the real components inside them
+    // (spinner spin, skeleton shimmer, progress width transition, etc.) so
+    // 60 independently-animating previews don't read as page-wide flicker.
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+.component-card__preview-accordion {
+    width: 100%;
+}
+
+.component-card__preview-swatch {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--zyra-radius-sm);
+    background: var(--zyra-color-surface-inset);
+    border: 1px solid var(--zyra-color-border-strong-color);
+}
+
 .component-card__header {
     display: flex;
     justify-content: space-between;

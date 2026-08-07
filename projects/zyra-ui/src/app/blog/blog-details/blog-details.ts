@@ -25,6 +25,7 @@ export class BlogDetails implements OnDestroy {
     postReadTime = signal('');
     postCategory = signal('Angular');
     postTags = signal<string[]>([]);
+    postKeywords = signal<string[]>([]);
     postFaq = signal<{ q: string; a: string }[]>([]);
     loading = signal(true);
     error = signal('');
@@ -65,6 +66,7 @@ export class BlogDetails implements OnDestroy {
         this.postDate.set('');
         this.postReadTime.set('');
         this.postTags.set([]);
+        this.postKeywords.set([]);
         this.postFaq.set([]);
 
         this.blogService
@@ -122,6 +124,7 @@ export class BlogDetails implements OnDestroy {
         this.postReadTime.set(post.readTime.trim());
         this.postCategory.set(this.toList(post.category)[0] ?? 'Angular');
         this.postTags.set(this.toList(post.tags).slice(0, 6));
+        this.postKeywords.set(Array.isArray(post.keywords) ? post.keywords : []);
         this.postFaq.set(Array.isArray(post.faq) ? post.faq : []);
     }
 
@@ -136,6 +139,7 @@ export class BlogDetails implements OnDestroy {
             type: 'article',
             publishedTime: this.postDate() || undefined,
             tags: this.postTags(),
+            keywords: this.postKeywords(),
         });
 
         this.seo.injectJsonLd('blog-post-jsonld', {
@@ -163,7 +167,7 @@ export class BlogDetails implements OnDestroy {
                 '@type': 'WebPage',
                 '@id': url,
             },
-            keywords: this.postTags().join(', '),
+            keywords: [...this.postTags(), ...this.postKeywords()].join(', '),
             articleSection: this.postCategory(),
         });
 

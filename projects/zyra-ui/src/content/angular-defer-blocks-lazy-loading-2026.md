@@ -215,7 +215,7 @@ export class DashboardComponent {
 }
 ```
 
-Because `loadChart` is a signal, the `when` expression re-evaluates reactively with no Zone.js needed.
+Because `loadChart` is a [signal](/blog/angular-21-signals-explained-signals-signal-forms), the `when` expression re-evaluates reactively with no Zone.js needed.
 
 ---
 
@@ -302,7 +302,7 @@ You should see named chunks load on demand instead of up front. If a deferred ch
 
 In Lighthouse, you'll typically see improvement in:
 
-- **FCP / LCP** — less JS to parse before first render
+- **FCP / LCP** — less JS to parse before first render (see [Angular SSR & SEO in 2026](/blog/angular-ssr-seo-2026-core-web-vitals-component-library) for a full Core Web Vitals guide)
 - **TBT / INP** — less main-thread work on startup
 - **Bundle size** — split chunks shown in the JS transfer breakdown
 
@@ -351,7 +351,7 @@ In Lighthouse, you'll typically see improvement in:
 
 ---
 
-Angular's `@defer` blocks are the most impactful performance tool the framework has shipped in years. They require no architectural changes, no route restructuring, and no manual dynamic import wiring. Add them progressively to any template and watch your initial bundle shrink while your user experience gets sharper.
+Angular's `@defer` blocks are the most impactful performance tool the framework has shipped in years. The [official Angular @defer documentation](https://angular.dev/guide/defer) covers all triggers and options. They require no architectural changes, no route restructuring, and no manual dynamic import wiring. Add them progressively to any template and watch your initial bundle shrink while your user experience gets sharper.
 
 ---
 
@@ -372,3 +372,12 @@ Angular `@defer` supports `on viewport` (when the placeholder enters the viewpor
 ### Can I use @defer with non-standalone Angular components?
 
 No. Only standalone components, directives, and pipes are deferrable. Non-standalone (module-based) dependencies stay in the main bundle even if wrapped in a `@defer` block. This is a strong reason to migrate to standalone components in modern Angular.
+
+---
+
+**Related reading:**
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Angular SSR & SEO in 2026: Core Web Vitals Done Right](/blog/angular-ssr-seo-2026-core-web-vitals-component-library)
+- [Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals](/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals)
+- [7 Modern Angular UI Animations You Can Build in 2026](/blog/modern-angular-ui-animations-2026)
+- [Official Angular @defer documentation](https://angular.dev/guide/defer)

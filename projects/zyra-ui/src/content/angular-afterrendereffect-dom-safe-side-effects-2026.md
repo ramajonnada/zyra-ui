@@ -135,7 +135,7 @@ When `data` changes, Angular runs change detection, commits the DOM, and then fi
 
 ## Cleanup Is Built In
 
-Like `effect()`, `afterRenderEffect()` accepts an `onCleanup` parameter so you can tear down resources before each re-run:
+Like `effect()`, `afterRenderEffect()` accepts an `onCleanup` parameter (see [Angular effect() Cleanup: Preventing Memory Leaks with DestroyRef](/blog/angular-effect-cleanup-destroyref-memory-leaks-2026) for a deeper dive into this pattern) so you can tear down resources before each re-run:
 
 ```typescript
 afterRenderEffect((onCleanup) => {
@@ -187,7 +187,7 @@ export class ChartComponent {
 
 ## SSR and the Platform Check
 
-`afterRenderEffect()` is SSR-safe by design: it does not run on the server at all. Angular's renderer runs in a no-op mode during server-side rendering, and `afterRenderEffect` callbacks are simply not invoked. You do not need to wrap your callback in `isPlatformBrowser()` checks — the framework handles it.
+`afterRenderEffect()` is SSR-safe by design: it does not run on the server at all. For a broader look at how Angular handles [SSR and Core Web Vitals](/blog/angular-ssr-seo-2026-core-web-vitals-component-library), the framework's SSR story has improved significantly in recent versions. Angular's renderer runs in a no-op mode during server-side rendering, and `afterRenderEffect` callbacks are simply not invoked. You do not need to wrap your callback in `isPlatformBrowser()` checks — the framework handles it.
 
 This is a meaningful improvement over `ngAfterViewInit`, which does run on the server and requires manual platform guards when you access browser APIs.
 
@@ -195,7 +195,7 @@ This is a meaningful improvement over `ngAfterViewInit`, which does run on the s
 
 ## Wrapping up
 
-`afterRenderEffect()` closes a real gap in Angular's signal story. Before it existed, DOM-reactive code either required lifecycle hook gymnastics or broke SSR silently. The API is small — one function, the same cleanup pattern as `effect()` — and it composes naturally with `input()`, `signal()`, and `computed()`. Next time you reach for `ngAfterViewInit` plus an `effect()` workaround, check whether `afterRenderEffect()` does the job in a single call.
+`afterRenderEffect()` closes a real gap in Angular's signal story. Before it existed, DOM-reactive code either required lifecycle hook gymnastics or broke SSR silently. The API is small — one function, the same cleanup pattern as `effect()` — and it composes naturally with `input()`, `signal()`, and `computed()` — see [Angular Signals Explained](/blog/angular-21-signals-explained-signals-signal-forms) for the full signal primitives overview. The [official `afterRenderEffect` API reference](https://angular.dev/api/core/afterRenderEffect) documents all available options. Next time you reach for `ngAfterViewInit` plus an `effect()` workaround, check whether `afterRenderEffect()` does the job in a single call.
 
 ---
 
@@ -216,3 +216,12 @@ Yes. `afterRenderEffect()` does not run on the server during SSR. Angular's serv
 ### When should I use afterNextRender() instead?
 
 Use `afterNextRender()` for one-time setup that only needs to happen once after the component's first render — for example, measuring initial element dimensions, setting an autofocus, or initializing a library that does not need to respond to signal changes. Use `afterRenderEffect()` when the initialization needs to repeat whenever reactive state changes after a render cycle.
+
+---
+
+**Related reading:**
+- [Angular effect() Cleanup: Preventing Memory Leaks with DestroyRef](/blog/angular-effect-cleanup-destroyref-memory-leaks-2026)
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Angular SSR & SEO in 2026: Core Web Vitals Done Right](/blog/angular-ssr-seo-2026-core-web-vitals-component-library)
+- [Angular input() and output(): Replace @Input/@Output with the Signal API](/blog/angular-input-output-signal-api-replace-decorators)
+- [Official afterRenderEffect API documentation](https://angular.dev/api/core/afterRenderEffect)

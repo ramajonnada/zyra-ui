@@ -38,6 +38,398 @@
 			[style.animation-delay]="i * 55 + 'ms'">
 			<zyra-card variant="outlined" [clickable]="true" padding="lg">
 				<div class="component-card__body">
+					@switch (card.slug) {
+					@case ('button') {
+					<div class="component-card__preview">
+						<zyra-button variant="primary" size="sm">Button</zyra-button>
+					</div>
+					}
+					@case ('accordion') {
+					<div class="component-card__preview">
+						<zyra-accordion class="component-card__preview-accordion">
+							<zyra-accordion-item title="What is Zyra UI?" />
+						</zyra-accordion>
+					</div>
+					}
+					@case ('badge') {
+					<div class="component-card__preview">
+						<zyra-badge variant="info" size="md">Badge</zyra-badge>
+					</div>
+					}
+					@case ('button-group') {
+					<div class="component-card__preview">
+						<zyra-button-group size="sm">
+							<zyra-button variant="secondary" size="sm">One</zyra-button>
+							<zyra-button variant="secondary" size="sm">Two</zyra-button>
+						</zyra-button-group>
+					</div>
+					}
+					@case ('card') {
+					<div class="component-card__preview">
+						<zyra-card variant="elevated" padding="sm" style="width:100%">
+							<strong>Plan: Pro</strong>
+							<p style="margin:4px 0 0">$29/month</p>
+						</zyra-card>
+					</div>
+					}
+					@case ('code-block') {
+					<div class="component-card__preview">
+						<zyra-code-block language="ts" [copyable]="false" code="const x = 1;"></zyra-code-block>
+					</div>
+					}
+					@case ('breadcrumb') {
+					<div class="component-card__preview">
+						<zyra-breadcrumb>
+							<zyra-breadcrumb-item>Home</zyra-breadcrumb-item>
+							<zyra-breadcrumb-item [current]="true">Docs</zyra-breadcrumb-item>
+						</zyra-breadcrumb>
+					</div>
+					}
+					@case ('dropdown-menu') {
+					<div class="component-card__preview">
+						<zyra-dropdown-menu>
+							<zyra-button slot="trigger" variant="secondary" size="sm">Options</zyra-button>
+							<zyra-menu-item>Edit</zyra-menu-item>
+							<zyra-menu-item>Delete</zyra-menu-item>
+						</zyra-dropdown-menu>
+					</div>
+					}
+					@case ('avatar') {
+					<div class="component-card__preview">
+						<zyra-avatar name="Ada Lovelace" size="md" variant="teal"></zyra-avatar>
+					</div>
+					}
+					@case ('input') {
+					<div class="component-card__preview">
+						<zyra-input placeholder="you@example.com" size="sm" style="max-width:180px"></zyra-input>
+					</div>
+					}
+					@case ('slider') {
+					<div class="component-card__preview">
+						<zyra-slider [value]="40" size="sm" style="width:140px"></zyra-slider>
+					</div>
+					}
+					@case ('file-upload') {
+					<div class="component-card__preview">
+						<zyra-file-upload></zyra-file-upload>
+					</div>
+					}
+					@case ('form-field') {
+					<div class="component-card__preview">
+						<zyra-form-field label="Email" style="width:100%">
+							<zyra-input type="email" placeholder="you@example.com" />
+						</zyra-form-field>
+					</div>
+					}
+					@case ('spinner') {
+					<div class="component-card__preview">
+						<zyra-spinner size="md"></zyra-spinner>
+					</div>
+					}
+					@case ('toast') {
+					<div class="component-card__preview">
+						<zyra-toast-item
+							[toast]="{ id: '1', variant: 'success', title: 'Saved', description: '', duration: 0 }"
+						></zyra-toast-item>
+					</div>
+					}
+					@case ('tooltip') {
+					<div class="component-card__preview">
+						<zyra-tooltip text="Helpful hint" position="top">
+							<zyra-button variant="secondary" size="sm">Hover me</zyra-button>
+						</zyra-tooltip>
+					</div>
+					}
+					@case ('modal') {
+					<div class="component-card__preview">
+						<zyra-button variant="secondary" size="sm">Open Modal</zyra-button>
+					</div>
+					}
+					@case ('confirm-dialog') {
+					<div class="component-card__preview">
+						<zyra-button variant="danger" size="sm">Delete Item</zyra-button>
+					</div>
+					}
+					@case ('theme-switch') {
+					<div class="component-card__preview">
+						<zyra-theme-switch mode="toggle"></zyra-theme-switch>
+					</div>
+					}
+					@case ('drawer') {
+					<div class="component-card__preview">
+						<zyra-button variant="secondary" size="sm">Open Drawer</zyra-button>
+					</div>
+					}
+					@case ('command-palette') {
+					<div class="component-card__preview">
+						<zyra-button variant="secondary" size="sm">⌘K Search</zyra-button>
+					</div>
+					}
+					@case ('alert') {
+					<div class="component-card__preview">
+						<zyra-alert variant="success" title="Payment received" style="width:100%"></zyra-alert>
+					</div>
+					}
+					@case ('chip') {
+					<div class="component-card__preview">
+						<zyra-chip variant="info">New</zyra-chip>
+					</div>
+					}
+					@case ('switch') {
+					<div class="component-card__preview">
+						<zyra-switch [checked]="true" size="sm"></zyra-switch>
+					</div>
+					}
+					@case ('toggle') {
+					<div class="component-card__preview">
+						<zyra-toggle [pressed]="true" size="sm">B</zyra-toggle>
+					</div>
+					}
+					@case ('progress') {
+					<div class="component-card__preview">
+						<zyra-progress [value]="65" style="width:140px"></zyra-progress>
+					</div>
+					}
+					@case ('divider') {
+					<div class="component-card__preview">
+						<zyra-divider label="OR" style="width:140px"></zyra-divider>
+					</div>
+					}
+					@case ('select') {
+					<div class="component-card__preview">
+						<zyra-select placeholder="Choose a plan" size="sm" style="width:160px">
+							<zyra-option value="free">Free</zyra-option>
+							<zyra-option value="pro">Pro</zyra-option>
+						</zyra-select>
+					</div>
+					}
+					@case ('multi-select') {
+					<div class="component-card__preview">
+						<zyra-multi-select placeholder="Tags" size="sm" style="width:160px">
+							<zyra-option value="a">Alpha</zyra-option>
+							<zyra-option value="b">Beta</zyra-option>
+						</zyra-multi-select>
+					</div>
+					}
+					@case ('autocomplete') {
+					<div class="component-card__preview">
+						<zyra-autocomplete placeholder="Search…" size="sm" style="width:160px">
+							<zyra-option value="a">Alpha</zyra-option>
+						</zyra-autocomplete>
+					</div>
+					}
+					@case ('textarea') {
+					<div class="component-card__preview">
+						<zyra-textarea placeholder="Write a note…" [rows]="2" style="width:160px"></zyra-textarea>
+					</div>
+					}
+					@case ('checkbox') {
+					<div class="component-card__preview">
+						<zyra-checkbox [checked]="true" label="Remember me"></zyra-checkbox>
+					</div>
+					}
+					@case ('radio') {
+					<div class="component-card__preview">
+						<zyra-radio-group>
+							<zyra-radio value="a" label="Option A"></zyra-radio>
+						</zyra-radio-group>
+					</div>
+					}
+					@case ('tabs') {
+					<div class="component-card__preview">
+						<zyra-tabs size="sm" style="width:100%">
+							<zyra-tab label="Overview">Overview content</zyra-tab>
+							<zyra-tab label="Details">Details content</zyra-tab>
+						</zyra-tabs>
+					</div>
+					}
+					@case ('skeleton') {
+					<div class="component-card__preview">
+						<zyra-skeleton variant="text" [lines]="2" style="width:140px"></zyra-skeleton>
+					</div>
+					}
+					@case ('typography') {
+					<div class="component-card__preview">
+						<zyra-typography variant="h4">Heading</zyra-typography>
+					</div>
+					}
+					@case ('empty-state') {
+					<div class="component-card__preview">
+						<zyra-empty-state title="No results" description="Try a different search" size="sm"></zyra-empty-state>
+					</div>
+					}
+					@case ('image') {
+					<div class="component-card__preview">
+						<zyra-image
+							src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80'%3E%3Crect width='120' height='80' fill='%23888'/%3E%3C/svg%3E"
+							alt="Preview"
+							radius="md"
+							style="width:120px"
+						></zyra-image>
+					</div>
+					}
+					@case ('json-viewer') {
+					<div class="component-card__preview">
+						<zyra-json-viewer [data]="{ name: 'Zyra', version: 1 }" [expandDepth]="1" style="width:100%"></zyra-json-viewer>
+					</div>
+					}
+					@case ('markdown-viewer') {
+					<div class="component-card__preview">
+						<zyra-markdown-viewer content="**Bold** and _italic_ text" style="width:100%"></zyra-markdown-viewer>
+					</div>
+					}
+					@case ('clipboard') {
+					<div class="component-card__preview">
+						<zyra-clipboard value="npm i zyra-ng-ui" label="Copy"></zyra-clipboard>
+					</div>
+					}
+					@case ('rating') {
+					<div class="component-card__preview">
+						<zyra-rating [value]="3" [readonly]="true"></zyra-rating>
+					</div>
+					}
+					@case ('stack') {
+					<div class="component-card__preview">
+						<zyra-stack direction="row" gap="sm">
+							<span class="component-card__preview-swatch"></span>
+							<span class="component-card__preview-swatch"></span>
+							<span class="component-card__preview-swatch"></span>
+						</zyra-stack>
+					</div>
+					}
+					@case ('pagination') {
+					<div class="component-card__preview">
+						<zyra-pagination [totalPages]="5" [currentPage]="2" size="sm"></zyra-pagination>
+					</div>
+					}
+					@case ('stepper') {
+					<div class="component-card__preview">
+						<zyra-stepper [activeIndex]="1" style="width:100%">
+							<zyra-step label="Details"></zyra-step>
+							<zyra-step label="Payment"></zyra-step>
+							<zyra-step label="Confirm"></zyra-step>
+						</zyra-stepper>
+					</div>
+					}
+					@case ('popover') {
+					<div class="component-card__preview">
+						<zyra-button variant="secondary" size="sm">More info</zyra-button>
+					</div>
+					}
+					@case ('timeline') {
+					<div class="component-card__preview">
+						<zyra-timeline style="width:100%">
+							<zyra-timeline-item title="Order placed" date="Jan 3"></zyra-timeline-item>
+							<zyra-timeline-item title="Shipped" date="Jan 5"></zyra-timeline-item>
+						</zyra-timeline>
+					</div>
+					}
+					@case ('table') {
+					<div class="component-card__preview">
+						<zyra-table
+							[columns]="[{ key: 'name', label: 'Name' }, { key: 'role', label: 'Role' }]"
+							[rows]="[{ name: 'Ada', role: 'Engineer' }, { name: 'Grace', role: 'Admiral' }]"
+							size="sm"
+							style="width:100%"
+						></zyra-table>
+					</div>
+					}
+					@case ('tree-view') {
+					<div class="component-card__preview">
+						<zyra-tree-view
+							[nodes]="[{ id: 1, label: 'Root', children: [{ id: 2, label: 'Child' }] }]"
+							[expanded]="[1]"
+							size="sm"
+							style="width:100%"
+						></zyra-tree-view>
+					</div>
+					}
+					@case ('carousel') {
+					<div class="component-card__preview">
+						<zyra-carousel [showArrows]="false" style="width:100%">
+							<zyra-carousel-slide>Slide 1</zyra-carousel-slide>
+							<zyra-carousel-slide>Slide 2</zyra-carousel-slide>
+						</zyra-carousel>
+					</div>
+					}
+					@case ('calendar') {
+					<div class="component-card__preview">
+						<zyra-calendar style="width:100%"></zyra-calendar>
+					</div>
+					}
+					@case ('date-picker') {
+					<div class="component-card__preview">
+						<zyra-date-picker placeholder="Select date" size="sm" style="width:160px"></zyra-date-picker>
+					</div>
+					}
+					@case ('header') {
+					<div class="component-card__preview">
+						<zyra-header size="sm" style="width:100%">
+							<span zyraHeaderStart style="font-weight:600">Acme</span>
+							<span zyraHeaderEnd>
+								<zyra-badge variant="info" size="sm">Beta</zyra-badge>
+							</span>
+						</zyra-header>
+					</div>
+					}
+					@case ('sidebar') {
+					<div class="component-card__preview">
+						<zyra-sidebar width="180px" style="height:140px">
+							<a zyra-sidebar-item [active]="true">Dashboard</a>
+							<a zyra-sidebar-item>Settings</a>
+						</zyra-sidebar>
+					</div>
+					}
+					@case ('box') {
+					<div class="component-card__preview">
+						<zyra-box display="flex" [border]="true" rounded="md" padding="sm">
+							<span class="component-card__preview-swatch"></span>
+							<span class="component-card__preview-swatch"></span>
+						</zyra-box>
+					</div>
+					}
+					@case ('flex') {
+					<div class="component-card__preview">
+						<zyra-flex gap="sm" [border]="true" rounded="md" padding="sm">
+							<span class="component-card__preview-swatch"></span>
+							<span class="component-card__preview-swatch"></span>
+							<span class="component-card__preview-swatch"></span>
+						</zyra-flex>
+					</div>
+					}
+					@case ('grid') {
+					<div class="component-card__preview">
+						<zyra-grid [columns]="3" gap="sm" [border]="true" rounded="md" padding="sm" style="width:100%">
+							<span class="component-card__preview-swatch"></span>
+							<span class="component-card__preview-swatch"></span>
+							<span class="component-card__preview-swatch"></span>
+						</zyra-grid>
+					</div>
+					}
+					@case ('container') {
+					<div class="component-card__preview">
+						<zyra-container maxWidth="sm" [border]="true" rounded="md" paddingY="sm" style="width:100%">
+							<span class="component-card__preview-swatch"></span>
+						</zyra-container>
+					</div>
+					}
+					@case ('aspect-ratio') {
+					<div class="component-card__preview">
+						<zyra-aspect-ratio ratio="16/9" style="width:140px">
+							<span class="component-card__preview-swatch" style="width:100%;height:100%"></span>
+						</zyra-aspect-ratio>
+					</div>
+					}
+					@case ('scroll-area') {
+					<div class="component-card__preview">
+						<zyra-scroll-area maxHeight="70px" style="width:100%">
+							<p style="margin:0 0 8px">Line one</p>
+							<p style="margin:0 0 8px">Line two</p>
+							<p style="margin:0">Line three</p>
+						</zyra-scroll-area>
+					</div>
+					}
+					}
 					<div class="component-card__copy">
 						<div class="component-card__title-row">
 							<h2>{{ card.title }}</h2>

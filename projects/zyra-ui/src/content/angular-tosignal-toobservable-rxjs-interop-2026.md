@@ -23,7 +23,7 @@ slug: "angular-tosignal-toobservable-rxjs-interop-2026"
 
 > **TL;DR:** Angular didn't replace RxJS with signals — it built a two-way bridge between them. `toSignal()` converts an `Observable` into a readable signal (for use in templates and `computed()`); `toObservable()` converts a signal into an `Observable` (for use with RxJS operators like `debounceTime` or `switchMap`). Both live in `@angular/core/rxjs-interop` and are the correct way to mix the two reactivity models instead of manually subscribing and calling `.set()`.
 
-Signals and RxJS solve overlapping but distinct problems. Signals are Angular's synchronous, glitch-free reactivity primitive for UI state — cheap to read, and Angular's change detection is built directly around tracking them. RxJS is a general-purpose async/event stream library — WebSockets, debounced search input, complex operator chains, `combineLatest` across multiple sources. Angular 21 doesn't ask you to pick one; `@angular/core/rxjs-interop` exists specifically so each can be used where it's actually the better fit.
+[Signals](/blog/angular-21-signals-explained-signals-signal-forms) and RxJS solve overlapping but distinct problems. Signals are Angular's synchronous, glitch-free reactivity primitive for UI state — cheap to read, and Angular's change detection is built directly around tracking them. RxJS is a general-purpose async/event stream library — WebSockets, debounced search input, complex operator chains, `combineLatest` across multiple sources. Angular 21 doesn't ask you to pick one; `@angular/core/rxjs-interop` exists specifically so each can be used where it's actually the better fit.
 
 ---
 
@@ -149,7 +149,7 @@ export class MyComponent {
 }
 ```
 
-Calling either function outside an injection context — inside a method, a `setTimeout`, or after `async`/`await` — throws unless you explicitly pass an `Injector`:
+Calling either function outside an injection context — inside a method, a `setTimeout`, or after `async`/`await` — throws (the same injection context rules apply when using [effect() cleanup with DestroyRef](/blog/angular-effect-cleanup-destroyref-memory-leaks-2026)) unless you explicitly pass an `Injector`:
 
 ```typescript
 import { Injector, inject } from '@angular/core';
@@ -168,7 +168,7 @@ export class MyComponent {
 
 ## Wrapping up
 
-`toSignal()` and `toObservable()` are the sanctioned bridge between Angular's two reactivity systems, and using them is almost always better than hand-rolling the equivalent with a manual `.subscribe()` and a `signal.set()` call — you get automatic teardown, `initialValue`/`requireSync` for handling the "no value yet" case correctly, and code that reads as an intentional conversion rather than an ad hoc side effect. Reach for `toSignal()` when RxJS output needs to reach a template or `computed()`; reach for `toObservable()` when a signal's changes need to flow through an RxJS operator signals don't have natively.
+`toSignal()` and `toObservable()` are the sanctioned bridge between Angular's two reactivity systems, and using them is almost always better than hand-rolling the equivalent with a manual `.subscribe()` and a `signal.set()` call — you get automatic teardown, `initialValue`/`requireSync` for handling the "no value yet" case correctly, and code that reads as an intentional conversion rather than an ad hoc side effect. The [official Angular RxJS interop documentation](https://angular.dev/guide/rxjs-interop) covers all options, including `manualCleanup`. Reach for `toSignal()` when RxJS output needs to reach a template or `computed()`; reach for `toObservable()` when a signal's changes need to flow through an RxJS operator signals don't have natively.
 
 ---
 
@@ -189,3 +189,12 @@ Yes, but since services aren't always constructed within a component's injection
 ### Is toObservable() eager or lazy?
 
 It's eager relative to construction — it starts observing the signal's changes as soon as it's called, independent of whether anything has subscribed to the resulting Observable yet, so the first emission reflects the signal's value at conversion time, not just future changes.
+
+---
+
+**Related reading:**
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Angular effect() Cleanup: Preventing Memory Leaks with DestroyRef](/blog/angular-effect-cleanup-destroyref-memory-leaks-2026)
+- [Angular resource() and httpResource(): Reactive HTTP with Signals](/blog/angular-resource-api-httpresouce-signals-2026)
+- [NgRx Signal Store: Lightweight, Signal-Based State Management for Angular](/blog/ngrx-signal-store-angular-2026)
+- [Official Angular RxJS interop documentation](https://angular.dev/guide/rxjs-interop)

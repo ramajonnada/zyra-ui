@@ -88,7 +88,7 @@ If your app has dashboards, data tables, complex forms, or lots of component int
 
 ## Why signals matter so much here
 
-Signals are one of the main reasons zoneless Angular feels natural instead of difficult.
+[Signals](/blog/angular-21-signals-explained-signals-signal-forms) are one of the main reasons zoneless Angular feels natural instead of difficult.
 
 Signals give Angular a precise way to know what changed and where that value is used.
 
@@ -317,7 +317,7 @@ You should be more careful if your app:
 - uses `NgZone` lifecycle hooks directly
 - has not been audited for change-detection assumptions
 
-For greenfield Angular v21 apps, zoneless should usually be the default choice.
+For greenfield Angular v21 apps, zoneless should usually be the default choice. If you encounter the `NG0908` error during migration, see [Fix NG0908: In This Configuration Angular Requires Zone.js](/blog/fix-ng0908-in-this-configuration-angular-requires-zonejs) for the two-path fix.
 
 For legacy apps, it should be a deliberate migration.
 
@@ -363,3 +363,12 @@ If you want to go deeper, start with the official Angular docs on zoneless mode,
 - [Angular roadmap](https://angular.dev/roadmap)
 
 That combination gives you the clearest picture of where Angular is heading next.
+
+---
+
+**Related reading:**
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Fix NG0908: In This Configuration Angular Requires Zone.js](/blog/fix-ng0908-in-this-configuration-angular-requires-zonejs)
+- [Angular UI Performance in Zoneless, AI-Streaming Apps](/blog/angular-ui-library-zoneless-ai-streaming-rerenders)
+- [What's New in Angular 22](/blog/whats-new-in-angular-22)
+- [Official Angular zoneless guide](https://angular.dev/guide/zoneless)

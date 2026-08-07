@@ -9,14 +9,14 @@ import {
     signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem, ZyraCard } from 'zyra-ng-ui';
+import { ZyraBadge, ZyraBreadcrumb, ZyraBreadcrumbItem } from 'zyra-ng-ui';
 import { SeoService } from '../../../seo/seo.service';
 import { BlogService, PostMeta } from '../../services/blog-service';
 import { breadcrumbJsonLd, BreadcrumbLink, internalPath } from '../../shared/breadcrumb-jsonld';
 
 @Component({
     selector: 'app-blog-list',
-    imports: [ZyraBadge, ZyraCard, CommonModule, RouterLink, ZyraBreadcrumb, ZyraBreadcrumbItem],
+    imports: [ZyraBadge, CommonModule, RouterLink, ZyraBreadcrumb, ZyraBreadcrumbItem],
     templateUrl: './blog-list.html',
     styleUrl: './blog-list.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,6 +52,16 @@ export class BlogList implements OnInit, OnDestroy {
             description:
                 'Read Angular tutorials, design-token guidance, component architecture notes, and public website SEO tips from Zyra UI.',
             url: 'https://www.zyraui.dev/blog',
+            keywords: [
+                'angular tutorials 2026',
+                'angular signals tutorial',
+                'angular component library blog',
+                'angular best practices',
+                'angular zoneless guide',
+                'angular design tokens',
+                'angular ssr tutorial',
+                'zyra ui blog',
+            ],
         });
 
         this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems));
@@ -84,5 +94,19 @@ export class BlogList implements OnInit, OnDestroy {
         }
 
         return category?.trim() || 'Angular';
+    }
+
+    formatDate(dateStr: string): string {
+        if (!dateStr) return '';
+        const d = new Date(dateStr.trim());
+        if (isNaN(d.getTime())) return '';
+        // Date-only strings ("2026-08-06") parse as UTC midnight — format in
+        // UTC too, otherwise viewers west of UTC see the previous day.
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    }
+
+    thumbInitials(category: PostMeta['category']): string {
+        const label = this.categoryLabel(category);
+        return label.slice(0, 2).toUpperCase();
     }
 }

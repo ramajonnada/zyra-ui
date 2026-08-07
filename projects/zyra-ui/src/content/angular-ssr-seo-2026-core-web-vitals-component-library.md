@@ -303,7 +303,7 @@ Google weighs Core Web Vitals in ranking, and SSR alone does not guarantee good 
 
 - **LCP (Largest Contentful Paint)** — how fast the main content paints. Use `NgOptimizedImage` for images, preload the hero, and lazy-load below-the-fold routes.
 - **CLS (Cumulative Layout Shift)** — how much the layout jumps. Reserve space for images and dynamic content; skeleton loaders help here.
-- **INP (Interaction to Next Paint)** — how responsive the page feels. This is where zoneless and `OnPush` pay off, by cutting unnecessary change detection work.
+- **INP (Interaction to Next Paint)** — how responsive the page feels. This is where [zoneless Angular](/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals) and `OnPush` pay off, by cutting unnecessary change detection work.
 
 A concrete LCP win with `NgOptimizedImage`:
 
@@ -344,9 +344,10 @@ If you want a sequence to work through:
 2. Set per-route `Title` and `Meta`, including Open Graph tags.
 3. Add JSON-LD structured data for your key page types.
 4. Use `NgOptimizedImage` with `priority` on hero images and explicit dimensions everywhere.
-5. Lazy-load feature routes and audit your bundle.
-6. Verify your component library is tree-shakeable and SSR-safe.
-7. Measure with Lighthouse and the Search Console Core Web Vitals report — and re-measure after changes.
+5. Lazy-load feature routes with the router's `loadComponent`/`loadChildren` and audit your bundle.
+6. Defer below-the-fold template content within a route with [`@defer` blocks](/blog/angular-defer-blocks-lazy-loading-2026) — a separate, complementary tool from route lazy loading, not a replacement for it.
+7. Verify your component library is tree-shakeable and SSR-safe.
+8. Measure with Lighthouse and the Search Console Core Web Vitals report — and re-measure after changes.
 
 ---
 
@@ -379,3 +380,12 @@ To go deeper:
 - [Angular SSR guide](https://angular.dev/guide/ssr)
 - [Angular hydration](https://angular.dev/guide/hydration)
 - [NgOptimizedImage](https://angular.dev/api/common/NgOptimizedImage)
+
+---
+
+**Related reading:**
+- [Angular @defer Blocks: Lazy Load Any Component Instantly](/blog/angular-defer-blocks-lazy-loading-2026)
+- [Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals](/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals)
+- [7 Modern Angular UI Animations You Can Build in 2026](/blog/modern-angular-ui-animations-2026)
+- [Angular resource() and httpResource(): Reactive HTTP with Signals](/blog/angular-resource-api-httpresouce-signals-2026)
+- [Official Angular SSR guide](https://angular.dev/guide/ssr)

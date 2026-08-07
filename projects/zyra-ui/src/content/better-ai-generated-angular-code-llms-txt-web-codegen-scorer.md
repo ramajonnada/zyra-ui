@@ -43,7 +43,7 @@ You will learn:
 
 ## The core problem: models drift from frameworks
 
-Frameworks evolve faster than model training data. Angular has changed significantly in just the last few releases: standalone components became the default, signals arrived and matured, native control flow replaced the structural directives, and zoneless became the default in v21.
+Frameworks evolve faster than model training data. Angular has changed significantly in just the last few releases: standalone components became the default, [signals](/blog/angular-21-signals-explained-signals-signal-forms) arrived and matured, native control flow replaced the structural directives, and zoneless became the default in v21.
 
 A model trained on years of public code has seen far more old Angular than new Angular. Without extra context, it averages toward the past. The fix is to give it current, authoritative context at generation time. That is exactly what the following tools do.
 
@@ -188,10 +188,19 @@ Models are trained on years of public code, so they have seen far more old Angul
 
 ## Final thoughts
 
-If you do one thing from this post, install the official best-practices rules file in your editor. It is the cheapest, highest-impact change available. Add `llms.txt` for grounding and the Web Codegen Scorer when you are ready to measure, and you have a generation pipeline that produces Angular you would have written by hand.
+If you do one thing from this post, install the official best-practices rules file in your editor. For an even tighter AI-Angular integration, the [Angular CLI MCP Server](/blog/angular-cli-mcp-server-generate-components-with-ai) gives your AI assistant direct access to Angular's own best-practice examples. It is the cheapest, highest-impact change available. Add `llms.txt` for grounding and the Web Codegen Scorer when you are ready to measure, and you have a generation pipeline that produces Angular you would have written by hand.
 
 To go deeper:
 
 - [LLM prompts and AI IDE setup](https://angular.dev/ai/develop-with-ai)
 - [Web Codegen Scorer on GitHub](https://github.com/angular/web-codegen-scorer)
 - [Build with AI overview](https://angular.dev/ai)
+
+---
+
+**Related reading:**
+- [Angular CLI MCP Server: Generate Components with AI](/blog/angular-cli-mcp-server-generate-components-with-ai)
+- [Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals](/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals)
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [What's New in Angular 22](/blog/whats-new-in-angular-22)
+- [Angular AI development guide](https://angular.dev/ai/develop-with-ai)

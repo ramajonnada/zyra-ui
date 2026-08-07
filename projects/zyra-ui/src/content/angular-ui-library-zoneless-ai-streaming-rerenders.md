@@ -26,7 +26,7 @@ slug: 'angular-ui-library-zoneless-ai-streaming-rerenders'
 
 > **TL;DR:** Streaming LLM responses update UI state many times per second, which is a worst case for change detection. In zoneless Angular 21, the fix is to hold each message's content in a signal, use `OnPush` everywhere, track `@for` by a stable id, and batch tokens per animation frame. Your component library matters too: only `OnPush`-first, signal-friendly components stay smooth under streaming load.
 
-Almost every new app has an AI feature now: a chat panel, a copilot, an inline assistant. They all share one technical trait that quietly stresses your frontend — the response streams in token by token, which means your UI state updates many times per second.
+Almost every new app has an AI feature now: a chat panel, a copilot, an inline assistant. For a practical implementation of the streaming layer, see [Streaming AI Responses in Angular with the Vercel AI SDK](/blog/vercel-ai-sdk-angular-2026). They all share one technical trait that quietly stresses your frontend — the response streams in token by token, which means your UI state updates many times per second.
 
 That changes the performance conversation. A button that re-renders once is invisible. A message component that re-renders thirty times a second while a model streams an answer is not. In a zoneless Angular 21 app, whether that feels smooth or janky comes down to two things: how change detection is wired, and how disciplined your UI components are.
 
@@ -45,7 +45,7 @@ A normal interaction is bursty: a click, a fetch, a render, then quiet. Streamin
 
 In the old Zone.js model, every one of those async chunks could trigger change detection across the whole component tree. Most of that work is wasted: only the message currently being written has actually changed, but Angular re-checks everything anyway. With a couple of streaming panels open, that overhead becomes visible as dropped frames and laggy typing indicators.
 
-This is precisely the scenario zoneless Angular and signals were built to handle well.
+This is precisely the scenario [zoneless Angular](/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals) and [signals](/blog/angular-21-signals-explained-signals-signal-forms) were built to handle well.
 
 ---
 
@@ -183,3 +183,12 @@ To go deeper:
 - [Angular zoneless guide](https://angular.dev/guide/zoneless)
 - [Angular signals guide](https://angular.dev/guide/signals)
 - [CDK virtual scrolling](https://material.angular.dev/cdk/scrolling/overview)
+
+---
+
+**Related reading:**
+- [Angular v21 Zoneless Guide: Remove ZoneJS, Use Signals](/blog/angular-v21-zoneless-guide-remove-zonejs-use-signals)
+- [Streaming AI Responses in Angular with the Vercel AI SDK](/blog/vercel-ai-sdk-angular-2026)
+- [Angular @defer Blocks: Lazy Load Any Component Instantly](/blog/angular-defer-blocks-lazy-loading-2026)
+- [Angular Signals Explained: Signals, computed(), and Signal Forms](/blog/angular-21-signals-explained-signals-signal-forms)
+- [Official Angular zoneless guide](https://angular.dev/guide/zoneless)

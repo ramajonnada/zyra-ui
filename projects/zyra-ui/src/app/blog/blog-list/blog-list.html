@@ -8,7 +8,7 @@
 	<header class="blog-page__header">
 		<div class="blog-page__copy">
 			<p class="blog-page__eyebrow">Blog & Insights</p>
-			<h1>Tutorials, tips & deep dives</h1>
+			<h1>Tutorials, tips &amp; deep dives</h1>
 			<p class="blog-page__intro">
 				Angular signals, design tokens, public-site SEO, and component architecture notes
 				for developers building real products.
@@ -21,44 +21,34 @@
 		</div>
 	</header>
 
-	<div class="blog-page__section-head">
-		<h2>Latest articles</h2>
-	</div>
-
 	@if (loading()) {
-	<div class="blog-page__state">Loading posts...</div>
+		<div class="blog-page__state">Loading posts...</div>
 	} @else if (error(); as errorMessage) {
-	<div class="blog-page__state">{{ errorMessage }}</div>
+		<div class="blog-page__state">{{ errorMessage }}</div>
 	} @else if (!posts().length) {
-	<div class="blog-page__state">No posts available yet.</div>
+		<div class="blog-page__state">No posts available yet.</div>
 	} @else {
-	<div class="blog-page__grid">
-		@for (post of posts(); track post.slug) {
-		<a class="blog-card" [routerLink]="['/blog', post.slug]">
-			<zyra-card class="blog-card__shell" variant="outlined" [hasHeader]="false" [hasFooter]="true"
-				[clickable]="true">
-				<div class="blog-card__body">
-					<h3 class="blog-card__title">{{ post.title }}</h3>
-					<p class="blog-card__description">{{ post.description }}</p>
-				</div>
-
-				<div slot="footer" class="blog-card__footer">
-					<div class="blog-card__meta-group">
-						<span class="blog-card__meta">{{ post.readTime }}</span>
-						@if (post.tags?.length) {
-						<span class="blog-card__meta blog-card__meta--tag">
-							{{ post.tags![0] }}
-						</span>
-						}
-					</div>
-					<span class="blog-card__cta">
-						Read article
-						<span aria-hidden="true">&rarr;</span>
-					</span>
-				</div>
-			</zyra-card>
-		</a>
-		}
-	</div>
+		<ul class="blog-list">
+			@for (post of posts(); track post.slug) {
+				<li class="blog-list__item">
+					<a class="blog-post" [routerLink]="['/blog', post.slug]">
+						<div class="blog-post__left">
+							<div class="blog-post__meta">
+								<span class="blog-post__tag">{{ categoryLabel(post.category) }}</span>
+								<span class="blog-post__dot" aria-hidden="true"></span>
+								<span class="blog-post__date">{{ formatDate(post.date) }}</span>
+								<span class="blog-post__dot" aria-hidden="true"></span>
+								<span class="blog-post__read-time">{{ post.readTime }}</span>
+							</div>
+							<h2 class="blog-post__title">{{ post.title }}</h2>
+							<p class="blog-post__desc">{{ post.description }}</p>
+						</div>
+						<div class="blog-post__thumb" aria-hidden="true">
+							<span class="blog-post__thumb-text">{{ thumbInitials(post.category) }}</span>
+						</div>
+					</a>
+				</li>
+			}
+		</ul>
 	}
 </section>

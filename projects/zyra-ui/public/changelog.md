@@ -7,6 +7,38 @@ Versioning: [Semantic Versioning](https://semver.org/)
 
 ---
 
+## [3.5.0] — 2026-07-23
+
+Closes out Phase 1 of the roadmap — 60 free components.
+
+### Added
+
+- **`zyra-image`** — loading/error-aware image wrapper: skeleton placeholder while loading, `fallbackSrc` with a broken-image icon fallback if that also fails, fixed aspect-ratio boxes (`ratio`) with `objectFit` control, `radius`, `width`/`height`/`srcset`/`sizes`, `priority` (sets `loading="eager"` + `fetchpriority="high"` for above-the-fold images), and an optional `caption`.
+- **`zyra-json-viewer`** — collapsible, syntax-colored tree view for inspecting JSON (accepts a parsed value or a raw JSON string). Per-node expand/collapse reuses Tree View's flattened-row technique; `expandDepth` controls the initial open depth, `maxDepth` caps recursion as a safety net against huge/deeply-nested payloads; copy-to-clipboard for the full formatted document.
+- **`zyra-markdown-viewer`** — dependency-free markdown renderer (headings, paragraphs, bold/italic, links, images, inline code, ordered/unordered lists, blockquotes, tables with alignment, horizontal rules). Fenced code blocks render through `zyra-code-block` for the same syntax highlighting and copy button. Never uses `innerHTML`; `sanitize` (default `true`) strips raw HTML-looking tags out of the source instead of ever interpreting them. `linkTarget` controls generated links (`_blank` also adds `rel="noopener noreferrer"`).
+- **`zyra-command-palette`** — Ctrl/Cmd+K-activated command overlay: instant fuzzy filter over a flat `items` list, grouped results with section headers, full keyboard navigation (arrows/Enter/Escape), and an item shape supporting icon/label/description/shortcut. Reuses `zyra-modal`'s focus-trap, body-scroll-lock, and backdrop-dismiss pattern.
+- New Tier 3 component tokens for all four: `zyra-image` (placeholder bg/icon, caption text), `zyra-json-viewer` (bg, border, key, toggle), `zyra-markdown-viewer` (text, heading, link, blockquote, inline code), `zyra-command-palette` (panel bg/shadow, active item bg, group label, item text/icon/shortcut) — the palette's scrim reuses the existing generic `--zyra-overlay-*` tokens.
+- New `imageIcon` export in the shared icon set, used as `zyra-image`'s broken-image fallback glyph.
+
+- **`zyra-sidebar`**: new `navLabel` input (default `'Sidebar navigation'`) sets an accessible name on the `<nav>` landmark. Without it, a page with more than one nav region (header, sidebar, footer) had every landmark announce as an indistinguishable "navigation" to screen reader users.
+- **`zyra-sidebar-section`**: the section heading now renders as a real `<h2>` (was a plain `<div>`) with a stable id, and its item list gets `role="group"` + `aria-labelledby` pointing at that heading — screen readers previously had no way to know the heading text described the items below it, since a styled div carries no heading semantics at all.
+
+### Fixed
+
+- **`zyra-command-palette`**: the active/highlighted row used `(mouseenter)`, which fires even without pointer movement if a row happens to render underneath an already-stationary cursor — e.g. opening the palette via the Ctrl/Cmd+K shortcut while the mouse rests over the page. Caught during visual QA (a freshly-opened palette highlighted row 4 instead of row 1). Switched to `(mousemove)`, which only fires on genuine pointer motion.
+- **`zyra-image`**: the `ImageRatio` type carried a trailing `| string`, which made TypeScript widen the whole union and silently accept any string instead of enforcing the documented `"16/9"` / `"16:9"` shapes at compile time — removed. Also, `usedFallback` never reset when `src` changed after a prior load error: swapping to a brand-new image following an earlier failure kept rendering the stale `fallbackSrc()` forever instead of retrying the new `src`. Both caught via code review; fixed with a constructor `effect()` that resets fallback/loading state whenever `src()` changes, plus a regression test.
+- The "Zyra UI now ships N components" figure was hardcoded as `56` in five separate places (the announcement banner, three spec-file assertions, and a demo string) instead of being derived from the live component count, so it silently went stale every time a component shipped. The banner and demo string now read `60`; the three spec assertions now compare against `COMPONENT_COUNT` / the actual registry length instead of a literal number, so this can't happen again.
+
+---
+
+## [3.4.5] — 2026-07-21
+
+### Fixed
+
+- `zyra-table`: cells now correctly scroll horizontally on narrow viewports instead of wrapping/truncating content. `td` was missing the `white-space: nowrap` already present on `th`, letting the table shrink below its natural content width and cut off cell text (e.g. a `Suspended` status cell rendered as `Suspe`) instead of triggering the existing `.zyr-table__scroll` horizontal-scroll wrapper.
+
+---
+
 ## [3.4.4] — 2026-07-21
 
 ### Added

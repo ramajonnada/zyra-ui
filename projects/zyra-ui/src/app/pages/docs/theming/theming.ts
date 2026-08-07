@@ -119,11 +119,17 @@ export const appConfig: ApplicationConfig = {
             step: '03',
             title: 'Switch themes at runtime',
             description: 'Inject the service anywhere — every component repaints instantly, no reload.',
-            code: `import { inject } from '@angular/core';
+            code: `import { Component, inject } from '@angular/core';
 import { ZyraThemeService } from 'zyra-ng-ui';
 
-const theme = inject(ZyraThemeService);
-theme.setTheme('ocean'); // 'dark' | 'light' | 'ocean' | 'amber' | 'rose'`,
+@Component({ /* ... */ })
+export class MyComponent {
+  private theme = inject(ZyraThemeService);
+
+  switchTheme() {
+    this.theme.setTheme('ocean'); // 'dark' | 'light' | 'ocean' | 'amber' | 'rose'
+  }
+}`,
             language: 'ts',
         },
         {
@@ -215,6 +221,15 @@ theme.setTheme('ocean'); // 'dark' | 'light' | 'ocean' | 'amber' | 'rose'`,
             description:
                 'Preview and switch between the dark, light, ocean, amber, and rose themes shipped with Zyra UI, and see the design tokens each one drives.',
             url: 'https://www.zyraui.dev/docs/theming',
+            keywords: [
+                'angular theming',
+                'angular dark mode',
+                'angular design tokens',
+                'angular component library themes',
+                'zyra ui themes',
+                'angular css custom properties',
+                'angular light dark theme toggle',
+            ],
         });
 
         this.seo.injectJsonLd('breadcrumb-jsonld', breadcrumbJsonLd(this.breadcrumbItems));
