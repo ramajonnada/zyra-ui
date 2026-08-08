@@ -4,7 +4,8 @@
 [![npm version](https://img.shields.io/npm/v/zyra-ng-ui.svg)](https://www.npmjs.com/package/zyra-ng-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A dark-mode-first Angular component library built with design tokens, signals, and zero-runtime theming.
+A signals-first Angular component library with token-driven, zero-runtime theming — 60+
+components, five built-in themes, WCAG AA accessible, SSR-ready.
 
 **[Live Playground →](https://www.zyraui.dev)**
 
@@ -13,27 +14,22 @@ A dark-mode-first Angular component library built with design tokens, signals, a
 ## Features
 
 - **Angular 21+ signals-first** — every component uses `input()`, `output()`, `signal()`, `computed()`
-- **Design-token theming** — swap the entire look with one CSS variable file
-- **Dark-mode first** — designed in the dark, perfected in the light
+- **60+ production-ready components** — forms, data display, overlays, navigation, layout, utilities
+- **Five built-in themes** — dark, light, ocean, amber, rose — swappable at runtime via `ZyraThemeService`
+- **Token-driven theming** — a layered `--zyra-*` custom-property system; override the semantic
+  layer to re-theme without touching component internals
 - **Standalone components** — no NgModules, just import what you need
 - **Tree-shakeable** — only ship what you use
-- **WCAG 2.1 AA accessible** — keyboard nav, focus rings, ARIA labels built in
+- **SSR + zoneless-compatible**
+- **WCAG 2.1 AA accessible** — keyboard nav, focus rings, ARIA roles built in
 
 ---
 
 ## Components
 
-| Component  | Selector          | Description                           |
-| ---------- | ----------------- | ------------------------------------- |
-| Button     | `zyra-button`     | Variants, sizes, loading, icons       |
-| Badge      | `zyra-badge`      | Status labels with dot indicator      |
-| Card       | `zyra-card`       | Content containers with slots         |
-| Input      | `zyra-input`      | Text input with validation states     |
-| Spinner    | `zyra-spinner`    | Loading indicator                     |
-| Toast      | `zyra-toast`      | Notification toasts                   |
-| Tooltip    | `zyra-tooltip`    | Hover tooltips with positioning       |
-| Avatar     | `zyra-avatar`     | Profile avatars with online indicator |
-| Form Field | `zyra-form-field` | Label + input + hint wrapper          |
+60+ components across Forms, Data Display, Overlays/Feedback, Navigation, Layout, and Utilities —
+see the full, always-current catalog at **[zyraui.dev/components](https://www.zyraui.dev/components)**
+or `projects/zyra-ui/src/app/pages/ui-components/ui-components.data.ts` in this repo.
 
 ---
 
@@ -43,36 +39,43 @@ A dark-mode-first Angular component library built with design tokens, signals, a
 npm install zyra-ng-ui
 ```
 
-### Peer dependencies
-
-```bash
-npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons
-```
+No required peer dependencies beyond Angular itself (`@angular/core`, `@angular/common`,
+`@angular/forms` ^21).
 
 ### Import styles
 
 In your `styles.scss`:
 
 ```scss
-@import 'zyra-ng-ui/styles';
+@use 'zyra-ng-ui/styles';
 ```
+
+This pulls in all five themes. To ship only the themes you use, import them individually instead
+— see [docs/THEME_SYSTEM.md](docs/THEME_SYSTEM.md).
 
 ---
 
 ## Quick Start
 
 ```typescript
-import { ZyraButton, ZyraBadge } from 'zyra-ng-ui';
+import { Component } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
+import { provideZyra, ZyraButton, ZyraBadge } from 'zyra-ng-ui';
 
+// app.config.ts
+export const appConfig: ApplicationConfig = {
+    providers: [provideZyra({ theme: 'dark', respectSystemTheme: false })],
+};
+
+// some.component.ts
 @Component({
     imports: [ZyraButton, ZyraBadge],
     template: `
-        <zyra-button variant="primary" (clicked)="onClick()"> Get Started </zyra-button>
-
+        <zyra-button variant="primary" (clicked)="onClick()">Get Started</zyra-button>
         <zyra-badge variant="success" [dot]="true">Online</zyra-badge>
     `,
 })
-export class AppComponent {
+export class SomeComponent {
     onClick() {}
 }
 ```
@@ -81,14 +84,18 @@ export class AppComponent {
 
 ## Theming
 
-All colors, spacing, and radii are CSS variables. Override them in your global styles:
+Component styles consume a layered `--zyra-*` token system (primitive → dimension → semantic →
+component tier) — override the **semantic** tier to re-theme without touching per-theme internals:
 
 ```scss
 :root {
-    --zyr-accent: #your-brand-color;
-    --zyr-radius-md: 8px;
+    --zyra-color-primary: #your-brand-color;
+    --zyra-radius-md: 8px;
 }
 ```
+
+See [docs/THEME_SYSTEM.md](docs/THEME_SYSTEM.md) for the full tier breakdown and
+[docs/TOKENS.md](docs/TOKENS.md) for the token reference.
 
 ---
 
@@ -96,9 +103,12 @@ All colors, spacing, and radii are CSS variables. Override them in your global s
 
 ```
 projects/
-  zyra-ng-ui/     ← publishable Angular library (npm)
-  zyra-ui/        ← marketing site + component playground
+  zyra-ng-ui/     ← publishable Angular library (npm: zyra-ng-ui)
+  zyra-ui/        ← marketing site + component playground (zyraui.dev)
 ```
+
+Paid-tier (Phase 2 / Pro) components are developed in a separate private repo, `zyra-ui-pro` — see
+[docs/PHASE2_LAUNCH_CHECKLIST.md](docs/PHASE2_LAUNCH_CHECKLIST.md) for why.
 
 ---
 
