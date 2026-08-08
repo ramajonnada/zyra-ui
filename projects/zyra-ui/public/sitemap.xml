@@ -40,7 +40,7 @@
   </url>
   <url>
     <loc>https://www.zyraui.dev/blog</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -408,6 +408,30 @@
   </url>
 
   <!-- Blog posts -->
+  <url>
+    <loc>https://www.zyraui.dev/blog/angular-pwa-service-worker-offline-2026</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.zyraui.dev/blog/angular-cdk-virtual-scroll-large-lists-2026</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.zyraui.dev/blog/ngxtension-angular-utility-library-signals-2026</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.zyraui.dev/blog/nx-monorepo-angular-libraries-2026</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.zyraui.dev/blog/build-custom-mcp-server-angular-dev-workflows-2026</loc>
     <lastmod>2026-08-07</lastmod>

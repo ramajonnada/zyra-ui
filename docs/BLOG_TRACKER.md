@@ -45,8 +45,12 @@ The daily blog task reads this file before picking a topic and appends to it aft
 | 2026-08-05 | angular-for-track-expression-performance-2026 | @for track expression, track $index vs track item.id, Angular list rendering performance, DOM diffing with @for, track expression OnPush interaction, Angular DevTools profiler for list perf, stable identity keys |
 | 2026-08-06 | angular-lazy-routes-loadcomponent-code-splitting-2026 | loadComponent, loadChildren, route-level code splitting, lazy loading routes, provideRouter, PreloadAllModules, QuicklinkStrategy, source-map-explorer, bundle size optimization, feature-scoped providers |
 | 2026-08-06 | angular-model-signal-two-way-binding-2026 | model(), ModelSignal, two-way binding with signals, model.required(), model vs input(), @Input/@Output replacement, ngxtension syncSignal, component library two-way binding |
+| 2026-08-07 | ngxtension-angular-utility-library-signals-2026 | ngxtension library, computedAsync, injectParams, injectQueryParams, explicitEffect, syncSignal, createInjectable, async signal derivation, selective effect dependencies, route param signals |
 | 2026-08-07 | build-custom-mcp-server-angular-dev-workflows-2026 | Model Context Protocol (MCP), @modelcontextprotocol/sdk, building custom MCP server, MCP tools/resources/prompts, Angular CLI via MCP, design system resource, VS Code MCP config, McpServer, StdioServerTransport |
+| 2026-08-07 | nx-monorepo-angular-libraries-2026 | Nx monorepo, @nx/angular, shared Angular libraries, Nx project graph, nx affected commands, nx generate library, tsconfig path aliases, Nx Cloud remote caching, nx release, module boundary rules, Nx workspace setup |
 | 2026-08-06 | angular-computed-signal-advanced-patterns-2026 | computed() chaining, Angular signal memoization, derived state trees, lazy evaluation, conditional dependency tracking, reference stability, computedAsync, ngxtension computedAsync, replacing RxJS selector chains with computed() |
+| 2026-08-08 | angular-cdk-virtual-scroll-large-lists-2026 | Angular CDK Virtual Scroll, CdkVirtualScrollViewport, FixedSizeVirtualScrollStrategy, AutoSizeVirtualScrollStrategy, itemSize attribute, VirtualScrollStrategy interface, virtual scrolling with signals, @angular/cdk/scrolling, @angular/cdk-experimental/scrolling, DOM recycling, large list performance |
+| 2026-08-08 | angular-pwa-service-worker-offline-2026 | Angular PWA, @angular/service-worker, ngsw-config.json, provideServiceWorker(), SwUpdate, VersionReadyEvent, prefetch/lazy asset groups, freshness/performance data group strategies, offline-first Angular app, PWA update banner with signals |
 
 ---
 
@@ -62,6 +66,24 @@ Before writing a new post, scan this list. If your concept appears here, **pick 
 - QuicklinkStrategy, ngx-quicklink viewport preloading — covered (2026-08-06)
 - Feature-scoped providers on lazy route — covered (2026-08-06)
 - Angular bundle size optimization via dynamic import() — covered (2026-08-06)
+
+**Angular PWA & Service Workers**
+- Angular PWA, @angular/pwa schematic, ng add @angular/pwa — covered (2026-08-08)
+- @angular/service-worker, ngsw-worker.js, provideServiceWorker() — covered (2026-08-08)
+- ngsw-config.json, assetGroups prefetch/lazy, dataGroups freshness/performance — covered (2026-08-08)
+- SwUpdate, VersionReadyEvent, activateUpdate(), VERSION_READY event — covered (2026-08-08)
+- Offline-first Angular app, service worker caching strategy — covered (2026-08-08)
+- Signal-based service worker update state with toSignal() — covered (2026-08-08)
+- PWA install prompt and update banner with Angular signals — covered (2026-08-08)
+
+**Angular CDK & Virtual Scroll**
+- CdkVirtualScrollViewport, virtual scroll viewport container — covered (2026-08-08)
+- FixedSizeVirtualScrollStrategy, itemSize attribute — covered (2026-08-08)
+- AutoSizeVirtualScrollStrategy, @angular/cdk-experimental/scrolling — covered (2026-08-08)
+- VirtualScrollStrategy interface, custom scroll strategy — covered (2026-08-08)
+- Angular CDK virtual scroll with signals and computed() — covered (2026-08-08)
+- DOM recycling / virtual DOM windowing for large lists — covered (2026-08-08)
+- Large list performance in Angular, 100k row rendering — covered (2026-08-08)
 
 **Performance & Rendering**
 - @for track expression, track $index vs track item.id — covered (2026-08-05)
@@ -172,6 +194,26 @@ Before writing a new post, scan this list. If your concept appears here, **pick 
 - Angular tooltip directive with CSS Anchor Positioning — covered (2026-07-28)
 - Floating UI (@floating-ui/dom) Angular service — covered (2026-07-28)
 
+**Monorepo & Workspace Tooling**
+- Nx monorepo setup, create-nx-workspace, @nx/angular — covered (2026-08-07)
+- Nx shared Angular libraries, nx generate library, --buildable/--publishable — covered (2026-08-07)
+- Nx project graph, nx graph visualization — covered (2026-08-07)
+- nx affected commands, affected test/build/lint — covered (2026-08-07)
+- TypeScript path aliases in Nx (tsconfig.base.json) — covered (2026-08-07)
+- Nx Cloud remote caching, nx connect — covered (2026-08-07)
+- Nx module boundary rules, @nx/eslint-plugin enforceModuleBoundaries — covered (2026-08-07)
+- nx release, version bumping, changelog in Nx — covered (2026-08-07)
+- Library type organization: ui/data-access/util/feature — covered (2026-08-07)
+
+**ngxtension Utility Library**
+- ngxtension library, community Angular utilities — covered (2026-08-07)
+- computedAsync, async signal derivation with cancellation — covered (2026-08-07)
+- injectParams(), injectQueryParams(), router params as signals — covered (2026-08-07)
+- explicitEffect(), selective signal dependency tracking — covered (2026-08-07)
+- syncSignal(), bidirectional signal sync — covered (2026-08-07)
+- createInjectable(), class-free injectable factory pattern — covered (2026-08-07)
+- computedAsync .isLoading() / .error() / .value() sub-signals — covered (2026-08-07)
+
 **Custom MCP Servers & AI Tooling**
 - Model Context Protocol (MCP), MCP server primitives (tools/resources/prompts) — covered (2026-08-07)
 - @modelcontextprotocol/sdk TypeScript SDK, McpServer, StdioServerTransport — covered (2026-08-07)
@@ -234,9 +276,9 @@ Use these as inspiration — they are NOT reserved, first run wins:
 - ~~Angular lazy routes with `loadComponent`~~ — covered (2026-08-06)
 - `HttpClient` with interceptors in standalone apps
 - Angular DevTools profiler walkthrough
-- Nx monorepo with Angular libraries
+- ~~Nx monorepo with Angular libraries~~ — covered (2026-08-07)
 - Angular + Cloudflare Workers deployment
-- `ngxtension` utility library overview
+- ~~`ngxtension` utility library overview~~ — covered (2026-08-07)
 - GitHub Copilot workspace for Angular projects
 - AI code review tools (CodeRabbit, Graphite, etc.)
 - ~~Model Context Protocol (MCP) — building custom tools~~ — covered (2026-08-07)
@@ -244,7 +286,9 @@ Use these as inspiration — they are NOT reserved, first run wins:
 
 ---
 
-*Last updated: 2026-08-07*
+*Last updated: 2026-08-08*
+
+
 
 
 
