@@ -96,11 +96,21 @@ Security practices that apply to this build are tracked separately in
 
 ## Not needed yet
 
-- Don't build any of this before Sprint 8 (charting engine) ships — Phase 2 backend work is a
-  separate initiative from the component work, and there's nothing to sell until Pro components
-  exist.
+- Don't build the backend/billing/licensing pieces (Supabase, Razorpay, login page, license-key
+  check) before Sprint 8 (charting engine) ships — that's a separate initiative from the component
+  work, and there's nothing to sell until Pro components exist.
 - Don't set up GitHub Packages token automation until the Razorpay → Supabase → license flow is
   actually being wired — premature before that.
+
+## Repo for Sprint 8 source (decided 2026-08-07)
+
+The private `zyra-ui-pro` GitHub repo now exists. **Sprint 8's component source (charting engine,
+Line, Bar, Pie) is developed directly in `zyra-ui-pro` from the start** — not in the public
+`zyra-ng-ui` repo and moved later. Reasoning: this repo is public, so any push of Pro-tier source
+here is readable on GitHub the moment it lands, regardless of npm registry gating — same logic as
+the "keep Pro source in a separate private repo" rule above, just applied from day one instead of
+at packaging time. `zyra-ui-pro` needs its own build/lint/test tooling set up before component work
+starts there (it does not inherit `zyra-ng-ui`'s tooling automatically).
 
 ---
 

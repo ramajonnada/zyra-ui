@@ -89,7 +89,8 @@ Every component below must clear all rows before it's considered done. This mirr
 ## 5. Risks & Notes
 
 - **Nothing yet — sprint not started.**
-- **Pro-tier distribution not yet built.** Per project decisions, Sprint 8's output ships via a separate private package (not the public `zyra-ng-ui`), gated by Supabase+Stripe-issued access tokens — that backend/licensing flow does not exist yet and is tracked as its own initiative, not part of this sprint's component checklist. Until it's built, Sprint 8 components should still be developed/tested inside the existing lib structure; packaging/gating is a release-time concern, not an implementation-time one.
+- **Pro-tier distribution not yet built.** Per project decisions, Sprint 8's output ships via a separate private package (not the public `zyra-ng-ui`), gated by Supabase+Razorpay-issued access tokens — that backend/licensing flow does not exist yet and is tracked as its own initiative, not part of this sprint's component checklist.
+- **Correction (2026-08-07): Sprint 8 source is developed directly in the private `zyra-ui-pro` repo, not in this public `zyra-ng-ui` repo.** An earlier version of this note said to develop/test Sprint 8 components "inside the existing lib structure" before packaging — that's wrong for Pro-tier code: this repo is public, so pushing Sprint 8 source here would expose paid-tier component code on GitHub regardless of npm gating, contradicting the source-protection decision in [PHASE2_LAUNCH_CHECKLIST.md](PHASE2_LAUNCH_CHECKLIST.md). Set up build/lint/test tooling in `zyra-ui-pro` before writing components there.
 
 ---
 
